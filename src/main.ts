@@ -52,6 +52,11 @@ type BatchSubmissionResult = {
   submittedBatches: number;
   submittedUrls: number;
 };
+type QuotaSelection<T> = {
+  allowed: T[];
+  deniedCount: number;
+  deniedSample: T[];
+};
 
 interface Inputs {
   inputDir: string;
@@ -131,6 +136,8 @@ const CDN_MAX_URLS_PER_REQUEST = 100;
 const CDN_API_MAX_RPS = 50;
 // DescribeRefreshQuota: 20 req/s (stricter endpoint).
 const CDN_QUOTA_API_MAX_RPS = 20;
+// Include only a small sample in quota-exhaustion warnings.
+const CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT = 3;
 // Maximum number of upload retry attempts per file.
 const MAX_UPLOAD_RETRIES = 3;
 
@@ -558,17 +565,46 @@ function chunkByLimit(values: string[], size: number): string[][] {
   return chunks;
 }
 
-function consumeQuota(
-  values: string[],
+function selectByQuota<T>(
+  values: readonly T[],
   remainingQuota: number,
-): { allowed: string[]; denied: string[] } {
-  if (remainingQuota <= 0) {
-    return { allowed: [], denied: values };
-  }
+): QuotaSelection<T> {
+  const safeQuota = remainingQuota > 0 ? remainingQuota : 0;
+  const allowedCount = Math.min(values.length, safeQuota);
+  const deniedCount = values.length - allowedCount;
+
   return {
-    allowed: values.slice(0, remainingQuota),
-    denied: values.slice(remainingQuota),
+    allowed: values.slice(0, allowedCount),
+    deniedCount,
+    deniedSample: deniedCount > 0
+      ? values.slice(
+        allowedCount,
+        Math.min(
+          values.length,
+          allowedCount + CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT,
+        ),
+      )
+      : [],
   };
+}
+
+function warnQuotaExhausted(
+  label: "directory refresh" | "refresh" | "preload",
+  requestedCount: number,
+  quota: number,
+  deniedCount: number,
+  deniedSampleUrls: readonly string[],
+): void {
+  if (deniedCount <= 0) {
+    return;
+  }
+
+  const sampleSuffix = deniedSampleUrls.length > 0
+    ? `, sample=${deniedSampleUrls.join(",")}`
+    : "";
+  warning(
+    `CDN ${label} quota exhausted: requested=${requestedCount}, quota=${quota}, skipped=${deniedCount}${sampleSuffix}`,
+  );
 }
 
 async function submitRefreshBatches(
@@ -737,19 +773,12 @@ async function runCdnActions(
     : { remainingFileKeys: files, skippedCount: 0 };
   const preloadFileSelection = { remainingFileKeys: files, skippedCount: 0 };
 
-  const refreshFileUrls = refreshFileSelection.remainingFileKeys.map((key) =>
-    buildFileUrl(inputs.cdnBaseUrl, key)
-  );
-  const preloadFileUrls = preloadFileSelection.remainingFileKeys.map((key) =>
-    buildFileUrl(inputs.cdnBaseUrl, key)
-  );
-  const directoryUrls = directories.map((key) =>
-    buildDirectoryUrl(inputs.cdnBaseUrl, key)
-  );
+  const refreshFileKeys = refreshFileSelection.remainingFileKeys;
+  const preloadFileKeys = preloadFileSelection.remainingFileKeys;
   info(
-    `CDN plan: directoryUrls=${directoryUrls.length}, skippedNestedDirectories=${
+    `CDN plan: directoryUrls=${directories.length}, skippedNestedDirectories=${
       discoveredDirectories.length - directories.length
-    }, refreshFileUrls=${refreshFileUrls.length}, preloadFileUrls=${preloadFileUrls.length}, skippedRefreshFilesByDirectory=${refreshFileSelection.skippedCount}, actions=${
+    }, refreshFileUrls=${refreshFileKeys.length}, preloadFileUrls=${preloadFileKeys.length}, skippedRefreshFilesByDirectory=${refreshFileSelection.skippedCount}, actions=${
       formatActions(inputs.cdnActions)
     }`,
   );
@@ -758,68 +787,100 @@ async function runCdnActions(
   // PushObjectCache. Purging stale content before preloading ensures POPs
   // always fetch the latest version from origin.
   if (shouldRefresh) {
-    const { allowed, denied } = consumeQuota(
-      directoryUrls,
-      directoryRefreshRemain,
+    const directoryQuota = directoryRefreshRemain;
+    const selection = selectByQuota(
+      directories,
+      directoryQuota,
     );
-    directoryRefreshRemain -= allowed.length;
-    if (allowed.length > 0) {
-      info(`CDN refresh (Directory): submitting ${allowed.length} URL(s)`);
+    directoryRefreshRemain -= selection.allowed.length;
+    if (selection.allowed.length > 0) {
+      const allowedDirectoryUrls = selection.allowed.map((key) =>
+        buildDirectoryUrl(inputs.cdnBaseUrl, key)
+      );
+      info(
+        `CDN refresh (Directory): submitting ${allowedDirectoryUrls.length} URL(s)`,
+      );
+      const result = await submitRefreshBatches(
+        cdnClient,
+        limiter,
+        "Directory",
+        allowedDirectoryUrls,
+        credentials.securityToken,
+      );
+      refreshTaskIds.push(...result.taskIds);
+      refreshSubmissions += result.submittedBatches;
+      refreshSubmittedUrls += result.submittedUrls;
     }
-    const result = await submitRefreshBatches(
-      cdnClient,
-      limiter,
-      "Directory",
-      allowed,
-      credentials.securityToken,
+    warnQuotaExhausted(
+      "directory refresh",
+      directories.length,
+      directoryQuota,
+      selection.deniedCount,
+      selection.deniedSample.map((key) =>
+        buildDirectoryUrl(inputs.cdnBaseUrl, key)
+      ),
     );
-    refreshTaskIds.push(...result.taskIds);
-    refreshSubmissions += result.submittedBatches;
-    refreshSubmittedUrls += result.submittedUrls;
-    for (const url of denied) {
-      warning(`CDN directory refresh quota exhausted: ${url}`);
-    }
   }
 
   if (shouldRefresh) {
-    const { allowed, denied } = consumeQuota(refreshFileUrls, refreshRemain);
-    refreshRemain -= allowed.length;
-    if (allowed.length > 0) {
-      info(`CDN refresh (File): submitting ${allowed.length} URL(s)`);
+    const refreshQuota = refreshRemain;
+    const selection = selectByQuota(refreshFileKeys, refreshQuota);
+    refreshRemain -= selection.allowed.length;
+    if (selection.allowed.length > 0) {
+      const allowedRefreshUrls = selection.allowed.map((key) =>
+        buildFileUrl(inputs.cdnBaseUrl, key)
+      );
+      info(
+        `CDN refresh (File): submitting ${allowedRefreshUrls.length} URL(s)`,
+      );
+      const result = await submitRefreshBatches(
+        cdnClient,
+        limiter,
+        "File",
+        allowedRefreshUrls,
+        credentials.securityToken,
+      );
+      refreshTaskIds.push(...result.taskIds);
+      refreshSubmissions += result.submittedBatches;
+      refreshSubmittedUrls += result.submittedUrls;
     }
-    const result = await submitRefreshBatches(
-      cdnClient,
-      limiter,
-      "File",
-      allowed,
-      credentials.securityToken,
+    warnQuotaExhausted(
+      "refresh",
+      refreshFileKeys.length,
+      refreshQuota,
+      selection.deniedCount,
+      selection.deniedSample.map((key) => buildFileUrl(inputs.cdnBaseUrl, key)),
     );
-    refreshTaskIds.push(...result.taskIds);
-    refreshSubmissions += result.submittedBatches;
-    refreshSubmittedUrls += result.submittedUrls;
-    for (const url of denied) {
-      warning(`CDN refresh quota exhausted: ${url}`);
-    }
   }
 
   if (shouldPreloadFiles) {
-    const { allowed, denied } = consumeQuota(preloadFileUrls, preloadRemain);
-    preloadRemain -= allowed.length;
-    if (allowed.length > 0) {
-      info(`CDN preload (File): submitting ${allowed.length} URL(s)`);
+    const preloadQuota = preloadRemain;
+    const selection = selectByQuota(preloadFileKeys, preloadQuota);
+    preloadRemain -= selection.allowed.length;
+    if (selection.allowed.length > 0) {
+      const allowedPreloadUrls = selection.allowed.map((key) =>
+        buildFileUrl(inputs.cdnBaseUrl, key)
+      );
+      info(
+        `CDN preload (File): submitting ${allowedPreloadUrls.length} URL(s)`,
+      );
+      const result = await submitPreloadBatches(
+        cdnClient,
+        limiter,
+        allowedPreloadUrls,
+        credentials.securityToken,
+      );
+      preloadTaskIds.push(...result.taskIds);
+      preloadSubmissions += result.submittedBatches;
+      preloadSubmittedUrls += result.submittedUrls;
     }
-    const result = await submitPreloadBatches(
-      cdnClient,
-      limiter,
-      allowed,
-      credentials.securityToken,
+    warnQuotaExhausted(
+      "preload",
+      preloadFileKeys.length,
+      preloadQuota,
+      selection.deniedCount,
+      selection.deniedSample.map((key) => buildFileUrl(inputs.cdnBaseUrl, key)),
     );
-    preloadTaskIds.push(...result.taskIds);
-    preloadSubmissions += result.submittedBatches;
-    preloadSubmittedUrls += result.submittedUrls;
-    for (const url of denied) {
-      warning(`CDN preload quota exhausted: ${url}`);
-    }
   }
 
   const uniqueRefreshTaskIds = Array.from(new Set(refreshTaskIds));

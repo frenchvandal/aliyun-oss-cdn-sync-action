@@ -91,6 +91,8 @@ const CDN_MAX_URLS_PER_REQUEST = 100;
 const CDN_API_MAX_RPS = 50;
 // DescribeRefreshQuota: 20 req/s (stricter endpoint).
 const CDN_QUOTA_API_MAX_RPS = 20;
+// Include only a small sample in quota-exhaustion warnings.
+const CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT = 3;
 
 type CdnTaskLookupEntry = {
   source: string;
@@ -101,6 +103,11 @@ type CdnTaskLookupEntry = {
   createdAt: string;
   objectPath: string;
   detail: string;
+};
+type QuotaSelection<T> = {
+  allowed: T[];
+  deniedCount: number;
+  deniedSample: T[];
 };
 
 function errorMessage(error: unknown): string {
@@ -118,6 +125,47 @@ function chunkByLimit(values: string[], size: number): string[][] {
     chunks.push(values.slice(index, index + size));
   }
   return chunks;
+}
+
+function selectByQuota<T>(
+  values: readonly T[],
+  remainingQuota: number,
+): QuotaSelection<T> {
+  const safeQuota = remainingQuota > 0 ? remainingQuota : 0;
+  const allowedCount = Math.min(values.length, safeQuota);
+  const deniedCount = values.length - allowedCount;
+
+  return {
+    allowed: values.slice(0, allowedCount),
+    deniedCount,
+    deniedSample: deniedCount > 0
+      ? values.slice(
+        allowedCount,
+        Math.min(
+          values.length,
+          allowedCount + CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT,
+        ),
+      )
+      : [],
+  };
+}
+
+function warnQuotaExhausted(
+  requestedCount: number,
+  quota: number,
+  deniedCount: number,
+  deniedSampleUrls: readonly string[],
+): void {
+  if (deniedCount <= 0) {
+    return;
+  }
+
+  const sampleSuffix = deniedSampleUrls.length > 0
+    ? `, sample=${deniedSampleUrls.join(",")}`
+    : "";
+  warning(
+    `CDN refresh quota exhausted for deleted objects: requested=${requestedCount}, quota=${quota}, skipped=${deniedCount}${sampleSuffix}`,
+  );
 }
 
 function parseTaskIdList(raw: string): string[] {
@@ -368,7 +416,9 @@ async function refreshDeletedCdnObjects(
       )
     );
     urlRemain = parseQuota(quota.body?.urlRemain);
-    info(`CDN quota for cleanup: urlRemain=${urlRemain}`);
+    info(
+      `CDN quota for cleanup: urlRemain=${urlRemain}, requested=${deletedKeys.length}`,
+    );
   } catch (error: unknown) {
     warning(
       `CDN quota check failed, skipping CDN refresh: ${errorMessage(error)}`,
@@ -376,21 +426,26 @@ async function refreshDeletedCdnObjects(
     return;
   }
 
-  const urls = deletedKeys.map((key) => buildFileUrl(cdnBaseUrl, key));
-  const allowed = urls.slice(0, urlRemain);
-  const denied = urls.slice(urlRemain);
+  const selection = selectByQuota(deletedKeys, urlRemain);
+  warnQuotaExhausted(
+    deletedKeys.length,
+    urlRemain,
+    selection.deniedCount,
+    selection.deniedSample.map((key) => buildFileUrl(cdnBaseUrl, key)),
+  );
 
-  for (const url of denied) {
-    warning(`CDN refresh quota exhausted for deleted file: ${url}`);
-  }
-
-  if (allowed.length === 0) {
+  if (selection.allowed.length === 0) {
     return;
   }
 
-  info(`CDN refresh (cleanup): submitting ${allowed.length} deleted URL(s)`);
+  const allowedUrls = selection.allowed.map((key) =>
+    buildFileUrl(cdnBaseUrl, key)
+  );
+  info(
+    `CDN refresh (cleanup): submitting ${allowedUrls.length} deleted URL(s)`,
+  );
 
-  for (const batch of chunkByLimit(allowed, CDN_MAX_URLS_PER_REQUEST)) {
+  for (const batch of chunkByLimit(allowedUrls, CDN_MAX_URLS_PER_REQUEST)) {
     try {
       const response = await limiter.schedule(() =>
         cdnClient.refreshObjectCaches(
