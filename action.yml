@@ -1,0 +1,97 @@
+name: Aliyun (Alibaba Cloud) OSS CDN Sync Action
+description: Upload local files to Aliyun OSS and run CDN actions per uploaded file
+
+inputs:
+  role-oidc-arn:
+    description: RAM role ARN used with GitHub OIDC (for example acs:ram::USER_Id:role/ROLE_NAME)
+    required: true
+  oidc-provider-arn:
+    description: OIDC provider ARN (for example acs:ram::USER_Id:oidc-provider/PROVIDER_NAME)
+    required: true
+  role-session-expiration:
+    description: Role session duration in seconds (900 to 43200)
+    required: false
+    default: "900"
+  role-session-name:
+    description: Role session name (2-64 characters, only letters, digits, hyphens, underscores, dots, at signs, or equals signs)
+    required: false
+    default: github-action-session
+  refresh-sts-token-interval-seconds:
+    description: Interval in seconds for OSS STS auto-refresh callbacks (must be lower than role-session-expiration)
+    required: false
+    default: "300"
+
+  input-dir:
+    description: Local directory to upload
+    required: false
+    default: _site
+  bucket:
+    description: OSS bucket name
+    required: true
+  region:
+    description: OSS region (for example oss-cn-hangzhou)
+    required: true
+  destination-prefix:
+    description: Prefix inside the bucket where files are uploaded
+    required: false
+    default: ""
+  overwrite:
+    description: Overwrite objects if they already exist
+    required: false
+    default: "true"
+  max-concurrency:
+    description: Number of parallel uploads
+    required: false
+    default: "5"
+  api-rps-limit:
+    description: Global API throttle per execution (must be <= 10000)
+    required: false
+    default: "9000"
+  endpoint:
+    description: Custom OSS endpoint (optional)
+    required: false
+  sdk-timeout-ms:
+    description: Timeout in milliseconds for individual OSS and CDN SDK calls
+    required: false
+    default: "60000"
+
+  cdn-enabled:
+    description: "Enable or disable CDN actions (set to false to temporarily bypass CDN without removing configuration)"
+    required: false
+    default: "false"
+  cdn-actions:
+    description: "CDN actions (comma-separated: refresh,preload,none). Empty value is treated as none."
+    required: false
+  cdn-base-url:
+    description: Base URL used to build full CDN object URLs
+    required: false
+  cdn-endpoint:
+    description: Custom CDN API endpoint (optional)
+    required: false
+
+outputs:
+  uploaded-count:
+    description: Number of uploaded files
+  skipped-count:
+    description: Number of skipped files
+  total-files:
+    description: Number of discovered files in input-dir
+  bucket:
+    description: Target bucket name
+  destination-prefix:
+    description: Target prefix used for upload
+  cdn-refresh-task-ids:
+    description: Comma-separated CDN refresh task IDs
+  cdn-preload-task-ids:
+    description: Comma-separated CDN preload task IDs
+
+runs:
+  using: node24
+  pre: dist/pre/index.js
+  main: dist/main/index.js
+  post: dist/cleanup/index.js
+  post-if: always()
+
+branding:
+  color: orange
+  icon: cloud

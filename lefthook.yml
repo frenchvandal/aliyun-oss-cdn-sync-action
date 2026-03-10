@@ -1,0 +1,8 @@
+# no_tty ensures the hook runs correctly in non-interactive environments
+# (CI pipelines, AI agents, headless shells) where no terminal is attached.
+no_tty: true
+
+commit-msg:
+  commands:
+    lint:
+      run: PATH="$HOME/.deno/bin:$PATH" DENO_TLS_CA_STORE=system deno task lint-commit {1}
