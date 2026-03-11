@@ -28520,6 +28520,9 @@ function setFailed(message) {
   process.exitCode = ExitCode.Failure;
   error(message);
 }
+function isDebug() {
+  return process.env["RUNNER_DEBUG"] === "1";
+}
 function debug(message) {
   issueCommand("debug", {}, message);
 }
@@ -28605,11 +28608,11 @@ function decodeJwtPayload(idToken) {
 function debugGitHubIdTokenClaims(idToken) {
   const decodedPayload = decodeJwtPayload(idToken);
   if (!decodedPayload) {
-    info("GitHub OIDC token payload decode failed");
+    debug("GitHub OIDC token payload decode failed");
     return;
   }
   const formattedPayload = JSON.stringify(decodedPayload, null, 2);
-  info(`GitHub OIDC token payload (decoded):
+  debug(`GitHub OIDC token payload (decoded):
 ${formattedPayload}`);
 }
 function getRequiredInput(name) {
@@ -28744,8 +28747,8 @@ function normalizeCredential(credential) {
 }
 async function resolveOidcCredential(inputs, options) {
   const idToken = await getIDToken(inputs.audience);
-  if (options?.debugGitHubIdTokenClaims) {
-    await group("Decode GitHub OIDC token claims", () => {
+  if (options?.debugGitHubIdTokenClaims && isDebug()) {
+    await group("Decode GitHub OIDC token claims (debug)", () => {
       debugGitHubIdTokenClaims(idToken);
       return Promise.resolve();
     });

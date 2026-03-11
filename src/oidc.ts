@@ -3,7 +3,7 @@ import os from "node:os";
 import { join } from "node:path";
 import process from "node:process";
 
-import { getIDToken, getInput, group, info } from "@actions/core";
+import { debug, getIDToken, getInput, group, isDebug } from "@actions/core";
 import CredentialClient, { Config } from "@alicloud/credentials";
 
 export interface OidcInputs {
@@ -71,12 +71,12 @@ function decodeJwtPayload(
 function debugGitHubIdTokenClaims(idToken: string): void {
   const decodedPayload = decodeJwtPayload(idToken);
   if (!decodedPayload) {
-    info("GitHub OIDC token payload decode failed");
+    debug("GitHub OIDC token payload decode failed");
     return;
   }
 
   const formattedPayload = JSON.stringify(decodedPayload, null, 2);
-  info(`GitHub OIDC token payload (decoded):\n${formattedPayload}`);
+  debug(`GitHub OIDC token payload (decoded):\n${formattedPayload}`);
 }
 
 function getRequiredInput(name: string): string {
@@ -247,8 +247,8 @@ export async function resolveOidcCredential(
   options?: ResolveOidcCredentialOptions,
 ): Promise<OidcCredential> {
   const idToken = await getIDToken(inputs.audience);
-  if (options?.debugGitHubIdTokenClaims) {
-    await group("Decode GitHub OIDC token claims", () => {
+  if (options?.debugGitHubIdTokenClaims && isDebug()) {
+    await group("Decode GitHub OIDC token claims (debug)", () => {
       debugGitHubIdTokenClaims(idToken);
       return Promise.resolve();
     });
