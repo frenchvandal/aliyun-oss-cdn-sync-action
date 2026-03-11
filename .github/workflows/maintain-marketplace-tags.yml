@@ -1,0 +1,87 @@
+name: Maintain Marketplace Tags
+
+on:
+  workflow_call:
+    inputs:
+      tag_name:
+        description: Full release tag name (for example 1.2.3 or v1.2.3)
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: Full release tag name (for example 1.2.3 or v1.2.3)
+        required: true
+        type: string
+  release:
+    types:
+      - published
+      - edited
+
+permissions:
+  contents: write
+
+jobs:
+  update-floating-tags:
+    if: >-
+      github.event_name != 'release' ||
+      (github.event.release.draft == false && github.event.release.prerelease == false)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve release tag and semantic version parts
+        id: resolve
+        env:
+          INPUT_TAG_NAME: ${{ inputs.tag_name || github.event.inputs.tag_name || '' }}
+          RELEASE_TAG_NAME: ${{ github.event.release.tag_name || '' }}
+        run: |
+          set -euo pipefail
+
+          tag_name="${INPUT_TAG_NAME:-${RELEASE_TAG_NAME}}"
+          if [[ -z "${tag_name}" ]]; then
+            echo "No release tag was provided."
+            exit 1
+          fi
+
+          normalized_tag="${tag_name#v}"
+          if [[ ! "${normalized_tag}" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            echo "Tag '${tag_name}' is not a supported semantic version (x.y.z or vx.y.z)."
+            exit 1
+          fi
+
+          major="${BASH_REMATCH[1]}"
+          minor="${BASH_REMATCH[2]}"
+
+          echo "tag_name=${tag_name}" >> "${GITHUB_OUTPUT}"
+          echo "major=${major}" >> "${GITHUB_OUTPUT}"
+          echo "minor=${minor}" >> "${GITHUB_OUTPUT}"
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Update major and minor tags
+        env:
+          TAG_NAME: ${{ steps.resolve.outputs.tag_name }}
+          MAJOR: ${{ steps.resolve.outputs.major }}
+          MINOR: ${{ steps.resolve.outputs.minor }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "refs/tags/${TAG_NAME}:refs/tags/${TAG_NAME}"
+          target_commit="$(git rev-list -n 1 "${TAG_NAME}")"
+
+          for floating_tag in "v${MAJOR}" "v${MAJOR}.${MINOR}"; do
+            git fetch origin "refs/tags/${floating_tag}:refs/tags/${floating_tag}" || true
+            current_commit="$(git rev-list -n 1 "${floating_tag}" 2>/dev/null || true)"
+
+            if [[ "${current_commit}" == "${target_commit}" ]]; then
+              echo "${floating_tag} is already up to date on ${TAG_NAME}"
+              continue
+            fi
+
+            git tag -fa "${floating_tag}" -m "Update ${floating_tag} to ${TAG_NAME}" "${TAG_NAME}"
+            git push origin "refs/tags/${floating_tag}" --force
+          done
