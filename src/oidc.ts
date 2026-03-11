@@ -3,7 +3,7 @@ import os from "node:os";
 import { join } from "node:path";
 import process from "node:process";
 
-import { debug, getIDToken, getInput } from "@actions/core";
+import { debug, getIDToken, getInput, group, isDebug } from "@actions/core";
 import CredentialClient, { Config } from "@alicloud/credentials";
 
 export interface OidcInputs {
@@ -44,11 +44,6 @@ type CredentialClientConstructor = new (
 const CredentialClientCtor =
   CredentialClient as unknown as CredentialClientConstructor;
 
-function isGitHubDebugModeEnabled(): boolean {
-  const actionsStepDebug = process.env.ACTIONS_STEP_DEBUG?.toLowerCase();
-  return process.env.RUNNER_DEBUG === "1" || actionsStepDebug === "true";
-}
-
 function decodeJwtPayload(
   idToken: string,
 ): Record<string, unknown> | undefined {
@@ -80,7 +75,8 @@ function debugGitHubIdTokenClaims(idToken: string): void {
     return;
   }
 
-  debug(`GitHub OIDC token payload: ${JSON.stringify(decodedPayload)}`);
+  const formattedPayload = JSON.stringify(decodedPayload, null, 2);
+  debug(`GitHub OIDC token payload (decoded):\n${formattedPayload}`);
 }
 
 function getRequiredInput(name: string): string {
@@ -251,8 +247,11 @@ export async function resolveOidcCredential(
   options?: ResolveOidcCredentialOptions,
 ): Promise<OidcCredential> {
   const idToken = await getIDToken(inputs.audience);
-  if (options?.debugGitHubIdTokenClaims && isGitHubDebugModeEnabled()) {
-    debugGitHubIdTokenClaims(idToken);
+  if (options?.debugGitHubIdTokenClaims && isDebug()) {
+    await group("Decode GitHub OIDC token claims (debug)", () => {
+      debugGitHubIdTokenClaims(idToken);
+      return Promise.resolve();
+    });
   }
   const temporaryTokenDirectory = await mkdtemp(
     join(os.tmpdir(), "deploy-oss-oidc-"),

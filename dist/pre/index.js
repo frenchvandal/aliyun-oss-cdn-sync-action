@@ -28520,6 +28520,9 @@ function setFailed(message) {
   process.exitCode = ExitCode.Failure;
   error(message);
 }
+function isDebug() {
+  return process.env["RUNNER_DEBUG"] === "1";
+}
 function debug(message) {
   issueCommand("debug", {}, message);
 }
@@ -28583,10 +28586,6 @@ var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 var MAX_ROLE_SESSION_EXPIRATION = 43200;
 var MIN_ROLE_SESSION_EXPIRATION = 900;
 var CredentialClientCtor = import_credentials.default;
-function isGitHubDebugModeEnabled() {
-  const actionsStepDebug = process2.env.ACTIONS_STEP_DEBUG?.toLowerCase();
-  return process2.env.RUNNER_DEBUG === "1" || actionsStepDebug === "true";
-}
 function decodeJwtPayload(idToken) {
   const parts = idToken.split(".");
   const encodedPayload = parts[1];
@@ -28612,7 +28611,9 @@ function debugGitHubIdTokenClaims(idToken) {
     debug("GitHub OIDC token payload decode failed");
     return;
   }
-  debug(`GitHub OIDC token payload: ${JSON.stringify(decodedPayload)}`);
+  const formattedPayload = JSON.stringify(decodedPayload, null, 2);
+  debug(`GitHub OIDC token payload (decoded):
+${formattedPayload}`);
 }
 function getRequiredInput(name) {
   return getInput(name, {
@@ -28746,8 +28747,11 @@ function normalizeCredential(credential) {
 }
 async function resolveOidcCredential(inputs, options) {
   const idToken = await getIDToken(inputs.audience);
-  if (options?.debugGitHubIdTokenClaims && isGitHubDebugModeEnabled()) {
-    debugGitHubIdTokenClaims(idToken);
+  if (options?.debugGitHubIdTokenClaims && isDebug()) {
+    await group("Decode GitHub OIDC token claims (debug)", () => {
+      debugGitHubIdTokenClaims(idToken);
+      return Promise.resolve();
+    });
   }
   const temporaryTokenDirectory = await mkdtemp(
     join3(os6.tmpdir(), "deploy-oss-oidc-"),
