@@ -56,7 +56,6 @@ type BatchSubmissionResult = {
 type QuotaSelection<T> = {
   allowed: T[];
   deniedCount: number;
-  deniedSample: T[];
 };
 
 interface Inputs {
@@ -137,8 +136,6 @@ const CDN_MAX_URLS_PER_REQUEST = 100;
 const CDN_API_MAX_RPS = 50;
 // DescribeRefreshQuota: 20 req/s (stricter endpoint).
 const CDN_QUOTA_API_MAX_RPS = 20;
-// Include only a small sample in quota-exhaustion warnings.
-const CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT = 3;
 // Maximum number of upload retry attempts per file.
 const MAX_UPLOAD_RETRIES = 3;
 const ANSI_BOLD = "\u001b[1m";
@@ -150,6 +147,9 @@ const ANSI_FG_YELLOW = "\u001b[38;5;220m";
 const ANSI_RESET = "\u001b[0m";
 const UPLOAD_PROGRESS_BAR_WIDTH = 30;
 const UPLOAD_PROGRESS_PERCENT_STEP = 1;
+const NO_CACHE_CONTROL_VALUE = "no-cache, max-age=0, must-revalidate";
+const IMMUTABLE_CACHE_CONTROL_VALUE = "public, max-age=31536000, immutable";
+const HASHED_ASSET_PATTERN = /\.[a-z0-9_-]{6,}\.(css|js)$/i;
 
 function parseActions(
   raw: string | undefined,
@@ -190,6 +190,21 @@ function guessContentType(path: string): string {
   // Fall back to "inline" when the MIME type cannot be inferred: OSS treats
   // this value as a signal to detect the content type from the file content.
   return mime.lookup(path) || "inline";
+}
+
+function resolveCacheControl(relativePath: string): string | undefined {
+  const normalizedPath = relativePath.replaceAll("\\", "/").toLowerCase();
+  const fileName = normalizedPath.split("/").at(-1) ?? normalizedPath;
+
+  if (fileName === "sw.js" || normalizedPath.endsWith(".html")) {
+    return NO_CACHE_CONTROL_VALUE;
+  }
+
+  if (HASHED_ASSET_PATTERN.test(fileName)) {
+    return IMMUTABLE_CACHE_CONTROL_VALUE;
+  }
+
+  return undefined;
 }
 
 function colorize(ansiCode: string, value: string): string {
@@ -430,6 +445,13 @@ async function uploadFiles(
       let uploadStatusCode: number | undefined;
       let uploadRequestId: string | undefined;
       let uploadEtag: string | undefined;
+      const uploadHeaders: Record<string, string> = {
+        "x-oss-object-acl": "public-read",
+      };
+      const cacheControl = resolveCacheControl(file.relativePath);
+      if (cacheControl) {
+        uploadHeaders["Cache-Control"] = cacheControl;
+      }
       for (let attempt = 1; attempt <= MAX_UPLOAD_RETRIES; attempt++) {
         try {
           const response = await limiter.schedule(() =>
@@ -438,7 +460,7 @@ async function uploadFiles(
               file.absolutePath,
               {
                 mime: guessContentType(file.absolutePath),
-                headers: { "x-oss-object-acl": "public-read" },
+                headers: uploadHeaders,
               },
             )
           );
@@ -671,15 +693,6 @@ function selectByQuota<T>(
   return {
     allowed: values.slice(0, allowedCount),
     deniedCount,
-    deniedSample: deniedCount > 0
-      ? values.slice(
-        allowedCount,
-        Math.min(
-          values.length,
-          allowedCount + CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT,
-        ),
-      )
-      : [],
   };
 }
 
@@ -688,17 +701,13 @@ function warnQuotaExhausted(
   requestedCount: number,
   quota: number,
   deniedCount: number,
-  deniedSampleUrls: readonly string[],
 ): void {
   if (deniedCount <= 0) {
     return;
   }
 
-  const sampleSuffix = deniedSampleUrls.length > 0
-    ? `, sample=${deniedSampleUrls.join(",")}`
-    : "";
   warning(
-    `CDN ${label} quota exhausted: requested=${requestedCount}, quota=${quota}, skipped=${deniedCount}${sampleSuffix}`,
+    `CDN ${label} quota exhausted: requested=${requestedCount}, quota=${quota}, skipped=${deniedCount}`,
   );
 }
 
@@ -911,9 +920,6 @@ async function runCdnActions(
       directories.length,
       directoryQuota,
       selection.deniedCount,
-      selection.deniedSample.map((key) =>
-        buildDirectoryUrl(inputs.cdnBaseUrl, key)
-      ),
     );
   }
 
@@ -944,7 +950,6 @@ async function runCdnActions(
       refreshFileKeys.length,
       refreshQuota,
       selection.deniedCount,
-      selection.deniedSample.map((key) => buildFileUrl(inputs.cdnBaseUrl, key)),
     );
   }
 
@@ -974,7 +979,6 @@ async function runCdnActions(
       preloadFileKeys.length,
       preloadQuota,
       selection.deniedCount,
-      selection.deniedSample.map((key) => buildFileUrl(inputs.cdnBaseUrl, key)),
     );
   }
 

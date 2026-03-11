@@ -91,8 +91,6 @@ const CDN_MAX_URLS_PER_REQUEST = 100;
 const CDN_API_MAX_RPS = 50;
 // DescribeRefreshQuota: 20 req/s (stricter endpoint).
 const CDN_QUOTA_API_MAX_RPS = 20;
-// Include only a small sample in quota-exhaustion warnings.
-const CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT = 3;
 
 type CdnTaskLookupEntry = {
   source: string;
@@ -107,7 +105,6 @@ type CdnTaskLookupEntry = {
 type QuotaSelection<T> = {
   allowed: T[];
   deniedCount: number;
-  deniedSample: T[];
 };
 
 function errorMessage(error: unknown): string {
@@ -138,15 +135,6 @@ function selectByQuota<T>(
   return {
     allowed: values.slice(0, allowedCount),
     deniedCount,
-    deniedSample: deniedCount > 0
-      ? values.slice(
-        allowedCount,
-        Math.min(
-          values.length,
-          allowedCount + CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT,
-        ),
-      )
-      : [],
   };
 }
 
@@ -154,17 +142,13 @@ function warnQuotaExhausted(
   requestedCount: number,
   quota: number,
   deniedCount: number,
-  deniedSampleUrls: readonly string[],
 ): void {
   if (deniedCount <= 0) {
     return;
   }
 
-  const sampleSuffix = deniedSampleUrls.length > 0
-    ? `, sample=${deniedSampleUrls.join(",")}`
-    : "";
   warning(
-    `CDN refresh quota exhausted for deleted objects: requested=${requestedCount}, quota=${quota}, skipped=${deniedCount}${sampleSuffix}`,
+    `CDN refresh quota exhausted for deleted objects: requested=${requestedCount}, quota=${quota}, skipped=${deniedCount}`,
   );
 }
 
@@ -431,7 +415,6 @@ async function refreshDeletedCdnObjects(
     deletedKeys.length,
     urlRemain,
     selection.deniedCount,
-    selection.deniedSample.map((key) => buildFileUrl(cdnBaseUrl, key)),
   );
 
   if (selection.allowed.length === 0) {
