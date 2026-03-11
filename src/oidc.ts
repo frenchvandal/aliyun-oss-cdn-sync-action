@@ -3,7 +3,14 @@ import os from "node:os";
 import { join } from "node:path";
 import process from "node:process";
 
-import { debug, getIDToken, getInput, group, isDebug } from "@actions/core";
+import {
+  debug,
+  getIDToken,
+  getInput,
+  group,
+  info,
+  isDebug,
+} from "@actions/core";
 import CredentialClient, { Config } from "@alicloud/credentials";
 
 export interface OidcInputs {
@@ -247,11 +254,17 @@ export async function resolveOidcCredential(
   options?: ResolveOidcCredentialOptions,
 ): Promise<OidcCredential> {
   const idToken = await getIDToken(inputs.audience);
-  if (options?.debugGitHubIdTokenClaims && isDebug()) {
-    await group("Decode GitHub OIDC token claims (debug)", () => {
-      debugGitHubIdTokenClaims(idToken);
-      return Promise.resolve();
-    });
+  if (options?.debugGitHubIdTokenClaims) {
+    if (!isDebug()) {
+      info(
+        "OIDC claim debug logging is disabled because ACTIONS_STEP_DEBUG is not set to true.",
+      );
+    } else {
+      await group("Decode GitHub OIDC token claims (debug)", () => {
+        debugGitHubIdTokenClaims(idToken);
+        return Promise.resolve();
+      });
+    }
   }
   const temporaryTokenDirectory = await mkdtemp(
     join(os.tmpdir(), "deploy-oss-oidc-"),

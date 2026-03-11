@@ -28747,11 +28747,17 @@ function normalizeCredential(credential) {
 }
 async function resolveOidcCredential(inputs, options) {
   const idToken = await getIDToken(inputs.audience);
-  if (options?.debugGitHubIdTokenClaims && isDebug()) {
-    await group("Decode GitHub OIDC token claims (debug)", () => {
-      debugGitHubIdTokenClaims(idToken);
-      return Promise.resolve();
-    });
+  if (options?.debugGitHubIdTokenClaims) {
+    if (!isDebug()) {
+      info(
+        "OIDC claim debug logging is disabled because ACTIONS_STEP_DEBUG is not set to true.",
+      );
+    } else {
+      await group("Decode GitHub OIDC token claims (debug)", () => {
+        debugGitHubIdTokenClaims(idToken);
+        return Promise.resolve();
+      });
+    }
   }
   const temporaryTokenDirectory = await mkdtemp(
     join3(os6.tmpdir(), "deploy-oss-oidc-"),

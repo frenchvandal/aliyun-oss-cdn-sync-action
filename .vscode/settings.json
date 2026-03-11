@@ -4,6 +4,9 @@
   },
   "editor.inlayHints.enabled": "off",
   "deno.enable": true,
+  "deno.enablePaths": [
+    "."
+  ],
   "deno.unstable": [
     "bare-node-builtins",
     "byonm",
