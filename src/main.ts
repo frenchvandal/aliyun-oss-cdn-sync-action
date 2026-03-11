@@ -5,6 +5,7 @@ import {
   debug,
   group,
   info,
+  isDebug,
   saveState,
   setFailed,
   setOutput,
@@ -140,6 +141,15 @@ const CDN_QUOTA_API_MAX_RPS = 20;
 const CDN_QUOTA_EXHAUSTED_SAMPLE_LIMIT = 3;
 // Maximum number of upload retry attempts per file.
 const MAX_UPLOAD_RETRIES = 3;
+const ANSI_BOLD = "\u001b[1m";
+const ANSI_FG_CYAN = "\u001b[38;5;45m";
+const ANSI_FG_GRAY = "\u001b[38;5;240m";
+const ANSI_FG_GREEN = "\u001b[38;5;46m";
+const ANSI_FG_RED = "\u001b[38;5;203m";
+const ANSI_FG_YELLOW = "\u001b[38;5;220m";
+const ANSI_RESET = "\u001b[0m";
+const UPLOAD_PROGRESS_BAR_WIDTH = 30;
+const UPLOAD_PROGRESS_PERCENT_STEP = 1;
 
 function parseActions(
   raw: string | undefined,
@@ -180,6 +190,51 @@ function guessContentType(path: string): string {
   // Fall back to "inline" when the MIME type cannot be inferred: OSS treats
   // this value as a signal to detect the content type from the file content.
   return mime.lookup(path) || "inline";
+}
+
+function colorize(ansiCode: string, value: string): string {
+  return `${ansiCode}${value}${ANSI_RESET}`;
+}
+
+function buildUploadProgressBar(
+  processedCount: number,
+  totalCount: number,
+): string {
+  const safeTotal = Math.max(totalCount, 1);
+  const ratio = Math.max(0, Math.min(1, processedCount / safeTotal));
+  const filledWidth = Math.round(ratio * UPLOAD_PROGRESS_BAR_WIDTH);
+  const emptyWidth = UPLOAD_PROGRESS_BAR_WIDTH - filledWidth;
+  const filled = filledWidth > 0
+    ? colorize(ANSI_FG_GREEN, "=".repeat(filledWidth))
+    : "";
+  const empty = emptyWidth > 0
+    ? colorize(ANSI_FG_GRAY, "-".repeat(emptyWidth))
+    : "";
+
+  return `[${filled}${empty}]`;
+}
+
+function logUploadProgress(
+  processedCount: number,
+  totalCount: number,
+  uploadedCount: number,
+  skippedCount: number,
+  failedCount: number,
+): void {
+  const safeTotal = Math.max(totalCount, 1);
+  const percent = Math.floor((processedCount / safeTotal) * 100);
+
+  info(
+    `${colorize(`${ANSI_BOLD}${ANSI_FG_CYAN}`, "OSS upload progress")} ${
+      buildUploadProgressBar(processedCount, totalCount)
+    } ${colorize(ANSI_BOLD, `${percent}%`)} (${processedCount}/${totalCount}) ${
+      colorize(ANSI_FG_GREEN, `uploaded=${uploadedCount}`)
+    } ${colorize(ANSI_FG_YELLOW, `skipped=${skippedCount}`)} ${
+      failedCount > 0
+        ? colorize(ANSI_FG_RED, `failed=${failedCount}`)
+        : colorize(ANSI_FG_GRAY, `failed=${failedCount}`)
+    }`,
+  );
 }
 
 function parseInputs(): Inputs {
@@ -310,11 +365,46 @@ async function uploadFiles(
   failedCount: number;
   failedFiles: UploadFailure[];
 }> {
+  const debugModeEnabled = isDebug();
+  const totalFiles = files.length;
   const queue = [...files];
   const uploadedKeys: string[] = [];
   const failedFiles: UploadFailure[] = [];
   let uploadedCount = 0;
+  let processedCount = 0;
   let skippedCount = 0;
+  let lastReportedPercent = -UPLOAD_PROGRESS_PERCENT_STEP;
+
+  function reportProgress(force = false): void {
+    if (debugModeEnabled) {
+      return;
+    }
+
+    const safeTotal = Math.max(totalFiles, 1);
+    const percent = Math.floor((processedCount / safeTotal) * 100);
+
+    if (
+      !force && percent < lastReportedPercent + UPLOAD_PROGRESS_PERCENT_STEP
+    ) {
+      return;
+    }
+
+    lastReportedPercent = percent;
+    logUploadProgress(
+      processedCount,
+      totalFiles,
+      uploadedCount,
+      skippedCount,
+      failedFiles.length,
+    );
+  }
+
+  function markFileProcessed(): void {
+    processedCount += 1;
+    reportProgress();
+  }
+
+  reportProgress(true);
 
   async function worker(): Promise<void> {
     while (queue.length > 0) {
@@ -329,7 +419,8 @@ async function uploadFiles(
         const exists = await objectExists(ossClient, limiter, key);
         if (exists) {
           skippedCount += 1;
-          info(`Skipped existing object: ${key}`);
+          debug(`Skipped existing object: ${key}`);
+          markFileProcessed();
           continue;
         }
       }
@@ -371,19 +462,21 @@ async function uploadFiles(
       if (uploaded) {
         uploadedCount += 1;
         uploadedKeys.push(key);
-        info(
+        debug(
           `Uploaded ${file.relativePath} -> oss://${inputs.bucket}/${key} (statusCode=${
             uploadStatusCode ?? "unknown"
           }, requestId=${uploadRequestId ?? "n/a"}, etag=${
             uploadEtag ?? "n/a"
           })`,
         );
+        markFileProcessed();
       } else {
         const err = errorMessage(lastError);
         warning(
           `Upload failed after ${MAX_UPLOAD_RETRIES} attempts for ${key}: ${err}`,
         );
         failedFiles.push({ relativePath: file.relativePath, key, error: err });
+        markFileProcessed();
       }
     }
   }
@@ -411,6 +504,8 @@ async function uploadFiles(
       }]`,
     );
   }
+
+  reportProgress(true);
 
   return {
     uploadedKeys,
