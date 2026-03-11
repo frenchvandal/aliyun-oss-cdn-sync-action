@@ -14,7 +14,9 @@ export async function run(): Promise<void> {
       info(
         "Resolving Alibaba Cloud credentials with GitHub OIDC role assumption",
       );
-      return await resolveOidcCredential(inputs);
+      return await resolveOidcCredential(inputs, {
+        debugGitHubIdTokenClaims: true,
+      });
     },
   );
 

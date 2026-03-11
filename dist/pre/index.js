@@ -28583,6 +28583,37 @@ var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 var MAX_ROLE_SESSION_EXPIRATION = 43200;
 var MIN_ROLE_SESSION_EXPIRATION = 900;
 var CredentialClientCtor = import_credentials.default;
+function isGitHubDebugModeEnabled() {
+  const actionsStepDebug = process2.env.ACTIONS_STEP_DEBUG?.toLowerCase();
+  return process2.env.RUNNER_DEBUG === "1" || actionsStepDebug === "true";
+}
+function decodeJwtPayload(idToken) {
+  const parts = idToken.split(".");
+  const encodedPayload = parts[1];
+  if (!encodedPayload) {
+    return void 0;
+  }
+  const paddedPayload = encodedPayload.replace(/-/g, "+").replace(/_/g, "/")
+    .padEnd(Math.ceil(encodedPayload.length / 4) * 4, "=");
+  try {
+    const payloadJson = atob(paddedPayload);
+    const payload = JSON.parse(payloadJson);
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+      return void 0;
+    }
+    return payload;
+  } catch {
+    return void 0;
+  }
+}
+function debugGitHubIdTokenClaims(idToken) {
+  const decodedPayload = decodeJwtPayload(idToken);
+  if (!decodedPayload) {
+    debug("GitHub OIDC token payload decode failed");
+    return;
+  }
+  debug(`GitHub OIDC token payload: ${JSON.stringify(decodedPayload)}`);
+}
 function getRequiredInput(name) {
   return getInput(name, {
     required: true,
@@ -28713,8 +28744,11 @@ function normalizeCredential(credential) {
     securityToken: credential.securityToken,
   };
 }
-async function resolveOidcCredential(inputs) {
+async function resolveOidcCredential(inputs, options) {
   const idToken = await getIDToken(inputs.audience);
+  if (options?.debugGitHubIdTokenClaims && isGitHubDebugModeEnabled()) {
+    debugGitHubIdTokenClaims(idToken);
+  }
   const temporaryTokenDirectory = await mkdtemp(
     join3(os6.tmpdir(), "deploy-oss-oidc-"),
   );
@@ -28751,7 +28785,9 @@ async function run() {
       info(
         "Resolving Alibaba Cloud credentials with GitHub OIDC role assumption",
       );
-      return await resolveOidcCredential(inputs);
+      return await resolveOidcCredential(inputs, {
+        debugGitHubIdTokenClaims: true,
+      });
     },
   );
   setSecret(credential.accessKeyId);

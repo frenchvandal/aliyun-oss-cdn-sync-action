@@ -3,7 +3,7 @@ import os from "node:os";
 import { join } from "node:path";
 import process from "node:process";
 
-import { getIDToken, getInput } from "@actions/core";
+import { debug, getIDToken, getInput } from "@actions/core";
 import CredentialClient, { Config } from "@alicloud/credentials";
 
 export interface OidcInputs {
@@ -19,6 +19,10 @@ export interface OidcCredential {
   accessKeyId: string;
   accessKeySecret: string;
   securityToken: string;
+}
+
+interface ResolveOidcCredentialOptions {
+  debugGitHubIdTokenClaims?: boolean;
 }
 
 const DEFAULT_ROLE_SESSION_EXPIRATION = 900;
@@ -39,6 +43,45 @@ type CredentialClientConstructor = new (
 // @alicloud/credentials default export typing is not constructable in Deno.
 const CredentialClientCtor =
   CredentialClient as unknown as CredentialClientConstructor;
+
+function isGitHubDebugModeEnabled(): boolean {
+  const actionsStepDebug = process.env.ACTIONS_STEP_DEBUG?.toLowerCase();
+  return process.env.RUNNER_DEBUG === "1" || actionsStepDebug === "true";
+}
+
+function decodeJwtPayload(
+  idToken: string,
+): Record<string, unknown> | undefined {
+  const parts = idToken.split(".");
+  const encodedPayload = parts[1];
+  if (!encodedPayload) {
+    return undefined;
+  }
+
+  const paddedPayload = encodedPayload.replace(/-/g, "+").replace(/_/g, "/")
+    .padEnd(Math.ceil(encodedPayload.length / 4) * 4, "=");
+
+  try {
+    const payloadJson = atob(paddedPayload);
+    const payload = JSON.parse(payloadJson) as unknown;
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+      return undefined;
+    }
+    return payload as Record<string, unknown>;
+  } catch {
+    return undefined;
+  }
+}
+
+function debugGitHubIdTokenClaims(idToken: string): void {
+  const decodedPayload = decodeJwtPayload(idToken);
+  if (!decodedPayload) {
+    debug("GitHub OIDC token payload decode failed");
+    return;
+  }
+
+  debug(`GitHub OIDC token payload: ${JSON.stringify(decodedPayload)}`);
+}
 
 function getRequiredInput(name: string): string {
   return getInput(name, { required: true }).trim();
@@ -205,8 +248,12 @@ function normalizeCredential(
 
 export async function resolveOidcCredential(
   inputs: OidcInputs,
+  options?: ResolveOidcCredentialOptions,
 ): Promise<OidcCredential> {
   const idToken = await getIDToken(inputs.audience);
+  if (options?.debugGitHubIdTokenClaims && isGitHubDebugModeEnabled()) {
+    debugGitHubIdTokenClaims(idToken);
+  }
   const temporaryTokenDirectory = await mkdtemp(
     join(os.tmpdir(), "deploy-oss-oidc-"),
   );
