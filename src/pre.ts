@@ -26,7 +26,7 @@ export async function run(): Promise<void> {
   setSecret(credential.securityToken);
 
   // Persist the resolved credential to action state so the main and post
-  // (cleanup) steps can read it via getState(), without relying on exported
+  // steps can read it via getState(), without relying on exported
   // environment variables.
   saveState(STATE_ACCESS_KEY_ID, credential.accessKeyId);
   saveState(STATE_ACCESS_KEY_SECRET, credential.accessKeySecret);

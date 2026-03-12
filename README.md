@@ -1,8 +1,8 @@
-# Alibaba OSS CDN Sync Action (GitHub Action)
+# Aliyun OSS CDN Sync Action (GitHub Action)
 
-The Alibaba OSS CDN Sync Action uploads a local directory to Aliyun OSS,
+The Aliyun OSS CDN Sync Action uploads a local directory to Aliyun OSS,
 optionally runs CDN refresh/preload operations for uploaded paths, and performs
-post-action cleanup to remove orphan objects from OSS.
+post-step cleanup to remove orphan objects from OSS.
 
 It was originally built to cover a customized personal workflow: upload a
 Lume-generated blog build to Aliyun OSS and refresh CDN cache. The action is
@@ -16,8 +16,9 @@ The action runs in three phases:
    and stores temporary credentials in action state.
 2. `main` (`dist/main/index.js`): uploads files to OSS and runs optional CDN
    actions.
-3. `post` (`dist/cleanup/index.js`): compares local files to remote OSS objects
-   and deletes remote orphans. `post-if: always()` ensures cleanup always runs.
+3. `post` (`dist/post/index.js`): compares local files to remote OSS objects and
+   deletes remote orphans. `post-if: always()` ensures the post step always
+   runs.
 
 ## Key Behavior
 
@@ -131,7 +132,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Run Alibaba OSS CDN Sync Action
+      - name: Run Aliyun OSS CDN Sync Action
         uses: frenchvandal/aliyun-oss-cdn-sync-action@v1
         with:
           role-oidc-arn: acs:ram::{Account ID}:role/{Role Name}
@@ -202,9 +203,9 @@ jobs:
 - When directory refresh is enabled, nested directories are collapsed and file
   refresh requests already covered by directory refresh are skipped.
 
-## Post Cleanup Details
+## Post Step Cleanup Details
 
-- The cleanup phase lists OSS objects under `destination-prefix`.
+- The post step lists OSS objects under `destination-prefix`.
 - It computes local object keys from `input-dir`.
 - Any remote object missing locally is deleted from OSS.
 - If CDN is enabled and `cdn-base-url` is set, deleted file URLs are also sent

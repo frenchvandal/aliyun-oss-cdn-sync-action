@@ -59,7 +59,7 @@
     },
     "check": {
       "description": "Run Deno type checks on source files",
-      "command": "deno check src/pre.ts src/main.ts src/cleanup.ts src/lint-commit.ts"
+      "command": "deno check src/pre.ts src/main.ts src/post.ts src/lint-commit.ts"
     },
     "lint-commit": {
       "description": "Validate a commit message against Conventional Commits rules",
@@ -77,13 +77,13 @@
       "description": "Bundle the main action entrypoint",
       "command": "deno bundle --format=esm --platform=deno --external=proxy-agent --sourcemap=linked --output dist/main/index.js src/main.ts"
     },
-    "bundle:cleanup": {
-      "description": "Bundle the cleanup action entrypoint",
-      "command": "deno bundle --format=esm --platform=deno --external=proxy-agent --sourcemap=linked --output dist/cleanup/index.js src/cleanup.ts"
+    "bundle:post": {
+      "description": "Bundle the post action entrypoint",
+      "command": "deno bundle --format=esm --platform=deno --external=proxy-agent --sourcemap=linked --output dist/post/index.js src/post.ts"
     },
     "package": {
       "description": "Bundle all action entrypoints",
-      "command": "deno task bundle:pre && deno task bundle:main && deno task bundle:cleanup"
+      "command": "deno task bundle:pre && deno task bundle:main && deno task bundle:post"
     },
     "build": {
       "description": "Run lint, check, package, and format tasks",
