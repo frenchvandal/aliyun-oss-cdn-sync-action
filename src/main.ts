@@ -154,33 +154,39 @@ const HASHED_ASSET_PATTERN = /\.[a-z0-9_-]{6,}\.(css|js)$/i;
 function parseActions(
   raw: string | undefined,
   inputName: string,
+  cdnEnabled: boolean,
 ): Set<CdnAction> {
   if (!raw || raw.trim() === "") {
+    if (cdnEnabled) {
+      info(
+        `CDN is enabled but input '${inputName}' is empty. Expected 'refresh' or 'refresh,preload'. Defaulting to 'refresh'.`,
+      );
+      return new Set<CdnAction>(["refresh"]);
+    }
     return new Set();
   }
 
-  const actions = new Set<CdnAction>();
-  const invalidTokens: string[] = [];
-  for (const token of raw.split(",").map((item) => item.trim().toLowerCase())) {
-    if (token === "" || token === "none") {
-      continue;
+  const normalizedTokens = Array.from(
+    new Set(raw.split(",").map((item) => item.trim().toLowerCase())),
+  ).filter((token) => token !== "");
+  const hasUnsupportedTokens = normalizedTokens.some((token) =>
+    token !== "refresh" && token !== "preload"
+  );
+  const hasRefresh = normalizedTokens.includes("refresh");
+
+  if (hasUnsupportedTokens || !hasRefresh) {
+    if (cdnEnabled) {
+      info(
+        `CDN is enabled but input '${inputName}' has unsupported value(s): '${raw}'. Expected 'refresh' or 'refresh,preload'. Defaulting to 'refresh'.`,
+      );
+      return new Set<CdnAction>(["refresh"]);
     }
-    if (token !== "refresh" && token !== "preload") {
-      invalidTokens.push(token);
-      continue;
-    }
-    actions.add(token);
+    return new Set();
   }
 
-  if (invalidTokens.length > 0) {
-    info(
-      `Input '${inputName}' contains unsupported value(s): ${
-        invalidTokens.join(
-          ",",
-        )
-      }. Please fix your workflow YAML. This input will be treated as 'none'.`,
-    );
-    return new Set<CdnAction>();
+  const actions = new Set<CdnAction>(["refresh"]);
+  if (normalizedTokens.includes("preload")) {
+    actions.add("preload");
   }
 
   return actions;
@@ -260,6 +266,7 @@ function parseInputs(): Inputs {
   const cdnActions = parseActions(
     getOptionalInput("cdn-actions"),
     "cdn-actions",
+    cdnEnabled,
   );
 
   const cdnBaseUrlInput = getOptionalInput("cdn-base-url");
@@ -1150,7 +1157,7 @@ export async function run(): Promise<void> {
     }
   } else if (!cdnClient) {
     info(
-      "CDN actions skipped: client not created (cdn-enabled=false or all CDN actions=none)",
+      "CDN actions skipped: client not created (cdn-enabled=false or no CDN action configured)",
     );
   } else {
     info("CDN actions skipped: no uploaded files in this execution");

@@ -63,7 +63,7 @@ inputs:
     required: false
     default: "false"
   cdn-actions:
-    description: "CDN actions (comma-separated: refresh,preload,none). Empty value is treated as none."
+    description: "CDN actions (supported values: refresh or refresh,preload). If empty or invalid and CDN is enabled, defaults to refresh."
     required: false
   cdn-base-url:
     description: Base URL used to build full CDN object URLs
