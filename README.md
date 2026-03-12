@@ -70,7 +70,7 @@ installing Deno on the runner that uses
 | `endpoint`                           | No       | `""`                    | Custom OSS endpoint                                                                                                                                                         |
 | `sdk-timeout-ms`                     | No       | `60000`                 | Timeout in milliseconds applied to individual OSS and CDN SDK calls                                                                                                         |
 | `cdn-enabled`                        | No       | `false`                 | Enable CDN actions                                                                                                                                                          |
-| `cdn-actions`                        | No       | `""` (`none`)           | CDN actions (comma-separated: `refresh`, `preload`, `none`). Empty value is treated as `none`.                                                                              |
+| `cdn-actions`                        | No       | `""`                    | Supported values: `refresh` or `refresh,preload`. If `cdn-enabled: true` and this input is empty or invalid, the action logs `core.info` and defaults to `refresh`.         |
 | `cdn-base-url`                       | Cond.    | `""`                    | Base URL used to build CDN object URLs; required when `cdn-enabled: true`                                                                                                   |
 | `cdn-endpoint`                       | No       | `""`                    | Custom CDN API endpoint                                                                                                                                                     |
 
@@ -212,6 +212,10 @@ jobs:
 - The action checks quota with `DescribeRefreshQuota` before submitting CDN
   requests.
 - Refresh requests are submitted before preload requests.
+- `cdn-actions` supports only `refresh` and `refresh,preload`. A preload-only
+  configuration is treated as invalid.
+- If `cdn-enabled: true` and `cdn-actions` is empty or invalid, the action logs
+  an informational message and runs `refresh` by default.
 - Each CDN API call can include up to 100 URLs.
 - Directory preload is translated to file URL preload because Aliyun CDN preload
   is URL-based.
