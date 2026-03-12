@@ -260,6 +260,10 @@ async function describeMainCdnTasks(
     }
   }
 
+  info(
+    `CDN task status lookup complete: taskIds=${taskIds.length}, rows=${rows.length}, lookupFailures=${lookupFailures}. See the job summary for per-task details.`,
+  );
+
   return { rows, lookupFailures };
 }
 
