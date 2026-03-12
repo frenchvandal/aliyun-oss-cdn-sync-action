@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.2...v1.0.3) (2026-03-12)
+
+
+### Bug Fixes
+
+* **cdn:** default invalid cdn actions to refresh when enabled ([a4a4763](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/a4a476345d158c93a3b026ee44059efa12b86deb))
+
 ## [1.0.2](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.1...v1.0.2) (2026-03-12)
 
 
