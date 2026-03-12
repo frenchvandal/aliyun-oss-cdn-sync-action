@@ -30,11 +30,8 @@ The action runs in three phases:
 - CDN calls are non-fatal: failures are logged as warnings.
 - Cleanup is non-fatal: failures are logged as warnings.
 - `cdn-base-url` is required only when `cdn-enabled: true`.
-- OIDC audience is built automatically as
-  `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY_OWNER}` from GitHub runner
-  environment variables. In Aliyun RAM OIDC, this audience must match the IdP
-  Client ID configured on the OIDC provider. For GitHub OIDC, that Client ID is
-  the repository owner URL.
+- `audience` is optional. If set, the action calls `core.getIDToken(audience)`.
+  If omitted, it calls `core.getIDToken()`.
 
 ## Why Deno for Development
 
@@ -59,6 +56,7 @@ installing Deno on the runner that uses
 | ------------------------------------ | -------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `role-oidc-arn`                      | Yes      | -                       | RAM role ARN for OIDC role assumption (for example `acs:ram::1234567890123456:role/gh-oss-deploy`)                                                                          |
 | `oidc-provider-arn`                  | Yes      | -                       | OIDC provider ARN (for example `acs:ram::1234567890123456:oidc-provider/github`)                                                                                            |
+| `audience`                           | No       | `""`                    | Optional OIDC token audience passed to `core.getIDToken(audience)`. If omitted, the action calls `core.getIDToken()`.                                                       |
 | `role-session-expiration`            | No       | `900`                   | STS session duration in seconds (`900` to `43200`)                                                                                                                          |
 | `role-session-name`                  | No       | `github-action-session` | STS role session name (`2-64` chars, letters/digits/`-`/`_`/`.`/`@`/`=`)                                                                                                    |
 | `refresh-sts-token-interval-seconds` | No       | `300`                   | Interval in seconds at which the OSS client refreshes the STS token. Must be strictly less than `role-session-expiration` to ensure the token is renewed before it expires. |
@@ -75,10 +73,6 @@ installing Deno on the runner that uses
 | `cdn-actions`                        | No       | `""` (`none`)           | CDN actions (comma-separated: `refresh`, `preload`, `none`). Empty value is treated as `none`.                                                                              |
 | `cdn-base-url`                       | Cond.    | `""`                    | Base URL used to build CDN object URLs; required when `cdn-enabled: true`                                                                                                   |
 | `cdn-endpoint`                       | No       | `""`                    | Custom CDN API endpoint                                                                                                                                                     |
-
-`GITHUB_SERVER_URL` and `GITHUB_REPOSITORY_OWNER` are default environment
-variables provided by GitHub Actions runners, and are used to compute the OIDC
-audience automatically.
 
 ### Credential Resolution (OIDC Only)
 
@@ -100,6 +94,27 @@ For OIDC to work end to end, configure RAM in three parts:
   bucket resources you deploy to.
 - CDN permissions: Aliyun CDN APIs are global-service APIs. Grant the
   `AliyunCDNFullAccess` system policy.
+
+### OIDC Audience and Trust Policy
+
+When you set the `audience` input, the token `aud` claim must match a Client ID
+configured on your IdP in Aliyun Resource Access Management (RAM), and that same
+value must be allowed in the RAM role trust policy under `oidc:aud`.
+
+Example trust policy condition:
+
+```json
+"Condition": {
+  "StringEquals": {
+    "oidc:aud": [
+      "https://github.com/frenchvandal"
+    ],
+    "oidc:iss": [
+      "https://token.actions.githubusercontent.com"
+    ]
+  }
+}
+```
 
 ## Outputs
 

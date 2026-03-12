@@ -8,6 +8,9 @@ inputs:
   oidc-provider-arn:
     description: OIDC provider ARN (for example acs:ram::USER_Id:oidc-provider/PROVIDER_NAME)
     required: true
+  audience:
+    description: Optional OIDC token audience; when set, the action calls core.getIDToken(audience)
+    required: false
   role-session-expiration:
     description: Role session duration in seconds (900 to 43200)
     required: false

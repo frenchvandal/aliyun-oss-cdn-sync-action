@@ -28578,7 +28578,6 @@ var STATE_SECURITY_TOKEN = "pre-security-token";
 import { mkdtemp, rm as rm2, writeFile as writeFile2 } from "node:fs/promises";
 import os6 from "node:os";
 import { join as join3 } from "node:path";
-import process2 from "node:process";
 var import_credentials = __toESM(require_client2());
 var DEFAULT_ROLE_SESSION_EXPIRATION = 900;
 var DEFAULT_ROLE_SESSION_NAME = "github-action-session";
@@ -28680,37 +28679,10 @@ function parseRefreshIntervalMs(value, roleSessionExpiration) {
   }
   return refreshIntervalSeconds * 1e3;
 }
-function resolveAudienceFromGitHubEnvironment() {
-  const githubServerUrl = process2.env.GITHUB_SERVER_URL?.trim();
-  const githubRepositoryOwner = process2.env.GITHUB_REPOSITORY_OWNER?.trim();
-  if (!githubServerUrl || !githubRepositoryOwner) {
-    throw new Error(
-      "Missing GitHub environment variables. 'GITHUB_SERVER_URL' and 'GITHUB_REPOSITORY_OWNER' are required to build the OIDC audience.",
-    );
-  }
-  let normalizedServerUrl = githubServerUrl.replace(/\/+$/, "");
-  try {
-    normalizedServerUrl = new URL(normalizedServerUrl).toString().replace(
-      /\/+$/,
-      "",
-    );
-  } catch {
-    throw new Error(
-      `'GITHUB_SERVER_URL' must be a valid URL, got: ${githubServerUrl}`,
-    );
-  }
-  const normalizedRepositoryOwner = githubRepositoryOwner.replace(/^\/+/, "");
-  if (!normalizedRepositoryOwner) {
-    throw new Error(
-      "'GITHUB_REPOSITORY_OWNER' must not be empty when building the OIDC audience",
-    );
-  }
-  return `${normalizedServerUrl}/${normalizedRepositoryOwner}`;
-}
 function parseOidcInputs() {
   const roleOidcArn = getRequiredInput("role-oidc-arn");
   const oidcProviderArn = getRequiredInput("oidc-provider-arn");
-  const audience = resolveAudienceFromGitHubEnvironment();
+  const audience = getOptionalInput("audience");
   const roleSessionExpiration = parseRoleSessionExpiration(
     getOptionalInput("role-session-expiration"),
   );
@@ -28746,7 +28718,9 @@ function normalizeCredential(credential) {
   };
 }
 async function resolveOidcCredential(inputs, options) {
-  const idToken = await getIDToken(inputs.audience);
+  const idToken = inputs.audience
+    ? await getIDToken(inputs.audience)
+    : await getIDToken();
   if (options?.debugGitHubIdTokenClaims) {
     if (!isDebug()) {
       info(
