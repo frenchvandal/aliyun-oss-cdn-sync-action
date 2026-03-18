@@ -217,10 +217,17 @@ function parseActions(
   return actions;
 }
 
-function guessContentType(path: string): string {
+function guessContentType(absolutePath: string, relativePath: string): string {
+  const normalizedRelativePath = relativePath.replaceAll("\\", "/")
+    .toLowerCase();
+
+  if (normalizedRelativePath === "feed.json") {
+    return "application/feed+json";
+  }
+
   // Fall back to "inline" when the MIME type cannot be inferred: OSS treats
   // this value as a signal to detect the content type from the file content.
-  return mime.lookup(path) || "inline";
+  return mime.lookup(absolutePath) || "inline";
 }
 
 function resolveCacheControl(relativePath: string): string | undefined {
@@ -503,7 +510,7 @@ async function uploadFiles(
               key,
               file.absolutePath,
               {
-                mime: guessContentType(file.absolutePath),
+                mime: guessContentType(file.absolutePath, file.relativePath),
                 headers: uploadHeaders,
               },
             )

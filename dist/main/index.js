@@ -177838,8 +177838,13 @@ function parseActions(raw, inputName, cdnEnabled) {
   }
   return actions;
 }
-function guessContentType(path6) {
-  return import_mime_types.default.lookup(path6) || "inline";
+function guessContentType(absolutePath, relativePath) {
+  const normalizedRelativePath = relativePath.replaceAll("\\", "/")
+    .toLowerCase();
+  if (normalizedRelativePath === "feed.json") {
+    return "application/feed+json";
+  }
+  return import_mime_types.default.lookup(absolutePath) || "inline";
 }
 function resolveCacheControl(relativePath) {
   const normalizedPath = relativePath.replaceAll("\\", "/").toLowerCase();
@@ -178067,7 +178072,7 @@ async function uploadFiles(ossClient, limiter, files, inputs) {
         try {
           const response = await limiter.schedule(() =>
             ossClient.put(key, file.absolutePath, {
-              mime: guessContentType(file.absolutePath),
+              mime: guessContentType(file.absolutePath, file.relativePath),
               headers: uploadHeaders,
             })
           );
