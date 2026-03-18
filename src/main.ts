@@ -148,8 +148,33 @@ const ANSI_RESET = "\u001b[0m";
 const UPLOAD_PROGRESS_BAR_WIDTH = 30;
 const UPLOAD_PROGRESS_PERCENT_STEP = 1;
 const NO_CACHE_CONTROL_VALUE = "no-cache, max-age=0, must-revalidate";
+const HOURLY_REVALIDATE_CACHE_CONTROL_VALUE =
+  "public, max-age=3600, must-revalidate";
+const WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE =
+  "public, max-age=604800, must-revalidate";
 const IMMUTABLE_CACHE_CONTROL_VALUE = "public, max-age=31536000, immutable";
-const HASHED_ASSET_PATTERN = /\.[a-z0-9_-]{6,}\.(css|js)$/i;
+const HASHED_ASSET_PATTERN = /(?:\.[a-z0-9]{8,}|_[a-z0-9]{7,})\.[^.]+$/i;
+const HOURLY_REVALIDATE_EXTENSIONS = Object.freeze([
+  "css",
+  "js",
+  "json",
+  "pagefind",
+  "txt",
+  "webmanifest",
+  "xml",
+  "xsl",
+]);
+const WEEKLY_REVALIDATE_EXTENSIONS = Object.freeze([
+  "avif",
+  "ico",
+  "jpg",
+  "jpeg",
+  "png",
+  "svg",
+  "webp",
+  "woff",
+  "woff2",
+]);
 
 function parseActions(
   raw: string | undefined,
@@ -201,6 +226,7 @@ function guessContentType(path: string): string {
 function resolveCacheControl(relativePath: string): string | undefined {
   const normalizedPath = relativePath.replaceAll("\\", "/").toLowerCase();
   const fileName = normalizedPath.split("/").at(-1) ?? normalizedPath;
+  const extension = fileName.split(".").at(-1);
 
   if (fileName === "sw.js" || normalizedPath.endsWith(".html")) {
     return NO_CACHE_CONTROL_VALUE;
@@ -208,6 +234,17 @@ function resolveCacheControl(relativePath: string): string | undefined {
 
   if (HASHED_ASSET_PATTERN.test(fileName)) {
     return IMMUTABLE_CACHE_CONTROL_VALUE;
+  }
+
+  if (
+    normalizedPath.startsWith("pagefind/") ||
+    (extension && HOURLY_REVALIDATE_EXTENSIONS.includes(extension))
+  ) {
+    return HOURLY_REVALIDATE_CACHE_CONTROL_VALUE;
+  }
+
+  if (extension && WEEKLY_REVALIDATE_EXTENSIONS.includes(extension)) {
+    return WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE;
   }
 
   return undefined;
