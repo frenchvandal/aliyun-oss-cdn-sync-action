@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.4](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.3...v1.0.4) (2026-03-18)
+
+
+### Bug Fixes
+
+* **cache:** refine default oss cache headers ([b16b4d3](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/b16b4d35809241c6f5d51a5826e8569eef92e62c))
+* **content-type:** set root feed.json content type ([9a3ebd6](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/9a3ebd6f63b1a389a0aacf3c25ef2d1a2ec155d5))
+
 ## [1.0.3](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.2...v1.0.3) (2026-03-12)
 
 
