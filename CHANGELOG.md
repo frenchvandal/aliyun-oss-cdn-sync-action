@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.6](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.5...v1.0.6) (2026-03-19)
+
+
+### Features
+
+* add debug runner annotations ([729ec04](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/729ec0418e15eb7e995edbfbc605e7018383b6c1))
+* **cache:** add cache restore toggle ([7993608](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/7993608555be06a9c8ce5b71c46121a180bd16e2))
+
+
+### Bug Fixes
+
+* **cache:** log post-step cache save outcomes ([25ae047](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/25ae0478c38b4e931717736ca39147bd6f303a5e))
+* **cache:** restore cache after checkout ([18d10cf](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/18d10cf0f070530f8dd4ea0e1d6e921bcb9c288f))
+
 ## [1.0.5](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.4...v1.0.5) (2026-03-19)
 
 
