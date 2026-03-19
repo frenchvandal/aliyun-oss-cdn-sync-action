@@ -6,6 +6,7 @@ import {
   STATE_SECURITY_TOKEN,
 } from "./constants.ts";
 import { parseOidcInputs, resolveOidcCredential } from "./oidc.ts";
+import { emitDebugNotice } from "./shared.ts";
 
 export async function run(): Promise<void> {
   const inputs = parseOidcInputs();
@@ -33,6 +34,12 @@ export async function run(): Promise<void> {
   saveState(STATE_ACCESS_KEY_SECRET, credential.accessKeySecret);
   saveState(STATE_SECURITY_TOKEN, credential.securityToken);
 
+  emitDebugNotice(
+    "Aliyun OIDC credential ready",
+    `sessionName=${inputs.roleSessionName}, expirationSeconds=${inputs.roleSessionExpiration}, refreshIntervalSeconds=${
+      inputs.refreshStsTokenIntervalMs / 1000
+    }, audience=${inputs.audience ?? "(default)"}`,
+  );
   info("Alibaba Cloud credentials resolved and stored in action state");
 }
 

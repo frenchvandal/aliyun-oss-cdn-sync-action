@@ -6,7 +6,10 @@ import {
   getBooleanInput as getInputBoolean,
   getInput,
   getState,
+  isDebug,
+  notice,
 } from "@actions/core";
+import type { AnnotationProperties } from "@actions/core";
 
 import {
   STATE_ACCESS_KEY_ID,
@@ -166,6 +169,18 @@ export function resolveCredentials(): Credentials {
   throw new Error(
     "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Alibaba Cloud RAM role.",
   );
+}
+
+export function emitDebugNotice(
+  title: string,
+  message: string,
+  properties?: AnnotationProperties,
+): void {
+  if (!isDebug()) {
+    return;
+  }
+
+  notice(message, properties ? { title, ...properties } : { title });
 }
 
 export function toHost(endpoint: string): string {

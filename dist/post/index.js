@@ -172980,6 +172980,13 @@ function warning(message, properties = {}) {
     message instanceof Error ? message.toString() : message,
   );
 }
+function notice(message, properties = {}) {
+  issueCommand(
+    "notice",
+    toCommandProperties(properties),
+    message instanceof Error ? message.toString() : message,
+  );
+}
 function info(message) {
   process.stdout.write(message + os5.EOL);
 }
@@ -173134,6 +173141,22 @@ function resolveCredentialsFromState() {
 function resolveCredentials() {
   throw new Error(
     "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Alibaba Cloud RAM role.",
+  );
+}
+function emitDebugNotice(title, message, properties) {
+  if (!isDebug()) {
+    return;
+  }
+  notice(
+    message,
+    properties
+      ? {
+        title,
+        ...properties,
+      }
+      : {
+        title,
+      },
   );
 }
 function toHost(endpoint) {
@@ -215693,6 +215716,10 @@ async function runPost() {
   info(
     `CDN task status plan: refreshTaskIds=${mainRefreshTaskIds.length}, preloadTaskIds=${mainPreloadTaskIds.length}, uniqueTaskIds=${mainTaskSources.size}`,
   );
+  emitDebugNotice(
+    "Post-step CDN plan",
+    `refreshTaskIds=${mainRefreshTaskIds.length}, preloadTaskIds=${mainPreloadTaskIds.length}, uniqueTaskIds=${mainTaskSources.size}, cdnEnabled=${cdnEnabled}`,
+  );
   const ossLimiter = new ApiRateLimiter(inputs.apiRpsLimit);
   const client = createOssClient(inputs, credentials, oidcInputs);
   const localKeys = await collectLocalObjectKeys(
@@ -215722,6 +215749,12 @@ async function runPost() {
         remoteCount: remoteKeys.length,
       };
     },
+  );
+  emitDebugNotice(
+    "OSS cleanup result",
+    `localKeys=${localKeys.size}, remoteKeys=${remoteCount}, deletedOrphans=${deleted}, prefix=${
+      inputs.destinationPrefix || "(root)"
+    }`,
   );
   const shouldRefreshDeletedObjects = cdnEnabled && cdnBaseUrl !== "" &&
     deletedKeys.length > 0;
@@ -215793,6 +215826,12 @@ async function runPost() {
         warning(`CDN task status reporting failed: ${errorMessage2(error2)}`);
       }
     }
+  }
+  if (deletedKeys.length > 0 || shouldLookupMainTasks) {
+    emitDebugNotice(
+      "Post-step CDN result",
+      `deletedObjects=${deletedKeys.length}, refreshedDeletedObjects=${shouldRefreshDeletedObjects}, taskStatusRows=${cdnTaskStatusRows.length}, taskLookupFailures=${cdnTaskLookupFailures}`,
+    );
   }
   const postTable = [
     [

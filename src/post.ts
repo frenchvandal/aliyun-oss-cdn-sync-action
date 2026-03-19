@@ -7,6 +7,7 @@ import {
   ApiRateLimiter,
   buildFileUrl,
   collectLocalObjectKeys,
+  emitDebugNotice,
   getOptionalInput,
   parseBooleanInput,
   parseOssBaseInputs,
@@ -501,6 +502,10 @@ async function runPost(): Promise<void> {
   info(
     `CDN task status plan: refreshTaskIds=${mainRefreshTaskIds.length}, preloadTaskIds=${mainPreloadTaskIds.length}, uniqueTaskIds=${mainTaskSources.size}`,
   );
+  emitDebugNotice(
+    "Post-step CDN plan",
+    `refreshTaskIds=${mainRefreshTaskIds.length}, preloadTaskIds=${mainPreloadTaskIds.length}, uniqueTaskIds=${mainTaskSources.size}, cdnEnabled=${cdnEnabled}`,
+  );
 
   const ossLimiter = new ApiRateLimiter(inputs.apiRpsLimit);
   const client = createOssClient(inputs, credentials, oidcInputs);
@@ -530,6 +535,12 @@ async function runPost(): Promise<void> {
       info(`Cleanup complete: deleted=${result.deleted}`);
       return { ...result, remoteCount: remoteKeys.length };
     },
+  );
+  emitDebugNotice(
+    "OSS cleanup result",
+    `localKeys=${localKeys.size}, remoteKeys=${remoteCount}, deletedOrphans=${deleted}, prefix=${
+      inputs.destinationPrefix || "(root)"
+    }`,
   );
 
   const shouldRefreshDeletedObjects = cdnEnabled && cdnBaseUrl !== "" &&
@@ -609,6 +620,12 @@ async function runPost(): Promise<void> {
         );
       }
     }
+  }
+  if (deletedKeys.length > 0 || shouldLookupMainTasks) {
+    emitDebugNotice(
+      "Post-step CDN result",
+      `deletedObjects=${deletedKeys.length}, refreshedDeletedObjects=${shouldRefreshDeletedObjects}, taskStatusRows=${cdnTaskStatusRows.length}, taskLookupFailures=${cdnTaskLookupFailures}`,
+    );
   }
 
   const postTable: SummaryTableRow[] = [

@@ -182651,6 +182651,13 @@ function warning(message, properties = {}) {
     message instanceof Error ? message.toString() : message,
   );
 }
+function notice(message, properties = {}) {
+  issueCommand(
+    "notice",
+    toCommandProperties(properties),
+    message instanceof Error ? message.toString() : message,
+  );
+}
 function info(message) {
   process.stdout.write(message + os5.EOL);
 }
@@ -224039,6 +224046,22 @@ function resolveCredentials() {
     "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Alibaba Cloud RAM role.",
   );
 }
+function emitDebugNotice(title, message, properties) {
+  if (!isDebug()) {
+    return;
+  }
+  notice(
+    message,
+    properties
+      ? {
+        title,
+        ...properties,
+      }
+      : {
+        title,
+      },
+  );
+}
 function toHost(endpoint) {
   if (/^https?:\/\//i.test(endpoint)) {
     return new URL(endpoint).host;
@@ -225073,6 +225096,12 @@ async function runCdnActions(
       formatActions(inputs.cdnActions)
     }`,
   );
+  emitDebugNotice(
+    "CDN plan",
+    `directoryUrls=${directories.length}, refreshFileUrls=${refreshFileKeys.length}, preloadFileUrls=${preloadFileKeys.length}, directoryQuota=${directoryRefreshRemain}, refreshQuota=${refreshRemain}, preloadQuota=${preloadRemain}, actions=${
+      formatActions(inputs.cdnActions)
+    }`,
+  );
   if (shouldRefresh) {
     const directoryQuota = directoryRefreshRemain;
     const selection = selectByQuota(directories, directoryQuota);
@@ -225180,6 +225209,10 @@ async function runCdnActions(
   if (uniquePreloadTaskIds.length > 0) {
     info(`CDN preload task IDs: ${uniquePreloadTaskIds.join(",")}`);
   }
+  emitDebugNotice(
+    "CDN submission result",
+    `refreshSubmittedUrls=${refreshSubmittedUrls}, refreshTaskIds=${uniqueRefreshTaskIds.length}, preloadSubmittedUrls=${preloadSubmittedUrls}, preloadTaskIds=${uniquePreloadTaskIds.length}`,
+  );
   return {
     refreshTaskIds: uniqueRefreshTaskIds,
     preloadTaskIds: uniquePreloadTaskIds,
@@ -225312,8 +225345,22 @@ async function run() {
     : void 0;
   const files = await collectFiles(inputs.inputDir);
   info(`Found ${files.length} file(s) in ${resolve4(inputs.inputDir)}`);
+  emitDebugNotice(
+    "OSS deployment plan",
+    `inputDir=${
+      resolve4(inputs.inputDir)
+    }, files=${files.length}, bucket=${inputs.bucket}, prefix=${
+      inputs.destinationPrefix || "(root)"
+    }, overwrite=${inputs.overwrite}, maxConcurrency=${inputs.maxConcurrency}, cdnActions=${
+      formatActions(inputs.cdnActions)
+    }`,
+  );
   if (files.length === 0) {
     warning("No files to upload");
+    emitDebugNotice(
+      "OSS deployment skipped",
+      `No files were collected from ${resolve4(inputs.inputDir)}.`,
+    );
     setOutput("uploaded-count", "0");
     setOutput("skipped-count", "0");
     setOutput("failed-count", "0");
@@ -225346,6 +225393,10 @@ async function run() {
   info(
     `Upload summary before CDN: uploadedKeys=${uploadResult.uploadedKeys.length}, uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}`,
   );
+  emitDebugNotice(
+    "OSS upload result",
+    `uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}, failed=${uploadResult.failedCount}, uploadedKeys=${uploadResult.uploadedKeys.length}`,
+  );
   let refreshTaskIds = [];
   let preloadTaskIds = [];
   if (cdnClient && uploadResult.uploadedKeys.length > 0) {
@@ -225372,8 +225423,16 @@ async function run() {
     info(
       "CDN actions skipped: client not created (cdn-enabled=false or no CDN action configured)",
     );
+    emitDebugNotice(
+      "CDN skipped",
+      "No CDN client was created because CDN is disabled or no CDN action was configured.",
+    );
   } else {
     info("CDN actions skipped: no uploaded files in this execution");
+    emitDebugNotice(
+      "CDN skipped",
+      "No uploaded files were produced, so CDN actions were not submitted.",
+    );
   }
   setOutput("uploaded-count", String(uploadResult.uploadedCount));
   setOutput("skipped-count", String(uploadResult.skippedCount));

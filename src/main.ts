@@ -24,6 +24,7 @@ import {
   buildFileUrl,
   buildObjectKey,
   collectFiles,
+  emitDebugNotice,
   getOptionalInput,
   parseBooleanInput,
   parseOssBaseInputs,
@@ -975,6 +976,12 @@ async function runCdnActions(
       formatActions(inputs.cdnActions)
     }`,
   );
+  emitDebugNotice(
+    "CDN plan",
+    `directoryUrls=${directories.length}, refreshFileUrls=${refreshFileKeys.length}, preloadFileUrls=${preloadFileKeys.length}, directoryQuota=${directoryRefreshRemain}, refreshQuota=${refreshRemain}, preloadQuota=${preloadRemain}, actions=${
+      formatActions(inputs.cdnActions)
+    }`,
+  );
 
   // Alibaba Cloud recommendation: all RefreshObjectCaches first, then all
   // PushObjectCache. Purging stale content before preloading ensures POPs
@@ -1092,6 +1099,10 @@ async function runCdnActions(
   if (uniquePreloadTaskIds.length > 0) {
     info(`CDN preload task IDs: ${uniquePreloadTaskIds.join(",")}`);
   }
+  emitDebugNotice(
+    "CDN submission result",
+    `refreshSubmittedUrls=${refreshSubmittedUrls}, refreshTaskIds=${uniqueRefreshTaskIds.length}, preloadSubmittedUrls=${preloadSubmittedUrls}, preloadTaskIds=${uniquePreloadTaskIds.length}`,
+  );
 
   return {
     refreshTaskIds: uniqueRefreshTaskIds,
@@ -1191,9 +1202,23 @@ export async function run(): Promise<void> {
 
   const files = await collectFiles(inputs.inputDir);
   info(`Found ${files.length} file(s) in ${resolve(inputs.inputDir)}`);
+  emitDebugNotice(
+    "OSS deployment plan",
+    `inputDir=${
+      resolve(inputs.inputDir)
+    }, files=${files.length}, bucket=${inputs.bucket}, prefix=${
+      inputs.destinationPrefix || "(root)"
+    }, overwrite=${inputs.overwrite}, maxConcurrency=${inputs.maxConcurrency}, cdnActions=${
+      formatActions(inputs.cdnActions)
+    }`,
+  );
 
   if (files.length === 0) {
     warning("No files to upload");
+    emitDebugNotice(
+      "OSS deployment skipped",
+      `No files were collected from ${resolve(inputs.inputDir)}.`,
+    );
     setOutput("uploaded-count", "0");
     setOutput("skipped-count", "0");
     setOutput("failed-count", "0");
@@ -1221,6 +1246,10 @@ export async function run(): Promise<void> {
   );
   info(
     `Upload summary before CDN: uploadedKeys=${uploadResult.uploadedKeys.length}, uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}`,
+  );
+  emitDebugNotice(
+    "OSS upload result",
+    `uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}, failed=${uploadResult.failedCount}, uploadedKeys=${uploadResult.uploadedKeys.length}`,
   );
 
   let refreshTaskIds: string[] = [];
@@ -1250,8 +1279,16 @@ export async function run(): Promise<void> {
     info(
       "CDN actions skipped: client not created (cdn-enabled=false or no CDN action configured)",
     );
+    emitDebugNotice(
+      "CDN skipped",
+      "No CDN client was created because CDN is disabled or no CDN action was configured.",
+    );
   } else {
     info("CDN actions skipped: no uploaded files in this execution");
+    emitDebugNotice(
+      "CDN skipped",
+      "No uploaded files were produced, so CDN actions were not submitted.",
+    );
   }
 
   setOutput("uploaded-count", String(uploadResult.uploadedCount));
