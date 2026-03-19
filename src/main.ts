@@ -16,6 +16,7 @@ type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
 import * as Cdn from "@alicloud/cdn20180510";
 import * as AliOssModule from "ali-oss";
 import mime from "mime-types";
+import * as exec from "npm/actions-exec";
 
 import {
   ApiRateLimiter,
@@ -37,6 +38,7 @@ import {
 import {
   STATE_CDN_PRELOAD_TASK_IDS,
   STATE_CDN_REFRESH_TASK_IDS,
+  STATE_MAIN_COMPLETED,
 } from "./constants.ts";
 import type { Credentials, FileEntry } from "./shared.ts";
 
@@ -68,6 +70,7 @@ interface Inputs {
   apiRpsLimit: number;
   sdkTimeoutMs: number;
   overwrite: boolean;
+  buildCommand: string;
   cdnEnabled: boolean;
   cdnBaseUrl: string;
   cdnEndpoint: string | undefined;
@@ -305,6 +308,11 @@ function logUploadProgress(
 function parseInputs(): Inputs {
   const base = parseOssBaseInputs();
   const oidc = parseOidcInputs();
+  const buildCommand = getOptionalInput("build-command");
+
+  if (!buildCommand) {
+    throw new Error("'build-command' must not be empty");
+  }
 
   const cdnEnabled = parseBooleanInput("cdn-enabled", false);
   const cdnActions = parseActions(
@@ -330,12 +338,41 @@ function parseInputs(): Inputs {
   return {
     ...base,
     overwrite: parseBooleanInput("overwrite", true),
+    buildCommand,
     cdnEnabled,
     cdnBaseUrl,
     cdnEndpoint: getOptionalInput("cdn-endpoint"),
     cdnActions,
     oidc,
   };
+}
+
+async function runBuildCommand(command: string): Promise<void> {
+  info(`Executing local build command: ${command}`);
+
+  const exitCode = await exec.exec(command);
+  if (exitCode !== 0) {
+    throw new Error(
+      `Build command failed with exit code ${exitCode}: ${command}`,
+    );
+  }
+}
+
+function isDenoCommand(command: string): boolean {
+  const trimmedCommand = command.trim().toLowerCase();
+  return trimmedCommand === "deno" || trimmedCommand.startsWith("deno ") ||
+    trimmedCommand === "deno.exe" || trimmedCommand.startsWith("deno.exe ");
+}
+
+async function ensureDenoIsAvailable(): Promise<void> {
+  info("Checking that Deno is available in PATH");
+
+  const exitCode = await exec.exec("deno -v");
+  if (exitCode !== 0) {
+    throw new Error(
+      "Deno is required for the configured build command but is not available in PATH.",
+    );
+  }
 }
 
 function createOssClient(inputs: Inputs, credentials: Credentials): OSSClient {
@@ -1124,6 +1161,13 @@ async function writeSummary(
 
 export async function run(): Promise<void> {
   const inputs = parseInputs();
+  if (isDenoCommand(inputs.buildCommand)) {
+    await group("Checking Deno availability", ensureDenoIsAvailable);
+  }
+  await group(
+    "Running local build command",
+    () => runBuildCommand(inputs.buildCommand),
+  );
   const credentials = resolveCredentialsFromState() ??
     resolveCredentials();
   info(
@@ -1165,6 +1209,7 @@ export async function run(): Promise<void> {
       [],
       [],
     );
+    saveState(STATE_MAIN_COMPLETED, "true");
     return;
   }
 
@@ -1233,6 +1278,7 @@ export async function run(): Promise<void> {
     refreshTaskIds,
     preloadTaskIds,
   );
+  saveState(STATE_MAIN_COMPLETED, "true");
   info(
     `Deployment complete: uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}, failed=${uploadResult.failedCount}, total=${files.length}`,
   );

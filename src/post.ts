@@ -14,6 +14,7 @@ import {
   resolveCredentialsFromState,
   resolveOssEndpoint,
 } from "./shared.ts";
+import { saveLocalCache } from "./cache.ts";
 import {
   type OidcInputs,
   parseOidcInputs,
@@ -670,6 +671,7 @@ async function runPost(): Promise<void> {
     );
   }
   await summary.write();
+  await saveLocalCache();
 }
 
 runPost().catch((error: unknown) => {

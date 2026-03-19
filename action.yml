@@ -57,6 +57,18 @@ inputs:
     description: Timeout in milliseconds for individual OSS and CDN SDK calls
     required: false
     default: "60000"
+  build-command:
+    description: Local build command executed before any OSS upload or CDN action
+    required: false
+    default: "deno task build"
+  cache-key:
+    description: Primary cache key for the local _cache directory. You can use expressions such as hashFiles(...) and should provide a fallback when no files match.
+    required: false
+    default: ""
+  cache-restore-keys:
+    description: Newline-separated restore key prefixes for the local _cache directory
+    required: false
+    default: ""
 
   cdn-enabled:
     description: "Enable or disable CDN actions (set to false to temporarily bypass CDN without removing configuration)"

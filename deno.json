@@ -5,6 +5,8 @@
     "@actions/core": "npm:@actions/core@^3.0.0",
     "@alicloud/cdn20180510": "npm:@alicloud/cdn20180510@8.0.0",
     "@alicloud/credentials": "npm:@alicloud/credentials@^2.4.4",
+    "npm/actions-cache": "npm:@actions/cache@^6.0.0",
+    "npm/actions-exec": "npm:@actions/exec@^3.0.0",
     "ali-oss": "npm:ali-oss@^6.23.0",
     "lefthook": "npm:lefthook@^2.1.4",
     "mime-types": "npm:mime-types@^3.0.2"
