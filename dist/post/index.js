@@ -215135,6 +215135,7 @@ function getCachePath() {
 async function saveLocalCache() {
   const primaryKey = getOptionalInput("cache-key");
   if (!primaryKey) {
+    info("Skipping local _cache save because cache-key is not set.");
     return;
   }
   if (getState(STATE_MAIN_COMPLETED) !== "true") {
@@ -215160,12 +215161,17 @@ async function saveLocalCache() {
     return;
   }
   try {
+    info(`Attempting local _cache save with key: ${primaryKey}`);
     const cacheId = await saveCache2([
       cachePath,
     ], primaryKey);
     if (cacheId !== -1) {
       info(`Local _cache saved with key: ${primaryKey}`);
+      return;
     }
+    info(
+      `Local _cache was not saved because no cache entry was created for key: ${primaryKey}`,
+    );
   } catch (error2) {
     warning(`Local _cache save skipped: ${errorMessage(error2)}`);
   }

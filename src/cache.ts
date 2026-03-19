@@ -78,6 +78,7 @@ export async function saveLocalCache(): Promise<void> {
   // and build steps have populated the workspace.
   const primaryKey = getOptionalInput("cache-key");
   if (!primaryKey) {
+    info("Skipping local _cache save because cache-key is not set.");
     return;
   }
 
@@ -108,10 +109,15 @@ export async function saveLocalCache(): Promise<void> {
   }
 
   try {
+    info(`Attempting local _cache save with key: ${primaryKey}`);
     const cacheId = await cache.saveCache([cachePath], primaryKey);
     if (cacheId !== -1) {
       info(`Local _cache saved with key: ${primaryKey}`);
+      return;
     }
+    info(
+      `Local _cache was not saved because no cache entry was created for key: ${primaryKey}`,
+    );
   } catch (error: unknown) {
     warning(`Local _cache save skipped: ${errorMessage(error)}`);
   }
