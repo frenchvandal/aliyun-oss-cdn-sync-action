@@ -182544,6 +182544,61 @@ function exec(commandLine, args, options) {
     return runner.exec();
   });
 }
+function getExecOutput(commandLine, args, options) {
+  return __awaiter8(this, void 0, void 0, function* () {
+    var _a, _b;
+    let stdout = "";
+    let stderr = "";
+    const stdoutDecoder = new StringDecoder("utf8");
+    const stderrDecoder = new StringDecoder("utf8");
+    const originalStdoutListener = (_a = options === null || options === void 0
+            ? void 0
+            : options.listeners) === null || _a === void 0
+      ? void 0
+      : _a.stdout;
+    const originalStdErrListener = (_b = options === null || options === void 0
+            ? void 0
+            : options.listeners) === null || _b === void 0
+      ? void 0
+      : _b.stderr;
+    const stdErrListener = (data) => {
+      stderr += stderrDecoder.write(data);
+      if (originalStdErrListener) {
+        originalStdErrListener(data);
+      }
+    };
+    const stdOutListener = (data) => {
+      stdout += stdoutDecoder.write(data);
+      if (originalStdoutListener) {
+        originalStdoutListener(data);
+      }
+    };
+    const listeners = Object.assign(
+      Object.assign(
+        {},
+        options === null || options === void 0 ? void 0 : options.listeners,
+      ),
+      {
+        stdout: stdOutListener,
+        stderr: stdErrListener,
+      },
+    );
+    const exitCode = yield exec(
+      commandLine,
+      args,
+      Object.assign(Object.assign({}, options), {
+        listeners,
+      }),
+    );
+    stdout += stdoutDecoder.end();
+    stderr += stderrDecoder.end();
+    return {
+      exitCode,
+      stdout,
+      stderr,
+    };
+  });
+}
 
 // node_modules/.deno/@actions+core@3.0.0/node_modules/@actions/core/lib/platform.js
 var platform = os4.platform();
@@ -224391,6 +224446,7 @@ var HOURLY_REVALIDATE_CACHE_CONTROL_VALUE =
 var WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE =
   "public, max-age=604800, must-revalidate";
 var IMMUTABLE_CACHE_CONTROL_VALUE = "public, max-age=31536000, immutable";
+var LEADING_ENV_ASSIGNMENT_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*=.*/;
 var HASHED_ASSET_PATTERN = /(?:\.[a-z0-9]{8,}|_[a-z0-9]{7,})\.[^.]+$/i;
 var HOURLY_REVALIDATE_EXTENSIONS = Object.freeze([
   "css",
@@ -224412,6 +224468,17 @@ var WEEKLY_REVALIDATE_EXTENSIONS = Object.freeze([
   "webp",
   "woff",
   "woff2",
+]);
+var VERSION_PROBE_ARGUMENTS = Object.freeze([
+  [
+    "--version",
+  ],
+  [
+    "version",
+  ],
+  [
+    "-v",
+  ],
 ]);
 function parseActions(raw, inputName, cdnEnabled) {
   if (!raw || raw.trim() === "") {
@@ -224562,19 +224629,125 @@ async function runBuildCommand(command) {
     );
   }
 }
-function isDenoCommand(command) {
-  const trimmedCommand = command.trim().toLowerCase();
-  return trimmedCommand === "deno" || trimmedCommand.startsWith("deno ") ||
-    trimmedCommand === "deno.exe" || trimmedCommand.startsWith("deno.exe ");
-}
-async function ensureDenoIsAvailable() {
-  info("Checking that Deno is available in PATH");
-  const exitCode = await exec("deno -v");
-  if (exitCode !== 0) {
-    throw new Error(
-      "Deno is required for the configured build command but is not available in PATH.",
-    );
+function tokenizeBuildCommand(command) {
+  const tokens = [];
+  let currentToken = "";
+  let activeQuote;
+  let isEscaped = false;
+  for (const character of command) {
+    if (isEscaped) {
+      currentToken += character;
+      isEscaped = false;
+      continue;
+    }
+    if (!activeQuote && character === "\\") {
+      isEscaped = true;
+      continue;
+    }
+    if (character === "'" || character === '"') {
+      if (activeQuote === character) {
+        activeQuote = void 0;
+        continue;
+      }
+      if (!activeQuote) {
+        activeQuote = character;
+        continue;
+      }
+    }
+    if (!activeQuote && /\s/.test(character)) {
+      if (currentToken !== "") {
+        tokens.push(currentToken);
+        currentToken = "";
+      }
+      continue;
+    }
+    currentToken += character;
   }
+  if (isEscaped) {
+    currentToken += "\\";
+  }
+  if (currentToken !== "") {
+    tokens.push(currentToken);
+  }
+  return tokens;
+}
+function resolveBuildCommandExecutable(command) {
+  const tokens = tokenizeBuildCommand(command);
+  for (const token of tokens) {
+    if (LEADING_ENV_ASSIGNMENT_PATTERN.test(token)) {
+      continue;
+    }
+    return token;
+  }
+  return void 0;
+}
+function firstNonEmptyLine(value) {
+  for (const line of value.split(/\r?\n/)) {
+    const trimmedLine = line.trim();
+    if (trimmedLine !== "") {
+      return trimmedLine;
+    }
+  }
+  return void 0;
+}
+async function resolveExecutableVersion(executablePath) {
+  for (const args of VERSION_PROBE_ARGUMENTS) {
+    try {
+      const result = await getExecOutput(executablePath, [
+        ...args,
+      ], {
+        ignoreReturnCode: true,
+        silent: true,
+      });
+      if (result.exitCode !== 0) {
+        continue;
+      }
+      const versionLine = firstNonEmptyLine(`${result.stdout}
+${result.stderr}`);
+      if (versionLine) {
+        return versionLine;
+      }
+    } catch {
+      continue;
+    }
+  }
+  return void 0;
+}
+async function inspectBuildCommandExecutable(command) {
+  const executable = resolveBuildCommandExecutable(command);
+  if (!executable) {
+    warning(
+      "Build command executable probe skipped: no executable token could be parsed from 'build-command'.",
+    );
+    return;
+  }
+  let executablePath;
+  try {
+    executablePath = await which(executable, false);
+  } catch (error2) {
+    warning(
+      `Build command executable probe failed for '${executable}': ${
+        errorMessage2(error2)
+      }`,
+    );
+    return;
+  }
+  if (!executablePath) {
+    warning(
+      `Build command executable not found before execution: '${executable}'. The build command will still be run and may fail later.`,
+    );
+    return;
+  }
+  const version3 = await resolveExecutableVersion(executablePath);
+  if (version3) {
+    info(
+      `Build command executable resolved: executable=${executable}, path=${executablePath}, version=${version3}`,
+    );
+    return;
+  }
+  info(
+    `Build command executable resolved: executable=${executable}, path=${executablePath}, version=unavailable`,
+  );
 }
 function createOssClient(inputs, credentials) {
   const authType = credentials.securityToken ? "sts" : "access_key";
@@ -225320,9 +225493,10 @@ async function writeSummary(
 async function run() {
   const inputs = parseInputs();
   await group("Restoring local cache", restoreLocalCache);
-  if (isDenoCommand(inputs.buildCommand)) {
-    await group("Checking Deno availability", ensureDenoIsAvailable);
-  }
+  await group(
+    "Checking build command executable",
+    () => inspectBuildCommandExecutable(inputs.buildCommand),
+  );
   await group(
     "Running local build command",
     () => runBuildCommand(inputs.buildCommand),

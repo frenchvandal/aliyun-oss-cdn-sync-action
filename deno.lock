@@ -4,6 +4,7 @@
     "npm:@actions/cache@6": "6.0.0",
     "npm:@actions/core@3": "3.0.0",
     "npm:@actions/exec@3": "3.0.0",
+    "npm:@actions/io@^3.0.2": "3.0.2",
     "npm:@alicloud/cdn20180510@8.0.0": "8.0.0",
     "npm:@alicloud/credentials@^2.4.4": "2.4.4",
     "npm:ali-oss@^6.23.0": "6.23.0_proxy-agent@6.5.0",
@@ -18,7 +19,7 @@
         "@actions/exec",
         "@actions/glob",
         "@actions/http-client",
-        "@actions/io",
+        "@actions/io@3.0.2",
         "@azure/core-rest-pipeline",
         "@azure/storage-blob",
         "@protobuf-ts/runtime-rpc",
@@ -35,7 +36,7 @@
     "@actions/exec@3.0.0": {
       "integrity": "sha512-6xH/puSoNBXb72VPlZVm7vQ+svQpFyA96qdDBvhB8eNZOE8LtPf9L4oAsfzK/crCL8YZ+19fKYVnM63Sl+Xzlw==",
       "dependencies": [
-        "@actions/io"
+        "@actions/io@3.0.2"
       ]
     },
     "@actions/glob@0.6.1": {
@@ -1122,6 +1123,7 @@
       "npm:@actions/cache@6",
       "npm:@actions/core@3",
       "npm:@actions/exec@3",
+      "npm:@actions/io@^3.0.2",
       "npm:@alicloud/cdn20180510@8.0.0",
       "npm:@alicloud/credentials@^2.4.4",
       "npm:ali-oss@^6.23.0",

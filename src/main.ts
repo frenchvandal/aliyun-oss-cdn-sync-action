@@ -17,6 +17,7 @@ import * as Cdn from "@alicloud/cdn20180510";
 import * as AliOssModule from "ali-oss";
 import mime from "mime-types";
 import * as exec from "npm/actions-exec";
+import * as io from "npm/actions-io";
 
 import { restoreLocalCache } from "./cache.ts";
 import {
@@ -158,6 +159,7 @@ const HOURLY_REVALIDATE_CACHE_CONTROL_VALUE =
 const WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE =
   "public, max-age=604800, must-revalidate";
 const IMMUTABLE_CACHE_CONTROL_VALUE = "public, max-age=31536000, immutable";
+const LEADING_ENV_ASSIGNMENT_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*=.*/;
 const HASHED_ASSET_PATTERN = /(?:\.[a-z0-9]{8,}|_[a-z0-9]{7,})\.[^.]+$/i;
 const HOURLY_REVALIDATE_EXTENSIONS = Object.freeze([
   "css",
@@ -180,6 +182,13 @@ const WEEKLY_REVALIDATE_EXTENSIONS = Object.freeze([
   "woff",
   "woff2",
 ]);
+const VERSION_PROBE_ARGUMENTS = Object.freeze(
+  [
+    ["--version"],
+    ["version"],
+    ["-v"],
+  ] as const,
+);
 
 function parseActions(
   raw: string | undefined,
@@ -360,21 +369,157 @@ async function runBuildCommand(command: string): Promise<void> {
   }
 }
 
-function isDenoCommand(command: string): boolean {
-  const trimmedCommand = command.trim().toLowerCase();
-  return trimmedCommand === "deno" || trimmedCommand.startsWith("deno ") ||
-    trimmedCommand === "deno.exe" || trimmedCommand.startsWith("deno.exe ");
+function tokenizeBuildCommand(command: string): string[] {
+  const tokens: string[] = [];
+  let currentToken = "";
+  let activeQuote: "'" | '"' | undefined;
+  let isEscaped = false;
+
+  for (const character of command) {
+    if (isEscaped) {
+      currentToken += character;
+      isEscaped = false;
+      continue;
+    }
+
+    if (!activeQuote && character === "\\") {
+      isEscaped = true;
+      continue;
+    }
+
+    if (character === "'" || character === '"') {
+      if (activeQuote === character) {
+        activeQuote = undefined;
+        continue;
+      }
+
+      if (!activeQuote) {
+        activeQuote = character;
+        continue;
+      }
+    }
+
+    if (!activeQuote && /\s/.test(character)) {
+      if (currentToken !== "") {
+        tokens.push(currentToken);
+        currentToken = "";
+      }
+      continue;
+    }
+
+    currentToken += character;
+  }
+
+  if (isEscaped) {
+    currentToken += "\\";
+  }
+
+  if (currentToken !== "") {
+    tokens.push(currentToken);
+  }
+
+  return tokens;
 }
 
-async function ensureDenoIsAvailable(): Promise<void> {
-  info("Checking that Deno is available in PATH");
+// Best effort only: build-command is arbitrary shell text, so we extract just
+// the first executable-like token and skip leading KEY=value assignments.
+function resolveBuildCommandExecutable(command: string): string | undefined {
+  const tokens = tokenizeBuildCommand(command);
 
-  const exitCode = await exec.exec("deno -v");
-  if (exitCode !== 0) {
-    throw new Error(
-      "Deno is required for the configured build command but is not available in PATH.",
-    );
+  for (const token of tokens) {
+    if (LEADING_ENV_ASSIGNMENT_PATTERN.test(token)) {
+      continue;
+    }
+
+    return token;
   }
+
+  return undefined;
+}
+
+function firstNonEmptyLine(value: string): string | undefined {
+  for (const line of value.split(/\r?\n/)) {
+    const trimmedLine = line.trim();
+    if (trimmedLine !== "") {
+      return trimmedLine;
+    }
+  }
+
+  return undefined;
+}
+
+async function resolveExecutableVersion(
+  executablePath: string,
+): Promise<string | undefined> {
+  for (const args of VERSION_PROBE_ARGUMENTS) {
+    try {
+      const result = await exec.getExecOutput(
+        executablePath,
+        [...args],
+        {
+          ignoreReturnCode: true,
+          silent: true,
+        },
+      );
+
+      if (result.exitCode !== 0) {
+        continue;
+      }
+
+      const versionLine = firstNonEmptyLine(
+        `${result.stdout}\n${result.stderr}`,
+      );
+      if (versionLine) {
+        return versionLine;
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  return undefined;
+}
+
+async function inspectBuildCommandExecutable(command: string): Promise<void> {
+  const executable = resolveBuildCommandExecutable(command);
+
+  if (!executable) {
+    warning(
+      "Build command executable probe skipped: no executable token could be parsed from 'build-command'.",
+    );
+    return;
+  }
+
+  let executablePath: string;
+  try {
+    executablePath = await io.which(executable, false);
+  } catch (error: unknown) {
+    warning(
+      `Build command executable probe failed for '${executable}': ${
+        errorMessage(error)
+      }`,
+    );
+    return;
+  }
+
+  if (!executablePath) {
+    warning(
+      `Build command executable not found before execution: '${executable}'. The build command will still be run and may fail later.`,
+    );
+    return;
+  }
+
+  const version = await resolveExecutableVersion(executablePath);
+  if (version) {
+    info(
+      `Build command executable resolved: executable=${executable}, path=${executablePath}, version=${version}`,
+    );
+    return;
+  }
+
+  info(
+    `Build command executable resolved: executable=${executable}, path=${executablePath}, version=unavailable`,
+  );
 }
 
 function createOssClient(inputs: Inputs, credentials: Credentials): OSSClient {
@@ -1174,9 +1319,10 @@ async function writeSummary(
 export async function run(): Promise<void> {
   const inputs = parseInputs();
   await group("Restoring local cache", restoreLocalCache);
-  if (isDenoCommand(inputs.buildCommand)) {
-    await group("Checking Deno availability", ensureDenoIsAvailable);
-  }
+  await group(
+    "Checking build command executable",
+    () => inspectBuildCommandExecutable(inputs.buildCommand),
+  );
   await group(
     "Running local build command",
     () => runBuildCommand(inputs.buildCommand),
