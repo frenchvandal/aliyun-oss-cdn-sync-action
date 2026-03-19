@@ -18,6 +18,7 @@ import * as AliOssModule from "ali-oss";
 import mime from "mime-types";
 import * as exec from "npm/actions-exec";
 
+import { restoreLocalCache } from "./cache.ts";
 import {
   ApiRateLimiter,
   buildFileUrl,
@@ -1161,6 +1162,7 @@ async function writeSummary(
 
 export async function run(): Promise<void> {
   const inputs = parseInputs();
+  await group("Restoring local cache", restoreLocalCache);
   if (isDenoCommand(inputs.buildCommand)) {
     await group("Checking Deno availability", ensureDenoIsAvailable);
   }

@@ -62,7 +62,7 @@ inputs:
     required: false
     default: "deno task build"
   cache-enabled:
-    description: Enable or disable pre-step restore of the local _cache directory
+    description: Enable or disable restore of the local _cache directory before the build command runs
     required: false
     default: "true"
   cache-key:

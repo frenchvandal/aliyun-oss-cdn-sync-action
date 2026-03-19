@@ -1,6 +1,5 @@
 import { group, info, saveState, setFailed, setSecret } from "@actions/core";
 
-import { restoreLocalCache } from "./cache.ts";
 import {
   STATE_ACCESS_KEY_ID,
   STATE_ACCESS_KEY_SECRET,
@@ -35,7 +34,6 @@ export async function run(): Promise<void> {
   saveState(STATE_SECURITY_TOKEN, credential.securityToken);
 
   info("Alibaba Cloud credentials resolved and stored in action state");
-  await restoreLocalCache();
 }
 
 run().catch((error: unknown) => {

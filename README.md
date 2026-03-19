@@ -1,10 +1,10 @@
 # Aliyun OSS CDN Sync Action (GitHub Action)
 
 The Aliyun OSS CDN Sync Action optionally restores and saves a local `_cache`
-directory through the GitHub Actions cache service, runs an optional local
-build command, uploads a local directory to Aliyun OSS, optionally runs CDN
-refresh and preload operations for uploaded paths, and performs post-step
-cleanup to remove orphan objects from OSS.
+directory through the GitHub Actions cache service, runs an optional local build
+command, uploads a local directory to Aliyun OSS, optionally runs CDN refresh
+and preload operations for uploaded paths, and performs post-step cleanup to
+remove orphan objects from OSS.
 
 It was originally built to support a personal static-site deployment workflow,
 but it is published for reuse and can be adapted to other OSS-backed sites.
@@ -13,11 +13,12 @@ but it is published for reuse and can be adapted to other OSS-backed sites.
 
 The action runs in three phases:
 
-1. `pre` (`dist/pre/index.js`): assumes an Aliyun RAM role through GitHub OIDC,
-   stores temporary credentials in action state, and restores the local `_cache`
-   directory when `cache-enabled` is `true` and `cache-key` is configured.
+1. `pre` (`dist/pre/index.js`): assumes an Aliyun RAM role through GitHub OIDC
+   and stores temporary credentials in action state.
 2. `main` (`dist/main/index.js`): runs the configured `build-command`, uploads
-   files to OSS, and runs optional CDN actions.
+   files to OSS, and runs optional CDN actions. If `cache-enabled` is `true` and
+   `cache-key` is configured, it restores the local `_cache` directory before
+   the build starts.
 3. `post` (`dist/post/index.js`): compares local files to remote OSS objects,
    deletes remote orphans, writes informational cleanup and CDN task summaries,
    refreshes CDN for deleted object URLs when possible, and saves the local
@@ -30,12 +31,14 @@ The action runs in three phases:
   `deno task build`.
 - If `build-command` invokes Deno, Deno must already be available in `PATH` on
   the runner. The action checks this explicitly before it starts the build.
+- If `cache-enabled` is `true`, cache restore happens at the beginning of the
+  `main` step, after repository checkout and before `build-command`.
 - Local `_cache` restore/save is opt-in through `cache-key` and
   `cache-restore-keys`. Cache restore/save is best-effort and logged as
   informational or warning output instead of failing the deployment.
-- `cache-enabled` controls only the pre-step `_cache` restore. This lets you
-  disable restore temporarily while still allowing the post step to save a new
-  cache snapshot for a later run.
+- `cache-enabled` controls only the restore path. This lets you disable restore
+  temporarily while still allowing the post step to save a new cache snapshot
+  for a later run.
 - Uploads use `max-concurrency` workers and respect `api-rps-limit`.
 - Each file upload is retried up to 3 times before being logged as failed.
 - Partial upload failures are surfaced through `failed-count` and the job
@@ -83,7 +86,7 @@ your own `build-command` uses Deno.
 | `endpoint`                           | No       | `""`                    | Custom OSS endpoint                                                                                                                                                         |
 | `sdk-timeout-ms`                     | No       | `60000`                 | Timeout in milliseconds applied to individual OSS and CDN SDK calls                                                                                                         |
 | `build-command`                      | No       | `deno task build`       | Local build command executed before any OSS upload or CDN action                                                                                                            |
-| `cache-enabled`                      | No       | `true`                  | Enable or disable pre-step restore of the local `_cache` directory. Post-step save still depends on `cache-key`.                                                            |
+| `cache-enabled`                      | No       | `true`                  | Enable or disable restore of the local `_cache` directory before the build command runs. Post-step save still depends on `cache-key`.                                       |
 | `cache-key`                          | No       | `""`                    | Primary cache key for the local `_cache` directory. GitHub Actions expressions such as `hashFiles(...)` are supported.                                                      |
 | `cache-restore-keys`                 | No       | `""`                    | Newline-separated restore key prefixes for the local `_cache` directory                                                                                                     |
 | `cdn-enabled`                        | No       | `false`                 | Enable CDN actions                                                                                                                                                          |
