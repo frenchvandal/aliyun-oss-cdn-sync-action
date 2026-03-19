@@ -1,9 +1,10 @@
 # Aliyun OSS CDN Sync Action (GitHub Action)
 
-The Aliyun OSS CDN Sync Action uploads a local directory to Aliyun OSS,
-optionally runs CDN refresh and preload operations for uploaded paths, restores
-and saves a local `_cache` directory through the GitHub Actions cache service,
-and performs post-step cleanup to remove orphan objects from OSS.
+The Aliyun OSS CDN Sync Action optionally restores and saves a local `_cache`
+directory through the GitHub Actions cache service, runs an optional local
+build command, uploads a local directory to Aliyun OSS, optionally runs CDN
+refresh and preload operations for uploaded paths, and performs post-step
+cleanup to remove orphan objects from OSS.
 
 It was originally built to support a personal static-site deployment workflow,
 but it is published for reuse and can be adapted to other OSS-backed sites.
@@ -14,23 +15,32 @@ The action runs in three phases:
 
 1. `pre` (`dist/pre/index.js`): assumes an Aliyun RAM role through GitHub OIDC,
    stores temporary credentials in action state, and restores the local `_cache`
-   directory when `cache-key` is configured.
-2. `main` (`dist/main/index.js`): optionally executes a local build command,
-   uploads files to OSS, and runs optional CDN actions.
+   directory when `cache-enabled` is `true` and `cache-key` is configured.
+2. `main` (`dist/main/index.js`): runs the configured `build-command`, uploads
+   files to OSS, and runs optional CDN actions.
 3. `post` (`dist/post/index.js`): compares local files to remote OSS objects,
-   deletes remote orphans, writes an informational cleanup summary, refreshes
-   CDN for deleted object URLs when possible, and saves the local `_cache`
-   directory when appropriate. `post-if: always()` ensures the post step always
-   runs.
+   deletes remote orphans, writes informational cleanup and CDN task summaries,
+   refreshes CDN for deleted object URLs when possible, and saves the local
+   `_cache` directory when appropriate. `post-if: always()` ensures the post
+   step always runs.
 
 ## Key Behavior
 
+- `build-command` runs before any OSS upload or CDN call. The default is
+  `deno task build`.
+- If `build-command` invokes Deno, Deno must already be available in `PATH` on
+  the runner. The action checks this explicitly before it starts the build.
+- Local `_cache` restore/save is opt-in through `cache-key` and
+  `cache-restore-keys`. Cache restore/save is best-effort and logged as
+  informational or warning output instead of failing the deployment.
+- `cache-enabled` controls only the pre-step `_cache` restore. This lets you
+  disable restore temporarily while still allowing the post step to save a new
+  cache snapshot for a later run.
 - Uploads use `max-concurrency` workers and respect `api-rps-limit`.
-- The configured `build-command` runs before file discovery, upload, and CDN
-  submission.
-- If the `build-command` starts with `deno`, the action checks that Deno is
-  available in `PATH` before running it.
-- Each file upload is retried up to three times before being logged as failed.
+- Each file upload is retried up to 3 times before being logged as failed.
+- Partial upload failures are surfaced through `failed-count` and the job
+  summary. Successfully uploaded files still continue through optional CDN
+  processing.
 - Uploaded objects are written with ACL `public-read`.
 - Cache-Control headers are inferred automatically:
   - `*.html` and `sw.js` -> `no-cache, max-age=0, must-revalidate`
@@ -55,30 +65,31 @@ your own `build-command` uses Deno.
 
 ## Inputs
 
-| Name                                 | Required | Default                 | Description                                                                                                                                                         |
-| ------------------------------------ | -------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `role-oidc-arn`                      | Yes      | -                       | RAM role ARN for OIDC role assumption (for example `acs:ram::1234567890123456:role/gh-oss-deploy`)                                                                  |
-| `oidc-provider-arn`                  | Yes      | -                       | OIDC provider ARN (for example `acs:ram::1234567890123456:oidc-provider/github`)                                                                                    |
-| `audience`                           | No       | `""`                    | Optional OIDC token audience passed to `core.getIDToken(audience)`. If omitted, the action calls `core.getIDToken()`.                                               |
-| `role-session-expiration`            | No       | `900`                   | STS session duration in seconds (`900` to `43200`)                                                                                                                  |
-| `role-session-name`                  | No       | `github-action-session` | STS role session name (`2-64` chars, letters/digits/`-`/`_`/`.`/`@`/`=`)                                                                                            |
-| `refresh-sts-token-interval-seconds` | No       | `300`                   | Interval in seconds at which the OSS client refreshes the STS token. Must be strictly less than `role-session-expiration`.                                          |
-| `input-dir`                          | No       | `_site`                 | Local directory to upload after the build command finishes.                                                                                                         |
-| `bucket`                             | Yes      | -                       | OSS bucket name                                                                                                                                                     |
-| `region`                             | Yes      | -                       | OSS region (for example `oss-cn-hangzhou`)                                                                                                                          |
-| `destination-prefix`                 | No       | `""`                    | Prefix inside the bucket where files are uploaded                                                                                                                   |
-| `overwrite`                          | No       | `true`                  | Overwrite objects that already exist                                                                                                                                |
-| `max-concurrency`                    | No       | `5`                     | Number of parallel uploads                                                                                                                                          |
-| `api-rps-limit`                      | No       | `9000`                  | Global per-run API throttle (`<= 10000`)                                                                                                                            |
-| `endpoint`                           | No       | `""`                    | Custom OSS endpoint                                                                                                                                                 |
-| `sdk-timeout-ms`                     | No       | `60000`                 | Timeout in milliseconds applied to individual OSS and CDN SDK calls                                                                                                 |
-| `build-command`                      | No       | `deno task build`       | Local build command executed before any OSS upload or CDN action                                                                                                    |
-| `cache-key`                          | No       | `""`                    | Primary cache key for the local `_cache` directory                                                                                                                  |
-| `cache-restore-keys`                 | No       | `""`                    | Newline-separated restore key prefixes for the local `_cache` directory                                                                                             |
-| `cdn-enabled`                        | No       | `false`                 | Enable CDN actions                                                                                                                                                  |
-| `cdn-actions`                        | No       | `""`                    | Supported values: `refresh` or `refresh,preload`. If `cdn-enabled: true` and this input is empty or invalid, the action logs `core.info` and defaults to `refresh`. |
-| `cdn-base-url`                       | Cond.    | `""`                    | Base URL used to build CDN object URLs; required when `cdn-enabled: true`                                                                                           |
-| `cdn-endpoint`                       | No       | `""`                    | Custom CDN API endpoint                                                                                                                                             |
+| Name                                 | Required | Default                 | Description                                                                                                                                                                 |
+| ------------------------------------ | -------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `role-oidc-arn`                      | Yes      | -                       | RAM role ARN for OIDC role assumption (for example `acs:ram::1234567890123456:role/gh-oss-deploy`)                                                                          |
+| `oidc-provider-arn`                  | Yes      | -                       | OIDC provider ARN (for example `acs:ram::1234567890123456:oidc-provider/github`)                                                                                            |
+| `audience`                           | No       | `""`                    | Optional OIDC token audience passed to `core.getIDToken(audience)`. If omitted, the action calls `core.getIDToken()`.                                                       |
+| `role-session-expiration`            | No       | `900`                   | STS session duration in seconds (`900` to `43200`)                                                                                                                          |
+| `role-session-name`                  | No       | `github-action-session` | STS role session name (`2-64` chars, letters/digits/`-`/`_`/`.`/`@`/`=`)                                                                                                    |
+| `refresh-sts-token-interval-seconds` | No       | `300`                   | Interval in seconds at which the OSS client refreshes the STS token. Must be strictly less than `role-session-expiration` to ensure the token is renewed before it expires. |
+| `input-dir`                          | No       | `_site`                 | Local directory to upload                                                                                                                                                   |
+| `bucket`                             | Yes      | -                       | OSS bucket name                                                                                                                                                             |
+| `region`                             | Yes      | -                       | OSS region (for example `oss-cn-hangzhou`)                                                                                                                                  |
+| `destination-prefix`                 | No       | `""`                    | Prefix inside the bucket                                                                                                                                                    |
+| `overwrite`                          | No       | `true`                  | Overwrite objects that already exist                                                                                                                                        |
+| `max-concurrency`                    | No       | `5`                     | Parallel uploads                                                                                                                                                            |
+| `api-rps-limit`                      | No       | `9000`                  | Global per-run API throttle (`<= 10000`)                                                                                                                                    |
+| `endpoint`                           | No       | `""`                    | Custom OSS endpoint                                                                                                                                                         |
+| `sdk-timeout-ms`                     | No       | `60000`                 | Timeout in milliseconds applied to individual OSS and CDN SDK calls                                                                                                         |
+| `build-command`                      | No       | `deno task build`       | Local build command executed before any OSS upload or CDN action                                                                                                            |
+| `cache-enabled`                      | No       | `true`                  | Enable or disable pre-step restore of the local `_cache` directory. Post-step save still depends on `cache-key`.                                                            |
+| `cache-key`                          | No       | `""`                    | Primary cache key for the local `_cache` directory. GitHub Actions expressions such as `hashFiles(...)` are supported.                                                      |
+| `cache-restore-keys`                 | No       | `""`                    | Newline-separated restore key prefixes for the local `_cache` directory                                                                                                     |
+| `cdn-enabled`                        | No       | `false`                 | Enable CDN actions                                                                                                                                                          |
+| `cdn-actions`                        | No       | `""`                    | Supported values: `refresh` or `refresh,preload`. If `cdn-enabled: true` and this input is empty or invalid, the action logs `core.info` and defaults to `refresh`.         |
+| `cdn-base-url`                       | Cond.    | `""`                    | Base URL used to build CDN object URLs; required when `cdn-enabled: true`                                                                                                   |
+| `cdn-endpoint`                       | No       | `""`                    | Custom CDN API endpoint                                                                                                                                                     |
 
 ## Outputs
 
@@ -86,6 +97,7 @@ your own `build-command` uses Deno.
 | ---------------------- | ------------------------------------------------------------ |
 | `uploaded-count`       | Number of successfully uploaded files                        |
 | `skipped-count`        | Number of skipped files (`overwrite: false` + object exists) |
+| `failed-count`         | Number of files that still failed after retries              |
 | `total-files`          | Number of discovered local files in `input-dir`              |
 | `bucket`               | Target bucket                                                |
 | `destination-prefix`   | Target prefix                                                |
@@ -155,8 +167,13 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version-file: .tool-versions
+          cache: true
+
       - name: Run Aliyun OSS CDN Sync Action
-        uses: frenchvandal/aliyun-oss-cdn-sync-action@v1
+        uses: frenchvandal/aliyun-oss-cdn-sync-action@master
         with:
           role-oidc-arn: acs:ram::{Account ID}:role/{Role Name}
           oidc-provider-arn: acs:ram::{Account ID}:oidc-provider/{IdP Name}
@@ -171,6 +188,59 @@ jobs:
           cdn-enabled: true
           cdn-base-url: https://cdn.example.com
           cdn-actions: refresh,preload
+```
+
+### Warm a Lume `_cache` Directory
+
+If your build populates a local `_cache` directory, pass both a primary key and
+restore prefixes. The primary key can include `hashFiles('_cache/**/*')` so the
+post step saves a content-addressed cache, while the restore keys remain broad
+enough to warm a fresh runner before the build creates `_cache`.
+
+If you need to bypass restore temporarily without changing the key strategy, set
+`cache-enabled: false`. The action will skip the pre-step restore but can still
+save the populated `_cache` in the post step.
+
+```yaml
+name: Deploy OSS
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version-file: .tool-versions
+          cache: true
+
+      - name: Run Aliyun OSS CDN Sync Action
+        uses: frenchvandal/aliyun-oss-cdn-sync-action@master
+        with:
+          role-oidc-arn: ${{ secrets.ALIYUN_ROLE_ARN }}
+          oidc-provider-arn: ${{ secrets.ALIYUN_OIDC_PROVIDER_ARN }}
+          build-command: deno task build
+          cache-enabled: true
+          cache-key: >-
+            lume-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('deno.lock') }}-${{ hashFiles('_cache/**/*') || 'empty' }}
+          cache-restore-keys: |
+            lume-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('deno.lock') }}-
+            lume-cache-${{ runner.os }}-${{ runner.arch }}-
+          input-dir: _site
+          bucket: ${{ secrets.OSS_BUCKET }}
+          region: ${{ secrets.OSS_REGION }}
+          cdn-enabled: true
+          cdn-base-url: ${{ secrets.OSS_CDN_BASE_URL }}
+          cdn-actions: refresh
 ```
 
 ## Recommended Configuration for `Frenchvandal/normco.re`
@@ -258,9 +328,11 @@ configure cache inputs so the action can restore it in `pre` and save it in
 Example:
 
 ```yaml
-cache-key: normcore-cache-${{ runner.os }}-${{ hashFiles('deno.lock', '_config.ts', 'src/**') || github.sha }}
+cache-enabled: true
+cache-key: lume-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('deno.lock') }}-${{ hashFiles('_cache/**/*') || 'empty' }}
 cache-restore-keys: |
-  normcore-cache-${{ runner.os }}-
+  lume-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('deno.lock') }}-
+  lume-cache-${{ runner.os }}-${{ runner.arch }}-
 ```
 
 If the repository does not use `_cache`, leave both inputs empty.
@@ -292,20 +364,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Deploy to Aliyun OSS and refresh CDN
-        uses: frenchvandal/aliyun-oss-cdn-sync-action@v1
+      - name: Setup Deno environment
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version-file: .tool-versions
+          cache: true
+
+      - name: Run Aliyun OSS CDN Sync Action
+        uses: frenchvandal/aliyun-oss-cdn-sync-action@master
         with:
           role-oidc-arn: ${{ secrets.ALIYUN_ROLE_ARN }}
           oidc-provider-arn: ${{ secrets.ALIYUN_OIDC_PROVIDER_ARN }}
+          role-session-name: ${{ github.run_id }}
+          role-session-expiration: 3600
           audience: ${{ secrets.ALIYUN_OIDC_AUDIENCE }}
           build-command: deno task build
+          cache-enabled: true
+          cache-key: >-
+            lume-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('deno.lock') }}-${{ hashFiles('_cache/**/*') || 'empty' }}
+          cache-restore-keys: |
+            lume-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('deno.lock') }}-
+            lume-cache-${{ runner.os }}-${{ runner.arch }}-
           input-dir: _site
           bucket: ${{ secrets.OSS_BUCKET }}
           region: ${{ secrets.OSS_REGION }}
           destination-prefix: ${{ vars.OSS_DESTINATION_PREFIX }}
-          cache-key: normcore-cache-${{ runner.os }}-${{ hashFiles('deno.lock', '_config.ts', 'src/**') || github.sha }}
-          cache-restore-keys: |
-            normcore-cache-${{ runner.os }}-
           cdn-enabled: true
           cdn-base-url: ${{ secrets.OSS_CDN_BASE_URL }}
           cdn-actions: refresh,preload
@@ -349,3 +432,11 @@ Before finalizing changes, run:
 ```bash
 DENO_TLS_CA_STORE=system deno task build
 ```
+
+Useful additional check:
+
+```bash
+DENO_TLS_CA_STORE=system deno task check-dist
+```
+
+`dist/` artifacts are versioned and must stay aligned with `src/`.

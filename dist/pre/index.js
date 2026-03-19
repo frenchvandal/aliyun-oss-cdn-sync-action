@@ -33617,6 +33617,25 @@ function getInput(name, options) {
   }
   return val.trim();
 }
+function getBooleanInput(name, options) {
+  const trueValue = [
+    "true",
+    "True",
+    "TRUE",
+  ];
+  const falseValue = [
+    "false",
+    "False",
+    "FALSE",
+  ];
+  const val = getInput(name, options);
+  if (trueValue.includes(val)) return true;
+  if (falseValue.includes(val)) return false;
+  throw new TypeError(
+    `Input does not meet YAML 1.2 "Core Schema" specification: ${name}
+Support boolean input list: \`true | True | TRUE | false | False | FALSE\``,
+  );
+}
 function setFailed(message) {
   process.exitCode = ExitCode.Failure;
   error(message);
@@ -74920,6 +74939,21 @@ function getOptionalInput(name) {
   }).trim();
   return value === "" ? void 0 : value;
 }
+function parseBooleanInput(name, defaultValue) {
+  if (getOptionalInput(name) === void 0) {
+    return defaultValue;
+  }
+  try {
+    return getBooleanInput(name, {
+      required: true,
+    });
+  } catch (error2) {
+    if (error2 instanceof TypeError) {
+      throw new Error(`'${name}' must be either 'true' or 'false'`);
+    }
+    throw error2;
+  }
+}
 
 // src/cache.ts
 var LOCAL_CACHE_DIRECTORY = "_cache";
@@ -74938,6 +74972,11 @@ function getCachePath() {
   return resolve3(LOCAL_CACHE_DIRECTORY);
 }
 async function restoreLocalCache() {
+  if (!parseBooleanInput("cache-enabled", true)) {
+    info("Skipping local _cache restore because cache-enabled is false.");
+    saveState(STATE_CACHE_RESTORED_KEY, "");
+    return;
+  }
   const primaryKey = getOptionalInput("cache-key");
   if (!primaryKey) {
     return;

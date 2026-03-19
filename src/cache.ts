@@ -5,7 +5,7 @@ import * as cache from "npm/actions-cache";
 import { getState, info, saveState, warning } from "@actions/core";
 
 import { STATE_CACHE_RESTORED_KEY, STATE_MAIN_COMPLETED } from "./constants.ts";
-import { collectFiles, getOptionalInput } from "./shared.ts";
+import { collectFiles, getOptionalInput, parseBooleanInput } from "./shared.ts";
 
 const LOCAL_CACHE_DIRECTORY = "_cache";
 
@@ -29,6 +29,12 @@ function getCachePath(): string {
 }
 
 export async function restoreLocalCache(): Promise<void> {
+  if (!parseBooleanInput("cache-enabled", true)) {
+    info("Skipping local _cache restore because cache-enabled is false.");
+    saveState(STATE_CACHE_RESTORED_KEY, "");
+    return;
+  }
+
   const primaryKey = getOptionalInput("cache-key");
   if (!primaryKey) {
     return;

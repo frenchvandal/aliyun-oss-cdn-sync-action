@@ -61,6 +61,10 @@ inputs:
     description: Local build command executed before any OSS upload or CDN action
     required: false
     default: "deno task build"
+  cache-enabled:
+    description: Enable or disable pre-step restore of the local _cache directory
+    required: false
+    default: "true"
   cache-key:
     description: Primary cache key for the local _cache directory. You can use expressions such as hashFiles(...) and should provide a fallback when no files match.
     required: false
@@ -89,6 +93,8 @@ outputs:
     description: Number of uploaded files
   skipped-count:
     description: Number of skipped files
+  failed-count:
+    description: Number of files that failed to upload after retries
   total-files:
     description: Number of discovered files in input-dir
   bucket:
