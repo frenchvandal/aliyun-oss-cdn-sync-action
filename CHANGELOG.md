@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.4...v1.0.5) (2026-03-19)
+
+
+### Features
+
+* **action:** add build command and local cache support ([6922c96](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/6922c965b68efb07b8270e2ba0ecda440be21655))
+
 ## [1.0.4](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.3...v1.0.4) (2026-03-18)
 
 
