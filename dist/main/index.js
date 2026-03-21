@@ -224428,6 +224428,11 @@ var DescribeRefreshQuotaRequestCtor = Cdn.DescribeRefreshQuotaRequest;
 var RefreshObjectCachesRequestCtor = Cdn.RefreshObjectCachesRequest;
 var PushObjectCacheRequestCtor = Cdn.PushObjectCacheRequest;
 var CDN_MAX_URLS_PER_REQUEST = 100;
+var FORCED_CONTENT_TYPES = Object.freeze({
+  "atom.xml": "application/atom+xml",
+  "feed.json": "application/feed+json",
+  "rss.xml": "application/rss+xml",
+});
 var CDN_API_MAX_RPS = 50;
 var CDN_QUOTA_API_MAX_RPS = 20;
 var MAX_UPLOAD_RETRIES = 3;
@@ -224521,8 +224526,9 @@ function parseActions(raw, inputName, cdnEnabled) {
 function guessContentType(absolutePath, relativePath) {
   const normalizedRelativePath = relativePath.replaceAll("\\", "/")
     .toLowerCase();
-  if (normalizedRelativePath === "feed.json") {
-    return "application/feed+json";
+  const forcedContentType = FORCED_CONTENT_TYPES[normalizedRelativePath];
+  if (forcedContentType) {
+    return forcedContentType;
   }
   return import_mime_types.default.lookup(absolutePath) || "inline";
 }

@@ -138,6 +138,11 @@ const PushObjectCacheRequestCtor = Cdn
   ) => unknown;
 // Alibaba Cloud CDN API accepts at most 100 URLs per refresh/preload request.
 const CDN_MAX_URLS_PER_REQUEST = 100;
+const FORCED_CONTENT_TYPES: Readonly<Record<string, string>> = Object.freeze({
+  "atom.xml": "application/atom+xml",
+  "feed.json": "application/feed+json",
+  "rss.xml": "application/rss+xml",
+});
 // RefreshObjectCaches and PushObjectCache: 50 req/s.
 const CDN_API_MAX_RPS = 50;
 // DescribeRefreshQuota: 20 req/s (stricter endpoint).
@@ -234,9 +239,10 @@ function parseActions(
 function guessContentType(absolutePath: string, relativePath: string): string {
   const normalizedRelativePath = relativePath.replaceAll("\\", "/")
     .toLowerCase();
+  const forcedContentType = FORCED_CONTENT_TYPES[normalizedRelativePath];
 
-  if (normalizedRelativePath === "feed.json") {
-    return "application/feed+json";
+  if (forcedContentType) {
+    return forcedContentType;
   }
 
   // Fall back to "inline" when the MIME type cannot be inferred: OSS treats
