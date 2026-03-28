@@ -9,6 +9,7 @@ import {
   isDebug,
   notice,
 } from "@actions/core";
+import { delay } from "jsr/async";
 import type { AnnotationProperties } from "@actions/core";
 
 import {
@@ -56,10 +57,8 @@ export class ApiRateLimiter {
     // failed call does not stall subsequent ones; they still propagate to the
     // original caller via the returned `next` promise.
     this.chain = next.then(
-      () =>
-        new Promise<void>((resolve) => setTimeout(resolve, this.intervalMs)),
-      () =>
-        new Promise<void>((resolve) => setTimeout(resolve, this.intervalMs)),
+      () => delay(this.intervalMs),
+      () => delay(this.intervalMs),
     );
 
     return next;

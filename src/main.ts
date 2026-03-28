@@ -1,5 +1,4 @@
-import { dirname } from "node:path";
-import { resolve } from "node:path";
+import { dirname, extname, resolve } from "node:path";
 
 import {
   debug,
@@ -15,7 +14,8 @@ import {
 type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
 import * as Cdn from "@alicloud/cdn20180510";
 import * as AliOssModule from "ali-oss";
-import mime from "mime-types";
+import { chunk } from "jsr/collections";
+import { typeByExtension } from "jsr/media-types";
 import * as exec from "npm/actions-exec";
 import * as io from "npm/actions-io";
 
@@ -247,7 +247,7 @@ function guessContentType(absolutePath: string, relativePath: string): string {
 
   // Fall back to "inline" when the MIME type cannot be inferred: OSS treats
   // this value as a signal to detect the content type from the file content.
-  return mime.lookup(absolutePath) || "inline";
+  return typeByExtension(extname(absolutePath)) ?? "inline";
 }
 
 function resolveCacheControl(relativePath: string): string | undefined {
@@ -915,14 +915,6 @@ function errorMessage(error: unknown): string {
   return String(error);
 }
 
-function chunkByLimit(values: string[], size: number): string[][] {
-  const chunks: string[][] = [];
-  for (let index = 0; index < values.length; index += size) {
-    chunks.push(values.slice(index, index + size));
-  }
-  return chunks;
-}
-
 function selectByQuota<T>(
   values: readonly T[],
   remainingQuota: number,
@@ -963,7 +955,7 @@ async function submitRefreshBatches(
   let submittedBatches = 0;
   let submittedUrls = 0;
 
-  for (const batch of chunkByLimit(urls, CDN_MAX_URLS_PER_REQUEST)) {
+  for (const batch of chunk(urls, CDN_MAX_URLS_PER_REQUEST)) {
     try {
       const response = await limiter.schedule(() =>
         cdnClient.refreshObjectCaches(
@@ -1013,7 +1005,7 @@ async function submitPreloadBatches(
   let submittedBatches = 0;
   let submittedUrls = 0;
 
-  for (const batch of chunkByLimit(urls, CDN_MAX_URLS_PER_REQUEST)) {
+  for (const batch of chunk(urls, CDN_MAX_URLS_PER_REQUEST)) {
     try {
       const response = await limiter.schedule(() =>
         cdnClient.pushObjectCache(

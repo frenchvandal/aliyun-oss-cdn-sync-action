@@ -3,14 +3,17 @@
   "nodeModulesDir": "auto",
   "imports": {
     "@actions/core": "npm:@actions/core@^3.0.0",
-    "@alicloud/cdn20180510": "npm:@alicloud/cdn20180510@8.0.0",
+    "@alicloud/cdn20180510": "npm:@alicloud/cdn20180510@9.0.0",
     "@alicloud/credentials": "npm:@alicloud/credentials@^2.4.4",
+    "jsr/async": "jsr:@std/async@^1.0.14",
+    "jsr/collections": "jsr:@std/collections@^1.1.2",
+    "jsr/encoding": "jsr:@std/encoding@^1.0.10",
+    "jsr/media-types": "jsr:@std/media-types@^1.1.0",
     "npm/actions-cache": "npm:@actions/cache@^6.0.0",
     "npm/actions-exec": "npm:@actions/exec@^3.0.0",
     "npm/actions-io": "npm:@actions/io@^3.0.2",
     "ali-oss": "npm:ali-oss@^6.23.0",
-    "lefthook": "npm:lefthook@^2.1.4",
-    "mime-types": "npm:mime-types@^3.0.2"
+    "lefthook": "npm:lefthook@^2.1.4"
   },
   "permissions": {
     "lume": {
@@ -101,5 +104,9 @@
       "command": "deno outdated --update --latest"
     }
   },
-  "allowScripts": ["npm:@alicloud/openapi-core@1.0.4", "npm:lefthook@2.1.4"]
+  "allowScripts": [
+    "npm:@alicloud/openapi-core@1.0.4",
+    "npm:@alicloud/openapi-core@1.0.7",
+    "npm:lefthook@2.1.4"
+  ]
 }

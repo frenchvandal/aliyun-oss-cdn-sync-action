@@ -2532,9 +2532,9 @@ var require_timers = __commonJS({
        * before the specified function or code is executed.
        * @param {*} arg
        */
-      constructor(callback, delay, arg) {
+      constructor(callback, delay2, arg) {
         this._onTimeout = callback;
-        this._idleTimeout = delay;
+        this._idleTimeout = delay2;
         this._timerArg = arg;
         this.refresh();
       }
@@ -2579,10 +2579,10 @@ var require_timers = __commonJS({
        * when the timer expires.
        * @returns {NodeJS.Timeout|FastTimer}
        */
-      setTimeout(callback, delay, arg) {
-        return delay <= RESOLUTION_MS
-          ? setTimeout(callback, delay, arg)
-          : new FastTimer(callback, delay, arg);
+      setTimeout(callback, delay2, arg) {
+        return delay2 <= RESOLUTION_MS
+          ? setTimeout(callback, delay2, arg)
+          : new FastTimer(callback, delay2, arg);
       },
       /**
        * The clearTimeout method cancels an instantiated Timer previously created
@@ -2608,8 +2608,8 @@ var require_timers = __commonJS({
        * when the timer expires.
        * @returns {FastTimer}
        */
-      setFastTimeout(callback, delay, arg) {
-        return new FastTimer(callback, delay, arg);
+      setFastTimeout(callback, delay2, arg) {
+        return new FastTimer(callback, delay2, arg);
       },
       /**
        * The clearTimeout method cancels an instantiated FastTimer previously
@@ -2635,8 +2635,8 @@ var require_timers = __commonJS({
        * @deprecated
        * @param {number} [delay=0] The delay in milliseconds to add to the now value.
        */
-      tick(delay = 0) {
-        fastNow += delay - RESOLUTION_MS + 1;
+      tick(delay2 = 0) {
+        fastNow += delay2 - RESOLUTION_MS + 1;
         onTick();
         onTick();
       },
@@ -3660,7 +3660,7 @@ var require_data_url = __commonJS({
   ) {
     "use strict";
     var assert = __require("node:assert");
-    var encoder = new TextEncoder();
+    var encoder2 = new TextEncoder();
     var HTTP_TOKEN_CODEPOINTS = /^[!#$%&'*+\-.^_|~A-Za-z0-9]+$/;
     var HTTP_WHITESPACE_REGEX = /[\u000A\u000D\u0009\u0020]/;
     var ASCII_WHITESPACE_REPLACE_REGEX = /[\u0009\u000A\u000C\u000D\u0020]/g;
@@ -3738,7 +3738,7 @@ var require_data_url = __commonJS({
       return input.slice(start, position.position);
     }
     function stringPercentDecode(input) {
-      const bytes = encoder.encode(input);
+      const bytes = encoder2.encode(input);
       return percentDecode(bytes);
     }
     function isHexCharByte(byte) {
@@ -5460,7 +5460,7 @@ var require_util2 = __commonJS({
       }
       return gettingDecodingSplitting(value);
     }
-    var textDecoder = new TextDecoder();
+    var textDecoder2 = new TextDecoder();
     function utf8DecodeBytes(buffer) {
       if (buffer.length === 0) {
         return "";
@@ -5468,7 +5468,7 @@ var require_util2 = __commonJS({
       if (buffer[0] === 239 && buffer[1] === 187 && buffer[2] === 191) {
         buffer = buffer.subarray(3);
       }
-      const output = textDecoder.decode(buffer);
+      const output = textDecoder2.decode(buffer);
       return output;
     }
     var EnvironmentSettingsObjectBase = class {
@@ -6676,32 +6676,32 @@ var require_client_h1 = __commonJS({
         this.connection = "";
         this.maxResponseSize = client[kMaxResponseSize];
       }
-      setTimeout(delay, type) {
+      setTimeout(delay2, type) {
         if (
-          delay !== this.timeoutValue ||
+          delay2 !== this.timeoutValue ||
           type & USE_FAST_TIMER ^ this.timeoutType & USE_FAST_TIMER
         ) {
           if (this.timeout) {
             timers.clearTimeout(this.timeout);
             this.timeout = null;
           }
-          if (delay) {
+          if (delay2) {
             if (type & USE_FAST_TIMER) {
               this.timeout = timers.setFastTimeout(
                 onParserTimeout,
-                delay,
+                delay2,
                 new WeakRef(this),
               );
             } else {
               this.timeout = setTimeout(
                 onParserTimeout,
-                delay,
+                delay2,
                 new WeakRef(this),
               );
               this.timeout.unref();
             }
           }
-          this.timeoutValue = delay;
+          this.timeoutValue = delay2;
         } else if (this.timeout) {
           if (this.timeout.refresh) {
             this.timeout.refresh();
@@ -12584,7 +12584,7 @@ var require_mock_utils = __commonJS({
       }
       const {
         data: { statusCode, data, headers, trailers, error: error2 },
-        delay,
+        delay: delay2,
         persist,
       } = mockDispatch2;
       const { timesInvoked, times } = mockDispatch2;
@@ -12595,10 +12595,10 @@ var require_mock_utils = __commonJS({
         handler.onError(error2);
         return true;
       }
-      if (typeof delay === "number" && delay > 0) {
+      if (typeof delay2 === "number" && delay2 > 0) {
         setTimeout(() => {
           handleReply(this[kDispatches]);
-        }, delay);
+        }, delay2);
       } else {
         handleReply(this[kDispatches]);
       }
@@ -17470,7 +17470,7 @@ var require_util4 = __commonJS({
           if (encoding === "failure") {
             encoding = "UTF-8";
           }
-          return decode(bytes, encoding);
+          return decode4(bytes, encoding);
         }
         case "ArrayBuffer": {
           const sequence = combineByteSequences(bytes);
@@ -17487,7 +17487,7 @@ var require_util4 = __commonJS({
         }
       }
     }
-    function decode(ioQueue, encoding) {
+    function decode4(ioQueue, encoding) {
       const bytes = combineByteSequences(ioQueue);
       const BOMEncoding = BOMSniffing(bytes);
       let slice = 0;
@@ -20953,7 +20953,7 @@ var require_util8 = __commonJS({
       }
       return true;
     }
-    function delay(ms) {
+    function delay2(ms) {
       return new Promise((resolve3) => {
         setTimeout(resolve3, ms).unref();
       });
@@ -20961,7 +20961,7 @@ var require_util8 = __commonJS({
     module.exports = {
       isValidLastEventId,
       isASCIINumber,
-      delay,
+      delay: delay2,
     };
   },
 });
@@ -21230,7 +21230,7 @@ var require_eventsource = __commonJS({
     var { parseMIMEType } = require_data_url();
     var { createFastMessageEvent } = require_events();
     var { isNetworkError } = require_response();
-    var { delay } = require_util8();
+    var { delay: delay2 } = require_util8();
     var { kEnumerableProperty } = require_util();
     var { environmentSettingsObject } = require_util2();
     var experimentalWarned = false;
@@ -21419,7 +21419,7 @@ var require_eventsource = __commonJS({
         if (this.#readyState === CLOSED) return;
         this.#readyState = CONNECTING;
         this.dispatchEvent(new Event("error"));
-        await delay(this.#state.reconnectionTime);
+        await delay2(this.#state.reconnectionTime);
         if (this.#readyState !== CONNECTING) return;
         if (this.#state.lastEventId.length) {
           this.#request.headersList.set(
@@ -23611,14 +23611,14 @@ var require_default_credential = __commonJS({
 // node_modules/.deno/ini@1.3.8/node_modules/ini/ini.js
 var require_ini = __commonJS({
   "node_modules/.deno/ini@1.3.8/node_modules/ini/ini.js"(exports) {
-    exports.parse = exports.decode = decode;
-    exports.stringify = exports.encode = encode;
+    exports.parse = exports.decode = decode4;
+    exports.stringify = exports.encode = encode4;
     exports.safe = safe;
     exports.unsafe = unsafe;
     var eol = typeof process !== "undefined" && process.platform === "win32"
       ? "\r\n"
       : "\n";
-    function encode(obj, opt) {
+    function encode4(obj, opt) {
       var children = [];
       var out = "";
       if (typeof opt === "string") {
@@ -23646,7 +23646,7 @@ var require_ini = __commonJS({
       children.forEach(function (k, _, __) {
         var nk = dotSplit(k).join("\\.");
         var section = (opt.section ? opt.section + "." : "") + nk;
-        var child2 = encode(obj[k], {
+        var child2 = encode4(obj[k], {
           section,
           whitespace: opt.whitespace,
         });
@@ -23664,7 +23664,7 @@ var require_ini = __commonJS({
           );
         });
     }
-    function decode(str) {
+    function decode4(str) {
       var out = {};
       var p = out;
       var section = null;
@@ -24542,7 +24542,7 @@ var require_http = __commonJS({
       }
       return newParams;
     }
-    function encode(str) {
+    function encode4(str) {
       const result = encodeURIComponent(str);
       return result.replace(/!/g, "%21").replace(/'/g, "%27").replace(
         /\(/g,
@@ -24582,8 +24582,8 @@ var require_http = __commonJS({
       for (const key of keys) {
         const value = flated[key];
         list.push([
-          encode(key),
-          encode(value),
+          encode4(key),
+          encode4(value),
         ]);
       }
       return list;
@@ -24622,14 +24622,14 @@ var require_http = __commonJS({
       const normalized = normalize(params);
       if (!options.anonymous) {
         const canonicalized = canonicalize(normalized);
-        const stringToSign = `${method}&${encode("/")}&${
-          encode(canonicalized)
+        const stringToSign = `${method}&${encode4("/")}&${
+          encode4(canonicalized)
         }`;
         const key = accessKeySecret + "&";
         const signature = kitx.sha1(stringToSign, key, "base64");
         normalized.push([
           "Signature",
-          encode(signature),
+          encode4(signature),
         ]);
       }
       const url = opts.method === "POST"
@@ -25539,7 +25539,7 @@ var require_ram_role_arn = __commonJS({
         return this;
       }
     };
-    function encode(str) {
+    function encode4(str) {
       const result = encodeURIComponent(str);
       return result.replace(/!/g, "%21").replace(/'/g, "%27").replace(
         /\(/g,
@@ -25603,10 +25603,10 @@ var require_ram_role_arn = __commonJS({
           signParams[key] = value;
         }
         const keys = Object.keys(signParams).sort();
-        const stringToSign = `${method}&${encode("/")}&${
-          encode(
+        const stringToSign = `${method}&${encode4("/")}&${
+          encode4(
             keys.map((key) => {
-              return `${encode(key)}=${encode(signParams[key])}`;
+              return `${encode4(key)}=${encode4(signParams[key])}`;
             }).join("&"),
           )
         }`;
@@ -28577,11 +28577,166 @@ import { mkdtemp, rm as rm2, writeFile as writeFile2 } from "node:fs/promises";
 import os6 from "node:os";
 import { join as join3 } from "node:path";
 var import_credentials = __toESM(require_client2());
+
+// deno:https://jsr.io/@std/encoding/1.0.10/_validate_binary_like.ts
+var encoder = new TextEncoder();
+
+// deno:https://jsr.io/@std/encoding/1.0.10/_common32.ts
+var padding = "=".charCodeAt(0);
+var alphabet = {
+  base32: new TextEncoder().encode("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"),
+  base32hex: new TextEncoder().encode("0123456789ABCDEFGHIJKLMNOPQRSTUV"),
+  base32crockford: new TextEncoder().encode("0123456789ABCDEFGHJKMNPQRSTVWXYZ"),
+};
+var rAlphabet = {
+  base32: new Uint8Array(128).fill(32),
+  base32hex: new Uint8Array(128).fill(32),
+  base32crockford: new Uint8Array(128).fill(32),
+};
+alphabet.base32.forEach((byte, i) => rAlphabet.base32[byte] = i);
+alphabet.base32hex.forEach((byte, i) => rAlphabet.base32hex[byte] = i);
+alphabet.base32crockford.forEach((byte, i) =>
+  rAlphabet.base32crockford[byte] = i
+);
+
+// deno:https://jsr.io/@std/encoding/1.0.10/base32.ts
+var padding2 = "=".charCodeAt(0);
+var alphabet2 = new TextEncoder().encode("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
+var rAlphabet2 = new Uint8Array(128).fill(32);
+alphabet2.forEach((byte, i) => rAlphabet2[byte] = i);
+
+// deno:https://jsr.io/@std/encoding/1.0.10/base58.ts
+var base58alphabet =
+  "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".split("");
+
+// deno:https://jsr.io/@std/encoding/1.0.10/_common64.ts
+var padding3 = "=".charCodeAt(0);
+var alphabet3 = {
+  base64: new TextEncoder().encode(
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+  ),
+  base64url: new TextEncoder().encode(
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
+  ),
+};
+var rAlphabet3 = {
+  base64: new Uint8Array(128).fill(64),
+  base64url: new Uint8Array(128).fill(64),
+};
+alphabet3.base64.forEach((byte, i) => rAlphabet3.base64[byte] = i);
+alphabet3.base64url.forEach((byte, i) => rAlphabet3.base64url[byte] = i);
+function decode2(buffer, i, o, alphabet8, padding6) {
+  for (let x = buffer.length - 2; x < buffer.length; ++x) {
+    if (buffer[x] === padding6) {
+      for (let y = x + 1; y < buffer.length; ++y) {
+        if (buffer[y] !== padding6) {
+          throw new TypeError(
+            `Cannot decode input as base64: Invalid character (${
+              String.fromCharCode(buffer[y])
+            })`,
+          );
+        }
+      }
+      buffer = buffer.subarray(0, x);
+      break;
+    }
+  }
+  if ((buffer.length - o) % 4 === 1) {
+    throw new RangeError(
+      `Cannot decode input as base64: Length (${
+        buffer.length - o
+      }), excluding padding, must not have a remainder of 1 when divided by 4`,
+    );
+  }
+  i += 3;
+  for (; i < buffer.length; i += 4) {
+    const x = getByte(buffer[i - 3], alphabet8) << 18 |
+      getByte(buffer[i - 2], alphabet8) << 12 |
+      getByte(buffer[i - 1], alphabet8) << 6 | getByte(buffer[i], alphabet8);
+    buffer[o++] = x >> 16;
+    buffer[o++] = x >> 8 & 255;
+    buffer[o++] = x & 255;
+  }
+  switch (i) {
+    case buffer.length + 1: {
+      const x = getByte(buffer[i - 3], alphabet8) << 18 |
+        getByte(buffer[i - 2], alphabet8) << 12;
+      buffer[o++] = x >> 16;
+      break;
+    }
+    case buffer.length: {
+      const x = getByte(buffer[i - 3], alphabet8) << 18 |
+        getByte(buffer[i - 2], alphabet8) << 12 |
+        getByte(buffer[i - 1], alphabet8) << 6;
+      buffer[o++] = x >> 16;
+      buffer[o++] = x >> 8 & 255;
+      break;
+    }
+  }
+  return o;
+}
+function getByte(char, alphabet8) {
+  const byte = alphabet8[char] ?? 64;
+  if (byte === 64) {
+    throw new TypeError(
+      `Cannot decode input as base64: Invalid character (${
+        String.fromCharCode(char)
+      })`,
+    );
+  }
+  return byte;
+}
+
+// deno:https://jsr.io/@std/encoding/1.0.10/base64.ts
+var padding4 = "=".charCodeAt(0);
+var alphabet4 = new TextEncoder().encode(
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+);
+var rAlphabet4 = new Uint8Array(128).fill(64);
+alphabet4.forEach((byte, i) => rAlphabet4[byte] = i);
+
+// deno:https://jsr.io/@std/encoding/1.0.10/base64url.ts
+var padding5 = "=".charCodeAt(0);
+var alphabet5 = new TextEncoder().encode(
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
+);
+var rAlphabet5 = new Uint8Array(128).fill(64);
+alphabet5.forEach((byte, i) => rAlphabet5[byte] = i);
+function decodeBase64Url(b64url) {
+  const output = new TextEncoder().encode(b64url);
+  return new Uint8Array(
+    output.buffer.transfer(decode2(output, 0, 0, rAlphabet5, padding5)),
+  );
+}
+
+// deno:https://jsr.io/@std/encoding/1.0.10/_common16.ts
+var alphabet6 = new TextEncoder().encode("0123456789abcdef");
+var rAlphabet6 = new Uint8Array(128).fill(16);
+alphabet6.forEach((byte, i) => rAlphabet6[byte] = i);
+new TextEncoder().encode("ABCDEF").forEach((byte, i) =>
+  rAlphabet6[byte] = i + 10
+);
+
+// deno:https://jsr.io/@std/encoding/1.0.10/hex.ts
+var alphabet7 = new TextEncoder().encode("0123456789abcdef");
+var rAlphabet7 = new Uint8Array(128).fill(16);
+alphabet7.forEach((byte, i) => rAlphabet7[byte] = i);
+new TextEncoder().encode("ABCDEF").forEach((byte, i) =>
+  rAlphabet7[byte] = i + 10
+);
+
+// deno:https://jsr.io/@std/encoding/1.0.10/varint.ts
+var AB = new ArrayBuffer(8);
+var U32_VIEW = new Uint32Array(AB);
+var U64_VIEW = new BigUint64Array(AB);
+
+// src/oidc.ts
 var DEFAULT_ROLE_SESSION_EXPIRATION = 900;
 var DEFAULT_ROLE_SESSION_NAME = "github-action-session";
 var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 var MAX_ROLE_SESSION_EXPIRATION = 43200;
 var MIN_ROLE_SESSION_EXPIRATION = 900;
+var textDecoder = new TextDecoder();
 var CredentialClientCtor = import_credentials.default;
 function decodeJwtPayload(idToken) {
   const parts = idToken.split(".");
@@ -28589,10 +28744,8 @@ function decodeJwtPayload(idToken) {
   if (!encodedPayload) {
     return void 0;
   }
-  const paddedPayload = encodedPayload.replace(/-/g, "+").replace(/_/g, "/")
-    .padEnd(Math.ceil(encodedPayload.length / 4) * 4, "=");
   try {
-    const payloadJson = atob(paddedPayload);
+    const payloadJson = textDecoder.decode(decodeBase64Url(encodedPayload));
     const payload = JSON.parse(payloadJson);
     if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
       return void 0;
@@ -28765,6 +28918,131 @@ import {
   relative as relative2,
   resolve as resolve2,
 } from "node:path";
+
+// deno:https://jsr.io/@std/async/1.2.0/delay.ts
+var I32_MAX = 2 ** 31 - 1;
+
+// deno:https://jsr.io/@std/async/1.2.0/mux_async_iterator.ts
+var _computedKey;
+_computedKey = Symbol.asyncIterator;
+var MuxAsyncIterator = class {
+  #iteratorCount = 0;
+  #yields = [];
+  // deno-lint-ignore no-explicit-any
+  #throws = [];
+  #signal = Promise.withResolvers();
+  /**
+   * Add an async iterable to the stream.
+   *
+   * @param iterable The async iterable to add.
+   *
+   * @example Usage
+   * ```ts
+   * import { MuxAsyncIterator } from "@std/async/mux-async-iterator";
+   * import { assertEquals } from "@std/assert";
+   *
+   * async function* gen123(): AsyncIterableIterator<number> {
+   *   yield 1;
+   *   yield 2;
+   *   yield 3;
+   * }
+   *
+   * const mux = new MuxAsyncIterator<number>();
+   * mux.add(gen123());
+   *
+   * const result = await Array.fromAsync(mux.iterate());
+   *
+   * assertEquals(result, [1, 2, 3]);
+   * ```
+   */
+  add(iterable) {
+    ++this.#iteratorCount;
+    this.#callIteratorNext(iterable[Symbol.asyncIterator]());
+  }
+  async #callIteratorNext(iterator) {
+    try {
+      const { value, done } = await iterator.next();
+      if (done) {
+        --this.#iteratorCount;
+      } else {
+        this.#yields.push({
+          iterator,
+          value,
+        });
+      }
+    } catch (e) {
+      this.#throws.push(e);
+    }
+    this.#signal.resolve();
+  }
+  /**
+   * Returns an async iterator of the stream.
+   * @returns the async iterator for all the added async iterables.
+   *
+   * @example Usage
+   * ```ts
+   * import { MuxAsyncIterator } from "@std/async/mux-async-iterator";
+   * import { assertEquals } from "@std/assert";
+   *
+   * async function* gen123(): AsyncIterableIterator<number> {
+   *   yield 1;
+   *   yield 2;
+   *   yield 3;
+   * }
+   *
+   * const mux = new MuxAsyncIterator<number>();
+   * mux.add(gen123());
+   *
+   * const result = await Array.fromAsync(mux.iterate());
+   *
+   * assertEquals(result, [1, 2, 3]);
+   * ```
+   */
+  async *iterate() {
+    while (this.#iteratorCount > 0) {
+      await this.#signal.promise;
+      for (const { iterator, value } of this.#yields) {
+        yield value;
+        this.#callIteratorNext(iterator);
+      }
+      if (this.#throws.length) {
+        for (const e of this.#throws) {
+          throw e;
+        }
+      }
+      this.#yields.length = 0;
+      this.#signal = Promise.withResolvers();
+    }
+  }
+  /**
+   * Implements an async iterator for the stream.
+   * @returns the async iterator for all the added async iterables.
+   *
+   * @example Usage
+   * ```ts
+   * import { MuxAsyncIterator } from "@std/async/mux-async-iterator";
+   * import { assertEquals } from "@std/assert";
+   *
+   * async function* gen123(): AsyncIterableIterator<number> {
+   *   yield 1;
+   *   yield 2;
+   *   yield 3;
+   * }
+   *
+   * const mux = new MuxAsyncIterator<number>();
+   * mux.add(gen123());
+   *
+   * const result = await Array.fromAsync(mux);
+   *
+   * assertEquals(result, [1, 2, 3]);
+   * ```
+   */
+  [_computedKey]() {
+    return this.iterate();
+  }
+};
+
+// src/shared.ts
 function emitDebugNotice(title, message, properties) {
   if (!isDebug()) {
     return;

@@ -11,6 +11,7 @@ import {
   isDebug,
 } from "@actions/core";
 import CredentialClient, { Config } from "@alicloud/credentials";
+import { decodeBase64Url } from "jsr/encoding";
 
 export interface OidcInputs {
   audience: string | undefined;
@@ -36,6 +37,7 @@ const DEFAULT_ROLE_SESSION_NAME = "github-action-session";
 const DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 const MAX_ROLE_SESSION_EXPIRATION = 43200;
 const MIN_ROLE_SESSION_EXPIRATION = 900;
+const textDecoder = new TextDecoder();
 
 type CredentialClientInstance = {
   getCredential(): Promise<Partial<OidcCredential>>;
@@ -59,11 +61,8 @@ function decodeJwtPayload(
     return undefined;
   }
 
-  const paddedPayload = encodedPayload.replace(/-/g, "+").replace(/_/g, "/")
-    .padEnd(Math.ceil(encodedPayload.length / 4) * 4, "=");
-
   try {
-    const payloadJson = atob(paddedPayload);
+    const payloadJson = textDecoder.decode(decodeBase64Url(encodedPayload));
     const payload = JSON.parse(payloadJson) as unknown;
     if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
       return undefined;

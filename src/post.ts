@@ -2,6 +2,7 @@ import { debug, getState, group, info, summary, warning } from "@actions/core";
 type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
 import * as Cdn from "@alicloud/cdn20180510";
 import * as AliOssModule from "ali-oss";
+import { chunk } from "jsr/collections";
 
 import {
   ApiRateLimiter,
@@ -116,14 +117,6 @@ function errorMessage(error: unknown): string {
 function parseQuota(value: string | undefined): number {
   const parsed = Number.parseInt(value ?? "0", 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
-}
-
-function chunkByLimit(values: string[], size: number): string[][] {
-  const chunks: string[][] = [];
-  for (let index = 0; index < values.length; index += size) {
-    chunks.push(values.slice(index, index + size));
-  }
-  return chunks;
 }
 
 function selectByQuota<T>(
@@ -435,7 +428,7 @@ async function refreshDeletedCdnObjects(
     `CDN refresh (post step cleanup): submitting ${allowedUrls.length} deleted URL(s)`,
   );
 
-  for (const batch of chunkByLimit(allowedUrls, CDN_MAX_URLS_PER_REQUEST)) {
+  for (const batch of chunk(allowedUrls, CDN_MAX_URLS_PER_REQUEST)) {
     try {
       const response = await limiter.schedule(() =>
         cdnClient.refreshObjectCaches(
