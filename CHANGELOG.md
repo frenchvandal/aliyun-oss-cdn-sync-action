@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.7...v1.0.8) (2026-03-28)
+
+
+### Bug Fixes
+
+* **content-type:** force RSS and Atom feed MIME types ([c1fd785](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/c1fd785c5fc1b8fa28ad7c8ec4b5d8de3cc8c7c6))
+
 ## [1.0.7](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.6...v1.0.7) (2026-03-19)
 
 
