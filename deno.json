@@ -105,10 +105,5 @@
       "description": "Update dependencies and regenerate lock file",
       "command": "deno outdated --update --latest"
     }
-  },
-  "allowScripts": [
-    "npm:@alicloud/openapi-core@1.0.4",
-    "npm:@alicloud/openapi-core@1.0.7",
-    "npm:lefthook@2.1.4"
-  ]
+  }
 }
