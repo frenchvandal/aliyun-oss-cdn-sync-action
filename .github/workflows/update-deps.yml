@@ -1,0 +1,93 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+      timezone: "Asia/Shanghai"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-dependencies-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ github.token }}
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version-file: .tool-versions
+          cache: true
+
+      - name: Run dependency updates
+        id: update_deps
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          log_file="$(mktemp)"
+          deno task update-deps 2>&1 | tee "${log_file}"
+
+          if grep -Fxq "All dependencies are up to date." "${log_file}"; then
+            echo "updated=false" >> "${GITHUB_OUTPUT}"
+            echo "All dependencies are up to date." >> "${GITHUB_STEP_SUMMARY}"
+            exit 0
+          fi
+
+          if grep -Eq '^Updated [0-9]+ dependencies:' "${log_file}"; then
+            echo "updated=true" >> "${GITHUB_OUTPUT}"
+            cat "${log_file}" >> "${GITHUB_STEP_SUMMARY}"
+            exit 0
+          fi
+
+          echo "Unexpected output from 'deno task update-deps'." >&2
+          exit 1
+
+      - name: Stop when dependencies are already up to date
+        if: steps.update_deps.outputs.updated != 'true'
+        run: echo "No dependency updates were detected."
+
+      - name: Build project artifacts
+        if: steps.update_deps.outputs.updated == 'true'
+        run: deno task build
+
+      - name: Commit and push updated dependencies
+        if: steps.update_deps.outputs.updated == 'true'
+        shell: bash
+        env:
+          COMMIT_MESSAGE: "build(deps): update dependencies"
+        run: |
+          set -euo pipefail
+
+          working_tree_status="$(git status --short)"
+          if [[ -z "${working_tree_status}" ]]; then
+            echo "No files changed after updating dependencies."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          commit_message_file="$(mktemp)"
+          printf '%s\n' "${COMMIT_MESSAGE}" > "${commit_message_file}"
+          deno task lint-commit "${commit_message_file}"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No staged changes to commit."
+            exit 0
+          fi
+
+          git commit -m "${COMMIT_MESSAGE}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
