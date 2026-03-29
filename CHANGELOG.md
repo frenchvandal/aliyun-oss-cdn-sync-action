@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.9](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.8...v1.0.9) (2026-03-29)
+
+
+### Features
+
+* **logging:** integrate ernest logger ([854579b](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/854579bd0457b5cb2ec91e1809d260188f8f00a9))
+* **logging:** integrate ernest logger ([cd0abdc](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/cd0abdcb4a4c30ad422a8dd73963f4db510a95c9))
+
 ## [1.0.8](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.7...v1.0.8) (2026-03-28)
 
 
