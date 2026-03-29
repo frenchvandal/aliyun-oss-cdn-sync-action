@@ -167,7 +167,7 @@ var require_tunnel = __commonJS({
         connectOptions.headers["Proxy-Authorization"] = "Basic " +
           new Buffer(connectOptions.proxyAuth).toString("base64");
       }
-      debug2("making CONNECT request");
+      debug3("making CONNECT request");
       var connectReq = self2.request(connectOptions);
       connectReq.useChunkedEncodingByDefault = false;
       connectReq.once("response", onResponse);
@@ -187,7 +187,7 @@ var require_tunnel = __commonJS({
         connectReq.removeAllListeners();
         socket.removeAllListeners();
         if (res.statusCode !== 200) {
-          debug2(
+          debug3(
             "tunneling socket could not be established, statusCode=%d",
             res.statusCode,
           );
@@ -202,7 +202,7 @@ var require_tunnel = __commonJS({
           return;
         }
         if (head.length > 0) {
-          debug2("got illegal response body from proxy");
+          debug3("got illegal response body from proxy");
           socket.destroy();
           var error2 = new Error("got illegal response body from proxy");
           error2.code = "ECONNRESET";
@@ -210,13 +210,13 @@ var require_tunnel = __commonJS({
           self2.removeSocket(placeholder);
           return;
         }
-        debug2("tunneling connection has established");
+        debug3("tunneling connection has established");
         self2.sockets[self2.sockets.indexOf(placeholder)] = socket;
         return cb(socket);
       }
       function onError(cause) {
         connectReq.removeAllListeners();
-        debug2(
+        debug3(
           "tunneling socket could not be established, cause=%s\n",
           cause.message,
           cause.stack,
@@ -286,9 +286,9 @@ var require_tunnel = __commonJS({
       }
       return target;
     }
-    var debug2;
+    var debug3;
     if (process.env.NODE_DEBUG && /\btunnel\b/.test(process.env.NODE_DEBUG)) {
-      debug2 = function () {
+      debug3 = function () {
         var args = Array.prototype.slice.call(arguments);
         if (typeof args[0] === "string") {
           args[0] = "TUNNEL: " + args[0];
@@ -298,10 +298,10 @@ var require_tunnel = __commonJS({
         console.error.apply(console, args);
       };
     } else {
-      debug2 = function () {
+      debug3 = function () {
       };
     }
-    exports2.debug = debug2;
+    exports2.debug = debug3;
   },
 });
 
@@ -3745,13 +3745,13 @@ var require_data_url = __commonJS({
     }
     function collectASequenceOfCodePointsFast(char, input, position) {
       const idx = input.indexOf(char, position.position);
-      const start = position.position;
+      const start2 = position.position;
       if (idx === -1) {
         position.position = input.length;
-        return input.slice(start);
+        return input.slice(start2);
       }
       position.position = idx;
-      return input.slice(start, position.position);
+      return input.slice(start2, position.position);
     }
     function stringPercentDecode(input) {
       const bytes = encoder2.encode(input);
@@ -6133,11 +6133,11 @@ var require_formdata_parser = __commonJS({
       return name;
     }
     function collectASequenceOfBytes(condition, input, position) {
-      let start = position.position;
-      while (start < input.length && condition(input[start])) {
-        ++start;
+      let start2 = position.position;
+      while (start2 < input.length && condition(input[start2])) {
+        ++start2;
       }
-      return input.subarray(position.position, position.position = start);
+      return input.subarray(position.position, position.position = start2);
     }
     function removeChars(buf, leading, trailing, predicate) {
       let lead = 0;
@@ -6152,12 +6152,12 @@ var require_formdata_parser = __commonJS({
         ? buf
         : buf.subarray(lead, trail + 1);
     }
-    function bufferStartsWith(buffer3, start, position) {
-      if (buffer3.length < start.length) {
+    function bufferStartsWith(buffer3, start2, position) {
+      if (buffer3.length < start2.length) {
         return false;
       }
-      for (let i = 0; i < start.length; i++) {
-        if (start[i] !== buffer3[position.position + i]) {
+      for (let i = 0; i < start2.length; i++) {
+        if (start2[i] !== buffer3[position.position + i]) {
           return false;
         }
       }
@@ -6611,9 +6611,9 @@ var require_client_h1 = __commonJS({
           },
           wasm_on_status: (p, at, len) => {
             assert5(currentParser.ptr === p);
-            const start = at - currentBufferPtr + currentBufferRef.byteOffset;
+            const start2 = at - currentBufferPtr + currentBufferRef.byteOffset;
             return currentParser.onStatus(
-              new FastBuffer(currentBufferRef.buffer, start, len),
+              new FastBuffer(currentBufferRef.buffer, start2, len),
             ) || 0;
           },
           wasm_on_message_begin: (p) => {
@@ -6622,16 +6622,16 @@ var require_client_h1 = __commonJS({
           },
           wasm_on_header_field: (p, at, len) => {
             assert5(currentParser.ptr === p);
-            const start = at - currentBufferPtr + currentBufferRef.byteOffset;
+            const start2 = at - currentBufferPtr + currentBufferRef.byteOffset;
             return currentParser.onHeaderField(
-              new FastBuffer(currentBufferRef.buffer, start, len),
+              new FastBuffer(currentBufferRef.buffer, start2, len),
             ) || 0;
           },
           wasm_on_header_value: (p, at, len) => {
             assert5(currentParser.ptr === p);
-            const start = at - currentBufferPtr + currentBufferRef.byteOffset;
+            const start2 = at - currentBufferPtr + currentBufferRef.byteOffset;
             return currentParser.onHeaderValue(
-              new FastBuffer(currentBufferRef.buffer, start, len),
+              new FastBuffer(currentBufferRef.buffer, start2, len),
             ) || 0;
           },
           wasm_on_headers_complete: (
@@ -6649,9 +6649,9 @@ var require_client_h1 = __commonJS({
           },
           wasm_on_body: (p, at, len) => {
             assert5(currentParser.ptr === p);
-            const start = at - currentBufferPtr + currentBufferRef.byteOffset;
+            const start2 = at - currentBufferPtr + currentBufferRef.byteOffset;
             return currentParser.onBody(
-              new FastBuffer(currentBufferRef.buffer, start, len),
+              new FastBuffer(currentBufferRef.buffer, start2, len),
             ) || 0;
           },
           wasm_on_message_complete: (p) => {
@@ -10784,8 +10784,8 @@ var require_retry_handler = __commonJS({
             );
             return false;
           }
-          const { start, size, end = size - 1 } = contentRange;
-          assert5(this.start === start, "content-range mismatch");
+          const { start: start2, size, end = size - 1 } = contentRange;
+          assert5(this.start === start2, "content-range mismatch");
           assert5(
             this.end == null || this.end === end,
             "content-range mismatch",
@@ -10804,16 +10804,16 @@ var require_retry_handler = __commonJS({
                 statusMessage,
               );
             }
-            const { start, size, end = size - 1 } = range2;
+            const { start: start2, size, end = size - 1 } = range2;
             assert5(
-              start != null && Number.isFinite(start),
+              start2 != null && Number.isFinite(start2),
               "content-range mismatch",
             );
             assert5(
               end != null && Number.isFinite(end),
               "invalid content-length",
             );
-            this.start = start;
+            this.start = start2;
             this.end = end;
           }
           if (this.end == null) {
@@ -11161,9 +11161,9 @@ var require_readable = __commonJS({
       }
       const { _readableState: state3 } = consume2.stream;
       if (state3.bufferIndex) {
-        const start = state3.bufferIndex;
+        const start2 = state3.bufferIndex;
         const end = state3.buffer.length;
-        for (let n = start; n < end; n++) {
+        for (let n = start2; n < end; n++) {
           consumePush(consume2, state3.buffer[n]);
         }
       } else {
@@ -11190,12 +11190,12 @@ var require_readable = __commonJS({
         ? chunks[0]
         : Buffer.concat(chunks, length);
       const bufferLength = buffer3.length;
-      const start =
+      const start2 =
         bufferLength > 2 && buffer3[0] === 239 && buffer3[1] === 187 &&
           buffer3[2] === 191
           ? 3
           : 0;
-      return buffer3.utf8Slice(start, bufferLength);
+      return buffer3.utf8Slice(start2, bufferLength);
     }
     function chunksConcat(chunks, length) {
       if (chunks.length === 0 || length === 0) {
@@ -21914,11 +21914,11 @@ var require_common = __commonJS({
         let enableOverride = null;
         let namespacesCache;
         let enabledCache;
-        function debug2(...args) {
-          if (!debug2.enabled) {
+        function debug3(...args) {
+          if (!debug3.enabled) {
             return;
           }
-          const self2 = debug2;
+          const self2 = debug3;
           const curr = Number(/* @__PURE__ */ new Date());
           const ms = curr - (prevTime || curr);
           self2.diff = ms;
@@ -21935,10 +21935,10 @@ var require_common = __commonJS({
               return "%";
             }
             index++;
-            const formatter = createDebug.formatters[format];
-            if (typeof formatter === "function") {
+            const formatter2 = createDebug.formatters[format];
+            if (typeof formatter2 === "function") {
               const val = args[index];
-              match2 = formatter.call(self2, val);
+              match2 = formatter2.call(self2, val);
               args.splice(index, 1);
               index--;
             }
@@ -21948,12 +21948,12 @@ var require_common = __commonJS({
           const logFn = self2.log || createDebug.log;
           logFn.apply(self2, args);
         }
-        debug2.namespace = namespace;
-        debug2.useColors = createDebug.useColors();
-        debug2.color = createDebug.selectColor(namespace);
-        debug2.extend = extend2;
-        debug2.destroy = createDebug.destroy;
-        Object.defineProperty(debug2, "enabled", {
+        debug3.namespace = namespace;
+        debug3.useColors = createDebug.useColors();
+        debug3.color = createDebug.selectColor(namespace);
+        debug3.extend = extend2;
+        debug3.destroy = createDebug.destroy;
+        Object.defineProperty(debug3, "enabled", {
           enumerable: true,
           configurable: false,
           get: () => {
@@ -21971,9 +21971,9 @@ var require_common = __commonJS({
           },
         });
         if (typeof createDebug.init === "function") {
-          createDebug.init(debug2);
+          createDebug.init(debug3);
         }
-        return debug2;
+        return debug3;
       }
       function extend2(namespace, delimiter4) {
         const newDebug = createDebug(
@@ -22436,11 +22436,11 @@ var require_node = __commonJS({
     function load() {
       return process.env.DEBUG;
     }
-    function init(debug2) {
-      debug2.inspectOpts = {};
+    function init(debug3) {
+      debug3.inspectOpts = {};
       const keys = Object.keys(exports2.inspectOpts);
       for (let i = 0; i < keys.length; i++) {
-        debug2.inspectOpts[keys[i]] = exports2.inspectOpts[keys[i]];
+        debug3.inspectOpts[keys[i]] = exports2.inspectOpts[keys[i]];
       }
     }
     module.exports = require_common()(exports2);
@@ -22762,13 +22762,13 @@ var require_lib = __commonJS({
     }
     function tryGetEvents(head, chunk2) {
       const all = head + chunk2;
-      let start = 0;
+      let start2 = 0;
       const events2 = [];
       for (let i = 0; i < all.length - 1; i++) {
         const c = all[i];
         const c2 = all[i + 1];
         if (c === "\n" && c2 === "\n") {
-          const part = all.substring(start, i);
+          const part = all.substring(start2, i);
           const lines = part.split("\n");
           const event = new Event2();
           lines.forEach((line) => {
@@ -22787,10 +22787,10 @@ var require_lib = __commonJS({
             }
           });
           events2.push(event);
-          start = i + 2;
+          start2 = i + 2;
         }
       }
-      const rest = all.substring(start);
+      const rest = all.substring(start2);
       return [
         events2,
         rest,
@@ -31665,10 +31665,10 @@ var require_lodash = __commonJS({
             isRight = dir < 0,
             arrLength = isArr ? array.length : 0,
             view = getView(0, arrLength, this.__views__),
-            start = view.start,
+            start2 = view.start,
             end = view.end,
-            length = end - start,
-            index = isRight ? end : start - 1,
+            length = end - start2,
+            index = isRight ? end : start2 - 1,
             iteratees = this.__iteratees__,
             iterLength = iteratees.length,
             resIndex = 0,
@@ -32180,19 +32180,19 @@ var require_lodash = __commonJS({
           }
           return result2;
         }
-        function baseFill(array, value, start, end) {
+        function baseFill(array, value, start2, end) {
           var length = array.length;
-          start = toInteger(start);
-          if (start < 0) {
-            start = -start > length ? 0 : length + start;
+          start2 = toInteger(start2);
+          if (start2 < 0) {
+            start2 = -start2 > length ? 0 : length + start2;
           }
           end = end === undefined2 || end > length ? length : toInteger(end);
           if (end < 0) {
             end += length;
           }
-          end = start > end ? 0 : toLength(end);
-          while (start < end) {
-            array[start++] = value;
+          end = start2 > end ? 0 : toLength(end);
+          while (start2 < end) {
+            array[start2++] = value;
           }
           return array;
         }
@@ -32267,9 +32267,9 @@ var require_lodash = __commonJS({
         function baseHasIn(object, key) {
           return object != null && key in Object2(object);
         }
-        function baseInRange(number, start, end) {
-          return number >= nativeMin(start, end) &&
-            number < nativeMax(start, end);
+        function baseInRange(number, start2, end) {
+          return number >= nativeMin(start2, end) &&
+            number < nativeMax(start2, end);
         }
         function baseIntersection(arrays, iteratee2, comparator) {
           var includes2 = comparator ? arrayIncludesWith : arrayIncludes,
@@ -32783,13 +32783,13 @@ var require_lodash = __commonJS({
         function baseRandom(lower, upper) {
           return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
         }
-        function baseRange(start, end, step, fromRight) {
+        function baseRange(start2, end, step, fromRight) {
           var index = -1,
-            length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
+            length = nativeMax(nativeCeil((end - start2) / (step || 1)), 0),
             result2 = Array2(length);
           while (length--) {
-            result2[fromRight ? length : ++index] = start;
-            start += step;
+            result2[fromRight ? length : ++index] = start2;
+            start2 += step;
           }
           return result2;
         }
@@ -32809,8 +32809,8 @@ var require_lodash = __commonJS({
           } while (n);
           return result2;
         }
-        function baseRest(func, start) {
-          return setToString(overRest(func, start, identity), func + "");
+        function baseRest(func, start2) {
+          return setToString(overRest(func, start2, identity), func + "");
         }
         function baseSample(collection) {
           return arraySample(values(collection));
@@ -32871,20 +32871,20 @@ var require_lodash = __commonJS({
         function baseShuffle(collection) {
           return shuffleSelf(values(collection));
         }
-        function baseSlice(array, start, end) {
+        function baseSlice(array, start2, end) {
           var index = -1, length = array.length;
-          if (start < 0) {
-            start = -start > length ? 0 : length + start;
+          if (start2 < 0) {
+            start2 = -start2 > length ? 0 : length + start2;
           }
           end = end > length ? length : end;
           if (end < 0) {
             end += length;
           }
-          length = start > end ? 0 : end - start >>> 0;
-          start >>>= 0;
+          length = start2 > end ? 0 : end - start2 >>> 0;
+          start2 >>>= 0;
           var result2 = Array2(length);
           while (++index < length) {
-            result2[index] = array[index + start];
+            result2[index] = array[index + start2];
           }
           return result2;
         }
@@ -33131,10 +33131,12 @@ var require_lodash = __commonJS({
             : stringToPath(toString3(value));
         }
         var castRest = baseRest;
-        function castSlice(array, start, end) {
+        function castSlice(array, start2, end) {
           var length = array.length;
           end = end === undefined2 ? length : end;
-          return !start && end >= length ? array : baseSlice(array, start, end);
+          return !start2 && end >= length
+            ? array
+            : baseSlice(array, start2, end);
         }
         var clearTimeout2 = ctxClearTimeout || function (id) {
           return root.clearTimeout(id);
@@ -33713,22 +33715,22 @@ var require_lodash = __commonJS({
           return wrapper;
         }
         function createRange(fromRight) {
-          return function (start, end, step) {
+          return function (start2, end, step) {
             if (
               step && typeof step != "number" &&
-              isIterateeCall(start, end, step)
+              isIterateeCall(start2, end, step)
             ) {
               end = step = undefined2;
             }
-            start = toFinite(start);
+            start2 = toFinite(start2);
             if (end === undefined2) {
-              end = start;
-              start = 0;
+              end = start2;
+              start2 = 0;
             } else {
               end = toFinite(end);
             }
-            step = step === undefined2 ? start < end ? 1 : -1 : toFinite(step);
-            return baseRange(start, end, step, fromRight);
+            step = step === undefined2 ? start2 < end ? 1 : -1 : toFinite(step);
+            return baseRange(start2, end, step, fromRight);
           };
         }
         function createRelationalOperation(operator) {
@@ -34254,27 +34256,27 @@ var require_lodash = __commonJS({
             return result2;
           };
         }
-        function getView(start, end, transforms) {
+        function getView(start2, end, transforms) {
           var index = -1, length = transforms.length;
           while (++index < length) {
             var data = transforms[index], size2 = data.size;
             switch (data.type) {
               case "drop":
-                start += size2;
+                start2 += size2;
                 break;
               case "dropRight":
                 end -= size2;
                 break;
               case "take":
-                end = nativeMin(end, start + size2);
+                end = nativeMin(end, start2 + size2);
                 break;
               case "takeRight":
-                start = nativeMax(start, end - size2);
+                start2 = nativeMax(start2, end - size2);
                 break;
             }
           }
           return {
-            "start": start,
+            "start": start2,
             "end": end,
           };
         }
@@ -34518,22 +34520,25 @@ var require_lodash = __commonJS({
         function objectToString(value) {
           return nativeObjectToString.call(value);
         }
-        function overRest(func, start, transform2) {
-          start = nativeMax(start === undefined2 ? func.length - 1 : start, 0);
+        function overRest(func, start2, transform2) {
+          start2 = nativeMax(
+            start2 === undefined2 ? func.length - 1 : start2,
+            0,
+          );
           return function () {
             var args = arguments,
               index = -1,
-              length = nativeMax(args.length - start, 0),
+              length = nativeMax(args.length - start2, 0),
               array = Array2(length);
             while (++index < length) {
-              array[index] = args[start + index];
+              array[index] = args[start2 + index];
             }
             index = -1;
-            var otherArgs = Array2(start + 1);
-            while (++index < start) {
+            var otherArgs = Array2(start2 + 1);
+            while (++index < start2) {
               otherArgs[index] = args[index];
             }
-            otherArgs[start] = transform2(array);
+            otherArgs[start2] = transform2(array);
             return apply(func, this, otherArgs);
           };
         }
@@ -34775,19 +34780,19 @@ var require_lodash = __commonJS({
             ? baseWhile(array, getIteratee(predicate, 3), true)
             : [];
         }
-        function fill(array, value, start, end) {
+        function fill(array, value, start2, end) {
           var length = array == null ? 0 : array.length;
           if (!length) {
             return [];
           }
           if (
-            start && typeof start != "number" &&
-            isIterateeCall(array, value, start)
+            start2 && typeof start2 != "number" &&
+            isIterateeCall(array, value, start2)
           ) {
-            start = 0;
+            start2 = 0;
             end = length;
           }
-          return baseFill(array, value, start, end);
+          return baseFill(array, value, start2, end);
         }
         function findIndex(array, predicate, fromIndex) {
           var length = array == null ? 0 : array.length;
@@ -34964,21 +34969,21 @@ var require_lodash = __commonJS({
         function reverse(array) {
           return array == null ? array : nativeReverse.call(array);
         }
-        function slice(array, start, end) {
+        function slice(array, start2, end) {
           var length = array == null ? 0 : array.length;
           if (!length) {
             return [];
           }
           if (
-            end && typeof end != "number" && isIterateeCall(array, start, end)
+            end && typeof end != "number" && isIterateeCall(array, start2, end)
           ) {
-            start = 0;
+            start2 = 0;
             end = length;
           } else {
-            start = start == null ? 0 : toInteger(start);
+            start2 = start2 == null ? 0 : toInteger(start2);
             end = end === undefined2 ? length : toInteger(end);
           }
-          return baseSlice(array, start, end);
+          return baseSlice(array, start2, end);
         }
         function sortedIndex(array, value) {
           return baseSortedIndex(array, value);
@@ -35178,18 +35183,18 @@ var require_lodash = __commonJS({
         }
         var wrapperAt = flatRest(function (paths) {
           var length = paths.length,
-            start = length ? paths[0] : 0,
+            start2 = length ? paths[0] : 0,
             value = this.__wrapped__,
             interceptor = function (object) {
               return baseAt(object, paths);
             };
           if (
             length > 1 || this.__actions__.length ||
-            !(value instanceof LazyWrapper) || !isIndex(start)
+            !(value instanceof LazyWrapper) || !isIndex(start2)
           ) {
             return this.thru(interceptor);
           }
-          value = value.slice(start, +start + (length ? 1 : 0));
+          value = value.slice(start2, +start2 + (length ? 1 : 0));
           value.__actions__.push({
             "func": thru,
             "args": [
@@ -35739,20 +35744,20 @@ var require_lodash = __commonJS({
             indexes,
           );
         });
-        function rest(func, start) {
+        function rest(func, start2) {
           if (typeof func != "function") {
             throw new TypeError2(FUNC_ERROR_TEXT);
           }
-          start = start === undefined2 ? start : toInteger(start);
-          return baseRest(func, start);
+          start2 = start2 === undefined2 ? start2 : toInteger(start2);
+          return baseRest(func, start2);
         }
-        function spread(func, start) {
+        function spread(func, start2) {
           if (typeof func != "function") {
             throw new TypeError2(FUNC_ERROR_TEXT);
           }
-          start = start == null ? 0 : nativeMax(toInteger(start), 0);
+          start2 = start2 == null ? 0 : nativeMax(toInteger(start2), 0);
           return baseRest(function (args) {
-            var array = args[start], otherArgs = castSlice(args, 0, start);
+            var array = args[start2], otherArgs = castSlice(args, 0, start2);
             if (array) {
               arrayPush(otherArgs, array);
             }
@@ -36361,16 +36366,16 @@ var require_lodash = __commonJS({
           }
           return baseClamp(toNumber2(number), lower, upper);
         }
-        function inRange(number, start, end) {
-          start = toFinite(start);
+        function inRange(number, start2, end) {
+          start2 = toFinite(start2);
           if (end === undefined2) {
-            end = start;
-            start = 0;
+            end = start2;
+            start2 = 0;
           } else {
             end = toFinite(end);
           }
           number = toNumber2(number);
-          return baseInRange(number, start, end);
+          return baseInRange(number, start2, end);
         }
         function random(lower, upper, floating) {
           if (
@@ -36659,9 +36664,9 @@ var require_lodash = __commonJS({
           }
           var strSymbols = stringToArray(string),
             chrSymbols = stringToArray(chars),
-            start = charsStartIndex(strSymbols, chrSymbols),
+            start2 = charsStartIndex(strSymbols, chrSymbols),
             end = charsEndIndex(strSymbols, chrSymbols) + 1;
-          return castSlice(strSymbols, start, end).join("");
+          return castSlice(strSymbols, start2, end).join("");
         }
         function trimEnd2(string, chars, guard) {
           string = toString3(string);
@@ -36684,8 +36689,8 @@ var require_lodash = __commonJS({
             return string;
           }
           var strSymbols = stringToArray(string),
-            start = charsStartIndex(strSymbols, stringToArray(chars));
-          return castSlice(strSymbols, start).join("");
+            start2 = charsStartIndex(strSymbols, stringToArray(chars));
+          return castSlice(strSymbols, start2).join("");
         }
         function truncate(string, options) {
           var length = DEFAULT_TRUNC_LENGTH, omission = DEFAULT_TRUNC_OMISSION;
@@ -37414,22 +37419,22 @@ var require_lodash = __commonJS({
         LazyWrapper.prototype.reject = function (predicate) {
           return this.filter(negate(getIteratee(predicate)));
         };
-        LazyWrapper.prototype.slice = function (start, end) {
-          start = toInteger(start);
+        LazyWrapper.prototype.slice = function (start2, end) {
+          start2 = toInteger(start2);
           var result2 = this;
-          if (result2.__filtered__ && (start > 0 || end < 0)) {
+          if (result2.__filtered__ && (start2 > 0 || end < 0)) {
             return new LazyWrapper(result2);
           }
-          if (start < 0) {
-            result2 = result2.takeRight(-start);
-          } else if (start) {
-            result2 = result2.drop(start);
+          if (start2 < 0) {
+            result2 = result2.takeRight(-start2);
+          } else if (start2) {
+            result2 = result2.drop(start2);
           }
           if (end !== undefined2) {
             end = toInteger(end);
             result2 = end < 0
               ? result2.dropRight(-end)
-              : result2.take(end - start);
+              : result2.take(end - start2);
           }
           return result2;
         };
@@ -37958,13 +37963,13 @@ var require_stream = __commonJS({
     }
     function tryGetEvents(head, chunk2) {
       var all = head + chunk2;
-      var start = 0;
+      var start2 = 0;
       var events2 = [];
       var _loop_1 = function (i2) {
         var c = all[i2];
         var c2 = all[i2 + 1];
         if (c === "\n" && c2 === "\n") {
-          var part = all.substring(start, i2);
+          var part = all.substring(start2, i2);
           var lines = part.split("\n");
           var event_1 = new SSEEvent();
           lines.forEach(function (line) {
@@ -37983,13 +37988,13 @@ var require_stream = __commonJS({
             }
           });
           events2.push(event_1);
-          start = i2 + 2;
+          start2 = i2 + 2;
         }
       };
       for (var i = 0; i < all.length - 1; i++) {
         _loop_1(i);
       }
-      var remain = all.substring(start);
+      var remain = all.substring(start2);
       return {
         events: events2,
         remain,
@@ -44929,10 +44934,10 @@ var require_parser = __commonJS({
           Object.keys(thing).length === 0;
       };
       processItem = function (processors2, item, key) {
-        var i, len, process5;
+        var i, len, process6;
         for (i = 0, len = processors2.length; i < len; i++) {
-          process5 = processors2[i];
-          item = process5(item, key);
+          process6 = processors2[i];
+          item = process6(item, key);
         }
         return item;
       };
@@ -49852,14 +49857,14 @@ ${date}
         product,
         regionId,
         endpointType,
-        network,
+        network2,
         suffix,
       ) {
         let result;
-        if (network && network.length && network != "public") {
-          network = "-" + network;
+        if (network2 && network2.length && network2 != "public") {
+          network2 = "-" + network2;
         } else {
-          network = "";
+          network2 = "";
         }
         suffix = suffix || "";
         if (suffix.length) {
@@ -49869,9 +49874,9 @@ ${date}
           if (!regionId || !regionId.length) {
             throw new Error("RegionId is empty, please set a valid RegionId");
           }
-          result = `${product}${suffix}${network}.${regionId}.aliyuncs.com`;
+          result = `${product}${suffix}${network2}.${regionId}.aliyuncs.com`;
         } else {
-          result = `${product}${suffix}${network}.aliyuncs.com`;
+          result = `${product}${suffix}${network2}.aliyuncs.com`;
         }
         return result;
       }
@@ -122915,7 +122920,7 @@ var require_client5 = __commonJS({
         productId,
         regionId,
         endpointRule,
-        network,
+        network2,
         suffix,
         endpointMap,
         endpoint,
@@ -122932,7 +122937,7 @@ var require_client5 = __commonJS({
           productId,
           regionId,
           endpointRule,
-          network,
+          network2,
           suffix,
         );
       }
@@ -133277,7 +133282,7 @@ var require_http_agent = __commonJS({
     var net = __require("node:net");
     var util6 = __require("node:util");
     var EventEmitter4 = __require("node:events");
-    var debug2 = util6.debuglog("http");
+    var debug3 = util6.debuglog("http");
     function Agent3(options) {
       if (!(this instanceof Agent3)) return new Agent3(options);
       EventEmitter4.call(this);
@@ -133299,11 +133304,11 @@ var require_http_agent = __commonJS({
       this.socketActiveTTL = this.options.socketActiveTTL || null;
       self2.on("free", function (socket, options2) {
         var name = self2.getName(options2);
-        debug2("agent.on(free)", name);
+        debug3("agent.on(free)", name);
         if (
           socket.writable && self2.requests[name] && self2.requests[name].length
         ) {
-          debug2("continue handle next request");
+          debug3("continue handle next request");
           self2.requests[name].shift().onSocket(socket);
           if (self2.requests[name].length === 0) {
             delete self2.requests[name];
@@ -133334,7 +133339,7 @@ var require_http_agent = __commonJS({
                 socket.freeSocketKeepAliveTimeout ||
                 self2.freeSocketKeepAliveTimeout;
               socket.setTimeout(freeSocketKeepAliveTimeout);
-              debug2(
+              debug3(
                 `push to free socket queue and wait for ${freeSocketKeepAliveTimeout}ms`,
               );
             }
@@ -133348,7 +133353,7 @@ var require_http_agent = __commonJS({
     exports2.Agent = Agent3;
     function freeSocketErrorListener(err) {
       var socket = this;
-      debug2("SOCKET ERROR on FREE socket:", err.message, err.stack);
+      debug3("SOCKET ERROR on FREE socket:", err.message, err.stack);
       socket.destroy();
       socket.emit("agentRemove");
     }
@@ -133402,14 +133407,14 @@ var require_http_agent = __commonJS({
       var sockLen = freeLen + this.sockets[name].length;
       if (freeLen) {
         var socket = this.freeSockets[name].shift();
-        debug2("have free socket");
+        debug3("have free socket");
         socket.removeListener("error", freeSocketErrorListener);
         socket.setTimeout(this.timeout);
         if (
           this.socketActiveTTL &&
           Date.now() - socket.createdTime > this.socketActiveTTL
         ) {
-          debug2(`socket ${socket.createdTime} expired`);
+          debug3(`socket ${socket.createdTime} expired`);
           socket.destroy();
           return this.createSocket(req, options, handleSocketCreation(req));
         }
@@ -133418,10 +133423,10 @@ var require_http_agent = __commonJS({
         req.onSocket(socket);
         this.sockets[name].push(socket);
       } else if (sockLen < this.maxSockets) {
-        debug2("call onSocket", sockLen, freeLen);
+        debug3("call onSocket", sockLen, freeLen);
         this.createSocket(req, options, handleSocketCreation(req));
       } else {
-        debug2("wait for socket");
+        debug3("wait for socket");
         if (!this.requests[name]) {
           this.requests[name] = [];
         }
@@ -133437,7 +133442,7 @@ var require_http_agent = __commonJS({
       }
       var name = self2.getName(options);
       options._agentKey = name;
-      debug2("createConnection", name, options);
+      debug3("createConnection", name, options);
       options.encoding = null;
       var called = false;
       const newSocket = self2.createConnection(options, oncreate);
@@ -133457,19 +133462,19 @@ var require_http_agent = __commonJS({
           self2.sockets[name] = [];
         }
         self2.sockets[name].push(s);
-        debug2("sockets", name, self2.sockets[name].length);
+        debug3("sockets", name, self2.sockets[name].length);
         function onFree() {
           self2.emit("free", s, options);
         }
         s.on("free", onFree);
         function onClose(err2) {
-          debug2("CLIENT socket onClose");
+          debug3("CLIENT socket onClose");
           self2.removeSocket(s, options);
           self2.emit("close");
         }
         s.on("close", onClose);
         function onTimeout() {
-          debug2("CLIENT socket onTimeout");
+          debug3("CLIENT socket onTimeout");
           s.destroy();
           self2.removeSocket(s, options);
           self2.emit("timeout");
@@ -133477,7 +133482,7 @@ var require_http_agent = __commonJS({
         s.on("timeout", onTimeout);
         s.setTimeout(self2.timeout);
         function onRemove() {
-          debug2("CLIENT socket onRemove");
+          debug3("CLIENT socket onRemove");
           self2.removeSocket(s, options);
           s.removeListener("close", onClose);
           s.removeListener("free", onFree);
@@ -133507,7 +133512,7 @@ var require_http_agent = __commonJS({
     }
     Agent3.prototype.removeSocket = function removeSocket(s, options) {
       var name = this.getName(options);
-      debug2("removeSocket", name, "writable:", s.writable);
+      debug3("removeSocket", name, "writable:", s.writable);
       var sets = [
         this.sockets,
       ];
@@ -133529,7 +133534,7 @@ var require_http_agent = __commonJS({
         this.requests[name] && this.requests[name].length &&
         sockLen < this.maxSockets
       ) {
-        debug2("removeSocket, have a request, make a socket");
+        debug3("removeSocket, have a request, make a socket");
         var req = this.requests[name][0];
         this.createSocket(req, options, function (err, newSocket) {
           if (err) {
@@ -139138,7 +139143,7 @@ var require_stringify = __commonJS({
       allowDots,
       serializeDate,
       format,
-      formatter,
+      formatter2,
       encodeValuesOnly,
       charset,
       sideChannel,
@@ -139187,14 +139192,14 @@ var require_stringify = __commonJS({
             ? prefix2
             : encoder2(prefix2, defaults.encoder, charset, "key", format);
           return [
-            formatter(keyValue) + "=" +
-            formatter(
+            formatter2(keyValue) + "=" +
+            formatter2(
               encoder2(obj, defaults.encoder, charset, "value", format),
             ),
           ];
         }
         return [
-          formatter(prefix2) + "=" + formatter(String(obj)),
+          formatter2(prefix2) + "=" + formatter2(String(obj)),
         ];
       }
       var values = [];
@@ -139266,7 +139271,7 @@ var require_stringify = __commonJS({
             allowDots,
             serializeDate,
             format,
-            formatter,
+            formatter2,
             encodeValuesOnly,
             charset,
             valueSideChannel,
@@ -139317,7 +139322,7 @@ var require_stringify = __commonJS({
         }
         format = opts.format;
       }
-      var formatter = formats.formatters[format];
+      var formatter2 = formats.formatters[format];
       var filter = defaults.filter;
       if (typeof opts.filter === "function" || isArray(opts.filter)) {
         filter = opts.filter;
@@ -139369,7 +139374,7 @@ var require_stringify = __commonJS({
           : defaults.encodeValuesOnly,
         filter,
         format,
-        formatter,
+        formatter: formatter2,
         serializeDate: typeof opts.serializeDate === "function"
           ? opts.serializeDate
           : defaults.serializeDate,
@@ -139971,18 +139976,18 @@ var require_semver = __commonJS({
     module,
   ) {
     exports2 = module.exports = SemVer;
-    var debug2;
+    var debug3;
     if (
       typeof process === "object" && process.env && process.env.NODE_DEBUG &&
       /\bsemver\b/i.test(process.env.NODE_DEBUG)
     ) {
-      debug2 = function () {
+      debug3 = function () {
         var args = Array.prototype.slice.call(arguments, 0);
         args.unshift("SEMVER");
         console.log.apply(console, args);
       };
     } else {
-      debug2 = function () {
+      debug3 = function () {
       };
     }
     exports2.SEMVER_SPEC_VERSION = "2.0.0";
@@ -140121,7 +140126,7 @@ var require_semver = __commonJS({
     var STAR = R++;
     src[STAR] = "(<|>)?=?\\s*\\*";
     for (i = 0; i < R; i++) {
-      debug2(i, src[i]);
+      debug3(i, src[i]);
       if (!re[i]) {
         re[i] = new RegExp(src[i]);
         safeRe[i] = new RegExp(makeSafeRe(src[i]));
@@ -140190,7 +140195,7 @@ var require_semver = __commonJS({
       if (!(this instanceof SemVer)) {
         return new SemVer(version3, options);
       }
-      debug2("SemVer", version3, options);
+      debug3("SemVer", version3, options);
       this.options = options;
       this.loose = !!options.loose;
       var m = version3.trim().match(
@@ -140239,7 +140244,7 @@ var require_semver = __commonJS({
       return this.version;
     };
     SemVer.prototype.compare = function (other) {
-      debug2("SemVer.compare", this.version, this.options, other);
+      debug3("SemVer.compare", this.version, this.options, other);
       if (!(other instanceof SemVer)) {
         other = new SemVer(other, this.options);
       }
@@ -140268,7 +140273,7 @@ var require_semver = __commonJS({
       do {
         var a = this.prerelease[i2];
         var b = other.prerelease[i2];
-        debug2("prerelease compare", i2, a, b);
+        debug3("prerelease compare", i2, a, b);
         if (a === void 0 && b === void 0) {
           return 0;
         } else if (b === void 0) {
@@ -140540,7 +140545,7 @@ var require_semver = __commonJS({
         return new Comparator(comp26, options);
       }
       comp26 = comp26.trim().split(/\s+/).join(" ");
-      debug2("comparator", comp26, options);
+      debug3("comparator", comp26, options);
       this.options = options;
       this.loose = !!options.loose;
       this.parse(comp26);
@@ -140549,7 +140554,7 @@ var require_semver = __commonJS({
       } else {
         this.value = this.operator + this.semver.version;
       }
-      debug2("comp", this);
+      debug3("comp", this);
     }
     var ANY = {};
     Comparator.prototype.parse = function (comp26) {
@@ -140572,7 +140577,7 @@ var require_semver = __commonJS({
       return this.value;
     };
     Comparator.prototype.test = function (version3) {
-      debug2("Comparator.test", version3, this.options.loose);
+      debug3("Comparator.test", version3, this.options.loose);
       if (this.semver === ANY) {
         return true;
       }
@@ -140672,9 +140677,9 @@ var require_semver = __commonJS({
       var loose = this.options.loose;
       var hr = loose ? safeRe[HYPHENRANGELOOSE] : safeRe[HYPHENRANGE];
       range2 = range2.replace(hr, hyphenReplace);
-      debug2("hyphen replace", range2);
+      debug3("hyphen replace", range2);
       range2 = range2.replace(safeRe[COMPARATORTRIM], comparatorTrimReplace);
-      debug2("comparator trim", range2, safeRe[COMPARATORTRIM]);
+      debug3("comparator trim", range2, safeRe[COMPARATORTRIM]);
       range2 = range2.replace(safeRe[TILDETRIM], tildeTrimReplace);
       range2 = range2.replace(safeRe[CARETTRIM], caretTrimReplace);
       var compRe = loose ? safeRe[COMPARATORLOOSE] : safeRe[COMPARATOR];
@@ -140714,15 +140719,15 @@ var require_semver = __commonJS({
       });
     }
     function parseComparator(comp26, options) {
-      debug2("comp", comp26, options);
+      debug3("comp", comp26, options);
       comp26 = replaceCarets(comp26, options);
-      debug2("caret", comp26);
+      debug3("caret", comp26);
       comp26 = replaceTildes(comp26, options);
-      debug2("tildes", comp26);
+      debug3("tildes", comp26);
       comp26 = replaceXRanges(comp26, options);
-      debug2("xrange", comp26);
+      debug3("xrange", comp26);
       comp26 = replaceStars(comp26, options);
-      debug2("stars", comp26);
+      debug3("stars", comp26);
       return comp26;
     }
     function isX(id) {
@@ -140736,7 +140741,7 @@ var require_semver = __commonJS({
     function replaceTilde(comp26, options) {
       var r = options.loose ? safeRe[TILDELOOSE] : safeRe[TILDE];
       return comp26.replace(r, function (_, M, m, p, pr) {
-        debug2("tilde", comp26, _, M, m, p, pr);
+        debug3("tilde", comp26, _, M, m, p, pr);
         var ret;
         if (isX(M)) {
           ret = "";
@@ -140745,13 +140750,13 @@ var require_semver = __commonJS({
         } else if (isX(p)) {
           ret = ">=" + M + "." + m + ".0 <" + M + "." + (+m + 1) + ".0";
         } else if (pr) {
-          debug2("replaceTilde pr", pr);
+          debug3("replaceTilde pr", pr);
           ret = ">=" + M + "." + m + "." + p + "-" + pr + " <" + M + "." +
             (+m + 1) + ".0";
         } else {
           ret = ">=" + M + "." + m + "." + p + " <" + M + "." + (+m + 1) + ".0";
         }
-        debug2("tilde return", ret);
+        debug3("tilde return", ret);
         return ret;
       });
     }
@@ -140761,10 +140766,10 @@ var require_semver = __commonJS({
       }).join(" ");
     }
     function replaceCaret(comp26, options) {
-      debug2("caret", comp26, options);
+      debug3("caret", comp26, options);
       var r = options.loose ? safeRe[CARETLOOSE] : safeRe[CARET];
       return comp26.replace(r, function (_, M, m, p, pr) {
-        debug2("caret", comp26, _, M, m, p, pr);
+        debug3("caret", comp26, _, M, m, p, pr);
         var ret;
         if (isX(M)) {
           ret = "";
@@ -140777,7 +140782,7 @@ var require_semver = __commonJS({
             ret = ">=" + M + "." + m + ".0 <" + (+M + 1) + ".0.0";
           }
         } else if (pr) {
-          debug2("replaceCaret pr", pr);
+          debug3("replaceCaret pr", pr);
           if (M === "0") {
             if (m === "0") {
               ret = ">=" + M + "." + m + "." + p + "-" + pr + " <" + M + "." +
@@ -140791,7 +140796,7 @@ var require_semver = __commonJS({
               ".0.0";
           }
         } else {
-          debug2("no pr");
+          debug3("no pr");
           if (M === "0") {
             if (m === "0") {
               ret = ">=" + M + "." + m + "." + p + " <" + M + "." + m + "." +
@@ -140804,12 +140809,12 @@ var require_semver = __commonJS({
             ret = ">=" + M + "." + m + "." + p + " <" + (+M + 1) + ".0.0";
           }
         }
-        debug2("caret return", ret);
+        debug3("caret return", ret);
         return ret;
       });
     }
     function replaceXRanges(comp26, options) {
-      debug2("replaceXRanges", comp26, options);
+      debug3("replaceXRanges", comp26, options);
       return comp26.split(/\s+/).map(function (comp27) {
         return replaceXRange(comp27, options);
       }).join(" ");
@@ -140818,7 +140823,7 @@ var require_semver = __commonJS({
       comp26 = comp26.trim();
       var r = options.loose ? safeRe[XRANGELOOSE] : safeRe[XRANGE];
       return comp26.replace(r, function (ret, gtlt, M, m, p, pr) {
-        debug2("xRange", comp26, ret, gtlt, M, m, p, pr);
+        debug3("xRange", comp26, ret, gtlt, M, m, p, pr);
         var xM = isX(M);
         var xm = xM || isX(m);
         var xp = xm || isX(p);
@@ -140861,12 +140866,12 @@ var require_semver = __commonJS({
         } else if (xp) {
           ret = ">=" + M + "." + m + ".0 <" + M + "." + (+m + 1) + ".0";
         }
-        debug2("xRange return", ret);
+        debug3("xRange return", ret);
         return ret;
       });
     }
     function replaceStars(comp26, options) {
-      debug2("replaceStars", comp26, options);
+      debug3("replaceStars", comp26, options);
       return comp26.trim().replace(safeRe[STAR], "");
     }
     function hyphenReplace(
@@ -140928,7 +140933,7 @@ var require_semver = __commonJS({
       }
       if (version3.prerelease.length && !options.includePrerelease) {
         for (i2 = 0; i2 < set.length; i2++) {
-          debug2(set[i2].semver);
+          debug3(set[i2].semver);
           if (set[i2].semver === ANY) {
             continue;
           }
@@ -145327,7 +145332,7 @@ var require_formstream = __commonJS({
     module,
   ) {
     "use strict";
-    var debug2 = __require("node:util").debuglog("formstream");
+    var debug3 = __require("node:util").debuglog("formstream");
     var Stream = __require("node:stream");
     var crypto5 = __require("node:crypto");
     var parseStream = require_pause_stream();
@@ -145356,7 +145361,7 @@ var require_formstream = __commonJS({
       this._knownStreamSize = 0;
       this._minChunkSize = options && options.minChunkSize || 0;
       this.isFormStream = true;
-      debug2("start boundary\n%s", this._boundary);
+      debug3("start boundary\n%s", this._boundary);
     }
     util6.inherits(FormStream, Stream);
     module.exports = FormStream;
@@ -145375,7 +145380,7 @@ var require_formstream = __commonJS({
       }
       this._knownStreamSize = size;
       this._isAllStreamSizeKnown = true;
-      debug2("set total size: %s", size);
+      debug3("set total size: %s", size);
       return this;
     };
     FormStream.prototype.headers = function (options) {
@@ -145392,7 +145397,7 @@ var require_formstream = __commonJS({
           headers[k] = options[k];
         }
       }
-      debug2("headers: %j", headers);
+      debug3("headers: %j", headers);
       return headers;
     };
     FormStream.prototype.file = function (name, filepath, filename, filesize) {
@@ -145472,16 +145477,16 @@ var require_formstream = __commonJS({
       ], bufferSize));
       this._contentLength += bufferSize;
       process.nextTick(this.resume.bind(this));
-      if (debug2.enabled) {
+      if (debug3.enabled) {
         if (buffer3.length > 512) {
-          debug2(
+          debug3(
             "new buffer field, content size: %d\n%s%s",
             buffer3.length,
             leading.toString(),
             hex(buffer3.slice(0, 512)),
           );
         } else {
-          debug2(
+          debug3(
             "new buffer field, content size: %d\n%s%s",
             buffer3.length,
             leading.toString(),
@@ -145527,8 +145532,8 @@ var require_formstream = __commonJS({
       const leading = item[0];
       self2.emit("data", leading);
       chunkCount++;
-      if (debug2.enabled) {
-        debug2(
+      if (debug3.enabled) {
+        debug3(
           "new stream, chunk index %d\n%s",
           chunkCount,
           leading.toString(),
@@ -145539,9 +145544,9 @@ var require_formstream = __commonJS({
         self2.emit("data", data);
         streamSize += leading.length;
         chunkCount++;
-        if (debug2.enabled) {
+        if (debug3.enabled) {
           if (data.length > 512) {
-            debug2(
+            debug3(
               "stream chunk, size %d, chunk index %d, stream size %d\n%s......   only show 512 bytes   ......",
               data.length,
               chunkCount,
@@ -145549,7 +145554,7 @@ var require_formstream = __commonJS({
               hex(data.slice(0, 512)),
             );
           } else {
-            debug2(
+            debug3(
               "stream chunk, size %d, chunk index %d, stream size %d\n%s",
               data.length,
               chunkCount,
@@ -145562,7 +145567,7 @@ var require_formstream = __commonJS({
       stream3.on("end", function () {
         self2.emit("data", NEW_LINE_BUFFER);
         chunkCount++;
-        debug2(
+        debug3(
           "stream end, chunk index %d, stream size %d",
           chunkCount,
           streamSize,
@@ -145583,8 +145588,8 @@ var require_formstream = __commonJS({
       const leading = item[0];
       buffers.push(leading);
       bufferSize += leading.length;
-      if (debug2.enabled) {
-        debug2(
+      if (debug3.enabled) {
+        debug3(
           "new stream, with min chunk size: %d\n%s",
           minChunkSize,
           leading.toString(),
@@ -145598,7 +145603,7 @@ var require_formstream = __commonJS({
         buffers.push(data);
         bufferSize += data.length;
         streamSize += data.length;
-        debug2(
+        debug3(
           "got stream data size %d, buffer size %d, stream size %d",
           data.length,
           bufferSize,
@@ -145610,9 +145615,9 @@ var require_formstream = __commonJS({
           bufferSize = 0;
           self2.emit("data", chunk2);
           chunkCount++;
-          if (debug2.enabled) {
+          if (debug3.enabled) {
             if (chunk2.length > 512) {
-              debug2(
+              debug3(
                 "stream chunk, size %d, chunk index %d, stream size %d\n%s......   only show 512 bytes   ......",
                 chunk2.length,
                 chunkCount,
@@ -145620,7 +145625,7 @@ var require_formstream = __commonJS({
                 hex(chunk2.slice(0, 512)),
               );
             } else {
-              debug2(
+              debug3(
                 "stream chunk, size %d, chunk index %d, stream size %d\n%s",
                 chunk2.length,
                 chunkCount,
@@ -145638,7 +145643,7 @@ var require_formstream = __commonJS({
         self2.emit("data", chunk2);
         chunkCount++;
         if (chunk2.length > 512) {
-          debug2(
+          debug3(
             "stream end, size %d, chunk index %d, stream size %d\n%s......   only show 512 bytes   ......",
             chunk2.length,
             chunkCount,
@@ -145646,7 +145651,7 @@ var require_formstream = __commonJS({
             hex(chunk2.slice(0, 512)),
           );
         } else {
-          debug2(
+          debug3(
             "stream end, size %d, chunk index %d, stream size %d\n%s",
             chunk2.length,
             chunkCount,
@@ -145661,8 +145666,8 @@ var require_formstream = __commonJS({
     FormStream.prototype._emitEnd = function () {
       this.emit("data", this._endData);
       this.emit("end");
-      if (debug2.enabled) {
-        debug2("end boundary\n%s", this._endData.toString());
+      if (debug3.enabled) {
+        debug3("end boundary\n%s", this._endData.toString());
       }
     };
     FormStream.prototype.drain = function () {
@@ -145757,7 +145762,7 @@ var require_detect_proxy_agent = __commonJS({
     module,
   ) {
     "use strict";
-    var debug2 = __require("node:util").debuglog("urllib:detect_proxy_agent");
+    var debug3 = __require("node:util").debuglog("urllib:detect_proxy_agent");
     var getProxyFromURI = require_get_proxy_from_uri();
     var proxyAgents = {};
     function detectProxyAgent(uri, args) {
@@ -145773,10 +145778,10 @@ var require_detect_proxy_agent = __commonJS({
       }
       var proxyAgent = proxyAgents[proxy];
       if (!proxyAgent) {
-        debug2("create new proxy %s", proxy);
+        debug3("create new proxy %s", proxy);
         proxyAgent = proxyAgents[proxy] = new (__require("proxy-agent"))(proxy);
       }
-      debug2("get proxy: %s", proxy);
+      debug3("get proxy: %s", proxy);
       return proxyAgent;
     }
     module.exports = detectProxyAgent;
@@ -155667,7 +155672,7 @@ var require_urllib = __commonJS({
     exports2,
   ) {
     "use strict";
-    var debug2 = __require("node:util").debuglog("urllib");
+    var debug3 = __require("node:util").debuglog("urllib");
     var path14 = __require("node:path");
     var dns = __require("node:dns");
     var net = __require("node:net");
@@ -155961,7 +155966,7 @@ var require_urllib = __commonJS({
           var name = formHeaderNames[i];
           options.headers[name.toLowerCase()] = formHeaders[name];
         }
-        debug2(
+        debug3(
           "set multipart headers: %j, method: %s",
           formHeaders,
           options.method,
@@ -156053,14 +156058,14 @@ var require_urllib = __commonJS({
         if (connectTimer) {
           clearTimeout(connectTimer);
           connectTimer = null;
-          debug2("Request#%d connect timer canceled", reqId);
+          debug3("Request#%d connect timer canceled", reqId);
         }
       }
       function cancelResponseTimer() {
         if (responseTimer) {
           clearTimeout(responseTimer);
           responseTimer = null;
-          debug2("Request#%d response timer canceled", reqId);
+          debug3("Request#%d response timer canceled", reqId);
         }
       }
       function done(err2, data, res) {
@@ -156100,7 +156105,7 @@ var require_urllib = __commonJS({
           return;
         }
         var response = createCallbackResponse(data, res);
-        debug2(
+        debug3(
           "[%sms] done, %s bytes HTTP %s %s %s %s, keepAliveSocket: %s, timing: %j, socketHandledRequests: %s, socketHandledResponses: %s",
           response.requestUseTime,
           responseSize,
@@ -156214,7 +156219,7 @@ var require_urllib = __commonJS({
         ) {
           var authenticate = headers["www-authenticate"];
           if (authenticate.indexOf("Digest ") >= 0) {
-            debug2(
+            debug3(
               "Request#%d %s: got digest auth header WWW-Authenticate: %s",
               reqId,
               url2,
@@ -156226,7 +156231,7 @@ var require_urllib = __commonJS({
               authenticate,
               args.digestAuth,
             );
-            debug2(
+            debug3(
               "Request#%d %s: auth with digest header: %s",
               reqId,
               url2,
@@ -156263,7 +156268,7 @@ var require_urllib = __commonJS({
             var newUrl = args.formatRedirectUrl
               ? args.formatRedirectUrl(url2, location)
               : urlutil.resolve(url2, location);
-            debug2(
+            debug3(
               "Request#%d %s: `redirected` from %s to %s",
               reqId,
               options.path,
@@ -156316,7 +156321,7 @@ var require_urllib = __commonJS({
       }
       function decodeContent(res, body3, cb) {
         if (responseAborted) {
-          debug2(
+          debug3(
             "Request#%d %s: Remote socket was terminated before `response.end()` was called",
             reqId,
             url2,
@@ -156335,7 +156340,7 @@ var require_urllib = __commonJS({
         switch (encoding) {
           case "gzip":
           case "deflate":
-            debug2("unzip %d length body", body3.length);
+            debug3("unzip %d length body", body3.length);
             zlib2.unzip(body3, function (err3, data) {
               if (err3 && err3.name === "Error") {
                 err3.name = "UnzipError";
@@ -156349,7 +156354,7 @@ var require_urllib = __commonJS({
       }
       var writeStream = args.writeStream;
       var isWriteStreamClose = false;
-      debug2(
+      debug3(
         "Request#%d %s %s with headers %j, options.path: %s",
         reqId,
         method,
@@ -156368,7 +156373,7 @@ var require_urllib = __commonJS({
         if (timing) {
           timing.waiting = Date.now() - requestStartTime;
         }
-        debug2(
+        debug3(
           "Request#%d %s `req response` event emit: status %d, headers: %j",
           reqId,
           url2,
@@ -156390,7 +156395,7 @@ var require_urllib = __commonJS({
         }
         res.on("error", function (err2) {
           responseError = err2;
-          debug2(
+          debug3(
             "Request#%d %s: `res error` event emit, total size %d, socket handled %s requests and %s responses",
             reqId,
             url2,
@@ -156401,7 +156406,7 @@ var require_urllib = __commonJS({
         });
         res.on("aborted", function () {
           responseAborted = true;
-          debug2(
+          debug3(
             "Request#%d %s: `res aborted` event emit, total size %d",
             reqId,
             url2,
@@ -156428,7 +156433,7 @@ var require_urllib = __commonJS({
                 return;
               }
               isWriteStreamClose = true;
-              debug2(
+              debug3(
                 "Request#%d %s: writeStream close, error: %s",
                 reqId,
                 url2,
@@ -156448,7 +156453,7 @@ var require_urllib = __commonJS({
                 "aborted",
               ],
             ], function (_, stream3, event) {
-              debug2(
+              debug3(
                 "Request#%d %s: writeStream or res %s event emitted",
                 reqId,
                 url2,
@@ -156459,9 +156464,9 @@ var require_urllib = __commonJS({
             res.pipe(writeStream);
             return;
           }
-          debug2("Request#%d %s: pump res to writeStream", reqId, url2);
+          debug3("Request#%d %s: pump res to writeStream", reqId, url2);
           pump(res, writeStream, function (err2) {
-            debug2(
+            debug3(
               "Request#%d %s: writeStream close event emitted, error: %s, isWriteStreamClose: %s",
               reqId,
               url2,
@@ -156478,7 +156483,7 @@ var require_urllib = __commonJS({
         }
         var chunks = [];
         res.on("data", function (chunk2) {
-          debug2(
+          debug3(
             "Request#%d %s: `res data` event emit, size %d",
             reqId,
             url2,
@@ -156489,7 +156494,7 @@ var require_urllib = __commonJS({
         });
         var isEmitted = false;
         function handleResponseCloseAndEnd(event) {
-          debug2(
+          debug3(
             "Request#%d %s: `res %s` event emit, total size %d, socket handled %s requests and %s responses",
             reqId,
             url2,
@@ -156503,7 +156508,7 @@ var require_urllib = __commonJS({
           }
           isEmitted = true;
           var body3 = Buffer.concat(chunks, responseSize);
-          debug2("Request#%d %s: _dumped: %s", reqId, url2, res._dumped);
+          debug3("Request#%d %s: _dumped: %s", reqId, url2, res._dumped);
           if (__err) {
             return done(__err, body3, res);
           }
@@ -156523,7 +156528,7 @@ var require_urllib = __commonJS({
               try {
                 data = decodeBodyByCharset(data, res);
               } catch (e) {
-                debug2("decodeBodyByCharset error: %s", e);
+                debug3("decodeBodyByCharset error: %s", e);
                 return done(null, data, res);
               }
               if (args.dataType === "json") {
@@ -156556,13 +156561,13 @@ var require_urllib = __commonJS({
       } else {
         connectTimeout = responseTimeout = ms(args.timeout);
       }
-      debug2(
+      debug3(
         "ConnectTimeout: %d, ResponseTimeout: %d",
         connectTimeout,
         responseTimeout,
       );
       function startConnectTimer() {
-        debug2("Connect timer ticking, timeout: %d", connectTimeout);
+        debug3("Connect timer ticking, timeout: %d", connectTimeout);
         connectTimer = setTimeout(function () {
           connectTimer = null;
           if (statusCode === -1) {
@@ -156577,7 +156582,7 @@ var require_urllib = __commonJS({
           __err = new Error(msg2);
           __err.name = errorName;
           __err.requestId = reqId;
-          debug2(
+          debug3(
             "ConnectTimeout: Request#%d %s %s: %s, connected: %s",
             reqId,
             url2,
@@ -156589,7 +156594,7 @@ var require_urllib = __commonJS({
         }, connectTimeout);
       }
       function startResposneTimer() {
-        debug2("Response timer ticking, timeout: %d", responseTimeout);
+        debug3("Response timer ticking, timeout: %d", responseTimeout);
         responseTimer = setTimeout(function () {
           responseTimer = null;
           var msg2 = "Response timeout for " + responseTimeout + "ms";
@@ -156597,7 +156602,7 @@ var require_urllib = __commonJS({
           __err = new Error(msg2);
           __err.name = errorName;
           __err.requestId = reqId;
-          debug2(
+          debug3(
             "ResponseTimeout: Request#%d %s %s: %s, connected: %s",
             reqId,
             url2,
@@ -156660,7 +156665,7 @@ var require_urllib = __commonJS({
           return;
         }
         isRequestAborted = true;
-        debug2("Request#%d %s abort, connected: %s", reqId, url2, connected);
+        debug3("Request#%d %s abort, connected: %s", reqId, url2, connected);
         if (!req.socket) {
           __err.noSocket = true;
           done(__err);
@@ -156682,7 +156687,7 @@ var require_urllib = __commonJS({
         var orginalSocketTimeout = getSocketTimeout(socket);
         if (orginalSocketTimeout && orginalSocketTimeout < responseTimeout) {
           var socketTimeout = responseTimeout + 500;
-          debug2(
+          debug3(
             "Request#%d socket.timeout(%s) < responseTimeout(%s), reset socket timeout to %s",
             reqId,
             orginalSocketTimeout,
@@ -156700,7 +156705,7 @@ var require_urllib = __commonJS({
         var readyState = socket.readyState;
         if (readyState === "opening") {
           socket.once("lookup", function (err2, ip, addressType) {
-            debug2(
+            debug3(
               "Request#%d %s lookup: %s, %s, %s",
               reqId,
               url2,
@@ -156721,7 +156726,7 @@ var require_urllib = __commonJS({
             }
             cancelConnectTimer();
             startResposneTimer();
-            debug2("Request#%d %s new socket connected", reqId, url2);
+            debug3("Request#%d %s new socket connected", reqId, url2);
             connected = true;
             if (!remoteAddress) {
               remoteAddress = socket.remoteAddress;
@@ -156730,7 +156735,7 @@ var require_urllib = __commonJS({
           });
           return;
         }
-        debug2(
+        debug3(
           "Request#%d %s reuse socket connected, readyState: %s",
           reqId,
           url2,
@@ -156749,7 +156754,7 @@ var require_urllib = __commonJS({
         writeStream.once("error", function (err2) {
           err2.message += ' (writeStream "error")';
           __err = err2;
-          debug2(
+          debug3(
             "Request#%d %s `writeStream error` event emit, %s: %s",
             reqId,
             url2,
@@ -156771,7 +156776,7 @@ var require_urllib = __commonJS({
         if (err2.name === "Error") {
           err2.name = connected ? "ResponseError" : "RequestError";
         }
-        debug2(
+        debug3(
           "Request#%d %s `req error` event emit, %s: %s",
           reqId,
           url2,
@@ -156781,7 +156786,7 @@ var require_urllib = __commonJS({
         done(__err || err2);
       }
       if (args.stream) {
-        debug2("Request#%d pump args.stream to req", reqId);
+        debug3("Request#%d pump args.stream to req", reqId);
         pump(args.stream, req, handleRequestError);
       } else {
         req.end(body2, function () {
@@ -156970,7 +156975,7 @@ var require_httpclient2 = __commonJS({
   ) {
     "use strict";
     var util6 = __require("node:util");
-    var debug2 = __require("node:util").debuglog("urllib");
+    var debug3 = __require("node:util").debuglog("urllib");
     var ms = require_humanize_ms();
     var HttpClient2 = require_httpclient();
     var _Promise;
@@ -156998,9 +157003,9 @@ var require_httpclient2 = __commonJS({
                 args.isRetry(res)
               ) {
                 args.retry--;
-                debug2("retry request %s, remain %s", url2, args.retry);
+                debug3("retry request %s, remain %s", url2, args.retry);
                 if (args.retryDelay) {
-                  debug2("retry after %sms", args.retryDelay);
+                  debug3("retry after %sms", args.retryDelay);
                   return sleep2(args.retryDelay).then(function () {
                     return self2.request(url2, args);
                   });
@@ -157012,14 +157017,14 @@ var require_httpclient2 = __commonJS({
           ).catch(function (err) {
             if (args.retry > 0) {
               args.retry--;
-              debug2(
+              debug3(
                 "retry request %s, remain %s, err %s",
                 url2,
                 args.retry,
                 err,
               );
               if (args.retryDelay) {
-                debug2("retry after %sms", args.retryDelay);
+                debug3("retry after %sms", args.retryDelay);
                 return sleep2(args.retryDelay).then(function () {
                   return self2.request(url2, args);
                 });
@@ -159216,7 +159221,7 @@ var require_createRequest = __commonJS({
     });
     exports2.createRequest = void 0;
     var crypto5 = __require("node:crypto");
-    var debug2 = require_src()("ali-oss");
+    var debug3 = require_src()("ali-oss");
     var _isString = require_isString();
     var _isArray = require_isArray();
     var _isObject = require_isObject2();
@@ -159345,7 +159350,7 @@ var require_createRequest = __commonJS({
         headers.host = `${params.bucket}.${hostInfo.host}`;
       }
       const url2 = getReqUrl.bind(this)(params);
-      debug2(
+      debug3(
         "request %s %s, with headers %j, !!stream: %s",
         params.method,
         url2,
@@ -160935,7 +160940,7 @@ var require_object3 = __commonJS({
   "node_modules/.deno/ali-oss@6.23.0/node_modules/ali-oss/lib/object.js"(
     exports2,
   ) {
-    var debug2 = require_src()("ali-oss:object");
+    var debug3 = require_src()("ali-oss:object");
     var fs9 = __require("node:fs");
     var is = require_is_type_of();
     var copy2 = require_copy_to();
@@ -161294,7 +161299,7 @@ var require_object3 = __commonJS({
           } else {
             fs9.unlink(filepath, (err) => {
               if (err) {
-                debug2("unlink %j error: %s", filepath, err);
+                debug3("unlink %j error: %s", filepath, err);
               }
               resolve5();
             });
@@ -161573,12 +161578,12 @@ var require_processObjectSave = __commonJS({
     proto.processObjectSave = async function processObjectSave(
       sourceObject,
       targetObject,
-      process5,
+      process6,
       targetBucket,
     ) {
       checkArgs(sourceObject, "sourceObject");
       checkArgs(targetObject, "targetObject");
-      checkArgs(process5, "process");
+      checkArgs(process6, "process");
       targetObject = this._objectName(targetObject);
       if (targetBucket) {
         _checkBucketName(targetBucket);
@@ -161590,7 +161595,7 @@ var require_processObjectSave = __commonJS({
       targetObject = str2Base64(targetObject);
       const content = {
         "x-oss-process":
-          `${process5}|sys/saveas,o_${targetObject}${bucketParam}`,
+          `${process6}|sys/saveas,o_${targetObject}${bucketParam}`,
       };
       params.content = querystring.stringify(content);
       const result = await this.request(params);
@@ -163947,11 +163952,11 @@ var require_managed_upload = __commonJS({
         while (
           pushRet && this.fileBuffer && this.start < this.fileBuffer.length
         ) {
-          const { start } = this;
-          let end = start + size;
+          const { start: start2 } = this;
+          let end = start2 + size;
           end = end > this.fileBuffer.length ? this.fileBuffer.length : end;
           this.start = end;
-          pushRet = this.push(this.fileBuffer.slice(start, end));
+          pushRet = this.push(this.fileBuffer.slice(start2, end));
         }
       }
     };
@@ -163989,13 +163994,13 @@ var require_managed_upload = __commonJS({
         this.readFileAndPush(size);
       }
     };
-    proto._createStream = function _createStream(file, start, end) {
+    proto._createStream = function _createStream(file, start2, end) {
       if (is.readableStream(file)) {
         return file;
       } else if (isFile(file)) {
-        return new WebFileReadStream(file.slice(start, end));
+        return new WebFileReadStream(file.slice(start2, end));
       } else if (isBuffer(file)) {
-        const iterable = file.subarray(start, end);
+        const iterable = file.subarray(start2, end);
         return new Readable5({
           read() {
             this.push(iterable);
@@ -164004,7 +164009,7 @@ var require_managed_upload = __commonJS({
         });
       } else if (is.string(file)) {
         return fs9.createReadStream(file, {
-          start,
+          start: start2,
           end: end - 1,
         });
       }
@@ -164027,10 +164032,10 @@ var require_managed_upload = __commonJS({
       const numParts = Math.ceil(fileSize / partSize);
       const partOffs = [];
       for (let i = 0; i < numParts; i++) {
-        const start = partSize * i;
-        const end = Math.min(start + partSize, fileSize);
+        const start2 = partSize * i;
+        const end = Math.min(start2 + partSize, fileSize);
         partOffs.push({
-          start,
+          start: start2,
           end,
         });
       }
@@ -164706,7 +164711,7 @@ var require_multipart_copy = __commonJS({
   "node_modules/.deno/ali-oss@6.23.0/node_modules/ali-oss/lib/common/multipart-copy.js"(
     exports2,
   ) {
-    var debug2 = require_src()("ali-oss:multipart-copy");
+    var debug3 = require_src()("ali-oss:multipart-copy");
     var copy2 = require_copy_to();
     var proto = exports2;
     proto.uploadPartCopy = async function uploadPartCopy(
@@ -164849,7 +164854,7 @@ var require_multipart_copy = __commonJS({
                 throw error2;
               }
               if (!self2.isCancel()) {
-                debug2(`content-range ${result.res.headers["content-range"]}`);
+                debug3(`content-range ${result.res.headers["content-range"]}`);
                 doneParts.push({
                   number: partNo,
                   etag: result.res.headers.etag,
@@ -164919,10 +164924,10 @@ var require_multipart_copy = __commonJS({
       const numParts = Math.ceil(fileSize / partSize);
       const partOffs = [];
       for (let i = 0; i < numParts; i++) {
-        const start = partSize * i + startOffset;
-        const end = Math.min(start + partSize, fileSize + startOffset);
+        const start2 = partSize * i + startOffset;
+        const end = Math.min(start2 + partSize, fileSize + startOffset);
         partOffs.push({
-          start,
+          start: start2,
           end,
         });
       }
@@ -165248,17 +165253,17 @@ var require_multipart = __commonJS({
       uploadId,
       partNo,
       file,
-      start,
+      start2,
       end,
       options,
     ) {
       const data = {
-        size: end - start,
+        size: end - start2,
       };
       const isBrowserEnv = process && process.browser;
       isBrowserEnv
-        ? data.content = await this._createBuffer(file, start, end)
-        : data.stream = await this._createStream(file, start, end);
+        ? data.content = await this._createBuffer(file, start2, end)
+        : data.stream = await this._createStream(file, start2, end);
       return await this._uploadPart(name, uploadId, partNo, data, options);
     };
     proto.completeMultipartUpload = async function completeMultipartUpload(
@@ -166039,7 +166044,7 @@ var require_sts = __commonJS({
     exports2,
     module,
   ) {
-    var debug2 = require_src()("ali-oss:sts");
+    var debug3 = require_src()("ali-oss:sts");
     var crypto5 = __require("node:crypto");
     var querystring = __require("node:querystring");
     var copy2 = require_copy_to();
@@ -166127,7 +166132,7 @@ var require_sts = __commonJS({
         ctx: options && options.ctx,
       };
       const result = await this.urllib.request(reqUrl, reqParams);
-      debug2(
+      debug3(
         "response %s %s, got %s, headers: %j",
         reqParams.method,
         reqUrl,
@@ -166166,10 +166171,10 @@ var require_sts = __commonJS({
       const stringToSign = `${method.toUpperCase()}&${this._escape("/")}&${
         this._escape(canoQuery)
       }`;
-      debug2("string to sign: %s", stringToSign);
+      debug3("string to sign: %s", stringToSign);
       let signature = crypto5.createHmac("sha1", `${key}&`);
       signature = signature.update(stringToSign).digest("base64");
-      debug2("signature: %s", signature);
+      debug3("signature: %s", signature);
       return signature;
     };
     proto._escape = function _escape(str) {
@@ -166185,7 +166190,7 @@ var require_client6 = __commonJS({
     exports2,
     module,
   ) {
-    var debug2 = require_src()("ali-oss");
+    var debug3 = require_src()("ali-oss");
     var sendToWormhole = require_stream_wormhole();
     var xml = require_xml2js();
     var AgentKeepalive = require_agentkeepalive();
@@ -166250,7 +166255,7 @@ var require_client6 = __commonJS({
     Client.ClusterClient = require_cluster()(Client);
     Client.STS = require_sts();
     proto.signature = function signature(stringToSign) {
-      debug2("authorization stringToSign: %s", stringToSign);
+      debug3("authorization stringToSign: %s", stringToSign);
       return signUtils.computeSignature(
         this.options.accessKeySecret,
         stringToSign,
@@ -166334,7 +166339,7 @@ var require_client6 = __commonJS({
       let reqErr;
       try {
         result = await this.urllib.request(reqParams.url, reqParams.params);
-        debug2(
+        debug3(
           "response %s %s, got %s, headers: %j",
           params.method,
           reqParams.url,
@@ -166427,11 +166432,11 @@ var require_client6 = __commonJS({
     proto.requestError = async function requestError(result) {
       let err = null;
       const setError = async (message) => {
-        let info2;
+        let info3;
         try {
-          info2 = await this.parseXML(message) || {};
+          info3 = await this.parseXML(message) || {};
         } catch (error2) {
-          debug2(message);
+          debug3(message);
           error2.message += `
 raw xml: ${message}`;
           error2.status = result.status;
@@ -166439,18 +166444,18 @@ raw xml: ${message}`;
             result.headers["x-oss-request-id"];
           return error2;
         }
-        let msg = info2.Message ||
+        let msg = info3.Message ||
           `unknow request error, status: ${result.status}`;
-        if (info2.Condition) {
-          msg += ` (condition: ${info2.Condition})`;
+        if (info3.Condition) {
+          msg += ` (condition: ${info3.Condition})`;
         }
         err = new Error(msg);
-        err.name = info2.Code ? `${info2.Code}Error` : "UnknownError";
+        err.name = info3.Code ? `${info3.Code}Error` : "UnknownError";
         err.status = result.status;
-        err.code = info2.Code;
-        err.requestId = info2.RequestId;
-        err.ecCode = info2.EC;
-        err.hostId = info2.HostId;
+        err.code = info3.Code;
+        err.requestId = info3.RequestId;
+        err.ecCode = info3.EC;
+        err.hostId = info3.HostId;
         return err;
       };
       if (result.name === "ResponseTimeoutError") {
@@ -166489,15 +166494,237 @@ raw xml: ${message}`;
         }
       } else {
         const message = String(result.data);
-        debug2("request response error data: %s", message);
+        debug3("request response error data: %s", message);
         err = await setError(message);
       }
-      debug2("generate error %j", err);
+      debug3("generate error %j", err);
       return err;
     };
     proto.setSLDEnabled = function setSLDEnabled(enable2) {
       this.options.sldEnable = !!enable2;
       return this;
+    };
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/colors/colors.js
+var require_colors = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/colors/colors.js"(
+    exports2,
+    module,
+  ) {
+    var colors = {
+      // Standard colors
+      black: "\x1B[30m",
+      red: "\x1B[31m",
+      green: "\x1B[32m",
+      yellow: "\x1B[33m",
+      blue: "\x1B[34m",
+      magenta: "\x1B[35m",
+      cyan: "\x1B[36m",
+      white: "\x1B[37m",
+      // Bright/Bold colors
+      brightBlack: "\x1B[90m",
+      brightRed: "\x1B[91m",
+      brightGreen: "\x1B[92m",
+      brightYellow: "\x1B[93m",
+      brightBlue: "\x1B[94m",
+      brightMagenta: "\x1B[95m",
+      brightCyan: "\x1B[96m",
+      brightWhite: "\x1B[97m",
+      // Background colors
+      bgBlack: "\x1B[40m",
+      bgRed: "\x1B[41m",
+      bgGreen: "\x1B[42m",
+      bgYellow: "\x1B[43m",
+      bgBlue: "\x1B[44m",
+      bgMagenta: "\x1B[45m",
+      bgCyan: "\x1B[46m",
+      bgWhite: "\x1B[47m",
+      // Bright background colors
+      bgBrightBlack: "\x1B[100m",
+      bgBrightRed: "\x1B[101m",
+      bgBrightGreen: "\x1B[102m",
+      bgBrightYellow: "\x1B[103m",
+      bgBrightBlue: "\x1B[104m",
+      bgBrightMagenta: "\x1B[105m",
+      bgBrightCyan: "\x1B[106m",
+      bgBrightWhite: "\x1B[107m",
+      // Text styles
+      reset: "\x1B[0m",
+      bold: "\x1B[1m",
+      dim: "\x1B[2m",
+      italic: "\x1B[3m",
+      underline: "\x1B[4m",
+      blink: "\x1B[5m",
+      reverse: "\x1B[7m",
+      hidden: "\x1B[8m",
+      strikethrough: "\x1B[9m",
+      // Semantic aliases for better readability
+      success: "\x1B[32m",
+      error: "\x1B[31m",
+      warning: "\x1B[33m",
+      info: "\x1B[34m",
+      debug: "\x1B[36m",
+      // Additional semantic colors
+      primary: "\x1B[94m",
+      secondary: "\x1B[90m",
+      danger: "\x1B[91m",
+      muted: "\x1B[2m",
+    };
+    colors.combine = (...codes) => {
+      return codes.map((code) => colors[code] || "").join("");
+    };
+    colors.wrap = (text, color) => {
+      return (colors[color] || "") + text + colors.reset;
+    };
+    colors.gradient = (text, colorSequence = [
+      "cyan",
+      "blue",
+      "magenta",
+    ]) => {
+      const chars = text.split("");
+      const colorCount = colorSequence.length;
+      return chars.map((char, i) => {
+        const colorName = colorSequence[i % colorCount];
+        return colors[colorName] + char;
+      }).join("") + colors.reset;
+    };
+    colors.rainbow = (text) => {
+      const rainbowColors = [
+        "red",
+        "yellow",
+        "green",
+        "cyan",
+        "blue",
+        "magenta",
+      ];
+      return colors.gradient(text, rainbowColors);
+    };
+    module.exports = colors;
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/utils/formatter.js
+var require_formatter = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/utils/formatter.js"(
+    exports2,
+    module,
+  ) {
+    var colors = require_colors();
+    var createBadge = (text, color) => {
+      const bg = "bg" + color.charAt(0).toUpperCase() + color.slice(1);
+      const bgColor = colors[bg] || colors.bgBlue;
+      const textColor = colors.white + colors.bold;
+      return bgColor + textColor + ` ${text} ` + colors.reset;
+    };
+    var createBox = (message, color, emoji = "") => {
+      const lines = message.split("\n");
+      const maxLength = Math.max(
+        ...lines.map((line) => stripAnsi(line).length),
+      );
+      const topLeft = "\u2554";
+      const topRight = "\u2557";
+      const bottomLeft = "\u255A";
+      const bottomRight = "\u255D";
+      const horizontal = "\u2550";
+      const vertical = "\u2551";
+      const colorCode = colors[color] || colors.blue;
+      const horizontalLine = horizontal.repeat(maxLength + 4);
+      let box = colorCode + topLeft + horizontalLine + topRight + colors.reset +
+        "\n";
+      if (emoji) {
+        const emojiPadding = " ".repeat(maxLength + 2 - emoji.length);
+        box += colorCode + vertical + colors.reset +
+          ` ${emoji}${emojiPadding} ` + colorCode + vertical + colors.reset +
+          "\n";
+        box += colorCode + vertical + horizontal.repeat(maxLength + 4) +
+          vertical + colors.reset + "\n";
+      }
+      lines.forEach((line) => {
+        const stripped = stripAnsi(line);
+        const padding6 = " ".repeat(maxLength - stripped.length);
+        box += colorCode + vertical + colors.reset + `  ${line}${padding6}  ` +
+          colorCode + vertical + colors.reset + "\n";
+      });
+      box += colorCode + bottomLeft + horizontalLine + bottomRight +
+        colors.reset;
+      return box;
+    };
+    var createBanner = (text, char = "=") => {
+      const length = stripAnsi(text).length;
+      const line = char.repeat(length + 4);
+      return `${line}
+  ${text}  
+${line}`;
+    };
+    var stripAnsi = (text) => {
+      return text.replace(/\x1b\[[0-9;]*m/g, "");
+    };
+    var truncate = (text, maxLength) => {
+      if (text.length <= maxLength) return text;
+      return text.substring(0, maxLength - 3) + "...";
+    };
+    var center = (text, width) => {
+      const stripped = stripAnsi(text);
+      const padding6 = Math.max(0, width - stripped.length);
+      const leftPad = Math.floor(padding6 / 2);
+      const rightPad = padding6 - leftPad;
+      return " ".repeat(leftPad) + text + " ".repeat(rightPad);
+    };
+    var padRight = (text, width) => {
+      const stripped = stripAnsi(text);
+      const padding6 = Math.max(0, width - stripped.length);
+      return text + " ".repeat(padding6);
+    };
+    var padLeft = (text, width) => {
+      const stripped = stripAnsi(text);
+      const padding6 = Math.max(0, width - stripped.length);
+      return " ".repeat(padding6) + text;
+    };
+    var createProgressBar = (current, total, width = 20) => {
+      const percentage = Math.min(100, Math.max(0, current / total * 100));
+      const filled = Math.round(percentage / 100 * width);
+      const empty = width - filled;
+      const bar = colors.green + "\u2588".repeat(filled) + colors.dim +
+        "\u2591".repeat(empty) + colors.reset;
+      const percent = `${percentage.toFixed(1)}%`;
+      return `${bar} ${percent}`;
+    };
+    var createSeparator = (length = 50, char = "-", color = "dim") => {
+      const colorCode = colors[color] || colors.dim;
+      return colorCode + char.repeat(length) + colors.reset;
+    };
+    var formatKeyValue = (key, value, keyWidth = 20) => {
+      const paddedKey = padRight(
+        colors.cyan + key + colors.reset,
+        keyWidth + 9,
+      );
+      return `${paddedKey}: ${colors.white}${value}${colors.reset}`;
+    };
+    var createList = (items, bullet = "\u2022") => {
+      return items.map((item) =>
+        `  ${colors.dim}${bullet}${colors.reset} ${item}`
+      ).join("\n");
+    };
+    var highlight = (text, bgColor = "bgYellow") => {
+      const bg = colors[bgColor] || colors.bgYellow;
+      return bg + colors.black + text + colors.reset;
+    };
+    module.exports = {
+      createBadge,
+      createBox,
+      createBanner,
+      stripAnsi,
+      truncate,
+      center,
+      padRight,
+      padLeft,
+      createProgressBar,
+      createSeparator,
+      formatKeyValue,
+      createList,
+      highlight,
     };
   },
 });
@@ -166904,7 +167131,7 @@ var require_minimatch = __commonJS({
       this.parseNegate();
       var set = this.globSet = this.braceExpand();
       if (options.debug) {
-        this.debug = function debug2() {
+        this.debug = function debug3() {
           console.error.apply(console, arguments);
         };
       }
@@ -167565,13 +167792,13 @@ var require_debug = __commonJS({
     module,
   ) {
     "use strict";
-    var debug2 =
+    var debug3 =
       typeof process === "object" && process.env && process.env.NODE_DEBUG &&
         /\bsemver\b/i.test(process.env.NODE_DEBUG)
         ? (...args) => console.error("SEMVER", ...args)
         : () => {
         };
-    module.exports = debug2;
+    module.exports = debug3;
   },
 });
 
@@ -167584,7 +167811,7 @@ var require_re = __commonJS({
     "use strict";
     var { MAX_SAFE_COMPONENT_LENGTH, MAX_SAFE_BUILD_LENGTH, MAX_LENGTH } =
       require_constants6();
-    var debug2 = require_debug();
+    var debug3 = require_debug();
     exports2 = module.exports = {};
     var re = exports2.re = [];
     var safeRe = exports2.safeRe = [];
@@ -167618,7 +167845,7 @@ var require_re = __commonJS({
     var createToken = (name, value, isGlobal) => {
       const safe = makeSafeRegex(value);
       const index = R++;
-      debug2(name, index, value);
+      debug3(name, index, value);
       t[name] = index;
       src[index] = value;
       safeSrc[index] = safe;
@@ -167826,7 +168053,7 @@ var require_semver2 = __commonJS({
     module,
   ) {
     "use strict";
-    var debug2 = require_debug();
+    var debug3 = require_debug();
     var { MAX_LENGTH, MAX_SAFE_INTEGER } = require_constants6();
     var { safeRe: re, t } = require_re();
     var parseOptions = require_parse_options();
@@ -167853,7 +168080,7 @@ var require_semver2 = __commonJS({
             `version is longer than ${MAX_LENGTH} characters`,
           );
         }
-        debug2("SemVer", version3, options);
+        debug3("SemVer", version3, options);
         this.options = options;
         this.loose = !!options.loose;
         this.includePrerelease = !!options.includePrerelease;
@@ -167903,7 +168130,7 @@ var require_semver2 = __commonJS({
         return this.version;
       }
       compare(other) {
-        debug2("SemVer.compare", this.version, this.options, other);
+        debug3("SemVer.compare", this.version, this.options, other);
         if (!(other instanceof _SemVer)) {
           if (typeof other === "string" && other === this.version) {
             return 0;
@@ -167954,7 +168181,7 @@ var require_semver2 = __commonJS({
         do {
           const a = this.prerelease[i];
           const b = other.prerelease[i];
-          debug2("prerelease compare", i, a, b);
+          debug3("prerelease compare", i, a, b);
           if (a === void 0 && b === void 0) {
             return 0;
           } else if (b === void 0) {
@@ -167976,7 +168203,7 @@ var require_semver2 = __commonJS({
         do {
           const a = this.build[i];
           const b = other.build[i];
-          debug2("build compare", i, a, b);
+          debug3("build compare", i, a, b);
           if (a === void 0 && b === void 0) {
             return 0;
           } else if (b === void 0) {
@@ -168729,13 +168956,13 @@ var require_range2 = __commonJS({
           hr,
           hyphenReplace(this.options.includePrerelease),
         );
-        debug2("hyphen replace", range2);
+        debug3("hyphen replace", range2);
         range2 = range2.replace(re[t.COMPARATORTRIM], comparatorTrimReplace);
-        debug2("comparator trim", range2);
+        debug3("comparator trim", range2);
         range2 = range2.replace(re[t.TILDETRIM], tildeTrimReplace);
-        debug2("tilde trim", range2);
+        debug3("tilde trim", range2);
         range2 = range2.replace(re[t.CARETTRIM], caretTrimReplace);
-        debug2("caret trim", range2);
+        debug3("caret trim", range2);
         let rangeList = range2.split(" ").map((comp26) =>
           parseComparator(comp26, this.options)
         ).join(" ").split(/\s+/).map((comp26) =>
@@ -168743,11 +168970,11 @@ var require_range2 = __commonJS({
         );
         if (loose) {
           rangeList = rangeList.filter((comp26) => {
-            debug2("loose invalid filter", comp26, this.options);
+            debug3("loose invalid filter", comp26, this.options);
             return !!comp26.match(re[t.COMPARATORLOOSE]);
           });
         }
-        debug2("range list", rangeList);
+        debug3("range list", rangeList);
         const rangeMap = /* @__PURE__ */ new Map();
         const comparators = rangeList.map((comp26) =>
           new Comparator(comp26, this.options)
@@ -168810,7 +169037,7 @@ var require_range2 = __commonJS({
     var cache = new LRU();
     var parseOptions = require_parse_options();
     var Comparator = require_comparator();
-    var debug2 = require_debug();
+    var debug3 = require_debug();
     var SemVer = require_semver2();
     var {
       safeRe: re,
@@ -168836,15 +169063,15 @@ var require_range2 = __commonJS({
     };
     var parseComparator = (comp26, options) => {
       comp26 = comp26.replace(re[t.BUILD], "");
-      debug2("comp", comp26, options);
+      debug3("comp", comp26, options);
       comp26 = replaceCarets(comp26, options);
-      debug2("caret", comp26);
+      debug3("caret", comp26);
       comp26 = replaceTildes(comp26, options);
-      debug2("tildes", comp26);
+      debug3("tildes", comp26);
       comp26 = replaceXRanges(comp26, options);
-      debug2("xrange", comp26);
+      debug3("xrange", comp26);
       comp26 = replaceStars(comp26, options);
-      debug2("stars", comp26);
+      debug3("stars", comp26);
       return comp26;
     };
     var isX = (id) => !id || id.toLowerCase() === "x" || id === "*";
@@ -168855,7 +169082,7 @@ var require_range2 = __commonJS({
     var replaceTilde = (comp26, options) => {
       const r = options.loose ? re[t.TILDELOOSE] : re[t.TILDE];
       return comp26.replace(r, (_, M, m, p, pr) => {
-        debug2("tilde", comp26, _, M, m, p, pr);
+        debug3("tilde", comp26, _, M, m, p, pr);
         let ret;
         if (isX(M)) {
           ret = "";
@@ -168864,12 +169091,12 @@ var require_range2 = __commonJS({
         } else if (isX(p)) {
           ret = `>=${M}.${m}.0 <${M}.${+m + 1}.0-0`;
         } else if (pr) {
-          debug2("replaceTilde pr", pr);
+          debug3("replaceTilde pr", pr);
           ret = `>=${M}.${m}.${p}-${pr} <${M}.${+m + 1}.0-0`;
         } else {
           ret = `>=${M}.${m}.${p} <${M}.${+m + 1}.0-0`;
         }
-        debug2("tilde return", ret);
+        debug3("tilde return", ret);
         return ret;
       });
     };
@@ -168878,11 +169105,11 @@ var require_range2 = __commonJS({
         .join(" ");
     };
     var replaceCaret = (comp26, options) => {
-      debug2("caret", comp26, options);
+      debug3("caret", comp26, options);
       const r = options.loose ? re[t.CARETLOOSE] : re[t.CARET];
       const z = options.includePrerelease ? "-0" : "";
       return comp26.replace(r, (_, M, m, p, pr) => {
-        debug2("caret", comp26, _, M, m, p, pr);
+        debug3("caret", comp26, _, M, m, p, pr);
         let ret;
         if (isX(M)) {
           ret = "";
@@ -168895,7 +169122,7 @@ var require_range2 = __commonJS({
             ret = `>=${M}.${m}.0${z} <${+M + 1}.0.0-0`;
           }
         } else if (pr) {
-          debug2("replaceCaret pr", pr);
+          debug3("replaceCaret pr", pr);
           if (M === "0") {
             if (m === "0") {
               ret = `>=${M}.${m}.${p}-${pr} <${M}.${m}.${+p + 1}-0`;
@@ -168906,7 +169133,7 @@ var require_range2 = __commonJS({
             ret = `>=${M}.${m}.${p}-${pr} <${+M + 1}.0.0-0`;
           }
         } else {
-          debug2("no pr");
+          debug3("no pr");
           if (M === "0") {
             if (m === "0") {
               ret = `>=${M}.${m}.${p}${z} <${M}.${m}.${+p + 1}-0`;
@@ -168917,12 +169144,12 @@ var require_range2 = __commonJS({
             ret = `>=${M}.${m}.${p} <${+M + 1}.0.0-0`;
           }
         }
-        debug2("caret return", ret);
+        debug3("caret return", ret);
         return ret;
       });
     };
     var replaceXRanges = (comp26, options) => {
-      debug2("replaceXRanges", comp26, options);
+      debug3("replaceXRanges", comp26, options);
       return comp26.split(/\s+/).map((c) => replaceXRange(c, options)).join(
         " ",
       );
@@ -168931,7 +169158,7 @@ var require_range2 = __commonJS({
       comp26 = comp26.trim();
       const r = options.loose ? re[t.XRANGELOOSE] : re[t.XRANGE];
       return comp26.replace(r, (ret, gtlt, M, m, p, pr) => {
-        debug2("xRange", comp26, ret, gtlt, M, m, p, pr);
+        debug3("xRange", comp26, ret, gtlt, M, m, p, pr);
         const xM = isX(M);
         const xm = xM || isX(m);
         const xp = xm || isX(p);
@@ -168978,16 +169205,16 @@ var require_range2 = __commonJS({
         } else if (xp) {
           ret = `>=${M}.${m}.0${pr} <${M}.${+m + 1}.0-0`;
         }
-        debug2("xRange return", ret);
+        debug3("xRange return", ret);
         return ret;
       });
     };
     var replaceStars = (comp26, options) => {
-      debug2("replaceStars", comp26, options);
+      debug3("replaceStars", comp26, options);
       return comp26.trim().replace(re[t.STAR], "");
     };
     var replaceGTE0 = (comp26, options) => {
-      debug2("replaceGTE0", comp26, options);
+      debug3("replaceGTE0", comp26, options);
       return comp26.trim().replace(
         re[options.includePrerelease ? t.GTE0PRE : t.GTE0],
         "",
@@ -169029,7 +169256,7 @@ var require_range2 = __commonJS({
       }
       if (version3.prerelease.length && !options.includePrerelease) {
         for (let i = 0; i < set.length; i++) {
-          debug2(set[i].semver);
+          debug3(set[i].semver);
           if (set[i].semver === Comparator.ANY) {
             continue;
           }
@@ -169073,7 +169300,7 @@ var require_comparator = __commonJS({
           }
         }
         comp26 = comp26.trim().split(/\s+/).join(" ");
-        debug2("comparator", comp26, options);
+        debug3("comparator", comp26, options);
         this.options = options;
         this.loose = !!options.loose;
         this.parse(comp26);
@@ -169082,7 +169309,7 @@ var require_comparator = __commonJS({
         } else {
           this.value = this.operator + this.semver.version;
         }
-        debug2("comp", this);
+        debug3("comp", this);
       }
       parse(comp26) {
         const r = this.options.loose ? re[t.COMPARATORLOOSE] : re[t.COMPARATOR];
@@ -169104,7 +169331,7 @@ var require_comparator = __commonJS({
         return this.value;
       }
       test(version3) {
-        debug2("Comparator.test", version3, this.options.loose);
+        debug3("Comparator.test", version3, this.options.loose);
         if (this.semver === ANY || version3 === ANY) {
           return true;
         }
@@ -169176,7 +169403,7 @@ var require_comparator = __commonJS({
     var parseOptions = require_parse_options();
     var { safeRe: re, t } = require_re();
     var cmp = require_cmp();
-    var debug2 = require_debug();
+    var debug3 = require_debug();
     var SemVer = require_semver2();
     var Range = require_range2();
   },
@@ -170154,7 +170381,7 @@ var require_parse_proxy_response = __commonJS({
     });
     exports2.parseProxyResponse = void 0;
     var debug_1 = __importDefault(require_src());
-    var debug2 = (0, debug_1.default)("https-proxy-agent:parse-proxy-response");
+    var debug3 = (0, debug_1.default)("https-proxy-agent:parse-proxy-response");
     function parseProxyResponse(socket) {
       return new Promise((resolve5, reject) => {
         let buffersLength = 0;
@@ -170171,7 +170398,7 @@ var require_parse_proxy_response = __commonJS({
         }
         function onend() {
           cleanup();
-          debug2("onend");
+          debug3("onend");
           reject(
             new Error(
               "Proxy connection ended before receiving CONNECT response",
@@ -170180,7 +170407,7 @@ var require_parse_proxy_response = __commonJS({
         }
         function onerror(err) {
           cleanup();
-          debug2("onerror %o", err);
+          debug3("onerror %o", err);
           reject(err);
         }
         function ondata(b) {
@@ -170189,7 +170416,7 @@ var require_parse_proxy_response = __commonJS({
           const buffered = Buffer.concat(buffers, buffersLength);
           const endOfHeaders = buffered.indexOf("\r\n\r\n");
           if (endOfHeaders === -1) {
-            debug2("have not received end of HTTP headers yet...");
+            debug3("have not received end of HTTP headers yet...");
             read();
             return;
           }
@@ -170231,7 +170458,7 @@ var require_parse_proxy_response = __commonJS({
               headers[key] = value;
             }
           }
-          debug2("got proxy server response: %o %o", firstLine, headers);
+          debug3("got proxy server response: %o %o", firstLine, headers);
           cleanup();
           resolve5({
             connect: {
@@ -170320,7 +170547,7 @@ var require_dist3 = __commonJS({
     var agent_base_1 = require_dist2();
     var url_1 = __require("node:url");
     var parse_proxy_response_1 = require_parse_proxy_response();
-    var debug2 = (0, debug_1.default)("https-proxy-agent");
+    var debug3 = (0, debug_1.default)("https-proxy-agent");
     var setServernameFromNonIpHost = (options) => {
       if (
         options.servername === void 0 && options.host && !net.isIP(options.host)
@@ -170340,7 +170567,7 @@ var require_dist3 = __commonJS({
         };
         this.proxy = typeof proxy === "string" ? new url_1.URL(proxy) : proxy;
         this.proxyHeaders = opts?.headers ?? {};
-        debug2("Creating new HttpsProxyAgent instance: %o", this.proxy.href);
+        debug3("Creating new HttpsProxyAgent instance: %o", this.proxy.href);
         const host = (this.proxy.hostname || this.proxy.host).replace(
           /^\[|\]$/g,
           "",
@@ -170371,10 +170598,10 @@ var require_dist3 = __commonJS({
         }
         let socket;
         if (proxy.protocol === "https:") {
-          debug2("Creating `tls.Socket`: %o", this.connectOpts);
+          debug3("Creating `tls.Socket`: %o", this.connectOpts);
           socket = tls.connect(setServernameFromNonIpHost(this.connectOpts));
         } else {
-          debug2("Creating `net.Socket`: %o", this.connectOpts);
+          debug3("Creating `net.Socket`: %o", this.connectOpts);
           socket = net.connect(this.connectOpts);
         }
         const headers = typeof this.proxyHeaders === "function"
@@ -170411,7 +170638,7 @@ var require_dist3 = __commonJS({
         if (connect.statusCode === 200) {
           req.once("socket", resume);
           if (opts.secureEndpoint) {
-            debug2("Upgrading socket connection to TLS");
+            debug3("Upgrading socket connection to TLS");
             return tls.connect({
               ...omit(setServernameFromNonIpHost(opts), "host", "path", "port"),
               socket,
@@ -170425,7 +170652,7 @@ var require_dist3 = __commonJS({
         });
         fakeSocket.readable = true;
         req.once("socket", (s) => {
-          debug2("Replaying proxy buffer for failed request");
+          debug3("Replaying proxy buffer for failed request");
           (0, assert_1.default)(s.listenerCount("data") > 0);
           s.push(buffered);
           s.push(null);
@@ -170522,13 +170749,13 @@ var require_dist4 = __commonJS({
     var events_1 = __require("node:events");
     var agent_base_1 = require_dist2();
     var url_1 = __require("node:url");
-    var debug2 = (0, debug_1.default)("http-proxy-agent");
+    var debug3 = (0, debug_1.default)("http-proxy-agent");
     var HttpProxyAgent2 = class extends agent_base_1.Agent {
       constructor(proxy, opts) {
         super(opts);
         this.proxy = typeof proxy === "string" ? new url_1.URL(proxy) : proxy;
         this.proxyHeaders = opts?.headers ?? {};
-        debug2("Creating new HttpProxyAgent instance: %o", this.proxy.href);
+        debug3("Creating new HttpProxyAgent instance: %o", this.proxy.href);
         const host = (this.proxy.hostname || this.proxy.host).replace(
           /^\[|\]$/g,
           "",
@@ -170589,23 +170816,23 @@ var require_dist4 = __commonJS({
         }
         let first;
         let endOfHeaders;
-        debug2("Regenerating stored HTTP header string for request");
+        debug3("Regenerating stored HTTP header string for request");
         req._implicitHeader();
         if (req.outputData && req.outputData.length > 0) {
-          debug2(
+          debug3(
             "Patching connection write() output buffer with updated header",
           );
           first = req.outputData[0].data;
           endOfHeaders = first.indexOf("\r\n\r\n") + 4;
           req.outputData[0].data = req._header + first.substring(endOfHeaders);
-          debug2("Output buffer: %o", req.outputData[0].data);
+          debug3("Output buffer: %o", req.outputData[0].data);
         }
         let socket;
         if (this.proxy.protocol === "https:") {
-          debug2("Creating `tls.Socket`: %o", this.connectOpts);
+          debug3("Creating `tls.Socket`: %o", this.connectOpts);
           socket = tls.connect(this.connectOpts);
         } else {
-          debug2("Creating `net.Socket`: %o", this.connectOpts);
+          debug3("Creating `net.Socket`: %o", this.connectOpts);
           socket = net.connect(this.connectOpts);
         }
         await (0, events_1.once)(socket, "connect");
@@ -170748,6 +170975,528 @@ var require_package_version = __commonJS({
     var packageJson = require_package4();
     module.exports = {
       version: packageJson.version,
+    };
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/emojis/emojis.js
+var require_emojis = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/emojis/emojis.js"(
+    exports2,
+    module,
+  ) {
+    var emojis = {
+      // Core log levels
+      trace: "\u{1F50D}",
+      debug: "\u{1F41E}",
+      info: "\u2139\uFE0F",
+      success: "\u2705",
+      warn: "\u26A0\uFE0F",
+      error: "\u274C",
+      fatal: "\u{1F480}",
+      // System operations
+      start: "\u25B6\uFE0F",
+      stop: "\u23F9\uFE0F",
+      pause: "\u23F8\uFE0F",
+      resume: "\u23EF\uFE0F",
+      restart: "\u{1F504}",
+      shutdown: "\u{1F6D1}",
+      boot: "\u{1F680}",
+      // Network & API
+      network: "\u{1F310}",
+      api: "\u{1F50C}",
+      request: "\u{1F4E4}",
+      response: "\u{1F4E5}",
+      webhook: "\u{1FA9D}",
+      socket: "\u{1F517}",
+      upload: "\u2B06\uFE0F",
+      download: "\u2B07\uFE0F",
+      sync: "\u{1F504}",
+      // Database & Storage
+      db: "\u{1F4BE}",
+      database: "\u{1F5C4}\uFE0F",
+      cache: "\u{1F4A8}",
+      storage: "\u{1F4E6}",
+      backup: "\u{1F4BF}",
+      restore: "\u267B\uFE0F",
+      query: "\u{1F50E}",
+      migration: "\u{1F500}",
+      // Security & Auth
+      security: "\u{1F512}",
+      unlock: "\u{1F513}",
+      auth: "\u{1F510}",
+      key: "\u{1F511}",
+      token: "\u{1F3AB}",
+      encrypt: "\u{1F6E1}\uFE0F",
+      decrypt: "\u{1F513}",
+      firewall: "\u{1F9F1}",
+      scan: "\u{1F52C}",
+      // Files & Documents
+      file: "\u{1F4C4}",
+      folder: "\u{1F4C1}",
+      document: "\u{1F4C3}",
+      archive: "\u{1F5DC}\uFE0F",
+      zip: "\u{1F910}",
+      pdf: "\u{1F4D5}",
+      csv: "\u{1F4CA}",
+      json: "\u{1F4CB}",
+      xml: "\u{1F4F0}",
+      config: "\u2699\uFE0F",
+      // Cloud & Deployment
+      cloud: "\u2601\uFE0F",
+      server: "\u{1F5A5}\uFE0F",
+      deploy: "\u{1F680}",
+      build: "\u{1F528}",
+      compile: "\u2692\uFE0F",
+      package: "\u{1F4E6}",
+      publish: "\u{1F4E2}",
+      release: "\u{1F389}",
+      rollback: "\u23EE\uFE0F",
+      // Development & Testing
+      test: "\u{1F9EA}",
+      unittest: "\u{1F52C}",
+      integration: "\u{1F517}",
+      coverage: "\u{1F4CA}",
+      benchmark: "\u23F1\uFE0F",
+      performance: "\u26A1",
+      profiling: "\u{1F4C8}",
+      bugFix: "\u{1F41B}",
+      feature: "\u2728",
+      refactor: "\u267B\uFE0F",
+      cleanup: "\u{1F9F9}",
+      // User & Social
+      user: "\u{1F464}",
+      users: "\u{1F465}",
+      admin: "\u{1F451}",
+      robot: "\u{1F916}",
+      human: "\u{1F468}\u200D\u{1F469}\u200D\u{1F467}\u200D\u{1F466}",
+      team: "\u{1F468}\u200D\u{1F469}\u200D\u{1F467}\u200D\u{1F466}",
+      chat: "\u{1F4AC}",
+      message: "\u2709\uFE0F",
+      notification: "\u{1F514}",
+      alert: "\u{1F6A8}",
+      // Business & Analytics
+      money: "\u{1F4B0}",
+      payment: "\u{1F4B3}",
+      invoice: "\u{1F9FE}",
+      chart: "\u{1F4CA}",
+      analytics: "\u{1F4C8}",
+      metrics: "\u{1F4C9}",
+      dashboard: "\u{1F39B}\uFE0F",
+      report: "\u{1F4C4}",
+      // Status indicators
+      online: "\u{1F7E2}",
+      offline: "\u{1F534}",
+      pending: "\u{1F7E1}",
+      processing: "\u23F3",
+      loading: "\u231B",
+      complete: "\u2714\uFE0F",
+      incomplete: "\u274C",
+      progress: "\u{1F4CA}",
+      // Miscellaneous
+      idea: "\u{1F4A1}",
+      lightning: "\u26A1",
+      fire: "\u{1F525}",
+      star: "\u2B50",
+      trophy: "\u{1F3C6}",
+      medal: "\u{1F3C5}",
+      gift: "\u{1F381}",
+      celebrate: "\u{1F389}",
+      party: "\u{1F38A}",
+      rocket: "\u{1F680}",
+      ship: "\u{1F6A2}",
+      airplane: "\u2708\uFE0F",
+      train: "\u{1F686}",
+      calendar: "\u{1F4C5}",
+      clock: "\u{1F550}",
+      timer: "\u23F2\uFE0F",
+      bell: "\u{1F514}",
+      flag: "\u{1F6A9}",
+      bookmark: "\u{1F516}",
+      tag: "\u{1F3F7}\uFE0F",
+      pin: "\u{1F4CC}",
+      magnet: "\u{1F9F2}",
+      crystal: "\u{1F52E}",
+      gem: "\u{1F48E}",
+      target: "\u{1F3AF}",
+      dart: "\u{1F3AF}",
+      compass: "\u{1F9ED}",
+      map: "\u{1F5FA}\uFE0F",
+      globe: "\u{1F30D}",
+      satellite: "\u{1F6F0}\uFE0F",
+      telescope: "\u{1F52D}",
+      microscope: "\u{1F52C}",
+      magGlass: "\u{1F50D}",
+      wrench: "\u{1F527}",
+      hammer: "\u{1F528}",
+      screwdriver: "\u{1FA9B}",
+      gear: "\u2699\uFE0F",
+      nut: "\u{1F529}",
+      link: "\u{1F517}",
+      chain: "\u26D3\uFE0F",
+      bridge: "\u{1F309}",
+      door: "\u{1F6AA}",
+      window: "\u{1FA9F}",
+      shield: "\u{1F6E1}\uFE0F",
+      sword: "\u2694\uFE0F",
+      bomb: "\u{1F4A3}",
+      explosion: "\u{1F4A5}",
+      spark: "\u2728",
+      dizzy: "\u{1F4AB}",
+      wave: "\u{1F30A}",
+      droplet: "\u{1F4A7}",
+      snowflake: "\u2744\uFE0F",
+      sun: "\u2600\uFE0F",
+      moon: "\u{1F319}",
+      rainbow: "\u{1F308}",
+      seedling: "\u{1F331}",
+      tree: "\u{1F332}",
+      leaf: "\u{1F343}",
+      recycle: "\u267B\uFE0F",
+    };
+    emojis.get = (name, fallback = "") => {
+      return emojis[name] || fallback;
+    };
+    emojis.has = (name) => {
+      return emojis.hasOwnProperty(name);
+    };
+    emojis.list = () => {
+      return Object.keys(emojis).filter((key) =>
+        typeof emojis[key] === "string" && ![
+          "get",
+          "has",
+          "list",
+        ].includes(key)
+      );
+    };
+    module.exports = emojis;
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/utils/timestamp.js
+var require_timestamp = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/utils/timestamp.js"(
+    exports2,
+    module,
+  ) {
+    var getTimestamp = () => {
+      const date = /* @__PURE__ */ new Date();
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      return `${hours}:${minutes}:${seconds}`;
+    };
+    var getTimestampWithMs = () => {
+      const date = /* @__PURE__ */ new Date();
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      const ms = String(date.getMilliseconds()).padStart(3, "0");
+      return `${hours}:${minutes}:${seconds}.${ms}`;
+    };
+    var getFullTimestamp = () => {
+      const date = /* @__PURE__ */ new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    };
+    var getISOTimestamp = () => {
+      return (/* @__PURE__ */ new Date()).toISOString();
+    };
+    var getUnixTimestamp = () => {
+      return Math.floor(Date.now() / 1e3);
+    };
+    var getRelativeTime = (date) => {
+      const now = Date.now();
+      const timestamp = date instanceof Date ? date.getTime() : date;
+      const diff = now - timestamp;
+      const seconds = Math.floor(diff / 1e3);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+      if (seconds < 60) {
+        return `${seconds} second${seconds !== 1 ? "s" : ""} ago`;
+      }
+      if (minutes < 60) {
+        return `${minutes} minute${minutes !== 1 ? "s" : ""} ago`;
+      }
+      if (hours < 24) return `${hours} hour${hours !== 1 ? "s" : ""} ago`;
+      return `${days} day${days !== 1 ? "s" : ""} ago`;
+    };
+    var formatCustom = (format, date = /* @__PURE__ */ new Date()) => {
+      const tokens = {
+        YYYY: date.getFullYear(),
+        MM: String(date.getMonth() + 1).padStart(2, "0"),
+        DD: String(date.getDate()).padStart(2, "0"),
+        HH: String(date.getHours()).padStart(2, "0"),
+        mm: String(date.getMinutes()).padStart(2, "0"),
+        ss: String(date.getSeconds()).padStart(2, "0"),
+        SSS: String(date.getMilliseconds()).padStart(3, "0"),
+      };
+      let result = format;
+      Object.entries(tokens).forEach(([token, value]) => {
+        result = result.replace(token, value);
+      });
+      return result;
+    };
+    module.exports = getTimestamp;
+    module.exports.getTimestamp = getTimestamp;
+    module.exports.getTimestampWithMs = getTimestampWithMs;
+    module.exports.getFullTimestamp = getFullTimestamp;
+    module.exports.getISOTimestamp = getISOTimestamp;
+    module.exports.getUnixTimestamp = getUnixTimestamp;
+    module.exports.getRelativeTime = getRelativeTime;
+    module.exports.formatCustom = formatCustom;
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/index.js
+var require_ernest_logger = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/index.js"(
+    exports2,
+    module,
+  ) {
+    var fs9 = __require("node:fs");
+    var path14 = __require("node:path");
+    var colors = require_colors();
+    var emojis = require_emojis();
+    var getTimestamp = require_timestamp();
+    var formatter2 = require_formatter();
+    var levelPriority = {
+      trace: 0,
+      debug: 1,
+      info: 2,
+      success: 3,
+      warn: 4,
+      error: 5,
+      fatal: 6,
+    };
+    var globalConfig = {
+      time: true,
+      emoji: true,
+      level: "debug",
+      file: false,
+      filePath: path14.join(process.cwd(), "ernest.log"),
+      colorize: true,
+      prefix: "",
+      maxFileSize: 5 * 1024 * 1024,
+      customLevels: {},
+    };
+    var rotateLogFile = (filePath, maxSize2) => {
+      try {
+        const stats = fs9.statSync(filePath);
+        if (stats.size > maxSize2) {
+          const timestamp = (/* @__PURE__ */ new Date()).toISOString().replace(
+            /[:.]/g,
+            "-",
+          );
+          const rotatedPath = filePath.replace(".log", `-${timestamp}.log`);
+          fs9.renameSync(filePath, rotatedPath);
+        }
+      } catch (err) {
+      }
+    };
+    var createLogger2 = (options = {}) => {
+      const config = {
+        ...globalConfig,
+        ...options,
+      };
+      const formatMessage = (level, message, color) => {
+        if (levelPriority[level] < levelPriority[config.level]) return null;
+        let output = "";
+        if (config.time) {
+          const timestamp = getTimestamp();
+          output += config.colorize
+            ? colors.dim + `[${timestamp}]` + colors.reset + " "
+            : `[${timestamp}] `;
+        }
+        if (config.prefix) {
+          output += config.colorize
+            ? colors.dim + config.prefix + colors.reset + " "
+            : config.prefix + " ";
+        }
+        if (config.emoji && emojis[level]) {
+          output += `${emojis[level]} `;
+        }
+        const levelBadge = formatter2.createBadge(level.toUpperCase(), color);
+        output += config.colorize
+          ? levelBadge + " "
+          : `[${level.toUpperCase()}] `;
+        output += config.colorize
+          ? colors[color] + message + colors.reset
+          : message;
+        return output;
+      };
+      const writeToFile = (message) => {
+        if (!config.file) return;
+        try {
+          rotateLogFile(config.filePath, config.maxFileSize);
+          const plainMessage = message.replace(/\x1b\[[0-9;]*m/g, "");
+          fs9.appendFileSync(config.filePath, plainMessage + "\n");
+        } catch (err) {
+          console.error("Failed to write to log file:", err.message);
+        }
+      };
+      const logMessage = (level, color, message) => {
+        const formatted = formatMessage(level, message, color);
+        if (!formatted) return;
+        console.log(formatted);
+        writeToFile(formatted);
+      };
+      const logger7 = {
+        // Trace level (most verbose)
+        trace: (msg) => logMessage("trace", "dim", msg),
+        // Debug level
+        debug: (msg) => logMessage("debug", "cyan", msg),
+        // Info level (default)
+        info: (msg) => logMessage("info", "blue", msg),
+        // Success level
+        success: (msg) => logMessage("success", "green", msg),
+        // Warn level
+        warn: (msg) => logMessage("warn", "yellow", msg),
+        // Error level
+        error: (msg) => logMessage("error", "red", msg),
+        // Fatal level (most critical)
+        fatal: (msg) => logMessage("fatal", "brightRed", msg),
+        // Specialized quick methods
+        start: (msg) =>
+          logMessage("info", "brightGreen", `\u25B6\uFE0F  ${msg}`),
+        stop: (msg) => logMessage("info", "brightRed", `\u23F9\uFE0F  ${msg}`),
+        network: (msg) => logMessage("info", "brightCyan", `\u{1F310} ${msg}`),
+        db: (msg) => logMessage("info", "brightMagenta", `\u{1F4BE} ${msg}`),
+        api: (msg) => logMessage("info", "brightBlue", `\u{1F50C} ${msg}`),
+        security: (msg) =>
+          logMessage("warn", "brightYellow", `\u{1F512} ${msg}`),
+        // Big log for announcements
+        bigLog: (message, options2 = {}) => {
+          const color = options2.color || "blue";
+          const emoji = options2.emoji || "\u{1F4E3}";
+          const boxed = formatter2.createBox(message, color, emoji);
+          console.log(boxed);
+          if (config.file) writeToFile(boxed);
+        },
+        // Table logger
+        table: (data) => {
+          console.table(data);
+          if (config.file) {
+            writeToFile("\n[TABLE DATA]\n" + JSON.stringify(data, null, 2));
+          }
+        },
+        // Group logs
+        group: (label) => console.group(label),
+        groupEnd: () => console.groupEnd(),
+        // Timer utilities
+        time: (label) => console.time(label),
+        timeEnd: (label) => console.timeEnd(label),
+        // JSON pretty print
+        json: (obj, label = "") => {
+          const output = label
+            ? `${label}:
+`
+            : "";
+          const formatted = output + JSON.stringify(obj, null, 2);
+          console.log(
+            config.colorize
+              ? colors.cyan + formatted + colors.reset
+              : formatted,
+          );
+          if (config.file) writeToFile(formatted);
+        },
+        // Advanced nested logger (color-coded by level)
+        log: {
+          trace: {
+            dim: (msg) => logMessage("trace", "dim", msg),
+            white: (msg) => logMessage("trace", "white", msg),
+          },
+          debug: {
+            cyan: (msg) => logMessage("debug", "cyan", msg),
+            blue: (msg) => logMessage("debug", "blue", msg),
+            magenta: (msg) => logMessage("debug", "magenta", msg),
+          },
+          info: {
+            blue: (msg) => logMessage("info", "blue", msg),
+            cyan: (msg) => logMessage("info", "cyan", msg),
+            white: (msg) => logMessage("info", "white", msg),
+          },
+          success: {
+            green: (msg) => logMessage("success", "green", msg),
+            brightGreen: (msg) => logMessage("success", "brightGreen", msg),
+          },
+          warn: {
+            yellow: (msg) => logMessage("warn", "yellow", msg),
+            brightYellow: (msg) => logMessage("warn", "brightYellow", msg),
+          },
+          error: {
+            red: (msg) => logMessage("error", "red", msg),
+            brightRed: (msg) => logMessage("error", "brightRed", msg),
+            magenta: (msg) => logMessage("error", "magenta", msg),
+          },
+          fatal: {
+            brightRed: (msg) => logMessage("fatal", "brightRed", msg),
+            bgRed: (msg) => logMessage("fatal", "bgRed", msg),
+          },
+        },
+        // Configuration methods
+        configure: (newConfig) => {
+          Object.assign(config, newConfig);
+          return logger7;
+        },
+        getConfig: () => ({
+          ...config,
+        }),
+        // Enable/disable features on the fly
+        enableTime: () => {
+          config.time = true;
+          return logger7;
+        },
+        disableTime: () => {
+          config.time = false;
+          return logger7;
+        },
+        enableEmoji: () => {
+          config.emoji = true;
+          return logger7;
+        },
+        disableEmoji: () => {
+          config.emoji = false;
+          return logger7;
+        },
+        enableFile: () => {
+          config.file = true;
+          return logger7;
+        },
+        disableFile: () => {
+          config.file = false;
+          return logger7;
+        },
+        setLevel: (level) => {
+          config.level = level;
+          return logger7;
+        },
+      };
+      if (config.customLevels && Object.keys(config.customLevels).length > 0) {
+        Object.entries(config.customLevels).forEach(
+          ([level, { color, emoji, priority }]) => {
+            if (emoji) emojis[level] = emoji;
+            if (priority !== void 0) levelPriority[level] = priority;
+            logger7[level] = (msg) => logMessage(level, color, msg);
+            logger7.log[level] = {
+              [color]: (msg) => logMessage(level, color, msg),
+            };
+          },
+        );
+      }
+      return logger7;
+    };
+    var defaultLogger = createLogger2();
+    module.exports = defaultLogger;
+    module.exports.createLogger = createLogger2;
+    module.exports.setGlobalConfig = (config) => {
+      Object.assign(globalConfig, config);
     };
   },
 });
@@ -171281,14 +172030,14 @@ var HttpClient = class {
         throw new Error("Client has already been disposed.");
       }
       const parsedUrl = new URL(requestUrl);
-      let info2 = this._prepareRequest(verb, parsedUrl, headers);
+      let info3 = this._prepareRequest(verb, parsedUrl, headers);
       const maxTries = this._allowRetries && RetryableHttpVerbs.includes(verb)
         ? this._maxRetries + 1
         : 1;
       let numTries = 0;
       let response;
       do {
-        response = yield this.requestRaw(info2, data);
+        response = yield this.requestRaw(info3, data);
         if (
           response && response.message &&
           response.message.statusCode === HttpCodes.Unauthorized
@@ -171303,7 +172052,7 @@ var HttpClient = class {
           if (authenticationHandler) {
             return authenticationHandler.handleAuthentication(
               this,
-              info2,
+              info3,
               data,
             );
           } else {
@@ -171338,8 +172087,8 @@ var HttpClient = class {
               }
             }
           }
-          info2 = this._prepareRequest(verb, parsedRedirectUrl, headers);
-          response = yield this.requestRaw(info2, data);
+          info3 = this._prepareRequest(verb, parsedRedirectUrl, headers);
+          response = yield this.requestRaw(info3, data);
           redirectsRemaining--;
         }
         if (
@@ -171371,7 +172120,7 @@ var HttpClient = class {
    * @param info
    * @param data
    */
-  requestRaw(info2, data) {
+  requestRaw(info3, data) {
     return __awaiter(this, void 0, void 0, function* () {
       return new Promise((resolve5, reject) => {
         function callbackForResult(err, res) {
@@ -171383,7 +172132,7 @@ var HttpClient = class {
             resolve5(res);
           }
         }
-        this.requestRawWithCallback(info2, data, callbackForResult);
+        this.requestRawWithCallback(info3, data, callbackForResult);
       });
     });
   }
@@ -171393,12 +172142,12 @@ var HttpClient = class {
    * @param data
    * @param onResult
    */
-  requestRawWithCallback(info2, data, onResult) {
+  requestRawWithCallback(info3, data, onResult) {
     if (typeof data === "string") {
-      if (!info2.options.headers) {
-        info2.options.headers = {};
+      if (!info3.options.headers) {
+        info3.options.headers = {};
       }
-      info2.options.headers["Content-Length"] = Buffer.byteLength(data, "utf8");
+      info3.options.headers["Content-Length"] = Buffer.byteLength(data, "utf8");
     }
     let callbackCalled = false;
     function handleResult(err, res) {
@@ -171407,7 +172156,7 @@ var HttpClient = class {
         onResult(err, res);
       }
     }
-    const req = info2.httpModule.request(info2.options, (msg) => {
+    const req = info3.httpModule.request(info3.options, (msg) => {
       const res = new HttpClientResponse(msg);
       handleResult(void 0, res);
     });
@@ -171419,7 +172168,7 @@ var HttpClient = class {
       if (socket) {
         socket.end();
       }
-      handleResult(new Error(`Request timeout: ${info2.options.path}`));
+      handleResult(new Error(`Request timeout: ${info3.options.path}`));
     });
     req.on("error", function (err) {
       handleResult(err);
@@ -171455,30 +172204,30 @@ var HttpClient = class {
     return this._getProxyAgentDispatcher(parsedUrl, proxyUrl);
   }
   _prepareRequest(method, requestUrl, headers) {
-    const info2 = {};
-    info2.parsedUrl = requestUrl;
-    const usingSsl = info2.parsedUrl.protocol === "https:";
-    info2.httpModule = usingSsl ? https : http;
+    const info3 = {};
+    info3.parsedUrl = requestUrl;
+    const usingSsl = info3.parsedUrl.protocol === "https:";
+    info3.httpModule = usingSsl ? https : http;
     const defaultPort = usingSsl ? 443 : 80;
-    info2.options = {};
-    info2.options.host = info2.parsedUrl.hostname;
-    info2.options.port = info2.parsedUrl.port
-      ? parseInt(info2.parsedUrl.port)
+    info3.options = {};
+    info3.options.host = info3.parsedUrl.hostname;
+    info3.options.port = info3.parsedUrl.port
+      ? parseInt(info3.parsedUrl.port)
       : defaultPort;
-    info2.options.path = (info2.parsedUrl.pathname || "") +
-      (info2.parsedUrl.search || "");
-    info2.options.method = method;
-    info2.options.headers = this._mergeHeaders(headers);
+    info3.options.path = (info3.parsedUrl.pathname || "") +
+      (info3.parsedUrl.search || "");
+    info3.options.method = method;
+    info3.options.headers = this._mergeHeaders(headers);
     if (this.userAgent != null) {
-      info2.options.headers["user-agent"] = this.userAgent;
+      info3.options.headers["user-agent"] = this.userAgent;
     }
-    info2.options.agent = this._getAgent(info2.parsedUrl);
+    info3.options.agent = this._getAgent(info3.parsedUrl);
     if (this.handlers) {
       for (const handler of this.handlers) {
-        handler.prepareRequest(info2.options);
+        handler.prepareRequest(info3.options);
       }
     }
-    return info2;
+    return info3;
   }
   _mergeHeaders(headers) {
     if (this.requestOptions && this.requestOptions.headers) {
@@ -173170,10 +173919,6 @@ function setOutput(name, value) {
   issueCommand("set-output", {
     name,
   }, toCommandValue(value));
-}
-function setFailed(message) {
-  process.exitCode = ExitCode.Failure;
-  error(message);
 }
 function isDebug() {
   return process.env["RUNNER_DEBUG"] === "1";
@@ -184711,6 +185456,9 @@ function typeByExtension(extension) {
   return types.get(extension.toLowerCase());
 }
 
+// src/main.ts
+var import_ernest_logger_formatter = __toESM(require_formatter());
+
 // src/cache.ts
 import { mkdir as mkdir2 } from "node:fs/promises";
 import { resolve as resolve3 } from "node:path";
@@ -185088,14 +185836,14 @@ function disable() {
   return result;
 }
 function createDebugger(namespace) {
-  const newDebugger = Object.assign(debug2, {
+  const newDebugger = Object.assign(debug3, {
     enabled: enabled(namespace),
     destroy,
     log: debugObj.log,
     namespace,
     extend,
   });
-  function debug2(...args) {
+  function debug3(...args) {
     if (!newDebugger.enabled) {
       return;
     }
@@ -185183,7 +185931,7 @@ function createLoggerContext(options) {
   function shouldEnable(logger7) {
     return Boolean(logLevel && levelMap[logger7.level] <= levelMap[logLevel]);
   }
-  function createLogger(parent, level) {
+  function createLogger2(parent, level) {
     const logger7 = Object.assign(parent.extend(level), {
       level,
     });
@@ -185202,10 +185950,10 @@ function createLoggerContext(options) {
     const clientRootLogger = clientLogger.extend(namespace);
     patchLogMethod(clientLogger, clientRootLogger);
     return {
-      error: createLogger(clientRootLogger, "error"),
-      warning: createLogger(clientRootLogger, "warning"),
-      info: createLogger(clientRootLogger, "info"),
-      verbose: createLogger(clientRootLogger, "verbose"),
+      error: createLogger2(clientRootLogger, "error"),
+      warning: createLogger2(clientRootLogger, "warning"),
+      info: createLogger2(clientRootLogger, "info"),
+      verbose: createLogger2(clientRootLogger, "verbose"),
     };
   }
   return {
@@ -189410,12 +190158,12 @@ function getOperationRequestInfo(request) {
   if (hasOriginalRequest(request)) {
     return getOperationRequestInfo(request[originalRequestSymbol]);
   }
-  let info2 = state2.operationRequestMap.get(request);
-  if (!info2) {
-    info2 = {};
-    state2.operationRequestMap.set(request, info2);
+  let info3 = state2.operationRequestMap.get(request);
+  if (!info3) {
+    info3 = {};
+    state2.operationRequestMap.set(request, info3);
   }
-  return info2;
+  return info3;
 }
 
 // node_modules/.deno/@azure+core-client@1.10.1/node_modules/@azure/core-client/dist/esm/deserializationPolicy.js
@@ -191229,10 +191977,10 @@ function isWhiteSpace(char) {
   return char === " " || char === "	" || char === "\n" || char === "\r";
 }
 function readPI(xmlData, i) {
-  const start = i;
+  const start2 = i;
   for (; i < xmlData.length; i++) {
     if (xmlData[i] == "?" || xmlData[i] == " ") {
-      const tagname = xmlData.substr(start, i - start);
+      const tagname = xmlData.substr(start2, i - start2);
       if (i > 5 && tagname === "xml") {
         return getErrorObject(
           "InvalidXml",
@@ -216469,7 +217217,7 @@ var BlobClient = class _BlobClient extends StorageClient2 {
         }
         return new BlobDownloadResponse(
           wrappedRes,
-          async (start) => {
+          async (start2) => {
             const updatedDownloadOptions = {
               leaseAccessConditions: options.conditions,
               modifiedAccessConditions: {
@@ -216480,8 +217228,8 @@ var BlobClient = class _BlobClient extends StorageClient2 {
                 ifTags: options.conditions?.tagConditions,
               },
               range: rangeToString({
-                count: offset + res.contentLength - start,
-                offset: start,
+                count: offset + res.contentLength - start2,
+                offset: start2,
               }),
               rangeGetContentMD5: options.rangeGetContentMD5,
               rangeGetContentCRC64: options.rangeGetContentCrc64,
@@ -218460,13 +219208,13 @@ var BlockBlobClient = class _BlockBlobClient extends BlobClient {
         for (let i = 0; i < numBlocks; i++) {
           batch.addOperation(async () => {
             const blockID = generateBlockID(blockIDPrefix, i);
-            const start = blockSize * i;
-            const end = i === numBlocks - 1 ? size : start + blockSize;
-            const contentLength2 = end - start;
+            const start2 = blockSize * i;
+            const end = i === numBlocks - 1 ? size : start2 + blockSize;
+            const contentLength2 = end - start2;
             blockList.push(blockID);
             await this.stageBlock(
               blockID,
-              bodyFactory(start, contentLength2),
+              bodyFactory(start2, contentLength2),
               contentLength2,
               {
                 abortSignal: options.abortSignal,
@@ -221005,7 +221753,7 @@ var BinaryReader = class {
    * Supports WireType.StartGroup since v2.0.0-alpha.23.
    */
   skip(wireType) {
-    let start = this.pos;
+    let start2 = this.pos;
     switch (wireType) {
       case WireType.Varint:
         while (this.buf[this.pos++] & 128) {
@@ -221030,7 +221778,7 @@ var BinaryReader = class {
         throw new Error("cant skip wire type " + wireType);
     }
     this.assertBounds();
-    return this.buf.subarray(start, this.pos);
+    return this.buf.subarray(start2, this.pos);
   }
   /**
    * Throws error if position in byte array is out of range.
@@ -221121,10 +221869,10 @@ var BinaryReader = class {
    */
   bytes() {
     let len = this.uint32();
-    let start = this.pos;
+    let start2 = this.pos;
     this.pos += len;
     this.assertBounds();
-    return this.buf.subarray(start, start + len);
+    return this.buf.subarray(start2, start2 + len);
   }
   /**
    * Read a `string` field, length-delimited data converted to UTF-8 text.
@@ -221524,9 +222272,9 @@ function isOneofGroup(any) {
 
 // node_modules/.deno/@protobuf-ts+runtime@2.11.1/node_modules/@protobuf-ts/runtime/build/es2015/reflection-type-check.js
 var ReflectionTypeCheck = class {
-  constructor(info2) {
+  constructor(info3) {
     var _a;
-    this.fields = (_a = info2.fields) !== null && _a !== void 0 ? _a : [];
+    this.fields = (_a = info3.fields) !== null && _a !== void 0 ? _a : [];
   }
   prepare() {
     if (this.data) return;
@@ -221767,8 +222515,8 @@ function reflectionLongConvert(long, type) {
 
 // node_modules/.deno/@protobuf-ts+runtime@2.11.1/node_modules/@protobuf-ts/runtime/build/es2015/reflection-json-reader.js
 var ReflectionJsonReader = class {
-  constructor(info2) {
-    this.info = info2;
+  constructor(info3) {
+    this.info = info3;
   }
   prepare() {
     var _a;
@@ -222093,9 +222841,9 @@ var ReflectionJsonReader = class {
 
 // node_modules/.deno/@protobuf-ts+runtime@2.11.1/node_modules/@protobuf-ts/runtime/build/es2015/reflection-json-writer.js
 var ReflectionJsonWriter = class {
-  constructor(info2) {
+  constructor(info3) {
     var _a;
-    this.fields = (_a = info2.fields) !== null && _a !== void 0 ? _a : [];
+    this.fields = (_a = info3.fields) !== null && _a !== void 0 ? _a : [];
   }
   /**
    * Converts the message to a JSON object, based on the field descriptors.
@@ -222380,8 +223128,8 @@ function reflectionScalarDefault(type, longType = LongType.STRING) {
 
 // node_modules/.deno/@protobuf-ts+runtime@2.11.1/node_modules/@protobuf-ts/runtime/build/es2015/reflection-binary-reader.js
 var ReflectionBinaryReader = class {
-  constructor(info2) {
-    this.info = info2;
+  constructor(info3) {
+    this.info = info3;
   }
   prepare() {
     var _a;
@@ -222579,8 +223327,8 @@ var ReflectionBinaryReader = class {
 
 // node_modules/.deno/@protobuf-ts+runtime@2.11.1/node_modules/@protobuf-ts/runtime/build/es2015/reflection-binary-writer.js
 var ReflectionBinaryWriter = class {
-  constructor(info2) {
-    this.info = info2;
+  constructor(info3) {
+    this.info = info3;
   }
   prepare() {
     if (!this.fields) {
@@ -222833,9 +223581,9 @@ function reflectionCreate(type) {
 }
 
 // node_modules/.deno/@protobuf-ts+runtime@2.11.1/node_modules/@protobuf-ts/runtime/build/es2015/reflection-merge-partial.js
-function reflectionMergePartial(info2, target, source) {
+function reflectionMergePartial(info3, target, source) {
   let fieldValue, input = source, output;
-  for (let field of info2.fields) {
+  for (let field of info3.fields) {
     let name = field.localName;
     if (field.oneof) {
       const group2 = input[field.oneof];
@@ -222897,10 +223645,10 @@ function reflectionMergePartial(info2, target, source) {
 }
 
 // node_modules/.deno/@protobuf-ts+runtime@2.11.1/node_modules/@protobuf-ts/runtime/build/es2015/reflection-equals.js
-function reflectionEquals(info2, a, b) {
+function reflectionEquals(info3, a, b) {
   if (a === b) return true;
   if (!a || !b) return false;
-  for (let field of info2.fields) {
+  for (let field of info3.fields) {
     let localName = field.localName;
     let val_a = field.oneof ? a[field.oneof][localName] : a[localName];
     let val_b = field.oneof ? b[field.oneof][localName] : b[localName];
@@ -225944,6 +226692,39 @@ var STATE_CDN_REFRESH_TASK_IDS = "main-cdn-refresh-task-ids";
 var STATE_CDN_PRELOAD_TASK_IDS = "main-cdn-preload-task-ids";
 var STATE_MAIN_COMPLETED = "main-completed";
 
+// src/logger.ts
+import process5 from "node:process";
+var import_ernest_logger = __toESM(require_ernest_logger());
+var actionLogger = (0, import_ernest_logger.createLogger)({
+  colorize: true,
+  emoji: true,
+  level: isDebug() ? "debug" : "info",
+  prefix: "[Aliyun OSS CDN]",
+  time: true,
+});
+function debug2(message) {
+  actionLogger.debug(message);
+}
+function info2(message) {
+  actionLogger.info(message);
+}
+function start(message) {
+  actionLogger.start(message);
+}
+function success(message) {
+  actionLogger.success(message);
+}
+function network(message) {
+  actionLogger.network(message);
+}
+function warning2(message) {
+  actionLogger.warn(message);
+}
+function fail(message) {
+  actionLogger.fatal(message);
+  process5.exitCode = 1;
+}
+
 // src/shared.ts
 import { lstat as lstat2, readdir as readdir2 } from "node:fs/promises";
 import {
@@ -225991,10 +226772,10 @@ function setArbitraryLengthTimeout(callback, delay6) {
       valueOf: () => id,
     };
   }
-  const start = Date.now();
+  const start2 = Date.now();
   let timeoutId;
   const queueTimeout = () => {
-    const currentDelay = delay6 - (Date.now() - start);
+    const currentDelay = delay6 - (Date.now() - start2);
     timeoutId = currentDelay > I32_MAX
       ? Number(setTimeout(queueTimeout, I32_MAX))
       : Number(setTimeout(callback, currentDelay));
@@ -226214,7 +226995,7 @@ function resolveCredentialsFromState() {
     return void 0;
   }
   const securityToken = getState(STATE_SECURITY_TOKEN);
-  debug(
+  debug2(
     `[resolveCredentialsFromState] source=state hasSecurityToken=${
       Boolean(securityToken)
     }`,
@@ -226227,7 +227008,7 @@ function resolveCredentialsFromState() {
 }
 function resolveCredentials() {
   throw new Error(
-    "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Alibaba Cloud RAM role.",
+    "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Aliyun RAM role.",
   );
 }
 function emitDebugNotice(title, message, properties) {
@@ -226326,7 +227107,7 @@ function getCachePath() {
 }
 async function restoreLocalCache() {
   if (!parseBooleanInput("cache-enabled", true)) {
-    info("Skipping local _cache restore because cache-enabled is false.");
+    info2("Skipping local _cache restore because cache-enabled is false.");
     saveState(STATE_CACHE_RESTORED_KEY, "");
     return;
   }
@@ -226349,17 +227130,17 @@ async function restoreLocalCache() {
     );
     saveState(STATE_CACHE_RESTORED_KEY, restoredKey ?? "");
     if (restoredKey) {
-      info(`Local _cache restored from key: ${restoredKey}`);
+      success(`Local _cache restored from key: ${restoredKey}`);
       return;
     }
-    info(`Local _cache not found for input keys: ${
+    info2(`Local _cache not found for input keys: ${
       [
         primaryKey,
         ...restoreKeys,
       ].join(", ")
     }`);
   } catch (error2) {
-    warning(`Local _cache restore skipped: ${errorMessage(error2)}`);
+    warning2(`Local _cache restore skipped: ${errorMessage(error2)}`);
     saveState(STATE_CACHE_RESTORED_KEY, "");
   }
 }
@@ -226550,11 +227331,11 @@ function decodeJwtPayload(idToken) {
 function debugGitHubIdTokenClaims(idToken) {
   const decodedPayload = decodeJwtPayload(idToken);
   if (!decodedPayload) {
-    debug("GitHub OIDC token payload decode failed");
+    debug2("GitHub OIDC token payload decode failed");
     return;
   }
   const formattedPayload = JSON.stringify(decodedPayload, null, 2);
-  debug(`GitHub OIDC token payload (decoded):
+  debug2(`GitHub OIDC token payload (decoded):
 ${formattedPayload}`);
 }
 function getRequiredInput(name) {
@@ -226650,9 +227431,7 @@ function normalizeCredential(credential) {
     !credential.accessKeyId || !credential.accessKeySecret ||
     !credential.securityToken
   ) {
-    throw new Error(
-      "Failed to resolve a complete credential set from Alibaba Cloud",
-    );
+    throw new Error("Failed to resolve a complete credential set from Aliyun");
   }
   return {
     accessKeyId: credential.accessKeyId,
@@ -226666,7 +227445,7 @@ async function resolveOidcCredential(inputs, options) {
     : await getIDToken();
   if (options?.debugGitHubIdTokenClaims) {
     if (!isDebug()) {
-      info(
+      info2(
         "OIDC claim debug logging is disabled because ACTIONS_STEP_DEBUG is not set to true.",
       );
     } else {
@@ -226718,13 +227497,6 @@ var FORCED_CONTENT_TYPES = Object.freeze({
 var CDN_API_MAX_RPS = 50;
 var CDN_QUOTA_API_MAX_RPS = 20;
 var MAX_UPLOAD_RETRIES = 3;
-var ANSI_BOLD = "\x1B[1m";
-var ANSI_FG_CYAN = "\x1B[38;5;45m";
-var ANSI_FG_GRAY = "\x1B[38;5;240m";
-var ANSI_FG_GREEN = "\x1B[38;5;46m";
-var ANSI_FG_RED = "\x1B[38;5;203m";
-var ANSI_FG_YELLOW = "\x1B[38;5;220m";
-var ANSI_RESET = "\x1B[0m";
 var UPLOAD_PROGRESS_BAR_WIDTH = 30;
 var UPLOAD_PROGRESS_PERCENT_STEP = 1;
 var NO_CACHE_CONTROL_VALUE = "no-cache, max-age=0, must-revalidate";
@@ -226770,7 +227542,7 @@ var VERSION_PROBE_ARGUMENTS = Object.freeze([
 function parseActions(raw, inputName, cdnEnabled) {
   if (!raw || raw.trim() === "") {
     if (cdnEnabled) {
-      info(
+      info2(
         `CDN is enabled but input '${inputName}' is empty. Expected 'refresh' or 'refresh,preload'. Defaulting to 'refresh'.`,
       );
       return /* @__PURE__ */ new Set([
@@ -226788,7 +227560,7 @@ function parseActions(raw, inputName, cdnEnabled) {
   const hasRefresh = normalizedTokens.includes("refresh");
   if (hasUnsupportedTokens || !hasRefresh) {
     if (cdnEnabled) {
-      info(
+      info2(
         `CDN is enabled but input '${inputName}' has unsupported value(s): '${raw}'. Expected 'refresh' or 'refresh,preload'. Defaulting to 'refresh'.`,
       );
       return /* @__PURE__ */ new Set([
@@ -226835,21 +227607,13 @@ function resolveCacheControl(relativePath) {
   }
   return void 0;
 }
-function colorize(ansiCode, value) {
-  return `${ansiCode}${value}${ANSI_RESET}`;
-}
 function buildUploadProgressBar(processedCount, totalCount) {
   const safeTotal = Math.max(totalCount, 1);
-  const ratio = Math.max(0, Math.min(1, processedCount / safeTotal));
-  const filledWidth = Math.round(ratio * UPLOAD_PROGRESS_BAR_WIDTH);
-  const emptyWidth = UPLOAD_PROGRESS_BAR_WIDTH - filledWidth;
-  const filled = filledWidth > 0
-    ? colorize(ANSI_FG_GREEN, "=".repeat(filledWidth))
-    : "";
-  const empty = emptyWidth > 0
-    ? colorize(ANSI_FG_GRAY, "-".repeat(emptyWidth))
-    : "";
-  return `[${filled}${empty}]`;
+  return import_ernest_logger_formatter.default.createProgressBar(
+    Math.min(processedCount, safeTotal),
+    safeTotal,
+    UPLOAD_PROGRESS_BAR_WIDTH,
+  );
 }
 function logUploadProgress(
   processedCount,
@@ -226859,17 +227623,12 @@ function logUploadProgress(
   failedCount,
 ) {
   const safeTotal = Math.max(totalCount, 1);
-  const percent = Math.floor(processedCount / safeTotal * 100);
-  info(
-    `${colorize(`${ANSI_BOLD}${ANSI_FG_CYAN}`, "OSS upload progress")} ${
+  info2(
+    `${
+      import_ernest_logger_formatter.default.createBadge("OSS UPLOAD", "cyan")
+    } ${
       buildUploadProgressBar(processedCount, totalCount)
-    } ${colorize(ANSI_BOLD, `${percent}%`)} (${processedCount}/${totalCount}) ${
-      colorize(ANSI_FG_GREEN, `uploaded=${uploadedCount}`)
-    } ${colorize(ANSI_FG_YELLOW, `skipped=${skippedCount}`)} ${
-      failedCount > 0
-        ? colorize(ANSI_FG_RED, `failed=${failedCount}`)
-        : colorize(ANSI_FG_GRAY, `failed=${failedCount}`)
-    }`,
+    } (${processedCount}/${safeTotal}) uploaded=${uploadedCount} skipped=${skippedCount} failed=${failedCount}`,
   );
 }
 function parseInputs() {
@@ -226909,7 +227668,7 @@ function parseInputs() {
   };
 }
 async function runBuildCommand(command) {
-  info(`Executing local build command: ${command}`);
+  start(`Executing local build command: ${command}`);
   const exitCode = await exec(command);
   if (exitCode !== 0) {
     throw new Error(
@@ -227004,7 +227763,7 @@ ${result.stderr}`);
 async function inspectBuildCommandExecutable(command) {
   const executable = resolveBuildCommandExecutable(command);
   if (!executable) {
-    warning(
+    warning2(
       "Build command executable probe skipped: no executable token could be parsed from 'build-command'.",
     );
     return;
@@ -227013,7 +227772,7 @@ async function inspectBuildCommandExecutable(command) {
   try {
     executablePath = await which(executable, false);
   } catch (error2) {
-    warning(
+    warning2(
       `Build command executable probe failed for '${executable}': ${
         errorMessage2(error2)
       }`,
@@ -227021,25 +227780,25 @@ async function inspectBuildCommandExecutable(command) {
     return;
   }
   if (!executablePath) {
-    warning(
+    warning2(
       `Build command executable not found before execution: '${executable}'. The build command will still be run and may fail later.`,
     );
     return;
   }
   const version3 = await resolveExecutableVersion(executablePath);
   if (version3) {
-    info(
+    success(
       `Build command executable resolved: executable=${executable}, path=${executablePath}, version=${version3}`,
     );
     return;
   }
-  info(
+  info2(
     `Build command executable resolved: executable=${executable}, path=${executablePath}, version=unavailable`,
   );
 }
 function createOssClient(inputs, credentials) {
   const authType = credentials.securityToken ? "sts" : "access_key";
-  debug(
+  debug2(
     `[main:createOssClient] authType=${authType} hasSecurityToken=${
       Boolean(credentials.securityToken)
     } region=${inputs.region}`,
@@ -227068,7 +227827,7 @@ function createOssClient(inputs, credentials) {
   return new OssClientCtor(clientConfig);
 }
 function createCdnClient(inputs, credentials) {
-  debug(
+  debug2(
     `[main:createCdnClient] hasSecurityToken=${
       Boolean(credentials.securityToken)
     }`,
@@ -227077,7 +227836,7 @@ function createCdnClient(inputs, credentials) {
     accessKeyId: credentials.accessKeyId,
     accessKeySecret: credentials.accessKeySecret,
     securityToken: credentials.securityToken,
-    // Alibaba Cloud CDN is a global service; regionId is required by the Tea
+    // Aliyun CDN is a global service; regionId is required by the Tea
     // SDK for internal endpoint resolution but has no effect on routing.
     // Strip the OSS-specific "oss-" prefix to derive a Tea-compatible region.
     regionId: inputs.region.replace(/^oss-/, ""),
@@ -227153,7 +227912,7 @@ async function uploadFiles(ossClient, limiter, files, inputs) {
         const exists2 = await objectExists(ossClient, limiter, key);
         if (exists2) {
           skippedCount += 1;
-          debug(`Skipped existing object: ${key}`);
+          debug2(`Skipped existing object: ${key}`);
           markFileProcessed();
           continue;
         }
@@ -227186,7 +227945,7 @@ async function uploadFiles(ossClient, limiter, files, inputs) {
         } catch (error2) {
           lastError = error2;
           if (attempt < MAX_UPLOAD_RETRIES) {
-            warning(
+            warning2(
               `Upload attempt ${attempt}/${MAX_UPLOAD_RETRIES} failed for ${key}: ${
                 errorMessage2(error2)
               }, retrying...`,
@@ -227197,7 +227956,7 @@ async function uploadFiles(ossClient, limiter, files, inputs) {
       if (uploaded) {
         uploadedCount += 1;
         uploadedKeys.push(key);
-        debug(
+        debug2(
           `Uploaded ${file.relativePath} -> oss://${inputs.bucket}/${key} (statusCode=${
             uploadStatusCode ?? "unknown"
           }, requestId=${uploadRequestId ?? "n/a"}, etag=${
@@ -227207,7 +227966,7 @@ async function uploadFiles(ossClient, limiter, files, inputs) {
         markFileProcessed();
       } else {
         const err = errorMessage2(lastError);
-        warning(
+        warning2(
           `Upload failed after ${MAX_UPLOAD_RETRIES} attempts for ${key}: ${err}`,
         );
         failedFiles.push({
@@ -227370,7 +228129,7 @@ function warnQuotaExhausted(label, requestedCount, quota, deniedCount) {
   if (deniedCount <= 0) {
     return;
   }
-  warning(
+  warning2(
     `CDN ${label} quota exhausted: requested=${requestedCount}, quota=${quota}, skipped=${deniedCount}`,
   );
 }
@@ -227404,20 +228163,20 @@ async function submitRefreshBatches(
       const statusCode = response.statusCode ?? "unknown";
       if (response.body?.refreshTaskId) {
         taskIds.push(response.body.refreshTaskId);
-        info(
+        network(
           `CDN refresh submitted: objectType=${objectType}, urls=${batch.length}, statusCode=${statusCode}, requestId=${
             requestId2 ?? "n/a"
           }, taskId=${response.body.refreshTaskId}`,
         );
       } else {
-        warning(
+        warning2(
           `CDN refresh response without task ID: objectType=${objectType}, urls=${batch.length}, statusCode=${statusCode}, requestId=${
             requestId2 ?? "n/a"
           }`,
         );
       }
     } catch (error2) {
-      warning(`CDN refresh batch failed: ${errorMessage2(error2)}`);
+      warning2(`CDN refresh batch failed: ${errorMessage2(error2)}`);
     }
   }
   return {
@@ -227449,20 +228208,20 @@ async function submitPreloadBatches(cdnClient, limiter, urls, securityToken) {
       const statusCode = response.statusCode ?? "unknown";
       if (response.body?.pushTaskId) {
         taskIds.push(response.body.pushTaskId);
-        info(
+        network(
           `CDN preload submitted: urls=${batch.length}, statusCode=${statusCode}, requestId=${
             requestId2 ?? "n/a"
           }, taskId=${response.body.pushTaskId}`,
         );
       } else {
-        warning(
+        warning2(
           `CDN preload response without task ID: urls=${batch.length}, statusCode=${statusCode}, requestId=${
             requestId2 ?? "n/a"
           }`,
         );
       }
     } catch (error2) {
-      warning(`CDN preload batch failed: ${errorMessage2(error2)}`);
+      warning2(`CDN preload batch failed: ${errorMessage2(error2)}`);
     }
   }
   return {
@@ -227488,7 +228247,7 @@ async function runCdnActions(
   let refreshSubmittedUrls = 0;
   let preloadSubmissions = 0;
   let preloadSubmittedUrls = 0;
-  debug(
+  debug2(
     `[main:runCdnActions] hasSecurityToken=${
       Boolean(credentials.securityToken)
     } uploadedKeys=${uploadedKeys.length}`,
@@ -227505,13 +228264,13 @@ async function runCdnActions(
     directoryRefreshRemain = parseQuota(quota.body?.dirRemain);
     preloadRemain = parseQuota(quota.body?.preloadRemain);
     const requestId2 = resolveRequestId(quota.body?.requestId, quota.headers);
-    info(
+    info2(
       `CDN quota: statusCode=${quota.statusCode ?? "unknown"}, requestId=${
         requestId2 ?? "n/a"
       }, urlRemain=${refreshRemain}, dirRemain=${directoryRefreshRemain}, preloadRemain=${preloadRemain}`,
     );
   } catch (error2) {
-    warning(
+    warning2(
       `CDN quota check failed, skipping CDN actions: ${errorMessage2(error2)}`,
     );
     return {
@@ -227543,7 +228302,7 @@ async function runCdnActions(
   };
   const refreshFileKeys = refreshFileSelection.remainingFileKeys;
   const preloadFileKeys = preloadFileSelection.remainingFileKeys;
-  info(
+  info2(
     `CDN plan: directoryUrls=${directories.length}, skippedNestedDirectories=${
       discoveredDirectories.length - directories.length
     }, refreshFileUrls=${refreshFileKeys.length}, preloadFileUrls=${preloadFileKeys.length}, skippedRefreshFilesByDirectory=${refreshFileSelection.skippedCount}, actions=${
@@ -227564,7 +228323,7 @@ async function runCdnActions(
       const allowedDirectoryUrls = selection.allowed.map((key) =>
         buildDirectoryUrl(inputs.cdnBaseUrl, key)
       );
-      info(
+      network(
         `CDN refresh (Directory): submitting ${allowedDirectoryUrls.length} URL(s)`,
       );
       const result = await submitRefreshBatches(
@@ -227593,7 +228352,7 @@ async function runCdnActions(
       const allowedRefreshUrls = selection.allowed.map((key) =>
         buildFileUrl(inputs.cdnBaseUrl, key)
       );
-      info(
+      network(
         `CDN refresh (File): submitting ${allowedRefreshUrls.length} URL(s)`,
       );
       const result = await submitRefreshBatches(
@@ -227622,7 +228381,7 @@ async function runCdnActions(
       const allowedPreloadUrls = selection.allowed.map((key) =>
         buildFileUrl(inputs.cdnBaseUrl, key)
       );
-      info(
+      network(
         `CDN preload (File): submitting ${allowedPreloadUrls.length} URL(s)`,
       );
       const result = await submitPreloadBatches(
@@ -227644,24 +228403,24 @@ async function runCdnActions(
   }
   const uniqueRefreshTaskIds = Array.from(new Set(refreshTaskIds));
   const uniquePreloadTaskIds = Array.from(new Set(preloadTaskIds));
-  info(
+  success(
     `CDN actions complete: refreshSubmissions=${refreshSubmissions}, refreshSubmittedUrls=${refreshSubmittedUrls}, refreshUniqueTasks=${uniqueRefreshTaskIds.length}, preloadSubmissions=${preloadSubmissions}, preloadSubmittedUrls=${preloadSubmittedUrls}, preloadUniqueTasks=${uniquePreloadTaskIds.length}`,
   );
   if (refreshSubmissions > uniqueRefreshTaskIds.length) {
-    info(
+    info2(
       `CDN refresh note: duplicate task IDs detected (${refreshSubmissions} submissions for ${uniqueRefreshTaskIds.length} unique task IDs)`,
     );
   }
   if (preloadSubmissions > uniquePreloadTaskIds.length) {
-    info(
+    info2(
       `CDN preload note: duplicate task IDs detected (${preloadSubmissions} submissions for ${uniquePreloadTaskIds.length} unique task IDs)`,
     );
   }
   if (uniqueRefreshTaskIds.length > 0) {
-    info(`CDN refresh task IDs: ${uniqueRefreshTaskIds.join(",")}`);
+    network(`CDN refresh task IDs: ${uniqueRefreshTaskIds.join(",")}`);
   }
   if (uniquePreloadTaskIds.length > 0) {
-    info(`CDN preload task IDs: ${uniquePreloadTaskIds.join(",")}`);
+    network(`CDN preload task IDs: ${uniquePreloadTaskIds.join(",")}`);
   }
   emitDebugNotice(
     "CDN submission result",
@@ -227783,13 +228542,13 @@ async function run() {
     () => runBuildCommand(inputs.buildCommand),
   );
   const credentials = resolveCredentialsFromState() ?? resolveCredentials();
-  info(
+  info2(
     `CDN config: enabled=${inputs.cdnEnabled}, baseUrl=${
       inputs.cdnBaseUrl || "(empty)"
     }, actions=${formatActions(inputs.cdnActions)}`,
   );
   if (inputs.cdnEndpoint) {
-    info(`CDN config: endpoint=${inputs.cdnEndpoint}`);
+    info2(`CDN config: endpoint=${inputs.cdnEndpoint}`);
   }
   const ossLimiter = new ApiRateLimiter(inputs.apiRpsLimit);
   const cdnLimiter = new ApiRateLimiter(CDN_API_MAX_RPS);
@@ -227799,7 +228558,7 @@ async function run() {
     ? createCdnClient(inputs, credentials)
     : void 0;
   const files = await collectFiles(inputs.inputDir);
-  info(`Found ${files.length} file(s) in ${resolve4(inputs.inputDir)}`);
+  success(`Found ${files.length} file(s) in ${resolve4(inputs.inputDir)}`);
   emitDebugNotice(
     "OSS deployment plan",
     `inputDir=${
@@ -227811,7 +228570,7 @@ async function run() {
     }`,
   );
   if (files.length === 0) {
-    warning("No files to upload");
+    warning2("No files to upload");
     emitDebugNotice(
       "OSS deployment skipped",
       `No files were collected from ${resolve4(inputs.inputDir)}.`,
@@ -227845,7 +228604,7 @@ async function run() {
     "Uploading files to OSS",
     () => uploadFiles(ossClient, ossLimiter, files, inputs),
   );
-  info(
+  info2(
     `Upload summary before CDN: uploadedKeys=${uploadResult.uploadedKeys.length}, uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}`,
   );
   emitDebugNotice(
@@ -227872,10 +228631,10 @@ async function run() {
       refreshTaskIds = cdnResult.refreshTaskIds;
       preloadTaskIds = cdnResult.preloadTaskIds;
     } catch (error2) {
-      warning(`CDN actions failed: ${errorMessage2(error2)}`);
+      warning2(`CDN actions failed: ${errorMessage2(error2)}`);
     }
   } else if (!cdnClient) {
-    info(
+    info2(
       "CDN actions skipped: client not created (cdn-enabled=false or no CDN action configured)",
     );
     emitDebugNotice(
@@ -227883,7 +228642,7 @@ async function run() {
       "No CDN client was created because CDN is disabled or no CDN action was configured.",
     );
   } else {
-    info("CDN actions skipped: no uploaded files in this execution");
+    info2("CDN actions skipped: no uploaded files in this execution");
     emitDebugNotice(
       "CDN skipped",
       "No uploaded files were produced, so CDN actions were not submitted.",
@@ -227900,7 +228659,7 @@ async function run() {
   saveState(STATE_CDN_REFRESH_TASK_IDS, refreshTaskIds.join(","));
   saveState(STATE_CDN_PRELOAD_TASK_IDS, preloadTaskIds.join(","));
   if (uploadResult.failedCount > 0) {
-    warning(
+    warning2(
       `${uploadResult.failedCount} of ${files.length} file(s) failed to upload. The workflow continues with the ${uploadResult.uploadedCount} successfully uploaded file(s). See the summary for the full list of failures.`,
     );
   }
@@ -227912,16 +228671,16 @@ async function run() {
     preloadTaskIds,
   );
   saveState(STATE_MAIN_COMPLETED, "true");
-  info(
+  success(
     `Deployment complete: uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}, failed=${uploadResult.failedCount}, total=${files.length}`,
   );
 }
 run().catch((error2) => {
   if (error2 instanceof Error) {
-    setFailed(error2.message);
+    fail(error2.message);
     return;
   }
-  setFailed(String(error2));
+  fail(String(error2));
 });
 export { run };
 /*! Bundled license information:

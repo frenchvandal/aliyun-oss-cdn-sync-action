@@ -2,16 +2,11 @@ import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import { join } from "node:path";
 
-import {
-  debug,
-  getIDToken,
-  getInput,
-  group,
-  info,
-  isDebug,
-} from "@actions/core";
+import { getIDToken, getInput, group, isDebug } from "@actions/core";
 import CredentialClient, { Config } from "@alicloud/credentials";
 import { decodeBase64Url } from "jsr/encoding";
+
+import { debug, info } from "./logger.ts";
 
 export interface OidcInputs {
   audience: string | undefined;
@@ -136,7 +131,7 @@ function parseRoleSessionExpiration(value: string | undefined): number {
   return parsed;
 }
 
-// Alibaba Cloud STS RoleSessionName: 2-64 characters, only letters, digits, -, _, ., @, =
+// Aliyun STS RoleSessionName: 2-64 characters, only letters, digits, -, _, ., @, =
 const ROLE_SESSION_NAME_PATTERN = /^[\w.\-@=]{2,64}$/;
 
 function parseRoleSessionName(value: string | undefined): string {
@@ -201,7 +196,7 @@ function normalizeCredential(
     !credential.securityToken
   ) {
     throw new Error(
-      "Failed to resolve a complete credential set from Alibaba Cloud",
+      "Failed to resolve a complete credential set from Aliyun",
     );
   }
 

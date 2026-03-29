@@ -14,6 +14,8 @@
     "npm:@alicloud/cdn20180510@9.0.0": "9.0.0",
     "npm:@alicloud/credentials@^2.4.4": "2.4.4",
     "npm:ali-oss@^6.23.0": "6.23.0_proxy-agent@6.5.0",
+    "npm:ernest-logger@*": "2.0.4",
+    "npm:ernest-logger@^2.0.4": "2.0.4",
     "npm:lefthook@^2.1.4": "2.1.4"
   },
   "jsr": {
@@ -507,6 +509,9 @@
     },
     "end-or-error@1.0.1": {
       "integrity": "sha512-OclLMSug+k2A0JKuf494im25ANRBVW8qsjmwbgX7lQ8P82H21PQ1PWkoYwb9y5yMBS69BPlwtzdIFClo3+7kOQ=="
+    },
+    "ernest-logger@2.0.4": {
+      "integrity": "sha512-q1xVJ8RkzMETTjYEj6IzgJDNjLGm5+PPwI/4/EKA5JPMG2OuUFpEu8OK0bUtPOny4VA44Q2Cej2VnrCWaWsVnw=="
     },
     "es-define-property@1.0.1": {
       "integrity": "sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g=="
@@ -1142,6 +1147,7 @@
       "npm:@alicloud/cdn20180510@9.0.0",
       "npm:@alicloud/credentials@^2.4.4",
       "npm:ali-oss@^6.23.0",
+      "npm:ernest-logger@^2.0.4",
       "npm:lefthook@^2.1.4"
     ]
   }
