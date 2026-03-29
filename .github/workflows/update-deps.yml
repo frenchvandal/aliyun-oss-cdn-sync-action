@@ -2,8 +2,8 @@ name: Update Dependencies
 
 on:
   schedule:
-    - cron: "0 0 * * *"
-      timezone: "Asia/Shanghai"
+    # GitHub Actions schedules run in UTC. This keeps the job at 00:00 Asia/Shanghai.
+    - cron: "0 16 * * *"
   workflow_dispatch:
 
 permissions:
@@ -35,23 +35,23 @@ jobs:
         run: |
           set -euo pipefail
 
-          log_file="$(mktemp)"
-          deno task update-deps 2>&1 | tee "${log_file}"
+          deno task update-deps
 
-          if grep -Fxq "All dependencies are up to date." "${log_file}"; then
+          working_tree_status="$(git status --short)"
+          if [[ -z "${working_tree_status}" ]]; then
             echo "updated=false" >> "${GITHUB_OUTPUT}"
-            echo "All dependencies are up to date." >> "${GITHUB_STEP_SUMMARY}"
+            echo "No dependency updates were detected." >> "${GITHUB_STEP_SUMMARY}"
             exit 0
           fi
 
-          if grep -Eq '^Updated [0-9]+ dependencies:' "${log_file}"; then
-            echo "updated=true" >> "${GITHUB_OUTPUT}"
-            cat "${log_file}" >> "${GITHUB_STEP_SUMMARY}"
-            exit 0
-          fi
-
-          echo "Unexpected output from 'deno task update-deps'." >&2
-          exit 1
+          echo "updated=true" >> "${GITHUB_OUTPUT}"
+          {
+            echo "Dependency updates detected:"
+            echo
+            echo '```text'
+            printf '%s\n' "${working_tree_status}"
+            echo '```'
+          } >> "${GITHUB_STEP_SUMMARY}"
 
       - name: Stop when dependencies are already up to date
         if: steps.update_deps.outputs.updated != 'true'
