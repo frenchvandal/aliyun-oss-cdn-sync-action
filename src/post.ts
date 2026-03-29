@@ -1,4 +1,4 @@
-import { debug, getState, group, info, summary, warning } from "@actions/core";
+import { getState, group, summary } from "@actions/core";
 type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
 import * as Cdn from "@alicloud/cdn20180510";
 import * as AliOssModule from "ali-oss";
@@ -17,6 +17,7 @@ import {
   resolveOssEndpoint,
 } from "./shared.ts";
 import { saveLocalCache } from "./cache.ts";
+import { debug, info, network, success, warning } from "./logger.ts";
 import {
   type OidcInputs,
   parseOidcInputs,
@@ -88,7 +89,7 @@ const RefreshObjectCachesRequestCtor = Cdn
     map?: Record<string, unknown>,
   ) => unknown;
 
-// Alibaba Cloud CDN API accepts at most 100 URLs per refresh/preload request.
+// Aliyun CDN API accepts at most 100 URLs per refresh/preload request.
 const CDN_MAX_URLS_PER_REQUEST = 100;
 // RefreshObjectCaches: 50 req/s.
 const CDN_API_MAX_RPS = 50;
@@ -255,7 +256,7 @@ async function describeMainCdnTasks(
     }
   }
 
-  info(
+  success(
     `CDN task status lookup complete: taskIds=${taskIds.length}, rows=${rows.length}, lookupFailures=${lookupFailures}. See the job summary for per-task details.`,
   );
 
@@ -369,7 +370,7 @@ async function deleteOrphans(
     if (result.status === "fulfilled") {
       deleted += 1;
       deletedKeys.push(key);
-      info(`Deleted orphan OSS object: ${key}`);
+      success(`Deleted orphan OSS object: ${key}`);
       continue;
     }
 
@@ -400,7 +401,7 @@ async function refreshDeletedCdnObjects(
       )
     );
     urlRemain = parseQuota(quota.body?.urlRemain);
-    info(
+    network(
       `CDN quota for post step cleanup: urlRemain=${urlRemain}, requested=${deletedKeys.length}`,
     );
   } catch (error: unknown) {
@@ -424,7 +425,7 @@ async function refreshDeletedCdnObjects(
   const allowedUrls = selection.allowed.map((key) =>
     buildFileUrl(cdnBaseUrl, key)
   );
-  info(
+  network(
     `CDN refresh (post step cleanup): submitting ${allowedUrls.length} deleted URL(s)`,
   );
 
@@ -440,7 +441,7 @@ async function refreshDeletedCdnObjects(
         )
       );
       if (response.body?.refreshTaskId) {
-        info(
+        network(
           `CDN refresh submitted: urls=${batch.length}, taskId=${response.body.refreshTaskId}`,
         );
       } else {
@@ -562,7 +563,7 @@ async function runPost(): Promise<void> {
       accessKeyId: credentials.accessKeyId,
       accessKeySecret: credentials.accessKeySecret,
       securityToken: credentials.securityToken,
-      // Alibaba Cloud CDN is a global service; regionId is required by the Tea
+      // Aliyun CDN is a global service; regionId is required by the Tea
       // SDK for internal endpoint resolution but has no effect on routing.
       // Strip the OSS-specific "oss-" prefix to derive a Tea-compatible region.
       regionId: inputs.region.replace(/^oss-/, ""),

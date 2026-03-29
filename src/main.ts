@@ -1,16 +1,6 @@
 import { dirname, extname, resolve } from "node:path";
 
-import {
-  debug,
-  group,
-  info,
-  isDebug,
-  saveState,
-  setFailed,
-  setOutput,
-  summary,
-  warning,
-} from "@actions/core";
+import { group, isDebug, saveState, setOutput, summary } from "@actions/core";
 type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
 import * as Cdn from "@alicloud/cdn20180510";
 import * as AliOssModule from "ali-oss";
@@ -18,6 +8,7 @@ import { chunk } from "jsr/collections";
 import { typeByExtension } from "jsr/media-types";
 import * as exec from "npm/actions-exec";
 import * as io from "npm/actions-io";
+import formatter from "npm/ernest-logger-formatter";
 
 import { restoreLocalCache } from "./cache.ts";
 import {
@@ -33,6 +24,15 @@ import {
   resolveCredentialsFromState,
   resolveOssEndpoint,
 } from "./shared.ts";
+import {
+  debug,
+  fail,
+  info,
+  network,
+  start,
+  success,
+  warning,
+} from "./logger.ts";
 import {
   type OidcInputs,
   parseOidcInputs,
@@ -136,7 +136,7 @@ const PushObjectCacheRequestCtor = Cdn
   .PushObjectCacheRequest as unknown as new (
     map?: Record<string, unknown>,
   ) => unknown;
-// Alibaba Cloud CDN API accepts at most 100 URLs per refresh/preload request.
+// Aliyun CDN API accepts at most 100 URLs per refresh/preload request.
 const CDN_MAX_URLS_PER_REQUEST = 100;
 const FORCED_CONTENT_TYPES: Readonly<Record<string, string>> = Object.freeze({
   "atom.xml": "application/atom+xml",
@@ -149,13 +149,6 @@ const CDN_API_MAX_RPS = 50;
 const CDN_QUOTA_API_MAX_RPS = 20;
 // Maximum number of upload retry attempts per file.
 const MAX_UPLOAD_RETRIES = 3;
-const ANSI_BOLD = "\u001b[1m";
-const ANSI_FG_CYAN = "\u001b[38;5;45m";
-const ANSI_FG_GRAY = "\u001b[38;5;240m";
-const ANSI_FG_GREEN = "\u001b[38;5;46m";
-const ANSI_FG_RED = "\u001b[38;5;203m";
-const ANSI_FG_YELLOW = "\u001b[38;5;220m";
-const ANSI_RESET = "\u001b[0m";
 const UPLOAD_PROGRESS_BAR_WIDTH = 30;
 const UPLOAD_PROGRESS_PERCENT_STEP = 1;
 const NO_CACHE_CONTROL_VALUE = "no-cache, max-age=0, must-revalidate";
@@ -277,26 +270,16 @@ function resolveCacheControl(relativePath: string): string | undefined {
   return undefined;
 }
 
-function colorize(ansiCode: string, value: string): string {
-  return `${ansiCode}${value}${ANSI_RESET}`;
-}
-
 function buildUploadProgressBar(
   processedCount: number,
   totalCount: number,
 ): string {
   const safeTotal = Math.max(totalCount, 1);
-  const ratio = Math.max(0, Math.min(1, processedCount / safeTotal));
-  const filledWidth = Math.round(ratio * UPLOAD_PROGRESS_BAR_WIDTH);
-  const emptyWidth = UPLOAD_PROGRESS_BAR_WIDTH - filledWidth;
-  const filled = filledWidth > 0
-    ? colorize(ANSI_FG_GREEN, "=".repeat(filledWidth))
-    : "";
-  const empty = emptyWidth > 0
-    ? colorize(ANSI_FG_GRAY, "-".repeat(emptyWidth))
-    : "";
-
-  return `[${filled}${empty}]`;
+  return formatter.createProgressBar(
+    Math.min(processedCount, safeTotal),
+    safeTotal,
+    UPLOAD_PROGRESS_BAR_WIDTH,
+  );
 }
 
 function logUploadProgress(
@@ -307,18 +290,11 @@ function logUploadProgress(
   failedCount: number,
 ): void {
   const safeTotal = Math.max(totalCount, 1);
-  const percent = Math.floor((processedCount / safeTotal) * 100);
 
   info(
-    `${colorize(`${ANSI_BOLD}${ANSI_FG_CYAN}`, "OSS upload progress")} ${
+    `${formatter.createBadge("OSS UPLOAD", "cyan")} ${
       buildUploadProgressBar(processedCount, totalCount)
-    } ${colorize(ANSI_BOLD, `${percent}%`)} (${processedCount}/${totalCount}) ${
-      colorize(ANSI_FG_GREEN, `uploaded=${uploadedCount}`)
-    } ${colorize(ANSI_FG_YELLOW, `skipped=${skippedCount}`)} ${
-      failedCount > 0
-        ? colorize(ANSI_FG_RED, `failed=${failedCount}`)
-        : colorize(ANSI_FG_GRAY, `failed=${failedCount}`)
-    }`,
+    } (${processedCount}/${safeTotal}) uploaded=${uploadedCount} skipped=${skippedCount} failed=${failedCount}`,
   );
 }
 
@@ -365,7 +341,7 @@ function parseInputs(): Inputs {
 }
 
 async function runBuildCommand(command: string): Promise<void> {
-  info(`Executing local build command: ${command}`);
+  start(`Executing local build command: ${command}`);
 
   const exitCode = await exec.exec(command);
   if (exitCode !== 0) {
@@ -517,7 +493,7 @@ async function inspectBuildCommandExecutable(command: string): Promise<void> {
 
   const version = await resolveExecutableVersion(executablePath);
   if (version) {
-    info(
+    success(
       `Build command executable resolved: executable=${executable}, path=${executablePath}, version=${version}`,
     );
     return;
@@ -572,7 +548,7 @@ function createCdnClient(inputs: Inputs, credentials: Credentials): CdnClient {
     accessKeyId: credentials.accessKeyId,
     accessKeySecret: credentials.accessKeySecret,
     securityToken: credentials.securityToken,
-    // Alibaba Cloud CDN is a global service; regionId is required by the Tea
+    // Aliyun CDN is a global service; regionId is required by the Tea
     // SDK for internal endpoint resolution but has no effect on routing.
     // Strip the OSS-specific "oss-" prefix to derive a Tea-compatible region.
     regionId: inputs.region.replace(/^oss-/, ""),
@@ -975,7 +951,7 @@ async function submitRefreshBatches(
       const statusCode = response.statusCode ?? "unknown";
       if (response.body?.refreshTaskId) {
         taskIds.push(response.body.refreshTaskId);
-        info(
+        network(
           `CDN refresh submitted: objectType=${objectType}, urls=${batch.length}, statusCode=${statusCode}, requestId=${
             requestId ?? "n/a"
           }, taskId=${response.body.refreshTaskId}`,
@@ -1024,7 +1000,7 @@ async function submitPreloadBatches(
       const statusCode = response.statusCode ?? "unknown";
       if (response.body?.pushTaskId) {
         taskIds.push(response.body.pushTaskId);
-        info(
+        network(
           `CDN preload submitted: urls=${batch.length}, statusCode=${statusCode}, requestId=${
             requestId ?? "n/a"
           }, taskId=${response.body.pushTaskId}`,
@@ -1126,7 +1102,7 @@ async function runCdnActions(
     }`,
   );
 
-  // Alibaba Cloud recommendation: all RefreshObjectCaches first, then all
+  // Aliyun recommendation: all RefreshObjectCaches first, then all
   // PushObjectCache. Purging stale content before preloading ensures POPs
   // always fetch the latest version from origin.
   if (shouldRefresh) {
@@ -1140,7 +1116,7 @@ async function runCdnActions(
       const allowedDirectoryUrls = selection.allowed.map((key) =>
         buildDirectoryUrl(inputs.cdnBaseUrl, key)
       );
-      info(
+      network(
         `CDN refresh (Directory): submitting ${allowedDirectoryUrls.length} URL(s)`,
       );
       const result = await submitRefreshBatches(
@@ -1170,7 +1146,7 @@ async function runCdnActions(
       const allowedRefreshUrls = selection.allowed.map((key) =>
         buildFileUrl(inputs.cdnBaseUrl, key)
       );
-      info(
+      network(
         `CDN refresh (File): submitting ${allowedRefreshUrls.length} URL(s)`,
       );
       const result = await submitRefreshBatches(
@@ -1200,7 +1176,7 @@ async function runCdnActions(
       const allowedPreloadUrls = selection.allowed.map((key) =>
         buildFileUrl(inputs.cdnBaseUrl, key)
       );
-      info(
+      network(
         `CDN preload (File): submitting ${allowedPreloadUrls.length} URL(s)`,
       );
       const result = await submitPreloadBatches(
@@ -1223,7 +1199,7 @@ async function runCdnActions(
 
   const uniqueRefreshTaskIds = Array.from(new Set(refreshTaskIds));
   const uniquePreloadTaskIds = Array.from(new Set(preloadTaskIds));
-  info(
+  success(
     `CDN actions complete: refreshSubmissions=${refreshSubmissions}, refreshSubmittedUrls=${refreshSubmittedUrls}, refreshUniqueTasks=${uniqueRefreshTaskIds.length}, preloadSubmissions=${preloadSubmissions}, preloadSubmittedUrls=${preloadSubmittedUrls}, preloadUniqueTasks=${uniquePreloadTaskIds.length}`,
   );
   if (refreshSubmissions > uniqueRefreshTaskIds.length) {
@@ -1237,10 +1213,10 @@ async function runCdnActions(
     );
   }
   if (uniqueRefreshTaskIds.length > 0) {
-    info(`CDN refresh task IDs: ${uniqueRefreshTaskIds.join(",")}`);
+    network(`CDN refresh task IDs: ${uniqueRefreshTaskIds.join(",")}`);
   }
   if (uniquePreloadTaskIds.length > 0) {
-    info(`CDN preload task IDs: ${uniquePreloadTaskIds.join(",")}`);
+    network(`CDN preload task IDs: ${uniquePreloadTaskIds.join(",")}`);
   }
   emitDebugNotice(
     "CDN submission result",
@@ -1345,7 +1321,7 @@ export async function run(): Promise<void> {
     : undefined;
 
   const files = await collectFiles(inputs.inputDir);
-  info(`Found ${files.length} file(s) in ${resolve(inputs.inputDir)}`);
+  success(`Found ${files.length} file(s) in ${resolve(inputs.inputDir)}`);
   emitDebugNotice(
     "OSS deployment plan",
     `inputDir=${
@@ -1462,15 +1438,15 @@ export async function run(): Promise<void> {
     preloadTaskIds,
   );
   saveState(STATE_MAIN_COMPLETED, "true");
-  info(
+  success(
     `Deployment complete: uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}, failed=${uploadResult.failedCount}, total=${files.length}`,
   );
 }
 
 run().catch((error: unknown) => {
   if (error instanceof Error) {
-    setFailed(error.message);
+    fail(error.message);
     return;
   }
-  setFailed(String(error));
+  fail(String(error));
 });

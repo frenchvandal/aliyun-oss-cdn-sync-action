@@ -160,7 +160,7 @@ var require_tunnel = __commonJS({
         connectOptions.headers["Proxy-Authorization"] = "Basic " +
           new Buffer(connectOptions.proxyAuth).toString("base64");
       }
-      debug2("making CONNECT request");
+      debug3("making CONNECT request");
       var connectReq = self.request(connectOptions);
       connectReq.useChunkedEncodingByDefault = false;
       connectReq.once("response", onResponse);
@@ -180,45 +180,45 @@ var require_tunnel = __commonJS({
         connectReq.removeAllListeners();
         socket.removeAllListeners();
         if (res.statusCode !== 200) {
-          debug2(
+          debug3(
             "tunneling socket could not be established, statusCode=%d",
             res.statusCode,
           );
           socket.destroy();
-          var error2 = new Error(
+          var error = new Error(
             "tunneling socket could not be established, statusCode=" +
               res.statusCode,
           );
-          error2.code = "ECONNRESET";
-          options.request.emit("error", error2);
+          error.code = "ECONNRESET";
+          options.request.emit("error", error);
           self.removeSocket(placeholder);
           return;
         }
         if (head.length > 0) {
-          debug2("got illegal response body from proxy");
+          debug3("got illegal response body from proxy");
           socket.destroy();
-          var error2 = new Error("got illegal response body from proxy");
-          error2.code = "ECONNRESET";
-          options.request.emit("error", error2);
+          var error = new Error("got illegal response body from proxy");
+          error.code = "ECONNRESET";
+          options.request.emit("error", error);
           self.removeSocket(placeholder);
           return;
         }
-        debug2("tunneling connection has established");
+        debug3("tunneling connection has established");
         self.sockets[self.sockets.indexOf(placeholder)] = socket;
         return cb(socket);
       }
       function onError(cause) {
         connectReq.removeAllListeners();
-        debug2(
+        debug3(
           "tunneling socket could not be established, cause=%s\n",
           cause.message,
           cause.stack,
         );
-        var error2 = new Error(
+        var error = new Error(
           "tunneling socket could not be established, cause=" + cause.message,
         );
-        error2.code = "ECONNRESET";
-        options.request.emit("error", error2);
+        error.code = "ECONNRESET";
+        options.request.emit("error", error);
         self.removeSocket(placeholder);
       }
     };
@@ -279,9 +279,9 @@ var require_tunnel = __commonJS({
       }
       return target;
     }
-    var debug2;
+    var debug3;
     if (process.env.NODE_DEBUG && /\btunnel\b/.test(process.env.NODE_DEBUG)) {
-      debug2 = function () {
+      debug3 = function () {
         var args = Array.prototype.slice.call(arguments);
         if (typeof args[0] === "string") {
           args[0] = "TUNNEL: " + args[0];
@@ -291,10 +291,10 @@ var require_tunnel = __commonJS({
         console.error.apply(console, args);
       };
     } else {
-      debug2 = function () {
+      debug3 = function () {
       };
     }
-    exports.debug = debug2;
+    exports.debug = debug3;
   },
 });
 
@@ -1674,16 +1674,14 @@ var require_diagnostics = __commonJS({
       });
       diagnosticsChannel.channel("undici:client:connectError").subscribe(
         (evt) => {
-          const {
-            connectParams: { version, protocol, port, host },
-            error: error2,
-          } = evt;
+          const { connectParams: { version, protocol, port, host }, error } =
+            evt;
           debuglog(
             "connection to %s using %s%s errored - %s",
             `${host}${port ? `:${port}` : ""}`,
             protocol,
             version,
-            error2.message,
+            error.message,
           );
         },
       );
@@ -1711,13 +1709,13 @@ var require_diagnostics = __commonJS({
         debuglog("trailers received from %s %s/%s", method, origin, path6);
       });
       diagnosticsChannel.channel("undici:request:error").subscribe((evt) => {
-        const { request: { method, path: path6, origin }, error: error2 } = evt;
+        const { request: { method, path: path6, origin }, error } = evt;
         debuglog(
           "request to %s %s/%s errored - %s",
           method,
           origin,
           path6,
-          error2.message,
+          error.message,
         );
       });
       isClientSet = true;
@@ -1753,17 +1751,15 @@ var require_diagnostics = __commonJS({
         );
         diagnosticsChannel.channel("undici:client:connectError").subscribe(
           (evt) => {
-            const {
-              connectParams: { version, protocol, port, host },
-              error: error2,
-            } = evt;
+            const { connectParams: { version, protocol, port, host }, error } =
+              evt;
             debuglog(
               "connection to %s%s using %s%s errored - %s",
               host,
               port ? `:${port}` : "",
               protocol,
               version,
-              error2.message,
+              error.message,
             );
           },
         );
@@ -2085,19 +2081,19 @@ var require_request = __commonJS({
           this.onError(err);
         }
       }
-      onError(error2) {
+      onError(error) {
         this.onFinally();
         if (channels.error.hasSubscribers) {
           channels.error.publish({
             request: this,
-            error: error2,
+            error,
           });
         }
         if (this.aborted) {
           return;
         }
         this.aborted = true;
-        return this[kHandler].onError(error2);
+        return this[kHandler].onError(error);
       }
       onFinally() {
         if (this.errorHandler) {
@@ -3729,13 +3725,13 @@ var require_data_url = __commonJS({
     }
     function collectASequenceOfCodePointsFast(char, input, position) {
       const idx = input.indexOf(char, position.position);
-      const start = position.position;
+      const start2 = position.position;
       if (idx === -1) {
         position.position = input.length;
-        return input.slice(start);
+        return input.slice(start2);
       }
       position.position = idx;
-      return input.slice(start, position.position);
+      return input.slice(start2, position.position);
     }
     function stringPercentDecode(input) {
       const bytes = encoder2.encode(input);
@@ -6109,11 +6105,11 @@ var require_formdata_parser = __commonJS({
       return name;
     }
     function collectASequenceOfBytes(condition, input, position) {
-      let start = position.position;
-      while (start < input.length && condition(input[start])) {
-        ++start;
+      let start2 = position.position;
+      while (start2 < input.length && condition(input[start2])) {
+        ++start2;
       }
-      return input.subarray(position.position, position.position = start);
+      return input.subarray(position.position, position.position = start2);
     }
     function removeChars(buf, leading, trailing, predicate) {
       let lead = 0;
@@ -6128,12 +6124,12 @@ var require_formdata_parser = __commonJS({
         ? buf
         : buf.subarray(lead, trail + 1);
     }
-    function bufferStartsWith(buffer, start, position) {
-      if (buffer.length < start.length) {
+    function bufferStartsWith(buffer, start2, position) {
+      if (buffer.length < start2.length) {
         return false;
       }
-      for (let i = 0; i < start.length; i++) {
-        if (start[i] !== buffer[position.position + i]) {
+      for (let i = 0; i < start2.length; i++) {
+        if (start2[i] !== buffer[position.position + i]) {
           return false;
         }
       }
@@ -6461,7 +6457,7 @@ Content-Type: ${value.type || "application/octet-stream"}\r
       }
       throwIfAborted(object[kState]);
       const promise = createDeferredPromise();
-      const errorSteps = (error2) => promise.reject(error2);
+      const errorSteps = (error) => promise.reject(error);
       const successSteps = (data) => {
         try {
           promise.resolve(convertBytesToJSValue(data));
@@ -6586,9 +6582,9 @@ var require_client_h1 = __commonJS({
           },
           wasm_on_status: (p, at, len) => {
             assert(currentParser.ptr === p);
-            const start = at - currentBufferPtr + currentBufferRef.byteOffset;
+            const start2 = at - currentBufferPtr + currentBufferRef.byteOffset;
             return currentParser.onStatus(
-              new FastBuffer(currentBufferRef.buffer, start, len),
+              new FastBuffer(currentBufferRef.buffer, start2, len),
             ) || 0;
           },
           wasm_on_message_begin: (p) => {
@@ -6597,16 +6593,16 @@ var require_client_h1 = __commonJS({
           },
           wasm_on_header_field: (p, at, len) => {
             assert(currentParser.ptr === p);
-            const start = at - currentBufferPtr + currentBufferRef.byteOffset;
+            const start2 = at - currentBufferPtr + currentBufferRef.byteOffset;
             return currentParser.onHeaderField(
-              new FastBuffer(currentBufferRef.buffer, start, len),
+              new FastBuffer(currentBufferRef.buffer, start2, len),
             ) || 0;
           },
           wasm_on_header_value: (p, at, len) => {
             assert(currentParser.ptr === p);
-            const start = at - currentBufferPtr + currentBufferRef.byteOffset;
+            const start2 = at - currentBufferPtr + currentBufferRef.byteOffset;
             return currentParser.onHeaderValue(
-              new FastBuffer(currentBufferRef.buffer, start, len),
+              new FastBuffer(currentBufferRef.buffer, start2, len),
             ) || 0;
           },
           wasm_on_headers_complete: (
@@ -6624,9 +6620,9 @@ var require_client_h1 = __commonJS({
           },
           wasm_on_body: (p, at, len) => {
             assert(currentParser.ptr === p);
-            const start = at - currentBufferPtr + currentBufferRef.byteOffset;
+            const start2 = at - currentBufferPtr + currentBufferRef.byteOffset;
             return currentParser.onBody(
-              new FastBuffer(currentBufferRef.buffer, start, len),
+              new FastBuffer(currentBufferRef.buffer, start2, len),
             ) || 0;
           },
           wasm_on_message_complete: (p) => {
@@ -8363,8 +8359,8 @@ var require_client_h2 = __commonJS({
         }
         request.onRequestSent();
         client[kResume]();
-      } catch (error2) {
-        abort(error2);
+      } catch (error) {
+        abort(error);
       }
     }
     function writeStream(
@@ -8574,8 +8570,8 @@ var require_redirect_handler = __commonJS({
       onUpgrade(statusCode, headers, socket) {
         this.handler.onUpgrade(statusCode, headers, socket);
       }
-      onError(error2) {
-        this.handler.onError(error2);
+      onError(error) {
+        this.handler.onError(error);
       }
       onHeaders(statusCode, headers, resume, statusText) {
         this.location = this.history.length >= this.maxRedirections ||
@@ -9736,7 +9732,7 @@ var require_pool = __commonJS({
           }
           : void 0;
         this[kFactory] = factory;
-        this.on("connectionError", (origin2, targets, error2) => {
+        this.on("connectionError", (origin2, targets, error) => {
           for (const target of targets) {
             const idx = this[kClients].indexOf(target);
             if (idx !== -1) {
@@ -10750,8 +10746,8 @@ var require_retry_handler = __commonJS({
             );
             return false;
           }
-          const { start, size, end = size - 1 } = contentRange;
-          assert(this.start === start, "content-range mismatch");
+          const { start: start2, size, end = size - 1 } = contentRange;
+          assert(this.start === start2, "content-range mismatch");
           assert(
             this.end == null || this.end === end,
             "content-range mismatch",
@@ -10770,16 +10766,16 @@ var require_retry_handler = __commonJS({
                 statusMessage,
               );
             }
-            const { start, size, end = size - 1 } = range;
+            const { start: start2, size, end = size - 1 } = range;
             assert(
-              start != null && Number.isFinite(start),
+              start2 != null && Number.isFinite(start2),
               "content-range mismatch",
             );
             assert(
               end != null && Number.isFinite(end),
               "invalid content-length",
             );
-            this.start = start;
+            this.start = start2;
             this.end = end;
           }
           if (this.end == null) {
@@ -11125,9 +11121,9 @@ var require_readable = __commonJS({
       }
       const { _readableState: state } = consume2.stream;
       if (state.bufferIndex) {
-        const start = state.bufferIndex;
+        const start2 = state.bufferIndex;
         const end = state.buffer.length;
-        for (let n = start; n < end; n++) {
+        for (let n = start2; n < end; n++) {
           consumePush(consume2, state.buffer[n]);
         }
       } else {
@@ -11154,12 +11150,12 @@ var require_readable = __commonJS({
         ? chunks[0]
         : Buffer.concat(chunks, length);
       const bufferLength = buffer.length;
-      const start =
+      const start2 =
         bufferLength > 2 && buffer[0] === 239 && buffer[1] === 187 &&
           buffer[2] === 191
           ? 3
           : 0;
-      return buffer.utf8Slice(start, bufferLength);
+      return buffer.utf8Slice(start2, bufferLength);
     }
     function chunksConcat(chunks, length) {
       if (chunks.length === 0 || length === 0) {
@@ -12583,16 +12579,16 @@ var require_mock_utils = __commonJS({
         };
       }
       const {
-        data: { statusCode, data, headers, trailers, error: error2 },
+        data: { statusCode, data, headers, trailers, error },
         delay: delay2,
         persist,
       } = mockDispatch2;
       const { timesInvoked, times } = mockDispatch2;
       mockDispatch2.consumed = !persist && timesInvoked >= times;
       mockDispatch2.pending = timesInvoked < times;
-      if (error2 !== null) {
+      if (error !== null) {
         deleteMockDispatch(this[kDispatches], key);
-        handler.onError(error2);
+        handler.onError(error);
         return true;
       }
       if (typeof delay2 === "number" && delay2 > 0) {
@@ -12642,23 +12638,23 @@ var require_mock_utils = __commonJS({
         if (agent.isMockActive) {
           try {
             mockDispatch.call(this, opts, handler);
-          } catch (error2) {
-            if (error2 instanceof MockNotMatchedError) {
+          } catch (error) {
+            if (error instanceof MockNotMatchedError) {
               const netConnect = agent[kGetNetConnect]();
               if (netConnect === false) {
                 throw new MockNotMatchedError(
-                  `${error2.message}: subsequent request to origin ${origin} was not allowed (net.connect disabled)`,
+                  `${error.message}: subsequent request to origin ${origin} was not allowed (net.connect disabled)`,
                 );
               }
               if (checkNetConnect(netConnect, origin)) {
                 originalDispatch.call(this, opts, handler);
               } else {
                 throw new MockNotMatchedError(
-                  `${error2.message}: subsequent request to origin ${origin} was not allowed (net.connect is not enabled for this origin)`,
+                  `${error.message}: subsequent request to origin ${origin} was not allowed (net.connect is not enabled for this origin)`,
                 );
               }
             } else {
-              throw error2;
+              throw error;
             }
           }
         } else {
@@ -12872,15 +12868,15 @@ var require_mock_interceptor = __commonJS({
       /**
        * Mock an undici request with a defined error.
        */
-      replyWithError(error2) {
-        if (typeof error2 === "undefined") {
+      replyWithError(error) {
+        if (typeof error === "undefined") {
           throw new InvalidArgumentError("error must be defined");
         }
         const newMockDispatch = addMockDispatch(
           this[kDispatches],
           this[kDispatchKey],
           {
-            error: error2,
+            error,
           },
         );
         return new MockScope(newMockDispatch);
@@ -15750,17 +15746,17 @@ var require_fetch = __commonJS({
         this.emit("terminated", reason);
       }
       // https://fetch.spec.whatwg.org/#fetch-controller-abort
-      abort(error2) {
+      abort(error) {
         if (this.state !== "ongoing") {
           return;
         }
         this.state = "aborted";
-        if (!error2) {
-          error2 = new DOMException("The operation was aborted.", "AbortError");
+        if (!error) {
+          error = new DOMException("The operation was aborted.", "AbortError");
         }
-        this.serializedAbortReason = error2;
-        this.connection?.destroy(error2);
-        this.emit("terminated", error2);
+        this.serializedAbortReason = error;
+        this.connection?.destroy(error);
+        this.emit("terminated", error);
       }
     };
     function handleFetchDone(response) {
@@ -15862,12 +15858,12 @@ var require_fetch = __commonJS({
       );
     }
     var markResourceTiming = performance.markResourceTiming;
-    function abortFetch(p, request, responseObject, error2) {
+    function abortFetch(p, request, responseObject, error) {
       if (p) {
-        p.reject(error2);
+        p.reject(error);
       }
       if (request.body != null && isReadable(request.body?.stream)) {
-        request.body.stream.cancel(error2).catch((err) => {
+        request.body.stream.cancel(error).catch((err) => {
           if (err.code === "ERR_INVALID_STATE") {
             return;
           }
@@ -15879,7 +15875,7 @@ var require_fetch = __commonJS({
       }
       const response = responseObject[kState];
       if (response.body != null && isReadable(response.body?.stream)) {
-        response.body.stream.cancel(error2).catch((err) => {
+        response.body.stream.cancel(error).catch((err) => {
           if (err.code === "ERR_INVALID_STATE") {
             return;
           }
@@ -16909,13 +16905,13 @@ var require_fetch = __commonJS({
               fetchParams.controller.ended = true;
               this.body.push(null);
             },
-            onError(error2) {
+            onError(error) {
               if (this.abort) {
                 fetchParams.controller.off("terminated", this.abort);
               }
-              this.body?.destroy(error2);
-              fetchParams.controller.terminate(error2);
-              reject(error2);
+              this.body?.destroy(error);
+              fetchParams.controller.terminate(error);
+              reject(error);
             },
             onUpgrade(status, rawHeaders, socket) {
               if (status !== 101) {
@@ -17406,8 +17402,8 @@ var require_util4 = __commonJS({
                   }
                   fr[kResult] = result;
                   fireAProgressEvent("load", fr);
-                } catch (error2) {
-                  fr[kError] = error2;
+                } catch (error) {
+                  fr[kError] = error;
                   fireAProgressEvent("error", fr);
                 }
                 if (fr[kState] !== "loading") {
@@ -17416,13 +17412,13 @@ var require_util4 = __commonJS({
               });
               break;
             }
-          } catch (error2) {
+          } catch (error) {
             if (fr[kAborted]) {
               return;
             }
             queueMicrotask(() => {
               fr[kState] = "done";
-              fr[kError] = error2;
+              fr[kError] = error;
               fireAProgressEvent("error", fr);
               if (fr[kState] !== "loading") {
                 fireAProgressEvent("loadend", fr);
@@ -19970,11 +19966,11 @@ var require_connection = __commonJS({
         });
       }
     }
-    function onSocketError(error2) {
+    function onSocketError(error) {
       const { ws } = this;
       ws[kReadyState] = states.CLOSING;
       if (channels.socketError.hasSubscribers) {
-        channels.socketError.publish(error2);
+        channels.socketError.publish(error);
       }
       this.destroy();
     }
@@ -20253,13 +20249,13 @@ var require_receiver = __commonJS({
                 this.#extensions.get("permessage-deflate").decompress(
                   body,
                   this.#info.fin,
-                  (error2, data) => {
-                    if (error2) {
+                  (error, data) => {
+                    if (error) {
                       closeWebSocketConnection(
                         this.ws,
                         1007,
-                        error2.message,
-                        error2.message.length,
+                        error.message,
+                        error.message.length,
                       );
                       return;
                     }
@@ -21402,8 +21398,8 @@ var require_eventsource = __commonJS({
               );
             },
           });
-          pipeline(response.body.stream, eventSourceStream, (error2) => {
-            if (error2?.aborted === false) {
+          pipeline(response.body.stream, eventSourceStream, (error) => {
+            if (error?.aborted === false) {
               this.close();
               this.dispatchEvent(new Event("error"));
             }
@@ -21691,6 +21687,750 @@ var require_undici = __commonJS({
   },
 });
 
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/colors/colors.js
+var require_colors = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/colors/colors.js"(
+    exports,
+    module,
+  ) {
+    var colors = {
+      // Standard colors
+      black: "\x1B[30m",
+      red: "\x1B[31m",
+      green: "\x1B[32m",
+      yellow: "\x1B[33m",
+      blue: "\x1B[34m",
+      magenta: "\x1B[35m",
+      cyan: "\x1B[36m",
+      white: "\x1B[37m",
+      // Bright/Bold colors
+      brightBlack: "\x1B[90m",
+      brightRed: "\x1B[91m",
+      brightGreen: "\x1B[92m",
+      brightYellow: "\x1B[93m",
+      brightBlue: "\x1B[94m",
+      brightMagenta: "\x1B[95m",
+      brightCyan: "\x1B[96m",
+      brightWhite: "\x1B[97m",
+      // Background colors
+      bgBlack: "\x1B[40m",
+      bgRed: "\x1B[41m",
+      bgGreen: "\x1B[42m",
+      bgYellow: "\x1B[43m",
+      bgBlue: "\x1B[44m",
+      bgMagenta: "\x1B[45m",
+      bgCyan: "\x1B[46m",
+      bgWhite: "\x1B[47m",
+      // Bright background colors
+      bgBrightBlack: "\x1B[100m",
+      bgBrightRed: "\x1B[101m",
+      bgBrightGreen: "\x1B[102m",
+      bgBrightYellow: "\x1B[103m",
+      bgBrightBlue: "\x1B[104m",
+      bgBrightMagenta: "\x1B[105m",
+      bgBrightCyan: "\x1B[106m",
+      bgBrightWhite: "\x1B[107m",
+      // Text styles
+      reset: "\x1B[0m",
+      bold: "\x1B[1m",
+      dim: "\x1B[2m",
+      italic: "\x1B[3m",
+      underline: "\x1B[4m",
+      blink: "\x1B[5m",
+      reverse: "\x1B[7m",
+      hidden: "\x1B[8m",
+      strikethrough: "\x1B[9m",
+      // Semantic aliases for better readability
+      success: "\x1B[32m",
+      error: "\x1B[31m",
+      warning: "\x1B[33m",
+      info: "\x1B[34m",
+      debug: "\x1B[36m",
+      // Additional semantic colors
+      primary: "\x1B[94m",
+      secondary: "\x1B[90m",
+      danger: "\x1B[91m",
+      muted: "\x1B[2m",
+    };
+    colors.combine = (...codes) => {
+      return codes.map((code) => colors[code] || "").join("");
+    };
+    colors.wrap = (text, color) => {
+      return (colors[color] || "") + text + colors.reset;
+    };
+    colors.gradient = (text, colorSequence = [
+      "cyan",
+      "blue",
+      "magenta",
+    ]) => {
+      const chars = text.split("");
+      const colorCount = colorSequence.length;
+      return chars.map((char, i) => {
+        const colorName = colorSequence[i % colorCount];
+        return colors[colorName] + char;
+      }).join("") + colors.reset;
+    };
+    colors.rainbow = (text) => {
+      const rainbowColors = [
+        "red",
+        "yellow",
+        "green",
+        "cyan",
+        "blue",
+        "magenta",
+      ];
+      return colors.gradient(text, rainbowColors);
+    };
+    module.exports = colors;
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/emojis/emojis.js
+var require_emojis = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/emojis/emojis.js"(
+    exports,
+    module,
+  ) {
+    var emojis = {
+      // Core log levels
+      trace: "\u{1F50D}",
+      debug: "\u{1F41E}",
+      info: "\u2139\uFE0F",
+      success: "\u2705",
+      warn: "\u26A0\uFE0F",
+      error: "\u274C",
+      fatal: "\u{1F480}",
+      // System operations
+      start: "\u25B6\uFE0F",
+      stop: "\u23F9\uFE0F",
+      pause: "\u23F8\uFE0F",
+      resume: "\u23EF\uFE0F",
+      restart: "\u{1F504}",
+      shutdown: "\u{1F6D1}",
+      boot: "\u{1F680}",
+      // Network & API
+      network: "\u{1F310}",
+      api: "\u{1F50C}",
+      request: "\u{1F4E4}",
+      response: "\u{1F4E5}",
+      webhook: "\u{1FA9D}",
+      socket: "\u{1F517}",
+      upload: "\u2B06\uFE0F",
+      download: "\u2B07\uFE0F",
+      sync: "\u{1F504}",
+      // Database & Storage
+      db: "\u{1F4BE}",
+      database: "\u{1F5C4}\uFE0F",
+      cache: "\u{1F4A8}",
+      storage: "\u{1F4E6}",
+      backup: "\u{1F4BF}",
+      restore: "\u267B\uFE0F",
+      query: "\u{1F50E}",
+      migration: "\u{1F500}",
+      // Security & Auth
+      security: "\u{1F512}",
+      unlock: "\u{1F513}",
+      auth: "\u{1F510}",
+      key: "\u{1F511}",
+      token: "\u{1F3AB}",
+      encrypt: "\u{1F6E1}\uFE0F",
+      decrypt: "\u{1F513}",
+      firewall: "\u{1F9F1}",
+      scan: "\u{1F52C}",
+      // Files & Documents
+      file: "\u{1F4C4}",
+      folder: "\u{1F4C1}",
+      document: "\u{1F4C3}",
+      archive: "\u{1F5DC}\uFE0F",
+      zip: "\u{1F910}",
+      pdf: "\u{1F4D5}",
+      csv: "\u{1F4CA}",
+      json: "\u{1F4CB}",
+      xml: "\u{1F4F0}",
+      config: "\u2699\uFE0F",
+      // Cloud & Deployment
+      cloud: "\u2601\uFE0F",
+      server: "\u{1F5A5}\uFE0F",
+      deploy: "\u{1F680}",
+      build: "\u{1F528}",
+      compile: "\u2692\uFE0F",
+      package: "\u{1F4E6}",
+      publish: "\u{1F4E2}",
+      release: "\u{1F389}",
+      rollback: "\u23EE\uFE0F",
+      // Development & Testing
+      test: "\u{1F9EA}",
+      unittest: "\u{1F52C}",
+      integration: "\u{1F517}",
+      coverage: "\u{1F4CA}",
+      benchmark: "\u23F1\uFE0F",
+      performance: "\u26A1",
+      profiling: "\u{1F4C8}",
+      bugFix: "\u{1F41B}",
+      feature: "\u2728",
+      refactor: "\u267B\uFE0F",
+      cleanup: "\u{1F9F9}",
+      // User & Social
+      user: "\u{1F464}",
+      users: "\u{1F465}",
+      admin: "\u{1F451}",
+      robot: "\u{1F916}",
+      human: "\u{1F468}\u200D\u{1F469}\u200D\u{1F467}\u200D\u{1F466}",
+      team: "\u{1F468}\u200D\u{1F469}\u200D\u{1F467}\u200D\u{1F466}",
+      chat: "\u{1F4AC}",
+      message: "\u2709\uFE0F",
+      notification: "\u{1F514}",
+      alert: "\u{1F6A8}",
+      // Business & Analytics
+      money: "\u{1F4B0}",
+      payment: "\u{1F4B3}",
+      invoice: "\u{1F9FE}",
+      chart: "\u{1F4CA}",
+      analytics: "\u{1F4C8}",
+      metrics: "\u{1F4C9}",
+      dashboard: "\u{1F39B}\uFE0F",
+      report: "\u{1F4C4}",
+      // Status indicators
+      online: "\u{1F7E2}",
+      offline: "\u{1F534}",
+      pending: "\u{1F7E1}",
+      processing: "\u23F3",
+      loading: "\u231B",
+      complete: "\u2714\uFE0F",
+      incomplete: "\u274C",
+      progress: "\u{1F4CA}",
+      // Miscellaneous
+      idea: "\u{1F4A1}",
+      lightning: "\u26A1",
+      fire: "\u{1F525}",
+      star: "\u2B50",
+      trophy: "\u{1F3C6}",
+      medal: "\u{1F3C5}",
+      gift: "\u{1F381}",
+      celebrate: "\u{1F389}",
+      party: "\u{1F38A}",
+      rocket: "\u{1F680}",
+      ship: "\u{1F6A2}",
+      airplane: "\u2708\uFE0F",
+      train: "\u{1F686}",
+      calendar: "\u{1F4C5}",
+      clock: "\u{1F550}",
+      timer: "\u23F2\uFE0F",
+      bell: "\u{1F514}",
+      flag: "\u{1F6A9}",
+      bookmark: "\u{1F516}",
+      tag: "\u{1F3F7}\uFE0F",
+      pin: "\u{1F4CC}",
+      magnet: "\u{1F9F2}",
+      crystal: "\u{1F52E}",
+      gem: "\u{1F48E}",
+      target: "\u{1F3AF}",
+      dart: "\u{1F3AF}",
+      compass: "\u{1F9ED}",
+      map: "\u{1F5FA}\uFE0F",
+      globe: "\u{1F30D}",
+      satellite: "\u{1F6F0}\uFE0F",
+      telescope: "\u{1F52D}",
+      microscope: "\u{1F52C}",
+      magGlass: "\u{1F50D}",
+      wrench: "\u{1F527}",
+      hammer: "\u{1F528}",
+      screwdriver: "\u{1FA9B}",
+      gear: "\u2699\uFE0F",
+      nut: "\u{1F529}",
+      link: "\u{1F517}",
+      chain: "\u26D3\uFE0F",
+      bridge: "\u{1F309}",
+      door: "\u{1F6AA}",
+      window: "\u{1FA9F}",
+      shield: "\u{1F6E1}\uFE0F",
+      sword: "\u2694\uFE0F",
+      bomb: "\u{1F4A3}",
+      explosion: "\u{1F4A5}",
+      spark: "\u2728",
+      dizzy: "\u{1F4AB}",
+      wave: "\u{1F30A}",
+      droplet: "\u{1F4A7}",
+      snowflake: "\u2744\uFE0F",
+      sun: "\u2600\uFE0F",
+      moon: "\u{1F319}",
+      rainbow: "\u{1F308}",
+      seedling: "\u{1F331}",
+      tree: "\u{1F332}",
+      leaf: "\u{1F343}",
+      recycle: "\u267B\uFE0F",
+    };
+    emojis.get = (name, fallback = "") => {
+      return emojis[name] || fallback;
+    };
+    emojis.has = (name) => {
+      return emojis.hasOwnProperty(name);
+    };
+    emojis.list = () => {
+      return Object.keys(emojis).filter((key) =>
+        typeof emojis[key] === "string" && ![
+          "get",
+          "has",
+          "list",
+        ].includes(key)
+      );
+    };
+    module.exports = emojis;
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/utils/timestamp.js
+var require_timestamp = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/utils/timestamp.js"(
+    exports,
+    module,
+  ) {
+    var getTimestamp = () => {
+      const date = /* @__PURE__ */ new Date();
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      return `${hours}:${minutes}:${seconds}`;
+    };
+    var getTimestampWithMs = () => {
+      const date = /* @__PURE__ */ new Date();
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      const ms = String(date.getMilliseconds()).padStart(3, "0");
+      return `${hours}:${minutes}:${seconds}.${ms}`;
+    };
+    var getFullTimestamp = () => {
+      const date = /* @__PURE__ */ new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    };
+    var getISOTimestamp = () => {
+      return (/* @__PURE__ */ new Date()).toISOString();
+    };
+    var getUnixTimestamp = () => {
+      return Math.floor(Date.now() / 1e3);
+    };
+    var getRelativeTime = (date) => {
+      const now = Date.now();
+      const timestamp = date instanceof Date ? date.getTime() : date;
+      const diff = now - timestamp;
+      const seconds = Math.floor(diff / 1e3);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+      if (seconds < 60) {
+        return `${seconds} second${seconds !== 1 ? "s" : ""} ago`;
+      }
+      if (minutes < 60) {
+        return `${minutes} minute${minutes !== 1 ? "s" : ""} ago`;
+      }
+      if (hours < 24) return `${hours} hour${hours !== 1 ? "s" : ""} ago`;
+      return `${days} day${days !== 1 ? "s" : ""} ago`;
+    };
+    var formatCustom = (format, date = /* @__PURE__ */ new Date()) => {
+      const tokens = {
+        YYYY: date.getFullYear(),
+        MM: String(date.getMonth() + 1).padStart(2, "0"),
+        DD: String(date.getDate()).padStart(2, "0"),
+        HH: String(date.getHours()).padStart(2, "0"),
+        mm: String(date.getMinutes()).padStart(2, "0"),
+        ss: String(date.getSeconds()).padStart(2, "0"),
+        SSS: String(date.getMilliseconds()).padStart(3, "0"),
+      };
+      let result = format;
+      Object.entries(tokens).forEach(([token, value]) => {
+        result = result.replace(token, value);
+      });
+      return result;
+    };
+    module.exports = getTimestamp;
+    module.exports.getTimestamp = getTimestamp;
+    module.exports.getTimestampWithMs = getTimestampWithMs;
+    module.exports.getFullTimestamp = getFullTimestamp;
+    module.exports.getISOTimestamp = getISOTimestamp;
+    module.exports.getUnixTimestamp = getUnixTimestamp;
+    module.exports.getRelativeTime = getRelativeTime;
+    module.exports.formatCustom = formatCustom;
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/utils/formatter.js
+var require_formatter = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/utils/formatter.js"(
+    exports,
+    module,
+  ) {
+    var colors = require_colors();
+    var createBadge = (text, color) => {
+      const bg = "bg" + color.charAt(0).toUpperCase() + color.slice(1);
+      const bgColor = colors[bg] || colors.bgBlue;
+      const textColor = colors.white + colors.bold;
+      return bgColor + textColor + ` ${text} ` + colors.reset;
+    };
+    var createBox = (message, color, emoji = "") => {
+      const lines = message.split("\n");
+      const maxLength = Math.max(
+        ...lines.map((line) => stripAnsi(line).length),
+      );
+      const topLeft = "\u2554";
+      const topRight = "\u2557";
+      const bottomLeft = "\u255A";
+      const bottomRight = "\u255D";
+      const horizontal = "\u2550";
+      const vertical = "\u2551";
+      const colorCode = colors[color] || colors.blue;
+      const horizontalLine = horizontal.repeat(maxLength + 4);
+      let box = colorCode + topLeft + horizontalLine + topRight + colors.reset +
+        "\n";
+      if (emoji) {
+        const emojiPadding = " ".repeat(maxLength + 2 - emoji.length);
+        box += colorCode + vertical + colors.reset +
+          ` ${emoji}${emojiPadding} ` + colorCode + vertical + colors.reset +
+          "\n";
+        box += colorCode + vertical + horizontal.repeat(maxLength + 4) +
+          vertical + colors.reset + "\n";
+      }
+      lines.forEach((line) => {
+        const stripped = stripAnsi(line);
+        const padding6 = " ".repeat(maxLength - stripped.length);
+        box += colorCode + vertical + colors.reset + `  ${line}${padding6}  ` +
+          colorCode + vertical + colors.reset + "\n";
+      });
+      box += colorCode + bottomLeft + horizontalLine + bottomRight +
+        colors.reset;
+      return box;
+    };
+    var createBanner = (text, char = "=") => {
+      const length = stripAnsi(text).length;
+      const line = char.repeat(length + 4);
+      return `${line}
+  ${text}  
+${line}`;
+    };
+    var stripAnsi = (text) => {
+      return text.replace(/\x1b\[[0-9;]*m/g, "");
+    };
+    var truncate = (text, maxLength) => {
+      if (text.length <= maxLength) return text;
+      return text.substring(0, maxLength - 3) + "...";
+    };
+    var center = (text, width) => {
+      const stripped = stripAnsi(text);
+      const padding6 = Math.max(0, width - stripped.length);
+      const leftPad = Math.floor(padding6 / 2);
+      const rightPad = padding6 - leftPad;
+      return " ".repeat(leftPad) + text + " ".repeat(rightPad);
+    };
+    var padRight = (text, width) => {
+      const stripped = stripAnsi(text);
+      const padding6 = Math.max(0, width - stripped.length);
+      return text + " ".repeat(padding6);
+    };
+    var padLeft = (text, width) => {
+      const stripped = stripAnsi(text);
+      const padding6 = Math.max(0, width - stripped.length);
+      return " ".repeat(padding6) + text;
+    };
+    var createProgressBar = (current, total, width = 20) => {
+      const percentage = Math.min(100, Math.max(0, current / total * 100));
+      const filled = Math.round(percentage / 100 * width);
+      const empty = width - filled;
+      const bar = colors.green + "\u2588".repeat(filled) + colors.dim +
+        "\u2591".repeat(empty) + colors.reset;
+      const percent = `${percentage.toFixed(1)}%`;
+      return `${bar} ${percent}`;
+    };
+    var createSeparator = (length = 50, char = "-", color = "dim") => {
+      const colorCode = colors[color] || colors.dim;
+      return colorCode + char.repeat(length) + colors.reset;
+    };
+    var formatKeyValue = (key, value, keyWidth = 20) => {
+      const paddedKey = padRight(
+        colors.cyan + key + colors.reset,
+        keyWidth + 9,
+      );
+      return `${paddedKey}: ${colors.white}${value}${colors.reset}`;
+    };
+    var createList = (items, bullet = "\u2022") => {
+      return items.map((item) =>
+        `  ${colors.dim}${bullet}${colors.reset} ${item}`
+      ).join("\n");
+    };
+    var highlight = (text, bgColor = "bgYellow") => {
+      const bg = colors[bgColor] || colors.bgYellow;
+      return bg + colors.black + text + colors.reset;
+    };
+    module.exports = {
+      createBadge,
+      createBox,
+      createBanner,
+      stripAnsi,
+      truncate,
+      center,
+      padRight,
+      padLeft,
+      createProgressBar,
+      createSeparator,
+      formatKeyValue,
+      createList,
+      highlight,
+    };
+  },
+});
+
+// node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/index.js
+var require_ernest_logger = __commonJS({
+  "node_modules/.deno/ernest-logger@2.0.4/node_modules/ernest-logger/index.js"(
+    exports,
+    module,
+  ) {
+    var fs3 = __require("node:fs");
+    var path6 = __require("node:path");
+    var colors = require_colors();
+    var emojis = require_emojis();
+    var getTimestamp = require_timestamp();
+    var formatter = require_formatter();
+    var levelPriority = {
+      trace: 0,
+      debug: 1,
+      info: 2,
+      success: 3,
+      warn: 4,
+      error: 5,
+      fatal: 6,
+    };
+    var globalConfig = {
+      time: true,
+      emoji: true,
+      level: "debug",
+      file: false,
+      filePath: path6.join(process.cwd(), "ernest.log"),
+      colorize: true,
+      prefix: "",
+      maxFileSize: 5 * 1024 * 1024,
+      customLevels: {},
+    };
+    var rotateLogFile = (filePath, maxSize) => {
+      try {
+        const stats = fs3.statSync(filePath);
+        if (stats.size > maxSize) {
+          const timestamp = (/* @__PURE__ */ new Date()).toISOString().replace(
+            /[:.]/g,
+            "-",
+          );
+          const rotatedPath = filePath.replace(".log", `-${timestamp}.log`);
+          fs3.renameSync(filePath, rotatedPath);
+        }
+      } catch (err) {
+      }
+    };
+    var createLogger2 = (options = {}) => {
+      const config = {
+        ...globalConfig,
+        ...options,
+      };
+      const formatMessage = (level, message, color) => {
+        if (levelPriority[level] < levelPriority[config.level]) return null;
+        let output = "";
+        if (config.time) {
+          const timestamp = getTimestamp();
+          output += config.colorize
+            ? colors.dim + `[${timestamp}]` + colors.reset + " "
+            : `[${timestamp}] `;
+        }
+        if (config.prefix) {
+          output += config.colorize
+            ? colors.dim + config.prefix + colors.reset + " "
+            : config.prefix + " ";
+        }
+        if (config.emoji && emojis[level]) {
+          output += `${emojis[level]} `;
+        }
+        const levelBadge = formatter.createBadge(level.toUpperCase(), color);
+        output += config.colorize
+          ? levelBadge + " "
+          : `[${level.toUpperCase()}] `;
+        output += config.colorize
+          ? colors[color] + message + colors.reset
+          : message;
+        return output;
+      };
+      const writeToFile = (message) => {
+        if (!config.file) return;
+        try {
+          rotateLogFile(config.filePath, config.maxFileSize);
+          const plainMessage = message.replace(/\x1b\[[0-9;]*m/g, "");
+          fs3.appendFileSync(config.filePath, plainMessage + "\n");
+        } catch (err) {
+          console.error("Failed to write to log file:", err.message);
+        }
+      };
+      const logMessage = (level, color, message) => {
+        const formatted = formatMessage(level, message, color);
+        if (!formatted) return;
+        console.log(formatted);
+        writeToFile(formatted);
+      };
+      const logger = {
+        // Trace level (most verbose)
+        trace: (msg) => logMessage("trace", "dim", msg),
+        // Debug level
+        debug: (msg) => logMessage("debug", "cyan", msg),
+        // Info level (default)
+        info: (msg) => logMessage("info", "blue", msg),
+        // Success level
+        success: (msg) => logMessage("success", "green", msg),
+        // Warn level
+        warn: (msg) => logMessage("warn", "yellow", msg),
+        // Error level
+        error: (msg) => logMessage("error", "red", msg),
+        // Fatal level (most critical)
+        fatal: (msg) => logMessage("fatal", "brightRed", msg),
+        // Specialized quick methods
+        start: (msg) =>
+          logMessage("info", "brightGreen", `\u25B6\uFE0F  ${msg}`),
+        stop: (msg) => logMessage("info", "brightRed", `\u23F9\uFE0F  ${msg}`),
+        network: (msg) => logMessage("info", "brightCyan", `\u{1F310} ${msg}`),
+        db: (msg) => logMessage("info", "brightMagenta", `\u{1F4BE} ${msg}`),
+        api: (msg) => logMessage("info", "brightBlue", `\u{1F50C} ${msg}`),
+        security: (msg) =>
+          logMessage("warn", "brightYellow", `\u{1F512} ${msg}`),
+        // Big log for announcements
+        bigLog: (message, options2 = {}) => {
+          const color = options2.color || "blue";
+          const emoji = options2.emoji || "\u{1F4E3}";
+          const boxed = formatter.createBox(message, color, emoji);
+          console.log(boxed);
+          if (config.file) writeToFile(boxed);
+        },
+        // Table logger
+        table: (data) => {
+          console.table(data);
+          if (config.file) {
+            writeToFile("\n[TABLE DATA]\n" + JSON.stringify(data, null, 2));
+          }
+        },
+        // Group logs
+        group: (label) => console.group(label),
+        groupEnd: () => console.groupEnd(),
+        // Timer utilities
+        time: (label) => console.time(label),
+        timeEnd: (label) => console.timeEnd(label),
+        // JSON pretty print
+        json: (obj, label = "") => {
+          const output = label
+            ? `${label}:
+`
+            : "";
+          const formatted = output + JSON.stringify(obj, null, 2);
+          console.log(
+            config.colorize
+              ? colors.cyan + formatted + colors.reset
+              : formatted,
+          );
+          if (config.file) writeToFile(formatted);
+        },
+        // Advanced nested logger (color-coded by level)
+        log: {
+          trace: {
+            dim: (msg) => logMessage("trace", "dim", msg),
+            white: (msg) => logMessage("trace", "white", msg),
+          },
+          debug: {
+            cyan: (msg) => logMessage("debug", "cyan", msg),
+            blue: (msg) => logMessage("debug", "blue", msg),
+            magenta: (msg) => logMessage("debug", "magenta", msg),
+          },
+          info: {
+            blue: (msg) => logMessage("info", "blue", msg),
+            cyan: (msg) => logMessage("info", "cyan", msg),
+            white: (msg) => logMessage("info", "white", msg),
+          },
+          success: {
+            green: (msg) => logMessage("success", "green", msg),
+            brightGreen: (msg) => logMessage("success", "brightGreen", msg),
+          },
+          warn: {
+            yellow: (msg) => logMessage("warn", "yellow", msg),
+            brightYellow: (msg) => logMessage("warn", "brightYellow", msg),
+          },
+          error: {
+            red: (msg) => logMessage("error", "red", msg),
+            brightRed: (msg) => logMessage("error", "brightRed", msg),
+            magenta: (msg) => logMessage("error", "magenta", msg),
+          },
+          fatal: {
+            brightRed: (msg) => logMessage("fatal", "brightRed", msg),
+            bgRed: (msg) => logMessage("fatal", "bgRed", msg),
+          },
+        },
+        // Configuration methods
+        configure: (newConfig) => {
+          Object.assign(config, newConfig);
+          return logger;
+        },
+        getConfig: () => ({
+          ...config,
+        }),
+        // Enable/disable features on the fly
+        enableTime: () => {
+          config.time = true;
+          return logger;
+        },
+        disableTime: () => {
+          config.time = false;
+          return logger;
+        },
+        enableEmoji: () => {
+          config.emoji = true;
+          return logger;
+        },
+        disableEmoji: () => {
+          config.emoji = false;
+          return logger;
+        },
+        enableFile: () => {
+          config.file = true;
+          return logger;
+        },
+        disableFile: () => {
+          config.file = false;
+          return logger;
+        },
+        setLevel: (level) => {
+          config.level = level;
+          return logger;
+        },
+      };
+      if (config.customLevels && Object.keys(config.customLevels).length > 0) {
+        Object.entries(config.customLevels).forEach(
+          ([level, { color, emoji, priority }]) => {
+            if (emoji) emojis[level] = emoji;
+            if (priority !== void 0) levelPriority[level] = priority;
+            logger[level] = (msg) => logMessage(level, color, msg);
+            logger.log[level] = {
+              [color]: (msg) => logMessage(level, color, msg),
+            };
+          },
+        );
+      }
+      return logger;
+    };
+    var defaultLogger = createLogger2();
+    module.exports = defaultLogger;
+    module.exports.createLogger = createLogger2;
+    module.exports.setGlobalConfig = (config) => {
+      Object.assign(globalConfig, config);
+    };
+  },
+});
+
 // node_modules/.deno/ms@2.1.3/node_modules/ms/index.js
 var require_ms = __commonJS({
   "node_modules/.deno/ms@2.1.3/node_modules/ms/index.js"(exports, module) {
@@ -21843,11 +22583,11 @@ var require_common = __commonJS({
         let enableOverride = null;
         let namespacesCache;
         let enabledCache;
-        function debug2(...args) {
-          if (!debug2.enabled) {
+        function debug3(...args) {
+          if (!debug3.enabled) {
             return;
           }
-          const self = debug2;
+          const self = debug3;
           const curr = Number(/* @__PURE__ */ new Date());
           const ms = curr - (prevTime || curr);
           self.diff = ms;
@@ -21877,12 +22617,12 @@ var require_common = __commonJS({
           const logFn = self.log || createDebug.log;
           logFn.apply(self, args);
         }
-        debug2.namespace = namespace;
-        debug2.useColors = createDebug.useColors();
-        debug2.color = createDebug.selectColor(namespace);
-        debug2.extend = extend;
-        debug2.destroy = createDebug.destroy;
-        Object.defineProperty(debug2, "enabled", {
+        debug3.namespace = namespace;
+        debug3.useColors = createDebug.useColors();
+        debug3.color = createDebug.selectColor(namespace);
+        debug3.extend = extend;
+        debug3.destroy = createDebug.destroy;
+        Object.defineProperty(debug3, "enabled", {
           enumerable: true,
           configurable: false,
           get: () => {
@@ -21900,9 +22640,9 @@ var require_common = __commonJS({
           },
         });
         if (typeof createDebug.init === "function") {
-          createDebug.init(debug2);
+          createDebug.init(debug3);
         }
-        return debug2;
+        return debug3;
       }
       function extend(namespace, delimiter3) {
         const newDebug = createDebug(
@@ -22159,7 +22899,7 @@ var require_browser = __commonJS({
         } else {
           exports.storage.removeItem("debug");
         }
-      } catch (error2) {
+      } catch (error) {
       }
     }
     function load() {
@@ -22167,7 +22907,7 @@ var require_browser = __commonJS({
       try {
         r = exports.storage.getItem("debug") ||
           exports.storage.getItem("DEBUG");
-      } catch (error2) {
+      } catch (error) {
       }
       if (!r && typeof process !== "undefined" && "env" in process) {
         r = process.env.DEBUG;
@@ -22177,7 +22917,7 @@ var require_browser = __commonJS({
     function localstorage() {
       try {
         return localStorage;
-      } catch (error2) {
+      } catch (error) {
       }
     }
     module.exports = require_common()(exports);
@@ -22185,8 +22925,8 @@ var require_browser = __commonJS({
     formatters.j = function (v) {
       try {
         return JSON.stringify(v);
-      } catch (error2) {
-        return "[UnexpectedJSONParseError]: " + error2.message;
+      } catch (error) {
+        return "[UnexpectedJSONParseError]: " + error.message;
       }
     };
   },
@@ -22301,7 +23041,7 @@ var require_node = __commonJS({
           221,
         ];
       }
-    } catch (error2) {
+    } catch (error) {
     }
     exports.inspectOpts = Object.keys(process.env).filter((key) => {
       return /^debug_/i.test(key);
@@ -22365,11 +23105,11 @@ var require_node = __commonJS({
     function load() {
       return process.env.DEBUG;
     }
-    function init(debug2) {
-      debug2.inspectOpts = {};
+    function init(debug3) {
+      debug3.inspectOpts = {};
       const keys = Object.keys(exports.inspectOpts);
       for (let i = 0; i < keys.length; i++) {
-        debug2.inspectOpts[keys[i]] = exports.inspectOpts[keys[i]];
+        debug3.inspectOpts[keys[i]] = exports.inspectOpts[keys[i]];
       }
     }
     module.exports = require_common()(exports);
@@ -22691,13 +23431,13 @@ var require_lib = __commonJS({
     }
     function tryGetEvents(head, chunk) {
       const all = head + chunk;
-      let start = 0;
+      let start2 = 0;
       const events2 = [];
       for (let i = 0; i < all.length - 1; i++) {
         const c = all[i];
         const c2 = all[i + 1];
         if (c === "\n" && c2 === "\n") {
-          const part = all.substring(start, i);
+          const part = all.substring(start2, i);
           const lines = part.split("\n");
           const event = new Event2();
           lines.forEach((line) => {
@@ -22716,10 +23456,10 @@ var require_lib = __commonJS({
             }
           });
           events2.push(event);
-          start = i + 2;
+          start2 = i + 2;
         }
       }
-      const rest = all.substring(start);
+      const rest = all.substring(start2);
       return [
         events2,
         rest,
@@ -26007,9 +26747,9 @@ var require_ecs_ram_role = __commonJS({
             );
           }
           return response.body.toString("utf8");
-        } catch (error2) {
+        } catch (error) {
           if (this.disableIMDSv1) {
-            throw error2;
+            throw error;
           }
           return null;
         }
@@ -28031,12 +28771,12 @@ var OidcClient = class _OidcClient {
     return __awaiter3(this, void 0, void 0, function* () {
       var _a;
       const httpclient = _OidcClient.createHttpClient();
-      const res = yield httpclient.getJson(id_token_url).catch((error2) => {
+      const res = yield httpclient.getJson(id_token_url).catch((error) => {
         throw new Error(`Failed to get ID Token. 
  
-        Error Code : ${error2.statusCode}
+        Error Code : ${error.statusCode}
  
-        Error Message: ${error2.message}`);
+        Error Message: ${error.message}`);
       });
       const id_token = (_a = res.result) === null || _a === void 0
         ? void 0
@@ -28059,8 +28799,8 @@ var OidcClient = class _OidcClient {
         const id_token = yield _OidcClient.getCall(id_token_url);
         setSecret(id_token);
         return id_token;
-      } catch (error2) {
-        throw new Error(`Error message: ${error2.message}`);
+      } catch (error) {
+        throw new Error(`Error message: ${error.message}`);
       }
     });
   }
@@ -28507,22 +29247,11 @@ function getInput(name, options) {
   }
   return val.trim();
 }
-function setFailed(message) {
-  process.exitCode = ExitCode.Failure;
-  error(message);
-}
 function isDebug() {
   return process.env["RUNNER_DEBUG"] === "1";
 }
 function debug(message) {
   issueCommand("debug", {}, message);
-}
-function error(message, properties = {}) {
-  issueCommand(
-    "error",
-    toCommandProperties(properties),
-    message instanceof Error ? message.toString() : message,
-  );
 }
 function notice(message, properties = {}) {
   issueCommand(
@@ -28530,9 +29259,6 @@ function notice(message, properties = {}) {
     toCommandProperties(properties),
     message instanceof Error ? message.toString() : message,
   );
-}
-function info(message) {
-  process.stdout.write(message + os5.EOL);
 }
 function startGroup(name) {
   issue("group", name);
@@ -28571,6 +29297,33 @@ function getIDToken(aud) {
 var STATE_ACCESS_KEY_ID = "pre-access-key-id";
 var STATE_ACCESS_KEY_SECRET = "pre-access-key-secret";
 var STATE_SECURITY_TOKEN = "pre-security-token";
+
+// src/logger.ts
+import process2 from "node:process";
+var import_ernest_logger = __toESM(require_ernest_logger());
+var actionLogger = (0, import_ernest_logger.createLogger)({
+  colorize: true,
+  emoji: true,
+  level: isDebug() ? "debug" : "info",
+  prefix: "[Aliyun OSS CDN]",
+  time: true,
+});
+function debug2(message) {
+  actionLogger.debug(message);
+}
+function info(message) {
+  actionLogger.info(message);
+}
+function start(message) {
+  actionLogger.start(message);
+}
+function success(message) {
+  actionLogger.success(message);
+}
+function fail(message) {
+  actionLogger.fatal(message);
+  process2.exitCode = 1;
+}
 
 // src/oidc.ts
 import { mkdtemp, rm as rm2, writeFile as writeFile2 } from "node:fs/promises";
@@ -28758,11 +29511,11 @@ function decodeJwtPayload(idToken) {
 function debugGitHubIdTokenClaims(idToken) {
   const decodedPayload = decodeJwtPayload(idToken);
   if (!decodedPayload) {
-    debug("GitHub OIDC token payload decode failed");
+    debug2("GitHub OIDC token payload decode failed");
     return;
   }
   const formattedPayload = JSON.stringify(decodedPayload, null, 2);
-  debug(`GitHub OIDC token payload (decoded):
+  debug2(`GitHub OIDC token payload (decoded):
 ${formattedPayload}`);
 }
 function getRequiredInput(name) {
@@ -28858,9 +29611,7 @@ function normalizeCredential(credential) {
     !credential.accessKeyId || !credential.accessKeySecret ||
     !credential.securityToken
   ) {
-    throw new Error(
-      "Failed to resolve a complete credential set from Alibaba Cloud",
-    );
+    throw new Error("Failed to resolve a complete credential set from Aliyun");
   }
   return {
     accessKeyId: credential.accessKeyId,
@@ -29064,11 +29815,9 @@ function emitDebugNotice(title, message, properties) {
 async function run() {
   const inputs = parseOidcInputs();
   const credential = await group(
-    "Resolving Alibaba Cloud credentials via GitHub OIDC",
+    "Resolving Aliyun credentials via GitHub OIDC",
     async () => {
-      info(
-        "Resolving Alibaba Cloud credentials with GitHub OIDC role assumption",
-      );
+      start("Resolving Aliyun credentials with GitHub OIDC role assumption");
       return await resolveOidcCredential(inputs, {
         debugGitHubIdTokenClaims: true,
       });
@@ -29086,14 +29835,14 @@ async function run() {
       inputs.refreshStsTokenIntervalMs / 1e3
     }, audience=${inputs.audience ?? "(default)"}`,
   );
-  info("Alibaba Cloud credentials resolved and stored in action state");
+  success("Aliyun credentials resolved and stored in action state");
 }
-run().catch((error2) => {
-  if (error2 instanceof Error) {
-    setFailed(error2.message);
+run().catch((error) => {
+  if (error instanceof Error) {
+    fail(error.message);
     return;
   }
-  setFailed(String(error2));
+  fail(String(error));
 });
 export { run };
 /*! Bundled license information:

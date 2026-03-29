@@ -2,7 +2,6 @@ import { lstat, readdir } from "node:fs/promises";
 import { join, relative, resolve } from "node:path";
 
 import {
-  debug,
   getBooleanInput as getInputBoolean,
   getInput,
   getState,
@@ -17,6 +16,7 @@ import {
   STATE_ACCESS_KEY_SECRET,
   STATE_SECURITY_TOKEN,
 } from "./constants.ts";
+import { debug } from "./logger.ts";
 
 export interface FileEntry {
   absolutePath: string;
@@ -166,7 +166,7 @@ export function resolveCredentialsFromState(): Credentials | undefined {
 
 export function resolveCredentials(): Credentials {
   throw new Error(
-    "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Alibaba Cloud RAM role.",
+    "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Aliyun RAM role.",
   );
 }
 

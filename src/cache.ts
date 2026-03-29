@@ -2,9 +2,10 @@ import { mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 
 import * as cache from "npm/actions-cache";
-import { getState, info, saveState, warning } from "@actions/core";
+import { getState, saveState } from "@actions/core";
 
 import { STATE_CACHE_RESTORED_KEY, STATE_MAIN_COMPLETED } from "./constants.ts";
+import { info, success, warning } from "./logger.ts";
 import { collectFiles, getOptionalInput, parseBooleanInput } from "./shared.ts";
 
 const LOCAL_CACHE_DIRECTORY = "_cache";
@@ -54,7 +55,7 @@ export async function restoreLocalCache(): Promise<void> {
     saveState(STATE_CACHE_RESTORED_KEY, restoredKey ?? "");
 
     if (restoredKey) {
-      info(`Local _cache restored from key: ${restoredKey}`);
+      success(`Local _cache restored from key: ${restoredKey}`);
       return;
     }
 
@@ -112,7 +113,7 @@ export async function saveLocalCache(): Promise<void> {
     info(`Attempting local _cache save with key: ${primaryKey}`);
     const cacheId = await cache.saveCache([cachePath], primaryKey);
     if (cacheId !== -1) {
-      info(`Local _cache saved with key: ${primaryKey}`);
+      success(`Local _cache saved with key: ${primaryKey}`);
       return;
     }
     info(

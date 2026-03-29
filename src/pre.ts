@@ -1,20 +1,21 @@
-import { group, info, saveState, setFailed, setSecret } from "@actions/core";
+import { group, saveState, setSecret } from "@actions/core";
 
 import {
   STATE_ACCESS_KEY_ID,
   STATE_ACCESS_KEY_SECRET,
   STATE_SECURITY_TOKEN,
 } from "./constants.ts";
+import { fail, start, success } from "./logger.ts";
 import { parseOidcInputs, resolveOidcCredential } from "./oidc.ts";
 import { emitDebugNotice } from "./shared.ts";
 
 export async function run(): Promise<void> {
   const inputs = parseOidcInputs();
   const credential = await group(
-    "Resolving Alibaba Cloud credentials via GitHub OIDC",
+    "Resolving Aliyun credentials via GitHub OIDC",
     async () => {
-      info(
-        "Resolving Alibaba Cloud credentials with GitHub OIDC role assumption",
+      start(
+        "Resolving Aliyun credentials with GitHub OIDC role assumption",
       );
       return await resolveOidcCredential(inputs, {
         debugGitHubIdTokenClaims: true,
@@ -40,13 +41,13 @@ export async function run(): Promise<void> {
       inputs.refreshStsTokenIntervalMs / 1000
     }, audience=${inputs.audience ?? "(default)"}`,
   );
-  info("Alibaba Cloud credentials resolved and stored in action state");
+  success("Aliyun credentials resolved and stored in action state");
 }
 
 run().catch((error: unknown) => {
   if (error instanceof Error) {
-    setFailed(error.message);
+    fail(error.message);
     return;
   }
-  setFailed(String(error));
+  fail(String(error));
 });
