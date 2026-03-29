@@ -50,7 +50,12 @@ The action runs in three phases:
   - hashed assets -> `public, max-age=31536000, immutable`
   - common CSS/JS/JSON/search assets -> `public, max-age=3600, must-revalidate`
   - common image/font assets -> `public, max-age=604800, must-revalidate`
+  - `atom.xml`, `feed.json`, and `rss.xml` use their feed-specific content types
+    even when they are nested below the input root
 - CDN calls are non-fatal: failures are logged as warnings.
+- Main-step CDN refresh/preload runs only for object URLs created by the current
+  upload pass. If no files are uploaded, the action skips CDN submission for
+  that step.
 - Cleanup is non-fatal: failures are logged as warnings.
 - `cdn-base-url` is required only when `cdn-enabled: true`.
 - `audience` is optional. If set, the action calls `core.getIDToken(audience)`.

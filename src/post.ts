@@ -1,7 +1,6 @@
-import { getState, group, summary } from "@actions/core";
-type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
-import * as Cdn from "@alicloud/cdn20180510";
-import * as AliOssModule from "ali-oss";
+import { getState, group, summary } from "npm/actions-core";
+import * as Cdn from "npm/alicloud-cdn20180510";
+import * as AliOssModule from "npm/ali-oss";
 import { chunk } from "jsr/collections";
 
 import {
@@ -9,12 +8,14 @@ import {
   buildFileUrl,
   collectLocalObjectKeys,
   emitDebugNotice,
+  errorMessage,
   getOptionalInput,
   parseBooleanInput,
   parseOssBaseInputs,
-  resolveCredentials,
-  resolveCredentialsFromState,
+  parseQuota,
+  requireCredentialsFromState,
   resolveOssEndpoint,
+  selectByQuota,
 } from "./shared.ts";
 import { saveLocalCache } from "./cache.ts";
 import { debug, info, network, success, warning } from "./logger.ts";
@@ -27,7 +28,9 @@ import {
   STATE_CDN_PRELOAD_TASK_IDS,
   STATE_CDN_REFRESH_TASK_IDS,
 } from "./constants.ts";
+import type { Credentials } from "./shared.ts";
 
+type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
 type OSSClient = {
   list(query: {
     prefix?: string;
@@ -106,33 +109,6 @@ type CdnTaskLookupEntry = {
   objectPath: string;
   detail: string;
 };
-type QuotaSelection<T> = {
-  allowed: T[];
-  deniedCount: number;
-};
-
-function errorMessage(error: unknown): string {
-  return error instanceof Error ? error.message : String(error);
-}
-
-function parseQuota(value: string | undefined): number {
-  const parsed = Number.parseInt(value ?? "0", 10);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
-}
-
-function selectByQuota<T>(
-  values: readonly T[],
-  remainingQuota: number,
-): QuotaSelection<T> {
-  const safeQuota = remainingQuota > 0 ? remainingQuota : 0;
-  const allowedCount = Math.min(values.length, safeQuota);
-  const deniedCount = values.length - allowedCount;
-
-  return {
-    allowed: values.slice(0, allowedCount),
-    deniedCount,
-  };
-}
 
 function warnQuotaExhausted(
   requestedCount: number,
@@ -265,7 +241,7 @@ async function describeMainCdnTasks(
 
 function createOssClient(
   inputs: ReturnType<typeof parseOssBaseInputs>,
-  credentials: ReturnType<typeof resolveCredentials>,
+  credentials: Credentials,
   oidcInputs: OidcInputs,
 ): OSSClient {
   const authType = credentials.securityToken ? "sts" : "access_key";
@@ -460,8 +436,7 @@ async function runPost(): Promise<void> {
   const inputs = parseOssBaseInputs();
 
   // Credentials are resolved only through OIDC in the pre step.
-  const credentials = resolveCredentialsFromState() ??
-    resolveCredentials();
+  const credentials = requireCredentialsFromState();
   debug(
     `[post:runPost] hasSecurityToken=${
       Boolean(credentials.securityToken)

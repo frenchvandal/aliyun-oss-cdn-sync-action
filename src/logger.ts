@@ -1,6 +1,6 @@
 import process from "node:process";
 
-import { isDebug } from "@actions/core";
+import { isDebug } from "npm/actions-core";
 import { createLogger } from "npm/ernest-logger";
 import type { Logger, LoggerOptions } from "npm/ernest-logger";
 

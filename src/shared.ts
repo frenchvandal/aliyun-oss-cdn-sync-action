@@ -1,15 +1,15 @@
 import { lstat, readdir } from "node:fs/promises";
 import { join, relative, resolve } from "node:path";
 
+import type { AnnotationProperties } from "npm/actions-core";
 import {
   getBooleanInput as getInputBoolean,
   getInput,
   getState,
   isDebug,
   notice,
-} from "@actions/core";
+} from "npm/actions-core";
 import { delay } from "jsr/async";
-import type { AnnotationProperties } from "@actions/core";
 
 import {
   STATE_ACCESS_KEY_ID,
@@ -17,6 +17,23 @@ import {
   STATE_SECURITY_TOKEN,
 } from "./constants.ts";
 import { debug } from "./logger.ts";
+import {
+  buildObjectKey,
+  parsePositiveIntegerValue,
+  parsePrefix,
+} from "./_shared-utils.ts";
+export {
+  buildFileUrl,
+  buildObjectKey,
+  errorMessage,
+  parsePositiveIntegerValue,
+  parsePrefix,
+  parseQuota,
+  resolveOssEndpoint,
+  selectByQuota,
+  toHost,
+} from "./_shared-utils.ts";
+export type { QuotaSelection } from "./_shared-utils.ts";
 
 export interface FileEntry {
   absolutePath: string;
@@ -93,33 +110,12 @@ export function parsePositiveIntegerInput(
   defaultValue: number,
   max?: number,
 ): number {
-  const value = getOptionalInput(name);
-  if (value === undefined) {
-    return defaultValue;
-  }
-
-  if (!/^\d+$/.test(value)) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-
-  if (max !== undefined && parsed > max) {
-    throw new Error(`'${name}' must be <= ${max}`);
-  }
-
-  return parsed;
-}
-
-export function parsePrefix(prefix: string | undefined): string {
-  if (!prefix) {
-    return "";
-  }
-
-  return prefix.replace(/\\/g, "/").replace(/^\/+/, "").replace(/\/+$/, "");
+  return parsePositiveIntegerValue(
+    name,
+    getOptionalInput(name),
+    defaultValue,
+    max,
+  );
 }
 
 export function parseOssBaseInputs(): OssBaseInputs {
@@ -164,7 +160,12 @@ export function resolveCredentialsFromState(): Credentials | undefined {
   };
 }
 
-export function resolveCredentials(): Credentials {
+export function requireCredentialsFromState(): Credentials {
+  const credentials = resolveCredentialsFromState();
+  if (credentials) {
+    return credentials;
+  }
+
   throw new Error(
     "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Aliyun RAM role.",
   );
@@ -180,39 +181,6 @@ export function emitDebugNotice(
   }
 
   notice(message, properties ? { title, ...properties } : { title });
-}
-
-export function toHost(endpoint: string): string {
-  if (/^https?:\/\//i.test(endpoint)) {
-    return new URL(endpoint).host;
-  }
-
-  return endpoint;
-}
-
-export function resolveOssEndpoint(
-  region: string,
-  endpoint: string | undefined,
-): string {
-  if (endpoint) {
-    try {
-      return toHost(endpoint);
-    } catch {
-      throw new Error(
-        `'endpoint' is not a valid URL or hostname: ${endpoint}`,
-      );
-    }
-  }
-
-  if (region.includes(".")) {
-    return region;
-  }
-
-  return `${region}.aliyuncs.com`;
-}
-
-export function buildObjectKey(prefix: string, relativePath: string): string {
-  return prefix === "" ? relativePath : `${prefix}/${relativePath}`;
 }
 
 export async function collectFiles(
@@ -256,11 +224,6 @@ export async function collectFiles(
   await walk(rootAbsolutePath);
   files.sort((a, b) => a.relativePath.localeCompare(b.relativePath));
   return files;
-}
-
-export function buildFileUrl(baseUrl: string, key: string): string {
-  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
-  return new URL(key.replace(/^\/+/, ""), base).toString();
 }
 
 export async function collectLocalObjectKeys(

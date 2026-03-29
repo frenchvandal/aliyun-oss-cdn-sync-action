@@ -29328,8 +29328,8 @@ function fail(message) {
 // src/oidc.ts
 import { mkdtemp, rm as rm2, writeFile as writeFile2 } from "node:fs/promises";
 import os6 from "node:os";
-import { join as join3 } from "node:path";
-var import_credentials = __toESM(require_client2());
+import { join as join4 } from "node:path";
+var import_alicloud_credentials = __toESM(require_client2());
 
 // deno:https://jsr.io/@std/encoding/1.0.10/_validate_binary_like.ts
 var encoder = new TextEncoder();
@@ -29483,189 +29483,10 @@ var AB = new ArrayBuffer(8);
 var U32_VIEW = new Uint32Array(AB);
 var U64_VIEW = new BigUint64Array(AB);
 
-// src/oidc.ts
-var DEFAULT_ROLE_SESSION_EXPIRATION = 900;
-var DEFAULT_ROLE_SESSION_NAME = "github-action-session";
-var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
-var MAX_ROLE_SESSION_EXPIRATION = 43200;
-var MIN_ROLE_SESSION_EXPIRATION = 900;
-var textDecoder = new TextDecoder();
-var CredentialClientCtor = import_credentials.default;
-function decodeJwtPayload(idToken) {
-  const parts = idToken.split(".");
-  const encodedPayload = parts[1];
-  if (!encodedPayload) {
-    return void 0;
-  }
-  try {
-    const payloadJson = textDecoder.decode(decodeBase64Url(encodedPayload));
-    const payload = JSON.parse(payloadJson);
-    if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
-      return void 0;
-    }
-    return payload;
-  } catch {
-    return void 0;
-  }
-}
-function debugGitHubIdTokenClaims(idToken) {
-  const decodedPayload = decodeJwtPayload(idToken);
-  if (!decodedPayload) {
-    debug2("GitHub OIDC token payload decode failed");
-    return;
-  }
-  const formattedPayload = JSON.stringify(decodedPayload, null, 2);
-  debug2(`GitHub OIDC token payload (decoded):
-${formattedPayload}`);
-}
-function getRequiredInput(name) {
-  return getInput(name, {
-    required: true,
-  }).trim();
-}
-function getOptionalInput(name) {
-  const value = getInput(name, {
-    required: false,
-  }).trim();
-  return value === "" ? void 0 : value;
-}
-function parsePositiveInteger(name, value, defaultValue) {
-  if (!value) {
-    return defaultValue;
-  }
-  if (!/^\d+$/.test(value)) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  return parsed;
-}
-function parseRoleSessionExpiration(value) {
-  const parsed = parsePositiveInteger(
-    "role-session-expiration",
-    value,
-    DEFAULT_ROLE_SESSION_EXPIRATION,
-  );
-  if (parsed < MIN_ROLE_SESSION_EXPIRATION) {
-    throw new Error(
-      `'role-session-expiration' must be >= ${MIN_ROLE_SESSION_EXPIRATION}`,
-    );
-  }
-  if (parsed > MAX_ROLE_SESSION_EXPIRATION) {
-    throw new Error(
-      `'role-session-expiration' must not exceed ${MAX_ROLE_SESSION_EXPIRATION} seconds`,
-    );
-  }
-  return parsed;
-}
-var ROLE_SESSION_NAME_PATTERN = /^[\w.\-@=]{2,64}$/;
-function parseRoleSessionName(value) {
-  const roleSessionName = value ?? DEFAULT_ROLE_SESSION_NAME;
-  if (!ROLE_SESSION_NAME_PATTERN.test(roleSessionName)) {
-    throw new Error(
-      "'role-session-name' must be 2-64 characters and contain only letters, digits, hyphens, underscores, dots, at signs, or equals signs",
-    );
-  }
-  return roleSessionName;
-}
-function parseRefreshIntervalMs(value, roleSessionExpiration) {
-  const refreshIntervalSeconds = parsePositiveInteger(
-    "refresh-sts-token-interval-seconds",
-    value,
-    DEFAULT_STS_REFRESH_INTERVAL_SECONDS,
-  );
-  if (refreshIntervalSeconds >= roleSessionExpiration) {
-    throw new Error(
-      "'refresh-sts-token-interval-seconds' must be lower than 'role-session-expiration'",
-    );
-  }
-  return refreshIntervalSeconds * 1e3;
-}
-function parseOidcInputs() {
-  const roleOidcArn = getRequiredInput("role-oidc-arn");
-  const oidcProviderArn = getRequiredInput("oidc-provider-arn");
-  const audience = getOptionalInput("audience");
-  const roleSessionExpiration = parseRoleSessionExpiration(
-    getOptionalInput("role-session-expiration"),
-  );
-  const roleSessionName = parseRoleSessionName(
-    getOptionalInput("role-session-name"),
-  );
-  const refreshStsTokenIntervalMs = parseRefreshIntervalMs(
-    getOptionalInput("refresh-sts-token-interval-seconds"),
-    roleSessionExpiration,
-  );
-  return {
-    audience,
-    oidcProviderArn,
-    refreshStsTokenIntervalMs,
-    roleOidcArn,
-    roleSessionExpiration,
-    roleSessionName,
-  };
-}
-function normalizeCredential(credential) {
-  if (
-    !credential.accessKeyId || !credential.accessKeySecret ||
-    !credential.securityToken
-  ) {
-    throw new Error("Failed to resolve a complete credential set from Aliyun");
-  }
-  return {
-    accessKeyId: credential.accessKeyId,
-    accessKeySecret: credential.accessKeySecret,
-    securityToken: credential.securityToken,
-  };
-}
-async function resolveOidcCredential(inputs, options) {
-  const idToken = inputs.audience
-    ? await getIDToken(inputs.audience)
-    : await getIDToken();
-  if (options?.debugGitHubIdTokenClaims) {
-    if (!isDebug()) {
-      info(
-        "OIDC claim debug logging is disabled because ACTIONS_STEP_DEBUG is not set to true.",
-      );
-    } else {
-      await group("Decode GitHub OIDC token claims (debug)", () => {
-        debugGitHubIdTokenClaims(idToken);
-        return Promise.resolve();
-      });
-    }
-  }
-  const temporaryTokenDirectory = await mkdtemp(
-    join3(os6.tmpdir(), "deploy-oss-oidc-"),
-  );
-  const oidcTokenFilePath = join3(temporaryTokenDirectory, "token.jwt");
-  try {
-    await writeFile2(oidcTokenFilePath, idToken, {
-      mode: 384,
-    });
-    const credentialClient = new CredentialClientCtor(
-      new import_credentials.Config({
-        type: "oidc_role_arn",
-        roleArn: inputs.roleOidcArn,
-        oidcProviderArn: inputs.oidcProviderArn,
-        oidcTokenFilePath,
-        roleSessionExpiration: inputs.roleSessionExpiration,
-        roleSessionName: inputs.roleSessionName,
-      }),
-    );
-    return normalizeCredential(await credentialClient.getCredential());
-  } finally {
-    await rm2(temporaryTokenDirectory, {
-      force: true,
-      recursive: true,
-    });
-  }
-}
-
 // src/shared.ts
 import { lstat as lstat2, readdir as readdir2 } from "node:fs/promises";
 import {
-  join as join4,
+  join as join3,
   relative as relative2,
   resolve as resolve2,
 } from "node:path";
@@ -29793,7 +29614,31 @@ var MuxAsyncIterator = class {
   }
 };
 
+// src/_shared-utils.ts
+function parsePositiveIntegerValue(name, value, defaultValue, max) {
+  if (value === void 0) {
+    return defaultValue;
+  }
+  if (!/^\d+$/.test(value)) {
+    throw new Error(`'${name}' must be a positive integer`);
+  }
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
+    throw new Error(`'${name}' must be a positive integer`);
+  }
+  if (max !== void 0 && parsed > max) {
+    throw new Error(`'${name}' must be <= ${max}`);
+  }
+  return parsed;
+}
+
 // src/shared.ts
+function getOptionalInput(name) {
+  const value = getInput(name, {
+    required: false,
+  }).trim();
+  return value === "" ? void 0 : value;
+}
 function emitDebugNotice(title, message, properties) {
   if (!isDebug()) {
     return;
@@ -29809,6 +29654,166 @@ function emitDebugNotice(title, message, properties) {
         title,
       },
   );
+}
+
+// src/oidc.ts
+var DEFAULT_ROLE_SESSION_EXPIRATION = 900;
+var DEFAULT_ROLE_SESSION_NAME = "github-action-session";
+var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
+var MAX_ROLE_SESSION_EXPIRATION = 43200;
+var MIN_ROLE_SESSION_EXPIRATION = 900;
+var textDecoder = new TextDecoder();
+var CredentialClientCtor = import_alicloud_credentials.default;
+function decodeJwtPayload(idToken) {
+  const parts = idToken.split(".");
+  const encodedPayload = parts[1];
+  if (!encodedPayload) {
+    return void 0;
+  }
+  try {
+    const payloadJson = textDecoder.decode(decodeBase64Url(encodedPayload));
+    const payload = JSON.parse(payloadJson);
+    if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+      return void 0;
+    }
+    return payload;
+  } catch {
+    return void 0;
+  }
+}
+function debugGitHubIdTokenClaims(idToken) {
+  const decodedPayload = decodeJwtPayload(idToken);
+  if (!decodedPayload) {
+    debug2("GitHub OIDC token payload decode failed");
+    return;
+  }
+  const formattedPayload = JSON.stringify(decodedPayload, null, 2);
+  debug2(`GitHub OIDC token payload (decoded):
+${formattedPayload}`);
+}
+function getRequiredInput(name) {
+  return getInput(name, {
+    required: true,
+  }).trim();
+}
+function parseRoleSessionExpiration(value) {
+  const parsed = parsePositiveIntegerValue(
+    "role-session-expiration",
+    value,
+    DEFAULT_ROLE_SESSION_EXPIRATION,
+  );
+  if (parsed < MIN_ROLE_SESSION_EXPIRATION) {
+    throw new Error(
+      `'role-session-expiration' must be >= ${MIN_ROLE_SESSION_EXPIRATION}`,
+    );
+  }
+  if (parsed > MAX_ROLE_SESSION_EXPIRATION) {
+    throw new Error(
+      `'role-session-expiration' must not exceed ${MAX_ROLE_SESSION_EXPIRATION} seconds`,
+    );
+  }
+  return parsed;
+}
+var ROLE_SESSION_NAME_PATTERN = /^[\w.\-@=]{2,64}$/;
+function parseRoleSessionName(value) {
+  const roleSessionName = value ?? DEFAULT_ROLE_SESSION_NAME;
+  if (!ROLE_SESSION_NAME_PATTERN.test(roleSessionName)) {
+    throw new Error(
+      "'role-session-name' must be 2-64 characters and contain only letters, digits, hyphens, underscores, dots, at signs, or equals signs",
+    );
+  }
+  return roleSessionName;
+}
+function parseRefreshIntervalMs(value, roleSessionExpiration) {
+  const refreshIntervalSeconds = parsePositiveIntegerValue(
+    "refresh-sts-token-interval-seconds",
+    value,
+    DEFAULT_STS_REFRESH_INTERVAL_SECONDS,
+  );
+  if (refreshIntervalSeconds >= roleSessionExpiration) {
+    throw new Error(
+      "'refresh-sts-token-interval-seconds' must be lower than 'role-session-expiration'",
+    );
+  }
+  return refreshIntervalSeconds * 1e3;
+}
+function parseOidcInputs() {
+  const roleOidcArn = getRequiredInput("role-oidc-arn");
+  const oidcProviderArn = getRequiredInput("oidc-provider-arn");
+  const audience = getOptionalInput("audience");
+  const roleSessionExpiration = parseRoleSessionExpiration(
+    getOptionalInput("role-session-expiration"),
+  );
+  const roleSessionName = parseRoleSessionName(
+    getOptionalInput("role-session-name"),
+  );
+  const refreshStsTokenIntervalMs = parseRefreshIntervalMs(
+    getOptionalInput("refresh-sts-token-interval-seconds"),
+    roleSessionExpiration,
+  );
+  return {
+    audience,
+    oidcProviderArn,
+    refreshStsTokenIntervalMs,
+    roleOidcArn,
+    roleSessionExpiration,
+    roleSessionName,
+  };
+}
+function normalizeCredential(credential) {
+  if (
+    !credential.accessKeyId || !credential.accessKeySecret ||
+    !credential.securityToken
+  ) {
+    throw new Error("Failed to resolve a complete credential set from Aliyun");
+  }
+  return {
+    accessKeyId: credential.accessKeyId,
+    accessKeySecret: credential.accessKeySecret,
+    securityToken: credential.securityToken,
+  };
+}
+async function resolveOidcCredential(inputs, options) {
+  const idToken = inputs.audience
+    ? await getIDToken(inputs.audience)
+    : await getIDToken();
+  if (options?.debugGitHubIdTokenClaims) {
+    if (!isDebug()) {
+      info(
+        "OIDC claim debug logging is disabled because ACTIONS_STEP_DEBUG is not set to true.",
+      );
+    } else {
+      await group("Decode GitHub OIDC token claims (debug)", () => {
+        debugGitHubIdTokenClaims(idToken);
+        return Promise.resolve();
+      });
+    }
+  }
+  const temporaryTokenDirectory = await mkdtemp(
+    join4(os6.tmpdir(), "deploy-oss-oidc-"),
+  );
+  const oidcTokenFilePath = join4(temporaryTokenDirectory, "token.jwt");
+  try {
+    await writeFile2(oidcTokenFilePath, idToken, {
+      mode: 384,
+    });
+    const credentialClient = new CredentialClientCtor(
+      new import_alicloud_credentials.Config({
+        type: "oidc_role_arn",
+        roleArn: inputs.roleOidcArn,
+        oidcProviderArn: inputs.oidcProviderArn,
+        oidcTokenFilePath,
+        roleSessionExpiration: inputs.roleSessionExpiration,
+        roleSessionName: inputs.roleSessionName,
+      }),
+    );
+    return normalizeCredential(await credentialClient.getCredential());
+  } finally {
+    await rm2(temporaryTokenDirectory, {
+      force: true,
+      recursive: true,
+    });
+  }
 }
 
 // src/pre.ts

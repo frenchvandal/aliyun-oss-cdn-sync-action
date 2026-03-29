@@ -82,7 +82,7 @@ jobs:
           printf '%s\n' "${COMMIT_MESSAGE}" > "${commit_message_file}"
           deno task lint-commit "${commit_message_file}"
 
-          git add -A
+          git add deno.json deno.lock dist/
 
           if git diff --cached --quiet; then
             echo "No staged changes to commit."

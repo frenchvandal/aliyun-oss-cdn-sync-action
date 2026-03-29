@@ -2,11 +2,12 @@ import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import { join } from "node:path";
 
-import { getIDToken, getInput, group, isDebug } from "@actions/core";
-import CredentialClient, { Config } from "@alicloud/credentials";
+import { getIDToken, getInput, group, isDebug } from "npm/actions-core";
+import CredentialClient, { Config } from "npm/alicloud-credentials";
 import { decodeBase64Url } from "jsr/encoding";
 
 import { debug, info } from "./logger.ts";
+import { getOptionalInput, parsePositiveIntegerValue } from "./shared.ts";
 
 export interface OidcInputs {
   audience: string | undefined;
@@ -83,34 +84,8 @@ function getRequiredInput(name: string): string {
   return getInput(name, { required: true }).trim();
 }
 
-function getOptionalInput(name: string): string | undefined {
-  const value = getInput(name, { required: false }).trim();
-  return value === "" ? undefined : value;
-}
-
-function parsePositiveInteger(
-  name: string,
-  value: string | undefined,
-  defaultValue: number,
-): number {
-  if (!value) {
-    return defaultValue;
-  }
-
-  if (!/^\d+$/.test(value)) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-
-  return parsed;
-}
-
 function parseRoleSessionExpiration(value: string | undefined): number {
-  const parsed = parsePositiveInteger(
+  const parsed = parsePositiveIntegerValue(
     "role-session-expiration",
     value,
     DEFAULT_ROLE_SESSION_EXPIRATION,
@@ -148,7 +123,7 @@ function parseRefreshIntervalMs(
   value: string | undefined,
   roleSessionExpiration: number,
 ): number {
-  const refreshIntervalSeconds = parsePositiveInteger(
+  const refreshIntervalSeconds = parsePositiveIntegerValue(
     "refresh-sts-token-interval-seconds",
     value,
     DEFAULT_STS_REFRESH_INTERVAL_SECONDS,

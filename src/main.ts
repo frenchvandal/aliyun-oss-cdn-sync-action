@@ -1,15 +1,24 @@
-import { dirname, extname, resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 
-import { group, isDebug, saveState, setOutput, summary } from "@actions/core";
-type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
-import * as Cdn from "@alicloud/cdn20180510";
-import * as AliOssModule from "ali-oss";
+import {
+  group,
+  isDebug,
+  saveState,
+  setOutput,
+  summary,
+} from "npm/actions-core";
+import * as Cdn from "npm/alicloud-cdn20180510";
+import * as AliOssModule from "npm/ali-oss";
 import { chunk } from "jsr/collections";
-import { typeByExtension } from "jsr/media-types";
 import * as exec from "npm/actions-exec";
 import * as io from "npm/actions-io";
 import formatter from "npm/ernest-logger-formatter";
 
+import { guessContentType, resolveCacheControl } from "./_asset-metadata.ts";
+import {
+  firstNonEmptyLine,
+  resolveBuildCommandExecutable,
+} from "./_build-command.ts";
 import { restoreLocalCache } from "./cache.ts";
 import {
   ApiRateLimiter,
@@ -17,12 +26,14 @@ import {
   buildObjectKey,
   collectFiles,
   emitDebugNotice,
+  errorMessage,
   getOptionalInput,
   parseBooleanInput,
   parseOssBaseInputs,
-  resolveCredentials,
-  resolveCredentialsFromState,
+  parseQuota,
+  requireCredentialsFromState,
   resolveOssEndpoint,
+  selectByQuota,
 } from "./shared.ts";
 import {
   debug,
@@ -45,6 +56,7 @@ import {
 } from "./constants.ts";
 import type { Credentials, FileEntry } from "./shared.ts";
 
+type SummaryTableRow = Array<{ data: string; header?: boolean } | string>;
 type CdnAction = "refresh" | "preload";
 type ResponseHeaders = Record<string, unknown>;
 type CdnResponseBody = Record<string, unknown>;
@@ -57,10 +69,6 @@ type BatchSubmissionResult = {
   taskIds: string[];
   submittedBatches: number;
   submittedUrls: number;
-};
-type QuotaSelection<T> = {
-  allowed: T[];
-  deniedCount: number;
 };
 
 interface Inputs {
@@ -138,11 +146,6 @@ const PushObjectCacheRequestCtor = Cdn
   ) => unknown;
 // Aliyun CDN API accepts at most 100 URLs per refresh/preload request.
 const CDN_MAX_URLS_PER_REQUEST = 100;
-const FORCED_CONTENT_TYPES: Readonly<Record<string, string>> = Object.freeze({
-  "atom.xml": "application/atom+xml",
-  "feed.json": "application/feed+json",
-  "rss.xml": "application/rss+xml",
-});
 // RefreshObjectCaches and PushObjectCache: 50 req/s.
 const CDN_API_MAX_RPS = 50;
 // DescribeRefreshQuota: 20 req/s (stricter endpoint).
@@ -151,35 +154,6 @@ const CDN_QUOTA_API_MAX_RPS = 20;
 const MAX_UPLOAD_RETRIES = 3;
 const UPLOAD_PROGRESS_BAR_WIDTH = 30;
 const UPLOAD_PROGRESS_PERCENT_STEP = 1;
-const NO_CACHE_CONTROL_VALUE = "no-cache, max-age=0, must-revalidate";
-const HOURLY_REVALIDATE_CACHE_CONTROL_VALUE =
-  "public, max-age=3600, must-revalidate";
-const WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE =
-  "public, max-age=604800, must-revalidate";
-const IMMUTABLE_CACHE_CONTROL_VALUE = "public, max-age=31536000, immutable";
-const LEADING_ENV_ASSIGNMENT_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*=.*/;
-const HASHED_ASSET_PATTERN = /(?:\.[a-z0-9]{8,}|_[a-z0-9]{7,})\.[^.]+$/i;
-const HOURLY_REVALIDATE_EXTENSIONS = Object.freeze([
-  "css",
-  "js",
-  "json",
-  "pagefind",
-  "txt",
-  "webmanifest",
-  "xml",
-  "xsl",
-]);
-const WEEKLY_REVALIDATE_EXTENSIONS = Object.freeze([
-  "avif",
-  "ico",
-  "jpg",
-  "jpeg",
-  "png",
-  "svg",
-  "webp",
-  "woff",
-  "woff2",
-]);
 const VERSION_PROBE_ARGUMENTS = Object.freeze(
   [
     ["--version"],
@@ -228,48 +202,6 @@ function parseActions(
 
   return actions;
 }
-
-function guessContentType(absolutePath: string, relativePath: string): string {
-  const normalizedRelativePath = relativePath.replaceAll("\\", "/")
-    .toLowerCase();
-  const forcedContentType = FORCED_CONTENT_TYPES[normalizedRelativePath];
-
-  if (forcedContentType) {
-    return forcedContentType;
-  }
-
-  // Fall back to "inline" when the MIME type cannot be inferred: OSS treats
-  // this value as a signal to detect the content type from the file content.
-  return typeByExtension(extname(absolutePath)) ?? "inline";
-}
-
-function resolveCacheControl(relativePath: string): string | undefined {
-  const normalizedPath = relativePath.replaceAll("\\", "/").toLowerCase();
-  const fileName = normalizedPath.split("/").at(-1) ?? normalizedPath;
-  const extension = fileName.split(".").at(-1);
-
-  if (fileName === "sw.js" || normalizedPath.endsWith(".html")) {
-    return NO_CACHE_CONTROL_VALUE;
-  }
-
-  if (HASHED_ASSET_PATTERN.test(fileName)) {
-    return IMMUTABLE_CACHE_CONTROL_VALUE;
-  }
-
-  if (
-    normalizedPath.startsWith("pagefind/") ||
-    (extension && HOURLY_REVALIDATE_EXTENSIONS.includes(extension))
-  ) {
-    return HOURLY_REVALIDATE_CACHE_CONTROL_VALUE;
-  }
-
-  if (extension && WEEKLY_REVALIDATE_EXTENSIONS.includes(extension)) {
-    return WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE;
-  }
-
-  return undefined;
-}
-
 function buildUploadProgressBar(
   processedCount: number,
   totalCount: number,
@@ -349,85 +281,6 @@ async function runBuildCommand(command: string): Promise<void> {
       `Build command failed with exit code ${exitCode}: ${command}`,
     );
   }
-}
-
-function tokenizeBuildCommand(command: string): string[] {
-  const tokens: string[] = [];
-  let currentToken = "";
-  let activeQuote: "'" | '"' | undefined;
-  let isEscaped = false;
-
-  for (const character of command) {
-    if (isEscaped) {
-      currentToken += character;
-      isEscaped = false;
-      continue;
-    }
-
-    if (!activeQuote && character === "\\") {
-      isEscaped = true;
-      continue;
-    }
-
-    if (character === "'" || character === '"') {
-      if (activeQuote === character) {
-        activeQuote = undefined;
-        continue;
-      }
-
-      if (!activeQuote) {
-        activeQuote = character;
-        continue;
-      }
-    }
-
-    if (!activeQuote && /\s/.test(character)) {
-      if (currentToken !== "") {
-        tokens.push(currentToken);
-        currentToken = "";
-      }
-      continue;
-    }
-
-    currentToken += character;
-  }
-
-  if (isEscaped) {
-    currentToken += "\\";
-  }
-
-  if (currentToken !== "") {
-    tokens.push(currentToken);
-  }
-
-  return tokens;
-}
-
-// Best effort only: build-command is arbitrary shell text, so we extract just
-// the first executable-like token and skip leading KEY=value assignments.
-function resolveBuildCommandExecutable(command: string): string | undefined {
-  const tokens = tokenizeBuildCommand(command);
-
-  for (const token of tokens) {
-    if (LEADING_ENV_ASSIGNMENT_PATTERN.test(token)) {
-      continue;
-    }
-
-    return token;
-  }
-
-  return undefined;
-}
-
-function firstNonEmptyLine(value: string): string | undefined {
-  for (const line of value.split(/\r?\n/)) {
-    const trimmedLine = line.trim();
-    if (trimmedLine !== "") {
-      return trimmedLine;
-    }
-  }
-
-  return undefined;
 }
 
 async function resolveExecutableVersion(
@@ -806,11 +659,6 @@ function filterFilesCoveredByDirectories(
   };
 }
 
-function parseQuota(value: string | undefined): number {
-  const parsed = Number.parseInt(value ?? "0", 10);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
-}
-
 function formatActions(actions: Set<CdnAction>): string {
   if (actions.size === 0) {
     return "none";
@@ -851,58 +699,6 @@ function resolveRequestId(
     getHeaderValue(headers, "x-oss-request-id") ??
     getHeaderValue(headers, "x-oss-requestid") ??
     getHeaderValue(headers, "x-request-id");
-}
-
-function errorMessage(error: unknown): string {
-  if (!error || typeof error !== "object") {
-    return String(error);
-  }
-
-  const record = error as Record<string, unknown>;
-  const requestId = typeof record.requestId === "string"
-    ? record.requestId
-    : typeof record.data === "object" && record.data !== null
-    ? ((record.data as Record<string, unknown>).RequestId ??
-      (record.data as Record<string, unknown>).requestId) as
-        | string
-        | undefined
-    : undefined;
-
-  const details: string[] = [];
-  if (typeof record.message === "string" && record.message !== "") {
-    details.push(record.message);
-  } else if (error instanceof Error && error.message !== "") {
-    details.push(error.message);
-  }
-  if (typeof record.code === "string" && record.code !== "") {
-    details.push(`code=${record.code}`);
-  }
-  if (typeof record.statusCode === "number") {
-    details.push(`statusCode=${record.statusCode}`);
-  }
-  if (requestId) {
-    details.push(`requestId=${requestId}`);
-  }
-
-  if (details.length > 0) {
-    return details.join(", ");
-  }
-
-  return String(error);
-}
-
-function selectByQuota<T>(
-  values: readonly T[],
-  remainingQuota: number,
-): QuotaSelection<T> {
-  const safeQuota = remainingQuota > 0 ? remainingQuota : 0;
-  const allowedCount = Math.min(values.length, safeQuota);
-  const deniedCount = values.length - allowedCount;
-
-  return {
-    allowed: values.slice(0, allowedCount),
-    deniedCount,
-  };
 }
 
 function warnQuotaExhausted(
@@ -1301,8 +1097,7 @@ export async function run(): Promise<void> {
     "Running local build command",
     () => runBuildCommand(inputs.buildCommand),
   );
-  const credentials = resolveCredentialsFromState() ??
-    resolveCredentials();
+  const credentials = requireCredentialsFromState();
   info(
     `CDN config: enabled=${inputs.cdnEnabled}, baseUrl=${
       inputs.cdnBaseUrl || "(empty)"

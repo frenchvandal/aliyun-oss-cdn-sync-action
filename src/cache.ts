@@ -2,17 +2,18 @@ import { mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 
 import * as cache from "npm/actions-cache";
-import { getState, saveState } from "@actions/core";
+import { getState, saveState } from "npm/actions-core";
 
 import { STATE_CACHE_RESTORED_KEY, STATE_MAIN_COMPLETED } from "./constants.ts";
 import { info, success, warning } from "./logger.ts";
-import { collectFiles, getOptionalInput, parseBooleanInput } from "./shared.ts";
+import {
+  collectFiles,
+  errorMessage,
+  getOptionalInput,
+  parseBooleanInput,
+} from "./shared.ts";
 
 const LOCAL_CACHE_DIRECTORY = "_cache";
-
-function errorMessage(error: unknown): string {
-  return error instanceof Error ? error.message : String(error);
-}
 
 function parseRestoreKeys(rawValue: string | undefined): string[] {
   if (!rawValue) {

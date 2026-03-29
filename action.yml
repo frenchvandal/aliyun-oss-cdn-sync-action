@@ -1,5 +1,5 @@
-name: Aliyun (Alibaba Cloud) OSS CDN Sync Action
-description: Upload local files to Aliyun OSS and run CDN actions per uploaded file
+name: Aliyun OSS CDN Sync Action
+description: Upload local files to Aliyun OSS and run CDN actions for uploaded paths
 
 inputs:
   role-oidc-arn:

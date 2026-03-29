@@ -171502,11 +171502,7 @@ var require_ernest_logger = __commonJS({
 });
 
 // src/main.ts
-import {
-  dirname as dirname5,
-  extname as extname2,
-  resolve as resolve4,
-} from "node:path";
+import { dirname as dirname5, resolve as resolve4 } from "node:path";
 
 // node_modules/.deno/@actions+core@3.0.0/node_modules/@actions/core/lib/command.js
 import * as os from "node:os";
@@ -174019,6 +174015,12 @@ function chunk(iterable, size) {
   }
   return result;
 }
+
+// src/main.ts
+var import_ernest_logger_formatter = __toESM(require_formatter());
+
+// src/_asset-metadata.ts
+import { extname as extname2 } from "node:path";
 
 // deno:https://jsr.io/@std/media-types/1.1.0/_util.ts
 var CHAR_CODE_SPACE = " ".charCodeAt(0);
@@ -185456,8 +185458,138 @@ function typeByExtension(extension) {
   return types.get(extension.toLowerCase());
 }
 
-// src/main.ts
-var import_ernest_logger_formatter = __toESM(require_formatter());
+// src/_asset-metadata.ts
+var FORCED_CONTENT_TYPES = Object.freeze({
+  "atom.xml": "application/atom+xml",
+  "feed.json": "application/feed+json",
+  "rss.xml": "application/rss+xml",
+});
+var NO_CACHE_CONTROL_VALUE = "no-cache, max-age=0, must-revalidate";
+var HOURLY_REVALIDATE_CACHE_CONTROL_VALUE =
+  "public, max-age=3600, must-revalidate";
+var WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE =
+  "public, max-age=604800, must-revalidate";
+var IMMUTABLE_CACHE_CONTROL_VALUE = "public, max-age=31536000, immutable";
+var HASHED_ASSET_PATTERN =
+  /(?:\.[a-z0-9]{8,}|_(?=[a-z0-9]{7,}\.)[a-z0-9]*\d[a-z0-9]*)\.[^.]+$/i;
+var HOURLY_REVALIDATE_EXTENSIONS = Object.freeze([
+  "css",
+  "js",
+  "json",
+  "pagefind",
+  "txt",
+  "webmanifest",
+  "xml",
+  "xsl",
+]);
+var WEEKLY_REVALIDATE_EXTENSIONS = Object.freeze([
+  "avif",
+  "ico",
+  "jpg",
+  "jpeg",
+  "png",
+  "svg",
+  "webp",
+  "woff",
+  "woff2",
+]);
+function guessContentType(absolutePath, relativePath) {
+  const normalizedRelativePath = relativePath.replaceAll("\\", "/")
+    .toLowerCase();
+  const fileName = normalizedRelativePath.split("/").at(-1) ??
+    normalizedRelativePath;
+  const forcedContentType = FORCED_CONTENT_TYPES[normalizedRelativePath] ??
+    FORCED_CONTENT_TYPES[fileName];
+  if (forcedContentType) {
+    return forcedContentType;
+  }
+  return typeByExtension(extname2(absolutePath)) ?? "inline";
+}
+function resolveCacheControl(relativePath) {
+  const normalizedPath = relativePath.replaceAll("\\", "/").toLowerCase();
+  const fileName = normalizedPath.split("/").at(-1) ?? normalizedPath;
+  const extension = fileName.split(".").at(-1);
+  if (fileName === "sw.js" || normalizedPath.endsWith(".html")) {
+    return NO_CACHE_CONTROL_VALUE;
+  }
+  if (HASHED_ASSET_PATTERN.test(fileName)) {
+    return IMMUTABLE_CACHE_CONTROL_VALUE;
+  }
+  if (
+    normalizedPath.startsWith("pagefind/") ||
+    extension && HOURLY_REVALIDATE_EXTENSIONS.includes(extension)
+  ) {
+    return HOURLY_REVALIDATE_CACHE_CONTROL_VALUE;
+  }
+  if (extension && WEEKLY_REVALIDATE_EXTENSIONS.includes(extension)) {
+    return WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE;
+  }
+  return void 0;
+}
+
+// src/_build-command.ts
+var LEADING_ENV_ASSIGNMENT_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*=.*/;
+function tokenizeBuildCommand(command) {
+  const tokens = [];
+  let currentToken = "";
+  let activeQuote;
+  let isEscaped = false;
+  for (const character of command) {
+    if (isEscaped) {
+      currentToken += character;
+      isEscaped = false;
+      continue;
+    }
+    if (!activeQuote && character === "\\") {
+      isEscaped = true;
+      continue;
+    }
+    if (character === "'" || character === '"') {
+      if (activeQuote === character) {
+        activeQuote = void 0;
+        continue;
+      }
+      if (!activeQuote) {
+        activeQuote = character;
+        continue;
+      }
+    }
+    if (!activeQuote && /\s/.test(character)) {
+      if (currentToken !== "") {
+        tokens.push(currentToken);
+        currentToken = "";
+      }
+      continue;
+    }
+    currentToken += character;
+  }
+  if (isEscaped) {
+    currentToken += "\\";
+  }
+  if (currentToken !== "") {
+    tokens.push(currentToken);
+  }
+  return tokens;
+}
+function resolveBuildCommandExecutable(command) {
+  const tokens = tokenizeBuildCommand(command);
+  for (const token of tokens) {
+    if (LEADING_ENV_ASSIGNMENT_PATTERN.test(token)) {
+      continue;
+    }
+    return token;
+  }
+  return void 0;
+}
+function firstNonEmptyLine(value) {
+  for (const line of value.split(/\r?\n/)) {
+    const trimmedLine = line.trim();
+    if (trimmedLine !== "") {
+      return trimmedLine;
+    }
+  }
+  return void 0;
+}
 
 // src/cache.ts
 import { mkdir as mkdir2 } from "node:fs/promises";
@@ -220436,7 +220568,7 @@ function retry(name_1, method_1, getStatusCode_1) {
       delay6 = DefaultRetryDelay,
       onError = void 0,
     ) {
-      let errorMessage3 = "";
+      let errorMessage2 = "";
       let attempt = 1;
       while (attempt <= maxAttempts) {
         let response = void 0;
@@ -220449,7 +220581,7 @@ function retry(name_1, method_1, getStatusCode_1) {
             response = onError(error2);
           }
           isRetryable = true;
-          errorMessage3 = error2.message;
+          errorMessage2 = error2.message;
         }
         if (response) {
           statusCode = getStatusCode(response);
@@ -220459,10 +220591,10 @@ function retry(name_1, method_1, getStatusCode_1) {
         }
         if (statusCode) {
           isRetryable = isRetryableStatusCode(statusCode);
-          errorMessage3 = `Cache service responded with ${statusCode}`;
+          errorMessage2 = `Cache service responded with ${statusCode}`;
         }
         debug(
-          `${name} - Attempt ${attempt} of ${maxAttempts} failed with error: ${errorMessage3}`,
+          `${name} - Attempt ${attempt} of ${maxAttempts} failed with error: ${errorMessage2}`,
         );
         if (!isRetryable) {
           debug(`${name} - Error is not retryable`);
@@ -220471,7 +220603,7 @@ function retry(name_1, method_1, getStatusCode_1) {
         yield sleep(delay6);
         attempt++;
       }
-      throw Error(`${name} failed: ${errorMessage3}`);
+      throw Error(`${name} failed: ${errorMessage2}`);
     },
   );
 }
@@ -225951,7 +226083,7 @@ var CacheServiceClient = class {
   retryableRequest(operation) {
     return __awaiter19(this, void 0, void 0, function* () {
       let attempt = 0;
-      let errorMessage3 = "";
+      let errorMessage2 = "";
       let rawBody = "";
       while (attempt < this.maxAttempts) {
         let isRetryable = false;
@@ -225973,13 +226105,13 @@ var CacheServiceClient = class {
             };
           }
           isRetryable = this.isRetryableHttpStatusCode(statusCode);
-          errorMessage3 =
+          errorMessage2 =
             `Failed request: (${statusCode}) ${response.message.statusMessage}`;
           if (body2.msg) {
             if (UsageError.isUsageErrorMessage(body2.msg)) {
               throw new UsageError();
             }
-            errorMessage3 = `${errorMessage3}: ${body2.msg}`;
+            errorMessage2 = `${errorMessage2}: ${body2.msg}`;
           }
           if (statusCode === HttpCodes.TooManyRequests) {
             const retryAfterHeader = response.message.headers["retry-after"];
@@ -225991,7 +226123,7 @@ var CacheServiceClient = class {
                 );
               }
             }
-            throw new RateLimitError(`Rate limited: ${errorMessage3}`);
+            throw new RateLimitError(`Rate limited: ${errorMessage2}`);
           }
         } catch (error2) {
           if (error2 instanceof SyntaxError) {
@@ -226013,14 +226145,14 @@ var CacheServiceClient = class {
             );
           }
           isRetryable = true;
-          errorMessage3 = error2.message;
+          errorMessage2 = error2.message;
         }
         if (!isRetryable) {
-          throw new Error(`Received non-retryable error: ${errorMessage3}`);
+          throw new Error(`Received non-retryable error: ${errorMessage2}`);
         }
         if (attempt + 1 === this.maxAttempts) {
           throw new Error(
-            `Failed to make request after ${this.maxAttempts} attempts: ${errorMessage3}`,
+            `Failed to make request after ${this.maxAttempts} attempts: ${errorMessage2}`,
           );
         }
         const retryTimeMilliseconds = this.getExponentialRetryTimeMilliseconds(
@@ -226029,7 +226161,7 @@ var CacheServiceClient = class {
         info(
           `Attempt ${
             attempt + 1
-          } of ${this.maxAttempts} failed with error: ${errorMessage3}. Retrying request in ${retryTimeMilliseconds} ms...`,
+          } of ${this.maxAttempts} failed with error: ${errorMessage2}. Retrying request in ${retryTimeMilliseconds} ms...`,
         );
         yield this.sleep(retryTimeMilliseconds);
         attempt++;
@@ -226906,6 +227038,104 @@ var MuxAsyncIterator = class {
   }
 };
 
+// src/_shared-utils.ts
+function errorMessage(error2) {
+  if (!error2 || typeof error2 !== "object") {
+    return String(error2);
+  }
+  const record = error2;
+  const dataRecord = typeof record.data === "object" && record.data !== null
+    ? record.data
+    : void 0;
+  const requestId2 = typeof record.requestId === "string"
+    ? record.requestId
+    : typeof dataRecord?.RequestId === "string"
+    ? dataRecord.RequestId
+    : typeof dataRecord?.requestId === "string"
+    ? dataRecord.requestId
+    : void 0;
+  const details = [];
+  if (typeof record.message === "string" && record.message !== "") {
+    details.push(record.message);
+  } else if (error2 instanceof Error && error2.message !== "") {
+    details.push(error2.message);
+  }
+  if (typeof record.code === "string" && record.code !== "") {
+    details.push(`code=${record.code}`);
+  }
+  if (typeof record.statusCode === "number") {
+    details.push(`statusCode=${record.statusCode}`);
+  }
+  if (requestId2) {
+    details.push(`requestId=${requestId2}`);
+  }
+  if (details.length > 0) {
+    return details.join(", ");
+  }
+  return String(error2);
+}
+function parsePositiveIntegerValue(name, value, defaultValue, max) {
+  if (value === void 0) {
+    return defaultValue;
+  }
+  if (!/^\d+$/.test(value)) {
+    throw new Error(`'${name}' must be a positive integer`);
+  }
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
+    throw new Error(`'${name}' must be a positive integer`);
+  }
+  if (max !== void 0 && parsed > max) {
+    throw new Error(`'${name}' must be <= ${max}`);
+  }
+  return parsed;
+}
+function parsePrefix(prefix2) {
+  if (!prefix2) {
+    return "";
+  }
+  return prefix2.replace(/\\/g, "/").replace(/^\/+/, "").replace(/\/+$/, "");
+}
+function parseQuota(value) {
+  const parsed = Number.parseInt(value ?? "0", 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+}
+function selectByQuota(values, remainingQuota) {
+  const safeQuota = remainingQuota > 0 ? remainingQuota : 0;
+  const allowedCount = Math.min(values.length, safeQuota);
+  const deniedCount = values.length - allowedCount;
+  return {
+    allowed: values.slice(0, allowedCount),
+    deniedCount,
+  };
+}
+function toHost(endpoint) {
+  if (/^https?:\/\//i.test(endpoint)) {
+    return new URL(endpoint).host;
+  }
+  return endpoint;
+}
+function resolveOssEndpoint(region, endpoint) {
+  if (endpoint) {
+    try {
+      return toHost(endpoint);
+    } catch {
+      throw new Error(`'endpoint' is not a valid URL or hostname: ${endpoint}`);
+    }
+  }
+  if (region.includes(".")) {
+    return region;
+  }
+  return `${region}.aliyuncs.com`;
+}
+function buildObjectKey(prefix2, relativePath) {
+  return prefix2 === "" ? relativePath : `${prefix2}/${relativePath}`;
+}
+function buildFileUrl(baseUrl, key) {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  return new URL(key.replace(/^\/+/, ""), base).toString();
+}
+
 // src/shared.ts
 var ApiRateLimiter = class {
   chain = Promise.resolve();
@@ -226944,27 +227174,12 @@ function parseBooleanInput(name, defaultValue) {
   }
 }
 function parsePositiveIntegerInput(name, defaultValue, max) {
-  const value = getOptionalInput(name);
-  if (value === void 0) {
-    return defaultValue;
-  }
-  if (!/^\d+$/.test(value)) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  if (max !== void 0 && parsed > max) {
-    throw new Error(`'${name}' must be <= ${max}`);
-  }
-  return parsed;
-}
-function parsePrefix(prefix2) {
-  if (!prefix2) {
-    return "";
-  }
-  return prefix2.replace(/\\/g, "/").replace(/^\/+/, "").replace(/\/+$/, "");
+  return parsePositiveIntegerValue(
+    name,
+    getOptionalInput(name),
+    defaultValue,
+    max,
+  );
 }
 function parseOssBaseInputs() {
   const inputDir = getOptionalInput("input-dir") ?? "_site";
@@ -227006,7 +227221,11 @@ function resolveCredentialsFromState() {
     securityToken: securityToken || void 0,
   };
 }
-function resolveCredentials() {
+function requireCredentialsFromState() {
+  const credentials = resolveCredentialsFromState();
+  if (credentials) {
+    return credentials;
+  }
   throw new Error(
     "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Aliyun RAM role.",
   );
@@ -227026,28 +227245,6 @@ function emitDebugNotice(title, message, properties) {
         title,
       },
   );
-}
-function toHost(endpoint) {
-  if (/^https?:\/\//i.test(endpoint)) {
-    return new URL(endpoint).host;
-  }
-  return endpoint;
-}
-function resolveOssEndpoint(region, endpoint) {
-  if (endpoint) {
-    try {
-      return toHost(endpoint);
-    } catch {
-      throw new Error(`'endpoint' is not a valid URL or hostname: ${endpoint}`);
-    }
-  }
-  if (region.includes(".")) {
-    return region;
-  }
-  return `${region}.aliyuncs.com`;
-}
-function buildObjectKey(prefix2, relativePath) {
-  return prefix2 === "" ? relativePath : `${prefix2}/${relativePath}`;
 }
 async function collectFiles(rootDirectory) {
   const files = [];
@@ -227084,16 +227281,9 @@ async function collectFiles(rootDirectory) {
   files.sort((a, b) => a.relativePath.localeCompare(b.relativePath));
   return files;
 }
-function buildFileUrl(baseUrl, key) {
-  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
-  return new URL(key.replace(/^\/+/, ""), base).toString();
-}
 
 // src/cache.ts
 var LOCAL_CACHE_DIRECTORY = "_cache";
-function errorMessage(error2) {
-  return error2 instanceof Error ? error2.message : String(error2);
-}
 function parseRestoreKeys(rawValue) {
   if (!rawValue) {
     return [];
@@ -227149,7 +227339,7 @@ async function restoreLocalCache() {
 import { mkdtemp, rm as rm2, writeFile as writeFile2 } from "node:fs/promises";
 import os9 from "node:os";
 import { join as join8 } from "node:path";
-var import_credentials2 = __toESM(require_client2());
+var import_alicloud_credentials = __toESM(require_client2());
 
 // deno:https://jsr.io/@std/encoding/1.0.10/_validate_binary_like.ts
 var encoder = new TextEncoder();
@@ -227310,7 +227500,7 @@ var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 var MAX_ROLE_SESSION_EXPIRATION = 43200;
 var MIN_ROLE_SESSION_EXPIRATION = 900;
 var textDecoder = new TextDecoder();
-var CredentialClientCtor = import_credentials2.default;
+var CredentialClientCtor = import_alicloud_credentials.default;
 function decodeJwtPayload(idToken) {
   const parts = idToken.split(".");
   const encodedPayload = parts[1];
@@ -227343,27 +227533,8 @@ function getRequiredInput(name) {
     required: true,
   }).trim();
 }
-function getOptionalInput2(name) {
-  const value = getInput(name, {
-    required: false,
-  }).trim();
-  return value === "" ? void 0 : value;
-}
-function parsePositiveInteger(name, value, defaultValue) {
-  if (!value) {
-    return defaultValue;
-  }
-  if (!/^\d+$/.test(value)) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  return parsed;
-}
 function parseRoleSessionExpiration(value) {
-  const parsed = parsePositiveInteger(
+  const parsed = parsePositiveIntegerValue(
     "role-session-expiration",
     value,
     DEFAULT_ROLE_SESSION_EXPIRATION,
@@ -227391,7 +227562,7 @@ function parseRoleSessionName(value) {
   return roleSessionName;
 }
 function parseRefreshIntervalMs(value, roleSessionExpiration) {
-  const refreshIntervalSeconds = parsePositiveInteger(
+  const refreshIntervalSeconds = parsePositiveIntegerValue(
     "refresh-sts-token-interval-seconds",
     value,
     DEFAULT_STS_REFRESH_INTERVAL_SECONDS,
@@ -227406,15 +227577,15 @@ function parseRefreshIntervalMs(value, roleSessionExpiration) {
 function parseOidcInputs() {
   const roleOidcArn = getRequiredInput("role-oidc-arn");
   const oidcProviderArn = getRequiredInput("oidc-provider-arn");
-  const audience = getOptionalInput2("audience");
+  const audience = getOptionalInput("audience");
   const roleSessionExpiration = parseRoleSessionExpiration(
-    getOptionalInput2("role-session-expiration"),
+    getOptionalInput("role-session-expiration"),
   );
   const roleSessionName = parseRoleSessionName(
-    getOptionalInput2("role-session-name"),
+    getOptionalInput("role-session-name"),
   );
   const refreshStsTokenIntervalMs = parseRefreshIntervalMs(
-    getOptionalInput2("refresh-sts-token-interval-seconds"),
+    getOptionalInput("refresh-sts-token-interval-seconds"),
     roleSessionExpiration,
   );
   return {
@@ -227464,7 +227635,7 @@ async function resolveOidcCredential(inputs, options) {
       mode: 384,
     });
     const credentialClient = new CredentialClientCtor(
-      new import_credentials2.Config({
+      new import_alicloud_credentials.Config({
         type: "oidc_role_arn",
         roleArn: inputs.roleOidcArn,
         oidcProviderArn: inputs.oidcProviderArn,
@@ -227489,45 +227660,11 @@ var DescribeRefreshQuotaRequestCtor = Cdn.DescribeRefreshQuotaRequest;
 var RefreshObjectCachesRequestCtor = Cdn.RefreshObjectCachesRequest;
 var PushObjectCacheRequestCtor = Cdn.PushObjectCacheRequest;
 var CDN_MAX_URLS_PER_REQUEST = 100;
-var FORCED_CONTENT_TYPES = Object.freeze({
-  "atom.xml": "application/atom+xml",
-  "feed.json": "application/feed+json",
-  "rss.xml": "application/rss+xml",
-});
 var CDN_API_MAX_RPS = 50;
 var CDN_QUOTA_API_MAX_RPS = 20;
 var MAX_UPLOAD_RETRIES = 3;
 var UPLOAD_PROGRESS_BAR_WIDTH = 30;
 var UPLOAD_PROGRESS_PERCENT_STEP = 1;
-var NO_CACHE_CONTROL_VALUE = "no-cache, max-age=0, must-revalidate";
-var HOURLY_REVALIDATE_CACHE_CONTROL_VALUE =
-  "public, max-age=3600, must-revalidate";
-var WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE =
-  "public, max-age=604800, must-revalidate";
-var IMMUTABLE_CACHE_CONTROL_VALUE = "public, max-age=31536000, immutable";
-var LEADING_ENV_ASSIGNMENT_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*=.*/;
-var HASHED_ASSET_PATTERN = /(?:\.[a-z0-9]{8,}|_[a-z0-9]{7,})\.[^.]+$/i;
-var HOURLY_REVALIDATE_EXTENSIONS = Object.freeze([
-  "css",
-  "js",
-  "json",
-  "pagefind",
-  "txt",
-  "webmanifest",
-  "xml",
-  "xsl",
-]);
-var WEEKLY_REVALIDATE_EXTENSIONS = Object.freeze([
-  "avif",
-  "ico",
-  "jpg",
-  "jpeg",
-  "png",
-  "svg",
-  "webp",
-  "woff",
-  "woff2",
-]);
 var VERSION_PROBE_ARGUMENTS = Object.freeze([
   [
     "--version",
@@ -227576,36 +227713,6 @@ function parseActions(raw, inputName, cdnEnabled) {
     actions.add("preload");
   }
   return actions;
-}
-function guessContentType(absolutePath, relativePath) {
-  const normalizedRelativePath = relativePath.replaceAll("\\", "/")
-    .toLowerCase();
-  const forcedContentType = FORCED_CONTENT_TYPES[normalizedRelativePath];
-  if (forcedContentType) {
-    return forcedContentType;
-  }
-  return typeByExtension(extname2(absolutePath)) ?? "inline";
-}
-function resolveCacheControl(relativePath) {
-  const normalizedPath = relativePath.replaceAll("\\", "/").toLowerCase();
-  const fileName = normalizedPath.split("/").at(-1) ?? normalizedPath;
-  const extension = fileName.split(".").at(-1);
-  if (fileName === "sw.js" || normalizedPath.endsWith(".html")) {
-    return NO_CACHE_CONTROL_VALUE;
-  }
-  if (HASHED_ASSET_PATTERN.test(fileName)) {
-    return IMMUTABLE_CACHE_CONTROL_VALUE;
-  }
-  if (
-    normalizedPath.startsWith("pagefind/") ||
-    extension && HOURLY_REVALIDATE_EXTENSIONS.includes(extension)
-  ) {
-    return HOURLY_REVALIDATE_CACHE_CONTROL_VALUE;
-  }
-  if (extension && WEEKLY_REVALIDATE_EXTENSIONS.includes(extension)) {
-    return WEEKLY_REVALIDATE_CACHE_CONTROL_VALUE;
-  }
-  return void 0;
 }
 function buildUploadProgressBar(processedCount, totalCount) {
   const safeTotal = Math.max(totalCount, 1);
@@ -227676,67 +227783,6 @@ async function runBuildCommand(command) {
     );
   }
 }
-function tokenizeBuildCommand(command) {
-  const tokens = [];
-  let currentToken = "";
-  let activeQuote;
-  let isEscaped = false;
-  for (const character of command) {
-    if (isEscaped) {
-      currentToken += character;
-      isEscaped = false;
-      continue;
-    }
-    if (!activeQuote && character === "\\") {
-      isEscaped = true;
-      continue;
-    }
-    if (character === "'" || character === '"') {
-      if (activeQuote === character) {
-        activeQuote = void 0;
-        continue;
-      }
-      if (!activeQuote) {
-        activeQuote = character;
-        continue;
-      }
-    }
-    if (!activeQuote && /\s/.test(character)) {
-      if (currentToken !== "") {
-        tokens.push(currentToken);
-        currentToken = "";
-      }
-      continue;
-    }
-    currentToken += character;
-  }
-  if (isEscaped) {
-    currentToken += "\\";
-  }
-  if (currentToken !== "") {
-    tokens.push(currentToken);
-  }
-  return tokens;
-}
-function resolveBuildCommandExecutable(command) {
-  const tokens = tokenizeBuildCommand(command);
-  for (const token of tokens) {
-    if (LEADING_ENV_ASSIGNMENT_PATTERN.test(token)) {
-      continue;
-    }
-    return token;
-  }
-  return void 0;
-}
-function firstNonEmptyLine(value) {
-  for (const line of value.split(/\r?\n/)) {
-    const trimmedLine = line.trim();
-    if (trimmedLine !== "") {
-      return trimmedLine;
-    }
-  }
-  return void 0;
-}
 async function resolveExecutableVersion(executablePath) {
   for (const args of VERSION_PROBE_ARGUMENTS) {
     try {
@@ -227774,7 +227820,7 @@ async function inspectBuildCommandExecutable(command) {
   } catch (error2) {
     warning2(
       `Build command executable probe failed for '${executable}': ${
-        errorMessage2(error2)
+        errorMessage(error2)
       }`,
     );
     return;
@@ -227947,7 +227993,7 @@ async function uploadFiles(ossClient, limiter, files, inputs) {
           if (attempt < MAX_UPLOAD_RETRIES) {
             warning2(
               `Upload attempt ${attempt}/${MAX_UPLOAD_RETRIES} failed for ${key}: ${
-                errorMessage2(error2)
+                errorMessage(error2)
               }, retrying...`,
             );
           }
@@ -227965,7 +228011,7 @@ async function uploadFiles(ossClient, limiter, files, inputs) {
         );
         markFileProcessed();
       } else {
-        const err = errorMessage2(lastError);
+        const err = errorMessage(lastError);
         warning2(
           `Upload failed after ${MAX_UPLOAD_RETRIES} attempts for ${key}: ${err}`,
         );
@@ -227991,7 +228037,7 @@ async function uploadFiles(ossClient, limiter, files, inputs) {
   );
   if (workerFailures.length > 0) {
     const workerFailurePreview = workerFailures.slice(0, 3).map((failure) =>
-      errorMessage2(failure.reason)
+      errorMessage(failure.reason)
     );
     throw new Error(
       `Upload workers encountered ${workerFailures.length} unrecoverable error(s): [${
@@ -228051,10 +228097,6 @@ function filterFilesCoveredByDirectories(fileKeys, directoryKeys) {
     skippedCount: fileKeys.length - remainingFileKeys.length,
   };
 }
-function parseQuota(value) {
-  const parsed = Number.parseInt(value ?? "0", 10);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
-}
 function formatActions(actions) {
   if (actions.size === 0) {
     return "none";
@@ -228085,45 +228127,6 @@ function resolveRequestId(bodyRequestId, headers) {
     getHeaderValue(headers, "x-oss-request-id") ??
     getHeaderValue(headers, "x-oss-requestid") ??
     getHeaderValue(headers, "x-request-id");
-}
-function errorMessage2(error2) {
-  if (!error2 || typeof error2 !== "object") {
-    return String(error2);
-  }
-  const record = error2;
-  const requestId2 = typeof record.requestId === "string"
-    ? record.requestId
-    : typeof record.data === "object" && record.data !== null
-    ? record.data.RequestId ?? record.data.requestId
-    : void 0;
-  const details = [];
-  if (typeof record.message === "string" && record.message !== "") {
-    details.push(record.message);
-  } else if (error2 instanceof Error && error2.message !== "") {
-    details.push(error2.message);
-  }
-  if (typeof record.code === "string" && record.code !== "") {
-    details.push(`code=${record.code}`);
-  }
-  if (typeof record.statusCode === "number") {
-    details.push(`statusCode=${record.statusCode}`);
-  }
-  if (requestId2) {
-    details.push(`requestId=${requestId2}`);
-  }
-  if (details.length > 0) {
-    return details.join(", ");
-  }
-  return String(error2);
-}
-function selectByQuota(values, remainingQuota) {
-  const safeQuota = remainingQuota > 0 ? remainingQuota : 0;
-  const allowedCount = Math.min(values.length, safeQuota);
-  const deniedCount = values.length - allowedCount;
-  return {
-    allowed: values.slice(0, allowedCount),
-    deniedCount,
-  };
 }
 function warnQuotaExhausted(label, requestedCount, quota, deniedCount) {
   if (deniedCount <= 0) {
@@ -228176,7 +228179,7 @@ async function submitRefreshBatches(
         );
       }
     } catch (error2) {
-      warning2(`CDN refresh batch failed: ${errorMessage2(error2)}`);
+      warning2(`CDN refresh batch failed: ${errorMessage(error2)}`);
     }
   }
   return {
@@ -228221,7 +228224,7 @@ async function submitPreloadBatches(cdnClient, limiter, urls, securityToken) {
         );
       }
     } catch (error2) {
-      warning2(`CDN preload batch failed: ${errorMessage2(error2)}`);
+      warning2(`CDN preload batch failed: ${errorMessage(error2)}`);
     }
   }
   return {
@@ -228271,7 +228274,7 @@ async function runCdnActions(
     );
   } catch (error2) {
     warning2(
-      `CDN quota check failed, skipping CDN actions: ${errorMessage2(error2)}`,
+      `CDN quota check failed, skipping CDN actions: ${errorMessage(error2)}`,
     );
     return {
       refreshTaskIds: [],
@@ -228541,7 +228544,7 @@ async function run() {
     "Running local build command",
     () => runBuildCommand(inputs.buildCommand),
   );
-  const credentials = resolveCredentialsFromState() ?? resolveCredentials();
+  const credentials = requireCredentialsFromState();
   info2(
     `CDN config: enabled=${inputs.cdnEnabled}, baseUrl=${
       inputs.cdnBaseUrl || "(empty)"
@@ -228631,7 +228634,7 @@ async function run() {
       refreshTaskIds = cdnResult.refreshTaskIds;
       preloadTaskIds = cdnResult.preloadTaskIds;
     } catch (error2) {
-      warning2(`CDN actions failed: ${errorMessage2(error2)}`);
+      warning2(`CDN actions failed: ${errorMessage(error2)}`);
     }
   } else if (!cdnClient) {
     info2(

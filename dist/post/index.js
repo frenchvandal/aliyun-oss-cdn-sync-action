@@ -174122,6 +174122,104 @@ function warning2(message) {
   actionLogger.warn(message);
 }
 
+// src/_shared-utils.ts
+function errorMessage(error2) {
+  if (!error2 || typeof error2 !== "object") {
+    return String(error2);
+  }
+  const record = error2;
+  const dataRecord = typeof record.data === "object" && record.data !== null
+    ? record.data
+    : void 0;
+  const requestId2 = typeof record.requestId === "string"
+    ? record.requestId
+    : typeof dataRecord?.RequestId === "string"
+    ? dataRecord.RequestId
+    : typeof dataRecord?.requestId === "string"
+    ? dataRecord.requestId
+    : void 0;
+  const details = [];
+  if (typeof record.message === "string" && record.message !== "") {
+    details.push(record.message);
+  } else if (error2 instanceof Error && error2.message !== "") {
+    details.push(error2.message);
+  }
+  if (typeof record.code === "string" && record.code !== "") {
+    details.push(`code=${record.code}`);
+  }
+  if (typeof record.statusCode === "number") {
+    details.push(`statusCode=${record.statusCode}`);
+  }
+  if (requestId2) {
+    details.push(`requestId=${requestId2}`);
+  }
+  if (details.length > 0) {
+    return details.join(", ");
+  }
+  return String(error2);
+}
+function parsePositiveIntegerValue(name, value, defaultValue, max) {
+  if (value === void 0) {
+    return defaultValue;
+  }
+  if (!/^\d+$/.test(value)) {
+    throw new Error(`'${name}' must be a positive integer`);
+  }
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
+    throw new Error(`'${name}' must be a positive integer`);
+  }
+  if (max !== void 0 && parsed > max) {
+    throw new Error(`'${name}' must be <= ${max}`);
+  }
+  return parsed;
+}
+function parsePrefix(prefix2) {
+  if (!prefix2) {
+    return "";
+  }
+  return prefix2.replace(/\\/g, "/").replace(/^\/+/, "").replace(/\/+$/, "");
+}
+function parseQuota(value) {
+  const parsed = Number.parseInt(value ?? "0", 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+}
+function selectByQuota(values, remainingQuota) {
+  const safeQuota = remainingQuota > 0 ? remainingQuota : 0;
+  const allowedCount = Math.min(values.length, safeQuota);
+  const deniedCount = values.length - allowedCount;
+  return {
+    allowed: values.slice(0, allowedCount),
+    deniedCount,
+  };
+}
+function toHost(endpoint) {
+  if (/^https?:\/\//i.test(endpoint)) {
+    return new URL(endpoint).host;
+  }
+  return endpoint;
+}
+function resolveOssEndpoint(region, endpoint) {
+  if (endpoint) {
+    try {
+      return toHost(endpoint);
+    } catch {
+      throw new Error(`'endpoint' is not a valid URL or hostname: ${endpoint}`);
+    }
+  }
+  if (region.includes(".")) {
+    return region;
+  }
+  return `${region}.aliyuncs.com`;
+}
+function buildObjectKey(prefix2, relativePath) {
+  return prefix2 === "" ? relativePath : `${prefix2}/${relativePath}`;
+}
+function buildFileUrl(baseUrl, key) {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  return new URL(key.replace(/^\/+/, ""), base).toString();
+}
+
 // src/shared.ts
 var ApiRateLimiter = class {
   chain = Promise.resolve();
@@ -174160,27 +174258,12 @@ function parseBooleanInput(name, defaultValue) {
   }
 }
 function parsePositiveIntegerInput(name, defaultValue, max) {
-  const value = getOptionalInput(name);
-  if (value === void 0) {
-    return defaultValue;
-  }
-  if (!/^\d+$/.test(value)) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  if (max !== void 0 && parsed > max) {
-    throw new Error(`'${name}' must be <= ${max}`);
-  }
-  return parsed;
-}
-function parsePrefix(prefix2) {
-  if (!prefix2) {
-    return "";
-  }
-  return prefix2.replace(/\\/g, "/").replace(/^\/+/, "").replace(/\/+$/, "");
+  return parsePositiveIntegerValue(
+    name,
+    getOptionalInput(name),
+    defaultValue,
+    max,
+  );
 }
 function parseOssBaseInputs() {
   const inputDir = getOptionalInput("input-dir") ?? "_site";
@@ -174222,7 +174305,11 @@ function resolveCredentialsFromState() {
     securityToken: securityToken || void 0,
   };
 }
-function resolveCredentials() {
+function requireCredentialsFromState() {
+  const credentials = resolveCredentialsFromState();
+  if (credentials) {
+    return credentials;
+  }
   throw new Error(
     "Missing OIDC credentials in action state. This action authenticates only through the pre step using GitHub OIDC and an Aliyun RAM role.",
   );
@@ -174242,28 +174329,6 @@ function emitDebugNotice(title, message, properties) {
         title,
       },
   );
-}
-function toHost(endpoint) {
-  if (/^https?:\/\//i.test(endpoint)) {
-    return new URL(endpoint).host;
-  }
-  return endpoint;
-}
-function resolveOssEndpoint(region, endpoint) {
-  if (endpoint) {
-    try {
-      return toHost(endpoint);
-    } catch {
-      throw new Error(`'endpoint' is not a valid URL or hostname: ${endpoint}`);
-    }
-  }
-  if (region.includes(".")) {
-    return region;
-  }
-  return `${region}.aliyuncs.com`;
-}
-function buildObjectKey(prefix2, relativePath) {
-  return prefix2 === "" ? relativePath : `${prefix2}/${relativePath}`;
 }
 async function collectFiles(rootDirectory) {
   const files = [];
@@ -174299,10 +174364,6 @@ async function collectFiles(rootDirectory) {
   await walk(rootAbsolutePath);
   files.sort((a, b) => a.relativePath.localeCompare(b.relativePath));
   return files;
-}
-function buildFileUrl(baseUrl, key) {
-  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
-  return new URL(key.replace(/^\/+/, ""), base).toString();
 }
 async function collectLocalObjectKeys(inputDir, prefix2) {
   const files = await collectFiles(inputDir);
@@ -210304,7 +210365,7 @@ function retry(name_1, method_1, getStatusCode_1) {
       delay6 = DefaultRetryDelay,
       onError = void 0,
     ) {
-      let errorMessage3 = "";
+      let errorMessage2 = "";
       let attempt = 1;
       while (attempt <= maxAttempts) {
         let response = void 0;
@@ -210317,7 +210378,7 @@ function retry(name_1, method_1, getStatusCode_1) {
             response = onError(error2);
           }
           isRetryable = true;
-          errorMessage3 = error2.message;
+          errorMessage2 = error2.message;
         }
         if (response) {
           statusCode = getStatusCode(response);
@@ -210327,10 +210388,10 @@ function retry(name_1, method_1, getStatusCode_1) {
         }
         if (statusCode) {
           isRetryable = isRetryableStatusCode(statusCode);
-          errorMessage3 = `Cache service responded with ${statusCode}`;
+          errorMessage2 = `Cache service responded with ${statusCode}`;
         }
         debug(
-          `${name} - Attempt ${attempt} of ${maxAttempts} failed with error: ${errorMessage3}`,
+          `${name} - Attempt ${attempt} of ${maxAttempts} failed with error: ${errorMessage2}`,
         );
         if (!isRetryable) {
           debug(`${name} - Error is not retryable`);
@@ -210339,7 +210400,7 @@ function retry(name_1, method_1, getStatusCode_1) {
         yield sleep(delay6);
         attempt++;
       }
-      throw Error(`${name} failed: ${errorMessage3}`);
+      throw Error(`${name} failed: ${errorMessage2}`);
     },
   );
 }
@@ -215477,7 +215538,7 @@ var CacheServiceClient = class {
   retryableRequest(operation) {
     return __awaiter21(this, void 0, void 0, function* () {
       let attempt = 0;
-      let errorMessage3 = "";
+      let errorMessage2 = "";
       let rawBody = "";
       while (attempt < this.maxAttempts) {
         let isRetryable = false;
@@ -215499,13 +215560,13 @@ var CacheServiceClient = class {
             };
           }
           isRetryable = this.isRetryableHttpStatusCode(statusCode);
-          errorMessage3 =
+          errorMessage2 =
             `Failed request: (${statusCode}) ${response.message.statusMessage}`;
           if (body2.msg) {
             if (UsageError.isUsageErrorMessage(body2.msg)) {
               throw new UsageError();
             }
-            errorMessage3 = `${errorMessage3}: ${body2.msg}`;
+            errorMessage2 = `${errorMessage2}: ${body2.msg}`;
           }
           if (statusCode === HttpCodes.TooManyRequests) {
             const retryAfterHeader = response.message.headers["retry-after"];
@@ -215517,7 +215578,7 @@ var CacheServiceClient = class {
                 );
               }
             }
-            throw new RateLimitError(`Rate limited: ${errorMessage3}`);
+            throw new RateLimitError(`Rate limited: ${errorMessage2}`);
           }
         } catch (error2) {
           if (error2 instanceof SyntaxError) {
@@ -215539,14 +215600,14 @@ var CacheServiceClient = class {
             );
           }
           isRetryable = true;
-          errorMessage3 = error2.message;
+          errorMessage2 = error2.message;
         }
         if (!isRetryable) {
-          throw new Error(`Received non-retryable error: ${errorMessage3}`);
+          throw new Error(`Received non-retryable error: ${errorMessage2}`);
         }
         if (attempt + 1 === this.maxAttempts) {
           throw new Error(
-            `Failed to make request after ${this.maxAttempts} attempts: ${errorMessage3}`,
+            `Failed to make request after ${this.maxAttempts} attempts: ${errorMessage2}`,
           );
         }
         const retryTimeMilliseconds = this.getExponentialRetryTimeMilliseconds(
@@ -215555,7 +215616,7 @@ var CacheServiceClient = class {
         info(
           `Attempt ${
             attempt + 1
-          } of ${this.maxAttempts} failed with error: ${errorMessage3}. Retrying request in ${retryTimeMilliseconds} ms...`,
+          } of ${this.maxAttempts} failed with error: ${errorMessage2}. Retrying request in ${retryTimeMilliseconds} ms...`,
         );
         yield this.sleep(retryTimeMilliseconds);
         attempt++;
@@ -216233,9 +216294,6 @@ function saveCacheV2(paths_1, key_1, options_1) {
 
 // src/cache.ts
 var LOCAL_CACHE_DIRECTORY = "_cache";
-function errorMessage(error2) {
-  return error2 instanceof Error ? error2.message : String(error2);
-}
 function getCachePath() {
   return resolve3(LOCAL_CACHE_DIRECTORY);
 }
@@ -216288,7 +216346,7 @@ async function saveLocalCache() {
 import { mkdtemp, rm as rm2, writeFile as writeFile2 } from "node:fs/promises";
 import os9 from "node:os";
 import { join as join8 } from "node:path";
-var import_credentials2 = __toESM(require_client2());
+var import_alicloud_credentials = __toESM(require_client2());
 
 // deno:https://jsr.io/@std/encoding/1.0.10/_validate_binary_like.ts
 var encoder = new TextEncoder();
@@ -216449,7 +216507,7 @@ var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 var MAX_ROLE_SESSION_EXPIRATION = 43200;
 var MIN_ROLE_SESSION_EXPIRATION = 900;
 var textDecoder = new TextDecoder();
-var CredentialClientCtor = import_credentials2.default;
+var CredentialClientCtor = import_alicloud_credentials.default;
 function decodeJwtPayload(idToken) {
   const parts = idToken.split(".");
   const encodedPayload = parts[1];
@@ -216482,27 +216540,8 @@ function getRequiredInput(name) {
     required: true,
   }).trim();
 }
-function getOptionalInput2(name) {
-  const value = getInput(name, {
-    required: false,
-  }).trim();
-  return value === "" ? void 0 : value;
-}
-function parsePositiveInteger(name, value, defaultValue) {
-  if (!value) {
-    return defaultValue;
-  }
-  if (!/^\d+$/.test(value)) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
-    throw new Error(`'${name}' must be a positive integer`);
-  }
-  return parsed;
-}
 function parseRoleSessionExpiration(value) {
-  const parsed = parsePositiveInteger(
+  const parsed = parsePositiveIntegerValue(
     "role-session-expiration",
     value,
     DEFAULT_ROLE_SESSION_EXPIRATION,
@@ -216530,7 +216569,7 @@ function parseRoleSessionName(value) {
   return roleSessionName;
 }
 function parseRefreshIntervalMs(value, roleSessionExpiration) {
-  const refreshIntervalSeconds = parsePositiveInteger(
+  const refreshIntervalSeconds = parsePositiveIntegerValue(
     "refresh-sts-token-interval-seconds",
     value,
     DEFAULT_STS_REFRESH_INTERVAL_SECONDS,
@@ -216545,15 +216584,15 @@ function parseRefreshIntervalMs(value, roleSessionExpiration) {
 function parseOidcInputs() {
   const roleOidcArn = getRequiredInput("role-oidc-arn");
   const oidcProviderArn = getRequiredInput("oidc-provider-arn");
-  const audience = getOptionalInput2("audience");
+  const audience = getOptionalInput("audience");
   const roleSessionExpiration = parseRoleSessionExpiration(
-    getOptionalInput2("role-session-expiration"),
+    getOptionalInput("role-session-expiration"),
   );
   const roleSessionName = parseRoleSessionName(
-    getOptionalInput2("role-session-name"),
+    getOptionalInput("role-session-name"),
   );
   const refreshStsTokenIntervalMs = parseRefreshIntervalMs(
-    getOptionalInput2("refresh-sts-token-interval-seconds"),
+    getOptionalInput("refresh-sts-token-interval-seconds"),
     roleSessionExpiration,
   );
   return {
@@ -216603,7 +216642,7 @@ async function resolveOidcCredential(inputs, options) {
       mode: 384,
     });
     const credentialClient = new CredentialClientCtor(
-      new import_credentials2.Config({
+      new import_alicloud_credentials.Config({
         type: "oidc_role_arn",
         roleArn: inputs.roleOidcArn,
         oidcProviderArn: inputs.oidcProviderArn,
@@ -216630,22 +216669,6 @@ var RefreshObjectCachesRequestCtor = Cdn.RefreshObjectCachesRequest;
 var CDN_MAX_URLS_PER_REQUEST = 100;
 var CDN_API_MAX_RPS = 50;
 var CDN_QUOTA_API_MAX_RPS = 20;
-function errorMessage2(error2) {
-  return error2 instanceof Error ? error2.message : String(error2);
-}
-function parseQuota(value) {
-  const parsed = Number.parseInt(value ?? "0", 10);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
-}
-function selectByQuota(values, remainingQuota) {
-  const safeQuota = remainingQuota > 0 ? remainingQuota : 0;
-  const allowedCount = Math.min(values.length, safeQuota);
-  const deniedCount = values.length - allowedCount;
-  return {
-    allowed: values.slice(0, allowedCount),
-    deniedCount,
-  };
-}
 function warnQuotaExhausted(requestedCount, quota, deniedCount) {
   if (deniedCount <= 0) {
     return;
@@ -216734,7 +216757,7 @@ async function describeMainCdnTasks(
       }
     } catch (error2) {
       lookupFailures += 1;
-      const message = errorMessage2(error2);
+      const message = errorMessage(error2);
       warning2(
         `CDN task status lookup failed for taskId=${taskId}: ${message}`,
       );
@@ -216839,7 +216862,7 @@ async function deleteOrphans(client, limiter, localKeys, remoteKeys) {
     }
     warning2(
       `Failed to delete orphan OSS object: ${key} (${
-        errorMessage2(result.reason)
+        errorMessage(result.reason)
       })`,
     );
   }
@@ -216871,7 +216894,7 @@ async function refreshDeletedCdnObjects(
     );
   } catch (error2) {
     warning2(
-      `CDN quota check failed, skipping CDN refresh: ${errorMessage2(error2)}`,
+      `CDN quota check failed, skipping CDN refresh: ${errorMessage(error2)}`,
     );
     return;
   }
@@ -216905,14 +216928,14 @@ async function refreshDeletedCdnObjects(
         warning2(`CDN refresh batch returned no task ID: urls=${batch.length}`);
       }
     } catch (error2) {
-      warning2(`CDN refresh batch failed: ${errorMessage2(error2)}`);
+      warning2(`CDN refresh batch failed: ${errorMessage(error2)}`);
     }
   }
 }
 async function runPost() {
   const oidcInputs = parseOidcInputs();
   const inputs = parseOssBaseInputs();
-  const credentials = resolveCredentialsFromState() ?? resolveCredentials();
+  const credentials = requireCredentialsFromState();
   debug2(
     `[post:runPost] hasSecurityToken=${
       Boolean(credentials.securityToken)
@@ -217034,7 +217057,7 @@ async function runPost() {
         );
       } catch (error2) {
         warning2(
-          `CDN refresh for deleted objects failed: ${errorMessage2(error2)}`,
+          `CDN refresh for deleted objects failed: ${errorMessage(error2)}`,
         );
       }
     }
@@ -217053,7 +217076,7 @@ async function runPost() {
         cdnTaskStatusRows = taskReport.rows;
         cdnTaskLookupFailures = taskReport.lookupFailures;
       } catch (error2) {
-        warning2(`CDN task status reporting failed: ${errorMessage2(error2)}`);
+        warning2(`CDN task status reporting failed: ${errorMessage(error2)}`);
       }
     }
   }

@@ -1,4 +1,4 @@
-import { group, saveState, setSecret } from "@actions/core";
+import { group, saveState, setSecret } from "npm/actions-core";
 
 import {
   STATE_ACCESS_KEY_ID,
