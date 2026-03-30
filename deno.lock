@@ -1,8 +1,9 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@miscellaneous/commitlint@*": "0.1.3",
-    "jsr:@miscellaneous/commitlint@~0.1.3": "0.1.3",
+    "jsr:@miscellaneous/commitlint@0.1.3": "0.1.3",
+    "jsr:@miscellaneous/commitlint@0.2": "0.2.0",
+    "jsr:@miscellaneous/commitlint@0.2.0": "0.2.0",
     "jsr:@std/async@^1.2.0": "1.2.0",
     "jsr:@std/collections@^1.1.6": "1.1.6",
     "jsr:@std/encoding@^1.0.10": "1.0.10",
@@ -22,6 +23,9 @@
   "jsr": {
     "@miscellaneous/commitlint@0.1.3": {
       "integrity": "7822c33db09abcd565180943de4587ebb3cff8d4a03ef3e2af368dacec3e6ee3"
+    },
+    "@miscellaneous/commitlint@0.2.0": {
+      "integrity": "c808994adadb990fd2aec6d5af3ab2af72f66bb39162645b84f5873dcc59f215"
     },
     "@std/async@1.2.0": {
       "integrity": "c059c6f6d95ca7cc012ae8e8d7164d1697113d54b0b679e4372b354b11c2dee5"
@@ -1140,7 +1144,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@miscellaneous/commitlint@~0.1.3",
+      "jsr:@miscellaneous/commitlint@0.2",
       "jsr:@std/async@^1.2.0",
       "jsr:@std/collections@^1.1.6",
       "jsr:@std/encoding@^1.0.10",
