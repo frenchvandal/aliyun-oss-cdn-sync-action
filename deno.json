@@ -4,7 +4,7 @@
   "imports": {
     "jsr/async": "jsr:@std/async@^1.2.0",
     "jsr/collections": "jsr:@std/collections@^1.1.6",
-    "jsr/commitlint": "jsr:@miscellaneous/commitlint@^0.2.0",
+    "jsr/commitlint": "jsr:@miscellaneous/commitlint@^0.3.0",
     "jsr/encoding": "jsr:@std/encoding@^1.0.10",
     "jsr/media-types": "jsr:@std/media-types@^1.1.0",
     "npm/actions-core": "npm:@actions/core@^3.0.0",
