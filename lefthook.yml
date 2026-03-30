@@ -5,4 +5,4 @@ no_tty: true
 commit-msg:
   commands:
     lint:
-      run: PATH="$HOME/.deno/bin:$PATH" DENO_TLS_CA_STORE=system deno task lint-commit {1}
+      run: PATH="$HOME/.deno/bin:$PATH" DENO_TLS_CA_STORE=system deno task lint-commit "{1}"
