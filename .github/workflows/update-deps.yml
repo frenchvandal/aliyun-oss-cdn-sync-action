@@ -61,7 +61,8 @@ jobs:
         if: steps.update_deps.outputs.updated == 'true'
         run: deno task build
 
-      - name: Commit and push updated dependencies
+      - id: commit
+        name: Commit and push updated dependencies
         if: steps.update_deps.outputs.updated == 'true'
         shell: bash
         env:
@@ -69,10 +70,19 @@ jobs:
         run: |
           set -euo pipefail
 
-          working_tree_status="$(git status --short)"
-          if [[ -z "${working_tree_status}" ]]; then
-            echo "No files changed after updating dependencies."
-            exit 0
+          unexpected_changes="$(
+            git status --short |
+              awk '{
+                path = substr($0, 4)
+                if (path != "deno.json" && path != "deno.lock" && path !~ /^dist\//) {
+                  print
+                }
+              }'
+          )"
+          if [[ -n "${unexpected_changes}" ]]; then
+            echo "Unexpected files changed after updating dependencies:"
+            printf '%s\n' "${unexpected_changes}"
+            exit 1
           fi
 
           git config user.name "github-actions[bot]"
@@ -90,4 +100,6 @@ jobs:
           fi
 
           git commit -m "${COMMIT_MESSAGE}"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
