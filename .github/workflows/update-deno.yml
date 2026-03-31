@@ -1,0 +1,152 @@
+name: Update Runtime Versions
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+      timezone: "Asia/Shanghai"
+  workflow_dispatch:
+
+concurrency:
+  group: update-runtime-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+          token: ${{ github.token }}
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: latest
+          cache: true
+
+      - id: versions
+        name: Print runtime versions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          deno_output="$(deno -v)"
+          printf '%s\n' "$deno_output"
+          deno_version="$(printf '%s\n' "$deno_output" | sed -n '1s/^deno //p')"
+
+          {
+            echo "deno=$deno_version"
+          } >> "$GITHUB_OUTPUT"
+
+      - id: update_tool_versions
+        name: Update .tool-versions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          current_deno="$(sed -n 's/^deno[[:space:]]\+\(.*\)$/\1/p' .tool-versions | head -n 1)"
+          new_deno="${{ steps.versions.outputs.deno }}"
+
+          changed=false
+
+          if [[ "$current_deno" != "$new_deno" ]]; then
+            changed=true
+
+            awk \
+              -v deno_version="$new_deno"  '
+                BEGIN {
+                  seen["deno"] = 0
+                }
+                $1 == "deno" {
+                  print "deno " deno_version
+                  seen["deno"] = 1
+                  next
+                }
+
+                {
+                  print
+                }
+                END {
+                  if (!seen["deno"]) {
+                    print "deno " deno_version
+                  }
+                }
+              ' .tool-versions > .tool-versions.tmp
+
+            mv .tool-versions.tmp .tool-versions
+          fi
+
+          {
+            echo "changed=$changed"
+            echo "current_deno=$current_deno"
+            echo "new_deno=$new_deno"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Validate updated Deno runtime
+        if: steps.update_tool_versions.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          deno task build
+
+      - id: commit
+        if: steps.update_tool_versions.outputs.changed == 'true'
+        name: Commit and push runtime updates
+        shell: bash
+        env:
+          COMMIT_MESSAGE: "chore: update deno version"
+        run: |
+          set -euo pipefail
+
+          unexpected_changes="$(
+            git status --short |
+              awk '{
+                path = substr($0, 4)
+                if (path != ".tool-versions" && path !~ /^dist\//) {
+                  print
+                }
+              }'
+          )"
+          if [[ -n "${unexpected_changes}" ]]; then
+            echo "Unexpected files changed after validating the updated Deno runtime:"
+            printf '%s\n' "${unexpected_changes}"
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          commit_message_file="$(mktemp)"
+          printf '%s\n' "${COMMIT_MESSAGE}" > "${commit_message_file}"
+          deno task lint-commit "${commit_message_file}"
+
+          git add .tool-versions dist/
+
+          if git diff --cached --quiet; then
+            echo "No staged changes to commit."
+            exit 0
+          fi
+
+          git commit -m "${COMMIT_MESSAGE}"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Write runtime update summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Runtime Update Summary"
+            echo
+            echo "- Ref: \`${GITHUB_REF}\`"
+            echo "- Deno: \`${{ steps.update_tool_versions.outputs.current_deno }}\` -> \`${{ steps.update_tool_versions.outputs.new_deno }}\`"
+            echo "- Updated .tool-versions: \`${{ steps.update_tool_versions.outputs.changed }}\`"
+            echo "- Commit step: \`${{ steps.commit.outcome || 'skipped' }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
