@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.11](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.10...v1.0.11) (2026-03-31)
+
+
+### Bug Fixes
+
+* **ci:** align dist workflows and shared helpers ([0db35b8](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/0db35b830f8a758163280ad9dd46c9397f2d98db))
+
 ## [1.0.10](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.9...v1.0.10) (2026-03-29)
 
 
