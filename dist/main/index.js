@@ -44934,10 +44934,10 @@ var require_parser = __commonJS({
           Object.keys(thing).length === 0;
       };
       processItem = function (processors2, item, key) {
-        var i, len, process6;
+        var i, len, process5;
         for (i = 0, len = processors2.length; i < len; i++) {
-          process6 = processors2[i];
-          item = process6(item, key);
+          process5 = processors2[i];
+          item = process5(item, key);
         }
         return item;
       };
@@ -161578,12 +161578,12 @@ var require_processObjectSave = __commonJS({
     proto.processObjectSave = async function processObjectSave(
       sourceObject,
       targetObject,
-      process6,
+      process5,
       targetBucket,
     ) {
       checkArgs(sourceObject, "sourceObject");
       checkArgs(targetObject, "targetObject");
-      checkArgs(process6, "process");
+      checkArgs(process5, "process");
       targetObject = this._objectName(targetObject);
       if (targetBucket) {
         _checkBucketName(targetBucket);
@@ -161595,7 +161595,7 @@ var require_processObjectSave = __commonJS({
       targetObject = str2Base64(targetObject);
       const content = {
         "x-oss-process":
-          `${process6}|sys/saveas,o_${targetObject}${bucketParam}`,
+          `${process5}|sys/saveas,o_${targetObject}${bucketParam}`,
       };
       params.content = querystring.stringify(content);
       const result = await this.request(params);
@@ -173915,6 +173915,10 @@ function setOutput(name, value) {
   issueCommand("set-output", {
     name,
   }, toCommandValue(value));
+}
+function setFailed(message) {
+  process.exitCode = ExitCode.Failure;
+  error(message);
 }
 function isDebug() {
   return process.env["RUNNER_DEBUG"] === "1";
@@ -226825,13 +226829,13 @@ var STATE_CDN_PRELOAD_TASK_IDS = "main-cdn-preload-task-ids";
 var STATE_MAIN_COMPLETED = "main-completed";
 
 // src/logger.ts
-import process5 from "node:process";
 var import_ernest_logger = __toESM(require_ernest_logger());
+var ACTION_LOG_PREFIX = "[Aliyun OSS CDN]";
 var actionLogger = (0, import_ernest_logger.createLogger)({
   colorize: true,
   emoji: true,
   level: isDebug() ? "debug" : "info",
-  prefix: "[Aliyun OSS CDN]",
+  prefix: ACTION_LOG_PREFIX,
   time: true,
 });
 function debug2(message) {
@@ -226850,11 +226854,10 @@ function network(message) {
   actionLogger.network(message);
 }
 function warning2(message) {
-  actionLogger.warn(message);
+  warning(`${ACTION_LOG_PREFIX} ${message}`);
 }
 function fail(message) {
-  actionLogger.fatal(message);
-  process5.exitCode = 1;
+  setFailed(`${ACTION_LOG_PREFIX} ${message}`);
 }
 
 // src/shared.ts

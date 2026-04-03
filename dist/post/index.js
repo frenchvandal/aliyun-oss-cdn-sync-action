@@ -44927,10 +44927,10 @@ var require_parser = __commonJS({
           Object.keys(thing).length === 0;
       };
       processItem = function (processors2, item, key) {
-        var i, len, process6;
+        var i, len, process5;
         for (i = 0, len = processors2.length; i < len; i++) {
-          process6 = processors2[i];
-          item = process6(item, key);
+          process5 = processors2[i];
+          item = process5(item, key);
         }
         return item;
       };
@@ -161574,12 +161574,12 @@ var require_processObjectSave = __commonJS({
     proto.processObjectSave = async function processObjectSave(
       sourceObject,
       targetObject,
-      process6,
+      process5,
       targetBucket,
     ) {
       checkArgs(sourceObject, "sourceObject");
       checkArgs(targetObject, "targetObject");
-      checkArgs(process6, "process");
+      checkArgs(process5, "process");
       targetObject = this._objectName(targetObject);
       if (targetBucket) {
         _checkBucketName(targetBucket);
@@ -161591,7 +161591,7 @@ var require_processObjectSave = __commonJS({
       targetObject = str2Base64(targetObject);
       const content = {
         "x-oss-process":
-          `${process6}|sys/saveas,o_${targetObject}${bucketParam}`,
+          `${process5}|sys/saveas,o_${targetObject}${bucketParam}`,
       };
       params.content = querystring.stringify(content);
       const result = await this.request(params);
@@ -174097,13 +174097,13 @@ var STATE_CDN_PRELOAD_TASK_IDS = "main-cdn-preload-task-ids";
 var STATE_MAIN_COMPLETED = "main-completed";
 
 // src/logger.ts
-import process2 from "node:process";
 var import_ernest_logger = __toESM(require_ernest_logger());
+var ACTION_LOG_PREFIX = "[Aliyun OSS CDN]";
 var actionLogger = (0, import_ernest_logger.createLogger)({
   colorize: true,
   emoji: true,
   level: isDebug() ? "debug" : "info",
-  prefix: "[Aliyun OSS CDN]",
+  prefix: ACTION_LOG_PREFIX,
   time: true,
 });
 function debug2(message) {
@@ -174119,7 +174119,7 @@ function network(message) {
   actionLogger.network(message);
 }
 function warning2(message) {
-  actionLogger.warn(message);
+  warning(`${ACTION_LOG_PREFIX} ${message}`);
 }
 
 // src/_shared-utils.ts
@@ -175466,9 +175466,9 @@ var AbortError = class extends Error {
 // node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
 import { EOL as EOL6 } from "node:os";
 import util3 from "node:util";
-import process3 from "node:process";
+import process2 from "node:process";
 function log(message, ...args) {
-  process3.stderr.write(`${util3.format(message, ...args)}${EOL6}`);
+  process2.stderr.write(`${util3.format(message, ...args)}${EOL6}`);
 }
 
 // node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/logger/debug.js
@@ -176771,7 +176771,7 @@ async function handleRedirect(
 
 // node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgentPlatform.js
 import os7 from "node:os";
-import process4 from "node:process";
+import process3 from "node:process";
 function getHeaderName() {
   return "User-Agent";
 }
@@ -177621,14 +177621,14 @@ function redirectPolicy2(options = {}) {
 
 // node_modules/.deno/@azure+core-rest-pipeline@1.23.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/userAgentPlatform.js
 import os8 from "node:os";
-import process5 from "node:process";
+import process4 from "node:process";
 function getHeaderName2() {
   return "User-Agent";
 }
 async function setPlatformSpecificData2(map) {
-  if (process5 && process5.versions) {
+  if (process4 && process4.versions) {
     const osInfo = `${os8.type()} ${os8.release()}; ${os8.arch()}`;
-    const versions = process5.versions;
+    const versions = process4.versions;
     if (versions.bun) {
       map.set("Bun", `${versions.bun} (${osInfo})`);
     } else if (versions.deno) {

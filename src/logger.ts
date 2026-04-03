@@ -1,14 +1,14 @@
-import process from "node:process";
-
-import { isDebug } from "npm/actions-core";
+import { isDebug, setFailed, warning as emitWarning } from "npm/actions-core";
 import { createLogger } from "npm/ernest-logger";
 import type { Logger, LoggerOptions } from "npm/ernest-logger";
+
+const ACTION_LOG_PREFIX = "[Aliyun OSS CDN]";
 
 export const actionLogger = createLogger({
   colorize: true,
   emoji: true,
   level: isDebug() ? "debug" : "info",
-  prefix: "[Aliyun OSS CDN]",
+  prefix: ACTION_LOG_PREFIX,
   time: true,
 });
 
@@ -37,10 +37,9 @@ export function network(message: string): void {
 }
 
 export function warning(message: string): void {
-  actionLogger.warn(message);
+  emitWarning(`${ACTION_LOG_PREFIX} ${message}`);
 }
 
 export function fail(message: string): void {
-  actionLogger.fatal(message);
-  process.exitCode = 1;
+  setFailed(`${ACTION_LOG_PREFIX} ${message}`);
 }

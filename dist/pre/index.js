@@ -185,21 +185,21 @@ var require_tunnel = __commonJS({
             res.statusCode,
           );
           socket.destroy();
-          var error = new Error(
+          var error2 = new Error(
             "tunneling socket could not be established, statusCode=" +
               res.statusCode,
           );
-          error.code = "ECONNRESET";
-          options.request.emit("error", error);
+          error2.code = "ECONNRESET";
+          options.request.emit("error", error2);
           self.removeSocket(placeholder);
           return;
         }
         if (head.length > 0) {
           debug3("got illegal response body from proxy");
           socket.destroy();
-          var error = new Error("got illegal response body from proxy");
-          error.code = "ECONNRESET";
-          options.request.emit("error", error);
+          var error2 = new Error("got illegal response body from proxy");
+          error2.code = "ECONNRESET";
+          options.request.emit("error", error2);
           self.removeSocket(placeholder);
           return;
         }
@@ -214,11 +214,11 @@ var require_tunnel = __commonJS({
           cause.message,
           cause.stack,
         );
-        var error = new Error(
+        var error2 = new Error(
           "tunneling socket could not be established, cause=" + cause.message,
         );
-        error.code = "ECONNRESET";
-        options.request.emit("error", error);
+        error2.code = "ECONNRESET";
+        options.request.emit("error", error2);
         self.removeSocket(placeholder);
       }
     };
@@ -1674,14 +1674,16 @@ var require_diagnostics = __commonJS({
       });
       diagnosticsChannel.channel("undici:client:connectError").subscribe(
         (evt) => {
-          const { connectParams: { version, protocol, port, host }, error } =
-            evt;
+          const {
+            connectParams: { version, protocol, port, host },
+            error: error2,
+          } = evt;
           debuglog(
             "connection to %s using %s%s errored - %s",
             `${host}${port ? `:${port}` : ""}`,
             protocol,
             version,
-            error.message,
+            error2.message,
           );
         },
       );
@@ -1709,13 +1711,13 @@ var require_diagnostics = __commonJS({
         debuglog("trailers received from %s %s/%s", method, origin, path6);
       });
       diagnosticsChannel.channel("undici:request:error").subscribe((evt) => {
-        const { request: { method, path: path6, origin }, error } = evt;
+        const { request: { method, path: path6, origin }, error: error2 } = evt;
         debuglog(
           "request to %s %s/%s errored - %s",
           method,
           origin,
           path6,
-          error.message,
+          error2.message,
         );
       });
       isClientSet = true;
@@ -1751,15 +1753,17 @@ var require_diagnostics = __commonJS({
         );
         diagnosticsChannel.channel("undici:client:connectError").subscribe(
           (evt) => {
-            const { connectParams: { version, protocol, port, host }, error } =
-              evt;
+            const {
+              connectParams: { version, protocol, port, host },
+              error: error2,
+            } = evt;
             debuglog(
               "connection to %s%s using %s%s errored - %s",
               host,
               port ? `:${port}` : "",
               protocol,
               version,
-              error.message,
+              error2.message,
             );
           },
         );
@@ -2081,19 +2085,19 @@ var require_request = __commonJS({
           this.onError(err);
         }
       }
-      onError(error) {
+      onError(error2) {
         this.onFinally();
         if (channels.error.hasSubscribers) {
           channels.error.publish({
             request: this,
-            error,
+            error: error2,
           });
         }
         if (this.aborted) {
           return;
         }
         this.aborted = true;
-        return this[kHandler].onError(error);
+        return this[kHandler].onError(error2);
       }
       onFinally() {
         if (this.errorHandler) {
@@ -6457,7 +6461,7 @@ Content-Type: ${value.type || "application/octet-stream"}\r
       }
       throwIfAborted(object[kState]);
       const promise = createDeferredPromise();
-      const errorSteps = (error) => promise.reject(error);
+      const errorSteps = (error2) => promise.reject(error2);
       const successSteps = (data) => {
         try {
           promise.resolve(convertBytesToJSValue(data));
@@ -8359,8 +8363,8 @@ var require_client_h2 = __commonJS({
         }
         request.onRequestSent();
         client[kResume]();
-      } catch (error) {
-        abort(error);
+      } catch (error2) {
+        abort(error2);
       }
     }
     function writeStream(
@@ -8570,8 +8574,8 @@ var require_redirect_handler = __commonJS({
       onUpgrade(statusCode, headers, socket) {
         this.handler.onUpgrade(statusCode, headers, socket);
       }
-      onError(error) {
-        this.handler.onError(error);
+      onError(error2) {
+        this.handler.onError(error2);
       }
       onHeaders(statusCode, headers, resume, statusText) {
         this.location = this.history.length >= this.maxRedirections ||
@@ -9732,7 +9736,7 @@ var require_pool = __commonJS({
           }
           : void 0;
         this[kFactory] = factory;
-        this.on("connectionError", (origin2, targets, error) => {
+        this.on("connectionError", (origin2, targets, error2) => {
           for (const target of targets) {
             const idx = this[kClients].indexOf(target);
             if (idx !== -1) {
@@ -12579,16 +12583,16 @@ var require_mock_utils = __commonJS({
         };
       }
       const {
-        data: { statusCode, data, headers, trailers, error },
+        data: { statusCode, data, headers, trailers, error: error2 },
         delay: delay2,
         persist,
       } = mockDispatch2;
       const { timesInvoked, times } = mockDispatch2;
       mockDispatch2.consumed = !persist && timesInvoked >= times;
       mockDispatch2.pending = timesInvoked < times;
-      if (error !== null) {
+      if (error2 !== null) {
         deleteMockDispatch(this[kDispatches], key);
-        handler.onError(error);
+        handler.onError(error2);
         return true;
       }
       if (typeof delay2 === "number" && delay2 > 0) {
@@ -12638,23 +12642,23 @@ var require_mock_utils = __commonJS({
         if (agent.isMockActive) {
           try {
             mockDispatch.call(this, opts, handler);
-          } catch (error) {
-            if (error instanceof MockNotMatchedError) {
+          } catch (error2) {
+            if (error2 instanceof MockNotMatchedError) {
               const netConnect = agent[kGetNetConnect]();
               if (netConnect === false) {
                 throw new MockNotMatchedError(
-                  `${error.message}: subsequent request to origin ${origin} was not allowed (net.connect disabled)`,
+                  `${error2.message}: subsequent request to origin ${origin} was not allowed (net.connect disabled)`,
                 );
               }
               if (checkNetConnect(netConnect, origin)) {
                 originalDispatch.call(this, opts, handler);
               } else {
                 throw new MockNotMatchedError(
-                  `${error.message}: subsequent request to origin ${origin} was not allowed (net.connect is not enabled for this origin)`,
+                  `${error2.message}: subsequent request to origin ${origin} was not allowed (net.connect is not enabled for this origin)`,
                 );
               }
             } else {
-              throw error;
+              throw error2;
             }
           }
         } else {
@@ -12868,15 +12872,15 @@ var require_mock_interceptor = __commonJS({
       /**
        * Mock an undici request with a defined error.
        */
-      replyWithError(error) {
-        if (typeof error === "undefined") {
+      replyWithError(error2) {
+        if (typeof error2 === "undefined") {
           throw new InvalidArgumentError("error must be defined");
         }
         const newMockDispatch = addMockDispatch(
           this[kDispatches],
           this[kDispatchKey],
           {
-            error,
+            error: error2,
           },
         );
         return new MockScope(newMockDispatch);
@@ -15746,17 +15750,17 @@ var require_fetch = __commonJS({
         this.emit("terminated", reason);
       }
       // https://fetch.spec.whatwg.org/#fetch-controller-abort
-      abort(error) {
+      abort(error2) {
         if (this.state !== "ongoing") {
           return;
         }
         this.state = "aborted";
-        if (!error) {
-          error = new DOMException("The operation was aborted.", "AbortError");
+        if (!error2) {
+          error2 = new DOMException("The operation was aborted.", "AbortError");
         }
-        this.serializedAbortReason = error;
-        this.connection?.destroy(error);
-        this.emit("terminated", error);
+        this.serializedAbortReason = error2;
+        this.connection?.destroy(error2);
+        this.emit("terminated", error2);
       }
     };
     function handleFetchDone(response) {
@@ -15858,12 +15862,12 @@ var require_fetch = __commonJS({
       );
     }
     var markResourceTiming = performance.markResourceTiming;
-    function abortFetch(p, request, responseObject, error) {
+    function abortFetch(p, request, responseObject, error2) {
       if (p) {
-        p.reject(error);
+        p.reject(error2);
       }
       if (request.body != null && isReadable(request.body?.stream)) {
-        request.body.stream.cancel(error).catch((err) => {
+        request.body.stream.cancel(error2).catch((err) => {
           if (err.code === "ERR_INVALID_STATE") {
             return;
           }
@@ -15875,7 +15879,7 @@ var require_fetch = __commonJS({
       }
       const response = responseObject[kState];
       if (response.body != null && isReadable(response.body?.stream)) {
-        response.body.stream.cancel(error).catch((err) => {
+        response.body.stream.cancel(error2).catch((err) => {
           if (err.code === "ERR_INVALID_STATE") {
             return;
           }
@@ -16905,13 +16909,13 @@ var require_fetch = __commonJS({
               fetchParams.controller.ended = true;
               this.body.push(null);
             },
-            onError(error) {
+            onError(error2) {
               if (this.abort) {
                 fetchParams.controller.off("terminated", this.abort);
               }
-              this.body?.destroy(error);
-              fetchParams.controller.terminate(error);
-              reject(error);
+              this.body?.destroy(error2);
+              fetchParams.controller.terminate(error2);
+              reject(error2);
             },
             onUpgrade(status, rawHeaders, socket) {
               if (status !== 101) {
@@ -17402,8 +17406,8 @@ var require_util4 = __commonJS({
                   }
                   fr[kResult] = result;
                   fireAProgressEvent("load", fr);
-                } catch (error) {
-                  fr[kError] = error;
+                } catch (error2) {
+                  fr[kError] = error2;
                   fireAProgressEvent("error", fr);
                 }
                 if (fr[kState] !== "loading") {
@@ -17412,13 +17416,13 @@ var require_util4 = __commonJS({
               });
               break;
             }
-          } catch (error) {
+          } catch (error2) {
             if (fr[kAborted]) {
               return;
             }
             queueMicrotask(() => {
               fr[kState] = "done";
-              fr[kError] = error;
+              fr[kError] = error2;
               fireAProgressEvent("error", fr);
               if (fr[kState] !== "loading") {
                 fireAProgressEvent("loadend", fr);
@@ -19966,11 +19970,11 @@ var require_connection = __commonJS({
         });
       }
     }
-    function onSocketError(error) {
+    function onSocketError(error2) {
       const { ws } = this;
       ws[kReadyState] = states.CLOSING;
       if (channels.socketError.hasSubscribers) {
-        channels.socketError.publish(error);
+        channels.socketError.publish(error2);
       }
       this.destroy();
     }
@@ -20249,13 +20253,13 @@ var require_receiver = __commonJS({
                 this.#extensions.get("permessage-deflate").decompress(
                   body,
                   this.#info.fin,
-                  (error, data) => {
-                    if (error) {
+                  (error2, data) => {
+                    if (error2) {
                       closeWebSocketConnection(
                         this.ws,
                         1007,
-                        error.message,
-                        error.message.length,
+                        error2.message,
+                        error2.message.length,
                       );
                       return;
                     }
@@ -21398,8 +21402,8 @@ var require_eventsource = __commonJS({
               );
             },
           });
-          pipeline(response.body.stream, eventSourceStream, (error) => {
-            if (error?.aborted === false) {
+          pipeline(response.body.stream, eventSourceStream, (error2) => {
+            if (error2?.aborted === false) {
               this.close();
               this.dispatchEvent(new Event("error"));
             }
@@ -22899,7 +22903,7 @@ var require_browser = __commonJS({
         } else {
           exports.storage.removeItem("debug");
         }
-      } catch (error) {
+      } catch (error2) {
       }
     }
     function load() {
@@ -22907,7 +22911,7 @@ var require_browser = __commonJS({
       try {
         r = exports.storage.getItem("debug") ||
           exports.storage.getItem("DEBUG");
-      } catch (error) {
+      } catch (error2) {
       }
       if (!r && typeof process !== "undefined" && "env" in process) {
         r = process.env.DEBUG;
@@ -22917,7 +22921,7 @@ var require_browser = __commonJS({
     function localstorage() {
       try {
         return localStorage;
-      } catch (error) {
+      } catch (error2) {
       }
     }
     module.exports = require_common()(exports);
@@ -22925,8 +22929,8 @@ var require_browser = __commonJS({
     formatters.j = function (v) {
       try {
         return JSON.stringify(v);
-      } catch (error) {
-        return "[UnexpectedJSONParseError]: " + error.message;
+      } catch (error2) {
+        return "[UnexpectedJSONParseError]: " + error2.message;
       }
     };
   },
@@ -23041,7 +23045,7 @@ var require_node = __commonJS({
           221,
         ];
       }
-    } catch (error) {
+    } catch (error2) {
     }
     exports.inspectOpts = Object.keys(process.env).filter((key) => {
       return /^debug_/i.test(key);
@@ -26747,9 +26751,9 @@ var require_ecs_ram_role = __commonJS({
             );
           }
           return response.body.toString("utf8");
-        } catch (error) {
+        } catch (error2) {
           if (this.disableIMDSv1) {
-            throw error;
+            throw error2;
           }
           return null;
         }
@@ -28771,12 +28775,12 @@ var OidcClient = class _OidcClient {
     return __awaiter3(this, void 0, void 0, function* () {
       var _a;
       const httpclient = _OidcClient.createHttpClient();
-      const res = yield httpclient.getJson(id_token_url).catch((error) => {
+      const res = yield httpclient.getJson(id_token_url).catch((error2) => {
         throw new Error(`Failed to get ID Token. 
  
-        Error Code : ${error.statusCode}
+        Error Code : ${error2.statusCode}
  
-        Error Message: ${error.message}`);
+        Error Message: ${error2.message}`);
       });
       const id_token = (_a = res.result) === null || _a === void 0
         ? void 0
@@ -28799,8 +28803,8 @@ var OidcClient = class _OidcClient {
         const id_token = yield _OidcClient.getCall(id_token_url);
         setSecret(id_token);
         return id_token;
-      } catch (error) {
-        throw new Error(`Error message: ${error.message}`);
+      } catch (error2) {
+        throw new Error(`Error message: ${error2.message}`);
       }
     });
   }
@@ -29247,11 +29251,22 @@ function getInput(name, options) {
   }
   return val.trim();
 }
+function setFailed(message) {
+  process.exitCode = ExitCode.Failure;
+  error(message);
+}
 function isDebug() {
   return process.env["RUNNER_DEBUG"] === "1";
 }
 function debug(message) {
   issueCommand("debug", {}, message);
+}
+function error(message, properties = {}) {
+  issueCommand(
+    "error",
+    toCommandProperties(properties),
+    message instanceof Error ? message.toString() : message,
+  );
 }
 function notice(message, properties = {}) {
   issueCommand(
@@ -29299,13 +29314,13 @@ var STATE_ACCESS_KEY_SECRET = "pre-access-key-secret";
 var STATE_SECURITY_TOKEN = "pre-security-token";
 
 // src/logger.ts
-import process2 from "node:process";
 var import_ernest_logger = __toESM(require_ernest_logger());
+var ACTION_LOG_PREFIX = "[Aliyun OSS CDN]";
 var actionLogger = (0, import_ernest_logger.createLogger)({
   colorize: true,
   emoji: true,
   level: isDebug() ? "debug" : "info",
-  prefix: "[Aliyun OSS CDN]",
+  prefix: ACTION_LOG_PREFIX,
   time: true,
 });
 function debug2(message) {
@@ -29321,8 +29336,7 @@ function success(message) {
   actionLogger.success(message);
 }
 function fail(message) {
-  actionLogger.fatal(message);
-  process2.exitCode = 1;
+  setFailed(`${ACTION_LOG_PREFIX} ${message}`);
 }
 
 // src/oidc.ts
@@ -29842,12 +29856,12 @@ async function run() {
   );
   success("Aliyun credentials resolved and stored in action state");
 }
-run().catch((error) => {
-  if (error instanceof Error) {
-    fail(error.message);
+run().catch((error2) => {
+  if (error2 instanceof Error) {
+    fail(error2.message);
     return;
   }
-  fail(String(error));
+  fail(String(error2));
 });
 export { run };
 /*! Bundled license information:
