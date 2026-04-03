@@ -2,7 +2,25 @@
 # (CI pipelines, AI agents, headless shells) where no terminal is attached.
 no_tty: true
 
+pre-commit:
+  parallel: false
+  commands:
+    lint:
+      priority: 1
+      glob:
+        - "*.{ts,tsx,js,jsx,mjs,cjs}"
+      run: PATH="$HOME/.deno/bin:$PATH" deno lint {staged_files}
+    build:
+      priority: 2
+      run: PATH="$HOME/.deno/bin:$PATH" deno task check && PATH="$HOME/.deno/bin:$PATH" deno task package
+    fmt:
+      priority: 3
+      glob:
+        - "*.{ts,tsx,js,jsx,mjs,cjs,json,jsonc,md,yml,yaml}"
+      run: PATH="$HOME/.deno/bin:$PATH" deno fmt {staged_files}
+      stage_fixed: true
+
 commit-msg:
   commands:
     lint:
-      run: PATH="$HOME/.deno/bin:$PATH" DENO_TLS_CA_STORE=system deno task lint-commit "{1}"
+      run: PATH="$HOME/.deno/bin:$PATH" deno task lint-commit "{1}"
