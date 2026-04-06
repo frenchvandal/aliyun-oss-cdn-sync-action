@@ -16,7 +16,7 @@
     "npm/ali-oss": "npm:ali-oss@^6.23.0",
     "npm/ernest-logger": "npm:ernest-logger@^2.0.4",
     "npm/ernest-logger-formatter": "npm:ernest-logger@^2.0.4/utils/formatter.js",
-    "npm/lefthook": "npm:lefthook@^2.1.4"
+    "npm/lefthook": "npm:lefthook@^2.1.5"
   },
   "lint": {
     "exclude": ["dist"]
