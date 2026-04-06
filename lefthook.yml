@@ -7,8 +7,7 @@ pre-commit:
   commands:
     lint:
       priority: 1
-      glob:
-        - "*.{ts,tsx,js,jsx,mjs,cjs}"
+      glob: "src/**/*.{ts,tsx,js,jsx,mjs,cjs}"
       run: PATH="$HOME/.deno/bin:$PATH" deno lint {staged_files}
     build:
       priority: 2
