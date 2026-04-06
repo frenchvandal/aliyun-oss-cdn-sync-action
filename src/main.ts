@@ -52,6 +52,7 @@ import {
 import {
   STATE_CDN_PRELOAD_TASK_IDS,
   STATE_CDN_REFRESH_TASK_IDS,
+  STATE_CLEANUP_SAFE,
   STATE_MAIN_COMPLETED,
 } from "./constants.ts";
 import type { Credentials, FileEntry } from "./shared.ts";
@@ -410,6 +411,32 @@ function createCdnClient(inputs: Inputs, credentials: Credentials): CdnClient {
     readTimeout: inputs.sdkTimeoutMs,
     connectTimeout: inputs.sdkTimeoutMs,
   });
+}
+
+async function resolveFreshCdnCredentials(
+  inputs: Inputs,
+  credentials: Credentials,
+): Promise<Credentials> {
+  if (!credentials.securityToken) {
+    return credentials;
+  }
+
+  try {
+    const refreshed = await resolveOidcCredential(inputs.oidc);
+    debug("[main:resolveFreshCdnCredentials] refreshedSecurityToken=true");
+    return {
+      accessKeyId: refreshed.accessKeyId,
+      accessKeySecret: refreshed.accessKeySecret,
+      securityToken: refreshed.securityToken,
+    };
+  } catch (error: unknown) {
+    warning(
+      `Failed to refresh CDN STS credentials before CDN operations, falling back to state credentials: ${
+        errorMessage(error)
+      }`,
+    );
+    return credentials;
+  }
 }
 
 function isNotFoundError(error: unknown): boolean {
@@ -1111,9 +1138,6 @@ export async function run(): Promise<void> {
   const cdnLimiter = new ApiRateLimiter(CDN_API_MAX_RPS);
   const cdnQuotaLimiter = new ApiRateLimiter(CDN_QUOTA_API_MAX_RPS);
   const ossClient = createOssClient(inputs, credentials);
-  const cdnClient = inputs.cdnEnabled && inputs.cdnActions.size > 0
-    ? createCdnClient(inputs, credentials)
-    : undefined;
 
   const files = await collectFiles(inputs.inputDir);
   success(`Found ${files.length} file(s) in ${resolve(inputs.inputDir)}`);
@@ -1151,6 +1175,7 @@ export async function run(): Promise<void> {
       [],
       [],
     );
+    saveState(STATE_CLEANUP_SAFE, "true");
     saveState(STATE_MAIN_COMPLETED, "true");
     return;
   }
@@ -1166,9 +1191,22 @@ export async function run(): Promise<void> {
     "OSS upload result",
     `uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}, failed=${uploadResult.failedCount}, uploadedKeys=${uploadResult.uploadedKeys.length}`,
   );
+  saveState(
+    STATE_CLEANUP_SAFE,
+    uploadResult.failedCount === 0 ? "true" : "false",
+  );
 
   let refreshTaskIds: string[] = [];
   let preloadTaskIds: string[] = [];
+  const cdnRequested = inputs.cdnEnabled && inputs.cdnActions.size > 0;
+  const shouldCreateCdnClient = cdnRequested &&
+    uploadResult.uploadedKeys.length > 0;
+  const cdnCredentials = shouldCreateCdnClient
+    ? await resolveFreshCdnCredentials(inputs, credentials)
+    : undefined;
+  const cdnClient = cdnCredentials
+    ? createCdnClient(inputs, cdnCredentials)
+    : undefined;
 
   if (cdnClient && uploadResult.uploadedKeys.length > 0) {
     const client = cdnClient;
@@ -1182,7 +1220,7 @@ export async function run(): Promise<void> {
             cdnQuotaLimiter,
             uploadResult.uploadedKeys,
             inputs,
-            credentials,
+            cdnCredentials ?? credentials,
           ),
       );
       refreshTaskIds = cdnResult.refreshTaskIds;
@@ -1190,7 +1228,7 @@ export async function run(): Promise<void> {
     } catch (error: unknown) {
       warning(`CDN actions failed: ${errorMessage(error)}`);
     }
-  } else if (!cdnClient) {
+  } else if (!cdnRequested) {
     info(
       "CDN actions skipped: client not created (cdn-enabled=false or no CDN action configured)",
     );

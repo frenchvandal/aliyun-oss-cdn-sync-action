@@ -173914,6 +173914,16 @@ import {
   resolve as resolve2,
 } from "node:path";
 
+// src/constants.ts
+var STATE_ACCESS_KEY_ID = "pre-access-key-id";
+var STATE_ACCESS_KEY_SECRET = "pre-access-key-secret";
+var STATE_SECURITY_TOKEN = "pre-security-token";
+var STATE_CACHE_RESTORED_KEY = "pre-cache-restored-key";
+var STATE_CDN_REFRESH_TASK_IDS = "main-cdn-refresh-task-ids";
+var STATE_CDN_PRELOAD_TASK_IDS = "main-cdn-preload-task-ids";
+var STATE_MAIN_COMPLETED = "main-completed";
+var STATE_CLEANUP_SAFE = "main-cleanup-safe";
+
 // deno:https://jsr.io/@std/async/1.2.0/delay.ts
 function delay(ms, options = {}) {
   const { signal, persistent = true } = options;
@@ -174087,14 +174097,33 @@ var MuxAsyncIterator = class {
   }
 };
 
-// src/constants.ts
-var STATE_ACCESS_KEY_ID = "pre-access-key-id";
-var STATE_ACCESS_KEY_SECRET = "pre-access-key-secret";
-var STATE_SECURITY_TOKEN = "pre-security-token";
-var STATE_CACHE_RESTORED_KEY = "pre-cache-restored-key";
-var STATE_CDN_REFRESH_TASK_IDS = "main-cdn-refresh-task-ids";
-var STATE_CDN_PRELOAD_TASK_IDS = "main-cdn-preload-task-ids";
-var STATE_MAIN_COMPLETED = "main-completed";
+// src/_api-rate-limiter.ts
+var ApiRateLimiter = class {
+  gate = Promise.resolve();
+  intervalMs;
+  nextStartTime = 0;
+  constructor(limitPerSecond) {
+    if (!Number.isFinite(limitPerSecond) || limitPerSecond <= 0) {
+      throw new Error(
+        `limitPerSecond must be a positive finite number, got ${limitPerSecond}`,
+      );
+    }
+    this.intervalMs = Math.max(1, Math.ceil(1e3 / limitPerSecond));
+  }
+  schedule(fn) {
+    const reservation = this.gate.then(async () => {
+      const now = Date.now();
+      const scheduledStartTime = Math.max(this.nextStartTime, now);
+      this.nextStartTime = scheduledStartTime + this.intervalMs;
+      const waitMs = scheduledStartTime - now;
+      if (waitMs > 0) {
+        await delay(waitMs);
+      }
+    });
+    this.gate = reservation.then(() => void 0, () => void 0);
+    return reservation.then(() => fn());
+  }
+};
 
 // src/logger.ts
 var import_ernest_logger = __toESM(require_ernest_logger());
@@ -174221,21 +174250,6 @@ function buildFileUrl(baseUrl, key) {
 }
 
 // src/shared.ts
-var ApiRateLimiter = class {
-  chain = Promise.resolve();
-  intervalMs;
-  constructor(limitPerSecond) {
-    this.intervalMs = Math.max(1, Math.ceil(1e3 / limitPerSecond));
-  }
-  schedule(fn) {
-    const next = this.chain.then(() => fn());
-    this.chain = next.then(
-      () => delay(this.intervalMs),
-      () => delay(this.intervalMs),
-    );
-    return next;
-  }
-};
 function getOptionalInput(name) {
   const value = getInput(name, {
     required: false,
@@ -216810,6 +216824,27 @@ function createOssClient(inputs, credentials, oidcInputs) {
   }
   return new OssClientCtor(clientConfig);
 }
+async function resolveFreshCdnCredentials(oidcInputs, credentials) {
+  if (!credentials.securityToken) {
+    return credentials;
+  }
+  try {
+    const refreshed = await resolveOidcCredential(oidcInputs);
+    debug2("[post:resolveFreshCdnCredentials] refreshedSecurityToken=true");
+    return {
+      accessKeyId: refreshed.accessKeyId,
+      accessKeySecret: refreshed.accessKeySecret,
+      securityToken: refreshed.securityToken,
+    };
+  } catch (error2) {
+    warning2(
+      `Failed to refresh CDN STS credentials before post-step CDN operations, falling back to state credentials: ${
+        errorMessage(error2)
+      }`,
+    );
+    return credentials;
+  }
+}
 async function listRemoteKeys(client, limiter, prefix2) {
   const keys = [];
   let marker2;
@@ -216947,6 +216982,8 @@ async function runPost() {
   const cdnEndpoint = getOptionalInput("cdn-endpoint");
   const mainRefreshTaskIdsRaw = getState(STATE_CDN_REFRESH_TASK_IDS);
   const mainPreloadTaskIdsRaw = getState(STATE_CDN_PRELOAD_TASK_IDS);
+  const mainCompleted = getState(STATE_MAIN_COMPLETED) === "true";
+  const cleanupSafe = getState(STATE_CLEANUP_SAFE) === "true";
   const mainRefreshTaskIds = parseTaskIdList(mainRefreshTaskIdsRaw);
   const mainPreloadTaskIds = parseTaskIdList(mainPreloadTaskIdsRaw);
   const mainTaskSources = formatTaskSources(
@@ -216975,40 +217012,58 @@ async function runPost() {
   );
   const ossLimiter = new ApiRateLimiter(inputs.apiRpsLimit);
   const client = createOssClient(inputs, credentials, oidcInputs);
-  const localKeys = await collectLocalObjectKeys(
-    inputs.inputDir,
-    inputs.destinationPrefix,
-  );
-  const { deleted, deletedKeys, remoteCount } = await group(
-    "Comparing local and remote objects",
-    async () => {
-      const remoteKeys = await listRemoteKeys(
-        client,
-        ossLimiter,
-        inputs.destinationPrefix,
-      );
-      info2(
-        `Cleanup comparison: local=${localKeys.size}, remote=${remoteKeys.length}, prefix='${inputs.destinationPrefix}'`,
-      );
-      const result = await deleteOrphans(
-        client,
-        ossLimiter,
-        localKeys,
-        remoteKeys,
-      );
-      info2(`Cleanup complete: deleted=${result.deleted}`);
-      return {
-        ...result,
-        remoteCount: remoteKeys.length,
-      };
-    },
-  );
-  emitDebugNotice(
-    "OSS cleanup result",
-    `localKeys=${localKeys.size}, remoteKeys=${remoteCount}, deletedOrphans=${deleted}, prefix=${
-      inputs.destinationPrefix || "(root)"
-    }`,
-  );
+  let deleted = 0;
+  let deletedKeys = [];
+  let localKeyCount = 0;
+  let remoteCount = 0;
+  if (cleanupSafe) {
+    const localKeys = await collectLocalObjectKeys(
+      inputs.inputDir,
+      inputs.destinationPrefix,
+    );
+    localKeyCount = localKeys.size;
+    const cleanupResult = await group(
+      "Comparing local and remote objects",
+      async () => {
+        const remoteKeys = await listRemoteKeys(
+          client,
+          ossLimiter,
+          inputs.destinationPrefix,
+        );
+        info2(
+          `Cleanup comparison: local=${localKeys.size}, remote=${remoteKeys.length}, prefix='${inputs.destinationPrefix}'`,
+        );
+        const result = await deleteOrphans(
+          client,
+          ossLimiter,
+          localKeys,
+          remoteKeys,
+        );
+        info2(`Cleanup complete: deleted=${result.deleted}`);
+        return {
+          ...result,
+          remoteCount: remoteKeys.length,
+        };
+      },
+    );
+    deleted = cleanupResult.deleted;
+    deletedKeys = cleanupResult.deletedKeys;
+    remoteCount = cleanupResult.remoteCount;
+    emitDebugNotice(
+      "OSS cleanup result",
+      `localKeys=${localKeyCount}, remoteKeys=${remoteCount}, deletedOrphans=${deleted}, prefix=${
+        inputs.destinationPrefix || "(root)"
+      }`,
+    );
+  } else if (!mainCompleted) {
+    info2(
+      "OSS cleanup skipped because the main step did not complete successfully enough to mark cleanup as safe.",
+    );
+  } else {
+    info2(
+      "OSS cleanup skipped because the deployment was not marked cleanup-safe, usually because one or more uploads failed.",
+    );
+  }
   const shouldRefreshDeletedObjects = cdnEnabled && cdnBaseUrl !== "" &&
     deletedKeys.length > 0;
   const shouldLookupMainTasks = mainTaskSources.size > 0;
@@ -217025,13 +217080,17 @@ async function runPost() {
     );
   }
   if (shouldRefreshDeletedObjects || shouldLookupMainTasks) {
+    const cdnCredentials = await resolveFreshCdnCredentials(
+      oidcInputs,
+      credentials,
+    );
     const cdnLimiter = new ApiRateLimiter(CDN_API_MAX_RPS);
     const cdnQuotaLimiter = new ApiRateLimiter(CDN_QUOTA_API_MAX_RPS);
     const cdnLookupLimiter = new ApiRateLimiter(CDN_QUOTA_API_MAX_RPS);
     const cdnClient = new CdnClientCtor({
-      accessKeyId: credentials.accessKeyId,
-      accessKeySecret: credentials.accessKeySecret,
-      securityToken: credentials.securityToken,
+      accessKeyId: cdnCredentials.accessKeyId,
+      accessKeySecret: cdnCredentials.accessKeySecret,
+      securityToken: cdnCredentials.securityToken,
       // Aliyun CDN is a global service; regionId is required by the Tea
       // SDK for internal endpoint resolution but has no effect on routing.
       // Strip the OSS-specific "oss-" prefix to derive a Tea-compatible region.
@@ -217052,7 +217111,7 @@ async function runPost() {
               cdnQuotaLimiter,
               deletedKeys,
               cdnBaseUrl,
-              credentials.securityToken,
+              cdnCredentials.securityToken,
             ),
         );
       } catch (error2) {
@@ -217070,7 +217129,7 @@ async function runPost() {
               cdnClient,
               cdnLookupLimiter,
               mainTaskSources,
-              credentials.securityToken,
+              cdnCredentials.securityToken,
             ),
         );
         cdnTaskStatusRows = taskReport.rows;
@@ -217096,6 +217155,18 @@ async function runPost() {
         data: "Value",
         header: true,
       },
+    ],
+    [
+      "Cleanup status",
+      cleanupSafe
+        ? "completed"
+        : mainCompleted
+        ? "skipped (deployment not cleanup-safe)"
+        : "skipped (main step incomplete)",
+    ],
+    [
+      "Local objects considered",
+      String(localKeyCount),
     ],
     [
       "Remote objects scanned",

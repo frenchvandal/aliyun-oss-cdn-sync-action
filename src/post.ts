@@ -27,6 +27,8 @@ import {
 import {
   STATE_CDN_PRELOAD_TASK_IDS,
   STATE_CDN_REFRESH_TASK_IDS,
+  STATE_CLEANUP_SAFE,
+  STATE_MAIN_COMPLETED,
 } from "./constants.ts";
 import type { Credentials } from "./shared.ts";
 
@@ -275,6 +277,32 @@ function createOssClient(
   return new OssClientCtor(clientConfig);
 }
 
+async function resolveFreshCdnCredentials(
+  oidcInputs: OidcInputs,
+  credentials: Credentials,
+): Promise<Credentials> {
+  if (!credentials.securityToken) {
+    return credentials;
+  }
+
+  try {
+    const refreshed = await resolveOidcCredential(oidcInputs);
+    debug("[post:resolveFreshCdnCredentials] refreshedSecurityToken=true");
+    return {
+      accessKeyId: refreshed.accessKeyId,
+      accessKeySecret: refreshed.accessKeySecret,
+      securityToken: refreshed.securityToken,
+    };
+  } catch (error: unknown) {
+    warning(
+      `Failed to refresh CDN STS credentials before post-step CDN operations, falling back to state credentials: ${
+        errorMessage(error)
+      }`,
+    );
+    return credentials;
+  }
+}
+
 async function listRemoteKeys(
   client: OSSClient,
   limiter: ApiRateLimiter,
@@ -449,6 +477,8 @@ async function runPost(): Promise<void> {
   const cdnEndpoint = getOptionalInput("cdn-endpoint");
   const mainRefreshTaskIdsRaw = getState(STATE_CDN_REFRESH_TASK_IDS);
   const mainPreloadTaskIdsRaw = getState(STATE_CDN_PRELOAD_TASK_IDS);
+  const mainCompleted = getState(STATE_MAIN_COMPLETED) === "true";
+  const cleanupSafe = getState(STATE_CLEANUP_SAFE) === "true";
   const mainRefreshTaskIds = parseTaskIdList(mainRefreshTaskIdsRaw);
   const mainPreloadTaskIds = parseTaskIdList(mainPreloadTaskIdsRaw);
   const mainTaskSources = formatTaskSources(
@@ -478,39 +508,57 @@ async function runPost(): Promise<void> {
 
   const ossLimiter = new ApiRateLimiter(inputs.apiRpsLimit);
   const client = createOssClient(inputs, credentials, oidcInputs);
+  let deleted = 0;
+  let deletedKeys: string[] = [];
+  let localKeyCount = 0;
+  let remoteCount = 0;
 
-  const localKeys = await collectLocalObjectKeys(
-    inputs.inputDir,
-    inputs.destinationPrefix,
-  );
+  if (cleanupSafe) {
+    const localKeys = await collectLocalObjectKeys(
+      inputs.inputDir,
+      inputs.destinationPrefix,
+    );
+    localKeyCount = localKeys.size;
 
-  const { deleted, deletedKeys, remoteCount } = await group(
-    "Comparing local and remote objects",
-    async () => {
-      const remoteKeys = await listRemoteKeys(
-        client,
-        ossLimiter,
-        inputs.destinationPrefix,
-      );
-      info(
-        `Cleanup comparison: local=${localKeys.size}, remote=${remoteKeys.length}, prefix='${inputs.destinationPrefix}'`,
-      );
-      const result = await deleteOrphans(
-        client,
-        ossLimiter,
-        localKeys,
-        remoteKeys,
-      );
-      info(`Cleanup complete: deleted=${result.deleted}`);
-      return { ...result, remoteCount: remoteKeys.length };
-    },
-  );
-  emitDebugNotice(
-    "OSS cleanup result",
-    `localKeys=${localKeys.size}, remoteKeys=${remoteCount}, deletedOrphans=${deleted}, prefix=${
-      inputs.destinationPrefix || "(root)"
-    }`,
-  );
+    const cleanupResult = await group(
+      "Comparing local and remote objects",
+      async () => {
+        const remoteKeys = await listRemoteKeys(
+          client,
+          ossLimiter,
+          inputs.destinationPrefix,
+        );
+        info(
+          `Cleanup comparison: local=${localKeys.size}, remote=${remoteKeys.length}, prefix='${inputs.destinationPrefix}'`,
+        );
+        const result = await deleteOrphans(
+          client,
+          ossLimiter,
+          localKeys,
+          remoteKeys,
+        );
+        info(`Cleanup complete: deleted=${result.deleted}`);
+        return { ...result, remoteCount: remoteKeys.length };
+      },
+    );
+    deleted = cleanupResult.deleted;
+    deletedKeys = cleanupResult.deletedKeys;
+    remoteCount = cleanupResult.remoteCount;
+    emitDebugNotice(
+      "OSS cleanup result",
+      `localKeys=${localKeyCount}, remoteKeys=${remoteCount}, deletedOrphans=${deleted}, prefix=${
+        inputs.destinationPrefix || "(root)"
+      }`,
+    );
+  } else if (!mainCompleted) {
+    info(
+      "OSS cleanup skipped because the main step did not complete successfully enough to mark cleanup as safe.",
+    );
+  } else {
+    info(
+      "OSS cleanup skipped because the deployment was not marked cleanup-safe, usually because one or more uploads failed.",
+    );
+  }
 
   const shouldRefreshDeletedObjects = cdnEnabled && cdnBaseUrl !== "" &&
     deletedKeys.length > 0;
@@ -531,13 +579,17 @@ async function runPost(): Promise<void> {
   }
 
   if (shouldRefreshDeletedObjects || shouldLookupMainTasks) {
+    const cdnCredentials = await resolveFreshCdnCredentials(
+      oidcInputs,
+      credentials,
+    );
     const cdnLimiter = new ApiRateLimiter(CDN_API_MAX_RPS);
     const cdnQuotaLimiter = new ApiRateLimiter(CDN_QUOTA_API_MAX_RPS);
     const cdnLookupLimiter = new ApiRateLimiter(CDN_QUOTA_API_MAX_RPS);
     const cdnClient = new CdnClientCtor({
-      accessKeyId: credentials.accessKeyId,
-      accessKeySecret: credentials.accessKeySecret,
-      securityToken: credentials.securityToken,
+      accessKeyId: cdnCredentials.accessKeyId,
+      accessKeySecret: cdnCredentials.accessKeySecret,
+      securityToken: cdnCredentials.securityToken,
       // Aliyun CDN is a global service; regionId is required by the Tea
       // SDK for internal endpoint resolution but has no effect on routing.
       // Strip the OSS-specific "oss-" prefix to derive a Tea-compatible region.
@@ -559,7 +611,7 @@ async function runPost(): Promise<void> {
               cdnQuotaLimiter,
               deletedKeys,
               cdnBaseUrl,
-              credentials.securityToken,
+              cdnCredentials.securityToken,
             ),
         );
       } catch (error: unknown) {
@@ -578,7 +630,7 @@ async function runPost(): Promise<void> {
               cdnClient,
               cdnLookupLimiter,
               mainTaskSources,
-              credentials.securityToken,
+              cdnCredentials.securityToken,
             ),
         );
         cdnTaskStatusRows = taskReport.rows;
@@ -599,6 +651,15 @@ async function runPost(): Promise<void> {
 
   const postTable: SummaryTableRow[] = [
     [{ data: "Metric", header: true }, { data: "Value", header: true }],
+    [
+      "Cleanup status",
+      cleanupSafe
+        ? "completed"
+        : mainCompleted
+        ? "skipped (deployment not cleanup-safe)"
+        : "skipped (main step incomplete)",
+    ],
+    ["Local objects considered", String(localKeyCount)],
     ["Remote objects scanned", String(remoteCount)],
     ["Orphan objects deleted", String(deleted)],
   ];

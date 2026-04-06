@@ -11,3 +11,4 @@ export const STATE_CACHE_RESTORED_KEY = "pre-cache-restored-key";
 export const STATE_CDN_REFRESH_TASK_IDS = "main-cdn-refresh-task-ids";
 export const STATE_CDN_PRELOAD_TASK_IDS = "main-cdn-preload-task-ids";
 export const STATE_MAIN_COMPLETED = "main-completed";
+export const STATE_CLEANUP_SAFE = "main-cleanup-safe";

@@ -226827,6 +226827,7 @@ var STATE_CACHE_RESTORED_KEY = "pre-cache-restored-key";
 var STATE_CDN_REFRESH_TASK_IDS = "main-cdn-refresh-task-ids";
 var STATE_CDN_PRELOAD_TASK_IDS = "main-cdn-preload-task-ids";
 var STATE_MAIN_COMPLETED = "main-completed";
+var STATE_CLEANUP_SAFE = "main-cleanup-safe";
 
 // src/logger.ts
 var import_ernest_logger = __toESM(require_ernest_logger());
@@ -227041,6 +227042,34 @@ var MuxAsyncIterator = class {
   }
 };
 
+// src/_api-rate-limiter.ts
+var ApiRateLimiter = class {
+  gate = Promise.resolve();
+  intervalMs;
+  nextStartTime = 0;
+  constructor(limitPerSecond) {
+    if (!Number.isFinite(limitPerSecond) || limitPerSecond <= 0) {
+      throw new Error(
+        `limitPerSecond must be a positive finite number, got ${limitPerSecond}`,
+      );
+    }
+    this.intervalMs = Math.max(1, Math.ceil(1e3 / limitPerSecond));
+  }
+  schedule(fn) {
+    const reservation = this.gate.then(async () => {
+      const now = Date.now();
+      const scheduledStartTime = Math.max(this.nextStartTime, now);
+      this.nextStartTime = scheduledStartTime + this.intervalMs;
+      const waitMs = scheduledStartTime - now;
+      if (waitMs > 0) {
+        await delay5(waitMs);
+      }
+    });
+    this.gate = reservation.then(() => void 0, () => void 0);
+    return reservation.then(() => fn());
+  }
+};
+
 // src/_shared-utils.ts
 function errorMessage(error2) {
   if (!error2 || typeof error2 !== "object") {
@@ -227140,21 +227169,6 @@ function buildFileUrl(baseUrl, key) {
 }
 
 // src/shared.ts
-var ApiRateLimiter = class {
-  chain = Promise.resolve();
-  intervalMs;
-  constructor(limitPerSecond) {
-    this.intervalMs = Math.max(1, Math.ceil(1e3 / limitPerSecond));
-  }
-  schedule(fn) {
-    const next = this.chain.then(() => fn());
-    this.chain = next.then(
-      () => delay5(this.intervalMs),
-      () => delay5(this.intervalMs),
-    );
-    return next;
-  }
-};
 function getOptionalInput(name) {
   const value = getInput(name, {
     required: false,
@@ -227895,6 +227909,27 @@ function createCdnClient(inputs, credentials) {
     connectTimeout: inputs.sdkTimeoutMs,
   });
 }
+async function resolveFreshCdnCredentials(inputs, credentials) {
+  if (!credentials.securityToken) {
+    return credentials;
+  }
+  try {
+    const refreshed = await resolveOidcCredential(inputs.oidc);
+    debug2("[main:resolveFreshCdnCredentials] refreshedSecurityToken=true");
+    return {
+      accessKeyId: refreshed.accessKeyId,
+      accessKeySecret: refreshed.accessKeySecret,
+      securityToken: refreshed.securityToken,
+    };
+  } catch (error2) {
+    warning2(
+      `Failed to refresh CDN STS credentials before CDN operations, falling back to state credentials: ${
+        errorMessage(error2)
+      }`,
+    );
+    return credentials;
+  }
+}
 function isNotFoundError(error2) {
   if (!error2 || typeof error2 !== "object") {
     return false;
@@ -228560,9 +228595,6 @@ async function run() {
   const cdnLimiter = new ApiRateLimiter(CDN_API_MAX_RPS);
   const cdnQuotaLimiter = new ApiRateLimiter(CDN_QUOTA_API_MAX_RPS);
   const ossClient = createOssClient(inputs, credentials);
-  const cdnClient = inputs.cdnEnabled && inputs.cdnActions.size > 0
-    ? createCdnClient(inputs, credentials)
-    : void 0;
   const files = await collectFiles(inputs.inputDir);
   success(`Found ${files.length} file(s) in ${resolve4(inputs.inputDir)}`);
   emitDebugNotice(
@@ -228603,6 +228635,7 @@ async function run() {
       [],
       [],
     );
+    saveState(STATE_CLEANUP_SAFE, "true");
     saveState(STATE_MAIN_COMPLETED, "true");
     return;
   }
@@ -228617,8 +228650,21 @@ async function run() {
     "OSS upload result",
     `uploaded=${uploadResult.uploadedCount}, skipped=${uploadResult.skippedCount}, failed=${uploadResult.failedCount}, uploadedKeys=${uploadResult.uploadedKeys.length}`,
   );
+  saveState(
+    STATE_CLEANUP_SAFE,
+    uploadResult.failedCount === 0 ? "true" : "false",
+  );
   let refreshTaskIds = [];
   let preloadTaskIds = [];
+  const cdnRequested = inputs.cdnEnabled && inputs.cdnActions.size > 0;
+  const shouldCreateCdnClient = cdnRequested &&
+    uploadResult.uploadedKeys.length > 0;
+  const cdnCredentials = shouldCreateCdnClient
+    ? await resolveFreshCdnCredentials(inputs, credentials)
+    : void 0;
+  const cdnClient = cdnCredentials
+    ? createCdnClient(inputs, cdnCredentials)
+    : void 0;
   if (cdnClient && uploadResult.uploadedKeys.length > 0) {
     const client = cdnClient;
     try {
@@ -228631,7 +228677,7 @@ async function run() {
             cdnQuotaLimiter,
             uploadResult.uploadedKeys,
             inputs,
-            credentials,
+            cdnCredentials ?? credentials,
           ),
       );
       refreshTaskIds = cdnResult.refreshTaskIds;
@@ -228639,7 +228685,7 @@ async function run() {
     } catch (error2) {
       warning2(`CDN actions failed: ${errorMessage(error2)}`);
     }
-  } else if (!cdnClient) {
+  } else if (!cdnRequested) {
     info2(
       "CDN actions skipped: client not created (cdn-enabled=false or no CDN action configured)",
     );

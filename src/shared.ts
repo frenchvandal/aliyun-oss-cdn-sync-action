@@ -9,13 +9,13 @@ import {
   isDebug,
   notice,
 } from "npm/actions-core";
-import { delay } from "jsr/async";
 
 import {
   STATE_ACCESS_KEY_ID,
   STATE_ACCESS_KEY_SECRET,
   STATE_SECURITY_TOKEN,
 } from "./constants.ts";
+export { ApiRateLimiter } from "./_api-rate-limiter.ts";
 import { debug } from "./logger.ts";
 import {
   buildObjectKey,
@@ -55,31 +55,6 @@ export interface OssBaseInputs {
   maxConcurrency: number;
   apiRpsLimit: number;
   sdkTimeoutMs: number;
-}
-
-export class ApiRateLimiter {
-  private chain: Promise<void> = Promise.resolve();
-  private readonly intervalMs: number;
-
-  constructor(limitPerSecond: number) {
-    this.intervalMs = Math.max(1, Math.ceil(1000 / limitPerSecond));
-  }
-
-  schedule<T>(fn: () => Promise<T>): Promise<T> {
-    // Run fn() as soon as the chain resolves — no unnecessary pre-call delay.
-    const next = this.chain.then(() => fn());
-
-    // After fn() settles (success or failure), enforce the rate-limit interval
-    // before the next scheduled call runs. Errors are caught here so that a
-    // failed call does not stall subsequent ones; they still propagate to the
-    // original caller via the returned `next` promise.
-    this.chain = next.then(
-      () => delay(this.intervalMs),
-      () => delay(this.intervalMs),
-    );
-
-    return next;
-  }
 }
 
 export function getOptionalInput(name: string): string | undefined {
