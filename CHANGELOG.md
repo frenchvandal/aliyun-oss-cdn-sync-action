@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.12](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.11...v1.0.12) (2026-04-06)
+
+
+### Bug Fixes
+
+* **logging:** surface warnings and failures through actions core ([fe6ce68](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/fe6ce684e755add7fbd6ff9f57030c4e5975ef46))
+* prevent unsafe cleanup after partial deployments ([617498f](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/617498fdfaaf367a6108f065ad4424f40a2fe4fa))
+
 ## [1.0.11](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.10...v1.0.11) (2026-03-31)
 
 
