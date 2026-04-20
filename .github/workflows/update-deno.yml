@@ -93,6 +93,7 @@ jobs:
         run: |
           set -euo pipefail
 
+          rm -f deno.lock
           deno task build
 
       - id: commit
@@ -108,7 +109,7 @@ jobs:
             git status --short |
               awk '{
                 path = substr($0, 4)
-                if (path != ".tool-versions" && path !~ /^dist\//) {
+                if (path != ".tool-versions" && path != "deno.lock" && path !~ /^dist\//) {
                   print
                 }
               }'
@@ -126,7 +127,7 @@ jobs:
           printf '%s\n' "${COMMIT_MESSAGE}" > "${commit_message_file}"
           deno task lint-commit "${commit_message_file}"
 
-          git add .tool-versions dist/
+          git add .tool-versions deno.lock dist/
 
           if git diff --cached --quiet; then
             echo "No staged changes to commit."
