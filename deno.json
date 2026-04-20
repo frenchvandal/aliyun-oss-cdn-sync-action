@@ -79,5 +79,5 @@
       "command": "deno outdated --update --latest"
     }
   },
-  "allowScripts": ["npm:@alicloud/openapi-core@1.0.7", "npm:lefthook@2.1.5"]
+  "allowScripts": ["npm:lefthook@2.1.5"]
 }
