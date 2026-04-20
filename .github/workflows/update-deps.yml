@@ -60,7 +60,12 @@ jobs:
 
       - name: Build project artifacts
         if: steps.update_deps.outputs.updated == 'true'
-        run: deno task build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          deno task build
+          deno fmt dist/
 
       - id: commit
         name: Commit and push updated dependencies

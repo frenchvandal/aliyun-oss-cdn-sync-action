@@ -95,6 +95,7 @@ jobs:
 
           rm -f deno.lock
           deno task build
+          deno fmt dist/
 
       - id: commit
         if: steps.update_tool_versions.outputs.changed == 'true'
