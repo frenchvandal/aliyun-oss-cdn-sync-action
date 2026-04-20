@@ -35,6 +35,7 @@ jobs:
         run: |
           set -euo pipefail
 
+          rm -f deno.lock
           deno task update-deps
 
           working_tree_status="$(git status --short)"
