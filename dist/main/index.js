@@ -315,9 +315,9 @@ var require_tunnel2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/symbols.js
 var require_symbols = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/symbols.js"(
     exports2,
     module,
   ) {
@@ -391,9 +391,9 @@ var require_symbols = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/errors.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/errors.js
 var require_errors = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/errors.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/errors.js"(
     exports2,
     module,
   ) {
@@ -736,6 +736,23 @@ var require_errors = __commonJS({
       }
       [kSecureProxyConnectionError] = true;
     };
+    var kMessageSizeExceededError = Symbol.for(
+      "undici.error.UND_ERR_WS_MESSAGE_SIZE_EXCEEDED",
+    );
+    var MessageSizeExceededError = class extends UndiciError {
+      constructor(message) {
+        super(message);
+        this.name = "MessageSizeExceededError";
+        this.message = message || "Max decompressed message size exceeded";
+        this.code = "UND_ERR_WS_MESSAGE_SIZE_EXCEEDED";
+      }
+      static [Symbol.hasInstance](instance) {
+        return instance && instance[kMessageSizeExceededError] === true;
+      }
+      get [kMessageSizeExceededError]() {
+        return true;
+      }
+    };
     module.exports = {
       AbortError: AbortError3,
       HTTPParserError,
@@ -760,13 +777,14 @@ var require_errors = __commonJS({
       RequestRetryError,
       ResponseError,
       SecureProxyConnectionError,
+      MessageSizeExceededError,
     };
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/constants.js
 var require_constants = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/constants.js"(
     exports2,
     module,
   ) {
@@ -884,9 +902,9 @@ var require_constants = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/tree.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/tree.js
 var require_tree = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/tree.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/tree.js"(
     exports2,
     module,
   ) {
@@ -1025,9 +1043,9 @@ var require_tree = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/util.js
 var require_util = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/util.js"(
     exports2,
     module,
   ) {
@@ -1627,9 +1645,9 @@ var require_util = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/diagnostics.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/diagnostics.js
 var require_diagnostics = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/diagnostics.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/diagnostics.js"(
     exports2,
     module,
   ) {
@@ -1825,9 +1843,9 @@ var require_diagnostics = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/request.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/request.js
 var require_request = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/request.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/request.js"(
     exports2,
     module,
   ) {
@@ -1896,6 +1914,9 @@ var require_request = __commonJS({
         }
         if (upgrade && typeof upgrade !== "string") {
           throw new InvalidArgumentError("upgrade must be a string");
+        }
+        if (upgrade && !isValidHeaderValue(upgrade)) {
+          throw new InvalidArgumentError("invalid upgrade header");
         }
         if (
           headersTimeout != null &&
@@ -2172,14 +2193,18 @@ var require_request = __commonJS({
       } else {
         val = `${val}`;
       }
-      if (request.host === null && headerName === "host") {
+      if (headerName === "host") {
+        if (request.host !== null) {
+          throw new InvalidArgumentError("duplicate host header");
+        }
         if (typeof val !== "string") {
           throw new InvalidArgumentError("invalid host header");
         }
         request.host = val;
-      } else if (
-        request.contentLength === null && headerName === "content-length"
-      ) {
+      } else if (headerName === "content-length") {
+        if (request.contentLength !== null) {
+          throw new InvalidArgumentError("duplicate content-length header");
+        }
         request.contentLength = parseInt(val, 10);
         if (!Number.isFinite(request.contentLength)) {
           throw new InvalidArgumentError("invalid content-length header");
@@ -2212,9 +2237,9 @@ var require_request = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/dispatcher.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/dispatcher.js
 var require_dispatcher = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/dispatcher.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/dispatcher.js"(
     exports2,
     module,
   ) {
@@ -2275,9 +2300,9 @@ var require_dispatcher = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/dispatcher-base.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/dispatcher-base.js
 var require_dispatcher_base = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/dispatcher-base.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/dispatcher-base.js"(
     exports2,
     module,
   ) {
@@ -2290,13 +2315,21 @@ var require_dispatcher_base = __commonJS({
     var kOnDestroyed = Symbol("onDestroyed");
     var kOnClosed = Symbol("onClosed");
     var kInterceptedDispatch = Symbol("Intercepted Dispatch");
+    var kWebSocketOptions = Symbol("webSocketOptions");
     var DispatcherBase = class extends Dispatcher {
-      constructor() {
+      constructor(opts) {
         super();
         this[kDestroyed] = false;
         this[kOnDestroyed] = null;
         this[kClosed] = false;
         this[kOnClosed] = [];
+        this[kWebSocketOptions] = opts?.webSocket ?? {};
+      }
+      get webSocketOptions() {
+        return {
+          maxPayloadSize: this[kWebSocketOptions].maxPayloadSize ??
+            128 * 1024 * 1024,
+        };
       }
       get destroyed() {
         return this[kDestroyed];
@@ -2439,9 +2472,9 @@ var require_dispatcher_base = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/util/timers.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/util/timers.js
 var require_timers = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/util/timers.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/util/timers.js"(
     exports2,
     module,
   ) {
@@ -2678,9 +2711,9 @@ var require_timers = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/connect.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/connect.js
 var require_connect = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/connect.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/connect.js"(
     exports2,
     module,
   ) {
@@ -2914,9 +2947,9 @@ var require_connect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/utils.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/utils.js
 var require_utils = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/utils.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/utils.js"(
     exports2,
   ) {
     "use strict";
@@ -2938,9 +2971,9 @@ var require_utils = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/constants.js
 var require_constants2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/constants.js"(
     exports2,
   ) {
     "use strict";
@@ -3339,9 +3372,9 @@ var require_constants2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/llhttp-wasm.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/llhttp-wasm.js
 var require_llhttp_wasm = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/llhttp-wasm.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/llhttp-wasm.js"(
     exports2,
     module,
   ) {
@@ -3354,9 +3387,9 @@ var require_llhttp_wasm = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js
 var require_llhttp_simd_wasm = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js"(
     exports2,
     module,
   ) {
@@ -3369,9 +3402,9 @@ var require_llhttp_simd_wasm = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/constants.js
 var require_constants3 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/constants.js"(
     exports2,
     module,
   ) {
@@ -3627,9 +3660,9 @@ var require_constants3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/global.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/global.js
 var require_global = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/global.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/global.js"(
     exports2,
     module,
   ) {
@@ -3668,9 +3701,9 @@ var require_global = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/data-url.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/data-url.js
 var require_data_url = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/data-url.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/data-url.js"(
     exports2,
     module,
   ) {
@@ -4043,9 +4076,9 @@ var require_data_url = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/webidl.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/webidl.js
 var require_webidl = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/webidl.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/webidl.js"(
     exports2,
     module,
   ) {
@@ -4547,9 +4580,9 @@ var require_webidl = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/util.js
 var require_util2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/util.js"(
     exports2,
     module,
   ) {
@@ -5564,9 +5597,9 @@ var require_util2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/symbols.js
 var require_symbols2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/symbols.js"(
     exports2,
     module,
   ) {
@@ -5581,9 +5614,9 @@ var require_symbols2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/file.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/file.js
 var require_file = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/file.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/file.js"(
     exports2,
     module,
   ) {
@@ -5654,9 +5687,9 @@ var require_file = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/formdata.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/formdata.js
 var require_formdata = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/formdata.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/formdata.js"(
     exports2,
     module,
   ) {
@@ -5853,9 +5886,9 @@ var require_formdata = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/formdata-parser.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/formdata-parser.js
 var require_formdata_parser = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/formdata-parser.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/formdata-parser.js"(
     exports2,
     module,
   ) {
@@ -6170,9 +6203,9 @@ var require_formdata_parser = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/body.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/body.js
 var require_body = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/body.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/body.js"(
     exports2,
     module,
   ) {
@@ -6529,9 +6562,9 @@ Content-Type: ${value.type || "application/octet-stream"}\r
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client-h1.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client-h1.js
 var require_client_h1 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client-h1.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client-h1.js"(
     exports2,
     module,
   ) {
@@ -7867,9 +7900,9 @@ ${len.toString(16)}\r
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client-h2.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client-h2.js
 var require_client_h2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client-h2.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client-h2.js"(
     exports2,
     module,
   ) {
@@ -8520,9 +8553,9 @@ var require_client_h2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/redirect-handler.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/redirect-handler.js
 var require_redirect_handler = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/redirect-handler.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/redirect-handler.js"(
     exports2,
     module,
   ) {
@@ -8734,9 +8767,9 @@ var require_redirect_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/redirect-interceptor.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/redirect-interceptor.js
 var require_redirect_interceptor = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/redirect-interceptor.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/redirect-interceptor.js"(
     exports2,
     module,
   ) {
@@ -8769,9 +8802,9 @@ var require_redirect_interceptor = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client.js
 var require_client = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client.js"(
     exports2,
     module,
   ) {
@@ -8872,8 +8905,11 @@ var require_client = __commonJS({
         // h2
         maxConcurrentStreams,
         allowH2,
+        webSocket,
       } = {}) {
-        super();
+        super({
+          webSocket,
+        });
         if (keepAlive !== void 0) {
           throw new InvalidArgumentError(
             "unsupported keepAlive, use pipelining=0 instead",
@@ -9389,9 +9425,9 @@ var require_client = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/fixed-queue.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/fixed-queue.js
 var require_fixed_queue = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/fixed-queue.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/fixed-queue.js"(
     exports2,
     module,
   ) {
@@ -9448,9 +9484,9 @@ var require_fixed_queue = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool-stats.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool-stats.js
 var require_pool_stats = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool-stats.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool-stats.js"(
     exports2,
     module,
   ) {
@@ -9484,9 +9520,9 @@ var require_pool_stats = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool-base.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool-base.js
 var require_pool_base = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool-base.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool-base.js"(
     exports2,
     module,
   ) {
@@ -9520,8 +9556,8 @@ var require_pool_base = __commonJS({
     var kRemoveClient = Symbol("remove client");
     var kStats = Symbol("stats");
     var PoolBase = class extends DispatcherBase {
-      constructor() {
-        super();
+      constructor(opts) {
+        super(opts);
         this[kQueue] = new FixedQueue();
         this[kClients] = [];
         this[kQueued] = 0;
@@ -9682,9 +9718,9 @@ var require_pool_base = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool.js
 var require_pool = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool.js"(
     exports2,
     module,
   ) {
@@ -9719,7 +9755,6 @@ var require_pool = __commonJS({
           ...options
         } = {},
       ) {
-        super();
         if (
           connections != null &&
           (!Number.isFinite(connections) || connections < 0)
@@ -9753,6 +9788,7 @@ var require_pool = __commonJS({
             ...connect,
           });
         }
+        super(options);
         this[kInterceptors] =
           options.interceptors?.Pool && Array.isArray(options.interceptors.Pool)
             ? options.interceptors.Pool
@@ -9796,9 +9832,9 @@ var require_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/balanced-pool.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/balanced-pool.js
 var require_balanced_pool = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/balanced-pool.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/balanced-pool.js"(
     exports2,
     module,
   ) {
@@ -9972,9 +10008,9 @@ var require_balanced_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/agent.js
 var require_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/agent.js"(
     exports2,
     module,
   ) {
@@ -10004,7 +10040,6 @@ var require_agent = __commonJS({
         { factory = defaultFactory, maxRedirections = 0, connect, ...options } =
           {},
       ) {
-        super();
         if (typeof factory !== "function") {
           throw new InvalidArgumentError("factory must be a function.");
         }
@@ -10021,6 +10056,7 @@ var require_agent = __commonJS({
             "maxRedirections must be a positive number",
           );
         }
+        super(options);
         if (connect && typeof connect !== "function") {
           connect = {
             ...connect,
@@ -10124,9 +10160,9 @@ var require_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/proxy-agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/proxy-agent.js
 var require_proxy_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/proxy-agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/proxy-agent.js"(
     exports2,
     module,
   ) {
@@ -10404,9 +10440,9 @@ var require_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js
 var require_env_http_proxy_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js"(
     exports2,
     module,
   ) {
@@ -10563,9 +10599,9 @@ var require_env_http_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/retry-handler.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/retry-handler.js
 var require_retry_handler = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/retry-handler.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/retry-handler.js"(
     exports2,
     module,
   ) {
@@ -10907,9 +10943,9 @@ var require_retry_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/retry-agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/retry-agent.js
 var require_retry_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/retry-agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/retry-agent.js"(
     exports2,
     module,
   ) {
@@ -10945,9 +10981,9 @@ var require_retry_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/readable.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/readable.js
 var require_readable = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/readable.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/readable.js"(
     exports2,
     module,
   ) {
@@ -11264,9 +11300,9 @@ var require_readable = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/util.js
 var require_util3 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/util.js"(
     exports2,
     module,
   ) {
@@ -11353,9 +11389,9 @@ var require_util3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-request.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-request.js
 var require_api_request = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-request.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-request.js"(
     exports2,
     module,
   ) {
@@ -11587,9 +11623,9 @@ var require_api_request = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/abort-signal.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/abort-signal.js
 var require_abort_signal = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/abort-signal.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/abort-signal.js"(
     exports2,
     module,
   ) {
@@ -11641,9 +11677,9 @@ var require_abort_signal = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-stream.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-stream.js
 var require_api_stream = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-stream.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-stream.js"(
     exports2,
     module,
   ) {
@@ -11868,9 +11904,9 @@ var require_api_stream = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-pipeline.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-pipeline.js
 var require_api_pipeline = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-pipeline.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-pipeline.js"(
     exports2,
     module,
   ) {
@@ -12083,9 +12119,9 @@ var require_api_pipeline = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-upgrade.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-upgrade.js
 var require_api_upgrade = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-upgrade.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-upgrade.js"(
     exports2,
     module,
   ) {
@@ -12191,9 +12227,9 @@ var require_api_upgrade = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-connect.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-connect.js
 var require_api_connect = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-connect.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-connect.js"(
     exports2,
     module,
   ) {
@@ -12300,9 +12336,9 @@ var require_api_connect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/index.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/index.js
 var require_api = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/index.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/index.js"(
     exports2,
     module,
   ) {
@@ -12315,9 +12351,9 @@ var require_api = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-errors.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-errors.js
 var require_mock_errors = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-errors.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-errors.js"(
     exports2,
     module,
   ) {
@@ -12346,9 +12382,9 @@ var require_mock_errors = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-symbols.js
 var require_mock_symbols = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-symbols.js"(
     exports2,
     module,
   ) {
@@ -12377,9 +12413,9 @@ var require_mock_symbols = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-utils.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-utils.js
 var require_mock_utils = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-utils.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-utils.js"(
     exports2,
     module,
   ) {
@@ -12757,9 +12793,9 @@ var require_mock_utils = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-interceptor.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-interceptor.js
 var require_mock_interceptor = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-interceptor.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-interceptor.js"(
     exports2,
     module,
   ) {
@@ -12971,9 +13007,9 @@ var require_mock_interceptor = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-client.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-client.js
 var require_mock_client = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-client.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-client.js"(
     exports2,
     module,
   ) {
@@ -13029,9 +13065,9 @@ var require_mock_client = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-pool.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-pool.js
 var require_mock_pool = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-pool.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-pool.js"(
     exports2,
     module,
   ) {
@@ -13087,9 +13123,9 @@ var require_mock_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/pluralizer.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/pluralizer.js
 var require_pluralizer = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/pluralizer.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/pluralizer.js"(
     exports2,
     module,
   ) {
@@ -13125,9 +13161,9 @@ var require_pluralizer = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js
 var require_pending_interceptors_formatter = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js"(
     exports2,
     module,
   ) {
@@ -13177,9 +13213,9 @@ var require_pending_interceptors_formatter = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-agent.js
 var require_mock_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-agent.js"(
     exports2,
     module,
   ) {
@@ -13341,9 +13377,9 @@ ${pendingInterceptorsFormatter.format(pending)}
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/global.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/global.js
 var require_global2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/global.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/global.js"(
     exports2,
     module,
   ) {
@@ -13375,9 +13411,9 @@ var require_global2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/decorator-handler.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/decorator-handler.js
 var require_decorator_handler = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/decorator-handler.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/decorator-handler.js"(
     exports2,
     module,
   ) {
@@ -13418,9 +13454,9 @@ var require_decorator_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/redirect.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/redirect.js
 var require_redirect = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/redirect.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/redirect.js"(
     exports2,
     module,
   ) {
@@ -13448,9 +13484,9 @@ var require_redirect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/retry.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/retry.js
 var require_retry = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/retry.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/retry.js"(
     exports2,
     module,
   ) {
@@ -13478,9 +13514,9 @@ var require_retry = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/dump.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/dump.js
 var require_dump = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/dump.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/dump.js"(
     exports2,
     module,
   ) {
@@ -13580,9 +13616,9 @@ var require_dump = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/dns.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/dns.js
 var require_dns = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/dns.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/dns.js"(
     exports2,
     module,
   ) {
@@ -13905,9 +13941,9 @@ var require_dns = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/headers.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/headers.js
 var require_headers = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/headers.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/headers.js"(
     exports2,
     module,
   ) {
@@ -14423,9 +14459,9 @@ var require_headers = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/response.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/response.js
 var require_response = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/response.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/response.js"(
     exports2,
     module,
   ) {
@@ -14883,9 +14919,9 @@ var require_response = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js
 var require_dispatcher_weakref = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js"(
     exports2,
     module,
   ) {
@@ -14935,9 +14971,9 @@ var require_dispatcher_weakref = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/request.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/request.js
 var require_request2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/request.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/request.js"(
     exports2,
     module,
   ) {
@@ -15704,9 +15740,9 @@ var require_request2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/index.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/index.js
 var require_fetch = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/index.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/index.js"(
     exports2,
     module,
   ) {
@@ -17007,9 +17043,9 @@ var require_fetch = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/symbols.js
 var require_symbols3 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/symbols.js"(
     exports2,
     module,
   ) {
@@ -17027,9 +17063,9 @@ var require_symbols3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/progressevent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/progressevent.js
 var require_progressevent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/progressevent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/progressevent.js"(
     exports2,
     module,
   ) {
@@ -17104,9 +17140,9 @@ var require_progressevent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/encoding.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/encoding.js
 var require_encoding = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/encoding.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/encoding.js"(
     exports2,
     module,
   ) {
@@ -17393,9 +17429,9 @@ var require_encoding = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/util.js
 var require_util4 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/util.js"(
     exports2,
     module,
   ) {
@@ -17585,9 +17621,9 @@ var require_util4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/filereader.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/filereader.js
 var require_filereader = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/filereader.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/filereader.js"(
     exports2,
     module,
   ) {
@@ -17858,9 +17894,9 @@ var require_filereader = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/symbols.js
 var require_symbols4 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/symbols.js"(
     exports2,
     module,
   ) {
@@ -17871,9 +17907,9 @@ var require_symbols4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/util.js
 var require_util5 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/util.js"(
     exports2,
     module,
   ) {
@@ -17904,9 +17940,9 @@ var require_util5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/cache.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/cache.js
 var require_cache = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/cache.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/cache.js"(
     exports2,
     module,
   ) {
@@ -18527,9 +18563,9 @@ var require_cache = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/cachestorage.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/cachestorage.js
 var require_cachestorage = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/cachestorage.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/cachestorage.js"(
     exports2,
     module,
   ) {
@@ -18654,9 +18690,9 @@ var require_cachestorage = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/constants.js"(
     exports2,
     module,
   ) {
@@ -18670,9 +18706,9 @@ var require_constants4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/util.js
 var require_util6 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/util.js"(
     exports2,
     module,
   ) {
@@ -18863,9 +18899,9 @@ var require_util6 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/parse.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/parse.js
 var require_parse = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/parse.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/parse.js"(
     exports2,
     module,
   ) {
@@ -19015,9 +19051,9 @@ var require_parse = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/index.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/index.js
 var require_cookies = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/index.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/index.js"(
     exports2,
     module,
   ) {
@@ -19159,9 +19195,9 @@ var require_cookies = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/events.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/events.js
 var require_events = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/events.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/events.js"(
     exports2,
     module,
   ) {
@@ -19445,9 +19481,9 @@ var require_events = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/constants.js
 var require_constants5 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/constants.js"(
     exports2,
     module,
   ) {
@@ -19505,9 +19541,9 @@ var require_constants5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/symbols.js
 var require_symbols5 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/symbols.js"(
     exports2,
     module,
   ) {
@@ -19525,9 +19561,9 @@ var require_symbols5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/util.js
 var require_util7 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/util.js"(
     exports2,
     module,
   ) {
@@ -19682,13 +19718,17 @@ var require_util7 = __commonJS({
       return extensionList;
     }
     function isValidClientWindowBits(value) {
+      if (value.length === 0) {
+        return false;
+      }
       for (let i = 0; i < value.length; i++) {
         const byte = value.charCodeAt(i);
         if (byte < 48 || byte > 57) {
           return false;
         }
       }
-      return true;
+      const num = Number.parseInt(value, 10);
+      return num >= 8 && num <= 15;
     }
     var hasIntl = typeof process.versions.icu === "string";
     var fatalDecoder = hasIntl
@@ -19725,9 +19765,9 @@ var require_util7 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/frame.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/frame.js
 var require_frame = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/frame.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/frame.js"(
     exports2,
     module,
   ) {
@@ -19814,9 +19854,9 @@ var require_frame = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/connection.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/connection.js
 var require_connection = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/connection.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/connection.js"(
     exports2,
     module,
   ) {
@@ -20054,15 +20094,16 @@ var require_connection = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/permessage-deflate.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/permessage-deflate.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/permessage-deflate.js"(
     exports2,
     module,
   ) {
     "use strict";
     var { createInflateRaw, Z_DEFAULT_WINDOWBITS } = __require("node:zlib");
     var { isValidClientWindowBits } = require_util7();
+    var { MessageSizeExceededError } = require_errors();
     var tail = Buffer.from([
       0,
       0,
@@ -20075,14 +20116,25 @@ var require_permessage_deflate = __commonJS({
       /** @type {import('node:zlib').InflateRaw} */
       #inflate;
       #options = {};
-      constructor(extensions2) {
+      #maxPayloadSize = 0;
+      /**
+       * @param {Map<string, string>} extensions
+       */
+      constructor(extensions2, options) {
         this.#options.serverNoContextTakeover = extensions2.has(
           "server_no_context_takeover",
         );
         this.#options.serverMaxWindowBits = extensions2.get(
           "server_max_window_bits",
         );
+        this.#maxPayloadSize = options.maxPayloadSize;
       }
+      /**
+       * Decompress a compressed payload.
+       * @param {Buffer} chunk Compressed data
+       * @param {boolean} fin Final fragment flag
+       * @param {Function} callback Callback function
+       */
       decompress(chunk2, fin, callback) {
         if (!this.#inflate) {
           let windowBits = Z_DEFAULT_WINDOWBITS;
@@ -20093,14 +20145,28 @@ var require_permessage_deflate = __commonJS({
             }
             windowBits = Number.parseInt(this.#options.serverMaxWindowBits);
           }
-          this.#inflate = createInflateRaw({
-            windowBits,
-          });
+          try {
+            this.#inflate = createInflateRaw({
+              windowBits,
+            });
+          } catch (err) {
+            callback(err);
+            return;
+          }
           this.#inflate[kBuffer] = [];
           this.#inflate[kLength] = 0;
           this.#inflate.on("data", (data) => {
-            this.#inflate[kBuffer].push(data);
             this.#inflate[kLength] += data.length;
+            if (
+              this.#maxPayloadSize > 0 &&
+              this.#inflate[kLength] > this.#maxPayloadSize
+            ) {
+              callback(new MessageSizeExceededError());
+              this.#inflate.removeAllListeners();
+              this.#inflate = null;
+              return;
+            }
+            this.#inflate[kBuffer].push(data);
           });
           this.#inflate.on("error", (err) => {
             this.#inflate = null;
@@ -20112,6 +20178,9 @@ var require_permessage_deflate = __commonJS({
           this.#inflate.write(tail);
         }
         this.#inflate.flush(() => {
+          if (!this.#inflate) {
+            return;
+          }
           const full = Buffer.concat(
             this.#inflate[kBuffer],
             this.#inflate[kLength],
@@ -20128,9 +20197,9 @@ var require_permessage_deflate = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/receiver.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/receiver.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/receiver.js"(
     exports2,
     module,
   ) {
@@ -20155,8 +20224,10 @@ var require_receiver = __commonJS({
     var { WebsocketFrameSend } = require_frame();
     var { closeWebSocketConnection } = require_connection();
     var { PerMessageDeflate } = require_permessage_deflate();
+    var { MessageSizeExceededError } = require_errors();
     var ByteParser = class extends Writable {
       #buffers = [];
+      #fragmentsBytes = 0;
       #byteOffset = 0;
       #loop = false;
       #state = parserStates.INFO;
@@ -20164,16 +20235,24 @@ var require_receiver = __commonJS({
       #fragments = [];
       /** @type {Map<string, PerMessageDeflate>} */
       #extensions;
-      constructor(ws, extensions2) {
+      /** @type {number} */
+      #maxPayloadSize;
+      /**
+       * @param {import('./websocket').WebSocket} ws
+       * @param {Map<string, string>|null} extensions
+       * @param {{ maxPayloadSize?: number }} [options]
+       */
+      constructor(ws, extensions2, options = {}) {
         super();
         this.ws = ws;
         this.#extensions = extensions2 == null
           ? /* @__PURE__ */ new Map()
           : extensions2;
+        this.#maxPayloadSize = options.maxPayloadSize ?? 0;
         if (this.#extensions.has("permessage-deflate")) {
           this.#extensions.set(
             "permessage-deflate",
-            new PerMessageDeflate(extensions2),
+            new PerMessageDeflate(extensions2, options),
           );
         }
       }
@@ -20186,6 +20265,19 @@ var require_receiver = __commonJS({
         this.#byteOffset += chunk2.length;
         this.#loop = true;
         this.run(callback);
+      }
+      #validatePayloadLength() {
+        if (
+          this.#maxPayloadSize > 0 && !isControlFrame(this.#info.opcode) &&
+          this.#info.payloadLength > this.#maxPayloadSize
+        ) {
+          failWebsocketConnection(
+            this.ws,
+            "Payload size exceeds maximum allowed size",
+          );
+          return false;
+        }
+        return true;
       }
       /**
        * Runs whenever a new chunk is received.
@@ -20261,6 +20353,9 @@ var require_receiver = __commonJS({
             if (payloadLength <= 125) {
               this.#info.payloadLength = payloadLength;
               this.#state = parserStates.READ_DATA;
+              if (!this.#validatePayloadLength()) {
+                return;
+              }
             } else if (payloadLength === 126) {
               this.#state = parserStates.PAYLOADLENGTH_16;
             } else if (payloadLength === 127) {
@@ -20281,22 +20376,28 @@ var require_receiver = __commonJS({
             const buffer3 = this.consume(2);
             this.#info.payloadLength = buffer3.readUInt16BE(0);
             this.#state = parserStates.READ_DATA;
+            if (!this.#validatePayloadLength()) {
+              return;
+            }
           } else if (this.#state === parserStates.PAYLOADLENGTH_64) {
             if (this.#byteOffset < 8) {
               return callback();
             }
             const buffer3 = this.consume(8);
             const upper = buffer3.readUInt32BE(0);
-            if (upper > 2 ** 31 - 1) {
+            const lower = buffer3.readUInt32BE(4);
+            if (upper !== 0 || lower > 2 ** 31 - 1) {
               failWebsocketConnection(
                 this.ws,
                 "Received payload length > 2^31 bytes.",
               );
               return;
             }
-            const lower = buffer3.readUInt32BE(4);
-            this.#info.payloadLength = (upper << 8) + lower;
+            this.#info.payloadLength = lower;
             this.#state = parserStates.READ_DATA;
+            if (!this.#validatePayloadLength()) {
+              return;
+            }
           } else if (this.#state === parserStates.READ_DATA) {
             if (this.#byteOffset < this.#info.payloadLength) {
               return callback();
@@ -20307,15 +20408,23 @@ var require_receiver = __commonJS({
               this.#state = parserStates.INFO;
             } else {
               if (!this.#info.compressed) {
-                this.#fragments.push(body2);
+                this.writeFragments(body2);
+                if (
+                  this.#maxPayloadSize > 0 &&
+                  this.#fragmentsBytes > this.#maxPayloadSize
+                ) {
+                  failWebsocketConnection(
+                    this.ws,
+                    new MessageSizeExceededError().message,
+                  );
+                  return;
+                }
                 if (!this.#info.fragmented && this.#info.fin) {
-                  const fullMessage = Buffer.concat(this.#fragments);
                   websocketMessageReceived(
                     this.ws,
                     this.#info.binaryType,
-                    fullMessage,
+                    this.consumeFragments(),
                   );
-                  this.#fragments.length = 0;
                 }
                 this.#state = parserStates.INFO;
               } else {
@@ -20324,15 +20433,20 @@ var require_receiver = __commonJS({
                   this.#info.fin,
                   (error2, data) => {
                     if (error2) {
-                      closeWebSocketConnection(
+                      failWebsocketConnection(this.ws, error2.message);
+                      return;
+                    }
+                    this.writeFragments(data);
+                    if (
+                      this.#maxPayloadSize > 0 &&
+                      this.#fragmentsBytes > this.#maxPayloadSize
+                    ) {
+                      failWebsocketConnection(
                         this.ws,
-                        1007,
-                        error2.message,
-                        error2.message.length,
+                        new MessageSizeExceededError().message,
                       );
                       return;
                     }
-                    this.#fragments.push(data);
                     if (!this.#info.fin) {
                       this.#state = parserStates.INFO;
                       this.#loop = true;
@@ -20342,11 +20456,10 @@ var require_receiver = __commonJS({
                     websocketMessageReceived(
                       this.ws,
                       this.#info.binaryType,
-                      Buffer.concat(this.#fragments),
+                      this.consumeFragments(),
                     );
                     this.#loop = true;
                     this.#state = parserStates.INFO;
-                    this.#fragments.length = 0;
                     this.run(callback);
                   },
                 );
@@ -20391,6 +20504,21 @@ var require_receiver = __commonJS({
         }
         this.#byteOffset -= n;
         return buffer3;
+      }
+      writeFragments(fragment) {
+        this.#fragmentsBytes += fragment.length;
+        this.#fragments.push(fragment);
+      }
+      consumeFragments() {
+        const fragments = this.#fragments;
+        if (fragments.length === 1) {
+          this.#fragmentsBytes = 0;
+          return fragments.shift();
+        }
+        const output = Buffer.concat(fragments, this.#fragmentsBytes);
+        this.#fragments = [];
+        this.#fragmentsBytes = 0;
+        return output;
       }
       parseCloseBody(data) {
         assert5(data.length !== 1);
@@ -20493,9 +20621,9 @@ var require_receiver = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/sender.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/sender.js
 var require_sender = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/sender.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/sender.js"(
     exports2,
     module,
   ) {
@@ -20582,9 +20710,9 @@ var require_sender = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/websocket.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/websocket.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/websocket.js"(
     exports2,
     module,
   ) {
@@ -20877,7 +21005,11 @@ var require_websocket = __commonJS({
        */
       #onConnectionEstablished(response, parsedExtensions) {
         this[kResponse] = response;
-        const parser = new ByteParser(this, parsedExtensions);
+        const maxPayloadSize = this[kController]?.dispatcher?.webSocketOptions
+          ?.maxPayloadSize;
+        const parser = new ByteParser(this, parsedExtensions, {
+          maxPayloadSize,
+        });
         parser.on("drain", onParserDrain);
         parser.on("error", onParserError.bind(this));
         response.socket.ws = this;
@@ -21007,9 +21139,9 @@ var require_websocket = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/util.js
 var require_util8 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/util.js"(
     exports2,
     module,
   ) {
@@ -21037,9 +21169,9 @@ var require_util8 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js
 var require_eventsource_stream = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js"(
     exports2,
     module,
   ) {
@@ -21286,9 +21418,9 @@ ${value}`;
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/eventsource.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/eventsource.js
 var require_eventsource = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/eventsource.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/eventsource.js"(
     exports2,
     module,
   ) {
@@ -21610,9 +21742,9 @@ var require_eventsource = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/index.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/index.js
 var require_undici = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/index.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/index.js"(
     exports2,
     module,
   ) {
@@ -30502,21 +30634,23 @@ var require_form = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/lodash.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/lodash.js
 var require_lodash = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/lodash.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/lodash.js"(
     exports2,
     module,
   ) {
     (function () {
       var undefined2;
-      var VERSION = "4.17.21";
+      var VERSION = "4.18.1";
       var LARGE_ARRAY_SIZE = 200;
       var CORE_ERROR_TEXT =
           "Unsupported core-js use. Try https://npms.io/search?q=ponyfill.",
         FUNC_ERROR_TEXT = "Expected a function",
         INVALID_TEMPL_VAR_ERROR_TEXT =
-          "Invalid `variable` option passed into `_.template`";
+          "Invalid `variable` option passed into `_.template`",
+        INVALID_TEMPL_IMPORTS_ERROR_TEXT =
+          "Invalid `imports` option passed into `_.template`";
       var HASH_UNDEFINED = "__lodash_hash_undefined__";
       var MAX_MEMOIZE_SIZE = 500;
       var PLACEHOLDER = "__lodash_placeholder__";
@@ -33038,8 +33172,26 @@ var require_lodash = __commonJS({
         }
         function baseUnset(object, path14) {
           path14 = castPath(path14, object);
-          object = parent(object, path14);
-          return object == null || delete object[toKey(last(path14))];
+          var index = -1, length = path14.length;
+          if (!length) {
+            return true;
+          }
+          while (++index < length) {
+            var key = toKey(path14[index]);
+            if (
+              key === "__proto__" && !hasOwnProperty.call(object, "__proto__")
+            ) {
+              return false;
+            }
+            if (
+              (key === "constructor" || key === "prototype") &&
+              index < length - 1
+            ) {
+              return false;
+            }
+          }
+          var obj = parent(object, path14);
+          return obj == null || delete obj[toKey(last(path14))];
         }
         function baseUpdate(object, path14, updater, customizer) {
           return baseSet(
@@ -34841,7 +34993,7 @@ var require_lodash = __commonJS({
             result2 = {};
           while (++index < length) {
             var pair = pairs[index];
-            result2[pair[0]] = pair[1];
+            baseAssignValue(result2, pair[0], pair[1]);
           }
           return result2;
         }
@@ -36558,8 +36710,8 @@ var require_lodash = __commonJS({
             options = undefined2;
           }
           string = toString3(string);
-          options = assignInWith({}, options, settings, customDefaultsAssignIn);
-          var imports = assignInWith(
+          options = assignWith({}, options, settings, customDefaultsAssignIn);
+          var imports = assignWith(
               {},
               options.imports,
               settings.imports,
@@ -36567,6 +36719,11 @@ var require_lodash = __commonJS({
             ),
             importsKeys = keys(imports),
             importsValues = baseValues(imports, importsKeys);
+          arrayEach(importsKeys, function (key) {
+            if (reForbiddenIdentifierChars.test(key)) {
+              throw new Error2(INVALID_TEMPL_IMPORTS_ERROR_TEXT);
+            }
+          });
           var isEscaping,
             isEvaluating,
             index = 0,
@@ -43342,9 +43499,9 @@ var require_builder = __commonJS({
   },
 });
 
-// node_modules/.deno/sax@1.4.1/node_modules/sax/lib/sax.js
+// node_modules/.deno/sax@1.6.0/node_modules/sax/lib/sax.js
 var require_sax = __commonJS({
-  "node_modules/.deno/sax@1.4.1/node_modules/sax/lib/sax.js"(exports2) {
+  "node_modules/.deno/sax@1.6.0/node_modules/sax/lib/sax.js"(exports2) {
     (function (sax) {
       sax.parser = function (strict, opt) {
         return new SAXParser(strict, opt);
@@ -43395,9 +43552,13 @@ var require_sax = __commonJS({
         clearBuffers(parser);
         parser.q = parser.c = "";
         parser.bufferCheckPosition = sax.MAX_BUFFER_LENGTH;
+        parser.encoding = null;
         parser.opt = opt || {};
         parser.opt.lowercase = parser.opt.lowercase || parser.opt.lowercasetags;
         parser.looseCase = parser.opt.lowercase ? "toLowerCase" : "toUpperCase";
+        parser.opt.maxEntityCount = parser.opt.maxEntityCount || 512;
+        parser.opt.maxEntityDepth = parser.opt.maxEntityDepth || 4;
+        parser.entityCount = parser.entityDepth = 0;
         parser.tags = [];
         parser.closed = parser.closedRoot = parser.sawRoot = false;
         parser.tag = parser.error = null;
@@ -43513,6 +43674,36 @@ var require_sax = __commonJS({
       function createStream(strict, opt) {
         return new SAXStream(strict, opt);
       }
+      function determineBufferEncoding(data, isEnd) {
+        if (data.length >= 2) {
+          if (data[0] === 255 && data[1] === 254) {
+            return "utf-16le";
+          }
+          if (data[0] === 254 && data[1] === 255) {
+            return "utf-16be";
+          }
+        }
+        if (
+          data.length >= 3 && data[0] === 239 && data[1] === 187 &&
+          data[2] === 191
+        ) {
+          return "utf8";
+        }
+        if (data.length >= 4) {
+          if (
+            data[0] === 60 && data[1] === 0 && data[2] === 63 && data[3] === 0
+          ) {
+            return "utf-16le";
+          }
+          if (
+            data[0] === 0 && data[1] === 60 && data[2] === 0 && data[3] === 63
+          ) {
+            return "utf-16be";
+          }
+          return "utf8";
+        }
+        return isEnd ? "utf8" : null;
+      }
       function SAXStream(strict, opt) {
         if (!(this instanceof SAXStream)) {
           return new SAXStream(strict, opt);
@@ -43530,6 +43721,7 @@ var require_sax = __commonJS({
           me._parser.error = null;
         };
         this._decoder = null;
+        this._decoderBuffer = null;
         streamWraps.forEach(function (ev) {
           Object.defineProperty(me, "on" + ev, {
             get: function () {
@@ -43553,16 +43745,39 @@ var require_sax = __commonJS({
           value: SAXStream,
         },
       });
+      SAXStream.prototype._decodeBuffer = function (data, isEnd) {
+        if (this._decoderBuffer) {
+          data = Buffer.concat([
+            this._decoderBuffer,
+            data,
+          ]);
+          this._decoderBuffer = null;
+        }
+        if (!this._decoder) {
+          var encoding = determineBufferEncoding(data, isEnd);
+          if (!encoding) {
+            this._decoderBuffer = data;
+            return "";
+          }
+          this._parser.encoding = encoding;
+          this._decoder = new TextDecoder(encoding);
+        }
+        return this._decoder.decode(data, {
+          stream: !isEnd,
+        });
+      };
       SAXStream.prototype.write = function (data) {
         if (
           typeof Buffer === "function" &&
           typeof Buffer.isBuffer === "function" && Buffer.isBuffer(data)
         ) {
-          if (!this._decoder) {
-            var SD = __require("node:string_decoder").StringDecoder;
-            this._decoder = new SD("utf8");
+          data = this._decodeBuffer(data, false);
+        } else if (this._decoderBuffer) {
+          var remaining = this._decodeBuffer(Buffer.alloc(0), true);
+          if (remaining) {
+            this._parser.write(remaining);
+            this.emit("data", remaining);
           }
-          data = this._decoder.write(data);
         }
         this._parser.write(data.toString());
         this.emit("data", data);
@@ -43571,6 +43786,19 @@ var require_sax = __commonJS({
       SAXStream.prototype.end = function (chunk2) {
         if (chunk2 && chunk2.length) {
           this.write(chunk2);
+        }
+        if (this._decoderBuffer) {
+          var finalChunk = this._decodeBuffer(Buffer.alloc(0), true);
+          if (finalChunk) {
+            this._parser.write(finalChunk);
+            this.emit("data", finalChunk);
+          }
+        } else if (this._decoder) {
+          var remaining = this._decoder.decode();
+          if (remaining) {
+            this._parser.write(remaining);
+            this.emit("data", remaining);
+          }
         }
         this._parser.end();
         return true;
@@ -43659,269 +43887,268 @@ var require_sax = __commonJS({
         CLOSE_TAG_SAW_WHITE: S++,
         SCRIPT: S++,
         SCRIPT_ENDING: S++,
-        // <script> ... <
       };
       sax.XML_ENTITIES = {
-        "amp": "&",
-        "gt": ">",
-        "lt": "<",
-        "quot": '"',
-        "apos": "'",
+        amp: "&",
+        gt: ">",
+        lt: "<",
+        quot: '"',
+        apos: "'",
       };
       sax.ENTITIES = {
-        "amp": "&",
-        "gt": ">",
-        "lt": "<",
-        "quot": '"',
-        "apos": "'",
-        "AElig": 198,
-        "Aacute": 193,
-        "Acirc": 194,
-        "Agrave": 192,
-        "Aring": 197,
-        "Atilde": 195,
-        "Auml": 196,
-        "Ccedil": 199,
-        "ETH": 208,
-        "Eacute": 201,
-        "Ecirc": 202,
-        "Egrave": 200,
-        "Euml": 203,
-        "Iacute": 205,
-        "Icirc": 206,
-        "Igrave": 204,
-        "Iuml": 207,
-        "Ntilde": 209,
-        "Oacute": 211,
-        "Ocirc": 212,
-        "Ograve": 210,
-        "Oslash": 216,
-        "Otilde": 213,
-        "Ouml": 214,
-        "THORN": 222,
-        "Uacute": 218,
-        "Ucirc": 219,
-        "Ugrave": 217,
-        "Uuml": 220,
-        "Yacute": 221,
-        "aacute": 225,
-        "acirc": 226,
-        "aelig": 230,
-        "agrave": 224,
-        "aring": 229,
-        "atilde": 227,
-        "auml": 228,
-        "ccedil": 231,
-        "eacute": 233,
-        "ecirc": 234,
-        "egrave": 232,
-        "eth": 240,
-        "euml": 235,
-        "iacute": 237,
-        "icirc": 238,
-        "igrave": 236,
-        "iuml": 239,
-        "ntilde": 241,
-        "oacute": 243,
-        "ocirc": 244,
-        "ograve": 242,
-        "oslash": 248,
-        "otilde": 245,
-        "ouml": 246,
-        "szlig": 223,
-        "thorn": 254,
-        "uacute": 250,
-        "ucirc": 251,
-        "ugrave": 249,
-        "uuml": 252,
-        "yacute": 253,
-        "yuml": 255,
-        "copy": 169,
-        "reg": 174,
-        "nbsp": 160,
-        "iexcl": 161,
-        "cent": 162,
-        "pound": 163,
-        "curren": 164,
-        "yen": 165,
-        "brvbar": 166,
-        "sect": 167,
-        "uml": 168,
-        "ordf": 170,
-        "laquo": 171,
-        "not": 172,
-        "shy": 173,
-        "macr": 175,
-        "deg": 176,
-        "plusmn": 177,
-        "sup1": 185,
-        "sup2": 178,
-        "sup3": 179,
-        "acute": 180,
-        "micro": 181,
-        "para": 182,
-        "middot": 183,
-        "cedil": 184,
-        "ordm": 186,
-        "raquo": 187,
-        "frac14": 188,
-        "frac12": 189,
-        "frac34": 190,
-        "iquest": 191,
-        "times": 215,
-        "divide": 247,
-        "OElig": 338,
-        "oelig": 339,
-        "Scaron": 352,
-        "scaron": 353,
-        "Yuml": 376,
-        "fnof": 402,
-        "circ": 710,
-        "tilde": 732,
-        "Alpha": 913,
-        "Beta": 914,
-        "Gamma": 915,
-        "Delta": 916,
-        "Epsilon": 917,
-        "Zeta": 918,
-        "Eta": 919,
-        "Theta": 920,
-        "Iota": 921,
-        "Kappa": 922,
-        "Lambda": 923,
-        "Mu": 924,
-        "Nu": 925,
-        "Xi": 926,
-        "Omicron": 927,
-        "Pi": 928,
-        "Rho": 929,
-        "Sigma": 931,
-        "Tau": 932,
-        "Upsilon": 933,
-        "Phi": 934,
-        "Chi": 935,
-        "Psi": 936,
-        "Omega": 937,
-        "alpha": 945,
-        "beta": 946,
-        "gamma": 947,
-        "delta": 948,
-        "epsilon": 949,
-        "zeta": 950,
-        "eta": 951,
-        "theta": 952,
-        "iota": 953,
-        "kappa": 954,
-        "lambda": 955,
-        "mu": 956,
-        "nu": 957,
-        "xi": 958,
-        "omicron": 959,
-        "pi": 960,
-        "rho": 961,
-        "sigmaf": 962,
-        "sigma": 963,
-        "tau": 964,
-        "upsilon": 965,
-        "phi": 966,
-        "chi": 967,
-        "psi": 968,
-        "omega": 969,
-        "thetasym": 977,
-        "upsih": 978,
-        "piv": 982,
-        "ensp": 8194,
-        "emsp": 8195,
-        "thinsp": 8201,
-        "zwnj": 8204,
-        "zwj": 8205,
-        "lrm": 8206,
-        "rlm": 8207,
-        "ndash": 8211,
-        "mdash": 8212,
-        "lsquo": 8216,
-        "rsquo": 8217,
-        "sbquo": 8218,
-        "ldquo": 8220,
-        "rdquo": 8221,
-        "bdquo": 8222,
-        "dagger": 8224,
-        "Dagger": 8225,
-        "bull": 8226,
-        "hellip": 8230,
-        "permil": 8240,
-        "prime": 8242,
-        "Prime": 8243,
-        "lsaquo": 8249,
-        "rsaquo": 8250,
-        "oline": 8254,
-        "frasl": 8260,
-        "euro": 8364,
-        "image": 8465,
-        "weierp": 8472,
-        "real": 8476,
-        "trade": 8482,
-        "alefsym": 8501,
-        "larr": 8592,
-        "uarr": 8593,
-        "rarr": 8594,
-        "darr": 8595,
-        "harr": 8596,
-        "crarr": 8629,
-        "lArr": 8656,
-        "uArr": 8657,
-        "rArr": 8658,
-        "dArr": 8659,
-        "hArr": 8660,
-        "forall": 8704,
-        "part": 8706,
-        "exist": 8707,
-        "empty": 8709,
-        "nabla": 8711,
-        "isin": 8712,
-        "notin": 8713,
-        "ni": 8715,
-        "prod": 8719,
-        "sum": 8721,
-        "minus": 8722,
-        "lowast": 8727,
-        "radic": 8730,
-        "prop": 8733,
-        "infin": 8734,
-        "ang": 8736,
-        "and": 8743,
-        "or": 8744,
-        "cap": 8745,
-        "cup": 8746,
-        "int": 8747,
-        "there4": 8756,
-        "sim": 8764,
-        "cong": 8773,
-        "asymp": 8776,
-        "ne": 8800,
-        "equiv": 8801,
-        "le": 8804,
-        "ge": 8805,
-        "sub": 8834,
-        "sup": 8835,
-        "nsub": 8836,
-        "sube": 8838,
-        "supe": 8839,
-        "oplus": 8853,
-        "otimes": 8855,
-        "perp": 8869,
-        "sdot": 8901,
-        "lceil": 8968,
-        "rceil": 8969,
-        "lfloor": 8970,
-        "rfloor": 8971,
-        "lang": 9001,
-        "rang": 9002,
-        "loz": 9674,
-        "spades": 9824,
-        "clubs": 9827,
-        "hearts": 9829,
-        "diams": 9830,
+        amp: "&",
+        gt: ">",
+        lt: "<",
+        quot: '"',
+        apos: "'",
+        AElig: 198,
+        Aacute: 193,
+        Acirc: 194,
+        Agrave: 192,
+        Aring: 197,
+        Atilde: 195,
+        Auml: 196,
+        Ccedil: 199,
+        ETH: 208,
+        Eacute: 201,
+        Ecirc: 202,
+        Egrave: 200,
+        Euml: 203,
+        Iacute: 205,
+        Icirc: 206,
+        Igrave: 204,
+        Iuml: 207,
+        Ntilde: 209,
+        Oacute: 211,
+        Ocirc: 212,
+        Ograve: 210,
+        Oslash: 216,
+        Otilde: 213,
+        Ouml: 214,
+        THORN: 222,
+        Uacute: 218,
+        Ucirc: 219,
+        Ugrave: 217,
+        Uuml: 220,
+        Yacute: 221,
+        aacute: 225,
+        acirc: 226,
+        aelig: 230,
+        agrave: 224,
+        aring: 229,
+        atilde: 227,
+        auml: 228,
+        ccedil: 231,
+        eacute: 233,
+        ecirc: 234,
+        egrave: 232,
+        eth: 240,
+        euml: 235,
+        iacute: 237,
+        icirc: 238,
+        igrave: 236,
+        iuml: 239,
+        ntilde: 241,
+        oacute: 243,
+        ocirc: 244,
+        ograve: 242,
+        oslash: 248,
+        otilde: 245,
+        ouml: 246,
+        szlig: 223,
+        thorn: 254,
+        uacute: 250,
+        ucirc: 251,
+        ugrave: 249,
+        uuml: 252,
+        yacute: 253,
+        yuml: 255,
+        copy: 169,
+        reg: 174,
+        nbsp: 160,
+        iexcl: 161,
+        cent: 162,
+        pound: 163,
+        curren: 164,
+        yen: 165,
+        brvbar: 166,
+        sect: 167,
+        uml: 168,
+        ordf: 170,
+        laquo: 171,
+        not: 172,
+        shy: 173,
+        macr: 175,
+        deg: 176,
+        plusmn: 177,
+        sup1: 185,
+        sup2: 178,
+        sup3: 179,
+        acute: 180,
+        micro: 181,
+        para: 182,
+        middot: 183,
+        cedil: 184,
+        ordm: 186,
+        raquo: 187,
+        frac14: 188,
+        frac12: 189,
+        frac34: 190,
+        iquest: 191,
+        times: 215,
+        divide: 247,
+        OElig: 338,
+        oelig: 339,
+        Scaron: 352,
+        scaron: 353,
+        Yuml: 376,
+        fnof: 402,
+        circ: 710,
+        tilde: 732,
+        Alpha: 913,
+        Beta: 914,
+        Gamma: 915,
+        Delta: 916,
+        Epsilon: 917,
+        Zeta: 918,
+        Eta: 919,
+        Theta: 920,
+        Iota: 921,
+        Kappa: 922,
+        Lambda: 923,
+        Mu: 924,
+        Nu: 925,
+        Xi: 926,
+        Omicron: 927,
+        Pi: 928,
+        Rho: 929,
+        Sigma: 931,
+        Tau: 932,
+        Upsilon: 933,
+        Phi: 934,
+        Chi: 935,
+        Psi: 936,
+        Omega: 937,
+        alpha: 945,
+        beta: 946,
+        gamma: 947,
+        delta: 948,
+        epsilon: 949,
+        zeta: 950,
+        eta: 951,
+        theta: 952,
+        iota: 953,
+        kappa: 954,
+        lambda: 955,
+        mu: 956,
+        nu: 957,
+        xi: 958,
+        omicron: 959,
+        pi: 960,
+        rho: 961,
+        sigmaf: 962,
+        sigma: 963,
+        tau: 964,
+        upsilon: 965,
+        phi: 966,
+        chi: 967,
+        psi: 968,
+        omega: 969,
+        thetasym: 977,
+        upsih: 978,
+        piv: 982,
+        ensp: 8194,
+        emsp: 8195,
+        thinsp: 8201,
+        zwnj: 8204,
+        zwj: 8205,
+        lrm: 8206,
+        rlm: 8207,
+        ndash: 8211,
+        mdash: 8212,
+        lsquo: 8216,
+        rsquo: 8217,
+        sbquo: 8218,
+        ldquo: 8220,
+        rdquo: 8221,
+        bdquo: 8222,
+        dagger: 8224,
+        Dagger: 8225,
+        bull: 8226,
+        hellip: 8230,
+        permil: 8240,
+        prime: 8242,
+        Prime: 8243,
+        lsaquo: 8249,
+        rsaquo: 8250,
+        oline: 8254,
+        frasl: 8260,
+        euro: 8364,
+        image: 8465,
+        weierp: 8472,
+        real: 8476,
+        trade: 8482,
+        alefsym: 8501,
+        larr: 8592,
+        uarr: 8593,
+        rarr: 8594,
+        darr: 8595,
+        harr: 8596,
+        crarr: 8629,
+        lArr: 8656,
+        uArr: 8657,
+        rArr: 8658,
+        dArr: 8659,
+        hArr: 8660,
+        forall: 8704,
+        part: 8706,
+        exist: 8707,
+        empty: 8709,
+        nabla: 8711,
+        isin: 8712,
+        notin: 8713,
+        ni: 8715,
+        prod: 8719,
+        sum: 8721,
+        minus: 8722,
+        lowast: 8727,
+        radic: 8730,
+        prop: 8733,
+        infin: 8734,
+        ang: 8736,
+        and: 8743,
+        or: 8744,
+        cap: 8745,
+        cup: 8746,
+        int: 8747,
+        there4: 8756,
+        sim: 8764,
+        cong: 8773,
+        asymp: 8776,
+        ne: 8800,
+        equiv: 8801,
+        le: 8804,
+        ge: 8805,
+        sub: 8834,
+        sup: 8835,
+        nsub: 8836,
+        sube: 8838,
+        supe: 8839,
+        oplus: 8853,
+        otimes: 8855,
+        perp: 8869,
+        sdot: 8901,
+        lceil: 8968,
+        rceil: 8969,
+        lfloor: 8970,
+        rfloor: 8971,
+        lang: 9001,
+        rang: 9002,
+        loz: 9674,
+        spades: 9824,
+        clubs: 9827,
+        hearts: 9829,
+        diams: 9830,
       };
       Object.keys(sax.ENTITIES).forEach(function (key) {
         var e = sax.ENTITIES[key];
@@ -43934,6 +44161,46 @@ var require_sax = __commonJS({
       S = sax.STATE;
       function emit(parser, event, data) {
         parser[event] && parser[event](data);
+      }
+      function getDeclaredEncoding(body2) {
+        var match2 = body2 &&
+          body2.match(/(?:^|\s)encoding\s*=\s*(['"])([^'"]+)\1/i);
+        return match2 ? match2[2] : null;
+      }
+      function normalizeEncodingName(encoding) {
+        if (!encoding) {
+          return null;
+        }
+        return encoding.toLowerCase().replace(/[^a-z0-9]/g, "");
+      }
+      function encodingsMatch(detectedEncoding, declaredEncoding) {
+        const detected = normalizeEncodingName(detectedEncoding);
+        const declared = normalizeEncodingName(declaredEncoding);
+        if (!detected || !declared) {
+          return true;
+        }
+        if (declared === "utf16") {
+          return detected === "utf16le" || detected === "utf16be";
+        }
+        return detected === declared;
+      }
+      function validateXmlDeclarationEncoding(parser, data) {
+        if (
+          !parser.strict || !parser.encoding || !data || data.name !== "xml"
+        ) {
+          return;
+        }
+        var declaredEncoding = getDeclaredEncoding(data.body);
+        if (
+          declaredEncoding && !encodingsMatch(parser.encoding, declaredEncoding)
+        ) {
+          strictFail(
+            parser,
+            "XML declaration encoding " + declaredEncoding +
+              " does not match detected stream encoding " +
+              parser.encoding.toUpperCase(),
+          );
+        }
       }
       function emitNode(parser, nodeType, data) {
         if (parser.textNode) closeText(parser);
@@ -44222,7 +44489,10 @@ var require_sax = __commonJS({
           }
         }
         entity = entity.replace(/^0+/, "");
-        if (isNaN(num) || numStr.toLowerCase() !== entity) {
+        if (
+          isNaN(num) || numStr.toLowerCase() !== entity || num < 0 ||
+          num > 1114111
+        ) {
           strictFail(parser, "Invalid character entity");
           return "&" + parser.entity + ";";
         }
@@ -44487,10 +44757,22 @@ var require_sax = __commonJS({
               }
               continue;
             case S.CDATA:
+              var starti = i - 1;
+              while (c && c !== "]") {
+                c = charAt(chunk2, i++);
+                if (c && parser.trackPosition) {
+                  parser.position++;
+                  if (c === "\n") {
+                    parser.line++;
+                    parser.column = 0;
+                  } else {
+                    parser.column++;
+                  }
+                }
+              }
+              parser.cdata += chunk2.substring(starti, i - 1);
               if (c === "]") {
                 parser.state = S.CDATA_ENDING;
-              } else {
-                parser.cdata += c;
               }
               continue;
             case S.CDATA_ENDING:
@@ -44536,10 +44818,12 @@ var require_sax = __commonJS({
               continue;
             case S.PROC_INST_ENDING:
               if (c === ">") {
-                emitNode(parser, "onprocessinginstruction", {
+                const procInstEndData = {
                   name: parser.procInstName,
                   body: parser.procInstBody,
-                });
+                };
+                validateXmlDeclarationEncoding(parser, procInstEndData);
+                emitNode(parser, "onprocessinginstruction", procInstEndData);
                 parser.procInstName = parser.procInstBody = "";
                 parser.state = S.TEXT;
               } else {
@@ -44710,7 +44994,7 @@ var require_sax = __commonJS({
               } else if (isMatch(nameBody, c)) {
                 parser.tagName += c;
               } else if (parser.script) {
-                parser.script += "</" + parser.tagName;
+                parser.script += "</" + parser.tagName + c;
                 parser.tagName = "";
                 parser.state = S.SCRIPT;
               } else {
@@ -44755,9 +45039,22 @@ var require_sax = __commonJS({
                   parser.opt.unparsedEntities &&
                   !Object.values(sax.XML_ENTITIES).includes(parsedEntity)
                 ) {
+                  if ((parser.entityCount += 1) > parser.opt.maxEntityCount) {
+                    error2(
+                      parser,
+                      "Parsed entity count exceeds max entity count",
+                    );
+                  }
+                  if ((parser.entityDepth += 1) > parser.opt.maxEntityDepth) {
+                    error2(
+                      parser,
+                      "Parsed entity depth exceeds max entity depth",
+                    );
+                  }
                   parser.entity = "";
                   parser.state = returnState;
                   parser.write(parsedEntity);
+                  parser.entityDepth -= 1;
                 } else {
                   parser[buffer3] += parsedEntity;
                   parser.entity = "";
@@ -44788,7 +45085,7 @@ var require_sax = __commonJS({
         (function () {
           var stringFromCharCode = String.fromCharCode;
           var floor = Math.floor;
-          var fromCodePoint2 = function () {
+          var fromCodePoint = function () {
             var MAX_SIZE = 16384;
             var codeUnits = [];
             var highSurrogate;
@@ -44826,12 +45123,12 @@ var require_sax = __commonJS({
           };
           if (Object.defineProperty) {
             Object.defineProperty(String, "fromCodePoint", {
-              value: fromCodePoint2,
+              value: fromCodePoint,
               configurable: true,
               writable: true,
             });
           } else {
-            String.fromCodePoint = fromCodePoint2;
+            String.fromCodePoint = fromCodePoint;
           }
         })();
       }
@@ -137223,9 +137520,9 @@ var require_object_inspect = __commonJS({
   },
 });
 
-// node_modules/.deno/side-channel-list@1.0.0/node_modules/side-channel-list/index.js
+// node_modules/.deno/side-channel-list@1.0.1/node_modules/side-channel-list/index.js
 var require_side_channel_list = __commonJS({
-  "node_modules/.deno/side-channel-list@1.0.0/node_modules/side-channel-list/index.js"(
+  "node_modules/.deno/side-channel-list@1.0.1/node_modules/side-channel-list/index.js"(
     exports2,
     module,
   ) {
@@ -137290,9 +137587,8 @@ var require_side_channel_list = __commonJS({
           }
         },
         "delete": function (key) {
-          var root = $o && $o.next;
           var deletedNode = listDelete($o, key);
-          if (deletedNode && root && root === deletedNode) {
+          if (deletedNode && $o && !$o.next) {
             $o = void 0;
           }
           return !!deletedNode;
@@ -137884,9 +138180,9 @@ var require_get_proto = __commonJS({
   },
 });
 
-// node_modules/.deno/hasown@2.0.2/node_modules/hasown/index.js
+// node_modules/.deno/hasown@2.0.3/node_modules/hasown/index.js
 var require_hasown = __commonJS({
-  "node_modules/.deno/hasown@2.0.2/node_modules/hasown/index.js"(
+  "node_modules/.deno/hasown@2.0.3/node_modules/hasown/index.js"(
     exports2,
     module,
   ) {
@@ -138700,9 +138996,9 @@ var require_side_channel = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.0/node_modules/qs/lib/formats.js
+// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/formats.js
 var require_formats = __commonJS({
-  "node_modules/.deno/qs@6.15.0/node_modules/qs/lib/formats.js"(
+  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/formats.js"(
     exports2,
     module,
   ) {
@@ -138729,9 +139025,9 @@ var require_formats = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.0/node_modules/qs/lib/utils.js
+// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/utils.js
 var require_utils4 = __commonJS({
-  "node_modules/.deno/qs@6.15.0/node_modules/qs/lib/utils.js"(
+  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/utils.js"(
     exports2,
     module,
   ) {
@@ -139063,9 +139359,9 @@ var require_utils4 = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.0/node_modules/qs/lib/stringify.js
+// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/stringify.js
 var require_stringify = __commonJS({
-  "node_modules/.deno/qs@6.15.0/node_modules/qs/lib/stringify.js"(
+  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/stringify.js"(
     exports2,
     module,
   ) {
@@ -139457,9 +139753,9 @@ var require_stringify = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.0/node_modules/qs/lib/parse.js
+// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/parse.js
 var require_parse2 = __commonJS({
-  "node_modules/.deno/qs@6.15.0/node_modules/qs/lib/parse.js"(
+  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/parse.js"(
     exports2,
     module,
   ) {
@@ -139525,9 +139821,14 @@ var require_parse2 = __commonJS({
         : options.parameterLimit;
       var parts = cleanStr.split(
         options.delimiter,
-        options.throwOnLimitExceeded ? limit + 1 : limit,
+        options.throwOnLimitExceeded && typeof limit !== "undefined"
+          ? limit + 1
+          : limit,
       );
-      if (options.throwOnLimitExceeded && parts.length > limit) {
+      if (
+        options.throwOnLimitExceeded && typeof limit !== "undefined" &&
+        parts.length > limit
+      ) {
         throw new RangeError(
           "Parameter limit exceeded. Only " + limit + " parameter" +
             (limit === 1 ? "" : "s") + " allowed.",
@@ -139920,9 +140221,9 @@ var require_parse2 = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.0/node_modules/qs/lib/index.js
+// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/index.js
 var require_lib4 = __commonJS({
-  "node_modules/.deno/qs@6.15.0/node_modules/qs/lib/index.js"(
+  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/index.js"(
     exports2,
     module,
   ) {
@@ -158068,9 +158369,9 @@ var require_lowercaseKeyHeader = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/_freeGlobal.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/_freeGlobal.js
 var require_freeGlobal = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/_freeGlobal.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/_freeGlobal.js"(
     exports2,
     module,
   ) {
@@ -158080,9 +158381,9 @@ var require_freeGlobal = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/_root.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/_root.js
 var require_root = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/_root.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/_root.js"(
     exports2,
     module,
   ) {
@@ -158094,9 +158395,9 @@ var require_root = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/_Symbol.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/_Symbol.js
 var require_Symbol = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/_Symbol.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/_Symbol.js"(
     exports2,
     module,
   ) {
@@ -158106,9 +158407,9 @@ var require_Symbol = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/_arrayMap.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/_arrayMap.js
 var require_arrayMap = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/_arrayMap.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/_arrayMap.js"(
     exports2,
     module,
   ) {
@@ -158125,9 +158426,9 @@ var require_arrayMap = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/isArray.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/isArray.js
 var require_isArray = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/isArray.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/isArray.js"(
     exports2,
     module,
   ) {
@@ -158136,9 +158437,9 @@ var require_isArray = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/_getRawTag.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/_getRawTag.js
 var require_getRawTag = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/_getRawTag.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/_getRawTag.js"(
     exports2,
     module,
   ) {
@@ -158169,9 +158470,9 @@ var require_getRawTag = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/_objectToString.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/_objectToString.js
 var require_objectToString = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/_objectToString.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/_objectToString.js"(
     exports2,
     module,
   ) {
@@ -158184,9 +158485,9 @@ var require_objectToString = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/_baseGetTag.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/_baseGetTag.js
 var require_baseGetTag = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/_baseGetTag.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/_baseGetTag.js"(
     exports2,
     module,
   ) {
@@ -158208,9 +158509,9 @@ var require_baseGetTag = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/isObjectLike.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/isObjectLike.js
 var require_isObjectLike = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/isObjectLike.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/isObjectLike.js"(
     exports2,
     module,
   ) {
@@ -158221,9 +158522,9 @@ var require_isObjectLike = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/isSymbol.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/isSymbol.js
 var require_isSymbol = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/isSymbol.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/isSymbol.js"(
     exports2,
     module,
   ) {
@@ -158238,9 +158539,9 @@ var require_isSymbol = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/_baseToString.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/_baseToString.js
 var require_baseToString = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/_baseToString.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/_baseToString.js"(
     exports2,
     module,
   ) {
@@ -158268,9 +158569,9 @@ var require_baseToString = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/toString.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/toString.js
 var require_toString = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/toString.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/toString.js"(
     exports2,
     module,
   ) {
@@ -158830,9 +159131,9 @@ var require_initOptions = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/isString.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/isString.js
 var require_isString = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/isString.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/isString.js"(
     exports2,
     module,
   ) {
@@ -158849,9 +159150,9 @@ var require_isString = __commonJS({
   },
 });
 
-// node_modules/.deno/lodash@4.17.21/node_modules/lodash/isObject.js
+// node_modules/.deno/lodash@4.18.1/node_modules/lodash/isObject.js
 var require_isObject2 = __commonJS({
-  "node_modules/.deno/lodash@4.17.21/node_modules/lodash/isObject.js"(
+  "node_modules/.deno/lodash@4.18.1/node_modules/lodash/isObject.js"(
     exports2,
     module,
   ) {
@@ -166820,9 +167121,9 @@ var require_balanced_match = __commonJS({
   },
 });
 
-// node_modules/.deno/brace-expansion@1.1.12/node_modules/brace-expansion/index.js
+// node_modules/.deno/brace-expansion@1.1.14/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "node_modules/.deno/brace-expansion@1.1.12/node_modules/brace-expansion/index.js"(
+  "node_modules/.deno/brace-expansion@1.1.14/node_modules/brace-expansion/index.js"(
     exports2,
     module,
   ) {
@@ -166869,12 +167170,14 @@ var require_brace_expansion = __commonJS({
       parts.push.apply(parts, p);
       return parts;
     }
-    function expandTop(str) {
+    function expandTop(str, options) {
       if (!str) return [];
+      options = options || {};
+      var max = options.max == null ? Infinity : options.max;
       if (str.substr(0, 2) === "{}") {
         str = "\\{\\}" + str.substr(2);
       }
-      return expand(escapeBraces(str), true).map(unescapeBraces);
+      return expand(escapeBraces(str), max, true).map(unescapeBraces);
     }
     function embrace(str) {
       return "{" + str + "}";
@@ -166888,7 +167191,7 @@ var require_brace_expansion = __commonJS({
     function gte(i, y) {
       return i >= y;
     }
-    function expand(str, isTop) {
+    function expand(str, max, isTop) {
       var expansions = [];
       var m = balanced("{", "}", str);
       if (!m || /\$$/.test(m.pre)) {
@@ -166903,7 +167206,7 @@ var require_brace_expansion = __commonJS({
       if (!isSequence && !isOptions) {
         if (m.post.match(/,(?!,).*\}/)) {
           str = m.pre + "{" + m.body + escClose + m.post;
-          return expand(str);
+          return expand(str, max, true);
         }
         return [
           str,
@@ -166915,9 +167218,9 @@ var require_brace_expansion = __commonJS({
       } else {
         n = parseCommaParts(m.body);
         if (n.length === 1) {
-          n = expand(n[0], false).map(embrace);
+          n = expand(n[0], max, false).map(embrace);
           if (n.length === 1) {
-            var post = m.post.length ? expand(m.post, false) : [
+            var post = m.post.length ? expand(m.post, max, false) : [
               "",
             ];
             return post.map(function (p) {
@@ -166927,7 +167230,7 @@ var require_brace_expansion = __commonJS({
         }
       }
       var pre = m.pre;
-      var post = m.post.length ? expand(m.post, false) : [
+      var post = m.post.length ? expand(m.post, max, false) : [
         "",
       ];
       var N;
@@ -166935,7 +167238,7 @@ var require_brace_expansion = __commonJS({
         var x = numeric(n[0]);
         var y = numeric(n[1]);
         var width = Math.max(n[0].length, n[1].length);
-        var incr = n.length == 3 ? Math.abs(numeric(n[2])) : 1;
+        var incr = n.length == 3 ? Math.max(Math.abs(numeric(n[2])), 1) : 1;
         var test = lte;
         var reverse = y < x;
         if (reverse) {
@@ -166964,11 +167267,11 @@ var require_brace_expansion = __commonJS({
         }
       } else {
         N = concatMap(n, function (el) {
-          return expand(el, false);
+          return expand(el, max, false);
         });
       }
       for (var j = 0; j < N.length; j++) {
-        for (var k = 0; k < post.length; k++) {
+        for (var k = 0; k < post.length && expansions.length < max; k++) {
           var expansion = pre + N[j] + post[k];
           if (!isTop || isSequence || expansion) expansions.push(expansion);
         }
@@ -185830,7 +186133,7 @@ function getRuntimeToken() {
 import * as fs8 from "node:fs";
 import { URL as URL2 } from "node:url";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/abort-controller/AbortError.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/abort-controller/AbortError.js
 var AbortError = class extends Error {
   constructor(message) {
     super(message);
@@ -185838,7 +186141,7 @@ var AbortError = class extends Error {
   }
 };
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
 import { EOL as EOL6 } from "node:os";
 import util3 from "node:util";
 import process2 from "node:process";
@@ -185846,7 +186149,7 @@ function log(message, ...args) {
   process2.stderr.write(`${util3.format(message, ...args)}${EOL6}`);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/logger/debug.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/logger/debug.js
 var debugEnvVariable =
   typeof process !== "undefined" && process.env && process.env.DEBUG || void 0;
 var enabledString;
@@ -186006,7 +186309,7 @@ function extend(namespace) {
 }
 var debug_default = debugObj;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/logger/logger.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/logger/logger.js
 var TYPESPEC_RUNTIME_LOG_LEVELS = [
   "verbose",
   "info",
@@ -186108,7 +186411,7 @@ function createClientLogger(namespace) {
   return context.createClientLogger(namespace);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/httpHeaders.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/httpHeaders.js
 function normalizeName(name) {
   return name.toLowerCase();
 }
@@ -186199,12 +186502,12 @@ function createHttpHeaders(rawHeaders) {
   return new HttpHeadersImpl(rawHeaders);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/uuidUtils.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/uuidUtils.js
 function randomUUID3() {
   return crypto.randomUUID();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/pipelineRequest.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/pipelineRequest.js
 var PipelineRequestImpl = class {
   url;
   method;
@@ -186251,7 +186554,7 @@ function createPipelineRequest(options) {
   return new PipelineRequestImpl(options);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/pipeline.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/pipeline.js
 var ValidPhaseNames = /* @__PURE__ */ new Set([
   "Deserialize",
   "Serialize",
@@ -186451,13 +186754,13 @@ function createEmptyPipeline() {
   return HttpPipeline.create();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/object.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/object.js
 function isObject(input) {
   return typeof input === "object" && input !== null && !Array.isArray(input) &&
     !(input instanceof RegExp) && !(input instanceof Date);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/error.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/error.js
 function isError(e) {
   if (isObject(e)) {
     const hasName = typeof e.name === "string";
@@ -186467,11 +186770,11 @@ function isError(e) {
   return false;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/inspect.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/inspect.js
 import { inspect } from "node:util";
 var custom = inspect.custom;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/sanitizer.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/sanitizer.js
 var RedactedString = "REDACTED";
 var defaultAllowedHeaderNames = [
   "x-ms-client-request-id",
@@ -186552,11 +186855,11 @@ var Sanitizer = class {
           message: value.message,
         };
       }
-      if (key === "headers") {
+      if (key === "headers" && isObject(value)) {
         return this.sanitizeHeaders(value);
-      } else if (key === "url") {
+      } else if (key === "url" && typeof value === "string") {
         return this.sanitizeUrl(value);
-      } else if (key === "query") {
+      } else if (key === "query" && isObject(value)) {
         return this.sanitizeQuery(value);
       } else if (key === "body") {
         return void 0;
@@ -186620,7 +186923,7 @@ var Sanitizer = class {
   }
 };
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/restError.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/restError.js
 var errorSanitizer = new Sanitizer();
 var RestError = class _RestError extends Error {
   /**
@@ -186701,21 +187004,21 @@ function isRestError(e) {
   return isError(e) && e.name === "RestError";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/bytesEncoding.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/bytesEncoding.js
 function stringToUint8Array(value, format) {
   return Buffer.from(value, format);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
 import http2 from "node:http";
 import https2 from "node:https";
 import zlib from "node:zlib";
 import { Transform } from "node:stream";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/log.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/log.js
 var logger = createClientLogger("ts-http-runtime");
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
 var DEFAULT_TLS_SETTINGS = {};
 function isReadableStream(body2) {
   return body2 && typeof body2.pipe === "function";
@@ -187049,12 +187352,12 @@ function createNodeHttpClient() {
   return new NodeHttpClient();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/defaultHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/defaultHttpClient.js
 function createDefaultHttpClient() {
   return createNodeHttpClient();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/logPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/logPolicy.js
 var logPolicyName = "logPolicy";
 function logPolicy(options = {}) {
   const logger7 = options.logger ?? logger.info;
@@ -187077,7 +187380,7 @@ function logPolicy(options = {}) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/redirectPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/redirectPolicy.js
 var redirectPolicyName = "redirectPolicy";
 var allowedRedirect = [
   "GET",
@@ -187144,25 +187447,25 @@ async function handleRedirect(
   return response;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgentPlatform.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgentPlatform.js
 import os7 from "node:os";
 import process3 from "node:process";
 function getHeaderName() {
   return "User-Agent";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/constants.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/constants.js
 var DEFAULT_RETRY_POLICY_COUNT = 3;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgent.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgent.js
 function getUserAgentHeaderName() {
   return getHeaderName();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/userAgentPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/userAgentPolicy.js
 var UserAgentHeaderName = getUserAgentHeaderName();
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/decompressResponsePolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/decompressResponsePolicy.js
 var decompressResponsePolicyName = "decompressResponsePolicy";
 function decompressResponsePolicy() {
   return {
@@ -187176,7 +187479,7 @@ function decompressResponsePolicy() {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/random.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/random.js
 function getRandomIntegerInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -187184,7 +187487,7 @@ function getRandomIntegerInclusive(min, max) {
   return offset + min;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/delay.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/delay.js
 function calculateRetryDelay(retryAttempt, config) {
   const exponentialDelay = config.retryDelayInMs * Math.pow(2, retryAttempt);
   const clampedDelay = Math.min(config.maxRetryDelayInMs, exponentialDelay);
@@ -187195,7 +187498,7 @@ function calculateRetryDelay(retryAttempt, config) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/helpers.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/helpers.js
 var StandardAbortMessage = "The operation was aborted.";
 function delay(delayInMs, value, options) {
   return new Promise((resolve5, reject) => {
@@ -187242,7 +187545,7 @@ function parseHeaderValueAsNumber(response, headerName) {
   return valueAsNum;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/throttlingRetryStrategy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/throttlingRetryStrategy.js
 var RetryAfterHeader = "Retry-After";
 var AllRetryAfterHeaders = [
   "retry-after-ms",
@@ -187293,7 +187596,7 @@ function throttlingRetryStrategy() {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/exponentialRetryStrategy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/exponentialRetryStrategy.js
 var DEFAULT_CLIENT_RETRY_INTERVAL = 1e3;
 var DEFAULT_CLIENT_MAX_RETRY_INTERVAL = 1e3 * 64;
 function exponentialRetryStrategy(options = {}) {
@@ -187344,7 +187647,7 @@ function isSystemError(err) {
     err.code === "ENOENT" || err.code === "ENOTFOUND";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/retryPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/retryPolicy.js
 var retryPolicyLogger = createClientLogger("ts-http-runtime retryPolicy");
 var retryPolicyName = "retryPolicy";
 function retryPolicy(strategies, options = {
@@ -187376,11 +187679,11 @@ function retryPolicy(strategies, options = {
             `Retry ${retryCount}: Received an error from request`,
             request.requestId,
           );
-          responseError = e;
-          if (!e || responseError.name !== "RestError") {
+          if (!isRestError(e)) {
             throw e;
           }
-          response = responseError.response;
+          responseError = e;
+          response = e.response;
         }
         if (request.abortSignal?.aborted) {
           logger7.error(`Retry ${retryCount}: Request aborted.`);
@@ -187460,7 +187763,7 @@ function retryPolicy(strategies, options = {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/defaultRetryPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/defaultRetryPolicy.js
 var defaultRetryPolicyName = "defaultRetryPolicy";
 function defaultRetryPolicy(options = {}) {
   return {
@@ -187474,7 +187777,7 @@ function defaultRetryPolicy(options = {}) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/checkEnvironment.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/checkEnvironment.js
 var isBrowser = typeof window !== "undefined" &&
   typeof window.document !== "undefined";
 var isWebWorker = typeof self === "object" &&
@@ -187492,7 +187795,7 @@ var isNodeLike = typeof globalThis.process !== "undefined" &&
 var isReactNative = typeof navigator !== "undefined" &&
   navigator?.product === "ReactNative";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/formDataPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/formDataPolicy.js
 var formDataPolicyName = "formDataPolicy";
 function formDataToFormDataMap(formData) {
   const formDataMap = {};
@@ -187588,7 +187891,7 @@ async function prepareFormData(formData, request) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/proxyPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/proxyPolicy.js
 var import_https_proxy_agent = __toESM(require_dist3());
 var import_http_proxy_agent = __toESM(require_dist4());
 var HTTPS_PROXY = "HTTPS_PROXY";
@@ -187702,23 +188005,17 @@ function setProxyAgentOnRequest(request, cachedAgents, proxyUrl) {
       "TLS settings are not supported in combination with custom Proxy, certificates provided to the client will be ignored.",
     );
   }
-  const headers = request.headers.toJSON();
   if (isInsecure) {
     if (!cachedAgents.httpProxyAgent) {
       cachedAgents.httpProxyAgent = new import_http_proxy_agent.HttpProxyAgent(
         proxyUrl,
-        {
-          headers,
-        },
       );
     }
     request.agent = cachedAgents.httpProxyAgent;
   } else {
     if (!cachedAgents.httpsProxyAgent) {
       cachedAgents.httpsProxyAgent = new import_https_proxy_agent
-        .HttpsProxyAgent(proxyUrl, {
-        headers,
-      });
+        .HttpsProxyAgent(proxyUrl);
     }
     request.agent = cachedAgents.httpsProxyAgent;
   }
@@ -187755,7 +188052,7 @@ function proxyPolicy(proxySettings, options) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/agentPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/agentPolicy.js
 var agentPolicyName = "agentPolicy";
 function agentPolicy(agent) {
   return {
@@ -187769,7 +188066,7 @@ function agentPolicy(agent) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/tlsPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/tlsPolicy.js
 var tlsPolicyName = "tlsPolicy";
 function tlsPolicy(tlsSettings) {
   return {
@@ -187783,12 +188080,12 @@ function tlsPolicy(tlsSettings) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards.js
 function isBlob(x) {
-  return typeof x.stream === "function";
+  return typeof Blob !== "undefined" && x instanceof Blob;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/concat.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/concat.js
 import { Readable } from "node:stream";
 async function* streamAsyncIterator() {
   const reader = this.getReader();
@@ -187844,7 +188141,7 @@ async function concat(sources) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/policies/multipartPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/policies/multipartPolicy.js
 function generateBoundary() {
   return `----AzSDKFormBoundary${randomUUID3()}`;
 }
@@ -188054,7 +188351,7 @@ function userAgentPolicy2(options = {}) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.4/node_modules/@typespec/ts-http-runtime/dist/esm/util/sha256.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.5/node_modules/@typespec/ts-http-runtime/dist/esm/util/sha256.js
 import { createHash as createHash3, createHmac } from "node:crypto";
 
 // node_modules/.deno/@azure+abort-controller@2.1.2/node_modules/@azure/abort-controller/dist/esm/AbortError.js
@@ -188973,7 +189270,7 @@ function isTokenCredential(credential) {
       castCredential.getToken.length > 0);
 }
 
-// node_modules/.deno/@azure+core-http-compat@2.3.2/node_modules/@azure/core-http-compat/dist/esm/policies/disableKeepAlivePolicy.js
+// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/policies/disableKeepAlivePolicy.js
 var disableKeepAlivePolicyName = "DisableKeepAlivePolicy";
 function createDisableKeepAlivePolicy() {
   return {
@@ -191436,7 +191733,7 @@ function requestToOptions(request) {
   };
 }
 
-// node_modules/.deno/@azure+core-http-compat@2.3.2/node_modules/@azure/core-http-compat/dist/esm/util.js
+// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/util.js
 var originalRequestSymbol2 = Symbol("Original PipelineRequest");
 var originalClientRequestSymbol = Symbol.for(
   "@azure/core-client original request",
@@ -191690,7 +191987,7 @@ var HttpHeaders = class _HttpHeaders {
   }
 };
 
-// node_modules/.deno/@azure+core-http-compat@2.3.2/node_modules/@azure/core-http-compat/dist/esm/response.js
+// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/response.js
 var originalResponse = Symbol("Original FullOperationResponse");
 function toCompatResponse(response, options) {
   let request = toWebResourceLike(response.request);
@@ -191742,7 +192039,7 @@ function toPipelineResponse(compatResponse) {
   }
 }
 
-// node_modules/.deno/@azure+core-http-compat@2.3.2/node_modules/@azure/core-http-compat/dist/esm/extendedClient.js
+// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/extendedClient.js
 var ExtendedServiceClient = class extends ServiceClient {
   constructor(options) {
     super(options);
@@ -191791,7 +192088,7 @@ var ExtendedServiceClient = class extends ServiceClient {
   }
 };
 
-// node_modules/.deno/@azure+core-http-compat@2.3.2/node_modules/@azure/core-http-compat/dist/esm/policies/requestPolicyFactoryPolicy.js
+// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/policies/requestPolicyFactoryPolicy.js
 var HttpPipelineLogLevel;
 (function (HttpPipelineLogLevel2) {
   HttpPipelineLogLevel2[HttpPipelineLogLevel2["ERROR"] = 1] = "ERROR";
@@ -191832,7 +192129,7 @@ function createRequestPolicyFactoryPolicy(factories) {
   };
 }
 
-// node_modules/.deno/@azure+core-http-compat@2.3.2/node_modules/@azure/core-http-compat/dist/esm/httpClientAdapter.js
+// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/httpClientAdapter.js
 function convertHttpClient(requestPolicyClient) {
   return {
     sendRequest: async (request) => {
@@ -191846,7 +192143,7 @@ function convertHttpClient(requestPolicyClient) {
   };
 }
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/util.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/util.js
 var nameStartChar =
   ":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
 var nameChar = nameStartChar + "\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
@@ -191892,7 +192189,7 @@ var criticalProperties = [
   "prototype",
 ];
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/validator.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/validator.js
 var defaultOptions = {
   allowBooleanAttributes: false,
   unpairedTags: [],
@@ -192312,7 +192609,1594 @@ function getPositionFromMatch(match2) {
   return match2.startIndex + match2[1].length;
 }
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
+// node_modules/.deno/@nodable+entities@2.1.0/node_modules/@nodable/entities/src/entities.js
+var BASIC_LATIN = {
+  amp: "&",
+  AMP: "&",
+  lt: "<",
+  LT: "<",
+  gt: ">",
+  GT: ">",
+  quot: '"',
+  QUOT: '"',
+  apos: "'",
+  lsquo: "\u2018",
+  rsquo: "\u2019",
+  ldquo: "\u201C",
+  rdquo: "\u201D",
+  lsquor: "\u201A",
+  rsquor: "\u2019",
+  ldquor: "\u201E",
+  bdquo: "\u201E",
+  comma: ",",
+  period: ".",
+  colon: ":",
+  semi: ";",
+  excl: "!",
+  quest: "?",
+  num: "#",
+  dollar: "$",
+  percent: "%",
+  amp: "&",
+  ast: "*",
+  commat: "@",
+  lowbar: "_",
+  verbar: "|",
+  vert: "|",
+  sol: "/",
+  bsol: "\\",
+  lbrace: "{",
+  rbrace: "}",
+  lbrack: "[",
+  rbrack: "]",
+  lpar: "(",
+  rpar: ")",
+  nbsp: "\xA0",
+  iexcl: "\xA1",
+  cent: "\xA2",
+  pound: "\xA3",
+  curren: "\xA4",
+  yen: "\xA5",
+  brvbar: "\xA6",
+  sect: "\xA7",
+  uml: "\xA8",
+  copy: "\xA9",
+  COPY: "\xA9",
+  ordf: "\xAA",
+  laquo: "\xAB",
+  not: "\xAC",
+  shy: "\xAD",
+  reg: "\xAE",
+  REG: "\xAE",
+  macr: "\xAF",
+  deg: "\xB0",
+  plusmn: "\xB1",
+  sup2: "\xB2",
+  sup3: "\xB3",
+  acute: "\xB4",
+  micro: "\xB5",
+  para: "\xB6",
+  middot: "\xB7",
+  cedil: "\xB8",
+  sup1: "\xB9",
+  ordm: "\xBA",
+  raquo: "\xBB",
+  frac14: "\xBC",
+  frac12: "\xBD",
+  half: "\xBD",
+  frac34: "\xBE",
+  iquest: "\xBF",
+  times: "\xD7",
+  div: "\xF7",
+  divide: "\xF7",
+};
+var LATIN_ACCENTS = {
+  Agrave: "\xC0",
+  agrave: "\xE0",
+  Aacute: "\xC1",
+  aacute: "\xE1",
+  Acirc: "\xC2",
+  acirc: "\xE2",
+  Atilde: "\xC3",
+  atilde: "\xE3",
+  Auml: "\xC4",
+  auml: "\xE4",
+  Aring: "\xC5",
+  aring: "\xE5",
+  AElig: "\xC6",
+  aelig: "\xE6",
+  Ccedil: "\xC7",
+  ccedil: "\xE7",
+  Egrave: "\xC8",
+  egrave: "\xE8",
+  Eacute: "\xC9",
+  eacute: "\xE9",
+  Ecirc: "\xCA",
+  ecirc: "\xEA",
+  Euml: "\xCB",
+  euml: "\xEB",
+  Igrave: "\xCC",
+  igrave: "\xEC",
+  Iacute: "\xCD",
+  iacute: "\xED",
+  Icirc: "\xCE",
+  icirc: "\xEE",
+  Iuml: "\xCF",
+  iuml: "\xEF",
+  ETH: "\xD0",
+  eth: "\xF0",
+  Ntilde: "\xD1",
+  ntilde: "\xF1",
+  Ograve: "\xD2",
+  ograve: "\xF2",
+  Oacute: "\xD3",
+  oacute: "\xF3",
+  Ocirc: "\xD4",
+  ocirc: "\xF4",
+  Otilde: "\xD5",
+  otilde: "\xF5",
+  Ouml: "\xD6",
+  ouml: "\xF6",
+  Oslash: "\xD8",
+  oslash: "\xF8",
+  Ugrave: "\xD9",
+  ugrave: "\xF9",
+  Uacute: "\xDA",
+  uacute: "\xFA",
+  Ucirc: "\xDB",
+  ucirc: "\xFB",
+  Uuml: "\xDC",
+  uuml: "\xFC",
+  Yacute: "\xDD",
+  yacute: "\xFD",
+  THORN: "\xDE",
+  thorn: "\xFE",
+  szlig: "\xDF",
+  yuml: "\xFF",
+  Yuml: "\u0178",
+};
+var LATIN_EXTENDED = {
+  Amacr: "\u0100",
+  amacr: "\u0101",
+  Abreve: "\u0102",
+  abreve: "\u0103",
+  Aogon: "\u0104",
+  aogon: "\u0105",
+  Cacute: "\u0106",
+  cacute: "\u0107",
+  Ccirc: "\u0108",
+  ccirc: "\u0109",
+  Cdot: "\u010A",
+  cdot: "\u010B",
+  Ccaron: "\u010C",
+  ccaron: "\u010D",
+  Dcaron: "\u010E",
+  dcaron: "\u010F",
+  Dstrok: "\u0110",
+  dstrok: "\u0111",
+  Emacr: "\u0112",
+  emacr: "\u0113",
+  Ecaron: "\u011A",
+  ecaron: "\u011B",
+  Edot: "\u0116",
+  edot: "\u0117",
+  Eogon: "\u0118",
+  eogon: "\u0119",
+  Gcirc: "\u011C",
+  gcirc: "\u011D",
+  Gbreve: "\u011E",
+  gbreve: "\u011F",
+  Gdot: "\u0120",
+  gdot: "\u0121",
+  Gcedil: "\u0122",
+  Hcirc: "\u0124",
+  hcirc: "\u0125",
+  Hstrok: "\u0126",
+  hstrok: "\u0127",
+  Itilde: "\u0128",
+  itilde: "\u0129",
+  Imacr: "\u012A",
+  imacr: "\u012B",
+  Iogon: "\u012E",
+  iogon: "\u012F",
+  Idot: "\u0130",
+  IJlig: "\u0132",
+  ijlig: "\u0133",
+  Jcirc: "\u0134",
+  jcirc: "\u0135",
+  Kcedil: "\u0136",
+  kcedil: "\u0137",
+  kgreen: "\u0138",
+  Lacute: "\u0139",
+  lacute: "\u013A",
+  Lcedil: "\u013B",
+  lcedil: "\u013C",
+  Lcaron: "\u013D",
+  lcaron: "\u013E",
+  Lmidot: "\u013F",
+  lmidot: "\u0140",
+  Lstrok: "\u0141",
+  lstrok: "\u0142",
+  Nacute: "\u0143",
+  nacute: "\u0144",
+  Ncaron: "\u0147",
+  ncaron: "\u0148",
+  Ncedil: "\u0145",
+  ncedil: "\u0146",
+  ENG: "\u014A",
+  eng: "\u014B",
+  Omacr: "\u014C",
+  omacr: "\u014D",
+  Odblac: "\u0150",
+  odblac: "\u0151",
+  OElig: "\u0152",
+  oelig: "\u0153",
+  Racute: "\u0154",
+  racute: "\u0155",
+  Rcaron: "\u0158",
+  rcaron: "\u0159",
+  Rcedil: "\u0156",
+  rcedil: "\u0157",
+  Sacute: "\u015A",
+  sacute: "\u015B",
+  Scirc: "\u015C",
+  scirc: "\u015D",
+  Scedil: "\u015E",
+  scedil: "\u015F",
+  Scaron: "\u0160",
+  scaron: "\u0161",
+  Tcedil: "\u0162",
+  tcedil: "\u0163",
+  Tcaron: "\u0164",
+  tcaron: "\u0165",
+  Tstrok: "\u0166",
+  tstrok: "\u0167",
+  Utilde: "\u0168",
+  utilde: "\u0169",
+  Umacr: "\u016A",
+  umacr: "\u016B",
+  Ubreve: "\u016C",
+  ubreve: "\u016D",
+  Uring: "\u016E",
+  uring: "\u016F",
+  Udblac: "\u0170",
+  udblac: "\u0171",
+  Uogon: "\u0172",
+  uogon: "\u0173",
+  Wcirc: "\u0174",
+  wcirc: "\u0175",
+  Ycirc: "\u0176",
+  ycirc: "\u0177",
+  Zacute: "\u0179",
+  zacute: "\u017A",
+  Zdot: "\u017B",
+  zdot: "\u017C",
+  Zcaron: "\u017D",
+  zcaron: "\u017E",
+};
+var GREEK = {
+  Alpha: "\u0391",
+  alpha: "\u03B1",
+  Beta: "\u0392",
+  beta: "\u03B2",
+  Gamma: "\u0393",
+  gamma: "\u03B3",
+  Delta: "\u0394",
+  delta: "\u03B4",
+  Epsilon: "\u0395",
+  epsilon: "\u03B5",
+  epsiv: "\u03F5",
+  varepsilon: "\u03F5",
+  Zeta: "\u0396",
+  zeta: "\u03B6",
+  Eta: "\u0397",
+  eta: "\u03B7",
+  Theta: "\u0398",
+  theta: "\u03B8",
+  thetasym: "\u03D1",
+  vartheta: "\u03D1",
+  Iota: "\u0399",
+  iota: "\u03B9",
+  Kappa: "\u039A",
+  kappa: "\u03BA",
+  kappav: "\u03F0",
+  varkappa: "\u03F0",
+  Lambda: "\u039B",
+  lambda: "\u03BB",
+  Mu: "\u039C",
+  mu: "\u03BC",
+  Nu: "\u039D",
+  nu: "\u03BD",
+  Xi: "\u039E",
+  xi: "\u03BE",
+  Omicron: "\u039F",
+  omicron: "\u03BF",
+  Pi: "\u03A0",
+  pi: "\u03C0",
+  piv: "\u03D6",
+  varpi: "\u03D6",
+  Rho: "\u03A1",
+  rho: "\u03C1",
+  rhov: "\u03F1",
+  varrho: "\u03F1",
+  Sigma: "\u03A3",
+  sigma: "\u03C3",
+  sigmaf: "\u03C2",
+  sigmav: "\u03C2",
+  varsigma: "\u03C2",
+  Tau: "\u03A4",
+  tau: "\u03C4",
+  Upsilon: "\u03A5",
+  upsilon: "\u03C5",
+  upsi: "\u03C5",
+  Upsi: "\u03D2",
+  upsih: "\u03D2",
+  Phi: "\u03A6",
+  phi: "\u03C6",
+  phiv: "\u03D5",
+  varphi: "\u03D5",
+  Chi: "\u03A7",
+  chi: "\u03C7",
+  Psi: "\u03A8",
+  psi: "\u03C8",
+  Omega: "\u03A9",
+  omega: "\u03C9",
+  ohm: "\u03A9",
+  Gammad: "\u03DC",
+  gammad: "\u03DD",
+  digamma: "\u03DD",
+};
+var CYRILLIC = {
+  Afr: "\u{1D504}",
+  afr: "\u{1D51E}",
+  Acy: "\u0410",
+  acy: "\u0430",
+  Bcy: "\u0411",
+  bcy: "\u0431",
+  Vcy: "\u0412",
+  vcy: "\u0432",
+  Gcy: "\u0413",
+  gcy: "\u0433",
+  Dcy: "\u0414",
+  dcy: "\u0434",
+  IEcy: "\u0415",
+  iecy: "\u0435",
+  IOcy: "\u0401",
+  iocy: "\u0451",
+  ZHcy: "\u0416",
+  zhcy: "\u0436",
+  Zcy: "\u0417",
+  zcy: "\u0437",
+  Icy: "\u0418",
+  icy: "\u0438",
+  Jcy: "\u0419",
+  jcy: "\u0439",
+  Kcy: "\u041A",
+  kcy: "\u043A",
+  Lcy: "\u041B",
+  lcy: "\u043B",
+  Mcy: "\u041C",
+  mcy: "\u043C",
+  Ncy: "\u041D",
+  ncy: "\u043D",
+  Ocy: "\u041E",
+  ocy: "\u043E",
+  Pcy: "\u041F",
+  pcy: "\u043F",
+  Rcy: "\u0420",
+  rcy: "\u0440",
+  Scy: "\u0421",
+  scy: "\u0441",
+  Tcy: "\u0422",
+  tcy: "\u0442",
+  Ucy: "\u0423",
+  ucy: "\u0443",
+  Fcy: "\u0424",
+  fcy: "\u0444",
+  KHcy: "\u0425",
+  khcy: "\u0445",
+  TScy: "\u0426",
+  tscy: "\u0446",
+  CHcy: "\u0427",
+  chcy: "\u0447",
+  SHcy: "\u0428",
+  shcy: "\u0448",
+  SHCHcy: "\u0429",
+  shchcy: "\u0449",
+  HARDcy: "\u042A",
+  hardcy: "\u044A",
+  Ycy: "\u042B",
+  ycy: "\u044B",
+  SOFTcy: "\u042C",
+  softcy: "\u044C",
+  Ecy: "\u042D",
+  ecy: "\u044D",
+  YUcy: "\u042E",
+  yucy: "\u044E",
+  YAcy: "\u042F",
+  yacy: "\u044F",
+  DJcy: "\u0402",
+  djcy: "\u0452",
+  GJcy: "\u0403",
+  gjcy: "\u0453",
+  Jukcy: "\u0404",
+  jukcy: "\u0454",
+  DScy: "\u0405",
+  dscy: "\u0455",
+  Iukcy: "\u0406",
+  iukcy: "\u0456",
+  YIcy: "\u0407",
+  yicy: "\u0457",
+  Jsercy: "\u0408",
+  jsercy: "\u0458",
+  LJcy: "\u0409",
+  ljcy: "\u0459",
+  NJcy: "\u040A",
+  njcy: "\u045A",
+  TSHcy: "\u040B",
+  tshcy: "\u045B",
+  KJcy: "\u040C",
+  kjcy: "\u045C",
+  Ubrcy: "\u040E",
+  ubrcy: "\u045E",
+  DZcy: "\u040F",
+  dzcy: "\u045F",
+};
+var MATH = {
+  plus: "+",
+  minus: "\u2212",
+  mnplus: "\u2213",
+  mp: "\u2213",
+  pm: "\xB1",
+  times: "\xD7",
+  div: "\xF7",
+  divide: "\xF7",
+  sdot: "\u22C5",
+  star: "\u2606",
+  starf: "\u2605",
+  bigstar: "\u2605",
+  lowast: "\u2217",
+  ast: "*",
+  midast: "*",
+  compfn: "\u2218",
+  smallcircle: "\u2218",
+  bullet: "\u2022",
+  bull: "\u2022",
+  nbsp: "\xA0",
+  hellip: "\u2026",
+  mldr: "\u2026",
+  prime: "\u2032",
+  Prime: "\u2033",
+  tprime: "\u2034",
+  bprime: "\u2035",
+  backprime: "\u2035",
+  minus: "\u2212",
+  minusd: "\u2238",
+  dotminus: "\u2238",
+  plusdo: "\u2214",
+  dotplus: "\u2214",
+  plusmn: "\xB1",
+  minusplus: "\u2213",
+  mnplus: "\u2213",
+  mp: "\u2213",
+  setminus: "\u2216",
+  smallsetminus: "\u2216",
+  Backslash: "\u2216",
+  setmn: "\u2216",
+  ssetmn: "\u2216",
+  lowbar: "_",
+  verbar: "|",
+  vert: "|",
+  VerticalLine: "|",
+  colon: ":",
+  Colon: "\u2237",
+  Proportion: "\u2237",
+  ratio: "\u2236",
+  equals: "=",
+  ne: "\u2260",
+  nequiv: "\u2262",
+  equiv: "\u2261",
+  Congruent: "\u2261",
+  sim: "\u223C",
+  thicksim: "\u223C",
+  thksim: "\u223C",
+  sime: "\u2243",
+  simeq: "\u2243",
+  TildeEqual: "\u2243",
+  asymp: "\u2248",
+  approx: "\u2248",
+  thickapprox: "\u2248",
+  thkap: "\u2248",
+  TildeTilde: "\u2248",
+  ncong: "\u2247",
+  cong: "\u2245",
+  TildeFullEqual: "\u2245",
+  asympeq: "\u224D",
+  CupCap: "\u224D",
+  bump: "\u224E",
+  Bumpeq: "\u224E",
+  HumpDownHump: "\u224E",
+  bumpe: "\u224F",
+  bumpeq: "\u224F",
+  HumpEqual: "\u224F",
+  dotminus: "\u2238",
+  minusd: "\u2238",
+  plusdo: "\u2214",
+  dotplus: "\u2214",
+  le: "\u2264",
+  LessEqual: "\u2264",
+  ge: "\u2265",
+  GreaterEqual: "\u2265",
+  lesseqgtr: "\u22DA",
+  lesseqqgtr: "\u2A8B",
+  greater: ">",
+  less: "<",
+};
+var MATH_ADVANCED = {
+  alefsym: "\u2135",
+  aleph: "\u2135",
+  beth: "\u2136",
+  gimel: "\u2137",
+  daleth: "\u2138",
+  forall: "\u2200",
+  ForAll: "\u2200",
+  part: "\u2202",
+  PartialD: "\u2202",
+  exist: "\u2203",
+  Exists: "\u2203",
+  nexist: "\u2204",
+  nexists: "\u2204",
+  empty: "\u2205",
+  emptyset: "\u2205",
+  emptyv: "\u2205",
+  varnothing: "\u2205",
+  nabla: "\u2207",
+  Del: "\u2207",
+  isin: "\u2208",
+  isinv: "\u2208",
+  in: "\u2208",
+  Element: "\u2208",
+  notin: "\u2209",
+  notinva: "\u2209",
+  ni: "\u220B",
+  niv: "\u220B",
+  SuchThat: "\u220B",
+  ReverseElement: "\u220B",
+  notni: "\u220C",
+  notniva: "\u220C",
+  prod: "\u220F",
+  Product: "\u220F",
+  coprod: "\u2210",
+  Coproduct: "\u2210",
+  sum: "\u2211",
+  Sum: "\u2211",
+  minus: "\u2212",
+  mp: "\u2213",
+  plusdo: "\u2214",
+  dotplus: "\u2214",
+  setminus: "\u2216",
+  lowast: "\u2217",
+  radic: "\u221A",
+  Sqrt: "\u221A",
+  prop: "\u221D",
+  propto: "\u221D",
+  Proportional: "\u221D",
+  varpropto: "\u221D",
+  infin: "\u221E",
+  infintie: "\u29DD",
+  ang: "\u2220",
+  angle: "\u2220",
+  angmsd: "\u2221",
+  measuredangle: "\u2221",
+  angsph: "\u2222",
+  mid: "\u2223",
+  VerticalBar: "\u2223",
+  nmid: "\u2224",
+  nsmid: "\u2224",
+  npar: "\u2226",
+  parallel: "\u2225",
+  spar: "\u2225",
+  nparallel: "\u2226",
+  nspar: "\u2226",
+  and: "\u2227",
+  wedge: "\u2227",
+  or: "\u2228",
+  vee: "\u2228",
+  cap: "\u2229",
+  cup: "\u222A",
+  int: "\u222B",
+  Integral: "\u222B",
+  conint: "\u222E",
+  ContourIntegral: "\u222E",
+  Conint: "\u222F",
+  DoubleContourIntegral: "\u222F",
+  Cconint: "\u2230",
+  there4: "\u2234",
+  therefore: "\u2234",
+  Therefore: "\u2234",
+  becaus: "\u2235",
+  because: "\u2235",
+  Because: "\u2235",
+  ratio: "\u2236",
+  Proportion: "\u2237",
+  minusd: "\u2238",
+  dotminus: "\u2238",
+  mDDot: "\u223A",
+  homtht: "\u223B",
+  sim: "\u223C",
+  bsimg: "\u223D",
+  backsim: "\u223D",
+  ac: "\u223E",
+  mstpos: "\u223E",
+  acd: "\u223F",
+  VerticalTilde: "\u2240",
+  wr: "\u2240",
+  wreath: "\u2240",
+  nsime: "\u2244",
+  nsimeq: "\u2244",
+  nsimeq: "\u2244",
+  ncong: "\u2247",
+  simne: "\u2246",
+  ncongdot: "\u2A6D\u0338",
+  ngsim: "\u2275",
+  nsim: "\u2241",
+  napprox: "\u2249",
+  nap: "\u2249",
+  ngeq: "\u2271",
+  nge: "\u2271",
+  nleq: "\u2270",
+  nle: "\u2270",
+  ngtr: "\u226F",
+  ngt: "\u226F",
+  nless: "\u226E",
+  nlt: "\u226E",
+  nprec: "\u2280",
+  npr: "\u2280",
+  nsucc: "\u2281",
+  nsc: "\u2281",
+};
+var ARROWS = {
+  larr: "\u2190",
+  leftarrow: "\u2190",
+  LeftArrow: "\u2190",
+  uarr: "\u2191",
+  uparrow: "\u2191",
+  UpArrow: "\u2191",
+  rarr: "\u2192",
+  rightarrow: "\u2192",
+  RightArrow: "\u2192",
+  darr: "\u2193",
+  downarrow: "\u2193",
+  DownArrow: "\u2193",
+  harr: "\u2194",
+  leftrightarrow: "\u2194",
+  LeftRightArrow: "\u2194",
+  varr: "\u2195",
+  updownarrow: "\u2195",
+  UpDownArrow: "\u2195",
+  nwarr: "\u2196",
+  nwarrow: "\u2196",
+  UpperLeftArrow: "\u2196",
+  nearr: "\u2197",
+  nearrow: "\u2197",
+  UpperRightArrow: "\u2197",
+  searr: "\u2198",
+  searrow: "\u2198",
+  LowerRightArrow: "\u2198",
+  swarr: "\u2199",
+  swarrow: "\u2199",
+  LowerLeftArrow: "\u2199",
+  lArr: "\u21D0",
+  Leftarrow: "\u21D0",
+  uArr: "\u21D1",
+  Uparrow: "\u21D1",
+  rArr: "\u21D2",
+  Rightarrow: "\u21D2",
+  dArr: "\u21D3",
+  Downarrow: "\u21D3",
+  hArr: "\u21D4",
+  Leftrightarrow: "\u21D4",
+  iff: "\u21D4",
+  vArr: "\u21D5",
+  Updownarrow: "\u21D5",
+  lAarr: "\u21DA",
+  Lleftarrow: "\u21DA",
+  rAarr: "\u21DB",
+  Rrightarrow: "\u21DB",
+  lrarr: "\u21C6",
+  leftrightarrows: "\u21C6",
+  rlarr: "\u21C4",
+  rightleftarrows: "\u21C4",
+  lrhar: "\u21CB",
+  leftrightharpoons: "\u21CB",
+  ReverseEquilibrium: "\u21CB",
+  rlhar: "\u21CC",
+  rightleftharpoons: "\u21CC",
+  Equilibrium: "\u21CC",
+  udarr: "\u21C5",
+  UpArrowDownArrow: "\u21C5",
+  duarr: "\u21F5",
+  DownArrowUpArrow: "\u21F5",
+  llarr: "\u21C7",
+  leftleftarrows: "\u21C7",
+  rrarr: "\u21C9",
+  rightrightarrows: "\u21C9",
+  ddarr: "\u21CA",
+  downdownarrows: "\u21CA",
+  har: "\u21BD",
+  lhard: "\u21BD",
+  leftharpoondown: "\u21BD",
+  lharu: "\u21BC",
+  leftharpoonup: "\u21BC",
+  rhard: "\u21C1",
+  rightharpoondown: "\u21C1",
+  rharu: "\u21C0",
+  rightharpoonup: "\u21C0",
+  lsh: "\u21B0",
+  Lsh: "\u21B0",
+  rsh: "\u21B1",
+  Rsh: "\u21B1",
+  ldsh: "\u21B2",
+  rdsh: "\u21B3",
+  hookleftarrow: "\u21A9",
+  hookrightarrow: "\u21AA",
+  mapstoleft: "\u21A4",
+  mapstoup: "\u21A5",
+  map: "\u21A6",
+  mapsto: "\u21A6",
+  mapstodown: "\u21A7",
+  crarr: "\u21B5",
+  nwarrow: "\u2196",
+  nearrow: "\u2197",
+  searrow: "\u2198",
+  swarrow: "\u2199",
+  nleftarrow: "\u219A",
+  nleftrightarrow: "\u21AE",
+  nrightarrow: "\u219B",
+  nrarr: "\u219B",
+  larrtl: "\u21A2",
+  rarrtl: "\u21A3",
+  leftarrowtail: "\u21A2",
+  rightarrowtail: "\u21A3",
+  twoheadleftarrow: "\u219E",
+  twoheadrightarrow: "\u21A0",
+  Larr: "\u219E",
+  Rarr: "\u21A0",
+  larrhk: "\u21A9",
+  rarrhk: "\u21AA",
+  larrlp: "\u21AB",
+  looparrowleft: "\u21AB",
+  rarrlp: "\u21AC",
+  looparrowright: "\u21AC",
+  harrw: "\u21AD",
+  leftrightsquigarrow: "\u21AD",
+  nrarrw: "\u219D\u0338",
+  rarrw: "\u219D",
+  rightsquigarrow: "\u219D",
+  larrbfs: "\u291F",
+  rarrbfs: "\u2920",
+  nvHarr: "\u2904",
+  nvlArr: "\u2902",
+  nvrArr: "\u2903",
+  larrfs: "\u291D",
+  rarrfs: "\u291E",
+  Map: "\u2905",
+  larrsim: "\u2973",
+  rarrsim: "\u2974",
+  harrcir: "\u2948",
+  Uarrocir: "\u2949",
+  lurdshar: "\u294A",
+  ldrdhar: "\u2967",
+  ldrushar: "\u294B",
+  rdldhar: "\u2969",
+  lrhard: "\u296D",
+  rlhar: "\u21CC",
+  uharr: "\u21BE",
+  uharl: "\u21BF",
+  dharr: "\u21C2",
+  dharl: "\u21C3",
+  Uarr: "\u219F",
+  Darr: "\u21A1",
+  zigrarr: "\u21DD",
+  nwArr: "\u21D6",
+  neArr: "\u21D7",
+  seArr: "\u21D8",
+  swArr: "\u21D9",
+  nharr: "\u21AE",
+  nhArr: "\u21CE",
+  nlarr: "\u219A",
+  nlArr: "\u21CD",
+  nrarr: "\u219B",
+  nrArr: "\u21CF",
+  larrb: "\u21E4",
+  LeftArrowBar: "\u21E4",
+  rarrb: "\u21E5",
+  RightArrowBar: "\u21E5",
+};
+var SHAPES = {
+  square: "\u25A1",
+  Square: "\u25A1",
+  squ: "\u25A1",
+  squf: "\u25AA",
+  squarf: "\u25AA",
+  blacksquar: "\u25AA",
+  blacksquare: "\u25AA",
+  FilledVerySmallSquare: "\u25AA",
+  blk34: "\u2593",
+  blk12: "\u2592",
+  blk14: "\u2591",
+  block: "\u2588",
+  srect: "\u25AD",
+  rect: "\u25AD",
+  sdot: "\u22C5",
+  sdotb: "\u22A1",
+  dotsquare: "\u22A1",
+  triangle: "\u25B5",
+  tri: "\u25B5",
+  trine: "\u25B5",
+  utri: "\u25B5",
+  triangledown: "\u25BF",
+  dtri: "\u25BF",
+  tridown: "\u25BF",
+  triangleleft: "\u25C3",
+  ltri: "\u25C3",
+  triangleright: "\u25B9",
+  rtri: "\u25B9",
+  blacktriangle: "\u25B4",
+  utrif: "\u25B4",
+  blacktriangledown: "\u25BE",
+  dtrif: "\u25BE",
+  blacktriangleleft: "\u25C2",
+  ltrif: "\u25C2",
+  blacktriangleright: "\u25B8",
+  rtrif: "\u25B8",
+  loz: "\u25CA",
+  lozenge: "\u25CA",
+  blacklozenge: "\u29EB",
+  lozf: "\u29EB",
+  bigcirc: "\u25EF",
+  xcirc: "\u25EF",
+  circ: "\u02C6",
+  Circle: "\u25CB",
+  cir: "\u25CB",
+  o: "\u25CB",
+  bullet: "\u2022",
+  bull: "\u2022",
+  hellip: "\u2026",
+  mldr: "\u2026",
+  nldr: "\u2025",
+  boxh: "\u2500",
+  HorizontalLine: "\u2500",
+  boxv: "\u2502",
+  boxdr: "\u250C",
+  boxdl: "\u2510",
+  boxur: "\u2514",
+  boxul: "\u2518",
+  boxvr: "\u251C",
+  boxvl: "\u2524",
+  boxhd: "\u252C",
+  boxhu: "\u2534",
+  boxvh: "\u253C",
+  boxH: "\u2550",
+  boxV: "\u2551",
+  boxdR: "\u2552",
+  boxDr: "\u2553",
+  boxDR: "\u2554",
+  boxDl: "\u2555",
+  boxdL: "\u2556",
+  boxDL: "\u2557",
+  boxuR: "\u2558",
+  boxUr: "\u2559",
+  boxUR: "\u255A",
+  boxUl: "\u255C",
+  boxuL: "\u255B",
+  boxUL: "\u255D",
+  boxvR: "\u255E",
+  boxVr: "\u255F",
+  boxVR: "\u2560",
+  boxVl: "\u2562",
+  boxvL: "\u2561",
+  boxVL: "\u2563",
+  boxHd: "\u2564",
+  boxhD: "\u2565",
+  boxHD: "\u2566",
+  boxHu: "\u2567",
+  boxhU: "\u2568",
+  boxHU: "\u2569",
+  boxvH: "\u256A",
+  boxVh: "\u256B",
+  boxVH: "\u256C",
+};
+var PUNCTUATION = {
+  excl: "!",
+  iexcl: "\xA1",
+  brvbar: "\xA6",
+  sect: "\xA7",
+  uml: "\xA8",
+  copy: "\xA9",
+  ordf: "\xAA",
+  laquo: "\xAB",
+  not: "\xAC",
+  shy: "\xAD",
+  reg: "\xAE",
+  macr: "\xAF",
+  deg: "\xB0",
+  plusmn: "\xB1",
+  sup2: "\xB2",
+  sup3: "\xB3",
+  acute: "\xB4",
+  micro: "\xB5",
+  para: "\xB6",
+  middot: "\xB7",
+  cedil: "\xB8",
+  sup1: "\xB9",
+  ordm: "\xBA",
+  raquo: "\xBB",
+  frac14: "\xBC",
+  frac12: "\xBD",
+  frac34: "\xBE",
+  iquest: "\xBF",
+  nbsp: "\xA0",
+  comma: ",",
+  period: ".",
+  colon: ":",
+  semi: ";",
+  vert: "|",
+  Verbar: "\u2016",
+  verbar: "|",
+  dblac: "\u02DD",
+  circ: "\u02C6",
+  caron: "\u02C7",
+  breve: "\u02D8",
+  dot: "\u02D9",
+  ring: "\u02DA",
+  ogon: "\u02DB",
+  tilde: "\u02DC",
+  DiacriticalGrave: "`",
+  DiacriticalAcute: "\xB4",
+  DiacriticalTilde: "\u02DC",
+  DiacriticalDot: "\u02D9",
+  DiacriticalDoubleAcute: "\u02DD",
+  grave: "`",
+  acute: "\xB4",
+};
+var CURRENCY = {
+  cent: "\xA2",
+  pound: "\xA3",
+  curren: "\xA4",
+  yen: "\xA5",
+  euro: "\u20AC",
+  dollar: "$",
+  euro: "\u20AC",
+  fnof: "\u0192",
+  inr: "\u20B9",
+  af: "\u060B",
+  birr: "\u1265\u122D",
+  peso: "\u20B1",
+  rub: "\u20BD",
+  won: "\u20A9",
+  yuan: "\xA5",
+  cedil: "\xB8",
+};
+var FRACTIONS = {
+  frac12: "\xBD",
+  half: "\xBD",
+  frac13: "\u2153",
+  frac14: "\xBC",
+  frac15: "\u2155",
+  frac16: "\u2159",
+  frac18: "\u215B",
+  frac23: "\u2154",
+  frac25: "\u2156",
+  frac34: "\xBE",
+  frac35: "\u2157",
+  frac38: "\u215C",
+  frac45: "\u2158",
+  frac56: "\u215A",
+  frac58: "\u215D",
+  frac78: "\u215E",
+  frasl: "\u2044",
+};
+var MISC_SYMBOLS = {
+  trade: "\u2122",
+  TRADE: "\u2122",
+  telrec: "\u2315",
+  target: "\u2316",
+  ulcorn: "\u231C",
+  ulcorner: "\u231C",
+  urcorn: "\u231D",
+  urcorner: "\u231D",
+  dlcorn: "\u231E",
+  llcorner: "\u231E",
+  drcorn: "\u231F",
+  lrcorner: "\u231F",
+  intercal: "\u22BA",
+  intcal: "\u22BA",
+  oplus: "\u2295",
+  CirclePlus: "\u2295",
+  ominus: "\u2296",
+  CircleMinus: "\u2296",
+  otimes: "\u2297",
+  CircleTimes: "\u2297",
+  osol: "\u2298",
+  odot: "\u2299",
+  CircleDot: "\u2299",
+  oast: "\u229B",
+  circledast: "\u229B",
+  odash: "\u229D",
+  circleddash: "\u229D",
+  ocirc: "\u229A",
+  circledcirc: "\u229A",
+  boxplus: "\u229E",
+  plusb: "\u229E",
+  boxminus: "\u229F",
+  minusb: "\u229F",
+  boxtimes: "\u22A0",
+  timesb: "\u22A0",
+  boxdot: "\u22A1",
+  sdotb: "\u22A1",
+  veebar: "\u22BB",
+  vee: "\u2228",
+  barvee: "\u22BD",
+  and: "\u2227",
+  wedge: "\u2227",
+  Cap: "\u22D2",
+  Cup: "\u22D3",
+  Fork: "\u22D4",
+  pitchfork: "\u22D4",
+  epar: "\u22D5",
+  ltlarr: "\u2976",
+  nvap: "\u224D\u20D2",
+  nvsim: "\u223C\u20D2",
+  nvge: "\u2265\u20D2",
+  nvle: "\u2264\u20D2",
+  nvlt: "<\u20D2",
+  nvgt: ">\u20D2",
+  nvltrie: "\u22B4\u20D2",
+  nvrtrie: "\u22B5\u20D2",
+  Vdash: "\u22A9",
+  dashv: "\u22A3",
+  vDash: "\u22A8",
+  Vdash: "\u22A9",
+  Vvdash: "\u22AA",
+  nvdash: "\u22AC",
+  nvDash: "\u22AD",
+  nVdash: "\u22AE",
+  nVDash: "\u22AF",
+};
+var ALL_ENTITIES = {
+  ...BASIC_LATIN,
+  ...LATIN_ACCENTS,
+  ...LATIN_EXTENDED,
+  ...GREEK,
+  ...CYRILLIC,
+  ...MATH,
+  ...MATH_ADVANCED,
+  ...ARROWS,
+  ...SHAPES,
+  ...PUNCTUATION,
+  ...CURRENCY,
+  ...FRACTIONS,
+  ...MISC_SYMBOLS,
+};
+var XML = {
+  amp: "&",
+  apos: "'",
+  gt: ">",
+  lt: "<",
+  quot: '"',
+};
+var COMMON_HTML = {
+  nbsp: "\xA0",
+  copy: "\xA9",
+  reg: "\xAE",
+  trade: "\u2122",
+  mdash: "\u2014",
+  ndash: "\u2013",
+  hellip: "\u2026",
+  laquo: "\xAB",
+  raquo: "\xBB",
+  lsquo: "\u2018",
+  rsquo: "\u2019",
+  ldquo: "\u201C",
+  rdquo: "\u201D",
+  bull: "\u2022",
+  para: "\xB6",
+  sect: "\xA7",
+  deg: "\xB0",
+  frac12: "\xBD",
+  frac14: "\xBC",
+  frac34: "\xBE",
+};
+
+// node_modules/.deno/@nodable+entities@2.1.0/node_modules/@nodable/entities/src/EntityDecoder.js
+var SPECIAL_CHARS = new Set("!?\\\\/[]$%{}^&*()<>|+");
+function validateEntityName(name) {
+  if (name[0] === "#") {
+    throw new Error(
+      `[EntityReplacer] Invalid character '#' in entity name: "${name}"`,
+    );
+  }
+  for (const ch of name) {
+    if (SPECIAL_CHARS.has(ch)) {
+      throw new Error(
+        `[EntityReplacer] Invalid character '${ch}' in entity name: "${name}"`,
+      );
+    }
+  }
+  return name;
+}
+function mergeEntityMaps(...maps) {
+  const out = /* @__PURE__ */ Object.create(null);
+  for (const map of maps) {
+    if (!map) continue;
+    for (const key of Object.keys(map)) {
+      const raw = map[key];
+      if (typeof raw === "string") {
+        out[key] = raw;
+      } else if (raw && typeof raw === "object" && raw.val !== void 0) {
+        const val = raw.val;
+        if (typeof val === "string") {
+          out[key] = val;
+        }
+      }
+    }
+  }
+  return out;
+}
+var LIMIT_TIER_EXTERNAL = "external";
+var LIMIT_TIER_BASE = "base";
+var LIMIT_TIER_ALL = "all";
+function parseLimitTiers(raw) {
+  if (!raw || raw === LIMIT_TIER_EXTERNAL) {
+    return /* @__PURE__ */ new Set([
+      LIMIT_TIER_EXTERNAL,
+    ]);
+  }
+  if (raw === LIMIT_TIER_ALL) {
+    return /* @__PURE__ */ new Set([
+      LIMIT_TIER_ALL,
+    ]);
+  }
+  if (raw === LIMIT_TIER_BASE) {
+    return /* @__PURE__ */ new Set([
+      LIMIT_TIER_BASE,
+    ]);
+  }
+  if (Array.isArray(raw)) return new Set(raw);
+  return /* @__PURE__ */ new Set([
+    LIMIT_TIER_EXTERNAL,
+  ]);
+}
+var NCR_LEVEL = Object.freeze({
+  allow: 0,
+  leave: 1,
+  remove: 2,
+  throw: 3,
+});
+var XML10_ALLOWED_C0 = /* @__PURE__ */ new Set([
+  9,
+  10,
+  13,
+]);
+function parseNCRConfig(ncr) {
+  if (!ncr) {
+    return {
+      xmlVersion: 1,
+      onLevel: NCR_LEVEL.allow,
+      nullLevel: NCR_LEVEL.remove,
+    };
+  }
+  const xmlVersion = ncr.xmlVersion === 1.1 ? 1.1 : 1;
+  const onLevel = NCR_LEVEL[ncr.onNCR] ?? NCR_LEVEL.allow;
+  const nullLevel = NCR_LEVEL[ncr.nullNCR] ?? NCR_LEVEL.remove;
+  const clampedNull = Math.max(nullLevel, NCR_LEVEL.remove);
+  return {
+    xmlVersion,
+    onLevel,
+    nullLevel: clampedNull,
+  };
+}
+var EntityDecoder = class {
+  /**
+   * @param {object} [options]
+   * @param {object|null}  [options.namedEntities]        — extra named entities merged into base map
+   * @param {object}  [options.limit]                 — security limits
+   * @param {number}       [options.limit.maxTotalExpansions=0]  — 0 = unlimited
+   * @param {number}       [options.limit.maxExpandedLength=0]   — 0 = unlimited
+   * @param {'external'|'base'|'all'|string[]} [options.limit.applyLimitsTo='external']
+   *   Which entity tiers count against the security limits:
+   *   - 'external' (default) — only input/runtime + persistent external entities
+   *   - 'base'               — only DEFAULT_XML_ENTITIES + namedEntities
+   *   - 'all'                — every entity regardless of tier
+   *   - string[]             — explicit combination, e.g. ['external', 'base']
+   * @param {((resolved: string, original: string) => string)|null} [options.postCheck=null]
+   * @param {string[]} [options.remove=[]] — entity names (e.g. ['nbsp', '#13']) to delete (replace with empty string)
+   * @param {string[]} [options.leave=[]]  — entity names to keep as literal (unchanged in output)
+   * @param {object}   [options.ncr]       — Numeric Character Reference controls
+   * @param {1.0|1.1}  [options.ncr.xmlVersion=1.0]
+   *   XML version governing which codepoint ranges are restricted:
+   *   - 1.0 — C0 controls U+0001–U+001F (except U+0009/000A/000D) are prohibited
+   *   - 1.1 — C0 controls are allowed when written as NCRs; C1 (U+007F–U+009F) decoded as-is
+   * @param {'allow'|'leave'|'remove'|'throw'} [options.ncr.onNCR='allow']
+   *   Base action for numeric references. Severity order: allow < leave < remove < throw.
+   *   For codepoint ranges that carry a minimum level (surrogates → remove, XML 1.0 C0 → remove),
+   *   the effective action is max(onNCR, rangeMinimum).
+   * @param {'remove'|'throw'} [options.ncr.nullNCR='remove']
+   *   Action for U+0000 (null). 'allow' and 'leave' are clamped to 'remove' since null is never safe.
+   */
+  constructor(options = {}) {
+    this._limit = options.limit || {};
+    this._maxTotalExpansions = this._limit.maxTotalExpansions || 0;
+    this._maxExpandedLength = this._limit.maxExpandedLength || 0;
+    this._postCheck = typeof options.postCheck === "function"
+      ? options.postCheck
+      : (r) => r;
+    this._limitTiers = parseLimitTiers(
+      this._limit.applyLimitsTo ?? LIMIT_TIER_EXTERNAL,
+    );
+    this._numericAllowed = options.numericAllowed ?? true;
+    this._baseMap = mergeEntityMaps(XML, options.namedEntities || null);
+    this._externalMap = /* @__PURE__ */ Object.create(null);
+    this._inputMap = /* @__PURE__ */ Object.create(null);
+    this._totalExpansions = 0;
+    this._expandedLength = 0;
+    this._removeSet = new Set(
+      options.remove && Array.isArray(options.remove) ? options.remove : [],
+    );
+    this._leaveSet = new Set(
+      options.leave && Array.isArray(options.leave) ? options.leave : [],
+    );
+    const ncrCfg = parseNCRConfig(options.ncr);
+    this._ncrXmlVersion = ncrCfg.xmlVersion;
+    this._ncrOnLevel = ncrCfg.onLevel;
+    this._ncrNullLevel = ncrCfg.nullLevel;
+  }
+  // -------------------------------------------------------------------------
+  // Persistent external entity registration
+  // -------------------------------------------------------------------------
+  /**
+   * Replace the full set of persistent external entities.
+   * All keys are validated — throws on invalid characters.
+   * @param {Record<string, string | { regex?: RegExp, val: string }>} map
+   */
+  setExternalEntities(map) {
+    if (map) {
+      for (const key of Object.keys(map)) {
+        validateEntityName(key);
+      }
+    }
+    this._externalMap = mergeEntityMaps(map);
+  }
+  /**
+   * Add a single persistent external entity.
+   * @param {string} key
+   * @param {string} value
+   */
+  addExternalEntity(key, value) {
+    validateEntityName(key);
+    if (typeof value === "string" && value.indexOf("&") === -1) {
+      this._externalMap[key] = value;
+    }
+  }
+  // -------------------------------------------------------------------------
+  // Input / runtime entity registration (per document)
+  // -------------------------------------------------------------------------
+  /**
+   * Inject DOCTYPE entities for the current document.
+   * Also resets per-document expansion counters.
+   * @param {Record<string, string | { regx?: RegExp, regex?: RegExp, val: string }>} map
+   */
+  addInputEntities(map) {
+    this._totalExpansions = 0;
+    this._expandedLength = 0;
+    this._inputMap = mergeEntityMaps(map);
+  }
+  // -------------------------------------------------------------------------
+  // Per-document reset
+  // -------------------------------------------------------------------------
+  /**
+   * Wipe input/runtime entities and reset counters.
+   * Call this before processing each new document.
+   * @returns {this}
+   */
+  reset() {
+    this._inputMap = /* @__PURE__ */ Object.create(null);
+    this._totalExpansions = 0;
+    this._expandedLength = 0;
+    return this;
+  }
+  // -------------------------------------------------------------------------
+  // XML version (can be set after construction, e.g. once parser reads <?xml?>)
+  // -------------------------------------------------------------------------
+  /**
+   * Update the XML version used for NCR classification.
+   * Call this as soon as the document's `<?xml version="...">` declaration is parsed.
+   * @param {1.0|1.1|number} version
+   */
+  setXmlVersion(version3) {
+    this._ncrXmlVersion = version3 === 1.1 ? 1.1 : 1;
+  }
+  // -------------------------------------------------------------------------
+  // Primary API
+  // -------------------------------------------------------------------------
+  /**
+   * Replace all entity references in `str` in a single pass.
+   *
+   * @param {string} str
+   * @returns {string}
+   */
+  decode(str) {
+    if (typeof str !== "string" || str.length === 0) return str;
+    const original = str;
+    const chunks = [];
+    const len = str.length;
+    let last = 0;
+    let i = 0;
+    const limitExpansions = this._maxTotalExpansions > 0;
+    const limitLength = this._maxExpandedLength > 0;
+    const checkLimits = limitExpansions || limitLength;
+    while (i < len) {
+      if (str.charCodeAt(i) !== 38) {
+        i++;
+        continue;
+      }
+      let j = i + 1;
+      while (j < len && str.charCodeAt(j) !== 59 && j - i <= 32) j++;
+      if (j >= len || str.charCodeAt(j) !== 59) {
+        i++;
+        continue;
+      }
+      const token = str.slice(i + 1, j);
+      if (token.length === 0) {
+        i++;
+        continue;
+      }
+      let replacement;
+      let tier2;
+      if (this._removeSet.has(token)) {
+        replacement = "";
+        if (tier2 === void 0) {
+          tier2 = LIMIT_TIER_EXTERNAL;
+        }
+      } else if (this._leaveSet.has(token)) {
+        i++;
+        continue;
+      } else if (token.charCodeAt(0) === 35) {
+        const ncrResult = this._resolveNCR(token);
+        if (ncrResult === void 0) {
+          i++;
+          continue;
+        }
+        replacement = ncrResult;
+        tier2 = LIMIT_TIER_BASE;
+      } else {
+        const resolved = this._resolveName(token);
+        replacement = resolved?.value;
+        tier2 = resolved?.tier;
+      }
+      if (replacement === void 0) {
+        i++;
+        continue;
+      }
+      if (i > last) chunks.push(str.slice(last, i));
+      chunks.push(replacement);
+      last = j + 1;
+      i = last;
+      if (checkLimits && this._tierCounts(tier2)) {
+        if (limitExpansions) {
+          this._totalExpansions++;
+          if (this._totalExpansions > this._maxTotalExpansions) {
+            throw new Error(
+              `[EntityReplacer] Entity expansion count limit exceeded: ${this._totalExpansions} > ${this._maxTotalExpansions}`,
+            );
+          }
+        }
+        if (limitLength) {
+          const delta = replacement.length - (token.length + 2);
+          if (delta > 0) {
+            this._expandedLength += delta;
+            if (this._expandedLength > this._maxExpandedLength) {
+              throw new Error(
+                `[EntityReplacer] Expanded content length limit exceeded: ${this._expandedLength} > ${this._maxExpandedLength}`,
+              );
+            }
+          }
+        }
+      }
+    }
+    if (last < len) chunks.push(str.slice(last));
+    const result = chunks.length === 0 ? str : chunks.join("");
+    return this._postCheck(result, original);
+  }
+  // -------------------------------------------------------------------------
+  // Private: limit tier check
+  // -------------------------------------------------------------------------
+  /**
+   * Returns true if a resolved entity of the given tier should count
+   * against the expansion/length limits.
+   * @param {string} tier  — LIMIT_TIER_EXTERNAL | LIMIT_TIER_BASE
+   * @returns {boolean}
+   */
+  _tierCounts(tier2) {
+    if (this._limitTiers.has(LIMIT_TIER_ALL)) return true;
+    return this._limitTiers.has(tier2);
+  }
+  // -------------------------------------------------------------------------
+  // Private: entity resolution
+  // -------------------------------------------------------------------------
+  /**
+   * Resolve a named entity token (without & and ;).
+   * Priority: inputMap > externalMap > baseMap
+   * Returns the resolved value tagged with its limit tier.
+   *
+   * @param {string} name
+   * @returns {{ value: string, tier: string }|undefined}
+   */
+  _resolveName(name) {
+    if (name in this._inputMap) {
+      return {
+        value: this._inputMap[name],
+        tier: LIMIT_TIER_EXTERNAL,
+      };
+    }
+    if (name in this._externalMap) {
+      return {
+        value: this._externalMap[name],
+        tier: LIMIT_TIER_EXTERNAL,
+      };
+    }
+    if (name in this._baseMap) {
+      return {
+        value: this._baseMap[name],
+        tier: LIMIT_TIER_BASE,
+      };
+    }
+    return void 0;
+  }
+  /**
+   * Classify a codepoint and return the minimum action level that must be applied.
+   * Returns -1 when no minimum is imposed (normal allow path).
+   *
+   * Ranges checked (in priority order):
+   *   1. U+0000            — null, governed by nullNCR (always ≥ remove)
+   *   2. U+D800–U+DFFF     — surrogates, always prohibited (min: remove)
+   *   3. U+0001–U+001F \ {0x09,0x0A,0x0D}  — XML 1.0 restricted C0 (min: remove)
+   *      (skipped in XML 1.1 — C0 controls are allowed when written as NCRs)
+   *
+   * @param {number} cp  — codepoint
+   * @returns {number}   — minimum NCR_LEVEL value, or -1 for no restriction
+   */
+  _classifyNCR(cp) {
+    if (cp === 0) return this._ncrNullLevel;
+    if (cp >= 55296 && cp <= 57343) return NCR_LEVEL.remove;
+    if (this._ncrXmlVersion === 1) {
+      if (cp >= 1 && cp <= 31 && !XML10_ALLOWED_C0.has(cp)) {
+        return NCR_LEVEL.remove;
+      }
+    }
+    return -1;
+  }
+  /**
+   * Execute a resolved NCR action.
+   *
+   * @param {number} action   — NCR_LEVEL value
+   * @param {string} token    — raw token (e.g. '#38') for error messages
+   * @param {number} cp       — codepoint, used only for error messages
+   * @returns {string|undefined}
+   *   - decoded character string  → 'allow'
+   *   - ''                        → 'remove'
+   *   - undefined                 → 'leave' (caller must skip past '&' only)
+   *   - throws Error              → 'throw'
+   */
+  _applyNCRAction(action5, token, cp) {
+    switch (action5) {
+      case NCR_LEVEL.allow:
+        return String.fromCodePoint(cp);
+      case NCR_LEVEL.remove:
+        return "";
+      case NCR_LEVEL.leave:
+        return void 0;
+      // signal: keep literal
+      case NCR_LEVEL.throw:
+        throw new Error(
+          `[EntityDecoder] Prohibited numeric character reference &${token}; (U+${
+            cp.toString(16).toUpperCase().padStart(4, "0")
+          })`,
+        );
+      default:
+        return String.fromCodePoint(cp);
+    }
+  }
+  /**
+   * Full NCR resolution pipeline for a numeric token.
+   *
+   * Steps:
+   *   1. Parse the codepoint (decimal or hex).
+   *   2. Validate the raw codepoint range (NaN, <0, >0x10FFFF).
+   *   3. If numericAllowed is false and no minimum restriction applies → leave as-is.
+   *   4. Classify the codepoint to find the minimum required action level.
+   *   5. Resolve effective action = max(onNCR, minimum).
+   *   6. Apply and return.
+   *
+   * @param {string} token  — e.g. '#38', '#x26', '#X26'
+   * @returns {string|undefined}
+   *   - string (incl. '')  — replacement ('' = remove)
+   *   - undefined          — leave original &token; as-is
+   */
+  _resolveNCR(token) {
+    const second = token.charCodeAt(1);
+    let cp;
+    if (second === 120 || second === 88) {
+      cp = parseInt(token.slice(2), 16);
+    } else {
+      cp = parseInt(token.slice(1), 10);
+    }
+    if (Number.isNaN(cp) || cp < 0 || cp > 1114111) return void 0;
+    const minimum = this._classifyNCR(cp);
+    if (!this._numericAllowed && minimum < NCR_LEVEL.remove) return void 0;
+    const effective = minimum === -1
+      ? this._ncrOnLevel
+      : Math.max(this._ncrOnLevel, minimum);
+    return this._applyNCRAction(effective, token, cp);
+  }
+};
+
+// node_modules/.deno/@nodable+entities@2.1.0/node_modules/@nodable/entities/src/entityTries.js
+var CHAR_TO_ENTITY = /* @__PURE__ */ new Map();
+for (const [name, chars] of Object.entries(ALL_ENTITIES)) {
+  CHAR_TO_ENTITY.set(chars, `&${name};`);
+}
+var trie1 = /* @__PURE__ */ new Map();
+var trie2 = /* @__PURE__ */ new Map();
+var trie3 = /* @__PURE__ */ new Map();
+for (const [chars, entity] of CHAR_TO_ENTITY) {
+  const len = chars.length;
+  if (len === 1) {
+    const c0 = chars.charCodeAt(0);
+    trie1.set(c0, entity);
+  } else if (len === 2) {
+    const c0 = chars.charCodeAt(0);
+    const c1 = chars.charCodeAt(1);
+    let inner = trie2.get(c0);
+    if (inner === void 0) {
+      inner = /* @__PURE__ */ new Map();
+      trie2.set(c0, inner);
+    }
+    inner.set(c1, entity);
+  } else if (len === 3) {
+    const c0 = chars.charCodeAt(0);
+    const c1 = chars.charCodeAt(1);
+    const c2 = chars.charCodeAt(2);
+    let mid = trie3.get(c0);
+    if (mid === void 0) {
+      mid = /* @__PURE__ */ new Map();
+      trie3.set(c0, mid);
+    }
+    let inner = mid.get(c1);
+    if (inner === void 0) {
+      inner = /* @__PURE__ */ new Map();
+      mid.set(c1, inner);
+    }
+    inner.set(c2, entity);
+  }
+}
+
+// node_modules/.deno/@nodable+entities@2.1.0/node_modules/@nodable/entities/src/EntityEncoder.js
+var XML_UNSAFE_REPLACEMENT = new Array(128);
+XML_UNSAFE_REPLACEMENT[38] = "&amp;";
+XML_UNSAFE_REPLACEMENT[60] = "&lt;";
+XML_UNSAFE_REPLACEMENT[62] = "&gt;";
+XML_UNSAFE_REPLACEMENT[34] = "&quot;";
+XML_UNSAFE_REPLACEMENT[39] = "&apos;";
+var IS_XML_UNSAFE = new Uint8Array(128);
+IS_XML_UNSAFE[38] = 1;
+IS_XML_UNSAFE[60] = 1;
+IS_XML_UNSAFE[62] = 1;
+IS_XML_UNSAFE[34] = 1;
+IS_XML_UNSAFE[39] = 1;
+
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
 var defaultOnDangerousProperty = (name) => {
   if (DANGEROUS_PROPERTY_NAMES.includes(name)) {
     return "__" + name;
@@ -192350,6 +194234,7 @@ var defaultOptions2 = {
   unpairedTags: [],
   processEntities: true,
   htmlEntities: false,
+  entityDecoder: null,
   ignoreDeclaration: false,
   ignorePiTags: false,
   transformTagName: false,
@@ -192388,29 +194273,31 @@ function validatePropertyName(propertyName, optionName) {
     );
   }
 }
-function normalizeProcessEntities(value) {
+function normalizeProcessEntities(value, htmlEntities) {
   if (typeof value === "boolean") {
     return {
       enabled: value,
       maxEntitySize: 1e4,
-      maxExpansionDepth: 10,
-      maxTotalExpansions: 1e3,
+      maxExpansionDepth: 1e4,
+      maxTotalExpansions: Infinity,
       maxExpandedLength: 1e5,
-      maxEntityCount: 100,
+      maxEntityCount: 1e3,
       allowedTags: null,
       tagFilter: null,
+      appliesTo: "all",
     };
   }
   if (typeof value === "object" && value !== null) {
     return {
       enabled: value.enabled !== false,
-      maxEntitySize: value.maxEntitySize ?? 1e4,
-      maxExpansionDepth: value.maxExpansionDepth ?? 10,
-      maxTotalExpansions: value.maxTotalExpansions ?? 1e3,
-      maxExpandedLength: value.maxExpandedLength ?? 1e5,
-      maxEntityCount: value.maxEntityCount ?? 100,
+      maxEntitySize: Math.max(1, value.maxEntitySize ?? 1e4),
+      maxExpansionDepth: Math.max(1, value.maxExpansionDepth ?? 1e4),
+      maxTotalExpansions: Math.max(1, value.maxTotalExpansions ?? Infinity),
+      maxExpandedLength: Math.max(1, value.maxExpandedLength ?? 1e5),
+      maxEntityCount: Math.max(1, value.maxEntityCount ?? 1e3),
       allowedTags: value.allowedTags ?? null,
       tagFilter: value.tagFilter ?? null,
+      appliesTo: value.appliesTo ?? "all",
     };
   }
   return normalizeProcessEntities(true);
@@ -192447,7 +194334,11 @@ var buildOptions = function (options) {
   if (built.onDangerousProperty === null) {
     built.onDangerousProperty = defaultOnDangerousProperty;
   }
-  built.processEntities = normalizeProcessEntities(built.processEntities);
+  built.processEntities = normalizeProcessEntities(
+    built.processEntities,
+    built.htmlEntities,
+  );
+  built.unpairedTagsSet = new Set(built.unpairedTags);
   if (built.stopNodes && Array.isArray(built.stopNodes)) {
     built.stopNodes = built.stopNodes.map((node) => {
       if (typeof node === "string" && node.startsWith("*.")) {
@@ -192459,7 +194350,7 @@ var buildOptions = function (options) {
   return built;
 };
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
 var METADATA_SYMBOL;
 if (typeof Symbol !== "function") {
   METADATA_SYMBOL = "@@xmlMetadata";
@@ -192502,7 +194393,7 @@ var XmlNode = class {
   }
 };
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
 var DocTypeReader = class {
   constructor(options) {
     this.suppressValidationErr = !options;
@@ -192532,7 +194423,8 @@ var DocTypeReader = class {
             );
             if (val.indexOf("&") === -1) {
               if (
-                this.options.enabled !== false && this.options.maxEntityCount &&
+                this.options.enabled !== false &&
+                this.options.maxEntityCount != null &&
                 entityCount >= this.options.maxEntityCount
               ) {
                 throw new Error(
@@ -192541,11 +194433,7 @@ var DocTypeReader = class {
                   }) exceeds maximum allowed (${this.options.maxEntityCount})`,
                 );
               }
-              const escaped = entityName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-              entities[entityName] = {
-                regx: RegExp(`&${escaped};`, "g"),
-                val,
-              };
+              entities[entityName] = val;
               entityCount++;
             }
           } else if (hasBody && hasSeq(xmlData, "!ELEMENT", i)) {
@@ -192597,15 +194485,15 @@ var DocTypeReader = class {
   }
   readEntityExp(xmlData, i) {
     i = skipWhitespace(xmlData, i);
-    let entityName = "";
+    const startIndex = i;
     while (
       i < xmlData.length && !/\s/.test(xmlData[i]) && xmlData[i] !== '"' &&
       xmlData[i] !== "'"
     ) {
-      entityName += xmlData[i];
       i++;
     }
-    validateEntityName(entityName);
+    let entityName = xmlData.substring(startIndex, i);
+    validateEntityName2(entityName);
     i = skipWhitespace(xmlData, i);
     if (!this.suppressValidationErr) {
       if (xmlData.substring(i, i + 6).toUpperCase() === "SYSTEM") {
@@ -192617,7 +194505,7 @@ var DocTypeReader = class {
     let entityValue = "";
     [i, entityValue] = this.readIdentifierVal(xmlData, i, "entity");
     if (
-      this.options.enabled !== false && this.options.maxEntitySize &&
+      this.options.enabled !== false && this.options.maxEntitySize != null &&
       entityValue.length > this.options.maxEntitySize
     ) {
       throw new Error(
@@ -192633,12 +194521,12 @@ var DocTypeReader = class {
   }
   readNotationExp(xmlData, i) {
     i = skipWhitespace(xmlData, i);
-    let notationName = "";
+    const startIndex = i;
     while (i < xmlData.length && !/\s/.test(xmlData[i])) {
-      notationName += xmlData[i];
       i++;
     }
-    !this.suppressValidationErr && validateEntityName(notationName);
+    let notationName = xmlData.substring(startIndex, i);
+    !this.suppressValidationErr && validateEntityName2(notationName);
     i = skipWhitespace(xmlData, i);
     const identifierType = xmlData.substring(i, i + 6).toUpperCase();
     if (
@@ -192691,10 +194579,11 @@ var DocTypeReader = class {
       throw new Error(`Expected quoted string, found "${startChar}"`);
     }
     i++;
+    const startIndex = i;
     while (i < xmlData.length && xmlData[i] !== startChar) {
-      identifierVal += xmlData[i];
       i++;
     }
+    identifierVal = xmlData.substring(startIndex, i);
     if (xmlData[i] !== startChar) {
       throw new Error(`Unterminated ${type} value`);
     }
@@ -192706,11 +194595,11 @@ var DocTypeReader = class {
   }
   readElementExp(xmlData, i) {
     i = skipWhitespace(xmlData, i);
-    let elementName = "";
+    const startIndex = i;
     while (i < xmlData.length && !/\s/.test(xmlData[i])) {
-      elementName += xmlData[i];
       i++;
     }
+    let elementName = xmlData.substring(startIndex, i);
     if (!this.suppressValidationErr && !isName(elementName)) {
       throw new Error(`Invalid element name: "${elementName}"`);
     }
@@ -192720,10 +194609,11 @@ var DocTypeReader = class {
     else if (xmlData[i] === "A" && hasSeq(xmlData, "NY", i)) i += 2;
     else if (xmlData[i] === "(") {
       i++;
+      const startIndex2 = i;
       while (i < xmlData.length && xmlData[i] !== ")") {
-        contentModel += xmlData[i];
         i++;
       }
+      contentModel = xmlData.substring(startIndex2, i);
       if (xmlData[i] !== ")") {
         throw new Error("Unterminated content model");
       }
@@ -192738,19 +194628,19 @@ var DocTypeReader = class {
   }
   readAttlistExp(xmlData, i) {
     i = skipWhitespace(xmlData, i);
-    let elementName = "";
+    let startIndex = i;
     while (i < xmlData.length && !/\s/.test(xmlData[i])) {
-      elementName += xmlData[i];
       i++;
     }
-    validateEntityName(elementName);
+    let elementName = xmlData.substring(startIndex, i);
+    validateEntityName2(elementName);
     i = skipWhitespace(xmlData, i);
-    let attributeName = "";
+    startIndex = i;
     while (i < xmlData.length && !/\s/.test(xmlData[i])) {
-      attributeName += xmlData[i];
       i++;
     }
-    if (!validateEntityName(attributeName)) {
+    let attributeName = xmlData.substring(startIndex, i);
+    if (!validateEntityName2(attributeName)) {
       throw new Error(`Invalid attribute name: "${attributeName}"`);
     }
     i = skipWhitespace(xmlData, i);
@@ -192765,13 +194655,13 @@ var DocTypeReader = class {
       i++;
       let allowedNotations = [];
       while (i < xmlData.length && xmlData[i] !== ")") {
-        let notation = "";
+        const startIndex2 = i;
         while (i < xmlData.length && xmlData[i] !== "|" && xmlData[i] !== ")") {
-          notation += xmlData[i];
           i++;
         }
+        let notation = xmlData.substring(startIndex2, i);
         notation = notation.trim();
-        if (!validateEntityName(notation)) {
+        if (!validateEntityName2(notation)) {
           throw new Error(`Invalid notation name: "${notation}"`);
         }
         allowedNotations.push(notation);
@@ -192786,10 +194676,11 @@ var DocTypeReader = class {
       i++;
       attributeType += " (" + allowedNotations.join("|") + ")";
     } else {
+      const startIndex2 = i;
       while (i < xmlData.length && !/\s/.test(xmlData[i])) {
-        attributeType += xmlData[i];
         i++;
       }
+      attributeType += xmlData.substring(startIndex2, i);
       const validTypes = [
         "CDATA",
         "ID",
@@ -192839,12 +194730,12 @@ function hasSeq(data, seq, i) {
   }
   return true;
 }
-function validateEntityName(name) {
+function validateEntityName2(name) {
   if (isName(name)) return name;
   else throw new Error(`Invalid entity name ${name}`);
 }
 
-// node_modules/.deno/strnum@2.2.1/node_modules/strnum/strnum.js
+// node_modules/.deno/strnum@2.2.3/node_modules/strnum/strnum.js
 var hexRegex = /^[-+]?0x[a-fA-F0-9]+$/;
 var numRegex = /^([\-\+])?(0*)([0-9]*(\.[0-9]*)?)$/;
 var consider = {
@@ -192860,9 +194751,10 @@ function toNumber(str, options = {}) {
   options = Object.assign({}, consider, options);
   if (!str || typeof str !== "string") return str;
   let trimmedStr = str.trim();
-  if (options.skipLike !== void 0 && options.skipLike.test(trimmedStr)) {
+  if (trimmedStr.length === 0) return str;
+  else if (options.skipLike !== void 0 && options.skipLike.test(trimmedStr)) {
     return str;
-  } else if (str === "0") return 0;
+  } else if (trimmedStr === "0") return 0;
   else if (options.hex && hexRegex.test(trimmedStr)) {
     return parse_int(trimmedStr, 16);
   } else if (!isFinite(trimmedStr)) {
@@ -192974,7 +194866,7 @@ function handleInfinity(str, num, options) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/ignoreAttributes.js
 function getIgnoreAttributesFn(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -192994,7 +194886,7 @@ function getIgnoreAttributesFn(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/path-expression-matcher@1.1.3/node_modules/path-expression-matcher/src/Expression.js
+// node_modules/.deno/path-expression-matcher@1.5.0/node_modules/path-expression-matcher/src/Expression.js
 var Expression = class {
   /**
    * Create a new Expression
@@ -193002,10 +194894,11 @@ var Expression = class {
    * @param {Object} options - Configuration options
    * @param {string} options.separator - Path separator (default: '.')
    */
-  constructor(pattern, options = {}) {
+  constructor(pattern, options = {}, data) {
     this.pattern = pattern;
     this.separator = options.separator || ".";
     this.segments = this._parse(pattern);
+    this.data = data;
     this._hasDeepWildcard = this.segments.some((seg) =>
       seg.type === "deep-wildcard"
     );
@@ -193171,28 +195064,306 @@ var Expression = class {
   }
 };
 
-// node_modules/.deno/path-expression-matcher@1.1.3/node_modules/path-expression-matcher/src/Matcher.js
+// node_modules/.deno/path-expression-matcher@1.5.0/node_modules/path-expression-matcher/src/ExpressionSet.js
+var ExpressionSet = class {
+  constructor() {
+    this._byDepthAndTag = /* @__PURE__ */ new Map();
+    this._wildcardByDepth = /* @__PURE__ */ new Map();
+    this._deepWildcards = [];
+    this._patterns = /* @__PURE__ */ new Set();
+    this._sealed = false;
+  }
+  /**
+   * Add an Expression to the set.
+   * Duplicate patterns (same pattern string) are silently ignored.
+   *
+   * @param {import('./Expression.js').default} expression - A pre-constructed Expression instance
+   * @returns {this} for chaining
+   * @throws {TypeError} if called after seal()
+   *
+   * @example
+   * set.add(new Expression('root.users.user'));
+   * set.add(new Expression('..script'));
+   */
+  add(expression) {
+    if (this._sealed) {
+      throw new TypeError(
+        "ExpressionSet is sealed. Create a new ExpressionSet to add more expressions.",
+      );
+    }
+    if (this._patterns.has(expression.pattern)) return this;
+    this._patterns.add(expression.pattern);
+    if (expression.hasDeepWildcard()) {
+      this._deepWildcards.push(expression);
+      return this;
+    }
+    const depth = expression.length;
+    const lastSeg = expression.segments[expression.segments.length - 1];
+    const tag = lastSeg?.tag;
+    if (!tag || tag === "*") {
+      if (!this._wildcardByDepth.has(depth)) {
+        this._wildcardByDepth.set(depth, []);
+      }
+      this._wildcardByDepth.get(depth).push(expression);
+    } else {
+      const key = `${depth}:${tag}`;
+      if (!this._byDepthAndTag.has(key)) this._byDepthAndTag.set(key, []);
+      this._byDepthAndTag.get(key).push(expression);
+    }
+    return this;
+  }
+  /**
+   * Add multiple expressions at once.
+   *
+   * @param {import('./Expression.js').default[]} expressions - Array of Expression instances
+   * @returns {this} for chaining
+   *
+   * @example
+   * set.addAll([
+   *   new Expression('root.users.user'),
+   *   new Expression('root.config.setting'),
+   * ]);
+   */
+  addAll(expressions) {
+    for (const expr of expressions) this.add(expr);
+    return this;
+  }
+  /**
+   * Check whether a pattern string is already present in the set.
+   *
+   * @param {import('./Expression.js').default} expression
+   * @returns {boolean}
+   */
+  has(expression) {
+    return this._patterns.has(expression.pattern);
+  }
+  /**
+   * Number of expressions in the set.
+   * @type {number}
+   */
+  get size() {
+    return this._patterns.size;
+  }
+  /**
+   * Seal the set against further modifications.
+   * Useful to prevent accidental mutations after config is built.
+   * Calling add() or addAll() on a sealed set throws a TypeError.
+   *
+   * @returns {this}
+   */
+  seal() {
+    this._sealed = true;
+    return this;
+  }
+  /**
+   * Whether the set has been sealed.
+   * @type {boolean}
+   */
+  get isSealed() {
+    return this._sealed;
+  }
+  /**
+   * Test whether the matcher's current path matches any expression in the set.
+   *
+   * Evaluation order (cheapest → most expensive):
+   *  1. Exact depth + tag bucket  — O(1) lookup, typically 0–2 expressions
+   *  2. Depth-only wildcard bucket — O(1) lookup, rare
+   *  3. Deep-wildcard list         — always checked, but usually small
+   *
+   * @param {import('./Matcher.js').default} matcher - Matcher instance (or readOnly view)
+   * @returns {boolean} true if any expression matches the current path
+   *
+   * @example
+   * if (stopNodes.matchesAny(matcher)) {
+   *   // handle stop node
+   * }
+   */
+  matchesAny(matcher) {
+    return this.findMatch(matcher) !== null;
+  }
+  /**
+   * Find and return the first Expression that matches the matcher's current path.
+   *
+   * Uses the same evaluation order as matchesAny (cheapest → most expensive):
+   *  1. Exact depth + tag bucket
+   *  2. Depth-only wildcard bucket
+   *  3. Deep-wildcard list
+   *
+   * @param {import('./Matcher.js').default} matcher - Matcher instance (or readOnly view)
+   * @returns {import('./Expression.js').default | null} the first matching Expression, or null
+   *
+   * @example
+   * const expr = stopNodes.findMatch(matcher);
+   * if (expr) {
+   *   // access expr.config, expr.pattern, etc.
+   * }
+   */
+  findMatch(matcher) {
+    const depth = matcher.getDepth();
+    const tag = matcher.getCurrentTag();
+    const exactKey = `${depth}:${tag}`;
+    const exactBucket = this._byDepthAndTag.get(exactKey);
+    if (exactBucket) {
+      for (let i = 0; i < exactBucket.length; i++) {
+        if (matcher.matches(exactBucket[i])) return exactBucket[i];
+      }
+    }
+    const wildcardBucket = this._wildcardByDepth.get(depth);
+    if (wildcardBucket) {
+      for (let i = 0; i < wildcardBucket.length; i++) {
+        if (matcher.matches(wildcardBucket[i])) return wildcardBucket[i];
+      }
+    }
+    for (let i = 0; i < this._deepWildcards.length; i++) {
+      if (matcher.matches(this._deepWildcards[i])) {
+        return this._deepWildcards[i];
+      }
+    }
+    return null;
+  }
+};
+
+// node_modules/.deno/path-expression-matcher@1.5.0/node_modules/path-expression-matcher/src/Matcher.js
+var MatcherView = class {
+  /**
+   * @param {Matcher} matcher - The parent Matcher instance to read from.
+   */
+  constructor(matcher) {
+    this._matcher = matcher;
+  }
+  /**
+   * Get the path separator used by the parent matcher.
+   * @returns {string}
+   */
+  get separator() {
+    return this._matcher.separator;
+  }
+  /**
+   * Get current tag name.
+   * @returns {string|undefined}
+   */
+  getCurrentTag() {
+    const path14 = this._matcher.path;
+    return path14.length > 0 ? path14[path14.length - 1].tag : void 0;
+  }
+  /**
+   * Get current namespace.
+   * @returns {string|undefined}
+   */
+  getCurrentNamespace() {
+    const path14 = this._matcher.path;
+    return path14.length > 0 ? path14[path14.length - 1].namespace : void 0;
+  }
+  /**
+   * Get current node's attribute value.
+   * @param {string} attrName
+   * @returns {*}
+   */
+  getAttrValue(attrName) {
+    const path14 = this._matcher.path;
+    if (path14.length === 0) return void 0;
+    return path14[path14.length - 1].values?.[attrName];
+  }
+  /**
+   * Check if current node has an attribute.
+   * @param {string} attrName
+   * @returns {boolean}
+   */
+  hasAttr(attrName) {
+    const path14 = this._matcher.path;
+    if (path14.length === 0) return false;
+    const current = path14[path14.length - 1];
+    return current.values !== void 0 && attrName in current.values;
+  }
+  /**
+   * Get current node's sibling position (child index in parent).
+   * @returns {number}
+   */
+  getPosition() {
+    const path14 = this._matcher.path;
+    if (path14.length === 0) return -1;
+    return path14[path14.length - 1].position ?? 0;
+  }
+  /**
+   * Get current node's repeat counter (occurrence count of this tag name).
+   * @returns {number}
+   */
+  getCounter() {
+    const path14 = this._matcher.path;
+    if (path14.length === 0) return -1;
+    return path14[path14.length - 1].counter ?? 0;
+  }
+  /**
+   * Get current node's sibling index (alias for getPosition).
+   * @returns {number}
+   * @deprecated Use getPosition() or getCounter() instead
+   */
+  getIndex() {
+    return this.getPosition();
+  }
+  /**
+   * Get current path depth.
+   * @returns {number}
+   */
+  getDepth() {
+    return this._matcher.path.length;
+  }
+  /**
+   * Get path as string.
+   * @param {string} [separator] - Optional separator (uses default if not provided)
+   * @param {boolean} [includeNamespace=true]
+   * @returns {string}
+   */
+  toString(separator, includeNamespace = true) {
+    return this._matcher.toString(separator, includeNamespace);
+  }
+  /**
+   * Get path as array of tag names.
+   * @returns {string[]}
+   */
+  toArray() {
+    return this._matcher.path.map((n) => n.tag);
+  }
+  /**
+   * Match current path against an Expression.
+   * @param {Expression} expression
+   * @returns {boolean}
+   */
+  matches(expression) {
+    return this._matcher.matches(expression);
+  }
+  /**
+   * Match any expression in the given set against the current path.
+   * @param {ExpressionSet} exprSet
+   * @returns {boolean}
+   */
+  matchesAny(exprSet) {
+    return exprSet.matchesAny(this._matcher);
+  }
+};
 var Matcher = class {
   /**
-   * Create a new Matcher
-   * @param {Object} options - Configuration options
-   * @param {string} options.separator - Default path separator (default: '.')
+   * Create a new Matcher.
+   * @param {Object} [options={}]
+   * @param {string} [options.separator='.'] - Default path separator
    */
   constructor(options = {}) {
     this.separator = options.separator || ".";
     this.path = [];
     this.siblingStacks = [];
+    this._pathStringCache = null;
+    this._view = new MatcherView(this);
   }
   /**
-   * Push a new tag onto the path
-   * @param {string} tagName - Name of the tag
-   * @param {Object} attrValues - Attribute key-value pairs for current node (optional)
-   * @param {string} namespace - Namespace for the tag (optional)
+   * Push a new tag onto the path.
+   * @param {string} tagName
+   * @param {Object|null} [attrValues=null]
+   * @param {string|null} [namespace=null]
    */
   push(tagName, attrValues = null, namespace = null) {
+    this._pathStringCache = null;
     if (this.path.length > 0) {
-      const prev = this.path[this.path.length - 1];
-      prev.values = void 0;
+      this.path[this.path.length - 1].values = void 0;
     }
     const currentLevel = this.path.length;
     if (!this.siblingStacks[currentLevel]) {
@@ -193220,13 +195391,12 @@ var Matcher = class {
     this.path.push(node);
   }
   /**
-   * Pop the last tag from the path
+   * Pop the last tag from the path.
    * @returns {Object|undefined} The popped node
    */
   pop() {
-    if (this.path.length === 0) {
-      return void 0;
-    }
+    if (this.path.length === 0) return void 0;
+    this._pathStringCache = null;
     const node = this.path.pop();
     if (this.siblingStacks.length > this.path.length + 1) {
       this.siblingStacks.length = this.path.length + 1;
@@ -193234,9 +195404,9 @@ var Matcher = class {
     return node;
   }
   /**
-   * Update current node's attribute values
-   * Useful when attributes are parsed after push
-   * @param {Object} attrValues - Attribute values
+   * Update current node's attribute values.
+   * Useful when attributes are parsed after push.
+   * @param {Object} attrValues
    */
   updateCurrent(attrValues) {
     if (this.path.length > 0) {
@@ -193247,14 +195417,14 @@ var Matcher = class {
     }
   }
   /**
-   * Get current tag name
+   * Get current tag name.
    * @returns {string|undefined}
    */
   getCurrentTag() {
     return this.path.length > 0 ? this.path[this.path.length - 1].tag : void 0;
   }
   /**
-   * Get current namespace
+   * Get current namespace.
    * @returns {string|undefined}
    */
   getCurrentNamespace() {
@@ -193263,18 +195433,17 @@ var Matcher = class {
       : void 0;
   }
   /**
-   * Get current node's attribute value
-   * @param {string} attrName - Attribute name
-   * @returns {*} Attribute value or undefined
+   * Get current node's attribute value.
+   * @param {string} attrName
+   * @returns {*}
    */
   getAttrValue(attrName) {
     if (this.path.length === 0) return void 0;
-    const current = this.path[this.path.length - 1];
-    return current.values?.[attrName];
+    return this.path[this.path.length - 1].values?.[attrName];
   }
   /**
-   * Check if current node has an attribute
-   * @param {string} attrName - Attribute name
+   * Check if current node has an attribute.
+   * @param {string} attrName
    * @returns {boolean}
    */
   hasAttr(attrName) {
@@ -193283,7 +195452,7 @@ var Matcher = class {
     return current.values !== void 0 && attrName in current.values;
   }
   /**
-   * Get current node's sibling position (child index in parent)
+   * Get current node's sibling position (child index in parent).
    * @returns {number}
    */
   getPosition() {
@@ -193291,7 +195460,7 @@ var Matcher = class {
     return this.path[this.path.length - 1].position ?? 0;
   }
   /**
-   * Get current node's repeat counter (occurrence count of this tag name)
+   * Get current node's repeat counter (occurrence count of this tag name).
    * @returns {number}
    */
   getCounter() {
@@ -193299,7 +195468,7 @@ var Matcher = class {
     return this.path[this.path.length - 1].counter ?? 0;
   }
   /**
-   * Get current node's sibling index (alias for getPosition for backward compatibility)
+   * Get current node's sibling index (alias for getPosition).
    * @returns {number}
    * @deprecated Use getPosition() or getCounter() instead
    */
@@ -193307,45 +195476,54 @@ var Matcher = class {
     return this.getPosition();
   }
   /**
-   * Get current path depth
+   * Get current path depth.
    * @returns {number}
    */
   getDepth() {
     return this.path.length;
   }
   /**
-   * Get path as string
-   * @param {string} separator - Optional separator (uses default if not provided)
-   * @param {boolean} includeNamespace - Whether to include namespace in output (default: true)
+   * Get path as string.
+   * @param {string} [separator] - Optional separator (uses default if not provided)
+   * @param {boolean} [includeNamespace=true]
    * @returns {string}
    */
   toString(separator, includeNamespace = true) {
     const sep9 = separator || this.separator;
-    return this.path.map((n) => {
-      if (includeNamespace && n.namespace) {
-        return `${n.namespace}:${n.tag}`;
+    const isDefault = sep9 === this.separator && includeNamespace === true;
+    if (isDefault) {
+      if (this._pathStringCache !== null) {
+        return this._pathStringCache;
       }
-      return n.tag;
-    }).join(sep9);
+      const result = this.path.map((n) =>
+        n.namespace ? `${n.namespace}:${n.tag}` : n.tag
+      ).join(sep9);
+      this._pathStringCache = result;
+      return result;
+    }
+    return this.path.map((n) =>
+      includeNamespace && n.namespace ? `${n.namespace}:${n.tag}` : n.tag
+    ).join(sep9);
   }
   /**
-   * Get path as array of tag names
+   * Get path as array of tag names.
    * @returns {string[]}
    */
   toArray() {
     return this.path.map((n) => n.tag);
   }
   /**
-   * Reset the path to empty
+   * Reset the path to empty.
    */
   reset() {
+    this._pathStringCache = null;
     this.path = [];
     this.siblingStacks = [];
   }
   /**
-   * Match current path against an Expression
-   * @param {Expression} expression - The expression to match against
-   * @returns {boolean} True if current path matches the expression
+   * Match current path against an Expression.
+   * @param {Expression} expression
+   * @returns {boolean}
    */
   matches(expression) {
     const segments = expression.segments;
@@ -193358,7 +195536,6 @@ var Matcher = class {
     return this._matchSimple(segments);
   }
   /**
-   * Match simple path (no deep wildcards)
    * @private
    */
   _matchSimple(segments) {
@@ -193366,17 +195543,19 @@ var Matcher = class {
       return false;
     }
     for (let i = 0; i < segments.length; i++) {
-      const segment = segments[i];
-      const node = this.path[i];
-      const isCurrentNode = i === this.path.length - 1;
-      if (!this._matchSegment(segment, node, isCurrentNode)) {
+      if (
+        !this._matchSegment(
+          segments[i],
+          this.path[i],
+          i === this.path.length - 1,
+        )
+      ) {
         return false;
       }
     }
     return true;
   }
   /**
-   * Match path with deep wildcards
    * @private
    */
   _matchWithDeepWildcard(segments) {
@@ -193392,8 +195571,13 @@ var Matcher = class {
         const nextSeg = segments[segIdx];
         let found = false;
         for (let i = pathIdx; i >= 0; i--) {
-          const isCurrentNode = i === this.path.length - 1;
-          if (this._matchSegment(nextSeg, this.path[i], isCurrentNode)) {
+          if (
+            this._matchSegment(
+              nextSeg,
+              this.path[i],
+              i === this.path.length - 1,
+            )
+          ) {
             pathIdx = i - 1;
             segIdx--;
             found = true;
@@ -193404,8 +195588,13 @@ var Matcher = class {
           return false;
         }
       } else {
-        const isCurrentNode = pathIdx === this.path.length - 1;
-        if (!this._matchSegment(segment, this.path[pathIdx], isCurrentNode)) {
+        if (
+          !this._matchSegment(
+            segment,
+            this.path[pathIdx],
+            pathIdx === this.path.length - 1,
+          )
+        ) {
           return false;
         }
         pathIdx--;
@@ -193415,12 +195604,7 @@ var Matcher = class {
     return segIdx < 0;
   }
   /**
-   * Match a single segment against a node
    * @private
-   * @param {Object} segment - Segment from Expression
-   * @param {Object} node - Node from path
-   * @param {boolean} isCurrentNode - Whether this is the current (last) node
-   * @returns {boolean}
    */
   _matchSegment(segment, node, isCurrentNode) {
     if (segment.tag !== "*" && segment.tag !== node.tag) {
@@ -193439,8 +195623,9 @@ var Matcher = class {
         return false;
       }
       if (segment.attrValue !== void 0) {
-        const actualValue = node.values[segment.attrName];
-        if (String(actualValue) !== String(segment.attrValue)) {
+        if (
+          String(node.values[segment.attrName]) !== String(segment.attrValue)
+        ) {
           return false;
         }
       }
@@ -193456,17 +195641,25 @@ var Matcher = class {
         return false;
       } else if (segment.position === "even" && counter % 2 !== 0) {
         return false;
-      } else if (segment.position === "nth") {
-        if (counter !== segment.positionValue) {
-          return false;
-        }
+      } else if (
+        segment.position === "nth" && counter !== segment.positionValue
+      ) {
+        return false;
       }
     }
     return true;
   }
   /**
-   * Create a snapshot of current state
-   * @returns {Object} State snapshot
+   * Match any expression in the given set against the current path.
+   * @param {ExpressionSet} exprSet
+   * @returns {boolean}
+   */
+  matchesAny(exprSet) {
+    return exprSet.matchesAny(this);
+  }
+  /**
+   * Create a snapshot of current state.
+   * @returns {Object}
    */
   snapshot() {
     return {
@@ -193477,18 +195670,38 @@ var Matcher = class {
     };
   }
   /**
-   * Restore state from snapshot
-   * @param {Object} snapshot - State snapshot
+   * Restore state from snapshot.
+   * @param {Object} snapshot
    */
   restore(snapshot2) {
+    this._pathStringCache = null;
     this.path = snapshot2.path.map((node) => ({
       ...node,
     }));
     this.siblingStacks = snapshot2.siblingStacks.map((map) => new Map(map));
   }
+  /**
+   * Return the read-only {@link MatcherView} for this matcher.
+   *
+   * The same instance is returned on every call — no allocation occurs.
+   * It always reflects the current parser state and is safe to pass to
+   * user callbacks without risk of accidental mutation.
+   *
+   * @returns {MatcherView}
+   *
+   * @example
+   * const view = matcher.readOnly();
+   * // pass view to callbacks — it stays in sync automatically
+   * view.matches(expr);       // ✓
+   * view.getCurrentTag();     // ✓
+   * // view.push(...)         // ✗ method does not exist — caught by TypeScript
+   */
+  readOnly() {
+    return this._view;
+  }
 };
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
 function extractRawAttributes(prefixedAttrs, options) {
   if (!prefixedAttrs) return {};
   const attrs = options.attributesGroupName
@@ -193522,77 +195735,6 @@ var OrderedObjParser = class {
     this.options = options;
     this.currentNode = null;
     this.tagsNodeStack = [];
-    this.docTypeEntities = {};
-    this.lastEntities = {
-      "apos": {
-        regex: /&(apos|#39|#x27);/g,
-        val: "'",
-      },
-      "gt": {
-        regex: /&(gt|#62|#x3E);/g,
-        val: ">",
-      },
-      "lt": {
-        regex: /&(lt|#60|#x3C);/g,
-        val: "<",
-      },
-      "quot": {
-        regex: /&(quot|#34|#x22);/g,
-        val: '"',
-      },
-    };
-    this.ampEntity = {
-      regex: /&(amp|#38|#x26);/g,
-      val: "&",
-    };
-    this.htmlEntities = {
-      "space": {
-        regex: /&(nbsp|#160);/g,
-        val: " ",
-      },
-      // "lt" : { regex: /&(lt|#60);/g, val: "<" },
-      // "gt" : { regex: /&(gt|#62);/g, val: ">" },
-      // "amp" : { regex: /&(amp|#38);/g, val: "&" },
-      // "quot" : { regex: /&(quot|#34);/g, val: "\"" },
-      // "apos" : { regex: /&(apos|#39);/g, val: "'" },
-      "cent": {
-        regex: /&(cent|#162);/g,
-        val: "\xA2",
-      },
-      "pound": {
-        regex: /&(pound|#163);/g,
-        val: "\xA3",
-      },
-      "yen": {
-        regex: /&(yen|#165);/g,
-        val: "\xA5",
-      },
-      "euro": {
-        regex: /&(euro|#8364);/g,
-        val: "\u20AC",
-      },
-      "copyright": {
-        regex: /&(copy|#169);/g,
-        val: "\xA9",
-      },
-      "reg": {
-        regex: /&(reg|#174);/g,
-        val: "\xAE",
-      },
-      "inr": {
-        regex: /&(inr|#8377);/g,
-        val: "\u20B9",
-      },
-      "num_dec": {
-        regex: /&#([0-9]{1,7});/g,
-        val: (_, str) => fromCodePoint(str, 10, "&#"),
-      },
-      "num_hex": {
-        regex: /&#x([0-9a-fA-F]{1,6});/g,
-        val: (_, str) => fromCodePoint(str, 16, "&#x"),
-      },
-    };
-    this.addExternalEntities = addExternalEntities;
     this.parseXml = parseXml;
     this.parseTextData = parseTextData;
     this.resolveNameSpace = resolveNameSpace;
@@ -193607,32 +195749,48 @@ var OrderedObjParser = class {
     );
     this.entityExpansionCount = 0;
     this.currentExpandedLength = 0;
+    let namedEntities = {
+      ...XML,
+    };
+    if (this.options.entityDecoder) {
+      this.entityDecoder = this.options.entityDecoder;
+    } else {
+      if (typeof this.options.htmlEntities === "object") {
+        namedEntities = this.options.htmlEntities;
+      } else if (this.options.htmlEntities === true) {
+        namedEntities = {
+          ...COMMON_HTML,
+          ...CURRENCY,
+        };
+      }
+      this.entityDecoder = new EntityDecoder({
+        namedEntities,
+        numericAllowed: this.options.htmlEntities,
+        limit: {
+          maxTotalExpansions: this.options.processEntities.maxTotalExpansions,
+          maxExpandedLength: this.options.processEntities.maxExpandedLength,
+          applyLimitsTo: this.options.processEntities.appliesTo,
+        },
+      });
+    }
     this.matcher = new Matcher();
+    this.readonlyMatcher = this.matcher.readOnly();
     this.isCurrentNodeStopNode = false;
-    if (this.options.stopNodes && this.options.stopNodes.length > 0) {
-      this.stopNodeExpressions = [];
-      for (let i = 0; i < this.options.stopNodes.length; i++) {
-        const stopNodeExp = this.options.stopNodes[i];
+    this.stopNodeExpressionsSet = new ExpressionSet();
+    const stopNodesOpts = this.options.stopNodes;
+    if (stopNodesOpts && stopNodesOpts.length > 0) {
+      for (let i = 0; i < stopNodesOpts.length; i++) {
+        const stopNodeExp = stopNodesOpts[i];
         if (typeof stopNodeExp === "string") {
-          this.stopNodeExpressions.push(new Expression(stopNodeExp));
+          this.stopNodeExpressionsSet.add(new Expression(stopNodeExp));
         } else if (stopNodeExp instanceof Expression) {
-          this.stopNodeExpressions.push(stopNodeExp);
+          this.stopNodeExpressionsSet.add(stopNodeExp);
         }
       }
+      this.stopNodeExpressionsSet.seal();
     }
   }
 };
-function addExternalEntities(externalEntities) {
-  const entKeys = Object.keys(externalEntities);
-  for (let i = 0; i < entKeys.length; i++) {
-    const ent = entKeys[i];
-    const escaped = ent.replace(/[.\-+*:]/g, "\\.");
-    this.lastEntities[ent] = {
-      regex: new RegExp("&" + escaped + ";", "g"),
-      val: externalEntities[ent],
-    };
-  }
-}
 function parseTextData(
   val,
   tagName,
@@ -193642,14 +195800,15 @@ function parseTextData(
   isLeafNode,
   escapeEntities,
 ) {
+  const options = this.options;
   if (val !== void 0) {
-    if (this.options.trimValues && !dontTrim) {
+    if (options.trimValues && !dontTrim) {
       val = val.trim();
     }
     if (val.length > 0) {
       if (!escapeEntities) val = this.replaceEntitiesValue(val, tagName, jPath);
-      const jPathOrMatcher = this.options.jPath ? jPath.toString() : jPath;
-      const newval = this.options.tagValueProcessor(
+      const jPathOrMatcher = options.jPath ? jPath.toString() : jPath;
+      const newval = options.tagValueProcessor(
         tagName,
         val,
         jPathOrMatcher,
@@ -193660,19 +195819,19 @@ function parseTextData(
         return val;
       } else if (typeof newval !== typeof val || newval !== val) {
         return newval;
-      } else if (this.options.trimValues) {
+      } else if (options.trimValues) {
         return parseValue(
           val,
-          this.options.parseTagValue,
-          this.options.numberParseOptions,
+          options.parseTagValue,
+          options.numberParseOptions,
         );
       } else {
         const trimmedVal = val.trim();
         if (trimmedVal === val) {
           return parseValue(
             val,
-            this.options.parseTagValue,
-            this.options.numberParseOptions,
+            options.parseTagValue,
+            options.numberParseOptions,
           );
         } else {
           return val;
@@ -193695,53 +195854,50 @@ function resolveNameSpace(tagname) {
   return tagname;
 }
 var attrsRegx = new RegExp(`([^\\s=]+)\\s*(=\\s*(['"])([\\s\\S]*?)\\3)?`, "gm");
-function buildAttributesMap(attrStr, jPath, tagName) {
-  if (this.options.ignoreAttributes !== true && typeof attrStr === "string") {
+function buildAttributesMap(attrStr, jPath, tagName, force = false) {
+  const options = this.options;
+  if (
+    force === true ||
+    options.ignoreAttributes !== true && typeof attrStr === "string"
+  ) {
     const matches = getAllMatches(attrStr, attrsRegx);
     const len = matches.length;
     const attrs = {};
+    const processedVals = new Array(len);
+    let hasRawAttrs = false;
     const rawAttrsForMatcher = {};
     for (let i = 0; i < len; i++) {
       const attrName = this.resolveNameSpace(matches[i][1]);
       const oldVal = matches[i][4];
       if (attrName.length && oldVal !== void 0) {
-        let parsedVal = oldVal;
-        if (this.options.trimValues) {
-          parsedVal = parsedVal.trim();
-        }
-        parsedVal = this.replaceEntitiesValue(parsedVal, tagName, jPath);
-        rawAttrsForMatcher[attrName] = parsedVal;
+        let val = oldVal;
+        if (options.trimValues) val = val.trim();
+        val = this.replaceEntitiesValue(val, tagName, this.readonlyMatcher);
+        processedVals[i] = val;
+        rawAttrsForMatcher[attrName] = val;
+        hasRawAttrs = true;
       }
     }
-    if (
-      Object.keys(rawAttrsForMatcher).length > 0 && typeof jPath === "object" &&
-      jPath.updateCurrent
-    ) {
+    if (hasRawAttrs && typeof jPath === "object" && jPath.updateCurrent) {
       jPath.updateCurrent(rawAttrsForMatcher);
     }
+    const jPathStr = options.jPath ? jPath.toString() : this.readonlyMatcher;
+    let hasAttrs = false;
     for (let i = 0; i < len; i++) {
       const attrName = this.resolveNameSpace(matches[i][1]);
-      const jPathStr = this.options.jPath ? jPath.toString() : jPath;
-      if (this.ignoreAttributesFn(attrName, jPathStr)) {
-        continue;
-      }
-      let oldVal = matches[i][4];
-      let aName = this.options.attributeNamePrefix + attrName;
+      if (this.ignoreAttributesFn(attrName, jPathStr)) continue;
+      let aName = options.attributeNamePrefix + attrName;
       if (attrName.length) {
-        if (this.options.transformAttributeName) {
-          aName = this.options.transformAttributeName(aName);
+        if (options.transformAttributeName) {
+          aName = options.transformAttributeName(aName);
         }
-        aName = sanitizeName(aName, this.options);
-        if (oldVal !== void 0) {
-          if (this.options.trimValues) {
-            oldVal = oldVal.trim();
-          }
-          oldVal = this.replaceEntitiesValue(oldVal, tagName, jPath);
-          const jPathOrMatcher = this.options.jPath ? jPath.toString() : jPath;
-          const newVal = this.options.attributeValueProcessor(
+        aName = sanitizeName(aName, options);
+        if (matches[i][4] !== void 0) {
+          const oldVal = processedVals[i];
+          const newVal = options.attributeValueProcessor(
             attrName,
             oldVal,
-            jPathOrMatcher,
+            jPathStr,
           );
           if (newVal === null || newVal === void 0) {
             attrs[aName] = oldVal;
@@ -193750,21 +195906,21 @@ function buildAttributesMap(attrStr, jPath, tagName) {
           } else {
             attrs[aName] = parseValue(
               oldVal,
-              this.options.parseAttributeValue,
-              this.options.numberParseOptions,
+              options.parseAttributeValue,
+              options.numberParseOptions,
             );
           }
-        } else if (this.options.allowBooleanAttributes) {
+          hasAttrs = true;
+        } else if (options.allowBooleanAttributes) {
           attrs[aName] = true;
+          hasAttrs = true;
         }
       }
     }
-    if (!Object.keys(attrs).length) {
-      return;
-    }
-    if (this.options.attributesGroupName) {
+    if (!hasAttrs) return;
+    if (options.attributesGroupName) {
       const attrCollection = {};
-      attrCollection[this.options.attributesGroupName] = attrs;
+      attrCollection[options.attributesGroupName] = attrs;
       return attrCollection;
     }
     return attrs;
@@ -193776,13 +195932,17 @@ var parseXml = function (xmlData) {
   let currentNode = xmlObj;
   let textData = "";
   this.matcher.reset();
+  this.entityDecoder.reset();
   this.entityExpansionCount = 0;
   this.currentExpandedLength = 0;
-  const docTypeReader = new DocTypeReader(this.options.processEntities);
-  for (let i = 0; i < xmlData.length; i++) {
+  const options = this.options;
+  const docTypeReader = new DocTypeReader(options.processEntities);
+  const xmlLen = xmlData.length;
+  for (let i = 0; i < xmlLen; i++) {
     const ch = xmlData[i];
     if (ch === "<") {
-      if (xmlData[i + 1] === "/") {
+      const c1 = xmlData.charCodeAt(i + 1);
+      if (c1 === 47) {
         const closeIndex = findClosingIndex(
           xmlData,
           ">",
@@ -193790,34 +195950,29 @@ var parseXml = function (xmlData) {
           "Closing Tag is not closed.",
         );
         let tagName = xmlData.substring(i + 2, closeIndex).trim();
-        if (this.options.removeNSPrefix) {
+        if (options.removeNSPrefix) {
           const colonIndex = tagName.indexOf(":");
           if (colonIndex !== -1) {
             tagName = tagName.substr(colonIndex + 1);
           }
         }
-        tagName = transformTagName(
-          this.options.transformTagName,
-          tagName,
-          "",
-          this.options,
-        ).tagName;
+        tagName =
+          transformTagName(options.transformTagName, tagName, "", options)
+            .tagName;
         if (currentNode) {
           textData = this.saveTextToParentTag(
             textData,
             currentNode,
-            this.matcher,
+            this.readonlyMatcher,
           );
         }
         const lastTagName = this.matcher.getCurrentTag();
-        if (tagName && this.options.unpairedTags.indexOf(tagName) !== -1) {
+        if (tagName && options.unpairedTagsSet.has(tagName)) {
           throw new Error(
             `Unpaired tag can not be used as closing tag: </${tagName}>`,
           );
         }
-        if (
-          lastTagName && this.options.unpairedTags.indexOf(lastTagName) !== -1
-        ) {
+        if (lastTagName && options.unpairedTagsSet.has(lastTagName)) {
           this.matcher.pop();
           this.tagsNodeStack.pop();
         }
@@ -193826,91 +195981,103 @@ var parseXml = function (xmlData) {
         currentNode = this.tagsNodeStack.pop();
         textData = "";
         i = closeIndex;
-      } else if (xmlData[i + 1] === "?") {
+      } else if (c1 === 63) {
         let tagData = readTagExp(xmlData, i, false, "?>");
         if (!tagData) throw new Error("Pi Tag is not closed.");
         textData = this.saveTextToParentTag(
           textData,
           currentNode,
-          this.matcher,
+          this.readonlyMatcher,
         );
+        const attsMap = this.buildAttributesMap(
+          tagData.tagExp,
+          this.matcher,
+          tagData.tagName,
+          true,
+        );
+        if (attsMap) {
+          const ver = attsMap[this.options.attributeNamePrefix + "version"];
+          this.entityDecoder.setXmlVersion(Number(ver) || 1);
+        }
         if (
-          this.options.ignoreDeclaration && tagData.tagName === "?xml" ||
-          this.options.ignorePiTags
+          options.ignoreDeclaration && tagData.tagName === "?xml" ||
+          options.ignorePiTags
         ) {
         } else {
           const childNode = new XmlNode(tagData.tagName);
-          childNode.add(this.options.textNodeName, "");
-          if (tagData.tagName !== tagData.tagExp && tagData.attrExpPresent) {
-            childNode[":@"] = this.buildAttributesMap(
-              tagData.tagExp,
-              this.matcher,
-              tagData.tagName,
-            );
+          childNode.add(options.textNodeName, "");
+          if (
+            tagData.tagName !== tagData.tagExp && tagData.attrExpPresent &&
+            options.ignoreAttributes !== true
+          ) {
+            childNode[":@"] = attsMap;
           }
-          this.addChild(currentNode, childNode, this.matcher, i);
+          this.addChild(currentNode, childNode, this.readonlyMatcher, i);
         }
         i = tagData.closeIndex + 1;
-      } else if (xmlData.substr(i + 1, 3) === "!--") {
+      } else if (
+        c1 === 33 && xmlData.charCodeAt(i + 2) === 45 &&
+        xmlData.charCodeAt(i + 3) === 45
+      ) {
         const endIndex = findClosingIndex(
           xmlData,
           "-->",
           i + 4,
           "Comment is not closed.",
         );
-        if (this.options.commentPropName) {
+        if (options.commentPropName) {
           const comment = xmlData.substring(i + 4, endIndex - 2);
           textData = this.saveTextToParentTag(
             textData,
             currentNode,
-            this.matcher,
+            this.readonlyMatcher,
           );
-          currentNode.add(this.options.commentPropName, [
+          currentNode.add(options.commentPropName, [
             {
-              [this.options.textNodeName]: comment,
+              [options.textNodeName]: comment,
             },
           ]);
         }
         i = endIndex;
-      } else if (xmlData.substr(i + 1, 2) === "!D") {
+      } else if (c1 === 33 && xmlData.charCodeAt(i + 2) === 68) {
         const result = docTypeReader.readDocType(xmlData, i);
-        this.docTypeEntities = result.entities;
+        this.entityDecoder.addInputEntities(result.entities);
         i = result.i;
-      } else if (xmlData.substr(i + 1, 2) === "![") {
+      } else if (c1 === 33 && xmlData.charCodeAt(i + 2) === 91) {
         const closeIndex =
           findClosingIndex(xmlData, "]]>", i, "CDATA is not closed.") - 2;
         const tagExp = xmlData.substring(i + 9, closeIndex);
         textData = this.saveTextToParentTag(
           textData,
           currentNode,
-          this.matcher,
+          this.readonlyMatcher,
         );
         let val = this.parseTextData(
           tagExp,
           currentNode.tagname,
-          this.matcher,
+          this.readonlyMatcher,
           true,
           false,
           true,
           true,
         );
         if (val == void 0) val = "";
-        if (this.options.cdataPropName) {
-          currentNode.add(this.options.cdataPropName, [
+        if (options.cdataPropName) {
+          currentNode.add(options.cdataPropName, [
             {
-              [this.options.textNodeName]: tagExp,
+              [options.textNodeName]: tagExp,
             },
           ]);
         } else {
-          currentNode.add(this.options.textNodeName, val);
+          currentNode.add(options.textNodeName, val);
         }
         i = closeIndex + 2;
       } else {
-        let result = readTagExp(xmlData, i, this.options.removeNSPrefix);
+        let result = readTagExp(xmlData, i, options.removeNSPrefix);
         if (!result) {
           const context3 = xmlData.substring(
             Math.max(0, i - 50),
-            Math.min(xmlData.length, i + 50),
+            Math.min(xmlLen, i + 50),
           );
           throw new Error(
             `readTagExp returned undefined at position ${i}. Context: "${context3}"`,
@@ -193922,15 +196089,17 @@ var parseXml = function (xmlData) {
         let attrExpPresent = result.attrExpPresent;
         let closeIndex = result.closeIndex;
         ({ tagName, tagExp } = transformTagName(
-          this.options.transformTagName,
+          options.transformTagName,
           tagName,
           tagExp,
-          this.options,
+          options,
         ));
         if (
-          this.options.strictReservedNames &&
-          (tagName === this.options.commentPropName ||
-            tagName === this.options.cdataPropName)
+          options.strictReservedNames &&
+          (tagName === options.commentPropName ||
+            tagName === options.cdataPropName ||
+            tagName === options.textNodeName ||
+            tagName === options.attributesGroupName)
         ) {
           throw new Error(`Invalid tag name: ${tagName}`);
         }
@@ -193939,15 +196108,13 @@ var parseXml = function (xmlData) {
             textData = this.saveTextToParentTag(
               textData,
               currentNode,
-              this.matcher,
+              this.readonlyMatcher,
               false,
             );
           }
         }
         const lastTag = currentNode;
-        if (
-          lastTag && this.options.unpairedTags.indexOf(lastTag.tagname) !== -1
-        ) {
+        if (lastTag && options.unpairedTagsSet.has(lastTag.tagname)) {
           currentNode = this.tagsNodeStack.pop();
           this.matcher.pop();
         }
@@ -193978,21 +196145,18 @@ var parseXml = function (xmlData) {
             tagName,
           );
           if (prefixedAttrs) {
-            rawAttrs = extractRawAttributes(prefixedAttrs, this.options);
+            rawAttrs = extractRawAttributes(prefixedAttrs, options);
           }
         }
         if (tagName !== xmlObj.tagname) {
-          this.isCurrentNodeStopNode = this.isItStopNode(
-            this.stopNodeExpressions,
-            this.matcher,
-          );
+          this.isCurrentNodeStopNode = this.isItStopNode();
         }
         const startIndex = i;
         if (this.isCurrentNodeStopNode) {
           let tagContent = "";
           if (isSelfClosing) {
             i = result.closeIndex;
-          } else if (this.options.unpairedTags.indexOf(tagName) !== -1) {
+          } else if (options.unpairedTagsSet.has(tagName)) {
             i = result.closeIndex;
           } else {
             const result2 = this.readStopNodeData(
@@ -194008,45 +196172,65 @@ var parseXml = function (xmlData) {
           if (prefixedAttrs) {
             childNode[":@"] = prefixedAttrs;
           }
-          childNode.add(this.options.textNodeName, tagContent);
+          childNode.add(options.textNodeName, tagContent);
           this.matcher.pop();
           this.isCurrentNodeStopNode = false;
-          this.addChild(currentNode, childNode, this.matcher, startIndex);
+          this.addChild(
+            currentNode,
+            childNode,
+            this.readonlyMatcher,
+            startIndex,
+          );
         } else {
           if (isSelfClosing) {
             ({ tagName, tagExp } = transformTagName(
-              this.options.transformTagName,
+              options.transformTagName,
               tagName,
               tagExp,
-              this.options,
+              options,
             ));
             const childNode = new XmlNode(tagName);
             if (prefixedAttrs) {
               childNode[":@"] = prefixedAttrs;
             }
-            this.addChild(currentNode, childNode, this.matcher, startIndex);
+            this.addChild(
+              currentNode,
+              childNode,
+              this.readonlyMatcher,
+              startIndex,
+            );
             this.matcher.pop();
             this.isCurrentNodeStopNode = false;
-          } else if (this.options.unpairedTags.indexOf(tagName) !== -1) {
+          } else if (options.unpairedTagsSet.has(tagName)) {
             const childNode = new XmlNode(tagName);
             if (prefixedAttrs) {
               childNode[":@"] = prefixedAttrs;
             }
-            this.addChild(currentNode, childNode, this.matcher, startIndex);
+            this.addChild(
+              currentNode,
+              childNode,
+              this.readonlyMatcher,
+              startIndex,
+            );
             this.matcher.pop();
             this.isCurrentNodeStopNode = false;
             i = result.closeIndex;
             continue;
           } else {
             const childNode = new XmlNode(tagName);
-            if (this.tagsNodeStack.length > this.options.maxNestedTags) {
+            if (this.tagsNodeStack.length > options.maxNestedTags) {
               throw new Error("Maximum nested tags exceeded");
             }
             this.tagsNodeStack.push(currentNode);
             if (prefixedAttrs) {
               childNode[":@"] = prefixedAttrs;
             }
-            this.addChild(currentNode, childNode, this.matcher, startIndex);
+            this.addChild(
+              currentNode,
+              childNode,
+              this.readonlyMatcher,
+              startIndex,
+            );
             currentNode = childNode;
           }
           textData = "";
@@ -194095,68 +196279,7 @@ function replaceEntitiesValue(val, tagName, jPath) {
       return val;
     }
   }
-  for (const entityName of Object.keys(this.docTypeEntities)) {
-    const entity = this.docTypeEntities[entityName];
-    const matches = val.match(entity.regx);
-    if (matches) {
-      this.entityExpansionCount += matches.length;
-      if (
-        entityConfig.maxTotalExpansions &&
-        this.entityExpansionCount > entityConfig.maxTotalExpansions
-      ) {
-        throw new Error(
-          `Entity expansion limit exceeded: ${this.entityExpansionCount} > ${entityConfig.maxTotalExpansions}`,
-        );
-      }
-      const lengthBefore = val.length;
-      val = val.replace(entity.regx, entity.val);
-      if (entityConfig.maxExpandedLength) {
-        this.currentExpandedLength += val.length - lengthBefore;
-        if (this.currentExpandedLength > entityConfig.maxExpandedLength) {
-          throw new Error(
-            `Total expanded content size exceeded: ${this.currentExpandedLength} > ${entityConfig.maxExpandedLength}`,
-          );
-        }
-      }
-    }
-  }
-  for (const entityName of Object.keys(this.lastEntities)) {
-    const entity = this.lastEntities[entityName];
-    const matches = val.match(entity.regex);
-    if (matches) {
-      this.entityExpansionCount += matches.length;
-      if (
-        entityConfig.maxTotalExpansions &&
-        this.entityExpansionCount > entityConfig.maxTotalExpansions
-      ) {
-        throw new Error(
-          `Entity expansion limit exceeded: ${this.entityExpansionCount} > ${entityConfig.maxTotalExpansions}`,
-        );
-      }
-    }
-    val = val.replace(entity.regex, entity.val);
-  }
-  if (val.indexOf("&") === -1) return val;
-  if (this.options.htmlEntities) {
-    for (const entityName of Object.keys(this.htmlEntities)) {
-      const entity = this.htmlEntities[entityName];
-      const matches = val.match(entity.regex);
-      if (matches) {
-        this.entityExpansionCount += matches.length;
-        if (
-          entityConfig.maxTotalExpansions &&
-          this.entityExpansionCount > entityConfig.maxTotalExpansions
-        ) {
-          throw new Error(
-            `Entity expansion limit exceeded: ${this.entityExpansionCount} > ${entityConfig.maxTotalExpansions}`,
-          );
-        }
-      }
-      val = val.replace(entity.regex, entity.val);
-    }
-  }
-  val = val.replace(this.ampEntity.regex, this.ampEntity.val);
-  return val;
+  return this.entityDecoder.decode(val);
 }
 function saveTextToParentTag(textData, parentNode, matcher, isLeafNode) {
   if (textData) {
@@ -194176,42 +196299,41 @@ function saveTextToParentTag(textData, parentNode, matcher, isLeafNode) {
   }
   return textData;
 }
-function isItStopNode(stopNodeExpressions, matcher) {
-  if (!stopNodeExpressions || stopNodeExpressions.length === 0) return false;
-  for (let i = 0; i < stopNodeExpressions.length; i++) {
-    if (matcher.matches(stopNodeExpressions[i])) {
-      return true;
-    }
-  }
-  return false;
+function isItStopNode() {
+  if (this.stopNodeExpressionsSet.size === 0) return false;
+  return this.matcher.matchesAny(this.stopNodeExpressionsSet);
 }
 function tagExpWithClosingIndex(xmlData, i, closingChar = ">") {
-  let attrBoundary;
-  let tagExp = "";
-  for (let index = i; index < xmlData.length; index++) {
-    let ch = xmlData[index];
+  let attrBoundary = 0;
+  const chars = [];
+  const len = xmlData.length;
+  const closeCode0 = closingChar.charCodeAt(0);
+  const closeCode1 = closingChar.length > 1 ? closingChar.charCodeAt(1) : -1;
+  for (let index = i; index < len; index++) {
+    const code = xmlData.charCodeAt(index);
     if (attrBoundary) {
-      if (ch === attrBoundary) attrBoundary = "";
-    } else if (ch === '"' || ch === "'") {
-      attrBoundary = ch;
-    } else if (ch === closingChar[0]) {
-      if (closingChar[1]) {
-        if (xmlData[index + 1] === closingChar[1]) {
+      if (code === attrBoundary) attrBoundary = 0;
+    } else if (code === 34 || code === 39) {
+      attrBoundary = code;
+    } else if (code === closeCode0) {
+      if (closeCode1 !== -1) {
+        if (xmlData.charCodeAt(index + 1) === closeCode1) {
           return {
-            data: tagExp,
+            data: String.fromCharCode(...chars),
             index,
           };
         }
       } else {
         return {
-          data: tagExp,
+          data: String.fromCharCode(...chars),
           index,
         };
       }
-    } else if (ch === "	") {
-      ch = " ";
+    } else if (code === 9) {
+      chars.push(32);
+      continue;
     }
-    tagExp += ch;
+    chars.push(code);
   }
 }
 function findClosingIndex(xmlData, str, i, errMsg) {
@@ -194221,6 +196343,11 @@ function findClosingIndex(xmlData, str, i, errMsg) {
   } else {
     return closingIndex + str.length - 1;
   }
+}
+function findClosingChar(xmlData, char, i, errMsg) {
+  const closingIndex = xmlData.indexOf(char, i);
+  if (closingIndex === -1) throw new Error(errMsg);
+  return closingIndex;
 }
 function readTagExp(xmlData, i, removeNSPrefix, closingChar = ">") {
   const result = tagExpWithClosingIndex(xmlData, i + 1, closingChar);
@@ -194253,10 +196380,12 @@ function readTagExp(xmlData, i, removeNSPrefix, closingChar = ">") {
 function readStopNodeData(xmlData, tagName, i) {
   const startIndex = i;
   let openTagCount = 1;
-  for (; i < xmlData.length; i++) {
+  const xmllen = xmlData.length;
+  for (; i < xmllen; i++) {
     if (xmlData[i] === "<") {
-      if (xmlData[i + 1] === "/") {
-        const closeIndex = findClosingIndex(
+      const c1 = xmlData.charCodeAt(i + 1);
+      if (c1 === 47) {
+        const closeIndex = findClosingChar(
           xmlData,
           ">",
           i,
@@ -194273,7 +196402,7 @@ function readStopNodeData(xmlData, tagName, i) {
           }
         }
         i = closeIndex;
-      } else if (xmlData[i + 1] === "?") {
+      } else if (c1 === 63) {
         const closeIndex = findClosingIndex(
           xmlData,
           "?>",
@@ -194281,7 +196410,10 @@ function readStopNodeData(xmlData, tagName, i) {
           "StopNode is not closed.",
         );
         i = closeIndex;
-      } else if (xmlData.substr(i + 1, 3) === "!--") {
+      } else if (
+        c1 === 33 && xmlData.charCodeAt(i + 2) === 45 &&
+        xmlData.charCodeAt(i + 3) === 45
+      ) {
         const closeIndex = findClosingIndex(
           xmlData,
           "-->",
@@ -194289,7 +196421,7 @@ function readStopNodeData(xmlData, tagName, i) {
           "StopNode is not closed.",
         );
         i = closeIndex;
-      } else if (xmlData.substr(i + 1, 2) === "![") {
+      } else if (c1 === 33 && xmlData.charCodeAt(i + 2) === 91) {
         const closeIndex =
           findClosingIndex(xmlData, "]]>", i, "StopNode is not closed.") - 2;
         i = closeIndex;
@@ -194323,14 +196455,6 @@ function parseValue(val, shouldParse, options) {
     }
   }
 }
-function fromCodePoint(str, base, prefix2) {
-  const codePoint = Number.parseInt(str, base);
-  if (codePoint >= 0 && codePoint <= 1114111) {
-    return String.fromCodePoint(codePoint);
-  } else {
-    return prefix2 + str + ";";
-  }
-}
 function transformTagName(fn, tagName, tagExp, options) {
   if (fn) {
     const newTagName = fn(tagName);
@@ -194356,7 +196480,7 @@ function sanitizeName(name, options) {
   return name;
 }
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/xmlparser/node2json.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/node2json.js
 var METADATA_SYMBOL2 = XmlNode.getMetaDataSymbol();
 function stripAttributePrefix(attrs, prefix2) {
   if (!attrs || typeof attrs !== "object") return {};
@@ -194372,10 +196496,10 @@ function stripAttributePrefix(attrs, prefix2) {
   }
   return rawAttrs;
 }
-function prettify(node, options, matcher) {
-  return compress(node, options, matcher);
+function prettify(node, options, matcher, readonlyMatcher) {
+  return compress(node, options, matcher, readonlyMatcher);
 }
-function compress(arr, options, matcher) {
+function compress(arr, options, matcher, readonlyMatcher) {
   let text;
   const compressedObj = {};
   for (let i = 0; i < arr.length; i++) {
@@ -194394,10 +196518,10 @@ function compress(arr, options, matcher) {
     } else if (property === void 0) {
       continue;
     } else if (tagObj[property]) {
-      let val = compress(tagObj[property], options, matcher);
+      let val = compress(tagObj[property], options, matcher, readonlyMatcher);
       const isLeaf = isLeafTag(val, options);
       if (tagObj[":@"]) {
-        assignAttributes(val, tagObj[":@"], matcher, options);
+        assignAttributes(val, tagObj[":@"], readonlyMatcher, options);
       } else if (
         Object.keys(val).length === 1 && val[options.textNodeName] !== void 0 &&
         !options.alwaysCreateTextNode
@@ -194424,7 +196548,9 @@ function compress(arr, options, matcher) {
         }
         compressedObj[property].push(val);
       } else {
-        const jPathOrMatcher = options.jPath ? matcher.toString() : matcher;
+        const jPathOrMatcher = options.jPath
+          ? readonlyMatcher.toString()
+          : readonlyMatcher;
         if (options.isArray(property, jPathOrMatcher, isLeaf)) {
           compressedObj[property] = [
             val,
@@ -194450,7 +196576,7 @@ function propName(obj) {
     if (key !== ":@") return key;
   }
 }
-function assignAttributes(obj, attrMap, matcher, options) {
+function assignAttributes(obj, attrMap, readonlyMatcher, options) {
   if (attrMap) {
     const keys = Object.keys(attrMap);
     const len = keys.length;
@@ -194460,8 +196586,8 @@ function assignAttributes(obj, attrMap, matcher, options) {
         ? atrrName.substring(options.attributeNamePrefix.length)
         : atrrName;
       const jPathOrMatcher = options.jPath
-        ? matcher.toString() + "." + rawAttrName
-        : matcher;
+        ? readonlyMatcher.toString() + "." + rawAttrName
+        : readonlyMatcher;
       if (options.isArray(atrrName, jPathOrMatcher, true, true)) {
         obj[atrrName] = [
           attrMap[atrrName],
@@ -194488,7 +196614,7 @@ function isLeafTag(obj, options) {
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
 var XMLParser = class {
   constructor(options) {
     this.externalEntities = {};
@@ -194513,7 +196639,7 @@ var XMLParser = class {
       }
     }
     const orderedObjParser = new OrderedObjParser(this.options);
-    orderedObjParser.addExternalEntities(this.externalEntities);
+    orderedObjParser.entityDecoder.setExternalEntities(this.externalEntities);
     const orderedResult = orderedObjParser.parseXml(xmlData);
     if (this.options.preserveOrder || orderedResult === void 0) {
       return orderedResult;
@@ -194521,6 +196647,7 @@ var XMLParser = class {
         orderedResult,
         this.options,
         orderedObjParser.matcher,
+        orderedObjParser.readonlyMatcher,
       );}
   }
   /**
@@ -194556,7 +196683,7 @@ var XMLParser = class {
   }
 };
 
-// node_modules/.deno/fast-xml-builder@1.1.4/node_modules/fast-xml-builder/src/orderedJs2Xml.js
+// node_modules/.deno/fast-xml-builder@1.1.5/node_modules/fast-xml-builder/src/orderedJs2Xml.js
 var EOL7 = "\n";
 function toXml(jArray, options) {
   let indentation = "";
@@ -194615,13 +196742,16 @@ function arrToStr(arr, options, indentation, matcher, stopNodeExpressions) {
       if (isPreviousElementTag) {
         xmlStr += indentation;
       }
-      xmlStr += `<![CDATA[${tagObj[tagName][0][options.textNodeName]}]]>`;
+      const val = tagObj[tagName][0][options.textNodeName];
+      const safeVal = String(val).replace(/\]\]>/g, "]]]]><![CDATA[>");
+      xmlStr += `<![CDATA[${safeVal}]]>`;
       isPreviousElementTag = false;
       matcher.pop();
       continue;
     } else if (tagName === options.commentPropName) {
-      xmlStr += indentation +
-        `<!--${tagObj[tagName][0][options.textNodeName]}-->`;
+      const val = tagObj[tagName][0][options.textNodeName];
+      const safeVal = String(val).replace(/--/g, "- -").replace(/-$/, "- ");
+      xmlStr += indentation + `<!--${safeVal}-->`;
       isPreviousElementTag = true;
       matcher.pop();
       continue;
@@ -194791,7 +196921,7 @@ function replaceEntitiesValue2(textValue, options) {
   return textValue;
 }
 
-// node_modules/.deno/fast-xml-builder@1.1.4/node_modules/fast-xml-builder/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-builder@1.1.5/node_modules/fast-xml-builder/src/ignoreAttributes.js
 function getIgnoreAttributesFn2(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -194811,7 +196941,7 @@ function getIgnoreAttributesFn2(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/fast-xml-builder@1.1.4/node_modules/fast-xml-builder/src/fxb.js
+// node_modules/.deno/fast-xml-builder@1.1.5/node_modules/fast-xml-builder/src/fxb.js
 var defaultOptions3 = {
   attributeNamePrefix: "@_",
   attributesGroupName: false,
@@ -195280,12 +197410,14 @@ Builder.prototype.buildTextValNode = function (
   if (
     this.options.cdataPropName !== false && key === this.options.cdataPropName
   ) {
-    return this.indentate(level) + `<![CDATA[${val}]]>` + this.newLine;
+    const safeVal = String(val).replace(/\]\]>/g, "]]]]><![CDATA[>");
+    return this.indentate(level) + `<![CDATA[${safeVal}]]>` + this.newLine;
   } else if (
     this.options.commentPropName !== false &&
     key === this.options.commentPropName
   ) {
-    return this.indentate(level) + `<!--${val}-->` + this.newLine;
+    const safeVal = String(val).replace(/--/g, "- -").replace(/-$/, "- ");
+    return this.indentate(level) + `<!--${safeVal}-->` + this.newLine;
   } else if (key[0] === "?") {
     return this.indentate(level) + "<" + key + attrStr + "?" + this.tagEndChar;
   } else {
@@ -195323,54 +197455,48 @@ function isAttribute(name) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
 var json2xml_default = Builder;
 
-// node_modules/.deno/fast-xml-parser@5.5.6/node_modules/fast-xml-parser/src/fxp.js
+// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/fxp.js
 var XMLValidator = {
   validate,
 };
 
-// node_modules/.deno/@azure+core-xml@1.5.0/node_modules/@azure/core-xml/dist/esm/xml.common.js
+// node_modules/.deno/@azure+core-xml@1.5.1/node_modules/@azure/core-xml/dist/esm/xml.common.js
 var XML_ATTRKEY2 = "$";
 var XML_CHARKEY2 = "_";
 
-// node_modules/.deno/@azure+core-xml@1.5.0/node_modules/@azure/core-xml/dist/esm/xml.js
+// node_modules/.deno/@azure+core-xml@1.5.1/node_modules/@azure/core-xml/dist/esm/xml.js
 function getCommonOptions(options) {
-  var _a;
   return {
     attributesGroupName: XML_ATTRKEY2,
-    textNodeName: (_a = options.xmlCharKey) !== null && _a !== void 0
-      ? _a
-      : XML_CHARKEY2,
+    textNodeName: options.xmlCharKey ?? XML_CHARKEY2,
     ignoreAttributes: false,
     suppressBooleanAttributes: false,
   };
 }
 function getSerializerOptions(options = {}) {
-  var _a, _b;
-  return Object.assign(Object.assign({}, getCommonOptions(options)), {
+  return {
+    ...getCommonOptions(options),
     attributeNamePrefix: "@_",
     format: true,
     suppressEmptyNode: true,
     indentBy: "",
-    rootNodeName: (_a = options.rootName) !== null && _a !== void 0
-      ? _a
-      : "root",
-    cdataPropName: (_b = options.cdataPropName) !== null && _b !== void 0
-      ? _b
-      : "__cdata",
-  });
+    rootNodeName: options.rootName ?? "root",
+    cdataPropName: options.cdataPropName ?? "__cdata",
+  };
 }
 function getParserOptions(options = {}) {
-  return Object.assign(Object.assign({}, getCommonOptions(options)), {
+  return {
+    ...getCommonOptions(options),
     parseAttributeValue: false,
     parseTagValue: false,
     attributeNamePrefix: "",
     stopNodes: options.stopNodes,
     processEntities: true,
     trimValues: false,
-  });
+  };
 }
 function stringifyXML(obj, opts = {}) {
   const parserOptions = getSerializerOptions(opts);
@@ -195398,7 +197524,11 @@ async function parseXML(str, opts = {}) {
   if (!opts.includeRoot) {
     for (const key of Object.keys(parsedXml)) {
       const value = parsedXml[key];
-      return typeof value === "object" ? Object.assign({}, value) : value;
+      return typeof value === "object"
+        ? {
+          ...value,
+        }
+        : value;
     }
   }
   return parsedXml;

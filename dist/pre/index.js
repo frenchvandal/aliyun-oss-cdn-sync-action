@@ -308,9 +308,9 @@ var require_tunnel2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/symbols.js
 var require_symbols = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/symbols.js"(
     exports,
     module,
   ) {
@@ -384,9 +384,9 @@ var require_symbols = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/errors.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/errors.js
 var require_errors = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/errors.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/errors.js"(
     exports,
     module,
   ) {
@@ -729,6 +729,23 @@ var require_errors = __commonJS({
       }
       [kSecureProxyConnectionError] = true;
     };
+    var kMessageSizeExceededError = Symbol.for(
+      "undici.error.UND_ERR_WS_MESSAGE_SIZE_EXCEEDED",
+    );
+    var MessageSizeExceededError = class extends UndiciError {
+      constructor(message) {
+        super(message);
+        this.name = "MessageSizeExceededError";
+        this.message = message || "Max decompressed message size exceeded";
+        this.code = "UND_ERR_WS_MESSAGE_SIZE_EXCEEDED";
+      }
+      static [Symbol.hasInstance](instance) {
+        return instance && instance[kMessageSizeExceededError] === true;
+      }
+      get [kMessageSizeExceededError]() {
+        return true;
+      }
+    };
     module.exports = {
       AbortError,
       HTTPParserError,
@@ -753,13 +770,14 @@ var require_errors = __commonJS({
       RequestRetryError,
       ResponseError,
       SecureProxyConnectionError,
+      MessageSizeExceededError,
     };
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/constants.js
 var require_constants = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/constants.js"(
     exports,
     module,
   ) {
@@ -877,9 +895,9 @@ var require_constants = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/tree.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/tree.js
 var require_tree = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/tree.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/tree.js"(
     exports,
     module,
   ) {
@@ -1018,9 +1036,9 @@ var require_tree = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/util.js
 var require_util = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/util.js"(
     exports,
     module,
   ) {
@@ -1618,9 +1636,9 @@ var require_util = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/diagnostics.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/diagnostics.js
 var require_diagnostics = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/diagnostics.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/diagnostics.js"(
     exports,
     module,
   ) {
@@ -1809,9 +1827,9 @@ var require_diagnostics = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/request.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/request.js
 var require_request = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/request.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/request.js"(
     exports,
     module,
   ) {
@@ -1880,6 +1898,9 @@ var require_request = __commonJS({
         }
         if (upgrade && typeof upgrade !== "string") {
           throw new InvalidArgumentError("upgrade must be a string");
+        }
+        if (upgrade && !isValidHeaderValue(upgrade)) {
+          throw new InvalidArgumentError("invalid upgrade header");
         }
         if (
           headersTimeout != null &&
@@ -2156,14 +2177,18 @@ var require_request = __commonJS({
       } else {
         val = `${val}`;
       }
-      if (request.host === null && headerName === "host") {
+      if (headerName === "host") {
+        if (request.host !== null) {
+          throw new InvalidArgumentError("duplicate host header");
+        }
         if (typeof val !== "string") {
           throw new InvalidArgumentError("invalid host header");
         }
         request.host = val;
-      } else if (
-        request.contentLength === null && headerName === "content-length"
-      ) {
+      } else if (headerName === "content-length") {
+        if (request.contentLength !== null) {
+          throw new InvalidArgumentError("duplicate content-length header");
+        }
         request.contentLength = parseInt(val, 10);
         if (!Number.isFinite(request.contentLength)) {
           throw new InvalidArgumentError("invalid content-length header");
@@ -2196,9 +2221,9 @@ var require_request = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/dispatcher.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/dispatcher.js
 var require_dispatcher = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/dispatcher.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/dispatcher.js"(
     exports,
     module,
   ) {
@@ -2259,9 +2284,9 @@ var require_dispatcher = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/dispatcher-base.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/dispatcher-base.js
 var require_dispatcher_base = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/dispatcher-base.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/dispatcher-base.js"(
     exports,
     module,
   ) {
@@ -2274,13 +2299,21 @@ var require_dispatcher_base = __commonJS({
     var kOnDestroyed = Symbol("onDestroyed");
     var kOnClosed = Symbol("onClosed");
     var kInterceptedDispatch = Symbol("Intercepted Dispatch");
+    var kWebSocketOptions = Symbol("webSocketOptions");
     var DispatcherBase = class extends Dispatcher {
-      constructor() {
+      constructor(opts) {
         super();
         this[kDestroyed] = false;
         this[kOnDestroyed] = null;
         this[kClosed] = false;
         this[kOnClosed] = [];
+        this[kWebSocketOptions] = opts?.webSocket ?? {};
+      }
+      get webSocketOptions() {
+        return {
+          maxPayloadSize: this[kWebSocketOptions].maxPayloadSize ??
+            128 * 1024 * 1024,
+        };
       }
       get destroyed() {
         return this[kDestroyed];
@@ -2423,9 +2456,9 @@ var require_dispatcher_base = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/util/timers.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/util/timers.js
 var require_timers = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/util/timers.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/util/timers.js"(
     exports,
     module,
   ) {
@@ -2662,9 +2695,9 @@ var require_timers = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/connect.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/connect.js
 var require_connect = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/core/connect.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/core/connect.js"(
     exports,
     module,
   ) {
@@ -2898,9 +2931,9 @@ var require_connect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/utils.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/utils.js
 var require_utils = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/utils.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/utils.js"(
     exports,
   ) {
     "use strict";
@@ -2922,9 +2955,9 @@ var require_utils = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/constants.js
 var require_constants2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/constants.js"(
     exports,
   ) {
     "use strict";
@@ -3323,9 +3356,9 @@ var require_constants2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/llhttp-wasm.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/llhttp-wasm.js
 var require_llhttp_wasm = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/llhttp-wasm.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/llhttp-wasm.js"(
     exports,
     module,
   ) {
@@ -3338,9 +3371,9 @@ var require_llhttp_wasm = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js
 var require_llhttp_simd_wasm = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js"(
     exports,
     module,
   ) {
@@ -3353,9 +3386,9 @@ var require_llhttp_simd_wasm = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/constants.js
 var require_constants3 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/constants.js"(
     exports,
     module,
   ) {
@@ -3611,9 +3644,9 @@ var require_constants3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/global.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/global.js
 var require_global = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/global.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/global.js"(
     exports,
     module,
   ) {
@@ -3652,9 +3685,9 @@ var require_global = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/data-url.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/data-url.js
 var require_data_url = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/data-url.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/data-url.js"(
     exports,
     module,
   ) {
@@ -4027,9 +4060,9 @@ var require_data_url = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/webidl.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/webidl.js
 var require_webidl = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/webidl.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/webidl.js"(
     exports,
     module,
   ) {
@@ -4526,9 +4559,9 @@ var require_webidl = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/util.js
 var require_util2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/util.js"(
     exports,
     module,
   ) {
@@ -5540,9 +5573,9 @@ var require_util2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/symbols.js
 var require_symbols2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/symbols.js"(
     exports,
     module,
   ) {
@@ -5557,9 +5590,9 @@ var require_symbols2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/file.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/file.js
 var require_file = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/file.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/file.js"(
     exports,
     module,
   ) {
@@ -5630,9 +5663,9 @@ var require_file = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/formdata.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/formdata.js
 var require_formdata = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/formdata.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/formdata.js"(
     exports,
     module,
   ) {
@@ -5829,9 +5862,9 @@ var require_formdata = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/formdata-parser.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/formdata-parser.js
 var require_formdata_parser = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/formdata-parser.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/formdata-parser.js"(
     exports,
     module,
   ) {
@@ -6146,9 +6179,9 @@ var require_formdata_parser = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/body.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/body.js
 var require_body = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/body.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/body.js"(
     exports,
     module,
   ) {
@@ -6504,9 +6537,9 @@ Content-Type: ${value.type || "application/octet-stream"}\r
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client-h1.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client-h1.js
 var require_client_h1 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client-h1.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client-h1.js"(
     exports,
     module,
   ) {
@@ -7839,9 +7872,9 @@ ${len.toString(16)}\r
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client-h2.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client-h2.js
 var require_client_h2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client-h2.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client-h2.js"(
     exports,
     module,
   ) {
@@ -8488,9 +8521,9 @@ var require_client_h2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/redirect-handler.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/redirect-handler.js
 var require_redirect_handler = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/redirect-handler.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/redirect-handler.js"(
     exports,
     module,
   ) {
@@ -8701,9 +8734,9 @@ var require_redirect_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/redirect-interceptor.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/redirect-interceptor.js
 var require_redirect_interceptor = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/redirect-interceptor.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/redirect-interceptor.js"(
     exports,
     module,
   ) {
@@ -8736,9 +8769,9 @@ var require_redirect_interceptor = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client.js
 var require_client = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/client.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/client.js"(
     exports,
     module,
   ) {
@@ -8839,8 +8872,11 @@ var require_client = __commonJS({
         // h2
         maxConcurrentStreams,
         allowH2,
+        webSocket,
       } = {}) {
-        super();
+        super({
+          webSocket,
+        });
         if (keepAlive !== void 0) {
           throw new InvalidArgumentError(
             "unsupported keepAlive, use pipelining=0 instead",
@@ -9355,9 +9391,9 @@ var require_client = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/fixed-queue.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/fixed-queue.js
 var require_fixed_queue = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/fixed-queue.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/fixed-queue.js"(
     exports,
     module,
   ) {
@@ -9414,9 +9450,9 @@ var require_fixed_queue = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool-stats.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool-stats.js
 var require_pool_stats = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool-stats.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool-stats.js"(
     exports,
     module,
   ) {
@@ -9450,9 +9486,9 @@ var require_pool_stats = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool-base.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool-base.js
 var require_pool_base = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool-base.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool-base.js"(
     exports,
     module,
   ) {
@@ -9486,8 +9522,8 @@ var require_pool_base = __commonJS({
     var kRemoveClient = Symbol("remove client");
     var kStats = Symbol("stats");
     var PoolBase = class extends DispatcherBase {
-      constructor() {
-        super();
+      constructor(opts) {
+        super(opts);
         this[kQueue] = new FixedQueue();
         this[kClients] = [];
         this[kQueued] = 0;
@@ -9648,9 +9684,9 @@ var require_pool_base = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool.js
 var require_pool = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/pool.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/pool.js"(
     exports,
     module,
   ) {
@@ -9685,7 +9721,6 @@ var require_pool = __commonJS({
           ...options
         } = {},
       ) {
-        super();
         if (
           connections != null &&
           (!Number.isFinite(connections) || connections < 0)
@@ -9719,6 +9754,7 @@ var require_pool = __commonJS({
             ...connect,
           });
         }
+        super(options);
         this[kInterceptors] =
           options.interceptors?.Pool && Array.isArray(options.interceptors.Pool)
             ? options.interceptors.Pool
@@ -9762,9 +9798,9 @@ var require_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/balanced-pool.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/balanced-pool.js
 var require_balanced_pool = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/balanced-pool.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/balanced-pool.js"(
     exports,
     module,
   ) {
@@ -9938,9 +9974,9 @@ var require_balanced_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/agent.js
 var require_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/agent.js"(
     exports,
     module,
   ) {
@@ -9970,7 +10006,6 @@ var require_agent = __commonJS({
         { factory = defaultFactory, maxRedirections = 0, connect, ...options } =
           {},
       ) {
-        super();
         if (typeof factory !== "function") {
           throw new InvalidArgumentError("factory must be a function.");
         }
@@ -9987,6 +10022,7 @@ var require_agent = __commonJS({
             "maxRedirections must be a positive number",
           );
         }
+        super(options);
         if (connect && typeof connect !== "function") {
           connect = {
             ...connect,
@@ -10090,9 +10126,9 @@ var require_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/proxy-agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/proxy-agent.js
 var require_proxy_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/proxy-agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/proxy-agent.js"(
     exports,
     module,
   ) {
@@ -10370,9 +10406,9 @@ var require_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js
 var require_env_http_proxy_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js"(
     exports,
     module,
   ) {
@@ -10529,9 +10565,9 @@ var require_env_http_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/retry-handler.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/retry-handler.js
 var require_retry_handler = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/retry-handler.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/retry-handler.js"(
     exports,
     module,
   ) {
@@ -10871,9 +10907,9 @@ var require_retry_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/retry-agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/retry-agent.js
 var require_retry_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/dispatcher/retry-agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/dispatcher/retry-agent.js"(
     exports,
     module,
   ) {
@@ -10909,9 +10945,9 @@ var require_retry_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/readable.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/readable.js
 var require_readable = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/readable.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/readable.js"(
     exports,
     module,
   ) {
@@ -11227,9 +11263,9 @@ var require_readable = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/util.js
 var require_util3 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/util.js"(
     exports,
     module,
   ) {
@@ -11309,9 +11345,9 @@ var require_util3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-request.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-request.js
 var require_api_request = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-request.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-request.js"(
     exports,
     module,
   ) {
@@ -11543,9 +11579,9 @@ var require_api_request = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/abort-signal.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/abort-signal.js
 var require_abort_signal = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/abort-signal.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/abort-signal.js"(
     exports,
     module,
   ) {
@@ -11597,9 +11633,9 @@ var require_abort_signal = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-stream.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-stream.js
 var require_api_stream = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-stream.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-stream.js"(
     exports,
     module,
   ) {
@@ -11818,9 +11854,9 @@ var require_api_stream = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-pipeline.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-pipeline.js
 var require_api_pipeline = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-pipeline.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-pipeline.js"(
     exports,
     module,
   ) {
@@ -12033,9 +12069,9 @@ var require_api_pipeline = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-upgrade.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-upgrade.js
 var require_api_upgrade = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-upgrade.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-upgrade.js"(
     exports,
     module,
   ) {
@@ -12141,9 +12177,9 @@ var require_api_upgrade = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-connect.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-connect.js
 var require_api_connect = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/api-connect.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/api-connect.js"(
     exports,
     module,
   ) {
@@ -12250,9 +12286,9 @@ var require_api_connect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/index.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/index.js
 var require_api = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/api/index.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/api/index.js"(
     exports,
     module,
   ) {
@@ -12265,9 +12301,9 @@ var require_api = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-errors.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-errors.js
 var require_mock_errors = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-errors.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-errors.js"(
     exports,
     module,
   ) {
@@ -12296,9 +12332,9 @@ var require_mock_errors = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-symbols.js
 var require_mock_symbols = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-symbols.js"(
     exports,
     module,
   ) {
@@ -12327,9 +12363,9 @@ var require_mock_symbols = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-utils.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-utils.js
 var require_mock_utils = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-utils.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-utils.js"(
     exports,
     module,
   ) {
@@ -12704,9 +12740,9 @@ var require_mock_utils = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-interceptor.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-interceptor.js
 var require_mock_interceptor = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-interceptor.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-interceptor.js"(
     exports,
     module,
   ) {
@@ -12918,9 +12954,9 @@ var require_mock_interceptor = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-client.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-client.js
 var require_mock_client = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-client.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-client.js"(
     exports,
     module,
   ) {
@@ -12976,9 +13012,9 @@ var require_mock_client = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-pool.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-pool.js
 var require_mock_pool = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-pool.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-pool.js"(
     exports,
     module,
   ) {
@@ -13034,9 +13070,9 @@ var require_mock_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/pluralizer.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/pluralizer.js
 var require_pluralizer = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/pluralizer.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/pluralizer.js"(
     exports,
     module,
   ) {
@@ -13072,9 +13108,9 @@ var require_pluralizer = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js
 var require_pending_interceptors_formatter = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js"(
     exports,
     module,
   ) {
@@ -13124,9 +13160,9 @@ var require_pending_interceptors_formatter = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-agent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-agent.js
 var require_mock_agent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/mock/mock-agent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/mock/mock-agent.js"(
     exports,
     module,
   ) {
@@ -13288,9 +13324,9 @@ ${pendingInterceptorsFormatter.format(pending)}
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/global.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/global.js
 var require_global2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/global.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/global.js"(
     exports,
     module,
   ) {
@@ -13322,9 +13358,9 @@ var require_global2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/decorator-handler.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/decorator-handler.js
 var require_decorator_handler = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/handler/decorator-handler.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/handler/decorator-handler.js"(
     exports,
     module,
   ) {
@@ -13365,9 +13401,9 @@ var require_decorator_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/redirect.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/redirect.js
 var require_redirect = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/redirect.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/redirect.js"(
     exports,
     module,
   ) {
@@ -13395,9 +13431,9 @@ var require_redirect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/retry.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/retry.js
 var require_retry = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/retry.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/retry.js"(
     exports,
     module,
   ) {
@@ -13425,9 +13461,9 @@ var require_retry = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/dump.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/dump.js
 var require_dump = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/dump.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/dump.js"(
     exports,
     module,
   ) {
@@ -13527,9 +13563,9 @@ var require_dump = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/dns.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/dns.js
 var require_dns = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/interceptor/dns.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/interceptor/dns.js"(
     exports,
     module,
   ) {
@@ -13852,9 +13888,9 @@ var require_dns = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/headers.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/headers.js
 var require_headers = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/headers.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/headers.js"(
     exports,
     module,
   ) {
@@ -14368,9 +14404,9 @@ var require_headers = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/response.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/response.js
 var require_response = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/response.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/response.js"(
     exports,
     module,
   ) {
@@ -14828,9 +14864,9 @@ var require_response = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js
 var require_dispatcher_weakref = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js"(
     exports,
     module,
   ) {
@@ -14880,9 +14916,9 @@ var require_dispatcher_weakref = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/request.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/request.js
 var require_request2 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/request.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/request.js"(
     exports,
     module,
   ) {
@@ -15649,9 +15685,9 @@ var require_request2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/index.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/index.js
 var require_fetch = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fetch/index.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fetch/index.js"(
     exports,
     module,
   ) {
@@ -16950,9 +16986,9 @@ var require_fetch = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/symbols.js
 var require_symbols3 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/symbols.js"(
     exports,
     module,
   ) {
@@ -16970,9 +17006,9 @@ var require_symbols3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/progressevent.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/progressevent.js
 var require_progressevent = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/progressevent.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/progressevent.js"(
     exports,
     module,
   ) {
@@ -17047,9 +17083,9 @@ var require_progressevent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/encoding.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/encoding.js
 var require_encoding = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/encoding.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/encoding.js"(
     exports,
     module,
   ) {
@@ -17336,9 +17372,9 @@ var require_encoding = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/util.js
 var require_util4 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/util.js"(
     exports,
     module,
   ) {
@@ -17528,9 +17564,9 @@ var require_util4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/filereader.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/filereader.js
 var require_filereader = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/fileapi/filereader.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/fileapi/filereader.js"(
     exports,
     module,
   ) {
@@ -17801,9 +17837,9 @@ var require_filereader = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/symbols.js
 var require_symbols4 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/symbols.js"(
     exports,
     module,
   ) {
@@ -17814,9 +17850,9 @@ var require_symbols4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/util.js
 var require_util5 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/util.js"(
     exports,
     module,
   ) {
@@ -17847,9 +17883,9 @@ var require_util5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/cache.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/cache.js
 var require_cache = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/cache.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/cache.js"(
     exports,
     module,
   ) {
@@ -18470,9 +18506,9 @@ var require_cache = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/cachestorage.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/cachestorage.js
 var require_cachestorage = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cache/cachestorage.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cache/cachestorage.js"(
     exports,
     module,
   ) {
@@ -18585,9 +18621,9 @@ var require_cachestorage = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/constants.js"(
     exports,
     module,
   ) {
@@ -18601,9 +18637,9 @@ var require_constants4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/util.js
 var require_util6 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/util.js"(
     exports,
     module,
   ) {
@@ -18794,9 +18830,9 @@ var require_util6 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/parse.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/parse.js
 var require_parse = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/parse.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/parse.js"(
     exports,
     module,
   ) {
@@ -18946,9 +18982,9 @@ var require_parse = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/index.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/index.js
 var require_cookies = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/cookies/index.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/cookies/index.js"(
     exports,
     module,
   ) {
@@ -19090,9 +19126,9 @@ var require_cookies = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/events.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/events.js
 var require_events = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/events.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/events.js"(
     exports,
     module,
   ) {
@@ -19376,9 +19412,9 @@ var require_events = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/constants.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/constants.js
 var require_constants5 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/constants.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/constants.js"(
     exports,
     module,
   ) {
@@ -19436,9 +19472,9 @@ var require_constants5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/symbols.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/symbols.js
 var require_symbols5 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/symbols.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/symbols.js"(
     exports,
     module,
   ) {
@@ -19456,9 +19492,9 @@ var require_symbols5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/util.js
 var require_util7 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/util.js"(
     exports,
     module,
   ) {
@@ -19613,13 +19649,17 @@ var require_util7 = __commonJS({
       return extensionList;
     }
     function isValidClientWindowBits(value) {
+      if (value.length === 0) {
+        return false;
+      }
       for (let i = 0; i < value.length; i++) {
         const byte = value.charCodeAt(i);
         if (byte < 48 || byte > 57) {
           return false;
         }
       }
-      return true;
+      const num = Number.parseInt(value, 10);
+      return num >= 8 && num <= 15;
     }
     var hasIntl = typeof process.versions.icu === "string";
     var fatalDecoder = hasIntl
@@ -19656,9 +19696,9 @@ var require_util7 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/frame.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/frame.js
 var require_frame = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/frame.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/frame.js"(
     exports,
     module,
   ) {
@@ -19745,9 +19785,9 @@ var require_frame = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/connection.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/connection.js
 var require_connection = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/connection.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/connection.js"(
     exports,
     module,
   ) {
@@ -19985,15 +20025,16 @@ var require_connection = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/permessage-deflate.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/permessage-deflate.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/permessage-deflate.js"(
     exports,
     module,
   ) {
     "use strict";
     var { createInflateRaw, Z_DEFAULT_WINDOWBITS } = __require("node:zlib");
     var { isValidClientWindowBits } = require_util7();
+    var { MessageSizeExceededError } = require_errors();
     var tail = Buffer.from([
       0,
       0,
@@ -20006,14 +20047,25 @@ var require_permessage_deflate = __commonJS({
       /** @type {import('node:zlib').InflateRaw} */
       #inflate;
       #options = {};
-      constructor(extensions) {
+      #maxPayloadSize = 0;
+      /**
+       * @param {Map<string, string>} extensions
+       */
+      constructor(extensions, options) {
         this.#options.serverNoContextTakeover = extensions.has(
           "server_no_context_takeover",
         );
         this.#options.serverMaxWindowBits = extensions.get(
           "server_max_window_bits",
         );
+        this.#maxPayloadSize = options.maxPayloadSize;
       }
+      /**
+       * Decompress a compressed payload.
+       * @param {Buffer} chunk Compressed data
+       * @param {boolean} fin Final fragment flag
+       * @param {Function} callback Callback function
+       */
       decompress(chunk, fin, callback) {
         if (!this.#inflate) {
           let windowBits = Z_DEFAULT_WINDOWBITS;
@@ -20024,14 +20076,28 @@ var require_permessage_deflate = __commonJS({
             }
             windowBits = Number.parseInt(this.#options.serverMaxWindowBits);
           }
-          this.#inflate = createInflateRaw({
-            windowBits,
-          });
+          try {
+            this.#inflate = createInflateRaw({
+              windowBits,
+            });
+          } catch (err) {
+            callback(err);
+            return;
+          }
           this.#inflate[kBuffer] = [];
           this.#inflate[kLength] = 0;
           this.#inflate.on("data", (data) => {
-            this.#inflate[kBuffer].push(data);
             this.#inflate[kLength] += data.length;
+            if (
+              this.#maxPayloadSize > 0 &&
+              this.#inflate[kLength] > this.#maxPayloadSize
+            ) {
+              callback(new MessageSizeExceededError());
+              this.#inflate.removeAllListeners();
+              this.#inflate = null;
+              return;
+            }
+            this.#inflate[kBuffer].push(data);
           });
           this.#inflate.on("error", (err) => {
             this.#inflate = null;
@@ -20043,6 +20109,9 @@ var require_permessage_deflate = __commonJS({
           this.#inflate.write(tail);
         }
         this.#inflate.flush(() => {
+          if (!this.#inflate) {
+            return;
+          }
           const full = Buffer.concat(
             this.#inflate[kBuffer],
             this.#inflate[kLength],
@@ -20059,9 +20128,9 @@ var require_permessage_deflate = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/receiver.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/receiver.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/receiver.js"(
     exports,
     module,
   ) {
@@ -20086,8 +20155,10 @@ var require_receiver = __commonJS({
     var { WebsocketFrameSend } = require_frame();
     var { closeWebSocketConnection } = require_connection();
     var { PerMessageDeflate } = require_permessage_deflate();
+    var { MessageSizeExceededError } = require_errors();
     var ByteParser = class extends Writable {
       #buffers = [];
+      #fragmentsBytes = 0;
       #byteOffset = 0;
       #loop = false;
       #state = parserStates.INFO;
@@ -20095,16 +20166,24 @@ var require_receiver = __commonJS({
       #fragments = [];
       /** @type {Map<string, PerMessageDeflate>} */
       #extensions;
-      constructor(ws, extensions) {
+      /** @type {number} */
+      #maxPayloadSize;
+      /**
+       * @param {import('./websocket').WebSocket} ws
+       * @param {Map<string, string>|null} extensions
+       * @param {{ maxPayloadSize?: number }} [options]
+       */
+      constructor(ws, extensions, options = {}) {
         super();
         this.ws = ws;
         this.#extensions = extensions == null
           ? /* @__PURE__ */ new Map()
           : extensions;
+        this.#maxPayloadSize = options.maxPayloadSize ?? 0;
         if (this.#extensions.has("permessage-deflate")) {
           this.#extensions.set(
             "permessage-deflate",
-            new PerMessageDeflate(extensions),
+            new PerMessageDeflate(extensions, options),
           );
         }
       }
@@ -20117,6 +20196,19 @@ var require_receiver = __commonJS({
         this.#byteOffset += chunk.length;
         this.#loop = true;
         this.run(callback);
+      }
+      #validatePayloadLength() {
+        if (
+          this.#maxPayloadSize > 0 && !isControlFrame(this.#info.opcode) &&
+          this.#info.payloadLength > this.#maxPayloadSize
+        ) {
+          failWebsocketConnection(
+            this.ws,
+            "Payload size exceeds maximum allowed size",
+          );
+          return false;
+        }
+        return true;
       }
       /**
        * Runs whenever a new chunk is received.
@@ -20192,6 +20284,9 @@ var require_receiver = __commonJS({
             if (payloadLength <= 125) {
               this.#info.payloadLength = payloadLength;
               this.#state = parserStates.READ_DATA;
+              if (!this.#validatePayloadLength()) {
+                return;
+              }
             } else if (payloadLength === 126) {
               this.#state = parserStates.PAYLOADLENGTH_16;
             } else if (payloadLength === 127) {
@@ -20212,22 +20307,28 @@ var require_receiver = __commonJS({
             const buffer = this.consume(2);
             this.#info.payloadLength = buffer.readUInt16BE(0);
             this.#state = parserStates.READ_DATA;
+            if (!this.#validatePayloadLength()) {
+              return;
+            }
           } else if (this.#state === parserStates.PAYLOADLENGTH_64) {
             if (this.#byteOffset < 8) {
               return callback();
             }
             const buffer = this.consume(8);
             const upper = buffer.readUInt32BE(0);
-            if (upper > 2 ** 31 - 1) {
+            const lower = buffer.readUInt32BE(4);
+            if (upper !== 0 || lower > 2 ** 31 - 1) {
               failWebsocketConnection(
                 this.ws,
                 "Received payload length > 2^31 bytes.",
               );
               return;
             }
-            const lower = buffer.readUInt32BE(4);
-            this.#info.payloadLength = (upper << 8) + lower;
+            this.#info.payloadLength = lower;
             this.#state = parserStates.READ_DATA;
+            if (!this.#validatePayloadLength()) {
+              return;
+            }
           } else if (this.#state === parserStates.READ_DATA) {
             if (this.#byteOffset < this.#info.payloadLength) {
               return callback();
@@ -20238,15 +20339,23 @@ var require_receiver = __commonJS({
               this.#state = parserStates.INFO;
             } else {
               if (!this.#info.compressed) {
-                this.#fragments.push(body);
+                this.writeFragments(body);
+                if (
+                  this.#maxPayloadSize > 0 &&
+                  this.#fragmentsBytes > this.#maxPayloadSize
+                ) {
+                  failWebsocketConnection(
+                    this.ws,
+                    new MessageSizeExceededError().message,
+                  );
+                  return;
+                }
                 if (!this.#info.fragmented && this.#info.fin) {
-                  const fullMessage = Buffer.concat(this.#fragments);
                   websocketMessageReceived(
                     this.ws,
                     this.#info.binaryType,
-                    fullMessage,
+                    this.consumeFragments(),
                   );
-                  this.#fragments.length = 0;
                 }
                 this.#state = parserStates.INFO;
               } else {
@@ -20255,15 +20364,20 @@ var require_receiver = __commonJS({
                   this.#info.fin,
                   (error2, data) => {
                     if (error2) {
-                      closeWebSocketConnection(
+                      failWebsocketConnection(this.ws, error2.message);
+                      return;
+                    }
+                    this.writeFragments(data);
+                    if (
+                      this.#maxPayloadSize > 0 &&
+                      this.#fragmentsBytes > this.#maxPayloadSize
+                    ) {
+                      failWebsocketConnection(
                         this.ws,
-                        1007,
-                        error2.message,
-                        error2.message.length,
+                        new MessageSizeExceededError().message,
                       );
                       return;
                     }
-                    this.#fragments.push(data);
                     if (!this.#info.fin) {
                       this.#state = parserStates.INFO;
                       this.#loop = true;
@@ -20273,11 +20387,10 @@ var require_receiver = __commonJS({
                     websocketMessageReceived(
                       this.ws,
                       this.#info.binaryType,
-                      Buffer.concat(this.#fragments),
+                      this.consumeFragments(),
                     );
                     this.#loop = true;
                     this.#state = parserStates.INFO;
-                    this.#fragments.length = 0;
                     this.run(callback);
                   },
                 );
@@ -20322,6 +20435,21 @@ var require_receiver = __commonJS({
         }
         this.#byteOffset -= n;
         return buffer;
+      }
+      writeFragments(fragment) {
+        this.#fragmentsBytes += fragment.length;
+        this.#fragments.push(fragment);
+      }
+      consumeFragments() {
+        const fragments = this.#fragments;
+        if (fragments.length === 1) {
+          this.#fragmentsBytes = 0;
+          return fragments.shift();
+        }
+        const output = Buffer.concat(fragments, this.#fragmentsBytes);
+        this.#fragments = [];
+        this.#fragmentsBytes = 0;
+        return output;
       }
       parseCloseBody(data) {
         assert(data.length !== 1);
@@ -20424,9 +20552,9 @@ var require_receiver = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/sender.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/sender.js
 var require_sender = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/sender.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/sender.js"(
     exports,
     module,
   ) {
@@ -20513,9 +20641,9 @@ var require_sender = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/websocket.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/websocket/websocket.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/websocket/websocket.js"(
     exports,
     module,
   ) {
@@ -20808,7 +20936,11 @@ var require_websocket = __commonJS({
        */
       #onConnectionEstablished(response, parsedExtensions) {
         this[kResponse] = response;
-        const parser = new ByteParser(this, parsedExtensions);
+        const maxPayloadSize = this[kController]?.dispatcher?.webSocketOptions
+          ?.maxPayloadSize;
+        const parser = new ByteParser(this, parsedExtensions, {
+          maxPayloadSize,
+        });
         parser.on("drain", onParserDrain);
         parser.on("error", onParserError.bind(this));
         response.socket.ws = this;
@@ -20936,9 +21068,9 @@ var require_websocket = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/util.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/util.js
 var require_util8 = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/util.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/util.js"(
     exports,
     module,
   ) {
@@ -20966,9 +21098,9 @@ var require_util8 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js
 var require_eventsource_stream = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js"(
     exports,
     module,
   ) {
@@ -21215,9 +21347,9 @@ ${value}`;
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/eventsource.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/eventsource.js
 var require_eventsource = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/lib/web/eventsource/eventsource.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/lib/web/eventsource/eventsource.js"(
     exports,
     module,
   ) {
@@ -21539,9 +21671,9 @@ var require_eventsource = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.23.0/node_modules/undici/index.js
+// node_modules/.deno/undici@6.25.0/node_modules/undici/index.js
 var require_undici = __commonJS({
-  "node_modules/.deno/undici@6.23.0/node_modules/undici/index.js"(
+  "node_modules/.deno/undici@6.25.0/node_modules/undici/index.js"(
     exports,
     module,
   ) {
