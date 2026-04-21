@@ -29,9 +29,21 @@ jobs:
           deno-version-file: .tool-versions
           cache: true
 
+      - name: Snapshot current dependency specifiers
+        id: snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          snapshot_file="$(mktemp)"
+          jq -S '.imports' deno.json > "${snapshot_file}"
+          echo "file=${snapshot_file}" >> "${GITHUB_OUTPUT}"
+
       - name: Run dependency updates
         id: update_deps
         shell: bash
+        env:
+          BEFORE_SNAPSHOT: ${{ steps.snapshot.outputs.file }}
         run: |
           set -euo pipefail
 
@@ -45,9 +57,62 @@ jobs:
             exit 0
           fi
 
+          after_snapshot="$(jq -S '.imports' deno.json)"
+          before_snapshot="$(cat "${BEFORE_SNAPSHOT}")"
+
+          changes_json="$(jq -n \
+            --argjson before "${before_snapshot}" \
+            --argjson after "${after_snapshot}" \
+            '
+              ([$before, $after] | map(keys) | add | unique) as $keys
+              | $keys
+                | map({
+                    alias: .,
+                    before: ($before[.] // null),
+                    after: ($after[.] // null)
+                  })
+                | map(select(.before != .after))
+            ')"
+
+          changes_md="$(jq -r '
+            if length == 0 then
+              "_No specifier changes; only `deno.lock` was regenerated._"
+            else
+              map(
+                if .before == null then "- Added `\(.alias)`: `\(.after)`"
+                elif .after == null then "- Removed `\(.alias)` (was `\(.before)`)"
+                else "- `\(.alias)`: `\(.before)` -> `\(.after)`"
+                end
+              ) | join("\n")
+            end
+          ' <<<"${changes_json}")"
+
+          changes_plain="$(jq -r '
+            if length == 0 then
+              "No specifier changes; only deno.lock was regenerated."
+            else
+              map(
+                if .before == null then "- Added \(.alias): \(.after)"
+                elif .after == null then "- Removed \(.alias) (was \(.before))"
+                else "- \(.alias): \(.before) -> \(.after)"
+                end
+              ) | join("\n")
+            end
+          ' <<<"${changes_json}")"
+
           echo "updated=true" >> "${GITHUB_OUTPUT}"
           {
-            echo "Dependency updates detected:"
+            echo "changes_plain<<COMMIT_BODY_EOF"
+            printf '%s\n' "${changes_plain}"
+            echo "COMMIT_BODY_EOF"
+          } >> "${GITHUB_OUTPUT}"
+
+          {
+            echo "## Dependency updates"
+            echo
+            printf '%s\n' "${changes_md}"
+            echo
+            echo "### Working-tree changes"
             echo
             echo '```text'
             printf '%s\n' "${working_tree_status}"
@@ -67,12 +132,9 @@ jobs:
           deno task build
           deno fmt dist/
 
-      - id: commit
-        name: Commit and push updated dependencies
+      - name: Guard against unexpected working-tree changes
         if: steps.update_deps.outputs.updated == 'true'
         shell: bash
-        env:
-          COMMIT_MESSAGE: "build(deps): update dependencies"
         run: |
           set -euo pipefail
 
@@ -91,21 +153,25 @@ jobs:
             exit 1
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Validate commit message
+        if: steps.update_deps.outputs.updated == 'true'
+        shell: bash
+        env:
+          COMMIT_HEADLINE: "build(deps): update dependencies"
+          COMMIT_BODY: ${{ steps.update_deps.outputs.changes_plain }}
+        run: |
+          set -euo pipefail
 
           commit_message_file="$(mktemp)"
-          printf '%s\n' "${COMMIT_MESSAGE}" > "${commit_message_file}"
+          {
+            printf '%s\n\n' "${COMMIT_HEADLINE}"
+            printf '%s\n' "${COMMIT_BODY}"
+          } > "${commit_message_file}"
           deno task lint-commit "${commit_message_file}"
 
-          git add deno.json deno.lock dist/
-
-          if git diff --cached --quiet; then
-            echo "No staged changes to commit."
-            exit 0
-          fi
-
-          git commit -m "${COMMIT_MESSAGE}"
-          git fetch origin "${GITHUB_REF_NAME}"
-          git rebase "origin/${GITHUB_REF_NAME}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+      - name: Commit and push via GitHub API
+        if: steps.update_deps.outputs.updated == 'true'
+        uses: ./.github/actions/commit-via-api
+        with:
+          headline: "build(deps): update dependencies"
+          body: ${{ steps.update_deps.outputs.changes_plain }}

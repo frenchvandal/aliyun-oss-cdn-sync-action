@@ -97,12 +97,9 @@ jobs:
           deno task build
           deno fmt dist/
 
-      - id: commit
+      - name: Guard against unexpected working-tree changes
         if: steps.update_tool_versions.outputs.changed == 'true'
-        name: Commit and push runtime updates
         shell: bash
-        env:
-          COMMIT_MESSAGE: "chore: update deno version"
         run: |
           set -euo pipefail
 
@@ -121,24 +118,29 @@ jobs:
             exit 1
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Validate commit message
+        if: steps.update_tool_versions.outputs.changed == 'true'
+        shell: bash
+        env:
+          COMMIT_HEADLINE: "chore: update deno version"
+          COMMIT_BODY: "Deno: ${{ steps.update_tool_versions.outputs.current_deno }} -> ${{ steps.update_tool_versions.outputs.new_deno }}"
+        run: |
+          set -euo pipefail
 
           commit_message_file="$(mktemp)"
-          printf '%s\n' "${COMMIT_MESSAGE}" > "${commit_message_file}"
+          {
+            printf '%s\n\n' "${COMMIT_HEADLINE}"
+            printf '%s\n' "${COMMIT_BODY}"
+          } > "${commit_message_file}"
           deno task lint-commit "${commit_message_file}"
 
-          git add .tool-versions deno.lock dist/
-
-          if git diff --cached --quiet; then
-            echo "No staged changes to commit."
-            exit 0
-          fi
-
-          git commit -m "${COMMIT_MESSAGE}"
-          git fetch origin "${GITHUB_REF_NAME}"
-          git rebase "origin/${GITHUB_REF_NAME}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+      - id: commit
+        if: steps.update_tool_versions.outputs.changed == 'true'
+        name: Commit and push via GitHub API
+        uses: ./.github/actions/commit-via-api
+        with:
+          headline: "chore: update deno version"
+          body: "Deno: ${{ steps.update_tool_versions.outputs.current_deno }} -> ${{ steps.update_tool_versions.outputs.new_deno }}"
 
       - name: Write runtime update summary
         if: always()

@@ -1,0 +1,133 @@
+name: Commit via GitHub API
+description: >-
+  Commit every change in the working tree to a branch through the
+  `createCommitOnBranch` GraphQL mutation. Commits land as `Verified`
+  because GitHub signs them server-side.
+
+inputs:
+  headline:
+    description: Commit subject line.
+    required: true
+  body:
+    description: Commit body (optional).
+    required: false
+    default: ""
+  branch:
+    description: Target branch name.
+    required: false
+    default: ${{ github.ref_name }}
+  token:
+    description: Token used to authenticate the API call.
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  committed:
+    description: "`true` when a commit was created, `false` otherwise."
+    value: ${{ steps.commit.outputs.committed }}
+  oid:
+    description: The new commit OID when one was created.
+    value: ${{ steps.commit.outputs.oid }}
+
+runs:
+  using: composite
+  steps:
+    - id: commit
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        HEADLINE: ${{ inputs.headline }}
+        BODY: ${{ inputs.body }}
+        BRANCH: ${{ inputs.branch }}
+      run: |
+        set -euo pipefail
+
+        changes="$(git status --porcelain=v1 --untracked-files=all)"
+        if [[ -z "${changes}" ]]; then
+          echo "committed=false" >> "${GITHUB_OUTPUT}"
+          echo "No working-tree changes to commit."
+          exit 0
+        fi
+
+        additions='[]'
+        deletions='[]'
+
+        while IFS= read -r line; do
+          [[ -z "${line}" ]] && continue
+          status="${line:0:2}"
+          path="${line:3}"
+
+          if [[ "${status}" == R* || "${status}" == *R ]]; then
+            old="${path%% -> *}"
+            new="${path##* -> }"
+            deletions="$(jq --arg p "${old}" '. + [{path:$p}]' <<<"${deletions}")"
+            contents="$(base64 -w0 "${new}")"
+            additions="$(jq --arg p "${new}" --arg c "${contents}" \
+              '. + [{path:$p, contents:$c}]' <<<"${additions}")"
+            continue
+          fi
+
+          if [[ "${status}" == "D "* || "${status}" == " D"* ]]; then
+            deletions="$(jq --arg p "${path}" '. + [{path:$p}]' <<<"${deletions}")"
+            continue
+          fi
+
+          contents="$(base64 -w0 "${path}")"
+          additions="$(jq --arg p "${path}" --arg c "${contents}" \
+            '. + [{path:$p, contents:$c}]' <<<"${additions}")"
+        done <<< "${changes}"
+
+        expected_oid="$(git rev-parse HEAD)"
+
+        variables="$(jq -n \
+          --arg repo "${GITHUB_REPOSITORY}" \
+          --arg branch "${BRANCH}" \
+          --arg headline "${HEADLINE}" \
+          --arg body "${BODY}" \
+          --arg oid "${expected_oid}" \
+          --argjson additions "${additions}" \
+          --argjson deletions "${deletions}" \
+          '{
+            repo:$repo,
+            branch:$branch,
+            headline:$headline,
+            body:$body,
+            expectedHeadOid:$oid,
+            additions:$additions,
+            deletions:$deletions
+          }')"
+
+        query='mutation(
+          $repo: String!,
+          $branch: String!,
+          $headline: String!,
+          $body: String!,
+          $expectedHeadOid: GitObjectID!,
+          $additions: [FileAddition!],
+          $deletions: [FileDeletion!]
+        ) {
+          createCommitOnBranch(input: {
+            branch: { repositoryNameWithOwner: $repo, branchName: $branch },
+            message: { headline: $headline, body: $body },
+            fileChanges: { additions: $additions, deletions: $deletions },
+            expectedHeadOid: $expectedHeadOid
+          }) {
+            commit { oid }
+          }
+        }'
+
+        payload="$(jq -n --arg q "${query}" --argjson v "${variables}" \
+          '{query:$q, variables:$v}')"
+
+        response="$(gh api --method POST /graphql --input - <<<"${payload}")"
+        oid="$(jq -r '.data.createCommitOnBranch.commit.oid' <<<"${response}")"
+
+        if [[ -z "${oid}" || "${oid}" == "null" ]]; then
+          echo "createCommitOnBranch did not return a commit OID:" >&2
+          jq . <<<"${response}" >&2
+          exit 1
+        fi
+
+        echo "committed=true" >> "${GITHUB_OUTPUT}"
+        echo "oid=${oid}" >> "${GITHUB_OUTPUT}"
+        echo "Created verified commit ${oid} on ${BRANCH}."
