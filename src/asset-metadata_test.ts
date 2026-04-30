@@ -10,6 +10,10 @@ Deno.test("guessContentType applies feed-specific MIME types by basename", () =>
     guessContentType("/tmp/output/nested/feed.json", "nested/feed.json"),
     "application/feed+json",
   );
+  assertEquals(
+    guessContentType("/tmp/output/blog/feed.xml", "blog/feed.xml"),
+    "application/rss+xml",
+  );
 });
 
 Deno.test("guessContentType falls back to inline when no extension mapping exists", () => {
