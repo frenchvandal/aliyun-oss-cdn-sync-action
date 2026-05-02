@@ -71,9 +71,11 @@ runs:
             jq --arg p "${old}" '. + [{path:$p}]' "${deletions_file}" > "${deletions_file}.tmp"
             mv "${deletions_file}.tmp" "${deletions_file}"
             contents="$(base64 -w0 "${new}")"
-            jq --arg p "${new}" --arg c "${contents}" \
-              '. + [{path:$p, contents:$c}]' "${additions_file}" > "${additions_file}.tmp"
+            printf '%s' "${contents}" | jq -R --arg p "${new}" \
+              '{path:$p, contents:.}' > "${additions_file}.item"
+            jq -s '.[0] + [.[1]]' "${additions_file}" "${additions_file}.item" > "${additions_file}.tmp"
             mv "${additions_file}.tmp" "${additions_file}"
+            rm -f "${additions_file}.item"
             continue
           fi
 
@@ -84,9 +86,11 @@ runs:
           fi
 
           contents="$(base64 -w0 "${path}")"
-          jq --arg p "${path}" --arg c "${contents}" \
-            '. + [{path:$p, contents:$c}]' "${additions_file}" > "${additions_file}.tmp"
+          printf '%s' "${contents}" | jq -R --arg p "${path}" \
+            '{path:$p, contents:.}' > "${additions_file}.item"
+          jq -s '.[0] + [.[1]]' "${additions_file}" "${additions_file}.item" > "${additions_file}.tmp"
           mv "${additions_file}.tmp" "${additions_file}"
+          rm -f "${additions_file}.item"
         done <<< "${changes}"
 
         expected_oid="$(git rev-parse HEAD)"
