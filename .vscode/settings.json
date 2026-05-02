@@ -1,6 +1,9 @@
 {
   "yaml.schemas": {
-    "https://json.schemastore.org/github-action.json": "action.yml"
+    "https://json.schemastore.org/github-action.json": [
+      "action.yml",
+      ".github/actions/*/action.yml"
+    ]
   },
   "editor.inlayHints.enabled": "off",
   "deno.enable": true,
