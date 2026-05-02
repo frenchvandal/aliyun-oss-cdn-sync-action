@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.14](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.13...v1.0.14) (2026-05-02)
+
+
+### Bug Fixes
+
+* skip source maps in commit-via-api to stay under 45 MB ([fe90b49](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/fe90b493d292533a8c5e08e5880ee115c3e0a634))
+
 ## [1.0.13](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.12...v1.0.13) (2026-05-02)
 
 
