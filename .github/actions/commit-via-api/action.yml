@@ -65,9 +65,19 @@ runs:
           status="${line:0:2}"
           path="${line:3}"
 
+          # Skip source maps — they bloat the GraphQL payload beyond 45 MB.
+          if [[ "${path}" == *.map ]]; then
+            continue
+          fi
+
           if [[ "${status}" == R* || "${status}" == *R ]]; then
             old="${path%% -> *}"
             new="${path##* -> }"
+
+            # Skip source map renames as well.
+            if [[ "${old}" == *.map || "${new}" == *.map ]]; then
+              continue
+            fi
             jq --arg p "${old}" '. + [{path:$p}]' "${deletions_file}" > "${deletions_file}.tmp"
             mv "${deletions_file}.tmp" "${deletions_file}"
             contents="$(base64 -w0 "${new}")"
