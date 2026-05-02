@@ -49,8 +49,16 @@ runs:
           exit 0
         fi
 
-        additions='[]'
-        deletions='[]'
+        additions_file="$(mktemp)"
+        deletions_file="$(mktemp)"
+        printf '[]\n' > "${additions_file}"
+        printf '[]\n' > "${deletions_file}"
+
+        cleanup() {
+          rm -f "${additions_file}" "${deletions_file}" \
+            "${additions_file}.tmp" "${deletions_file}.tmp" "${payload_file:-}"
+        }
+        trap cleanup EXIT
 
         while IFS= read -r line; do
           [[ -z "${line}" ]] && continue
@@ -60,42 +68,28 @@ runs:
           if [[ "${status}" == R* || "${status}" == *R ]]; then
             old="${path%% -> *}"
             new="${path##* -> }"
-            deletions="$(jq --arg p "${old}" '. + [{path:$p}]' <<<"${deletions}")"
+            jq --arg p "${old}" '. + [{path:$p}]' "${deletions_file}" > "${deletions_file}.tmp"
+            mv "${deletions_file}.tmp" "${deletions_file}"
             contents="$(base64 -w0 "${new}")"
-            additions="$(jq --arg p "${new}" --arg c "${contents}" \
-              '. + [{path:$p, contents:$c}]' <<<"${additions}")"
+            jq --arg p "${new}" --arg c "${contents}" \
+              '. + [{path:$p, contents:$c}]' "${additions_file}" > "${additions_file}.tmp"
+            mv "${additions_file}.tmp" "${additions_file}"
             continue
           fi
 
           if [[ "${status}" == "D "* || "${status}" == " D"* ]]; then
-            deletions="$(jq --arg p "${path}" '. + [{path:$p}]' <<<"${deletions}")"
+            jq --arg p "${path}" '. + [{path:$p}]' "${deletions_file}" > "${deletions_file}.tmp"
+            mv "${deletions_file}.tmp" "${deletions_file}"
             continue
           fi
 
           contents="$(base64 -w0 "${path}")"
-          additions="$(jq --arg p "${path}" --arg c "${contents}" \
-            '. + [{path:$p, contents:$c}]' <<<"${additions}")"
+          jq --arg p "${path}" --arg c "${contents}" \
+            '. + [{path:$p, contents:$c}]' "${additions_file}" > "${additions_file}.tmp"
+          mv "${additions_file}.tmp" "${additions_file}"
         done <<< "${changes}"
 
         expected_oid="$(git rev-parse HEAD)"
-
-        variables="$(jq -n \
-          --arg repo "${GITHUB_REPOSITORY}" \
-          --arg branch "${BRANCH}" \
-          --arg headline "${HEADLINE}" \
-          --arg body "${BODY}" \
-          --arg oid "${expected_oid}" \
-          --argjson additions "${additions}" \
-          --argjson deletions "${deletions}" \
-          '{
-            repo:$repo,
-            branch:$branch,
-            headline:$headline,
-            body:$body,
-            expectedHeadOid:$oid,
-            additions:$additions,
-            deletions:$deletions
-          }')"
 
         query='mutation(
           $repo: String!,
@@ -116,10 +110,31 @@ runs:
           }
         }'
 
-        payload="$(jq -n --arg q "${query}" --argjson v "${variables}" \
-          '{query:$q, variables:$v}')"
+        payload_file="$(mktemp)"
 
-        response="$(gh api --method POST /graphql --input - <<<"${payload}")"
+        jq -n \
+          --arg q "${query}" \
+          --arg repo "${GITHUB_REPOSITORY}" \
+          --arg branch "${BRANCH}" \
+          --arg headline "${HEADLINE}" \
+          --arg body "${BODY}" \
+          --arg oid "${expected_oid}" \
+          --slurpfile additions "${additions_file}" \
+          --slurpfile deletions "${deletions_file}" \
+          '{
+            query: $q,
+            variables: {
+              repo: $repo,
+              branch: $branch,
+              headline: $headline,
+              body: $body,
+              expectedHeadOid: $oid,
+              additions: $additions[0],
+              deletions: $deletions[0]
+            }
+          }' > "${payload_file}"
+
+        response="$(gh api --method POST /graphql --input "${payload_file}")"
         oid="$(jq -r '.data.createCommitOnBranch.commit.oid' <<<"${response}")"
 
         if [[ -z "${oid}" || "${oid}" == "null" ]]; then
