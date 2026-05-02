@@ -1,4 +1,7 @@
 {
+  "files.associations": {
+    ".github/actions/*/action.yml": "yaml"
+  },
   "yaml.schemas": {
     "https://json.schemastore.org/github-action.json": [
       "action.yml",
