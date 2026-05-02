@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.13](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.12...v1.0.13) (2026-05-02)
+
+
+### Bug Fixes
+
+* avoid jq argument list too long in commit-via-api action ([cff7f98](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/cff7f98b5713f7eef40fb497e43a394b454f8f75))
+* **ci:** avoid ARG_MAX error in commit-via-api action ([26162f9](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/26162f96a3633efd1dd0894951251df41711421e))
+
 ## [1.0.12](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.11...v1.0.12) (2026-04-06)
 
 
