@@ -10,7 +10,7 @@
     "npm:@actions/core@^3.0.1": "3.0.1",
     "npm:@actions/exec@3": "3.0.0",
     "npm:@actions/io@^3.0.2": "3.0.2",
-    "npm:@alicloud/cdn20180510@9.0.0": "9.0.0",
+    "npm:@alicloud/cdn20180510@9.1.0": "9.1.0",
     "npm:@alicloud/credentials@^2.4.4": "2.4.4",
     "npm:ali-oss@^6.23.0": "6.23.0",
     "npm:ernest-logger@^2.0.4": "2.0.4",
@@ -81,8 +81,8 @@
     "@actions/io@3.0.2": {
       "integrity": "sha512-nRBchcMM+QK1pdjO7/idu86rbJI5YHUKCvKs0KxnSYbVe3F51UfGxuZX4Qy/fWlp6l7gWFwIkrOzN+oUK03kfw=="
     },
-    "@alicloud/cdn20180510@9.0.0": {
-      "integrity": "sha512-r3MTi5LTc2jcuIghk5NQQmKOFk61QFK1jLhIO8P13vbOKGQbzSdKhErYz+7T2UFRfmJUwSNjHh+m4KjR63o3kA==",
+    "@alicloud/cdn20180510@9.1.0": {
+      "integrity": "sha512-nhcptek6sPOeXN4YpF8l/GURcFgi+/DnFKIZFgAMWgP6I6b+H9KJgPK54kKhOVD4mVLOZsp1DMzFtgYL56VxsQ==",
       "dependencies": [
         "@alicloud/openapi-core",
         "@darabonba/typescript"
@@ -1029,7 +1029,7 @@
       "npm:@actions/core@^3.0.1",
       "npm:@actions/exec@3",
       "npm:@actions/io@^3.0.2",
-      "npm:@alicloud/cdn20180510@9.0.0",
+      "npm:@alicloud/cdn20180510@9.1.0",
       "npm:@alicloud/credentials@^2.4.4",
       "npm:ali-oss@^6.23.0",
       "npm:ernest-logger@^2.0.4",
