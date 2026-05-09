@@ -168926,9 +168926,9 @@ var require_minimatch = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/internal/constants.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/internal/constants.js
 var require_constants6 = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/internal/constants.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/internal/constants.js"(
     exports2,
     module,
   ) {
@@ -168961,9 +168961,9 @@ var require_constants6 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/internal/debug.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/internal/debug.js
 var require_debug = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/internal/debug.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/internal/debug.js"(
     exports2,
     module,
   ) {
@@ -168978,9 +168978,9 @@ var require_debug = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/internal/re.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/internal/re.js
 var require_re = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/internal/re.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/internal/re.js"(
     exports2,
     module,
   ) {
@@ -169162,9 +169162,9 @@ var require_re = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/internal/parse-options.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/internal/parse-options.js
 var require_parse_options = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/internal/parse-options.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/internal/parse-options.js"(
     exports2,
     module,
   ) {
@@ -169186,9 +169186,9 @@ var require_parse_options = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/internal/identifiers.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/internal/identifiers.js
 var require_identifiers = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/internal/identifiers.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/internal/identifiers.js"(
     exports2,
     module,
   ) {
@@ -169222,9 +169222,9 @@ var require_identifiers = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/classes/semver.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/classes/semver.js
 var require_semver2 = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/classes/semver.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/classes/semver.js"(
     exports2,
     module,
   ) {
@@ -169528,9 +169528,9 @@ var require_semver2 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/parse.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/parse.js
 var require_parse3 = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/parse.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/parse.js"(
     exports2,
     module,
   ) {
@@ -169553,9 +169553,9 @@ var require_parse3 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/valid.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/valid.js
 var require_valid = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/valid.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/valid.js"(
     exports2,
     module,
   ) {
@@ -169569,9 +169569,9 @@ var require_valid = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/clean.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/clean.js
 var require_clean = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/clean.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/clean.js"(
     exports2,
     module,
   ) {
@@ -169585,9 +169585,9 @@ var require_clean = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/inc.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/inc.js
 var require_inc = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/inc.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/inc.js"(
     exports2,
     module,
   ) {
@@ -169612,9 +169612,9 @@ var require_inc = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/diff.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/diff.js
 var require_diff = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/diff.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/diff.js"(
     exports2,
     module,
   ) {
@@ -169659,9 +169659,9 @@ var require_diff = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/major.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/major.js
 var require_major = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/major.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/major.js"(
     exports2,
     module,
   ) {
@@ -169672,9 +169672,9 @@ var require_major = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/minor.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/minor.js
 var require_minor = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/minor.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/minor.js"(
     exports2,
     module,
   ) {
@@ -169685,9 +169685,9 @@ var require_minor = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/patch.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/patch.js
 var require_patch = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/patch.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/patch.js"(
     exports2,
     module,
   ) {
@@ -169698,9 +169698,9 @@ var require_patch = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/prerelease.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/prerelease.js
 var require_prerelease = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/prerelease.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/prerelease.js"(
     exports2,
     module,
   ) {
@@ -169714,9 +169714,9 @@ var require_prerelease = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/compare.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/compare.js
 var require_compare = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/compare.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/compare.js"(
     exports2,
     module,
   ) {
@@ -169728,9 +169728,9 @@ var require_compare = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/rcompare.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/rcompare.js
 var require_rcompare = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/rcompare.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/rcompare.js"(
     exports2,
     module,
   ) {
@@ -169741,9 +169741,9 @@ var require_rcompare = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/compare-loose.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/compare-loose.js
 var require_compare_loose = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/compare-loose.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/compare-loose.js"(
     exports2,
     module,
   ) {
@@ -169754,9 +169754,9 @@ var require_compare_loose = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/compare-build.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/compare-build.js
 var require_compare_build = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/compare-build.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/compare-build.js"(
     exports2,
     module,
   ) {
@@ -169771,9 +169771,9 @@ var require_compare_build = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/sort.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/sort.js
 var require_sort = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/sort.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/sort.js"(
     exports2,
     module,
   ) {
@@ -169784,9 +169784,9 @@ var require_sort = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/rsort.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/rsort.js
 var require_rsort = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/rsort.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/rsort.js"(
     exports2,
     module,
   ) {
@@ -169797,9 +169797,9 @@ var require_rsort = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/gt.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/gt.js
 var require_gt = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/gt.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/gt.js"(
     exports2,
     module,
   ) {
@@ -169810,9 +169810,9 @@ var require_gt = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/lt.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/lt.js
 var require_lt = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/lt.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/lt.js"(
     exports2,
     module,
   ) {
@@ -169823,9 +169823,9 @@ var require_lt = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/eq.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/eq.js
 var require_eq = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/eq.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/eq.js"(
     exports2,
     module,
   ) {
@@ -169836,9 +169836,9 @@ var require_eq = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/neq.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/neq.js
 var require_neq = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/neq.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/neq.js"(
     exports2,
     module,
   ) {
@@ -169849,9 +169849,9 @@ var require_neq = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/gte.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/gte.js
 var require_gte = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/gte.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/gte.js"(
     exports2,
     module,
   ) {
@@ -169862,9 +169862,9 @@ var require_gte = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/lte.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/lte.js
 var require_lte = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/lte.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/lte.js"(
     exports2,
     module,
   ) {
@@ -169875,9 +169875,9 @@ var require_lte = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/cmp.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/cmp.js
 var require_cmp = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/cmp.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/cmp.js"(
     exports2,
     module,
   ) {
@@ -169928,9 +169928,9 @@ var require_cmp = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/coerce.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/coerce.js
 var require_coerce = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/coerce.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/coerce.js"(
     exports2,
     module,
   ) {
@@ -169992,9 +169992,55 @@ var require_coerce = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/internal/lrucache.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/truncate.js
+var require_truncate = __commonJS({
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/truncate.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var parse2 = require_parse3();
+    var constants4 = require_constants6();
+    var SemVer = require_semver2();
+    var truncate = (version3, truncation, options) => {
+      if (!constants4.RELEASE_TYPES.includes(truncation)) {
+        return null;
+      }
+      const clonedVersion = cloneInputVersion(version3, options);
+      return clonedVersion && doTruncation(clonedVersion, truncation);
+    };
+    var cloneInputVersion = (version3, options) => {
+      const versionStringToParse = version3 instanceof SemVer
+        ? version3.version
+        : version3;
+      return parse2(versionStringToParse, options);
+    };
+    var doTruncation = (version3, truncation) => {
+      if (isPrerelease(truncation)) {
+        return version3.version;
+      }
+      version3.prerelease = [];
+      switch (truncation) {
+        case "major":
+          version3.minor = 0;
+          version3.patch = 0;
+          break;
+        case "minor":
+          version3.patch = 0;
+          break;
+      }
+      return version3.format();
+    };
+    var isPrerelease = (type) => {
+      return type.startsWith("pre");
+    };
+    module.exports = truncate;
+  },
+});
+
+// node_modules/.deno/semver@7.8.0/node_modules/semver/internal/lrucache.js
 var require_lrucache = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/internal/lrucache.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/internal/lrucache.js"(
     exports2,
     module,
   ) {
@@ -170033,9 +170079,9 @@ var require_lrucache = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/classes/range.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/classes/range.js
 var require_range2 = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/classes/range.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/classes/range.js"(
     exports2,
     module,
   ) {
@@ -170454,9 +170500,9 @@ var require_range2 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/classes/comparator.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/classes/comparator.js
 var require_comparator = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/classes/comparator.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/classes/comparator.js"(
     exports2,
     module,
   ) {
@@ -170585,9 +170631,9 @@ var require_comparator = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/functions/satisfies.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/functions/satisfies.js
 var require_satisfies = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/functions/satisfies.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/functions/satisfies.js"(
     exports2,
     module,
   ) {
@@ -170605,9 +170651,9 @@ var require_satisfies = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/to-comparators.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/to-comparators.js
 var require_to_comparators = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/to-comparators.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/to-comparators.js"(
     exports2,
     module,
   ) {
@@ -170621,9 +170667,9 @@ var require_to_comparators = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/max-satisfying.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/max-satisfying.js
 var require_max_satisfying = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/max-satisfying.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/max-satisfying.js"(
     exports2,
     module,
   ) {
@@ -170653,9 +170699,9 @@ var require_max_satisfying = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/min-satisfying.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/min-satisfying.js
 var require_min_satisfying = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/min-satisfying.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/min-satisfying.js"(
     exports2,
     module,
   ) {
@@ -170685,9 +170731,9 @@ var require_min_satisfying = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/min-version.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/min-version.js
 var require_min_version = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/min-version.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/min-version.js"(
     exports2,
     module,
   ) {
@@ -170747,9 +170793,9 @@ var require_min_version = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/valid.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/valid.js
 var require_valid2 = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/valid.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/valid.js"(
     exports2,
     module,
   ) {
@@ -170766,9 +170812,9 @@ var require_valid2 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/outside.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/outside.js
 var require_outside = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/outside.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/outside.js"(
     exports2,
     module,
   ) {
@@ -170841,9 +170887,9 @@ var require_outside = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/gtr.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/gtr.js
 var require_gtr = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/gtr.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/gtr.js"(
     exports2,
     module,
   ) {
@@ -170855,9 +170901,9 @@ var require_gtr = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/ltr.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/ltr.js
 var require_ltr = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/ltr.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/ltr.js"(
     exports2,
     module,
   ) {
@@ -170869,9 +170915,9 @@ var require_ltr = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/intersects.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/intersects.js
 var require_intersects = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/intersects.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/intersects.js"(
     exports2,
     module,
   ) {
@@ -170886,9 +170932,9 @@ var require_intersects = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/simplify.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/simplify.js
 var require_simplify = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/simplify.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/simplify.js"(
     exports2,
     module,
   ) {
@@ -170947,9 +170993,9 @@ var require_simplify = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/subset.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/subset.js
 var require_subset = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/ranges/subset.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/ranges/subset.js"(
     exports2,
     module,
   ) {
@@ -171153,9 +171199,9 @@ var require_subset = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.7.4/node_modules/semver/index.js
+// node_modules/.deno/semver@7.8.0/node_modules/semver/index.js
 var require_semver3 = __commonJS({
-  "node_modules/.deno/semver@7.7.4/node_modules/semver/index.js"(
+  "node_modules/.deno/semver@7.8.0/node_modules/semver/index.js"(
     exports2,
     module,
   ) {
@@ -171187,6 +171233,7 @@ var require_semver3 = __commonJS({
     var lte = require_lte();
     var cmp = require_cmp();
     var coerce = require_coerce();
+    var truncate = require_truncate();
     var Comparator = require_comparator();
     var Range = require_range2();
     var satisfies = require_satisfies();
@@ -171225,6 +171272,7 @@ var require_semver3 = __commonJS({
       lte,
       cmp,
       coerce,
+      truncate,
       Comparator,
       Range,
       satisfies,
@@ -182137,7 +182185,7 @@ function convertHttpClient(requestPolicyClient) {
   };
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/util.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/util.js
 var nameStartChar =
   ":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
 var nameChar = nameStartChar + "\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
@@ -182183,7 +182231,7 @@ var criticalProperties = [
   "prototype",
 ];
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/validator.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/validator.js
 var defaultOptions = {
   allowBooleanAttributes: false,
   unpairedTags: [],
@@ -184190,7 +184238,7 @@ IS_XML_UNSAFE[62] = 1;
 IS_XML_UNSAFE[34] = 1;
 IS_XML_UNSAFE[39] = 1;
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
 var defaultOnDangerousProperty = (name) => {
   if (DANGEROUS_PROPERTY_NAMES.includes(name)) {
     return "__" + name;
@@ -184344,7 +184392,7 @@ var buildOptions = function (options) {
   return built;
 };
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
 var METADATA_SYMBOL;
 if (typeof Symbol !== "function") {
   METADATA_SYMBOL = "@@xmlMetadata";
@@ -184387,7 +184435,7 @@ var XmlNode = class {
   }
 };
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
 var DocTypeReader = class {
   constructor(options) {
     this.suppressValidationErr = !options;
@@ -184729,12 +184777,15 @@ function validateEntityName2(name) {
   else throw new Error(`Invalid entity name ${name}`);
 }
 
-// node_modules/.deno/strnum@2.2.3/node_modules/strnum/strnum.js
+// node_modules/.deno/strnum@2.3.0/node_modules/strnum/strnum.js
 var hexRegex = /^[-+]?0x[a-fA-F0-9]+$/;
+var binRegex = /^0b[01]+$/;
+var octRegex = /^0o[0-7]+$/;
 var numRegex = /^([\-\+])?(0*)([0-9]*(\.[0-9]*)?)$/;
 var consider = {
   hex: true,
-  // oct: false,
+  binary: false,
+  octal: false,
   leadingZeros: true,
   decimalPoint: ".",
   eNotation: true,
@@ -184751,6 +184802,10 @@ function toNumber(str, options = {}) {
   } else if (trimmedStr === "0") return 0;
   else if (options.hex && hexRegex.test(trimmedStr)) {
     return parse_int(trimmedStr, 16);
+  } else if (options.binary && binRegex.test(trimmedStr)) {
+    return parse_int(trimmedStr, 2);
+  } else if (options.octal && octRegex.test(trimmedStr)) {
+    return parse_int(trimmedStr, 8);
   } else if (!isFinite(trimmedStr)) {
     return handleInfinity(str, Number(trimmedStr), options);
   } else if (trimmedStr.includes("e") || trimmedStr.includes("E")) {
@@ -184837,6 +184892,8 @@ function trimZeros(numStr) {
   return numStr;
 }
 function parse_int(numStr, base) {
+  const str = numStr.trim();
+  if (base === 2 || base === 8) numStr = str.substring(2);
   if (parseInt) return parseInt(numStr, base);
   else if (Number.parseInt) return Number.parseInt(numStr, base);
   else if (window && window.parseInt) return window.parseInt(numStr, base);
@@ -184860,7 +184917,7 @@ function handleInfinity(str, num, options) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/ignoreAttributes.js
 function getIgnoreAttributesFn(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -185695,7 +185752,7 @@ var Matcher = class {
   }
 };
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
 function extractRawAttributes(prefixedAttrs, options) {
   if (!prefixedAttrs) return {};
   const attrs = options.attributesGroupName
@@ -185725,7 +185782,7 @@ function extractNamespace(rawTagName) {
   return void 0;
 }
 var OrderedObjParser = class {
-  constructor(options) {
+  constructor(options, externalEntities) {
     this.options = options;
     this.currentNode = null;
     this.tagsNodeStack = [];
@@ -185758,7 +185815,10 @@ var OrderedObjParser = class {
         };
       }
       this.entityDecoder = new EntityDecoder({
-        namedEntities,
+        namedEntities: {
+          ...namedEntities,
+          ...externalEntities,
+        },
         numericAllowed: this.options.htmlEntities,
         limit: {
           maxTotalExpansions: this.options.processEntities.maxTotalExpansions,
@@ -185912,7 +185972,7 @@ function buildAttributesMap(attrStr, jPath, tagName, force = false) {
       }
     }
     if (!hasAttrs) return;
-    if (options.attributesGroupName) {
+    if (options.attributesGroupName && !options.preserveOrder) {
       const attrCollection = {};
       attrCollection[options.attributesGroupName] = attrs;
       return attrCollection;
@@ -186299,10 +186359,11 @@ function isItStopNode() {
 }
 function tagExpWithClosingIndex(xmlData, i, closingChar = ">") {
   let attrBoundary = 0;
-  const chars = [];
   const len = xmlData.length;
   const closeCode0 = closingChar.charCodeAt(0);
   const closeCode1 = closingChar.length > 1 ? closingChar.charCodeAt(1) : -1;
+  let result = "";
+  let segmentStart = i;
   for (let index = i; index < len; index++) {
     const code = xmlData.charCodeAt(index);
     if (attrBoundary) {
@@ -186312,22 +186373,23 @@ function tagExpWithClosingIndex(xmlData, i, closingChar = ">") {
     } else if (code === closeCode0) {
       if (closeCode1 !== -1) {
         if (xmlData.charCodeAt(index + 1) === closeCode1) {
+          result += xmlData.substring(segmentStart, index);
           return {
-            data: String.fromCharCode(...chars),
+            data: result,
             index,
           };
         }
       } else {
+        result += xmlData.substring(segmentStart, index);
         return {
-          data: String.fromCharCode(...chars),
+          data: result,
           index,
         };
       }
-    } else if (code === 9) {
-      chars.push(32);
-      continue;
+    } else if (code === 9 && !attrBoundary) {
+      result += xmlData.substring(segmentStart, index) + " ";
+      segmentStart = index + 1;
     }
-    chars.push(code);
   }
 }
 function findClosingIndex(xmlData, str, i, errMsg) {
@@ -186420,7 +186482,7 @@ function readStopNodeData(xmlData, tagName, i) {
           findClosingIndex(xmlData, "]]>", i, "StopNode is not closed.") - 2;
         i = closeIndex;
       } else {
-        const tagData = readTagExp(xmlData, i, ">");
+        const tagData = readTagExp(xmlData, i, false);
         if (tagData) {
           const openTagName = tagData && tagData.tagName;
           if (
@@ -186474,7 +186536,7 @@ function sanitizeName(name, options) {
   return name;
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/node2json.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/node2json.js
 var METADATA_SYMBOL2 = XmlNode.getMetaDataSymbol();
 function stripAttributePrefix(attrs, prefix2) {
   if (!attrs || typeof attrs !== "object") return {};
@@ -186514,6 +186576,9 @@ function compress(arr, options, matcher, readonlyMatcher) {
     } else if (tagObj[property]) {
       let val = compress(tagObj[property], options, matcher, readonlyMatcher);
       const isLeaf = isLeafTag(val, options);
+      if (Object.keys(val).length === 0 && options.alwaysCreateTextNode) {
+        val[options.textNodeName] = "";
+      }
       if (tagObj[":@"]) {
         assignAttributes(val, tagObj[":@"], readonlyMatcher, options);
       } else if (
@@ -186608,7 +186673,7 @@ function isLeafTag(obj, options) {
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
 var XMLParser = class {
   constructor(options) {
     this.externalEntities = {};
@@ -186632,8 +186697,10 @@ var XMLParser = class {
         throw Error(`${result.err.msg}:${result.err.line}:${result.err.col}`);
       }
     }
-    const orderedObjParser = new OrderedObjParser(this.options);
-    orderedObjParser.entityDecoder.setExternalEntities(this.externalEntities);
+    const orderedObjParser = new OrderedObjParser(
+      this.options,
+      this.externalEntities,
+    );
     const orderedResult = orderedObjParser.parseXml(xmlData);
     if (this.options.preserveOrder || orderedResult === void 0) {
       return orderedResult;
@@ -186677,11 +186744,77 @@ var XMLParser = class {
   }
 };
 
-// node_modules/.deno/fast-xml-builder@1.1.5/node_modules/fast-xml-builder/src/orderedJs2Xml.js
+// node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/util.js
+function safeComment(val) {
+  return String(val).replace(/--/g, "- -").replace(/--/g, "- -").replace(
+    /-$/,
+    "- ",
+  );
+}
+function safeCdata(val) {
+  return String(val).replace(/\]\]>/g, "]]]]><![CDATA[>");
+}
+function escapeAttribute(val) {
+  return String(val).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
+
+// node_modules/.deno/xml-naming@0.1.0/node_modules/xml-naming/src/index.js
+var nameStartChar10 =
+  ":A-Za-z_\xC0-\xD6\xD8-\xF6\xF8-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD";
+var nameChar10 = nameStartChar10 + "\\-\\.\\d\xB7\u0300-\u036F\u203F-\u2040";
+var nameStartChar11 =
+  ":A-Za-z_\xC0-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u{10000}-\u{EFFFF}";
+var nameChar11 = nameStartChar11 +
+  "\\-\\.\\d\xB7\u0300-\u036F\u0487\u203F-\u2040";
+var buildRegexes = (startChar, char, flags = "") => {
+  const ncStart = startChar.replace(":", "");
+  const ncChar = char.replace(":", "");
+  const ncNamePat = `[${ncStart}][${ncChar}]*`;
+  return {
+    name: new RegExp(`^[${startChar}][${char}]*$`, flags),
+    ncName: new RegExp(`^${ncNamePat}$`, flags),
+    qName: new RegExp(`^${ncNamePat}(?::${ncNamePat})?$`, flags),
+    nmToken: new RegExp(`^[${char}]+$`, flags),
+    nmTokens: new RegExp(`^[${char}]+(?:\\s+[${char}]+)*$`, flags),
+  };
+};
+var regexes10 = buildRegexes(nameStartChar10, nameChar10);
+var regexes11 = buildRegexes(nameStartChar11, nameChar11, "u");
+var getRegexes = (xmlVersion = "1.0") =>
+  xmlVersion === "1.1" ? regexes11 : regexes10;
+var qName = (str, { xmlVersion = "1.0" } = {}) =>
+  getRegexes(xmlVersion).qName.test(str);
+
+// node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/orderedJs2Xml.js
 var EOL7 = "\n";
+function detectXmlVersionFromArray(jArray, options) {
+  if (!Array.isArray(jArray) || jArray.length === 0) return "1.0";
+  const first = jArray[0];
+  const firstKey = propName2(first);
+  if (firstKey === "?xml") {
+    const attrs = first[":@"];
+    if (attrs) {
+      const versionKey = options.attributeNamePrefix + "version";
+      if (attrs[versionKey]) return attrs[versionKey];
+    }
+  }
+  return "1.0";
+}
+function resolveTagName(name, isAttribute2, options, matcher, xmlVersion) {
+  if (!options.sanitizeName) return name;
+  if (
+    qName(name, {
+      xmlVersion,
+    })
+  ) return name;
+  return options.sanitizeName(name, {
+    isAttribute: isAttribute2,
+    matcher: matcher.readOnly(),
+  });
+}
 function toXml(jArray, options) {
   let indentation = "";
-  if (options.format && options.indentBy.length > 0) {
+  if (options.format) {
     indentation = EOL7;
   }
   const stopNodeExpressions = [];
@@ -186695,10 +186828,25 @@ function toXml(jArray, options) {
       }
     }
   }
+  const xmlVersion = detectXmlVersionFromArray(jArray, options);
   const matcher = new Matcher();
-  return arrToStr(jArray, options, indentation, matcher, stopNodeExpressions);
+  return arrToStr(
+    jArray,
+    options,
+    indentation,
+    matcher,
+    stopNodeExpressions,
+    xmlVersion,
+  );
 }
-function arrToStr(arr, options, indentation, matcher, stopNodeExpressions) {
+function arrToStr(
+  arr,
+  options,
+  indentation,
+  matcher,
+  stopNodeExpressions,
+  xmlVersion,
+) {
   let xmlStr = "";
   let isPreviousElementTag = false;
   if (options.maxNestedTags && matcher.getDepth() > options.maxNestedTags) {
@@ -186714,13 +186862,19 @@ function arrToStr(arr, options, indentation, matcher, stopNodeExpressions) {
   }
   for (let i = 0; i < arr.length; i++) {
     const tagObj = arr[i];
-    const tagName = propName2(tagObj);
-    if (tagName === void 0) continue;
+    const rawTagName = propName2(tagObj);
+    if (rawTagName === void 0) continue;
+    const isSpecialName = rawTagName === options.textNodeName ||
+      rawTagName === options.cdataPropName ||
+      rawTagName === options.commentPropName || rawTagName[0] === "?";
+    const tagName = isSpecialName
+      ? rawTagName
+      : resolveTagName(rawTagName, false, options, matcher, xmlVersion);
     const attrValues = extractAttributeValues(tagObj[":@"], options);
     matcher.push(tagName, attrValues);
     const isStopNode = checkStopNode(matcher, stopNodeExpressions);
     if (tagName === options.textNodeName) {
-      let tagText = tagObj[tagName];
+      let tagText = tagObj[rawTagName];
       if (!isStopNode) {
         tagText = options.tagValueProcessor(tagName, tagText);
         tagText = replaceEntitiesValue2(tagText, options);
@@ -186736,25 +186890,29 @@ function arrToStr(arr, options, indentation, matcher, stopNodeExpressions) {
       if (isPreviousElementTag) {
         xmlStr += indentation;
       }
-      const val = tagObj[tagName][0][options.textNodeName];
-      const safeVal = String(val).replace(/\]\]>/g, "]]]]><![CDATA[>");
+      const val = tagObj[rawTagName][0][options.textNodeName];
+      const safeVal = safeCdata(val);
       xmlStr += `<![CDATA[${safeVal}]]>`;
       isPreviousElementTag = false;
       matcher.pop();
       continue;
     } else if (tagName === options.commentPropName) {
-      const val = tagObj[tagName][0][options.textNodeName];
-      const safeVal = String(val).replace(/--/g, "- -").replace(/-$/, "- ");
+      const val = tagObj[rawTagName][0][options.textNodeName];
+      const safeVal = safeComment(val);
       xmlStr += indentation + `<!--${safeVal}-->`;
       isPreviousElementTag = true;
       matcher.pop();
       continue;
     } else if (tagName[0] === "?") {
-      const attStr2 = attr_to_str(tagObj[":@"], options, isStopNode);
+      const attStr2 = attr_to_str(
+        tagObj[":@"],
+        options,
+        isStopNode,
+        matcher,
+        xmlVersion,
+      );
       const tempInd = tagName === "?xml" ? "" : indentation;
-      let piTextNodeName = tagObj[tagName][0][options.textNodeName];
-      piTextNodeName = piTextNodeName.length !== 0 ? " " + piTextNodeName : "";
-      xmlStr += tempInd + `<${tagName}${piTextNodeName}${attStr2}?>`;
+      xmlStr += tempInd + `<${tagName}${attStr2}?>`;
       isPreviousElementTag = true;
       matcher.pop();
       continue;
@@ -186763,18 +186921,25 @@ function arrToStr(arr, options, indentation, matcher, stopNodeExpressions) {
     if (newIdentation !== "") {
       newIdentation += options.indentBy;
     }
-    const attStr = attr_to_str(tagObj[":@"], options, isStopNode);
+    const attStr = attr_to_str(
+      tagObj[":@"],
+      options,
+      isStopNode,
+      matcher,
+      xmlVersion,
+    );
     const tagStart = indentation + `<${tagName}${attStr}`;
     let tagValue;
     if (isStopNode) {
-      tagValue = getRawContent2(tagObj[tagName], options);
+      tagValue = getRawContent2(tagObj[rawTagName], options);
     } else {
       tagValue = arrToStr(
-        tagObj[tagName],
+        tagObj[rawTagName],
         options,
         newIdentation,
         matcher,
         stopNodeExpressions,
+        xmlVersion,
       );
     }
     if (options.unpairedTags.indexOf(tagName) !== -1) {
@@ -186812,7 +186977,7 @@ function extractAttributeValues(attrMap, options) {
     const cleanAttrName = attr.startsWith(options.attributeNamePrefix)
       ? attr.substr(options.attributeNamePrefix.length)
       : attr;
-    attrValues[cleanAttrName] = attrMap[attr];
+    attrValues[cleanAttrName] = escapeAttribute(attrMap[attr]);
     hasAttrs = true;
   }
   return hasAttrs ? attrValues : null;
@@ -186857,9 +187022,9 @@ function attr_to_str_raw(attrMap, options) {
       if (attrVal === true && options.suppressBooleanAttributes) {
         attrStr += ` ${attr.substr(options.attributeNamePrefix.length)}`;
       } else {
-        attrStr += ` ${
-          attr.substr(options.attributeNamePrefix.length)
-        }="${attrVal}"`;
+        attrStr += ` ${attr.substr(options.attributeNamePrefix.length)}="${
+          escapeAttribute(attrVal)
+        }"`;
       }
     }
   }
@@ -186873,11 +187038,15 @@ function propName2(obj) {
     if (key !== ":@") return key;
   }
 }
-function attr_to_str(attrMap, options, isStopNode) {
+function attr_to_str(attrMap, options, isStopNode, matcher, xmlVersion) {
   let attrStr = "";
   if (attrMap && !options.ignoreAttributes) {
     for (let attr in attrMap) {
       if (!Object.prototype.hasOwnProperty.call(attrMap, attr)) continue;
+      const cleanAttrName = attr.substr(options.attributeNamePrefix.length);
+      const resolvedAttrName = isStopNode
+        ? cleanAttrName
+        : resolveTagName(cleanAttrName, true, options, matcher, xmlVersion);
       let attrVal;
       if (isStopNode) {
         attrVal = attrMap[attr];
@@ -186886,11 +187055,9 @@ function attr_to_str(attrMap, options, isStopNode) {
         attrVal = replaceEntitiesValue2(attrVal, options);
       }
       if (attrVal === true && options.suppressBooleanAttributes) {
-        attrStr += ` ${attr.substr(options.attributeNamePrefix.length)}`;
+        attrStr += ` ${resolvedAttrName}`;
       } else {
-        attrStr += ` ${
-          attr.substr(options.attributeNamePrefix.length)
-        }="${attrVal}"`;
+        attrStr += ` ${resolvedAttrName}="${escapeAttribute(attrVal)}"`;
       }
     }
   }
@@ -186915,7 +187082,7 @@ function replaceEntitiesValue2(textValue, options) {
   return textValue;
 }
 
-// node_modules/.deno/fast-xml-builder@1.1.5/node_modules/fast-xml-builder/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/ignoreAttributes.js
 function getIgnoreAttributesFn2(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -186935,7 +187102,7 @@ function getIgnoreAttributesFn2(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/fast-xml-builder@1.1.5/node_modules/fast-xml-builder/src/fxb.js
+// node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/fxb.js
 var defaultOptions3 = {
   attributeNamePrefix: "@_",
   attributesGroupName: false,
@@ -186985,7 +187152,8 @@ var defaultOptions3 = {
   oneListGroup: false,
   maxNestedTags: 100,
   jPath: true,
-  // When true, callbacks receive string jPath; when false, receive Matcher instance
+  sanitizeName: false,
+  // false = allow all names as-is (default, backward-compatible).
 };
 function Builder(options) {
   this.options = Object.assign({}, defaultOptions3, options);
@@ -187034,6 +187202,32 @@ function Builder(options) {
     this.newLine = "";
   }
 }
+function detectXmlVersionFromObj(jObj, options) {
+  const decl = jObj["?xml"];
+  if (decl && typeof decl === "object") {
+    if (options.attributesGroupName && decl[options.attributesGroupName]) {
+      const v2 = decl[options.attributesGroupName][
+        options.attributeNamePrefix + "version"
+      ];
+      if (v2) return v2;
+    }
+    const v = decl[options.attributeNamePrefix + "version"];
+    if (v) return v;
+  }
+  return "1.0";
+}
+function resolveTagName2(name, isAttribute2, options, matcher, xmlVersion) {
+  if (!options.sanitizeName) return name;
+  if (
+    qName(name, {
+      xmlVersion,
+    })
+  ) return name;
+  return options.sanitizeName(name, {
+    isAttribute: isAttribute2,
+    matcher: matcher.readOnly(),
+  });
+}
 Builder.prototype.build = function (jObj) {
   if (this.options.preserveOrder) {
     return toXml(jObj, this.options);
@@ -187047,10 +187241,11 @@ Builder.prototype.build = function (jObj) {
       };
     }
     const matcher = new Matcher();
-    return this.j2x(jObj, 0, matcher).val;
+    const xmlVersion = detectXmlVersionFromObj(jObj, this.options);
+    return this.j2x(jObj, 0, matcher, xmlVersion).val;
   }
 };
-Builder.prototype.j2x = function (jObj, level, matcher) {
+Builder.prototype.j2x = function (jObj, level, matcher, xmlVersion) {
   let attrStr = "";
   let val = "";
   if (
@@ -187063,6 +187258,15 @@ Builder.prototype.j2x = function (jObj, level, matcher) {
   const isCurrentStopNode = this.checkStopNode(matcher);
   for (let key in jObj) {
     if (!Object.prototype.hasOwnProperty.call(jObj, key)) continue;
+    const isSpecialKey = key === this.options.textNodeName ||
+      key === this.options.cdataPropName ||
+      key === this.options.commentPropName ||
+      this.options.attributesGroupName &&
+        key === this.options.attributesGroupName ||
+      this.isAttribute(key) || key[0] === "?";
+    const resolvedKey = isSpecialKey
+      ? key
+      : resolveTagName2(key, false, this.options, matcher, xmlVersion);
     if (typeof jObj[key] === "undefined") {
       if (this.isAttribute(key)) {
         val += "";
@@ -187070,20 +187274,32 @@ Builder.prototype.j2x = function (jObj, level, matcher) {
     } else if (jObj[key] === null) {
       if (this.isAttribute(key)) {
         val += "";
-      } else if (key === this.options.cdataPropName) {
+      } else if (
+        resolvedKey === this.options.cdataPropName ||
+        resolvedKey === this.options.commentPropName
+      ) {
         val += "";
-      } else if (key[0] === "?") {
-        val += this.indentate(level) + "<" + key + "?" + this.tagEndChar;
+      } else if (resolvedKey[0] === "?") {
+        val += this.indentate(level) + "<" + resolvedKey + "?" +
+          this.tagEndChar;
       } else {
-        val += this.indentate(level) + "<" + key + "/" + this.tagEndChar;
+        val += this.indentate(level) + "<" + resolvedKey + "/" +
+          this.tagEndChar;
       }
     } else if (jObj[key] instanceof Date) {
-      val += this.buildTextValNode(jObj[key], key, "", level, matcher);
+      val += this.buildTextValNode(jObj[key], resolvedKey, "", level, matcher);
     } else if (typeof jObj[key] !== "object") {
       const attr = this.isAttribute(key);
       if (attr && !this.ignoreAttributesFn(attr, jPath)) {
-        attrStr += this.buildAttrPairStr(
+        const resolvedAttr = resolveTagName2(
           attr,
+          true,
+          this.options,
+          matcher,
+          xmlVersion,
+        );
+        attrStr += this.buildAttrPairStr(
+          resolvedAttr,
           "" + jObj[key],
           isCurrentStopNode,
         );
@@ -187092,20 +187308,26 @@ Builder.prototype.j2x = function (jObj, level, matcher) {
           let newval = this.options.tagValueProcessor(key, "" + jObj[key]);
           val += this.replaceEntitiesValue(newval);
         } else {
-          matcher.push(key);
+          matcher.push(resolvedKey);
           const isStopNode = this.checkStopNode(matcher);
           matcher.pop();
           if (isStopNode) {
             const textValue = "" + jObj[key];
             if (textValue === "") {
-              val += this.indentate(level) + "<" + key + this.closeTag(key) +
-                this.tagEndChar;
+              val += this.indentate(level) + "<" + resolvedKey +
+                this.closeTag(resolvedKey) + this.tagEndChar;
             } else {
-              val += this.indentate(level) + "<" + key + ">" + textValue +
-                "</" + key + this.tagEndChar;
+              val += this.indentate(level) + "<" + resolvedKey + ">" +
+                textValue + "</" + resolvedKey + this.tagEndChar;
             }
           } else {
-            val += this.buildTextValNode(jObj[key], key, "", level, matcher);
+            val += this.buildTextValNode(
+              jObj[key],
+              resolvedKey,
+              "",
+              level,
+              matcher,
+            );
           }
         }
       }
@@ -187117,14 +187339,15 @@ Builder.prototype.j2x = function (jObj, level, matcher) {
         const item = jObj[key][j];
         if (typeof item === "undefined") {
         } else if (item === null) {
-          if (key[0] === "?") {
-            val += this.indentate(level) + "<" + key + "?" + this.tagEndChar;
-          } else {val += this.indentate(level) + "<" + key + "/" +
+          if (resolvedKey[0] === "?") {
+            val += this.indentate(level) + "<" + resolvedKey + "?" +
+              this.tagEndChar;
+          } else {val += this.indentate(level) + "<" + resolvedKey + "/" +
               this.tagEndChar;}
         } else if (typeof item === "object") {
           if (this.options.oneListGroup) {
-            matcher.push(key);
-            const result = this.j2x(item, level + 1, matcher);
+            matcher.push(resolvedKey);
+            const result = this.j2x(item, level + 1, matcher, xmlVersion);
             matcher.pop();
             listTagVal += result.val;
             if (
@@ -187134,30 +187357,36 @@ Builder.prototype.j2x = function (jObj, level, matcher) {
               listTagAttr += result.attrStr;
             }
           } else {
-            listTagVal += this.processTextOrObjNode(item, key, level, matcher);
+            listTagVal += this.processTextOrObjNode(
+              item,
+              resolvedKey,
+              level,
+              matcher,
+              xmlVersion,
+            );
           }
         } else {
           if (this.options.oneListGroup) {
-            let textValue = this.options.tagValueProcessor(key, item);
+            let textValue = this.options.tagValueProcessor(resolvedKey, item);
             textValue = this.replaceEntitiesValue(textValue);
             listTagVal += textValue;
           } else {
-            matcher.push(key);
+            matcher.push(resolvedKey);
             const isStopNode = this.checkStopNode(matcher);
             matcher.pop();
             if (isStopNode) {
               const textValue = "" + item;
               if (textValue === "") {
-                listTagVal += this.indentate(level) + "<" + key +
-                  this.closeTag(key) + this.tagEndChar;
+                listTagVal += this.indentate(level) + "<" + resolvedKey +
+                  this.closeTag(resolvedKey) + this.tagEndChar;
               } else {
-                listTagVal += this.indentate(level) + "<" + key + ">" +
-                  textValue + "</" + key + this.tagEndChar;
+                listTagVal += this.indentate(level) + "<" + resolvedKey + ">" +
+                  textValue + "</" + resolvedKey + this.tagEndChar;
               }
             } else {
               listTagVal += this.buildTextValNode(
                 item,
-                key,
+                resolvedKey,
                 "",
                 level,
                 matcher,
@@ -187167,7 +187396,12 @@ Builder.prototype.j2x = function (jObj, level, matcher) {
         }
       }
       if (this.options.oneListGroup) {
-        listTagVal = this.buildObjectNode(listTagVal, key, listTagAttr, level);
+        listTagVal = this.buildObjectNode(
+          listTagVal,
+          resolvedKey,
+          listTagAttr,
+          level,
+        );
       }
       val += listTagVal;
     } else {
@@ -187178,14 +187412,27 @@ Builder.prototype.j2x = function (jObj, level, matcher) {
         const Ks = Object.keys(jObj[key]);
         const L = Ks.length;
         for (let j = 0; j < L; j++) {
-          attrStr += this.buildAttrPairStr(
+          const resolvedAttr = resolveTagName2(
             Ks[j],
+            true,
+            this.options,
+            matcher,
+            xmlVersion,
+          );
+          attrStr += this.buildAttrPairStr(
+            resolvedAttr,
             "" + jObj[key][Ks[j]],
             isCurrentStopNode,
           );
         }
       } else {
-        val += this.processTextOrObjNode(jObj[key], key, level, matcher);
+        val += this.processTextOrObjNode(
+          jObj[key],
+          resolvedKey,
+          level,
+          matcher,
+          xmlVersion,
+        );
       }
     }
   }
@@ -187201,9 +187448,9 @@ Builder.prototype.buildAttrPairStr = function (attrName, val, isStopNode) {
   }
   if (this.options.suppressBooleanAttributes && val === "true") {
     return " " + attrName;
-  } else return " " + attrName + '="' + val + '"';
+  } else return " " + attrName + '="' + escapeAttribute(val) + '"';
 };
-function processTextOrObjNode(object, key, level, matcher) {
+function processTextOrObjNode(object, key, level, matcher, xmlVersion) {
   const attrValues = this.extractAttributes(object);
   matcher.push(key, attrValues);
   const isStopNode = this.checkStopNode(matcher);
@@ -187213,9 +187460,11 @@ function processTextOrObjNode(object, key, level, matcher) {
     matcher.pop();
     return this.buildObjectNode(rawContent2, key, attrStr, level);
   }
-  const result = this.j2x(object, level + 1, matcher);
+  const result = this.j2x(object, level + 1, matcher, xmlVersion);
   matcher.pop();
-  if (
+  if (key[0] === "?") {
+    return this.buildTextValNode("", key, result.attrStr, level, matcher);
+  } else if (
     object[this.options.textNodeName] !== void 0 &&
     Object.keys(object).length === 1
   ) {
@@ -187243,7 +187492,7 @@ Builder.prototype.extractAttributes = function (obj) {
       const cleanKey = attrKey.startsWith(this.options.attributeNamePrefix)
         ? attrKey.substring(this.options.attributeNamePrefix.length)
         : attrKey;
-      attrValues[cleanKey] = attrGroup[attrKey];
+      attrValues[cleanKey] = escapeAttribute(attrGroup[attrKey]);
       hasAttrs = true;
     }
   } else {
@@ -187251,7 +187500,7 @@ Builder.prototype.extractAttributes = function (obj) {
       if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
       const attr = this.isAttribute(key);
       if (attr) {
-        attrValues[attr] = obj[key];
+        attrValues[attr] = escapeAttribute(obj[key]);
         hasAttrs = true;
       }
     }
@@ -187351,6 +187600,8 @@ Builder.prototype.buildObjectNode = function (val, key, attrStr, level) {
       return this.indentate(level) + "<" + key + attrStr + this.closeTag(key) +
         this.tagEndChar;
     }
+  } else if (key[0] === "?") {
+    return this.indentate(level) + "<" + key + attrStr + "?" + this.tagEndChar;
   } else {
     let tagEndExp = "</" + key + this.tagEndChar;
     let piClosingChar = "";
@@ -187404,13 +187655,13 @@ Builder.prototype.buildTextValNode = function (
   if (
     this.options.cdataPropName !== false && key === this.options.cdataPropName
   ) {
-    const safeVal = String(val).replace(/\]\]>/g, "]]]]><![CDATA[>");
+    const safeVal = safeCdata(val);
     return this.indentate(level) + `<![CDATA[${safeVal}]]>` + this.newLine;
   } else if (
     this.options.commentPropName !== false &&
     key === this.options.commentPropName
   ) {
-    const safeVal = String(val).replace(/--/g, "- -").replace(/-$/, "- ");
+    const safeVal = safeComment(val);
     return this.indentate(level) + `<!--${safeVal}-->` + this.newLine;
   } else if (key[0] === "?") {
     return this.indentate(level) + "<" + key + attrStr + "?" + this.tagEndChar;
@@ -187449,10 +187700,10 @@ function isAttribute(name) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
 var json2xml_default = Builder;
 
-// node_modules/.deno/fast-xml-parser@5.7.1/node_modules/fast-xml-parser/src/fxp.js
+// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/fxp.js
 var XMLValidator = {
   validate,
 };
