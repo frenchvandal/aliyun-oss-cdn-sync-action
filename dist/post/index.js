@@ -52778,9 +52778,9 @@ var require_client4 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainRequest.js
 var require_AddCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -52917,9 +52917,9 @@ var require_AddCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoResponseBody.js
 var require_BatchDescribeCdnIpInfoResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -53052,9 +53052,9 @@ var require_BatchDescribeCdnIpInfoResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigResponseBody.js
 var require_BatchSetCdnDomainConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -53211,9 +53211,9 @@ var require_BatchSetCdnDomainConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionResponseBody.js
 var require_BatchSetGrayDomainFunctionResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -53340,9 +53340,9 @@ var require_BatchSetGrayDomainFunctionResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsResponseBody.js
 var require_DescribeBlockedRegionsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -53494,9 +53494,9 @@ var require_DescribeBlockedRegionsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListResponseBody.js
 var require_DescribeCdnCertificateListResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -53690,9 +53690,9 @@ var require_DescribeCdnCertificateListResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoResponseBody.js
 var require_DescribeCdnConditionIpbinfoResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -53815,9 +53815,9 @@ var require_DescribeCdnConditionIpbinfoResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsResponseBody.js
 var require_DescribeCdnDeletedDomainsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -53974,9 +53974,9 @@ var require_DescribeCdnDeletedDomainsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListResponseBody.js
 var require_DescribeCdnDeliverListResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -54232,9 +54232,278 @@ var require_DescribeCdnDeliverListResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDiagnoseReportResponseBody.js
+var require_DescribeCdnDiagnoseReportResponseBody = __commonJS({
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDiagnoseReportResponseBody.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */
+      function () {
+        var ownKeys = function (o) {
+          ownKeys = Object.getOwnPropertyNames || function (o2) {
+            var ar = [];
+            for (var k in o2) {
+              if (Object.prototype.hasOwnProperty.call(o2, k)) {
+                ar[ar.length] = k;
+              }
+            }
+            return ar;
+          };
+          return ownKeys(o);
+        };
+        return function (mod) {
+          if (mod && mod.__esModule) return mod;
+          var result = {};
+          if (mod != null) {
+            for (var k = ownKeys(mod), i = 0; i < k.length; i++) {
+              if (k[i] !== "default") __createBinding(result, mod, k[i]);
+            }
+          }
+          __setModuleDefault(result, mod);
+          return result;
+        };
+      }();
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.DescribeCdnDiagnoseReportResponseBody =
+      exports2.DescribeCdnDiagnoseReportResponseBodyContent =
+      exports2.DescribeCdnDiagnoseReportResponseBodyContentReport =
+      exports2.DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine =
+      exports2.DescribeCdnDiagnoseReportResponseBodyContentClientInfo =
+        void 0;
+    var $dara = __importStar(require_dist());
+    var DescribeCdnDiagnoseReportResponseBodyContentClientInfo = class
+      extends $dara.Model {
+      static names() {
+        return {
+          browserInfo: "BrowserInfo",
+          os: "Os",
+          UAString: "UAString",
+        };
+      }
+      static types() {
+        return {
+          browserInfo: "string",
+          os: "string",
+          UAString: "string",
+        };
+      }
+      validate() {
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnDiagnoseReportResponseBodyContentClientInfo =
+      DescribeCdnDiagnoseReportResponseBodyContentClientInfo;
+    var DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine = class
+      extends $dara.Model {
+      static names() {
+        return {
+          addr: "Addr",
+          code: "Code",
+          errorLog: "ErrorLog",
+          fbt: "Fbt",
+          intro: "Intro",
+          reqHeader: "ReqHeader",
+          reqTime: "ReqTime",
+          respHeader: "RespHeader",
+          respSize: "RespSize",
+          rt: "Rt",
+          station: "Station",
+        };
+      }
+      static types() {
+        return {
+          addr: "string",
+          code: "string",
+          errorLog: "string",
+          fbt: "string",
+          intro: "string",
+          reqHeader: "string",
+          reqTime: "string",
+          respHeader: "string",
+          respSize: "number",
+          rt: "string",
+          station: "string",
+        };
+      }
+      validate() {
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine =
+      DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine;
+    var DescribeCdnDiagnoseReportResponseBodyContentReport = class
+      extends $dara.Model {
+      static names() {
+        return {
+          clientInfo: "ClientInfo",
+          diagnoseResult: "DiagnoseResult",
+          l1Node: "L1Node",
+          l1Tengine: "L1Tengine",
+          sourceInfo: "SourceInfo",
+        };
+      }
+      static types() {
+        return {
+          clientInfo: "string",
+          diagnoseResult: "string",
+          l1Node: "string",
+          l1Tengine:
+            DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine,
+          sourceInfo: {
+            "type": "array",
+            "itemType": "string",
+          },
+        };
+      }
+      validate() {
+        if (this.l1Tengine && typeof this.l1Tengine.validate === "function") {
+          this.l1Tengine.validate();
+        }
+        if (Array.isArray(this.sourceInfo)) {
+          $dara.Model.validateArray(this.sourceInfo);
+        }
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnDiagnoseReportResponseBodyContentReport =
+      DescribeCdnDiagnoseReportResponseBodyContentReport;
+    var DescribeCdnDiagnoseReportResponseBodyContent = class
+      extends $dara.Model {
+      static names() {
+        return {
+          aliuid: "Aliuid",
+          clientAddr: "ClientAddr",
+          clientInfo: "ClientInfo",
+          clientIp: "ClientIp",
+          createTime: "CreateTime",
+          diagnoseId: "DiagnoseId",
+          diagnoseReportLink: "DiagnoseReportLink",
+          diagnoseUrl: "DiagnoseUrl",
+          domain: "Domain",
+          expireTime: "ExpireTime",
+          remainDiagnoseTimes: "RemainDiagnoseTimes",
+          report: "Report",
+          state: "State",
+          status: "Status",
+          taskId: "TaskId",
+          timeConsuming: "TimeConsuming",
+          traceDisplayLink: "TraceDisplayLink",
+          traceId: "TraceId",
+        };
+      }
+      static types() {
+        return {
+          aliuid: "string",
+          clientAddr: "string",
+          clientInfo: DescribeCdnDiagnoseReportResponseBodyContentClientInfo,
+          clientIp: "string",
+          createTime: "string",
+          diagnoseId: "string",
+          diagnoseReportLink: "string",
+          diagnoseUrl: "string",
+          domain: "string",
+          expireTime: "number",
+          remainDiagnoseTimes: "number",
+          report: DescribeCdnDiagnoseReportResponseBodyContentReport,
+          state: "string",
+          status: "number",
+          taskId: "string",
+          timeConsuming: "number",
+          traceDisplayLink: "string",
+          traceId: "string",
+        };
+      }
+      validate() {
+        if (this.clientInfo && typeof this.clientInfo.validate === "function") {
+          this.clientInfo.validate();
+        }
+        if (this.report && typeof this.report.validate === "function") {
+          this.report.validate();
+        }
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnDiagnoseReportResponseBodyContent =
+      DescribeCdnDiagnoseReportResponseBodyContent;
+    var DescribeCdnDiagnoseReportResponseBody = class extends $dara.Model {
+      static names() {
+        return {
+          content: "Content",
+          requestId: "RequestId",
+        };
+      }
+      static types() {
+        return {
+          content: DescribeCdnDiagnoseReportResponseBodyContent,
+          requestId: "string",
+        };
+      }
+      validate() {
+        if (this.content && typeof this.content.validate === "function") {
+          this.content.validate();
+        }
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnDiagnoseReportResponseBody =
+      DescribeCdnDiagnoseReportResponseBody;
+  },
+});
+
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsResponseBody.js
 var require_DescribeCdnDomainAtoaLogsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -54493,9 +54762,9 @@ var require_DescribeCdnDomainAtoaLogsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateResponseBody.js
 var require_DescribeCdnDomainByCertificateResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -54661,9 +54930,9 @@ var require_DescribeCdnDomainByCertificateResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsResponseBody.js
 var require_DescribeCdnDomainConfigsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -54885,9 +55154,9 @@ var require_DescribeCdnDomainConfigsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailResponseBody.js
 var require_DescribeCdnDomainDetailResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -55103,9 +55372,9 @@ var require_DescribeCdnDomainDetailResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsResponseBody.js
 var require_DescribeCdnDomainLogsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -55362,9 +55631,9 @@ var require_DescribeCdnDomainLogsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlResponseBody.js
 var require_DescribeCdnDomainLogsExTtlResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -55623,9 +55892,9 @@ var require_DescribeCdnDomainLogsExTtlResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigResponseBody.js
 var require_DescribeCdnDomainStagingConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -55790,9 +56059,9 @@ var require_DescribeCdnDomainStagingConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryResponseBody.js
 var require_DescribeCdnFullDomainsBlockIphistoryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -55925,9 +56194,9 @@ var require_DescribeCdnFullDomainsBlockIphistoryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListResponseBody.js
 var require_DescribeCdnHttpsDomainListResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -56092,9 +56361,9 @@ var require_DescribeCdnHttpsDomainListResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspResponseBody.js
 var require_DescribeCdnRegionAndIspResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -56297,9 +56566,9 @@ var require_DescribeCdnRegionAndIspResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportResponseBody.js
 var require_DescribeCdnReportResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -56521,9 +56790,9 @@ var require_DescribeCdnReportResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListResponseBody.js
 var require_DescribeCdnReportListResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -56737,9 +57006,9 @@ var require_DescribeCdnReportListResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListResponseBody.js
 var require_DescribeCdnSmcertificateListResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -56929,9 +57198,9 @@ var require_DescribeCdnSmcertificateListResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListResponseBody.js
 var require_DescribeCdnSslcertificateListResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -57131,9 +57400,9 @@ var require_DescribeCdnSslcertificateListResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoResponseBody.js
 var require_DescribeCdnSecFuncInfoResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -57263,9 +57532,9 @@ var require_DescribeCdnSecFuncInfoResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceResponseBody.js
 var require_DescribeCdnServiceResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -57430,9 +57699,9 @@ var require_DescribeCdnServiceResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSubListResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSubListResponseBody.js
 var require_DescribeCdnSubListResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSubListResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSubListResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -57602,9 +57871,189 @@ var require_DescribeCdnSubListResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTaskListResponseBody.js
+var require_DescribeCdnTaskListResponseBody = __commonJS({
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTaskListResponseBody.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */
+      function () {
+        var ownKeys = function (o) {
+          ownKeys = Object.getOwnPropertyNames || function (o2) {
+            var ar = [];
+            for (var k in o2) {
+              if (Object.prototype.hasOwnProperty.call(o2, k)) {
+                ar[ar.length] = k;
+              }
+            }
+            return ar;
+          };
+          return ownKeys(o);
+        };
+        return function (mod) {
+          if (mod && mod.__esModule) return mod;
+          var result = {};
+          if (mod != null) {
+            for (var k = ownKeys(mod), i = 0; i < k.length; i++) {
+              if (k[i] !== "default") __createBinding(result, mod, k[i]);
+            }
+          }
+          __setModuleDefault(result, mod);
+          return result;
+        };
+      }();
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.DescribeCdnTaskListResponseBody =
+      exports2
+        .DescribeCdnTaskListResponseBodyContent =
+      exports2
+        .DescribeCdnTaskListResponseBodyContentList =
+        void 0;
+    var $dara = __importStar(require_dist());
+    var DescribeCdnTaskListResponseBodyContentList = class extends $dara.Model {
+      static names() {
+        return {
+          aliuid: "Aliuid",
+          clientAddr: "ClientAddr",
+          clientIp: "ClientIp",
+          createTime: "CreateTime",
+          diagnoseId: "DiagnoseId",
+          diagnoseUrl: "DiagnoseUrl",
+          domain: "Domain",
+          expireTime: "ExpireTime",
+          remainDiagnoseTimes: "RemainDiagnoseTimes",
+          state: "State",
+          status: "Status",
+          taskId: "TaskId",
+          timeConsuming: "TimeConsuming",
+          traceId: "TraceId",
+        };
+      }
+      static types() {
+        return {
+          aliuid: "string",
+          clientAddr: "string",
+          clientIp: "string",
+          createTime: "string",
+          diagnoseId: "string",
+          diagnoseUrl: "string",
+          domain: "string",
+          expireTime: "number",
+          remainDiagnoseTimes: "number",
+          state: "string",
+          status: "number",
+          taskId: "string",
+          timeConsuming: "number",
+          traceId: "string",
+        };
+      }
+      validate() {
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnTaskListResponseBodyContentList =
+      DescribeCdnTaskListResponseBodyContentList;
+    var DescribeCdnTaskListResponseBodyContent = class extends $dara.Model {
+      static names() {
+        return {
+          count: "Count",
+          list: "List",
+          pageNumber: "PageNumber",
+          pageSize: "PageSize",
+        };
+      }
+      static types() {
+        return {
+          count: "number",
+          list: {
+            "type": "array",
+            "itemType": DescribeCdnTaskListResponseBodyContentList,
+          },
+          pageNumber: "number",
+          pageSize: "number",
+        };
+      }
+      validate() {
+        if (Array.isArray(this.list)) {
+          $dara.Model.validateArray(this.list);
+        }
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnTaskListResponseBodyContent =
+      DescribeCdnTaskListResponseBodyContent;
+    var DescribeCdnTaskListResponseBody = class extends $dara.Model {
+      static names() {
+        return {
+          content: "Content",
+          requestId: "RequestId",
+        };
+      }
+      static types() {
+        return {
+          content: DescribeCdnTaskListResponseBodyContent,
+          requestId: "string",
+        };
+      }
+      validate() {
+        if (this.content && typeof this.content.validate === "function") {
+          this.content.validate();
+        }
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnTaskListResponseBody = DescribeCdnTaskListResponseBody;
+  },
+});
+
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesResponseBody.js
 var require_DescribeCdnTypesResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -57753,9 +58202,9 @@ var require_DescribeCdnTypesResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryResponseBody.js
 var require_DescribeCdnUserBillHistoryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -57984,9 +58433,9 @@ var require_DescribeCdnUserBillHistoryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionResponseBody.js
 var require_DescribeCdnUserBillPredictionResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -58150,9 +58599,9 @@ var require_DescribeCdnUserBillPredictionResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeResponseBody.js
 var require_DescribeCdnUserBillTypeResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -58314,9 +58763,9 @@ var require_DescribeCdnUserBillTypeResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsResponseBody.js
 var require_DescribeCdnUserConfigsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -58442,9 +58891,9 @@ var require_DescribeCdnUserConfigsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncResponseBody.js
 var require_DescribeCdnUserDomainsByFuncResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -58680,9 +59129,9 @@ var require_DescribeCdnUserDomainsByFuncResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageResponseBody.js
 var require_DescribeCdnUserResourcePackageResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -58866,9 +59315,9 @@ var require_DescribeCdnUserResourcePackageResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainResponseBody.js
 var require_DescribeCdnWafDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -59001,9 +59450,9 @@ var require_DescribeCdnWafDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdresponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdresponseBody.js
 var require_DescribeCertificateInfoByIdresponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdresponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdresponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -59165,9 +59614,9 @@ var require_DescribeCertificateInfoByIdresponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateResponseBody.js
 var require_DescribeCustomDomainSampleRateResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -59325,9 +59774,9 @@ var require_DescribeCustomDomainSampleRateResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeResponseBody.js
 var require_DescribeDomainAverageResponseTimeResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -59492,9 +59941,9 @@ var require_DescribeDomainAverageResponseTimeResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataResponseBody.js
 var require_DescribeDomainBpsDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -59672,9 +60121,9 @@ var require_DescribeDomainBpsDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerResponseBody.js
 var require_DescribeDomainBpsDataByLayerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -59833,9 +60282,9 @@ var require_DescribeDomainBpsDataByLayerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampResponseBody.js
 var require_DescribeDomainBpsDataByTimeStampResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -59998,9 +60447,9 @@ var require_DescribeDomainBpsDataByTimeStampResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogResponseBody.js
 var require_DescribeDomainCcActivityLogResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -60141,9 +60590,9 @@ var require_DescribeDomainCcActivityLogResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoResponseBody.js
 var require_DescribeDomainCertificateInfoResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -60321,9 +60770,9 @@ var require_DescribeDomainCertificateInfoResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameResponseBody.js
 var require_DescribeDomainCnameResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -60478,9 +60927,9 @@ var require_DescribeDomainCnameResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerResponseBody.js
 var require_DescribeDomainDetailDataByLayerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -60651,9 +61100,9 @@ var require_DescribeDomainDetailDataByLayerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataResponseBody.js
 var require_DescribeDomainHitRateDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -60818,9 +61267,9 @@ var require_DescribeDomainHitRateDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataResponseBody.js
 var require_DescribeDomainHttpCodeDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -61042,9 +61491,9 @@ var require_DescribeDomainHttpCodeDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerResponseBody.js
 var require_DescribeDomainHttpCodeDataByLayerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -61206,9 +61655,9 @@ var require_DescribeDomainHttpCodeDataByLayerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataResponseBody.js
 var require_DescribeDomainIspdataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -61386,9 +61835,9 @@ var require_DescribeDomainIspdataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataResponseBody.js
 var require_DescribeDomainMax95bpsDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -61556,9 +62005,9 @@ var require_DescribeDomainMax95bpsDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataResponseBody.js
 var require_DescribeDomainMultiUsageDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -61792,9 +62241,9 @@ var require_DescribeDomainMultiUsageDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataResponseBody.js
 var require_DescribeDomainPathDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -61968,9 +62417,9 @@ var require_DescribeDomainPathDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataResponseBody.js
 var require_DescribeDomainPvDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -62132,9 +62581,9 @@ var require_DescribeDomainPvDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataResponseBody.js
 var require_DescribeDomainQpsDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -62319,9 +62768,9 @@ var require_DescribeDomainQpsDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerResponseBody.js
 var require_DescribeDomainQpsDataByLayerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -62496,9 +62945,9 @@ var require_DescribeDomainQpsDataByLayerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataResponseBody.js
 var require_DescribeDomainRealTimeBpsDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -62649,9 +63098,9 @@ var require_DescribeDomainRealTimeBpsDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataResponseBody.js
 var require_DescribeDomainRealTimeByteHitRateDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -62804,9 +63253,9 @@ var require_DescribeDomainRealTimeByteHitRateDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataResponseBody.js
 var require_DescribeDomainRealTimeHttpCodeDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -63036,9 +63485,9 @@ var require_DescribeDomainRealTimeHttpCodeDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataResponseBody.js
 var require_DescribeDomainRealTimeQpsDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -63189,9 +63638,9 @@ var require_DescribeDomainRealTimeQpsDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataResponseBody.js
 var require_DescribeDomainRealTimeReqHitRateDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -63344,9 +63793,9 @@ var require_DescribeDomainRealTimeReqHitRateDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataResponseBody.js
 var require_DescribeDomainRealTimeSrcBpsDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -63513,9 +63962,9 @@ var require_DescribeDomainRealTimeSrcBpsDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataResponseBody.js
 var require_DescribeDomainRealTimeSrcHttpCodeDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -63745,9 +64194,9 @@ var require_DescribeDomainRealTimeSrcHttpCodeDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataResponseBody.js
 var require_DescribeDomainRealTimeSrcTrafficDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -63915,9 +64364,9 @@ var require_DescribeDomainRealTimeSrcTrafficDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataResponseBody.js
 var require_DescribeDomainRealTimeTrafficDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -64084,9 +64533,9 @@ var require_DescribeDomainRealTimeTrafficDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataResponseBody.js
 var require_DescribeDomainRegionDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -64265,9 +64714,9 @@ var require_DescribeDomainRegionDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataResponseBody.js
 var require_DescribeDomainReqHitRateDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -64433,9 +64882,9 @@ var require_DescribeDomainReqHitRateDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataResponseBody.js
 var require_DescribeDomainSrcBpsDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -64601,9 +65050,9 @@ var require_DescribeDomainSrcBpsDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataResponseBody.js
 var require_DescribeDomainSrcHttpCodeDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -64826,9 +65275,9 @@ var require_DescribeDomainSrcHttpCodeDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataResponseBody.js
 var require_DescribeDomainSrcQpsDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -64992,9 +65441,9 @@ var require_DescribeDomainSrcQpsDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitResponseBody.js
 var require_DescribeDomainSrcTopUrlVisitResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -65410,9 +65859,9 @@ var require_DescribeDomainSrcTopUrlVisitResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataResponseBody.js
 var require_DescribeDomainSrcTrafficDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -65579,9 +66028,9 @@ var require_DescribeDomainSrcTrafficDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitResponseBody.js
 var require_DescribeDomainTopClientIpVisitResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -65710,9 +66159,9 @@ var require_DescribeDomainTopClientIpVisitResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitResponseBody.js
 var require_DescribeDomainTopReferVisitResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -65876,9 +66325,9 @@ var require_DescribeDomainTopReferVisitResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitResponseBody.js
 var require_DescribeDomainTopUrlVisitResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -66289,9 +66738,9 @@ var require_DescribeDomainTopUrlVisitResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataResponseBody.js
 var require_DescribeDomainTrafficDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -66465,9 +66914,9 @@ var require_DescribeDomainTrafficDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataResponseBody.js
 var require_DescribeDomainUsageDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -66638,9 +67087,9 @@ var require_DescribeDomainUsageDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataResponseBody.js
 var require_DescribeDomainUvDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -66802,9 +67251,9 @@ var require_DescribeDomainUvDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataResponseBody.js
 var require_DescribeDomainVerifyDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -66928,9 +67377,9 @@ var require_DescribeDomainVerifyDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceResponseBody.js
 var require_DescribeDomainsBySourceResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -67190,9 +67639,9 @@ var require_DescribeDomainsBySourceResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayResponseBody.js
 var require_DescribeDomainsUsageByDayResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -67409,9 +67858,9 @@ var require_DescribeDomainsUsageByDayResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataResponseBody.js
 var require_DescribeEsExceptionDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -67550,9 +67999,9 @@ var require_DescribeEsExceptionDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataResponseBody.js
 var require_DescribeEsExecuteDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -67690,9 +68139,9 @@ var require_DescribeEsExecuteDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerResponseBody.js
 var require_DescribeFctriggerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -67820,9 +68269,9 @@ var require_DescribeFctriggerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusResponseBody.js
 var require_DescribeIpStatusResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -67945,9 +68394,9 @@ var require_DescribeIpStatusResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainResponseBody.js
 var require_DescribeL2vipsByDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -68074,9 +68523,9 @@ var require_DescribeL2vipsByDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdResponseBody.js
 var require_DescribePreloadDetailByIdResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -68248,9 +68697,9 @@ var require_DescribePreloadDetailByIdResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccResponseBody.js
 var require_DescribeRealtimeDeliveryAccResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -68408,9 +68857,9 @@ var require_DescribeRealtimeDeliveryAccResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdResponseBody.js
 var require_DescribeRefreshTaskByIdResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -68546,9 +68995,9 @@ var require_DescribeRefreshTaskByIdResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksResponseBody.js
 var require_DescribeRefreshTasksResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -68714,9 +69163,9 @@ var require_DescribeRefreshTasksResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeStagingIpResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeStagingIpResponseBody.js
 var require_DescribeStagingIpResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeStagingIpResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeStagingIpResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -68840,9 +69289,9 @@ var require_DescribeStagingIpResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesRequest.js
 var require_DescribeTagResourcesRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -68972,9 +69421,9 @@ var require_DescribeTagResourcesRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesResponseBody.js
 var require_DescribeTagResourcesResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -69130,9 +69579,9 @@ var require_DescribeTagResourcesResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowResponseBody.js
 var require_DescribeTopDomainsByFlowResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -69301,9 +69750,9 @@ var require_DescribeTopDomainsByFlowResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsResponseBody.js
 var require_DescribeUserConfigsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -69478,9 +69927,9 @@ var require_DescribeUserConfigsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsRequest.js
 var require_DescribeUserDomainsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -69628,9 +70077,9 @@ var require_DescribeUserDomainsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsResponseBody.js
 var require_DescribeUserDomainsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -69867,9 +70316,9 @@ var require_DescribeUserDomainsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserTagsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserTagsResponseBody.js
 var require_DescribeUserTagsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserTagsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserTagsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -69998,9 +70447,9 @@ var require_DescribeUserTagsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskResponseBody.js
 var require_DescribeUserUsageDataExportTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -70230,9 +70679,9 @@ var require_DescribeUserUsageDataExportTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskResponseBody.js
 var require_DescribeUserUsageDetailDataExportTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -70466,9 +70915,9 @@ var require_DescribeUserUsageDetailDataExportTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainResponseBody.js
 var require_DescribeUserVipsByDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -70595,9 +71044,9 @@ var require_DescribeUserVipsByDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionResponseBody.js
 var require_GetGrayDomainFunctionResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -70766,9 +71215,9 @@ var require_GetGrayDomainFunctionResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdResponseBody.js
 var require_ListDomainsByLogConfigIdResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -70894,9 +71343,9 @@ var require_ListDomainsByLogConfigIdResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerResponseBody.js
 var require_ListFctriggerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -71027,9 +71476,9 @@ var require_ListFctriggerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryResponseBody.js
 var require_ListRealtimeLogDeliveryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -71187,9 +71636,9 @@ var require_ListRealtimeLogDeliveryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsResponseBody.js
 var require_ListRealtimeLogDeliveryDomainsResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -71341,9 +71790,9 @@ var require_ListRealtimeLogDeliveryDomainsResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryInfosResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryInfosResponseBody.js
 var require_ListRealtimeLogDeliveryInfosResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryInfosResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryInfosResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -71497,9 +71946,9 @@ var require_ListRealtimeLogDeliveryInfosResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesRequest.js
 var require_ListTagResourcesRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -71634,9 +72083,9 @@ var require_ListTagResourcesRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesResponseBody.js
 var require_ListTagResourcesResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -71793,9 +72242,9 @@ var require_ListTagResourcesResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListUserCustomLogConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListUserCustomLogConfigResponseBody.js
 var require_ListUserCustomLogConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListUserCustomLogConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListUserCustomLogConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -71921,9 +72370,9 @@ var require_ListUserCustomLogConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateResponseBody.js
 var require_ModifyCustomDomainSampleRateResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -72076,9 +72525,9 @@ var require_ModifyCustomDomainSampleRateResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigResponseBody.js
 var require_SetCdnDomainStagingConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -72205,9 +72654,9 @@ var require_SetCdnDomainStagingConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesRequest.js
 var require_TagResourcesRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -72334,9 +72783,9 @@ var require_TagResourcesRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainResponseBody.js
 var require_AddCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -72426,9 +72875,9 @@ var require_AddCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainResponse.js
 var require_AddCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -72533,9 +72982,9 @@ var require_AddCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerRequest.js
 var require_AddFctriggerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -72637,9 +73086,9 @@ var require_AddFctriggerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerResponseBody.js
 var require_AddFctriggerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -72729,9 +73178,9 @@ var require_AddFctriggerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerResponse.js
 var require_AddFctriggerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/AddFctriggerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -72836,9 +73285,9 @@ var require_AddFctriggerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainRequest.js
 var require_BatchAddCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -72946,9 +73395,9 @@ var require_BatchAddCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainResponseBody.js
 var require_BatchAddCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -73038,9 +73487,9 @@ var require_BatchAddCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainResponse.js
 var require_BatchAddCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchAddCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -73146,9 +73595,9 @@ var require_BatchAddCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigRequest.js
 var require_BatchDeleteCdnDomainConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -73247,9 +73696,9 @@ var require_BatchDeleteCdnDomainConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigResponseBody.js
 var require_BatchDeleteCdnDomainConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -73340,9 +73789,9 @@ var require_BatchDeleteCdnDomainConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigResponse.js
 var require_BatchDeleteCdnDomainConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDeleteCdnDomainConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -73450,9 +73899,9 @@ var require_BatchDeleteCdnDomainConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoRequest.js
 var require_BatchDescribeCdnIpInfoRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -73544,9 +73993,9 @@ var require_BatchDescribeCdnIpInfoRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoResponse.js
 var require_BatchDescribeCdnIpInfoResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchDescribeCdnIpInfoResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -73653,9 +74102,9 @@ var require_BatchDescribeCdnIpInfoResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigRequest.js
 var require_BatchSetCdnDomainConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -73753,9 +74202,9 @@ var require_BatchSetCdnDomainConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigResponse.js
 var require_BatchSetCdnDomainConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetCdnDomainConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -73862,9 +74311,9 @@ var require_BatchSetCdnDomainConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionRequest.js
 var require_BatchSetGrayDomainFunctionRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -73957,9 +74406,9 @@ var require_BatchSetGrayDomainFunctionRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionResponse.js
 var require_BatchSetGrayDomainFunctionResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchSetGrayDomainFunctionResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -74067,9 +74516,9 @@ var require_BatchSetGrayDomainFunctionResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainRequest.js
 var require_BatchStartCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -74163,9 +74612,9 @@ var require_BatchStartCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainResponseBody.js
 var require_BatchStartCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -74255,9 +74704,9 @@ var require_BatchStartCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainResponse.js
 var require_BatchStartCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStartCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -74364,9 +74813,9 @@ var require_BatchStartCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainRequest.js
 var require_BatchStopCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -74460,9 +74909,9 @@ var require_BatchStopCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainResponseBody.js
 var require_BatchStopCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -74552,9 +75001,9 @@ var require_BatchStopCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainResponse.js
 var require_BatchStopCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchStopCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -74660,9 +75109,9 @@ var require_BatchStopCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainRequest.js
 var require_BatchUpdateCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -74762,9 +75211,9 @@ var require_BatchUpdateCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainResponseBody.js
 var require_BatchUpdateCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -74855,9 +75304,9 @@ var require_BatchUpdateCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainResponse.js
 var require_BatchUpdateCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/BatchUpdateCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -74964,9 +75413,9 @@ var require_BatchUpdateCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistRequest.js
 var require_CheckCdnDomainExistRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -75062,9 +75511,9 @@ var require_CheckCdnDomainExistRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistResponseBody.js
 var require_CheckCdnDomainExistResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -75156,9 +75605,9 @@ var require_CheckCdnDomainExistResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistResponse.js
 var require_CheckCdnDomainExistResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainExistResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -75265,9 +75714,9 @@ var require_CheckCdnDomainExistResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcprequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcprequest.js
 var require_CheckCdnDomainIcprequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcprequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcprequest.js"(
     exports2,
   ) {
     "use strict";
@@ -75363,9 +75812,9 @@ var require_CheckCdnDomainIcprequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcpresponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcpresponseBody.js
 var require_CheckCdnDomainIcpresponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcpresponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcpresponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -75457,9 +75906,9 @@ var require_CheckCdnDomainIcpresponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcpresponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcpresponse.js
 var require_CheckCdnDomainIcpresponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcpresponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CheckCdnDomainIcpresponse.js"(
     exports2,
   ) {
     "use strict";
@@ -75565,9 +76014,9 @@ var require_CheckCdnDomainIcpresponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestRequest.js
 var require_CreateCdnCertificateSigningRequestRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -75672,9 +76121,9 @@ var require_CreateCdnCertificateSigningRequestRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestResponseBody.js
 var require_CreateCdnCertificateSigningRequestResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -75772,9 +76221,9 @@ var require_CreateCdnCertificateSigningRequestResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestResponse.js
 var require_CreateCdnCertificateSigningRequestResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnCertificateSigningRequestResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -75882,9 +76331,9 @@ var require_CreateCdnCertificateSigningRequestResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskRequest.js
 var require_CreateCdnDeliverTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -75982,9 +76431,9 @@ var require_CreateCdnDeliverTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskResponseBody.js
 var require_CreateCdnDeliverTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -76077,9 +76526,9 @@ var require_CreateCdnDeliverTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskResponse.js
 var require_CreateCdnDeliverTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnDeliverTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -76186,9 +76635,9 @@ var require_CreateCdnDeliverTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskRequest.js
 var require_CreateCdnSubTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -76280,9 +76729,9 @@ var require_CreateCdnSubTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskResponseBody.js
 var require_CreateCdnSubTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -76372,9 +76821,9 @@ var require_CreateCdnSubTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskResponse.js
 var require_CreateCdnSubTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateCdnSubTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -76479,9 +76928,9 @@ var require_CreateCdnSubTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryRequest.js
 var require_CreateRealTimeLogDeliveryRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -76578,9 +77027,9 @@ var require_CreateRealTimeLogDeliveryRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryResponseBody.js
 var require_CreateRealTimeLogDeliveryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -76671,9 +77120,9 @@ var require_CreateRealTimeLogDeliveryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryResponse.js
 var require_CreateRealTimeLogDeliveryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateRealTimeLogDeliveryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -76781,9 +77230,9 @@ var require_CreateRealTimeLogDeliveryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskRequest.js
 var require_CreateUsageDetailDataExportTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -76886,9 +77335,9 @@ var require_CreateUsageDetailDataExportTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskResponseBody.js
 var require_CreateUsageDetailDataExportTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -76986,9 +77435,9 @@ var require_CreateUsageDetailDataExportTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskResponse.js
 var require_CreateUsageDetailDataExportTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUsageDetailDataExportTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -77096,9 +77545,9 @@ var require_CreateUsageDetailDataExportTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskRequest.js
 var require_CreateUserUsageDataExportTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -77195,9 +77644,9 @@ var require_CreateUserUsageDataExportTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskResponseBody.js
 var require_CreateUserUsageDataExportTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -77294,9 +77743,9 @@ var require_CreateUserUsageDataExportTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskResponse.js
 var require_CreateUserUsageDataExportTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/CreateUserUsageDataExportTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -77404,9 +77853,9 @@ var require_CreateUserUsageDataExportTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskRequest.js
 var require_DeleteCdnDeliverTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -77496,9 +77945,9 @@ var require_DeleteCdnDeliverTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskResponseBody.js
 var require_DeleteCdnDeliverTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -77589,9 +78038,9 @@ var require_DeleteCdnDeliverTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskResponse.js
 var require_DeleteCdnDeliverTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDeliverTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -77698,9 +78147,9 @@ var require_DeleteCdnDeliverTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainRequest.js
 var require_DeleteCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -77794,9 +78243,9 @@ var require_DeleteCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainResponseBody.js
 var require_DeleteCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -77886,9 +78335,9 @@ var require_DeleteCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainResponse.js
 var require_DeleteCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -77993,9 +78442,9 @@ var require_DeleteCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnSubTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnSubTaskResponseBody.js
 var require_DeleteCdnSubTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnSubTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnSubTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -78085,9 +78534,9 @@ var require_DeleteCdnSubTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnSubTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnSubTaskResponse.js
 var require_DeleteCdnSubTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnSubTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCdnSubTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -78192,9 +78641,9 @@ var require_DeleteCdnSubTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateRequest.js
 var require_DeleteCustomDomainSampleRateRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -78285,9 +78734,9 @@ var require_DeleteCustomDomainSampleRateRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateResponseBody.js
 var require_DeleteCustomDomainSampleRateResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -78378,9 +78827,9 @@ var require_DeleteCustomDomainSampleRateResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateResponse.js
 var require_DeleteCustomDomainSampleRateResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteCustomDomainSampleRateResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -78488,9 +78937,9 @@ var require_DeleteCustomDomainSampleRateResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerRequest.js
 var require_DeleteFctriggerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -78580,9 +79029,9 @@ var require_DeleteFctriggerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerResponseBody.js
 var require_DeleteFctriggerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -78672,9 +79121,9 @@ var require_DeleteFctriggerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerResponse.js
 var require_DeleteFctriggerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteFctriggerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -78779,9 +79228,9 @@ var require_DeleteFctriggerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreRequest.js
 var require_DeleteRealTimeLogLogstoreRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -78876,9 +79325,9 @@ var require_DeleteRealTimeLogLogstoreRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreResponseBody.js
 var require_DeleteRealTimeLogLogstoreResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -78969,9 +79418,9 @@ var require_DeleteRealTimeLogLogstoreResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreResponse.js
 var require_DeleteRealTimeLogLogstoreResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealTimeLogLogstoreResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -79079,9 +79528,9 @@ var require_DeleteRealTimeLogLogstoreResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryRequest.js
 var require_DeleteRealtimeLogDeliveryRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -79178,9 +79627,9 @@ var require_DeleteRealtimeLogDeliveryRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryResponseBody.js
 var require_DeleteRealtimeLogDeliveryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -79271,9 +79720,9 @@ var require_DeleteRealtimeLogDeliveryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryResponse.js
 var require_DeleteRealtimeLogDeliveryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteRealtimeLogDeliveryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -79381,9 +79830,9 @@ var require_DeleteRealtimeLogDeliveryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigRequest.js
 var require_DeleteSpecificConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -79479,9 +79928,9 @@ var require_DeleteSpecificConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigResponseBody.js
 var require_DeleteSpecificConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -79572,9 +80021,9 @@ var require_DeleteSpecificConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigResponse.js
 var require_DeleteSpecificConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -79681,9 +80130,9 @@ var require_DeleteSpecificConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigRequest.js
 var require_DeleteSpecificStagingConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -79780,9 +80229,9 @@ var require_DeleteSpecificStagingConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigResponseBody.js
 var require_DeleteSpecificStagingConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -79873,9 +80322,9 @@ var require_DeleteSpecificStagingConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigResponse.js
 var require_DeleteSpecificStagingConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteSpecificStagingConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -79983,9 +80432,9 @@ var require_DeleteSpecificStagingConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskRequest.js
 var require_DeleteUsageDetailDataExportTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -80076,9 +80525,9 @@ var require_DeleteUsageDetailDataExportTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskResponseBody.js
 var require_DeleteUsageDetailDataExportTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -80170,9 +80619,9 @@ var require_DeleteUsageDetailDataExportTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskResponse.js
 var require_DeleteUsageDetailDataExportTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUsageDetailDataExportTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -80280,9 +80729,9 @@ var require_DeleteUsageDetailDataExportTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskRequest.js
 var require_DeleteUserUsageDataExportTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -80373,9 +80822,9 @@ var require_DeleteUserUsageDataExportTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskResponseBody.js
 var require_DeleteUserUsageDataExportTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -80466,9 +80915,9 @@ var require_DeleteUserUsageDataExportTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskResponse.js
 var require_DeleteUserUsageDataExportTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DeleteUserUsageDataExportTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -80576,9 +81025,9 @@ var require_DeleteUserUsageDataExportTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsRequest.js
 var require_DescribeBlockedRegionsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -80668,9 +81117,9 @@ var require_DescribeBlockedRegionsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsResponse.js
 var require_DescribeBlockedRegionsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeBlockedRegionsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -80777,9 +81226,9 @@ var require_DescribeBlockedRegionsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailRequest.js
 var require_DescribeCdnCertificateDetailRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -80874,9 +81323,9 @@ var require_DescribeCdnCertificateDetailRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailResponseBody.js
 var require_DescribeCdnCertificateDetailResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -80975,9 +81424,9 @@ var require_DescribeCdnCertificateDetailResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailResponse.js
 var require_DescribeCdnCertificateDetailResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -81085,9 +81534,9 @@ var require_DescribeCdnCertificateDetailResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdRequest.js
 var require_DescribeCdnCertificateDetailByIdRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -81184,9 +81633,9 @@ var require_DescribeCdnCertificateDetailByIdRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdResponseBody.js
 var require_DescribeCdnCertificateDetailByIdResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -81286,9 +81735,9 @@ var require_DescribeCdnCertificateDetailByIdResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdResponse.js
 var require_DescribeCdnCertificateDetailByIdResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateDetailByIdResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -81396,9 +81845,9 @@ var require_DescribeCdnCertificateDetailByIdResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListRequest.js
 var require_DescribeCdnCertificateListRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -81493,9 +81942,9 @@ var require_DescribeCdnCertificateListRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListResponse.js
 var require_DescribeCdnCertificateListResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnCertificateListResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -81603,9 +82052,9 @@ var require_DescribeCdnCertificateListResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoRequest.js
 var require_DescribeCdnConditionIpbinfoRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -81696,9 +82145,9 @@ var require_DescribeCdnConditionIpbinfoRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoResponse.js
 var require_DescribeCdnConditionIpbinfoResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnConditionIpbinfoResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -81806,9 +82255,9 @@ var require_DescribeCdnConditionIpbinfoResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsRequest.js
 var require_DescribeCdnDeletedDomainsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -81901,9 +82350,9 @@ var require_DescribeCdnDeletedDomainsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsResponse.js
 var require_DescribeCdnDeletedDomainsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeletedDomainsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -82011,9 +82460,9 @@ var require_DescribeCdnDeletedDomainsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListRequest.js
 var require_DescribeCdnDeliverListRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -82103,9 +82552,9 @@ var require_DescribeCdnDeliverListRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListResponse.js
 var require_DescribeCdnDeliverListResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDeliverListResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -82212,9 +82661,214 @@ var require_DescribeCdnDeliverListResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDiagnoseReportRequest.js
+var require_DescribeCdnDiagnoseReportRequest = __commonJS({
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDiagnoseReportRequest.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */
+      function () {
+        var ownKeys = function (o) {
+          ownKeys = Object.getOwnPropertyNames || function (o2) {
+            var ar = [];
+            for (var k in o2) {
+              if (Object.prototype.hasOwnProperty.call(o2, k)) {
+                ar[ar.length] = k;
+              }
+            }
+            return ar;
+          };
+          return ownKeys(o);
+        };
+        return function (mod) {
+          if (mod && mod.__esModule) return mod;
+          var result = {};
+          if (mod != null) {
+            for (var k = ownKeys(mod), i = 0; i < k.length; i++) {
+              if (k[i] !== "default") __createBinding(result, mod, k[i]);
+            }
+          }
+          __setModuleDefault(result, mod);
+          return result;
+        };
+      }();
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.DescribeCdnDiagnoseReportRequest = void 0;
+    var $dara = __importStar(require_dist());
+    var DescribeCdnDiagnoseReportRequest = class extends $dara.Model {
+      static names() {
+        return {
+          taskId: "TaskId",
+          traceId: "TraceId",
+        };
+      }
+      static types() {
+        return {
+          taskId: "string",
+          traceId: "string",
+        };
+      }
+      validate() {
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnDiagnoseReportRequest =
+      DescribeCdnDiagnoseReportRequest;
+  },
+});
+
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDiagnoseReportResponse.js
+var require_DescribeCdnDiagnoseReportResponse = __commonJS({
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDiagnoseReportResponse.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */
+      function () {
+        var ownKeys = function (o) {
+          ownKeys = Object.getOwnPropertyNames || function (o2) {
+            var ar = [];
+            for (var k in o2) {
+              if (Object.prototype.hasOwnProperty.call(o2, k)) {
+                ar[ar.length] = k;
+              }
+            }
+            return ar;
+          };
+          return ownKeys(o);
+        };
+        return function (mod) {
+          if (mod && mod.__esModule) return mod;
+          var result = {};
+          if (mod != null) {
+            for (var k = ownKeys(mod), i = 0; i < k.length; i++) {
+              if (k[i] !== "default") __createBinding(result, mod, k[i]);
+            }
+          }
+          __setModuleDefault(result, mod);
+          return result;
+        };
+      }();
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.DescribeCdnDiagnoseReportResponse = void 0;
+    var $dara = __importStar(require_dist());
+    var DescribeCdnDiagnoseReportResponseBody_1 =
+      require_DescribeCdnDiagnoseReportResponseBody();
+    var DescribeCdnDiagnoseReportResponse = class extends $dara.Model {
+      static names() {
+        return {
+          headers: "headers",
+          statusCode: "statusCode",
+          body: "body",
+        };
+      }
+      static types() {
+        return {
+          headers: {
+            "type": "map",
+            "keyType": "string",
+            "valueType": "string",
+          },
+          statusCode: "number",
+          body: DescribeCdnDiagnoseReportResponseBody_1
+            .DescribeCdnDiagnoseReportResponseBody,
+        };
+      }
+      validate() {
+        if (this.headers) {
+          $dara.Model.validateMap(this.headers);
+        }
+        if (this.body && typeof this.body.validate === "function") {
+          this.body.validate();
+        }
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnDiagnoseReportResponse =
+      DescribeCdnDiagnoseReportResponse;
+  },
+});
+
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsRequest.js
 var require_DescribeCdnDomainAtoaLogsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -82313,9 +82967,9 @@ var require_DescribeCdnDomainAtoaLogsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsResponse.js
 var require_DescribeCdnDomainAtoaLogsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainAtoaLogsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -82423,9 +83077,9 @@ var require_DescribeCdnDomainAtoaLogsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateRequest.js
 var require_DescribeCdnDomainByCertificateRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -82520,9 +83174,9 @@ var require_DescribeCdnDomainByCertificateRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateResponse.js
 var require_DescribeCdnDomainByCertificateResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainByCertificateResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -82630,9 +83284,9 @@ var require_DescribeCdnDomainByCertificateResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsRequest.js
 var require_DescribeCdnDomainConfigsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -82730,9 +83384,9 @@ var require_DescribeCdnDomainConfigsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsResponse.js
 var require_DescribeCdnDomainConfigsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainConfigsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -82840,9 +83494,9 @@ var require_DescribeCdnDomainConfigsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailRequest.js
 var require_DescribeCdnDomainDetailRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -82936,9 +83590,9 @@ var require_DescribeCdnDomainDetailRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailResponse.js
 var require_DescribeCdnDomainDetailResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainDetailResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -83045,9 +83699,9 @@ var require_DescribeCdnDomainDetailResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsRequest.js
 var require_DescribeCdnDomainLogsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -83145,9 +83799,9 @@ var require_DescribeCdnDomainLogsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsResponse.js
 var require_DescribeCdnDomainLogsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -83254,9 +83908,9 @@ var require_DescribeCdnDomainLogsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlRequest.js
 var require_DescribeCdnDomainLogsExTtlRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -83355,9 +84009,9 @@ var require_DescribeCdnDomainLogsExTtlRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlResponse.js
 var require_DescribeCdnDomainLogsExTtlResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainLogsExTtlResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -83465,9 +84119,9 @@ var require_DescribeCdnDomainLogsExTtlResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigRequest.js
 var require_DescribeCdnDomainStagingConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -83560,9 +84214,9 @@ var require_DescribeCdnDomainStagingConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigResponse.js
 var require_DescribeCdnDomainStagingConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnDomainStagingConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -83670,9 +84324,9 @@ var require_DescribeCdnDomainStagingConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigRequest.js
 var require_DescribeCdnFullDomainsBlockIpconfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -83763,9 +84417,9 @@ var require_DescribeCdnFullDomainsBlockIpconfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigResponseBody.js
 var require_DescribeCdnFullDomainsBlockIpconfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -83861,9 +84515,9 @@ var require_DescribeCdnFullDomainsBlockIpconfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigResponse.js
 var require_DescribeCdnFullDomainsBlockIpconfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIpconfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -83972,9 +84626,9 @@ var require_DescribeCdnFullDomainsBlockIpconfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryRequest.js
 var require_DescribeCdnFullDomainsBlockIphistoryRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -84070,9 +84724,9 @@ var require_DescribeCdnFullDomainsBlockIphistoryRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryResponse.js
 var require_DescribeCdnFullDomainsBlockIphistoryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnFullDomainsBlockIphistoryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -84181,9 +84835,9 @@ var require_DescribeCdnFullDomainsBlockIphistoryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListRequest.js
 var require_DescribeCdnHttpsDomainListRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -84278,9 +84932,9 @@ var require_DescribeCdnHttpsDomainListRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListResponse.js
 var require_DescribeCdnHttpsDomainListResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnHttpsDomainListResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -84388,9 +85042,9 @@ var require_DescribeCdnHttpsDomainListResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeRequest.js
 var require_DescribeCdnOrderCommodityCodeRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -84485,9 +85139,9 @@ var require_DescribeCdnOrderCommodityCodeRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeResponseBody.js
 var require_DescribeCdnOrderCommodityCodeResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -84580,9 +85234,9 @@ var require_DescribeCdnOrderCommodityCodeResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeResponse.js
 var require_DescribeCdnOrderCommodityCodeResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnOrderCommodityCodeResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -84690,9 +85344,9 @@ var require_DescribeCdnOrderCommodityCodeResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspRequest.js
 var require_DescribeCdnRegionAndIspRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -84784,9 +85438,9 @@ var require_DescribeCdnRegionAndIspRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspResponse.js
 var require_DescribeCdnRegionAndIspResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnRegionAndIspResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -84893,9 +85547,9 @@ var require_DescribeCdnRegionAndIspResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportRequest.js
 var require_DescribeCdnReportRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -84997,9 +85651,9 @@ var require_DescribeCdnReportRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportResponse.js
 var require_DescribeCdnReportResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -85105,9 +85759,9 @@ var require_DescribeCdnReportResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListRequest.js
 var require_DescribeCdnReportListRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -85197,9 +85851,9 @@ var require_DescribeCdnReportListRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListResponse.js
 var require_DescribeCdnReportListResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnReportListResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -85306,9 +85960,9 @@ var require_DescribeCdnReportListResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailRequest.js
 var require_DescribeCdnSmcertificateDetailRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -85403,9 +86057,9 @@ var require_DescribeCdnSmcertificateDetailRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailResponseBody.js
 var require_DescribeCdnSmcertificateDetailResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -85512,9 +86166,9 @@ var require_DescribeCdnSmcertificateDetailResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailResponse.js
 var require_DescribeCdnSmcertificateDetailResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateDetailResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -85622,9 +86276,9 @@ var require_DescribeCdnSmcertificateDetailResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListRequest.js
 var require_DescribeCdnSmcertificateListRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -85719,9 +86373,9 @@ var require_DescribeCdnSmcertificateListRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListResponse.js
 var require_DescribeCdnSmcertificateListResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSmcertificateListResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -85829,9 +86483,9 @@ var require_DescribeCdnSmcertificateListResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListRequest.js
 var require_DescribeCdnSslcertificateListRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -85932,9 +86586,9 @@ var require_DescribeCdnSslcertificateListRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListResponse.js
 var require_DescribeCdnSslcertificateListResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSslcertificateListResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -86042,9 +86696,9 @@ var require_DescribeCdnSslcertificateListResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoRequest.js
 var require_DescribeCdnSecFuncInfoRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -86136,9 +86790,9 @@ var require_DescribeCdnSecFuncInfoRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoResponse.js
 var require_DescribeCdnSecFuncInfoResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSecFuncInfoResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -86245,9 +86899,9 @@ var require_DescribeCdnSecFuncInfoResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceRequest.js
 var require_DescribeCdnServiceRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -86339,9 +86993,9 @@ var require_DescribeCdnServiceRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceResponse.js
 var require_DescribeCdnServiceResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnServiceResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -86447,9 +87101,9 @@ var require_DescribeCdnServiceResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSubListResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSubListResponse.js
 var require_DescribeCdnSubListResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSubListResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnSubListResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -86555,9 +87209,226 @@ var require_DescribeCdnSubListResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTaskListRequest.js
+var require_DescribeCdnTaskListRequest = __commonJS({
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTaskListRequest.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */
+      function () {
+        var ownKeys = function (o) {
+          ownKeys = Object.getOwnPropertyNames || function (o2) {
+            var ar = [];
+            for (var k in o2) {
+              if (Object.prototype.hasOwnProperty.call(o2, k)) {
+                ar[ar.length] = k;
+              }
+            }
+            return ar;
+          };
+          return ownKeys(o);
+        };
+        return function (mod) {
+          if (mod && mod.__esModule) return mod;
+          var result = {};
+          if (mod != null) {
+            for (var k = ownKeys(mod), i = 0; i < k.length; i++) {
+              if (k[i] !== "default") __createBinding(result, mod, k[i]);
+            }
+          }
+          __setModuleDefault(result, mod);
+          return result;
+        };
+      }();
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.DescribeCdnTaskListRequest = void 0;
+    var $dara = __importStar(require_dist());
+    var DescribeCdnTaskListRequest = class extends $dara.Model {
+      static names() {
+        return {
+          clientIp: "ClientIp",
+          diagnoseId: "DiagnoseId",
+          domainName: "DomainName",
+          endTime: "EndTime",
+          pageNumber: "PageNumber",
+          pageSize: "PageSize",
+          startTime: "StartTime",
+          taskId: "TaskId",
+          traceId: "TraceId",
+        };
+      }
+      static types() {
+        return {
+          clientIp: "string",
+          diagnoseId: "string",
+          domainName: "string",
+          endTime: "string",
+          pageNumber: "number",
+          pageSize: "number",
+          startTime: "string",
+          taskId: "string",
+          traceId: "string",
+        };
+      }
+      validate() {
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnTaskListRequest = DescribeCdnTaskListRequest;
+  },
+});
+
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTaskListResponse.js
+var require_DescribeCdnTaskListResponse = __commonJS({
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTaskListResponse.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */
+      function () {
+        var ownKeys = function (o) {
+          ownKeys = Object.getOwnPropertyNames || function (o2) {
+            var ar = [];
+            for (var k in o2) {
+              if (Object.prototype.hasOwnProperty.call(o2, k)) {
+                ar[ar.length] = k;
+              }
+            }
+            return ar;
+          };
+          return ownKeys(o);
+        };
+        return function (mod) {
+          if (mod && mod.__esModule) return mod;
+          var result = {};
+          if (mod != null) {
+            for (var k = ownKeys(mod), i = 0; i < k.length; i++) {
+              if (k[i] !== "default") __createBinding(result, mod, k[i]);
+            }
+          }
+          __setModuleDefault(result, mod);
+          return result;
+        };
+      }();
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.DescribeCdnTaskListResponse = void 0;
+    var $dara = __importStar(require_dist());
+    var DescribeCdnTaskListResponseBody_1 =
+      require_DescribeCdnTaskListResponseBody();
+    var DescribeCdnTaskListResponse = class extends $dara.Model {
+      static names() {
+        return {
+          headers: "headers",
+          statusCode: "statusCode",
+          body: "body",
+        };
+      }
+      static types() {
+        return {
+          headers: {
+            "type": "map",
+            "keyType": "string",
+            "valueType": "string",
+          },
+          statusCode: "number",
+          body:
+            DescribeCdnTaskListResponseBody_1.DescribeCdnTaskListResponseBody,
+        };
+      }
+      validate() {
+        if (this.headers) {
+          $dara.Model.validateMap(this.headers);
+        }
+        if (this.body && typeof this.body.validate === "function") {
+          this.body.validate();
+        }
+        super.validate();
+      }
+      constructor(map) {
+        super(map);
+      }
+    };
+    exports2.DescribeCdnTaskListResponse = DescribeCdnTaskListResponse;
+  },
+});
+
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesRequest.js
 var require_DescribeCdnTypesRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -86651,9 +87522,9 @@ var require_DescribeCdnTypesRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesResponse.js
 var require_DescribeCdnTypesResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnTypesResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -86758,9 +87629,9 @@ var require_DescribeCdnTypesResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryRequest.js
 var require_DescribeCdnUserBillHistoryRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -86853,9 +87724,9 @@ var require_DescribeCdnUserBillHistoryRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryResponse.js
 var require_DescribeCdnUserBillHistoryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillHistoryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -86963,9 +87834,9 @@ var require_DescribeCdnUserBillHistoryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionRequest.js
 var require_DescribeCdnUserBillPredictionRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -87062,9 +87933,9 @@ var require_DescribeCdnUserBillPredictionRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionResponse.js
 var require_DescribeCdnUserBillPredictionResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillPredictionResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -87172,9 +88043,9 @@ var require_DescribeCdnUserBillPredictionResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeRequest.js
 var require_DescribeCdnUserBillTypeRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -87266,9 +88137,9 @@ var require_DescribeCdnUserBillTypeRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeResponse.js
 var require_DescribeCdnUserBillTypeResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserBillTypeResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -87375,9 +88246,9 @@ var require_DescribeCdnUserBillTypeResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsRequest.js
 var require_DescribeCdnUserConfigsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -87467,9 +88338,9 @@ var require_DescribeCdnUserConfigsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsResponse.js
 var require_DescribeCdnUserConfigsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserConfigsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -87576,9 +88447,9 @@ var require_DescribeCdnUserConfigsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncRequest.js
 var require_DescribeCdnUserDomainsByFuncRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -87675,9 +88546,9 @@ var require_DescribeCdnUserDomainsByFuncRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncResponse.js
 var require_DescribeCdnUserDomainsByFuncResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserDomainsByFuncResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -87785,9 +88656,9 @@ var require_DescribeCdnUserDomainsByFuncResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaRequest.js
 var require_DescribeCdnUserQuotaRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -87879,9 +88750,9 @@ var require_DescribeCdnUserQuotaRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaResponseBody.js
 var require_DescribeCdnUserQuotaResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -87994,9 +88865,9 @@ var require_DescribeCdnUserQuotaResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaResponse.js
 var require_DescribeCdnUserQuotaResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserQuotaResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -88103,9 +88974,9 @@ var require_DescribeCdnUserQuotaResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageRequest.js
 var require_DescribeCdnUserResourcePackageRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -88200,9 +89071,9 @@ var require_DescribeCdnUserResourcePackageRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageResponse.js
 var require_DescribeCdnUserResourcePackageResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnUserResourcePackageResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -88310,9 +89181,9 @@ var require_DescribeCdnUserResourcePackageResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainRequest.js
 var require_DescribeCdnWafDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -88406,9 +89277,9 @@ var require_DescribeCdnWafDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainResponse.js
 var require_DescribeCdnWafDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCdnWafDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -88515,9 +89386,9 @@ var require_DescribeCdnWafDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdrequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdrequest.js
 var require_DescribeCertificateInfoByIdrequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdrequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdrequest.js"(
     exports2,
   ) {
     "use strict";
@@ -88608,9 +89479,9 @@ var require_DescribeCertificateInfoByIdrequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdresponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdresponse.js
 var require_DescribeCertificateInfoByIdresponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdresponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCertificateInfoByIdresponse.js"(
     exports2,
   ) {
     "use strict";
@@ -88718,9 +89589,9 @@ var require_DescribeCertificateInfoByIdresponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateRequest.js
 var require_DescribeCustomDomainSampleRateRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -88815,9 +89686,9 @@ var require_DescribeCustomDomainSampleRateRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateResponse.js
 var require_DescribeCustomDomainSampleRateResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomDomainSampleRateResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -88925,9 +89796,9 @@ var require_DescribeCustomDomainSampleRateResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigRequest.js
 var require_DescribeCustomLogConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -89017,9 +89888,9 @@ var require_DescribeCustomLogConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigResponseBody.js
 var require_DescribeCustomLogConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -89116,9 +89987,9 @@ var require_DescribeCustomLogConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigResponse.js
 var require_DescribeCustomLogConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeCustomLogConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -89225,9 +90096,9 @@ var require_DescribeCustomLogConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeRequest.js
 var require_DescribeDomainAverageResponseTimeRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -89332,9 +90203,9 @@ var require_DescribeDomainAverageResponseTimeRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeResponse.js
 var require_DescribeDomainAverageResponseTimeResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainAverageResponseTimeResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -89442,9 +90313,9 @@ var require_DescribeDomainAverageResponseTimeResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataRequest.js
 var require_DescribeDomainBpsDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -89544,9 +90415,9 @@ var require_DescribeDomainBpsDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataResponse.js
 var require_DescribeDomainBpsDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -89653,9 +90524,9 @@ var require_DescribeDomainBpsDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerRequest.js
 var require_DescribeDomainBpsDataByLayerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -89758,9 +90629,9 @@ var require_DescribeDomainBpsDataByLayerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerResponse.js
 var require_DescribeDomainBpsDataByLayerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByLayerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -89868,9 +90739,9 @@ var require_DescribeDomainBpsDataByLayerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampRequest.js
 var require_DescribeDomainBpsDataByTimeStampRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -89967,9 +90838,9 @@ var require_DescribeDomainBpsDataByTimeStampRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampResponse.js
 var require_DescribeDomainBpsDataByTimeStampResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainBpsDataByTimeStampResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -90077,9 +90948,9 @@ var require_DescribeDomainBpsDataByTimeStampResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogRequest.js
 var require_DescribeDomainCcActivityLogRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -90184,9 +91055,9 @@ var require_DescribeDomainCcActivityLogRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogResponse.js
 var require_DescribeDomainCcActivityLogResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCcActivityLogResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -90294,9 +91165,9 @@ var require_DescribeDomainCcActivityLogResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoRequest.js
 var require_DescribeDomainCertificateInfoRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -90387,9 +91258,9 @@ var require_DescribeDomainCertificateInfoRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoResponse.js
 var require_DescribeDomainCertificateInfoResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCertificateInfoResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -90497,9 +91368,9 @@ var require_DescribeDomainCertificateInfoResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameRequest.js
 var require_DescribeDomainCnameRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -90589,9 +91460,9 @@ var require_DescribeDomainCnameRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameResponse.js
 var require_DescribeDomainCnameResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCnameResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -90698,9 +91569,9 @@ var require_DescribeDomainCnameResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigRequest.js
 var require_DescribeDomainCustomLogConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -90791,9 +91662,9 @@ var require_DescribeDomainCustomLogConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigResponseBody.js
 var require_DescribeDomainCustomLogConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -90892,9 +91763,9 @@ var require_DescribeDomainCustomLogConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigResponse.js
 var require_DescribeDomainCustomLogConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainCustomLogConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -91002,9 +91873,9 @@ var require_DescribeDomainCustomLogConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerRequest.js
 var require_DescribeDomainDetailDataByLayerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -91107,9 +91978,9 @@ var require_DescribeDomainDetailDataByLayerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerResponse.js
 var require_DescribeDomainDetailDataByLayerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainDetailDataByLayerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -91217,9 +92088,9 @@ var require_DescribeDomainDetailDataByLayerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataRequest.js
 var require_DescribeDomainHitRateDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -91316,9 +92187,9 @@ var require_DescribeDomainHitRateDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataResponse.js
 var require_DescribeDomainHitRateDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHitRateDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -91426,9 +92297,9 @@ var require_DescribeDomainHitRateDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataRequest.js
 var require_DescribeDomainHttpCodeDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -91529,9 +92400,9 @@ var require_DescribeDomainHttpCodeDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataResponse.js
 var require_DescribeDomainHttpCodeDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -91639,9 +92510,9 @@ var require_DescribeDomainHttpCodeDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerRequest.js
 var require_DescribeDomainHttpCodeDataByLayerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -91744,9 +92615,9 @@ var require_DescribeDomainHttpCodeDataByLayerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerResponse.js
 var require_DescribeDomainHttpCodeDataByLayerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainHttpCodeDataByLayerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -91854,9 +92725,9 @@ var require_DescribeDomainHttpCodeDataByLayerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataRequest.js
 var require_DescribeDomainIspdataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -91950,9 +92821,9 @@ var require_DescribeDomainIspdataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataResponse.js
 var require_DescribeDomainIspdataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainIspdataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -92059,9 +92930,9 @@ var require_DescribeDomainIspdataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataRequest.js
 var require_DescribeDomainMax95bpsDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -92160,9 +93031,9 @@ var require_DescribeDomainMax95bpsDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataResponse.js
 var require_DescribeDomainMax95bpsDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMax95bpsDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -92270,9 +93141,9 @@ var require_DescribeDomainMax95bpsDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataRequest.js
 var require_DescribeDomainMultiUsageDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -92367,9 +93238,9 @@ var require_DescribeDomainMultiUsageDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataResponse.js
 var require_DescribeDomainMultiUsageDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainMultiUsageDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -92477,9 +93348,9 @@ var require_DescribeDomainMultiUsageDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataRequest.js
 var require_DescribeDomainPathDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -92579,9 +93450,9 @@ var require_DescribeDomainPathDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataResponse.js
 var require_DescribeDomainPathDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPathDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -92688,9 +93559,9 @@ var require_DescribeDomainPathDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataRequest.js
 var require_DescribeDomainPvDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -92784,9 +93655,9 @@ var require_DescribeDomainPvDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataResponse.js
 var require_DescribeDomainPvDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainPvDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -92893,9 +93764,9 @@ var require_DescribeDomainPvDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataRequest.js
 var require_DescribeDomainQpsDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -92995,9 +93866,9 @@ var require_DescribeDomainQpsDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataResponse.js
 var require_DescribeDomainQpsDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -93104,9 +93975,9 @@ var require_DescribeDomainQpsDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerRequest.js
 var require_DescribeDomainQpsDataByLayerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -93209,9 +94080,9 @@ var require_DescribeDomainQpsDataByLayerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerResponse.js
 var require_DescribeDomainQpsDataByLayerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainQpsDataByLayerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -93319,9 +94190,9 @@ var require_DescribeDomainQpsDataByLayerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataRequest.js
 var require_DescribeDomainRealTimeBpsDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -93420,9 +94291,9 @@ var require_DescribeDomainRealTimeBpsDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataResponse.js
 var require_DescribeDomainRealTimeBpsDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeBpsDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -93530,9 +94401,9 @@ var require_DescribeDomainRealTimeBpsDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataRequest.js
 var require_DescribeDomainRealTimeByteHitRateDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -93628,9 +94499,9 @@ var require_DescribeDomainRealTimeByteHitRateDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataResponse.js
 var require_DescribeDomainRealTimeByteHitRateDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeByteHitRateDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -93739,9 +94610,9 @@ var require_DescribeDomainRealTimeByteHitRateDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataRequest.js
 var require_DescribeDomainRealTimeDetailDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -93846,9 +94717,9 @@ var require_DescribeDomainRealTimeDetailDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataResponseBody.js
 var require_DescribeDomainRealTimeDetailDataResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -93942,9 +94813,9 @@ var require_DescribeDomainRealTimeDetailDataResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataResponse.js
 var require_DescribeDomainRealTimeDetailDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeDetailDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -94052,9 +94923,9 @@ var require_DescribeDomainRealTimeDetailDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataRequest.js
 var require_DescribeDomainRealTimeHttpCodeDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -94153,9 +95024,9 @@ var require_DescribeDomainRealTimeHttpCodeDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataResponse.js
 var require_DescribeDomainRealTimeHttpCodeDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeHttpCodeDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -94263,9 +95134,9 @@ var require_DescribeDomainRealTimeHttpCodeDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataRequest.js
 var require_DescribeDomainRealTimeQpsDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -94364,9 +95235,9 @@ var require_DescribeDomainRealTimeQpsDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataResponse.js
 var require_DescribeDomainRealTimeQpsDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeQpsDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -94474,9 +95345,9 @@ var require_DescribeDomainRealTimeQpsDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataRequest.js
 var require_DescribeDomainRealTimeReqHitRateDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -94572,9 +95443,9 @@ var require_DescribeDomainRealTimeReqHitRateDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataResponse.js
 var require_DescribeDomainRealTimeReqHitRateDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeReqHitRateDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -94683,9 +95554,9 @@ var require_DescribeDomainRealTimeReqHitRateDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataRequest.js
 var require_DescribeDomainRealTimeSrcBpsDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -94780,9 +95651,9 @@ var require_DescribeDomainRealTimeSrcBpsDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataResponse.js
 var require_DescribeDomainRealTimeSrcBpsDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcBpsDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -94890,9 +95761,9 @@ var require_DescribeDomainRealTimeSrcBpsDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataRequest.js
 var require_DescribeDomainRealTimeSrcHttpCodeDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -94988,9 +95859,9 @@ var require_DescribeDomainRealTimeSrcHttpCodeDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataResponse.js
 var require_DescribeDomainRealTimeSrcHttpCodeDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcHttpCodeDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -95099,9 +95970,9 @@ var require_DescribeDomainRealTimeSrcHttpCodeDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataRequest.js
 var require_DescribeDomainRealTimeSrcTrafficDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -95197,9 +96068,9 @@ var require_DescribeDomainRealTimeSrcTrafficDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataResponse.js
 var require_DescribeDomainRealTimeSrcTrafficDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeSrcTrafficDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -95308,9 +96179,9 @@ var require_DescribeDomainRealTimeSrcTrafficDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataRequest.js
 var require_DescribeDomainRealTimeTrafficDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -95409,9 +96280,9 @@ var require_DescribeDomainRealTimeTrafficDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataResponse.js
 var require_DescribeDomainRealTimeTrafficDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealTimeTrafficDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -95519,9 +96390,9 @@ var require_DescribeDomainRealTimeTrafficDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryRequest.js
 var require_DescribeDomainRealtimeLogDeliveryRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -95612,9 +96483,9 @@ var require_DescribeDomainRealtimeLogDeliveryRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryResponseBody.js
 var require_DescribeDomainRealtimeLogDeliveryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -95714,9 +96585,9 @@ var require_DescribeDomainRealtimeLogDeliveryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryResponse.js
 var require_DescribeDomainRealtimeLogDeliveryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRealtimeLogDeliveryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -95824,9 +96695,9 @@ var require_DescribeDomainRealtimeLogDeliveryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataRequest.js
 var require_DescribeDomainRegionDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -95920,9 +96791,9 @@ var require_DescribeDomainRegionDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataResponse.js
 var require_DescribeDomainRegionDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainRegionDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -96030,9 +96901,9 @@ var require_DescribeDomainRegionDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataRequest.js
 var require_DescribeDomainReqHitRateDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -96129,9 +97000,9 @@ var require_DescribeDomainReqHitRateDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataResponse.js
 var require_DescribeDomainReqHitRateDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainReqHitRateDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -96239,9 +97110,9 @@ var require_DescribeDomainReqHitRateDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataRequest.js
 var require_DescribeDomainSrcBpsDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -96337,9 +97208,9 @@ var require_DescribeDomainSrcBpsDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataResponse.js
 var require_DescribeDomainSrcBpsDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcBpsDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -96447,9 +97318,9 @@ var require_DescribeDomainSrcBpsDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataRequest.js
 var require_DescribeDomainSrcHttpCodeDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -96546,9 +97417,9 @@ var require_DescribeDomainSrcHttpCodeDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataResponse.js
 var require_DescribeDomainSrcHttpCodeDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcHttpCodeDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -96656,9 +97527,9 @@ var require_DescribeDomainSrcHttpCodeDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataRequest.js
 var require_DescribeDomainSrcQpsDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -96754,9 +97625,9 @@ var require_DescribeDomainSrcQpsDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataResponse.js
 var require_DescribeDomainSrcQpsDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcQpsDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -96864,9 +97735,9 @@ var require_DescribeDomainSrcQpsDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitRequest.js
 var require_DescribeDomainSrcTopUrlVisitRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -96963,9 +97834,9 @@ var require_DescribeDomainSrcTopUrlVisitRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitResponse.js
 var require_DescribeDomainSrcTopUrlVisitResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTopUrlVisitResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -97073,9 +97944,9 @@ var require_DescribeDomainSrcTopUrlVisitResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataRequest.js
 var require_DescribeDomainSrcTrafficDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -97172,9 +98043,9 @@ var require_DescribeDomainSrcTrafficDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataResponse.js
 var require_DescribeDomainSrcTrafficDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainSrcTrafficDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -97282,9 +98153,9 @@ var require_DescribeDomainSrcTrafficDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitRequest.js
 var require_DescribeDomainTopClientIpVisitRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -97385,9 +98256,9 @@ var require_DescribeDomainTopClientIpVisitRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitResponse.js
 var require_DescribeDomainTopClientIpVisitResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopClientIpVisitResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -97495,9 +98366,9 @@ var require_DescribeDomainTopClientIpVisitResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitRequest.js
 var require_DescribeDomainTopReferVisitRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -97594,9 +98465,9 @@ var require_DescribeDomainTopReferVisitRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitResponse.js
 var require_DescribeDomainTopReferVisitResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopReferVisitResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -97704,9 +98575,9 @@ var require_DescribeDomainTopReferVisitResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitRequest.js
 var require_DescribeDomainTopUrlVisitRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -97803,9 +98674,9 @@ var require_DescribeDomainTopUrlVisitRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitResponse.js
 var require_DescribeDomainTopUrlVisitResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTopUrlVisitResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -97913,9 +98784,9 @@ var require_DescribeDomainTopUrlVisitResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataRequest.js
 var require_DescribeDomainTrafficDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -98016,9 +98887,9 @@ var require_DescribeDomainTrafficDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataResponse.js
 var require_DescribeDomainTrafficDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainTrafficDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -98126,9 +98997,9 @@ var require_DescribeDomainTrafficDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataRequest.js
 var require_DescribeDomainUsageDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -98234,9 +99105,9 @@ var require_DescribeDomainUsageDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataResponse.js
 var require_DescribeDomainUsageDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUsageDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -98343,9 +99214,9 @@ var require_DescribeDomainUsageDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataRequest.js
 var require_DescribeDomainUvDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -98439,9 +99310,9 @@ var require_DescribeDomainUvDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataResponse.js
 var require_DescribeDomainUvDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainUvDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -98548,9 +99419,9 @@ var require_DescribeDomainUvDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataRequest.js
 var require_DescribeDomainVerifyDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -98642,9 +99513,9 @@ var require_DescribeDomainVerifyDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataResponse.js
 var require_DescribeDomainVerifyDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainVerifyDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -98752,9 +99623,9 @@ var require_DescribeDomainVerifyDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceRequest.js
 var require_DescribeDomainsBySourceRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -98848,9 +99719,9 @@ var require_DescribeDomainsBySourceRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceResponse.js
 var require_DescribeDomainsBySourceResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsBySourceResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -98957,9 +99828,9 @@ var require_DescribeDomainsBySourceResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayRequest.js
 var require_DescribeDomainsUsageByDayRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -99054,9 +99925,9 @@ var require_DescribeDomainsUsageByDayRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayResponse.js
 var require_DescribeDomainsUsageByDayResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeDomainsUsageByDayResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -99164,9 +100035,9 @@ var require_DescribeDomainsUsageByDayResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataRequest.js
 var require_DescribeEsExceptionDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -99260,9 +100131,9 @@ var require_DescribeEsExceptionDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataResponse.js
 var require_DescribeEsExceptionDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExceptionDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -99369,9 +100240,9 @@ var require_DescribeEsExceptionDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataRequest.js
 var require_DescribeEsExecuteDataRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -99465,9 +100336,9 @@ var require_DescribeEsExecuteDataRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataResponse.js
 var require_DescribeEsExecuteDataResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeEsExecuteDataResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -99574,9 +100445,9 @@ var require_DescribeEsExecuteDataResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerRequest.js
 var require_DescribeFctriggerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -99666,9 +100537,9 @@ var require_DescribeFctriggerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerResponse.js
 var require_DescribeFctriggerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeFctriggerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -99774,9 +100645,9 @@ var require_DescribeFctriggerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoRequest.js
 var require_DescribeIpInfoRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -99866,9 +100737,9 @@ var require_DescribeIpInfoRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoResponseBody.js
 var require_DescribeIpInfoResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -99968,9 +100839,9 @@ var require_DescribeIpInfoResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoResponse.js
 var require_DescribeIpInfoResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpInfoResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -100075,9 +100946,9 @@ var require_DescribeIpInfoResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusRequest.js
 var require_DescribeIpStatusRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -100167,9 +101038,9 @@ var require_DescribeIpStatusRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusResponse.js
 var require_DescribeIpStatusResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeIpStatusResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -100274,9 +101145,9 @@ var require_DescribeIpStatusResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainRequest.js
 var require_DescribeL2vipsByDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -100370,9 +101241,9 @@ var require_DescribeL2vipsByDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainResponse.js
 var require_DescribeL2vipsByDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeL2vipsByDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -100479,9 +101350,9 @@ var require_DescribeL2vipsByDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdRequest.js
 var require_DescribePreloadDetailByIdRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -100572,9 +101443,9 @@ var require_DescribePreloadDetailByIdRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdResponse.js
 var require_DescribePreloadDetailByIdResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribePreloadDetailByIdResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -100682,9 +101553,9 @@ var require_DescribePreloadDetailByIdResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceRequest.js
 var require_DescribeRangeDataByLocateAndIspServiceRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -100784,9 +101655,9 @@ var require_DescribeRangeDataByLocateAndIspServiceRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceResponseBody.js
 var require_DescribeRangeDataByLocateAndIspServiceResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -100880,9 +101751,9 @@ var require_DescribeRangeDataByLocateAndIspServiceResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceResponse.js
 var require_DescribeRangeDataByLocateAndIspServiceResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRangeDataByLocateAndIspServiceResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -100991,9 +101862,9 @@ var require_DescribeRangeDataByLocateAndIspServiceResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccRequest.js
 var require_DescribeRealtimeDeliveryAccRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -101092,9 +101963,9 @@ var require_DescribeRealtimeDeliveryAccRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccResponse.js
 var require_DescribeRealtimeDeliveryAccResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRealtimeDeliveryAccResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -101202,9 +102073,9 @@ var require_DescribeRealtimeDeliveryAccResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaRequest.js
 var require_DescribeRefreshQuotaRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -101296,9 +102167,9 @@ var require_DescribeRefreshQuotaRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaResponseBody.js
 var require_DescribeRefreshQuotaResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -101417,9 +102288,9 @@ var require_DescribeRefreshQuotaResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaResponse.js
 var require_DescribeRefreshQuotaResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshQuotaResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -101526,9 +102397,9 @@ var require_DescribeRefreshQuotaResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdRequest.js
 var require_DescribeRefreshTaskByIdRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -101618,9 +102489,9 @@ var require_DescribeRefreshTaskByIdRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdResponse.js
 var require_DescribeRefreshTaskByIdResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTaskByIdResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -101727,9 +102598,9 @@ var require_DescribeRefreshTaskByIdResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksRequest.js
 var require_DescribeRefreshTasksRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -101841,9 +102712,9 @@ var require_DescribeRefreshTasksRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksResponse.js
 var require_DescribeRefreshTasksResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeRefreshTasksResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -101950,9 +102821,9 @@ var require_DescribeRefreshTasksResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeStagingIpResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeStagingIpResponse.js
 var require_DescribeStagingIpResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeStagingIpResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeStagingIpResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -102058,9 +102929,9 @@ var require_DescribeStagingIpResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesResponse.js
 var require_DescribeTagResourcesResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTagResourcesResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -102167,9 +103038,9 @@ var require_DescribeTagResourcesResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowRequest.js
 var require_DescribeTopDomainsByFlowRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -102263,9 +103134,9 @@ var require_DescribeTopDomainsByFlowRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowResponse.js
 var require_DescribeTopDomainsByFlowResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeTopDomainsByFlowResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -102373,9 +103244,9 @@ var require_DescribeTopDomainsByFlowResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusRequest.js
 var require_DescribeUserCdnStatusRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -102467,9 +103338,9 @@ var require_DescribeUserCdnStatusRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusResponseBody.js
 var require_DescribeUserCdnStatusResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -102568,9 +103439,9 @@ var require_DescribeUserCdnStatusResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusResponse.js
 var require_DescribeUserCdnStatusResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCdnStatusResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -102677,9 +103548,9 @@ var require_DescribeUserCdnStatusResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCertificateExpireCountResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCertificateExpireCountResponseBody.js
 var require_DescribeUserCertificateExpireCountResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCertificateExpireCountResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCertificateExpireCountResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -102775,9 +103646,9 @@ var require_DescribeUserCertificateExpireCountResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCertificateExpireCountResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCertificateExpireCountResponse.js
 var require_DescribeUserCertificateExpireCountResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCertificateExpireCountResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserCertificateExpireCountResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -102885,9 +103756,9 @@ var require_DescribeUserCertificateExpireCountResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsRequest.js
 var require_DescribeUserConfigsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -102981,9 +103852,9 @@ var require_DescribeUserConfigsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsResponse.js
 var require_DescribeUserConfigsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserConfigsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -103090,9 +103961,9 @@ var require_DescribeUserConfigsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsResponse.js
 var require_DescribeUserDomainsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserDomainsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -103199,9 +104070,9 @@ var require_DescribeUserDomainsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserTagsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserTagsResponse.js
 var require_DescribeUserTagsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserTagsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserTagsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -103306,9 +104177,9 @@ var require_DescribeUserTagsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskRequest.js
 var require_DescribeUserUsageDataExportTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -103401,9 +104272,9 @@ var require_DescribeUserUsageDataExportTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskResponse.js
 var require_DescribeUserUsageDataExportTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDataExportTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -103511,9 +104382,9 @@ var require_DescribeUserUsageDataExportTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskRequest.js
 var require_DescribeUserUsageDetailDataExportTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -103607,9 +104478,9 @@ var require_DescribeUserUsageDetailDataExportTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskResponse.js
 var require_DescribeUserUsageDetailDataExportTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserUsageDetailDataExportTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -103718,9 +104589,9 @@ var require_DescribeUserUsageDetailDataExportTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainRequest.js
 var require_DescribeUserVipsByDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -103812,9 +104683,9 @@ var require_DescribeUserVipsByDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainResponse.js
 var require_DescribeUserVipsByDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeUserVipsByDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -103922,9 +104793,9 @@ var require_DescribeUserVipsByDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentRequest.js
 var require_DescribeVerifyContentRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -104014,9 +104885,9 @@ var require_DescribeVerifyContentRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentResponseBody.js
 var require_DescribeVerifyContentResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -104109,9 +104980,9 @@ var require_DescribeVerifyContentResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentResponse.js
 var require_DescribeVerifyContentResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DescribeVerifyContentResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -104218,9 +105089,9 @@ var require_DescribeVerifyContentResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryRequest.js
 var require_DisableRealtimeLogDeliveryRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -104317,9 +105188,9 @@ var require_DisableRealtimeLogDeliveryRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryResponseBody.js
 var require_DisableRealtimeLogDeliveryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -104410,9 +105281,9 @@ var require_DisableRealtimeLogDeliveryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryResponse.js
 var require_DisableRealtimeLogDeliveryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/DisableRealtimeLogDeliveryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -104520,9 +105391,9 @@ var require_DisableRealtimeLogDeliveryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryRequest.js
 var require_EnableRealtimeLogDeliveryRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -104619,9 +105490,9 @@ var require_EnableRealtimeLogDeliveryRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryResponseBody.js
 var require_EnableRealtimeLogDeliveryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -104712,9 +105583,9 @@ var require_EnableRealtimeLogDeliveryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryResponse.js
 var require_EnableRealtimeLogDeliveryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/EnableRealtimeLogDeliveryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -104822,9 +105693,9 @@ var require_EnableRealtimeLogDeliveryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseRequest.js
 var require_GenerateCdnDiagnoseRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -104914,9 +105785,9 @@ var require_GenerateCdnDiagnoseRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseResponseBody.js
 var require_GenerateCdnDiagnoseResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -105008,9 +105879,9 @@ var require_GenerateCdnDiagnoseResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseResponse.js
 var require_GenerateCdnDiagnoseResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GenerateCdnDiagnoseResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -105117,9 +105988,9 @@ var require_GenerateCdnDiagnoseResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionRequest.js
 var require_GetGrayDomainFunctionRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -105211,9 +106082,9 @@ var require_GetGrayDomainFunctionRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionResponse.js
 var require_GetGrayDomainFunctionResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/GetGrayDomainFunctionResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -105320,9 +106191,9 @@ var require_GetGrayDomainFunctionResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdRequest.js
 var require_ListDomainsByLogConfigIdRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -105412,9 +106283,9 @@ var require_ListDomainsByLogConfigIdRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdResponse.js
 var require_ListDomainsByLogConfigIdResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListDomainsByLogConfigIdResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -105522,9 +106393,9 @@ var require_ListDomainsByLogConfigIdResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerRequest.js
 var require_ListFctriggerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -105616,9 +106487,9 @@ var require_ListFctriggerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerResponse.js
 var require_ListFctriggerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListFctriggerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -105723,9 +106594,9 @@ var require_ListFctriggerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryResponse.js
 var require_ListRealtimeLogDeliveryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -105832,9 +106703,9 @@ var require_ListRealtimeLogDeliveryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsRequest.js
 var require_ListRealtimeLogDeliveryDomainsRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -105929,9 +106800,9 @@ var require_ListRealtimeLogDeliveryDomainsRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsResponse.js
 var require_ListRealtimeLogDeliveryDomainsResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryDomainsResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -106039,9 +106910,9 @@ var require_ListRealtimeLogDeliveryDomainsResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryInfosResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryInfosResponse.js
 var require_ListRealtimeLogDeliveryInfosResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryInfosResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListRealtimeLogDeliveryInfosResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -106149,9 +107020,9 @@ var require_ListRealtimeLogDeliveryInfosResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesResponse.js
 var require_ListTagResourcesResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListTagResourcesResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -106256,9 +107127,9 @@ var require_ListTagResourcesResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListUserCustomLogConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListUserCustomLogConfigResponse.js
 var require_ListUserCustomLogConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ListUserCustomLogConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ListUserCustomLogConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -106365,9 +107236,9 @@ var require_ListUserCustomLogConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainRequest.js
 var require_ModifyCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -106467,9 +107338,9 @@ var require_ModifyCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainResponseBody.js
 var require_ModifyCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -106559,9 +107430,9 @@ var require_ModifyCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainResponse.js
 var require_ModifyCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -106666,9 +107537,9 @@ var require_ModifyCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerRequest.js
 var require_ModifyCdnDomainOwnerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -106764,9 +107635,9 @@ var require_ModifyCdnDomainOwnerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerResponseBody.js
 var require_ModifyCdnDomainOwnerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -106866,9 +107737,9 @@ var require_ModifyCdnDomainOwnerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerResponse.js
 var require_ModifyCdnDomainOwnerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainOwnerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -106975,9 +107846,9 @@ var require_ModifyCdnDomainOwnerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyRequest.js
 var require_ModifyCdnDomainSchdmByPropertyRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -107070,9 +107941,9 @@ var require_ModifyCdnDomainSchdmByPropertyRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyResponseBody.js
 var require_ModifyCdnDomainSchdmByPropertyResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -107163,9 +108034,9 @@ var require_ModifyCdnDomainSchdmByPropertyResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyResponse.js
 var require_ModifyCdnDomainSchdmByPropertyResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnDomainSchdmByPropertyResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -107273,9 +108144,9 @@ var require_ModifyCdnDomainSchdmByPropertyResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceRequest.js
 var require_ModifyCdnServiceRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -107369,9 +108240,9 @@ var require_ModifyCdnServiceRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceResponseBody.js
 var require_ModifyCdnServiceResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -107461,9 +108332,9 @@ var require_ModifyCdnServiceResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceResponse.js
 var require_ModifyCdnServiceResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCdnServiceResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -107568,9 +108439,9 @@ var require_ModifyCdnServiceResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateRequest.js
 var require_ModifyCustomDomainSampleRateRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -107667,9 +108538,9 @@ var require_ModifyCustomDomainSampleRateRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateResponse.js
 var require_ModifyCustomDomainSampleRateResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyCustomDomainSampleRateResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -107777,9 +108648,9 @@ var require_ModifyCustomDomainSampleRateResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryRequest.js
 var require_ModifyRealtimeLogDeliveryRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -107876,9 +108747,9 @@ var require_ModifyRealtimeLogDeliveryRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryResponseBody.js
 var require_ModifyRealtimeLogDeliveryResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -107969,9 +108840,9 @@ var require_ModifyRealtimeLogDeliveryResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryResponse.js
 var require_ModifyRealtimeLogDeliveryResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/ModifyRealtimeLogDeliveryResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -108079,9 +108950,9 @@ var require_ModifyRealtimeLogDeliveryResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceRequest.js
 var require_OpenCdnServiceRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -108175,9 +109046,9 @@ var require_OpenCdnServiceRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceResponseBody.js
 var require_OpenCdnServiceResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -108267,9 +109138,9 @@ var require_OpenCdnServiceResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceResponse.js
 var require_OpenCdnServiceResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/OpenCdnServiceResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -108374,9 +109245,9 @@ var require_OpenCdnServiceResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigRequest.js
 var require_PublishGrayDomainConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -108474,9 +109345,9 @@ var require_PublishGrayDomainConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigResponseBody.js
 var require_PublishGrayDomainConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -108567,9 +109438,9 @@ var require_PublishGrayDomainConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigResponse.js
 var require_PublishGrayDomainConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishGrayDomainConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -108676,9 +109547,9 @@ var require_PublishGrayDomainConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionRequest.js
 var require_PublishStagingConfigToProductionRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -108769,9 +109640,9 @@ var require_PublishStagingConfigToProductionRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionResponseBody.js
 var require_PublishStagingConfigToProductionResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -108863,9 +109734,9 @@ var require_PublishStagingConfigToProductionResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionResponse.js
 var require_PublishStagingConfigToProductionResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PublishStagingConfigToProductionResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -108973,9 +109844,9 @@ var require_PublishStagingConfigToProductionResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheRequest.js
 var require_PushObjectCacheRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -109079,9 +109950,9 @@ var require_PushObjectCacheRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheResponseBody.js
 var require_PushObjectCacheResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -109173,9 +110044,9 @@ var require_PushObjectCacheResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheResponse.js
 var require_PushObjectCacheResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/PushObjectCacheResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -109280,9 +110151,9 @@ var require_PushObjectCacheResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagRequest.js
 var require_RefreshObjectCacheByCacheTagRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -109377,9 +110248,9 @@ var require_RefreshObjectCacheByCacheTagRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagResponseBody.js
 var require_RefreshObjectCacheByCacheTagResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -109472,9 +110343,9 @@ var require_RefreshObjectCacheByCacheTagResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagResponse.js
 var require_RefreshObjectCacheByCacheTagResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCacheByCacheTagResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -109582,9 +110453,9 @@ var require_RefreshObjectCacheByCacheTagResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesRequest.js
 var require_RefreshObjectCachesRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -109682,9 +110553,9 @@ var require_RefreshObjectCachesRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesResponseBody.js
 var require_RefreshObjectCachesResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -109776,9 +110647,9 @@ var require_RefreshObjectCachesResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesResponse.js
 var require_RefreshObjectCachesResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RefreshObjectCachesResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -109885,9 +110756,9 @@ var require_RefreshObjectCachesResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigRequest.js
 var require_RollbackStagingConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -109977,9 +110848,9 @@ var require_RollbackStagingConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigResponseBody.js
 var require_RollbackStagingConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -110070,9 +110941,9 @@ var require_RollbackStagingConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigResponse.js
 var require_RollbackStagingConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/RollbackStagingConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -110179,9 +111050,9 @@ var require_RollbackStagingConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateRequest.js
 var require_SetCdnDomainCsrcertificateRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -110274,9 +111145,9 @@ var require_SetCdnDomainCsrcertificateRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateResponseBody.js
 var require_SetCdnDomainCsrcertificateResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -110367,9 +111238,9 @@ var require_SetCdnDomainCsrcertificateResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateResponse.js
 var require_SetCdnDomainCsrcertificateResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainCsrcertificateResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -110477,9 +111348,9 @@ var require_SetCdnDomainCsrcertificateResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateRequest.js
 var require_SetCdnDomainSmcertificateRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -110578,9 +111449,9 @@ var require_SetCdnDomainSmcertificateRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateResponseBody.js
 var require_SetCdnDomainSmcertificateResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -110671,9 +111542,9 @@ var require_SetCdnDomainSmcertificateResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateResponse.js
 var require_SetCdnDomainSmcertificateResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSmcertificateResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -110781,9 +111652,9 @@ var require_SetCdnDomainSmcertificateResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateRequest.js
 var require_SetCdnDomainSslcertificateRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -110892,9 +111763,9 @@ var require_SetCdnDomainSslcertificateRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateResponseBody.js
 var require_SetCdnDomainSslcertificateResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -110985,9 +111856,9 @@ var require_SetCdnDomainSslcertificateResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateResponse.js
 var require_SetCdnDomainSslcertificateResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainSslcertificateResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -111095,9 +111966,9 @@ var require_SetCdnDomainSslcertificateResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigRequest.js
 var require_SetCdnDomainStagingConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -111190,9 +112061,9 @@ var require_SetCdnDomainStagingConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigResponse.js
 var require_SetCdnDomainStagingConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnDomainStagingConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -111300,9 +112171,9 @@ var require_SetCdnDomainStagingConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIprequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIprequest.js
 var require_SetCdnFullDomainsBlockIprequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIprequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIprequest.js"(
     exports2,
   ) {
     "use strict";
@@ -111398,9 +112269,9 @@ var require_SetCdnFullDomainsBlockIprequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIpresponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIpresponseBody.js
 var require_SetCdnFullDomainsBlockIpresponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIpresponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIpresponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -111495,9 +112366,9 @@ var require_SetCdnFullDomainsBlockIpresponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIpresponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIpresponse.js
 var require_SetCdnFullDomainsBlockIpresponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIpresponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetCdnFullDomainsBlockIpresponse.js"(
     exports2,
   ) {
     "use strict";
@@ -111605,9 +112476,9 @@ var require_SetCdnFullDomainsBlockIpresponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigRequest.js
 var require_SetReqHeaderConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -111707,9 +112578,9 @@ var require_SetReqHeaderConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigResponseBody.js
 var require_SetReqHeaderConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -111799,9 +112670,9 @@ var require_SetReqHeaderConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigResponse.js
 var require_SetReqHeaderConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetReqHeaderConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -111907,9 +112778,9 @@ var require_SetReqHeaderConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigRequest.js
 var require_SetWaitingRoomConfigRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -112009,9 +112880,9 @@ var require_SetWaitingRoomConfigRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigResponseBody.js
 var require_SetWaitingRoomConfigResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -112102,9 +112973,9 @@ var require_SetWaitingRoomConfigResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigResponse.js
 var require_SetWaitingRoomConfigResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/SetWaitingRoomConfigResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -112211,9 +113082,9 @@ var require_SetWaitingRoomConfigResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainRequest.js
 var require_StartCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -112307,9 +113178,9 @@ var require_StartCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainResponseBody.js
 var require_StartCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -112399,9 +113270,9 @@ var require_StartCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainResponse.js
 var require_StartCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StartCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -112506,9 +113377,9 @@ var require_StartCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainRequest.js
 var require_StopCdnDomainRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -112602,9 +113473,9 @@ var require_StopCdnDomainRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainResponseBody.js
 var require_StopCdnDomainResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -112694,9 +113565,9 @@ var require_StopCdnDomainResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainResponse.js
 var require_StopCdnDomainResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/StopCdnDomainResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -112801,9 +113672,9 @@ var require_StopCdnDomainResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesResponseBody.js
 var require_TagResourcesResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -112893,9 +113764,9 @@ var require_TagResourcesResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesResponse.js
 var require_TagResourcesResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/TagResourcesResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -113000,9 +113871,9 @@ var require_TagResourcesResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesRequest.js
 var require_UntagResourcesRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -113110,9 +113981,9 @@ var require_UntagResourcesRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesResponseBody.js
 var require_UntagResourcesResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -113202,9 +114073,9 @@ var require_UntagResourcesResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesResponse.js
 var require_UntagResourcesResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UntagResourcesResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -113309,9 +114180,9 @@ var require_UntagResourcesResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskRequest.js
 var require_UpdateCdnDeliverTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -113411,9 +114282,9 @@ var require_UpdateCdnDeliverTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskResponseBody.js
 var require_UpdateCdnDeliverTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -113504,9 +114375,9 @@ var require_UpdateCdnDeliverTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskResponse.js
 var require_UpdateCdnDeliverTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnDeliverTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -113613,9 +114484,9 @@ var require_UpdateCdnDeliverTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskRequest.js
 var require_UpdateCdnSubTaskRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -113711,9 +114582,9 @@ var require_UpdateCdnSubTaskRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskResponseBody.js
 var require_UpdateCdnSubTaskResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -113803,9 +114674,9 @@ var require_UpdateCdnSubTaskResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskResponse.js
 var require_UpdateCdnSubTaskResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateCdnSubTaskResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -113910,9 +114781,9 @@ var require_UpdateCdnSubTaskResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerRequest.js
 var require_UpdateFctriggerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -114010,9 +114881,9 @@ var require_UpdateFctriggerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerResponseBody.js
 var require_UpdateFctriggerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -114102,9 +114973,9 @@ var require_UpdateFctriggerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerResponse.js
 var require_UpdateFctriggerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/UpdateFctriggerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -114209,9 +115080,9 @@ var require_UpdateFctriggerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerRequest.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerRequest.js
 var require_VerifyDomainOwnerRequest = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerRequest.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerRequest.js"(
     exports2,
   ) {
     "use strict";
@@ -114303,9 +115174,9 @@ var require_VerifyDomainOwnerRequest = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerResponseBody.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerResponseBody.js
 var require_VerifyDomainOwnerResponseBody = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerResponseBody.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerResponseBody.js"(
     exports2,
   ) {
     "use strict";
@@ -114397,9 +115268,9 @@ var require_VerifyDomainOwnerResponseBody = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerResponse.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerResponse.js
 var require_VerifyDomainOwnerResponse = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerResponse.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/VerifyDomainOwnerResponse.js"(
     exports2,
   ) {
     "use strict";
@@ -114505,20 +115376,16 @@ var require_VerifyDomainOwnerResponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/model.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/model.js
 var require_model2 = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/models/model.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/models/model.js"(
     exports2,
   ) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true,
     });
-    exports2.DescribeCdnRegionAndIspResponseBodyRegionsRegion =
-      exports2.DescribeCdnRegionAndIspResponseBodyIsps =
-      exports2.DescribeCdnRegionAndIspResponseBodyIspsIsp =
-      exports2.DescribeCdnHttpsDomainListResponseBodyCertInfos =
-      exports2.DescribeCdnHttpsDomainListResponseBodyCertInfosCertInfo =
+    exports2.DescribeCdnHttpsDomainListResponseBodyCertInfosCertInfo =
       exports2.DescribeCdnFullDomainsBlockIPHistoryResponseBodyIPBlockInfo =
       exports2.DescribeCdnDomainStagingConfigResponseBodyDomainConfigs =
       exports2
@@ -114563,6 +115430,10 @@ var require_model2 = __commonJS({
         .DescribeCdnDomainAtoaLogsResponseBodyDomainLogDetailsDomainLogDetailLogInfos =
       exports2
         .DescribeCdnDomainAtoaLogsResponseBodyDomainLogDetailsDomainLogDetailLogInfosLogInfoDetail =
+      exports2.DescribeCdnDiagnoseReportResponseBodyContent =
+      exports2.DescribeCdnDiagnoseReportResponseBodyContentReport =
+      exports2.DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine =
+      exports2.DescribeCdnDiagnoseReportResponseBodyContentClientInfo =
       exports2.DescribeCdnDeliverListResponseBodyContent =
       exports2.DescribeCdnDeliverListResponseBodyContentData =
       exports2.DescribeCdnDeliverListResponseBodyContentDataReports =
@@ -114585,15 +115456,7 @@ var require_model2 = __commonJS({
       exports2.BatchDescribeCdnIpInfoResponseBodyIpInfoList =
       exports2.AddCdnDomainRequestTag =
         void 0;
-    exports2.DescribeDomainBpsDataByTimeStampResponseBodyBpsDataList =
-      exports2
-        .DescribeDomainBpsDataByTimeStampResponseBodyBpsDataListBpsDataModel =
-      exports2.DescribeDomainBpsDataByLayerResponseBodyBpsDataInterval =
-      exports2
-        .DescribeDomainBpsDataByLayerResponseBodyBpsDataIntervalDataModule =
-      exports2.DescribeDomainBpsDataResponseBodyBpsDataPerInterval =
-      exports2.DescribeDomainBpsDataResponseBodyBpsDataPerIntervalDataModule =
-      exports2.DescribeDomainAverageResponseTimeResponseBodyAvgRTPerInterval =
+    exports2.DescribeDomainAverageResponseTimeResponseBodyAvgRTPerInterval =
       exports2
         .DescribeDomainAverageResponseTimeResponseBodyAvgRTPerIntervalDataModule =
       exports2.DescribeCustomDomainSampleRateResponseBodyContent =
@@ -114624,6 +115487,8 @@ var require_model2 = __commonJS({
         .DescribeCdnUserBillHistoryResponseBodyBillHistoryDataBillHistoryDataItemBillingDataBillingDataItem =
       exports2.DescribeCdnTypesResponseBodyCdnTypes =
       exports2.DescribeCdnTypesResponseBodyCdnTypesCdnType =
+      exports2.DescribeCdnTaskListResponseBodyContent =
+      exports2.DescribeCdnTaskListResponseBodyContentList =
       exports2.DescribeCdnSubListResponseBodyContent =
       exports2.DescribeCdnSubListResponseBodyContentData =
       exports2.DescribeCdnServiceResponseBodyOperationLocks =
@@ -114648,21 +115513,13 @@ var require_model2 = __commonJS({
       exports2.DescribeCdnReportResponseBodyContentDataDeliver =
       exports2.DescribeCdnReportResponseBodyContentDataDeliverReport =
       exports2.DescribeCdnRegionAndIspResponseBodyRegions =
+      exports2.DescribeCdnRegionAndIspResponseBodyRegionsRegion =
+      exports2.DescribeCdnRegionAndIspResponseBodyIsps =
+      exports2.DescribeCdnRegionAndIspResponseBodyIspsIsp =
+      exports2.DescribeCdnHttpsDomainListResponseBodyCertInfos =
         void 0;
     exports2
-      .DescribeDomainRealTimeSrcTrafficDataResponseBodyRealTimeSrcTrafficDataPerIntervalDataModule =
-      exports2
-        .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeData =
-      exports2
-        .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeDataUsageData =
-      exports2
-        .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeDataUsageDataValue =
-      exports2
-        .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeDataUsageDataValueRealTimeSrcCodeProportionData =
-      exports2
-        .DescribeDomainRealTimeSrcBpsDataResponseBodyRealTimeSrcBpsDataPerInterval =
-      exports2
-        .DescribeDomainRealTimeSrcBpsDataResponseBodyRealTimeSrcBpsDataPerIntervalDataModule =
+      .DescribeDomainRealTimeSrcBpsDataResponseBodyRealTimeSrcBpsDataPerIntervalDataModule =
       exports2.DescribeDomainRealTimeReqHitRateDataResponseBodyData =
       exports2
         .DescribeDomainRealTimeReqHitRateDataResponseBodyDataReqHitRateDataModel =
@@ -114719,16 +115576,16 @@ var require_model2 = __commonJS({
       exports2.DescribeDomainCertificateInfoResponseBodyCertInfos =
       exports2.DescribeDomainCertificateInfoResponseBodyCertInfosCertInfo =
       exports2.DescribeDomainCcActivityLogResponseBodyActivityLog =
+      exports2.DescribeDomainBpsDataByTimeStampResponseBodyBpsDataList =
+      exports2
+        .DescribeDomainBpsDataByTimeStampResponseBodyBpsDataListBpsDataModel =
+      exports2.DescribeDomainBpsDataByLayerResponseBodyBpsDataInterval =
+      exports2
+        .DescribeDomainBpsDataByLayerResponseBodyBpsDataIntervalDataModule =
+      exports2.DescribeDomainBpsDataResponseBodyBpsDataPerInterval =
+      exports2.DescribeDomainBpsDataResponseBodyBpsDataPerIntervalDataModule =
         void 0;
-    exports2.DescribeDomainsBySourceResponseBodyDomainsListDomainsDataDomains =
-      exports2
-        .DescribeDomainsBySourceResponseBodyDomainsListDomainsDataDomainInfos =
-      exports2
-        .DescribeDomainsBySourceResponseBodyDomainsListDomainsDataDomainInfosDomainInfo =
-      exports2.DescribeDomainVerifyDataResponseBodyContent =
-      exports2.DescribeDomainUvDataResponseBodyUvDataInterval =
-      exports2.DescribeDomainUvDataResponseBodyUvDataIntervalUsageData =
-      exports2.DescribeDomainUsageDataResponseBodyUsageDataPerInterval =
+    exports2.DescribeDomainUsageDataResponseBodyUsageDataPerInterval =
       exports2
         .DescribeDomainUsageDataResponseBodyUsageDataPerIntervalDataModule =
       exports2.DescribeDomainTrafficDataResponseBodyTrafficDataPerInterval =
@@ -114784,16 +115641,20 @@ var require_model2 = __commonJS({
         .DescribeDomainRealTimeTrafficDataResponseBodyRealTimeTrafficDataPerIntervalDataModule =
       exports2
         .DescribeDomainRealTimeSrcTrafficDataResponseBodyRealTimeSrcTrafficDataPerInterval =
-        void 0;
-    exports2
-      .ListRealtimeLogDeliveryInfosResponseBodyContentRealtimeLogDeliveryInfos =
-      exports2.ListRealtimeLogDeliveryDomainsResponseBodyContent =
-      exports2.ListRealtimeLogDeliveryDomainsResponseBodyContentDomains =
-      exports2.ListRealtimeLogDeliveryResponseBodyContent =
       exports2
-        .ListRealtimeLogDeliveryResponseBodyContentRealtimeLogDeliveryInfo =
-      exports2.ListFCTriggerResponseBodyFCTriggers =
-      exports2.ListDomainsByLogConfigIdResponseBodyDomains =
+        .DescribeDomainRealTimeSrcTrafficDataResponseBodyRealTimeSrcTrafficDataPerIntervalDataModule =
+      exports2
+        .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeData =
+      exports2
+        .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeDataUsageData =
+      exports2
+        .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeDataUsageDataValue =
+      exports2
+        .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeDataUsageDataValueRealTimeSrcCodeProportionData =
+      exports2
+        .DescribeDomainRealTimeSrcBpsDataResponseBodyRealTimeSrcBpsDataPerInterval =
+        void 0;
+    exports2.ListDomainsByLogConfigIdResponseBodyDomains =
       exports2.GetGrayDomainFunctionResponseBodyDomainConfigList =
       exports2.GetGrayDomainFunctionResponseBodyDomainConfigListFunctionArgs =
       exports2.DescribeUserVipsByDomainResponseBodyVips =
@@ -114844,14 +115705,17 @@ var require_model2 = __commonJS({
       exports2.DescribeDomainsUsageByDayResponseBodyUsageByDaysUsageByDay =
       exports2.DescribeDomainsBySourceResponseBodyDomainsList =
       exports2.DescribeDomainsBySourceResponseBodyDomainsListDomainsData =
+      exports2
+        .DescribeDomainsBySourceResponseBodyDomainsListDomainsDataDomains =
+      exports2
+        .DescribeDomainsBySourceResponseBodyDomainsListDomainsDataDomainInfos =
+      exports2
+        .DescribeDomainsBySourceResponseBodyDomainsListDomainsDataDomainInfosDomainInfo =
+      exports2.DescribeDomainVerifyDataResponseBodyContent =
+      exports2.DescribeDomainUvDataResponseBodyUvDataInterval =
+      exports2.DescribeDomainUvDataResponseBodyUvDataIntervalUsageData =
         void 0;
-    exports2.CreateCdnDeliverTaskResponseBody =
-      exports2.CreateCdnDeliverTaskRequest =
-      exports2.CreateCdnCertificateSigningRequestResponse =
-      exports2.CreateCdnCertificateSigningRequestResponseBody =
-      exports2.CreateCdnCertificateSigningRequestRequest =
-      exports2.CheckCdnDomainICPResponse =
-      exports2.CheckCdnDomainICPResponseBody =
+    exports2.CheckCdnDomainICPResponseBody =
       exports2.CheckCdnDomainICPRequest =
       exports2.CheckCdnDomainExistResponse =
       exports2.CheckCdnDomainExistResponseBody =
@@ -114895,14 +115759,16 @@ var require_model2 = __commonJS({
       exports2.ListTagResourcesResponseBodyTagResourcesTagResource =
       exports2.ListTagResourcesRequestTag =
       exports2.ListRealtimeLogDeliveryInfosResponseBodyContent =
+      exports2
+        .ListRealtimeLogDeliveryInfosResponseBodyContentRealtimeLogDeliveryInfos =
+      exports2.ListRealtimeLogDeliveryDomainsResponseBodyContent =
+      exports2.ListRealtimeLogDeliveryDomainsResponseBodyContentDomains =
+      exports2.ListRealtimeLogDeliveryResponseBodyContent =
+      exports2
+        .ListRealtimeLogDeliveryResponseBodyContentRealtimeLogDeliveryInfo =
+      exports2.ListFCTriggerResponseBodyFCTriggers =
         void 0;
-    exports2.DescribeCdnCertificateDetailResponseBody =
-      exports2.DescribeCdnCertificateDetailRequest =
-      exports2.DescribeBlockedRegionsResponse =
-      exports2.DescribeBlockedRegionsResponseBody =
-      exports2.DescribeBlockedRegionsRequest =
-      exports2.DeleteUserUsageDataExportTaskResponse =
-      exports2.DeleteUserUsageDataExportTaskResponseBody =
+    exports2.DeleteUserUsageDataExportTaskResponseBody =
       exports2.DeleteUserUsageDataExportTaskRequest =
       exports2.DeleteUsageDetailDataExportTaskResponse =
       exports2.DeleteUsageDetailDataExportTaskResponseBody =
@@ -114946,17 +115812,14 @@ var require_model2 = __commonJS({
       exports2.CreateCdnSubTaskResponseBody =
       exports2.CreateCdnSubTaskRequest =
       exports2.CreateCdnDeliverTaskResponse =
+      exports2.CreateCdnDeliverTaskResponseBody =
+      exports2.CreateCdnDeliverTaskRequest =
+      exports2.CreateCdnCertificateSigningRequestResponse =
+      exports2.CreateCdnCertificateSigningRequestResponseBody =
+      exports2.CreateCdnCertificateSigningRequestRequest =
+      exports2.CheckCdnDomainICPResponse =
         void 0;
-    exports2.DescribeCdnRegionAndIspRequest =
-      exports2.DescribeCdnOrderCommodityCodeResponse =
-      exports2.DescribeCdnOrderCommodityCodeResponseBody =
-      exports2.DescribeCdnOrderCommodityCodeRequest =
-      exports2.DescribeCdnHttpsDomainListResponse =
-      exports2.DescribeCdnHttpsDomainListResponseBody =
-      exports2.DescribeCdnHttpsDomainListRequest =
-      exports2.DescribeCdnFullDomainsBlockIPHistoryResponse =
-      exports2.DescribeCdnFullDomainsBlockIPHistoryResponseBody =
-      exports2.DescribeCdnFullDomainsBlockIPHistoryRequest =
+    exports2.DescribeCdnFullDomainsBlockIPHistoryRequest =
       exports2.DescribeCdnFullDomainsBlockIPConfigResponse =
       exports2.DescribeCdnFullDomainsBlockIPConfigResponseBody =
       exports2.DescribeCdnFullDomainsBlockIPConfigRequest =
@@ -114981,6 +115844,9 @@ var require_model2 = __commonJS({
       exports2.DescribeCdnDomainAtoaLogsResponse =
       exports2.DescribeCdnDomainAtoaLogsResponseBody =
       exports2.DescribeCdnDomainAtoaLogsRequest =
+      exports2.DescribeCdnDiagnoseReportResponse =
+      exports2.DescribeCdnDiagnoseReportResponseBody =
+      exports2.DescribeCdnDiagnoseReportRequest =
       exports2.DescribeCdnDeliverListResponse =
       exports2.DescribeCdnDeliverListResponseBody =
       exports2.DescribeCdnDeliverListRequest =
@@ -114997,20 +115863,14 @@ var require_model2 = __commonJS({
       exports2.DescribeCdnCertificateDetailByIdResponseBody =
       exports2.DescribeCdnCertificateDetailByIdRequest =
       exports2.DescribeCdnCertificateDetailResponse =
+      exports2.DescribeCdnCertificateDetailResponseBody =
+      exports2.DescribeCdnCertificateDetailRequest =
+      exports2.DescribeBlockedRegionsResponse =
+      exports2.DescribeBlockedRegionsResponseBody =
+      exports2.DescribeBlockedRegionsRequest =
+      exports2.DeleteUserUsageDataExportTaskResponse =
         void 0;
-    exports2.DescribeCdnWafDomainRequest =
-      exports2.DescribeCdnUserResourcePackageResponse =
-      exports2.DescribeCdnUserResourcePackageResponseBody =
-      exports2.DescribeCdnUserResourcePackageRequest =
-      exports2.DescribeCdnUserQuotaResponse =
-      exports2.DescribeCdnUserQuotaResponseBody =
-      exports2.DescribeCdnUserQuotaRequest =
-      exports2.DescribeCdnUserDomainsByFuncResponse =
-      exports2.DescribeCdnUserDomainsByFuncResponseBody =
-      exports2.DescribeCdnUserDomainsByFuncRequest =
-      exports2.DescribeCdnUserConfigsResponse =
-      exports2.DescribeCdnUserConfigsResponseBody =
-      exports2.DescribeCdnUserConfigsRequest =
+    exports2.DescribeCdnUserConfigsRequest =
       exports2.DescribeCdnUserBillTypeResponse =
       exports2.DescribeCdnUserBillTypeResponseBody =
       exports2.DescribeCdnUserBillTypeRequest =
@@ -115023,6 +115883,9 @@ var require_model2 = __commonJS({
       exports2.DescribeCdnTypesResponse =
       exports2.DescribeCdnTypesResponseBody =
       exports2.DescribeCdnTypesRequest =
+      exports2.DescribeCdnTaskListResponse =
+      exports2.DescribeCdnTaskListResponseBody =
+      exports2.DescribeCdnTaskListRequest =
       exports2.DescribeCdnSubListResponse =
       exports2.DescribeCdnSubListResponseBody =
       exports2.DescribeCdnServiceResponse =
@@ -115048,20 +115911,17 @@ var require_model2 = __commonJS({
       exports2.DescribeCdnReportRequest =
       exports2.DescribeCdnRegionAndIspResponse =
       exports2.DescribeCdnRegionAndIspResponseBody =
+      exports2.DescribeCdnRegionAndIspRequest =
+      exports2.DescribeCdnOrderCommodityCodeResponse =
+      exports2.DescribeCdnOrderCommodityCodeResponseBody =
+      exports2.DescribeCdnOrderCommodityCodeRequest =
+      exports2.DescribeCdnHttpsDomainListResponse =
+      exports2.DescribeCdnHttpsDomainListResponseBody =
+      exports2.DescribeCdnHttpsDomainListRequest =
+      exports2.DescribeCdnFullDomainsBlockIPHistoryResponse =
+      exports2.DescribeCdnFullDomainsBlockIPHistoryResponseBody =
         void 0;
-    exports2.DescribeDomainISPDataResponse =
-      exports2.DescribeDomainISPDataResponseBody =
-      exports2.DescribeDomainISPDataRequest =
-      exports2.DescribeDomainHttpCodeDataByLayerResponse =
-      exports2.DescribeDomainHttpCodeDataByLayerResponseBody =
-      exports2.DescribeDomainHttpCodeDataByLayerRequest =
-      exports2.DescribeDomainHttpCodeDataResponse =
-      exports2.DescribeDomainHttpCodeDataResponseBody =
-      exports2.DescribeDomainHttpCodeDataRequest =
-      exports2.DescribeDomainHitRateDataResponse =
-      exports2.DescribeDomainHitRateDataResponseBody =
-      exports2.DescribeDomainHitRateDataRequest =
-      exports2.DescribeDomainDetailDataByLayerResponse =
+    exports2.DescribeDomainDetailDataByLayerResponse =
       exports2.DescribeDomainDetailDataByLayerResponseBody =
       exports2.DescribeDomainDetailDataByLayerRequest =
       exports2.DescribeDomainCustomLogConfigResponse =
@@ -115099,20 +115959,20 @@ var require_model2 = __commonJS({
       exports2.DescribeCertificateInfoByIDRequest =
       exports2.DescribeCdnWafDomainResponse =
       exports2.DescribeCdnWafDomainResponseBody =
+      exports2.DescribeCdnWafDomainRequest =
+      exports2.DescribeCdnUserResourcePackageResponse =
+      exports2.DescribeCdnUserResourcePackageResponseBody =
+      exports2.DescribeCdnUserResourcePackageRequest =
+      exports2.DescribeCdnUserQuotaResponse =
+      exports2.DescribeCdnUserQuotaResponseBody =
+      exports2.DescribeCdnUserQuotaRequest =
+      exports2.DescribeCdnUserDomainsByFuncResponse =
+      exports2.DescribeCdnUserDomainsByFuncResponseBody =
+      exports2.DescribeCdnUserDomainsByFuncRequest =
+      exports2.DescribeCdnUserConfigsResponse =
+      exports2.DescribeCdnUserConfigsResponseBody =
         void 0;
-    exports2.DescribeDomainRealtimeLogDeliveryResponseBody =
-      exports2.DescribeDomainRealtimeLogDeliveryRequest =
-      exports2.DescribeDomainRealTimeTrafficDataResponse =
-      exports2.DescribeDomainRealTimeTrafficDataResponseBody =
-      exports2.DescribeDomainRealTimeTrafficDataRequest =
-      exports2.DescribeDomainRealTimeSrcTrafficDataResponse =
-      exports2.DescribeDomainRealTimeSrcTrafficDataResponseBody =
-      exports2.DescribeDomainRealTimeSrcTrafficDataRequest =
-      exports2.DescribeDomainRealTimeSrcHttpCodeDataResponse =
-      exports2.DescribeDomainRealTimeSrcHttpCodeDataResponseBody =
-      exports2.DescribeDomainRealTimeSrcHttpCodeDataRequest =
-      exports2.DescribeDomainRealTimeSrcBpsDataResponse =
-      exports2.DescribeDomainRealTimeSrcBpsDataResponseBody =
+    exports2.DescribeDomainRealTimeSrcBpsDataResponseBody =
       exports2.DescribeDomainRealTimeSrcBpsDataRequest =
       exports2.DescribeDomainRealTimeReqHitRateDataResponse =
       exports2.DescribeDomainRealTimeReqHitRateDataResponseBody =
@@ -115150,20 +116010,20 @@ var require_model2 = __commonJS({
       exports2.DescribeDomainMax95BpsDataResponse =
       exports2.DescribeDomainMax95BpsDataResponseBody =
       exports2.DescribeDomainMax95BpsDataRequest =
+      exports2.DescribeDomainISPDataResponse =
+      exports2.DescribeDomainISPDataResponseBody =
+      exports2.DescribeDomainISPDataRequest =
+      exports2.DescribeDomainHttpCodeDataByLayerResponse =
+      exports2.DescribeDomainHttpCodeDataByLayerResponseBody =
+      exports2.DescribeDomainHttpCodeDataByLayerRequest =
+      exports2.DescribeDomainHttpCodeDataResponse =
+      exports2.DescribeDomainHttpCodeDataResponseBody =
+      exports2.DescribeDomainHttpCodeDataRequest =
+      exports2.DescribeDomainHitRateDataResponse =
+      exports2.DescribeDomainHitRateDataResponseBody =
+      exports2.DescribeDomainHitRateDataRequest =
         void 0;
-    exports2.DescribeEsExceptionDataRequest =
-      exports2.DescribeDomainsUsageByDayResponse =
-      exports2.DescribeDomainsUsageByDayResponseBody =
-      exports2.DescribeDomainsUsageByDayRequest =
-      exports2.DescribeDomainsBySourceResponse =
-      exports2.DescribeDomainsBySourceResponseBody =
-      exports2.DescribeDomainsBySourceRequest =
-      exports2.DescribeDomainVerifyDataResponse =
-      exports2.DescribeDomainVerifyDataResponseBody =
-      exports2.DescribeDomainVerifyDataRequest =
-      exports2.DescribeDomainUvDataResponse =
-      exports2.DescribeDomainUvDataResponseBody =
-      exports2.DescribeDomainUvDataRequest =
+    exports2.DescribeDomainUvDataRequest =
       exports2.DescribeDomainUsageDataResponse =
       exports2.DescribeDomainUsageDataResponseBody =
       exports2.DescribeDomainUsageDataRequest =
@@ -115201,20 +116061,20 @@ var require_model2 = __commonJS({
       exports2.DescribeDomainRegionDataResponseBody =
       exports2.DescribeDomainRegionDataRequest =
       exports2.DescribeDomainRealtimeLogDeliveryResponse =
+      exports2.DescribeDomainRealtimeLogDeliveryResponseBody =
+      exports2.DescribeDomainRealtimeLogDeliveryRequest =
+      exports2.DescribeDomainRealTimeTrafficDataResponse =
+      exports2.DescribeDomainRealTimeTrafficDataResponseBody =
+      exports2.DescribeDomainRealTimeTrafficDataRequest =
+      exports2.DescribeDomainRealTimeSrcTrafficDataResponse =
+      exports2.DescribeDomainRealTimeSrcTrafficDataResponseBody =
+      exports2.DescribeDomainRealTimeSrcTrafficDataRequest =
+      exports2.DescribeDomainRealTimeSrcHttpCodeDataResponse =
+      exports2.DescribeDomainRealTimeSrcHttpCodeDataResponseBody =
+      exports2.DescribeDomainRealTimeSrcHttpCodeDataRequest =
+      exports2.DescribeDomainRealTimeSrcBpsDataResponse =
         void 0;
-    exports2.DescribeUserConfigsResponseBody =
-      exports2.DescribeUserConfigsRequest =
-      exports2.DescribeUserCertificateExpireCountResponse =
-      exports2.DescribeUserCertificateExpireCountResponseBody =
-      exports2.DescribeUserCdnStatusResponse =
-      exports2.DescribeUserCdnStatusResponseBody =
-      exports2.DescribeUserCdnStatusRequest =
-      exports2.DescribeTopDomainsByFlowResponse =
-      exports2.DescribeTopDomainsByFlowResponseBody =
-      exports2.DescribeTopDomainsByFlowRequest =
-      exports2.DescribeTagResourcesResponse =
-      exports2.DescribeTagResourcesResponseBody =
-      exports2.DescribeTagResourcesRequest =
+    exports2.DescribeTagResourcesRequest =
       exports2.DescribeStagingIpResponse =
       exports2.DescribeStagingIpResponseBody =
       exports2.DescribeRefreshTasksResponse =
@@ -115252,20 +116112,20 @@ var require_model2 = __commonJS({
       exports2.DescribeEsExecuteDataRequest =
       exports2.DescribeEsExceptionDataResponse =
       exports2.DescribeEsExceptionDataResponseBody =
+      exports2.DescribeEsExceptionDataRequest =
+      exports2.DescribeDomainsUsageByDayResponse =
+      exports2.DescribeDomainsUsageByDayResponseBody =
+      exports2.DescribeDomainsUsageByDayRequest =
+      exports2.DescribeDomainsBySourceResponse =
+      exports2.DescribeDomainsBySourceResponseBody =
+      exports2.DescribeDomainsBySourceRequest =
+      exports2.DescribeDomainVerifyDataResponse =
+      exports2.DescribeDomainVerifyDataResponseBody =
+      exports2.DescribeDomainVerifyDataRequest =
+      exports2.DescribeDomainUvDataResponse =
+      exports2.DescribeDomainUvDataResponseBody =
         void 0;
-    exports2.ModifyCdnDomainResponseBody =
-      exports2.ModifyCdnDomainRequest =
-      exports2.ListUserCustomLogConfigResponse =
-      exports2.ListUserCustomLogConfigResponseBody =
-      exports2.ListTagResourcesResponse =
-      exports2.ListTagResourcesResponseBody =
-      exports2.ListTagResourcesRequest =
-      exports2.ListRealtimeLogDeliveryInfosResponse =
-      exports2.ListRealtimeLogDeliveryInfosResponseBody =
-      exports2.ListRealtimeLogDeliveryDomainsResponse =
-      exports2.ListRealtimeLogDeliveryDomainsResponseBody =
-      exports2.ListRealtimeLogDeliveryDomainsRequest =
-      exports2.ListRealtimeLogDeliveryResponse =
+    exports2.ListRealtimeLogDeliveryResponse =
       exports2.ListRealtimeLogDeliveryResponseBody =
       exports2.ListFCTriggerResponse =
       exports2.ListFCTriggerResponseBody =
@@ -115303,20 +116163,20 @@ var require_model2 = __commonJS({
       exports2.DescribeUserDomainsResponseBody =
       exports2.DescribeUserDomainsRequest =
       exports2.DescribeUserConfigsResponse =
+      exports2.DescribeUserConfigsResponseBody =
+      exports2.DescribeUserConfigsRequest =
+      exports2.DescribeUserCertificateExpireCountResponse =
+      exports2.DescribeUserCertificateExpireCountResponseBody =
+      exports2.DescribeUserCdnStatusResponse =
+      exports2.DescribeUserCdnStatusResponseBody =
+      exports2.DescribeUserCdnStatusRequest =
+      exports2.DescribeTopDomainsByFlowResponse =
+      exports2.DescribeTopDomainsByFlowResponseBody =
+      exports2.DescribeTopDomainsByFlowRequest =
+      exports2.DescribeTagResourcesResponse =
+      exports2.DescribeTagResourcesResponseBody =
         void 0;
-    exports2.SetCdnFullDomainsBlockIPRequest =
-      exports2.SetCdnDomainStagingConfigResponse =
-      exports2.SetCdnDomainStagingConfigResponseBody =
-      exports2.SetCdnDomainStagingConfigRequest =
-      exports2.SetCdnDomainSSLCertificateResponse =
-      exports2.SetCdnDomainSSLCertificateResponseBody =
-      exports2.SetCdnDomainSSLCertificateRequest =
-      exports2.SetCdnDomainSMCertificateResponse =
-      exports2.SetCdnDomainSMCertificateResponseBody =
-      exports2.SetCdnDomainSMCertificateRequest =
-      exports2.SetCdnDomainCSRCertificateResponse =
-      exports2.SetCdnDomainCSRCertificateResponseBody =
-      exports2.SetCdnDomainCSRCertificateRequest =
+    exports2.SetCdnDomainCSRCertificateRequest =
       exports2.RollbackStagingConfigResponse =
       exports2.RollbackStagingConfigResponseBody =
       exports2.RollbackStagingConfigRequest =
@@ -115354,6 +116214,18 @@ var require_model2 = __commonJS({
       exports2.ModifyCdnDomainOwnerResponseBody =
       exports2.ModifyCdnDomainOwnerRequest =
       exports2.ModifyCdnDomainResponse =
+      exports2.ModifyCdnDomainResponseBody =
+      exports2.ModifyCdnDomainRequest =
+      exports2.ListUserCustomLogConfigResponse =
+      exports2.ListUserCustomLogConfigResponseBody =
+      exports2.ListTagResourcesResponse =
+      exports2.ListTagResourcesResponseBody =
+      exports2.ListTagResourcesRequest =
+      exports2.ListRealtimeLogDeliveryInfosResponse =
+      exports2.ListRealtimeLogDeliveryInfosResponseBody =
+      exports2.ListRealtimeLogDeliveryDomainsResponse =
+      exports2.ListRealtimeLogDeliveryDomainsResponseBody =
+      exports2.ListRealtimeLogDeliveryDomainsRequest =
         void 0;
     exports2.VerifyDomainOwnerResponse =
       exports2.VerifyDomainOwnerResponseBody =
@@ -115387,6 +116259,18 @@ var require_model2 = __commonJS({
       exports2.SetReqHeaderConfigRequest =
       exports2.SetCdnFullDomainsBlockIPResponse =
       exports2.SetCdnFullDomainsBlockIPResponseBody =
+      exports2.SetCdnFullDomainsBlockIPRequest =
+      exports2.SetCdnDomainStagingConfigResponse =
+      exports2.SetCdnDomainStagingConfigResponseBody =
+      exports2.SetCdnDomainStagingConfigRequest =
+      exports2.SetCdnDomainSSLCertificateResponse =
+      exports2.SetCdnDomainSSLCertificateResponseBody =
+      exports2.SetCdnDomainSSLCertificateRequest =
+      exports2.SetCdnDomainSMCertificateResponse =
+      exports2.SetCdnDomainSMCertificateResponseBody =
+      exports2.SetCdnDomainSMCertificateRequest =
+      exports2.SetCdnDomainCSRCertificateResponse =
+      exports2.SetCdnDomainCSRCertificateResponseBody =
         void 0;
     var AddCdnDomainRequest_1 = require_AddCdnDomainRequest();
     Object.defineProperty(exports2, "AddCdnDomainRequestTag", {
@@ -115613,6 +116497,58 @@ var require_model2 = __commonJS({
         get: function () {
           return DescribeCdnDeliverListResponseBody_5
             .DescribeCdnDeliverListResponseBodyContent;
+        },
+      },
+    );
+    var DescribeCdnDiagnoseReportResponseBody_1 =
+      require_DescribeCdnDiagnoseReportResponseBody();
+    Object.defineProperty(
+      exports2,
+      "DescribeCdnDiagnoseReportResponseBodyContentClientInfo",
+      {
+        enumerable: true,
+        get: function () {
+          return DescribeCdnDiagnoseReportResponseBody_1
+            .DescribeCdnDiagnoseReportResponseBodyContentClientInfo;
+        },
+      },
+    );
+    var DescribeCdnDiagnoseReportResponseBody_2 =
+      require_DescribeCdnDiagnoseReportResponseBody();
+    Object.defineProperty(
+      exports2,
+      "DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine",
+      {
+        enumerable: true,
+        get: function () {
+          return DescribeCdnDiagnoseReportResponseBody_2
+            .DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine;
+        },
+      },
+    );
+    var DescribeCdnDiagnoseReportResponseBody_3 =
+      require_DescribeCdnDiagnoseReportResponseBody();
+    Object.defineProperty(
+      exports2,
+      "DescribeCdnDiagnoseReportResponseBodyContentReport",
+      {
+        enumerable: true,
+        get: function () {
+          return DescribeCdnDiagnoseReportResponseBody_3
+            .DescribeCdnDiagnoseReportResponseBodyContentReport;
+        },
+      },
+    );
+    var DescribeCdnDiagnoseReportResponseBody_4 =
+      require_DescribeCdnDiagnoseReportResponseBody();
+    Object.defineProperty(
+      exports2,
+      "DescribeCdnDiagnoseReportResponseBodyContent",
+      {
+        enumerable: true,
+        get: function () {
+          return DescribeCdnDiagnoseReportResponseBody_4
+            .DescribeCdnDiagnoseReportResponseBodyContent;
         },
       },
     );
@@ -116278,6 +117214,28 @@ var require_model2 = __commonJS({
       get: function () {
         return DescribeCdnSubListResponseBody_2
           .DescribeCdnSubListResponseBodyContent;
+      },
+    });
+    var DescribeCdnTaskListResponseBody_1 =
+      require_DescribeCdnTaskListResponseBody();
+    Object.defineProperty(
+      exports2,
+      "DescribeCdnTaskListResponseBodyContentList",
+      {
+        enumerable: true,
+        get: function () {
+          return DescribeCdnTaskListResponseBody_1
+            .DescribeCdnTaskListResponseBodyContentList;
+        },
+      },
+    );
+    var DescribeCdnTaskListResponseBody_2 =
+      require_DescribeCdnTaskListResponseBody();
+    Object.defineProperty(exports2, "DescribeCdnTaskListResponseBodyContent", {
+      enumerable: true,
+      get: function () {
+        return DescribeCdnTaskListResponseBody_2
+          .DescribeCdnTaskListResponseBodyContent;
       },
     });
     var DescribeCdnTypesResponseBody_1 = require_DescribeCdnTypesResponseBody();
@@ -119587,6 +120545,33 @@ var require_model2 = __commonJS({
         return DescribeCdnDeliverListResponse_1.DescribeCdnDeliverListResponse;
       },
     });
+    var DescribeCdnDiagnoseReportRequest_1 =
+      require_DescribeCdnDiagnoseReportRequest();
+    Object.defineProperty(exports2, "DescribeCdnDiagnoseReportRequest", {
+      enumerable: true,
+      get: function () {
+        return DescribeCdnDiagnoseReportRequest_1
+          .DescribeCdnDiagnoseReportRequest;
+      },
+    });
+    var DescribeCdnDiagnoseReportResponseBody_5 =
+      require_DescribeCdnDiagnoseReportResponseBody();
+    Object.defineProperty(exports2, "DescribeCdnDiagnoseReportResponseBody", {
+      enumerable: true,
+      get: function () {
+        return DescribeCdnDiagnoseReportResponseBody_5
+          .DescribeCdnDiagnoseReportResponseBody;
+      },
+    });
+    var DescribeCdnDiagnoseReportResponse_1 =
+      require_DescribeCdnDiagnoseReportResponse();
+    Object.defineProperty(exports2, "DescribeCdnDiagnoseReportResponse", {
+      enumerable: true,
+      get: function () {
+        return DescribeCdnDiagnoseReportResponse_1
+          .DescribeCdnDiagnoseReportResponse;
+      },
+    });
     var DescribeCdnDomainAtoaLogsRequest_1 =
       require_DescribeCdnDomainAtoaLogsRequest();
     Object.defineProperty(exports2, "DescribeCdnDomainAtoaLogsRequest", {
@@ -120141,6 +121126,29 @@ var require_model2 = __commonJS({
       enumerable: true,
       get: function () {
         return DescribeCdnSubListResponse_1.DescribeCdnSubListResponse;
+      },
+    });
+    var DescribeCdnTaskListRequest_1 = require_DescribeCdnTaskListRequest();
+    Object.defineProperty(exports2, "DescribeCdnTaskListRequest", {
+      enumerable: true,
+      get: function () {
+        return DescribeCdnTaskListRequest_1.DescribeCdnTaskListRequest;
+      },
+    });
+    var DescribeCdnTaskListResponseBody_3 =
+      require_DescribeCdnTaskListResponseBody();
+    Object.defineProperty(exports2, "DescribeCdnTaskListResponseBody", {
+      enumerable: true,
+      get: function () {
+        return DescribeCdnTaskListResponseBody_3
+          .DescribeCdnTaskListResponseBody;
+      },
+    });
+    var DescribeCdnTaskListResponse_1 = require_DescribeCdnTaskListResponse();
+    Object.defineProperty(exports2, "DescribeCdnTaskListResponse", {
+      enumerable: true,
+      get: function () {
+        return DescribeCdnTaskListResponse_1.DescribeCdnTaskListResponse;
       },
     });
     var DescribeCdnTypesRequest_1 = require_DescribeCdnTypesRequest();
@@ -123414,9 +124422,9 @@ var require_model2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/client.js
+// node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/client.js
 var require_client5 = __commonJS({
-  "node_modules/.deno/@alicloud+cdn20180510@9.1.0/node_modules/@alicloud/cdn20180510/dist/client.js"(
+  "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/client.js"(
     exports2,
   ) {
     "use strict";
@@ -125577,6 +126585,54 @@ var require_client5 = __commonJS({
         return await this.describeCdnDeliverListWithOptions(request, runtime);
       }
       /**
+       * Queries the details of a diagnostic report.
+       *
+       * @param request - DescribeCdnDiagnoseReportRequest
+       * @param runtime - runtime options for this request RuntimeOptions
+       * @returns DescribeCdnDiagnoseReportResponse
+       */
+      async describeCdnDiagnoseReportWithOptions(request, runtime) {
+        request.validate();
+        let query = {};
+        if (!$dara.isNull(request.taskId)) {
+          query["TaskId"] = request.taskId;
+        }
+        if (!$dara.isNull(request.traceId)) {
+          query["TraceId"] = request.traceId;
+        }
+        let req = new openapi_core_2.$OpenApiUtil.OpenApiRequest({
+          query: openapi_core_2.OpenApiUtil.query(query),
+        });
+        let params = new openapi_core_2.$OpenApiUtil.Params({
+          action: "DescribeCdnDiagnoseReport",
+          version: "2018-05-10",
+          protocol: "HTTPS",
+          pathname: "/",
+          method: "POST",
+          authType: "AK",
+          style: "RPC",
+          reqBodyType: "formData",
+          bodyType: "json",
+        });
+        return $dara.cast(
+          await this.callApi(params, req, runtime),
+          new $_model.DescribeCdnDiagnoseReportResponse({}),
+        );
+      }
+      /**
+       * Queries the details of a diagnostic report.
+       *
+       * @param request - DescribeCdnDiagnoseReportRequest
+       * @returns DescribeCdnDiagnoseReportResponse
+       */
+      async describeCdnDiagnoseReport(request) {
+        let runtime = new $dara.RuntimeOptions({});
+        return await this.describeCdnDiagnoseReportWithOptions(
+          request,
+          runtime,
+        );
+      }
+      /**
        * 天翼定制化小时日志下载接口
        *
        * @param request - DescribeCdnDomainAtoaLogsRequest
@@ -126693,6 +127749,72 @@ var require_client5 = __commonJS({
       async describeCdnSubList() {
         let runtime = new $dara.RuntimeOptions({});
         return await this.describeCdnSubListWithOptions(runtime);
+      }
+      /**
+       * Queries a list of diagnostic tasks.
+       *
+       * @param request - DescribeCdnTaskListRequest
+       * @param runtime - runtime options for this request RuntimeOptions
+       * @returns DescribeCdnTaskListResponse
+       */
+      async describeCdnTaskListWithOptions(request, runtime) {
+        request.validate();
+        let query = {};
+        if (!$dara.isNull(request.clientIp)) {
+          query["ClientIp"] = request.clientIp;
+        }
+        if (!$dara.isNull(request.diagnoseId)) {
+          query["DiagnoseId"] = request.diagnoseId;
+        }
+        if (!$dara.isNull(request.domainName)) {
+          query["DomainName"] = request.domainName;
+        }
+        if (!$dara.isNull(request.endTime)) {
+          query["EndTime"] = request.endTime;
+        }
+        if (!$dara.isNull(request.pageNumber)) {
+          query["PageNumber"] = request.pageNumber;
+        }
+        if (!$dara.isNull(request.pageSize)) {
+          query["PageSize"] = request.pageSize;
+        }
+        if (!$dara.isNull(request.startTime)) {
+          query["StartTime"] = request.startTime;
+        }
+        if (!$dara.isNull(request.taskId)) {
+          query["TaskId"] = request.taskId;
+        }
+        if (!$dara.isNull(request.traceId)) {
+          query["TraceId"] = request.traceId;
+        }
+        let req = new openapi_core_2.$OpenApiUtil.OpenApiRequest({
+          query: openapi_core_2.OpenApiUtil.query(query),
+        });
+        let params = new openapi_core_2.$OpenApiUtil.Params({
+          action: "DescribeCdnTaskList",
+          version: "2018-05-10",
+          protocol: "HTTPS",
+          pathname: "/",
+          method: "POST",
+          authType: "AK",
+          style: "RPC",
+          reqBodyType: "formData",
+          bodyType: "json",
+        });
+        return $dara.cast(
+          await this.callApi(params, req, runtime),
+          new $_model.DescribeCdnTaskListResponse({}),
+        );
+      }
+      /**
+       * Queries a list of diagnostic tasks.
+       *
+       * @param request - DescribeCdnTaskListRequest
+       * @returns DescribeCdnTaskListResponse
+       */
+      async describeCdnTaskList(request) {
+        let runtime = new $dara.RuntimeOptions({});
+        return await this.describeCdnTaskListWithOptions(request, runtime);
       }
       /**
        * Queries the types of domain names.
@@ -139347,9 +140469,9 @@ var require_side_channel = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/formats.js
+// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/formats.js
 var require_formats = __commonJS({
-  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/formats.js"(
+  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/formats.js"(
     exports2,
     module,
   ) {
@@ -139376,9 +140498,9 @@ var require_formats = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/utils.js
+// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/utils.js
 var require_utils4 = __commonJS({
-  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/utils.js"(
+  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/utils.js"(
     exports2,
     module,
   ) {
@@ -139710,9 +140832,9 @@ var require_utils4 = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/stringify.js
+// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/stringify.js
 var require_stringify = __commonJS({
-  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/stringify.js"(
+  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/stringify.js"(
     exports2,
     module,
   ) {
@@ -139827,9 +140949,11 @@ var require_stringify = __commonJS({
       }
       if (obj === null) {
         if (strictNullHandling) {
-          return encoder2 && !encodeValuesOnly
-            ? encoder2(prefix2, defaults.encoder, charset, "key", format)
-            : prefix2;
+          return formatter(
+            encoder2 && !encodeValuesOnly
+              ? encoder2(prefix2, defaults.encoder, charset, "key", format)
+              : prefix2,
+          );
         }
         obj = "";
       }
@@ -139856,7 +140980,9 @@ var require_stringify = __commonJS({
       var objKeys;
       if (generateArrayPrefix === "comma" && isArray(obj)) {
         if (encodeValuesOnly && encoder2) {
-          obj = utils.maybeMap(obj, encoder2);
+          obj = utils.maybeMap(obj, function (v) {
+            return v == null ? v : encoder2(v);
+          });
         }
         objKeys = [
           {
@@ -140062,6 +141188,9 @@ var require_stringify = __commonJS({
       var sideChannel = getSideChannel();
       for (var i = 0; i < objKeys.length; ++i) {
         var key = objKeys[i];
+        if (typeof key === "undefined" || key === null) {
+          continue;
+        }
         var value = obj[key];
         if (options.skipNulls && value === null) {
           continue;
@@ -140094,9 +141223,9 @@ var require_stringify = __commonJS({
       var prefix2 = options.addQueryPrefix === true ? "?" : "";
       if (options.charsetSentinel) {
         if (options.charset === "iso-8859-1") {
-          prefix2 += "utf8=%26%2310003%3B&";
+          prefix2 += "utf8=%26%2310003%3B" + options.delimiter;
         } else {
-          prefix2 += "utf8=%E2%9C%93&";
+          prefix2 += "utf8=%E2%9C%93" + options.delimiter;
         }
       }
       return joined.length > 0 ? prefix2 + joined : "";
@@ -140104,9 +141233,9 @@ var require_stringify = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/parse.js
+// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/parse.js
 var require_parse2 = __commonJS({
-  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/parse.js"(
+  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/parse.js"(
     exports2,
     module,
   ) {
@@ -140353,12 +141482,12 @@ var require_parse2 = __commonJS({
       return leaf;
     };
     var splitKeyIntoSegments = function splitKeyIntoSegments2(
-      givenKey,
+      originalKey,
       options,
     ) {
       var key = options.allowDots
-        ? givenKey.replace(/\.([^.[]+)/g, "[$1]")
-        : givenKey;
+        ? originalKey.replace(/\.([^.[]+)/g, "[$1]")
+        : originalKey;
       if (options.depth <= 0) {
         if (!options.plainObjects && has.call(Object.prototype, key)) {
           if (!options.allowPrototypes) {
@@ -140369,42 +141498,62 @@ var require_parse2 = __commonJS({
           key,
         ];
       }
-      var brackets = /(\[[^[\]]*])/;
-      var child2 = /(\[[^[\]]*])/g;
-      var segment = brackets.exec(key);
-      var parent = segment ? key.slice(0, segment.index) : key;
-      var keys = [];
+      var segments = [];
+      var first = key.indexOf("[");
+      var parent = first >= 0 ? key.slice(0, first) : key;
       if (parent) {
         if (!options.plainObjects && has.call(Object.prototype, parent)) {
           if (!options.allowPrototypes) {
             return;
           }
         }
-        keys[keys.length] = parent;
+        segments[segments.length] = parent;
       }
-      var i = 0;
-      while ((segment = child2.exec(key)) !== null && i < options.depth) {
-        i += 1;
-        var segmentContent = segment[1].slice(1, -1);
-        if (
-          !options.plainObjects && has.call(Object.prototype, segmentContent)
-        ) {
-          if (!options.allowPrototypes) {
-            return;
+      var n = key.length;
+      var open2 = first;
+      var collected = 0;
+      while (open2 >= 0 && collected < options.depth) {
+        var level = 1;
+        var i = open2 + 1;
+        var close = -1;
+        while (i < n && close < 0) {
+          var cu = key.charCodeAt(i);
+          if (cu === 91) {
+            level += 1;
+          } else if (cu === 93) {
+            level -= 1;
+            if (level === 0) {
+              close = i;
+            }
           }
+          i += 1;
         }
-        keys[keys.length] = segment[1];
+        if (close < 0) {
+          segments[segments.length] = "[" + key.slice(open2) + "]";
+          return segments;
+        }
+        var seg = key.slice(open2, close + 1);
+        var content = seg.slice(1, -1);
+        if (
+          !options.plainObjects && has.call(Object.prototype, content) &&
+          !options.allowPrototypes
+        ) {
+          return;
+        }
+        segments[segments.length] = seg;
+        collected += 1;
+        open2 = key.indexOf("[", close + 1);
       }
-      if (segment) {
+      if (open2 >= 0) {
         if (options.strictDepth === true) {
           throw new RangeError(
             "Input depth exceeded depth option of " + options.depth +
               " and strictDepth is true",
           );
         }
-        keys[keys.length] = "[" + key.slice(segment.index) + "]";
+        segments[segments.length] = "[" + key.slice(open2) + "]";
       }
-      return keys;
+      return segments;
     };
     var parseKeys = function parseQueryStringKeys(
       givenKey,
@@ -140572,9 +141721,9 @@ var require_parse2 = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.1/node_modules/qs/lib/index.js
+// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/index.js
 var require_lib4 = __commonJS({
-  "node_modules/.deno/qs@6.15.1/node_modules/qs/lib/index.js"(
+  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/index.js"(
     exports2,
     module,
   ) {
@@ -182185,7 +183334,7 @@ function convertHttpClient(requestPolicyClient) {
   };
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/util.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/util.js
 var nameStartChar =
   ":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
 var nameChar = nameStartChar + "\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
@@ -182231,7 +183380,7 @@ var criticalProperties = [
   "prototype",
 ];
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/validator.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/validator.js
 var defaultOptions = {
   allowBooleanAttributes: false,
   unpairedTags: [],
@@ -184238,7 +185387,7 @@ IS_XML_UNSAFE[62] = 1;
 IS_XML_UNSAFE[34] = 1;
 IS_XML_UNSAFE[39] = 1;
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
 var defaultOnDangerousProperty = (name) => {
   if (DANGEROUS_PROPERTY_NAMES.includes(name)) {
     return "__" + name;
@@ -184392,7 +185541,7 @@ var buildOptions = function (options) {
   return built;
 };
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
 var METADATA_SYMBOL;
 if (typeof Symbol !== "function") {
   METADATA_SYMBOL = "@@xmlMetadata";
@@ -184435,11 +185584,42 @@ var XmlNode = class {
   }
 };
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
+// node_modules/.deno/xml-naming@0.1.0/node_modules/xml-naming/src/index.js
+var nameStartChar10 =
+  ":A-Za-z_\xC0-\xD6\xD8-\xF6\xF8-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD";
+var nameChar10 = nameStartChar10 + "\\-\\.\\d\xB7\u0300-\u036F\u203F-\u2040";
+var nameStartChar11 =
+  ":A-Za-z_\xC0-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u{10000}-\u{EFFFF}";
+var nameChar11 = nameStartChar11 +
+  "\\-\\.\\d\xB7\u0300-\u036F\u0487\u203F-\u2040";
+var buildRegexes = (startChar, char, flags = "") => {
+  const ncStart = startChar.replace(":", "");
+  const ncChar = char.replace(":", "");
+  const ncNamePat = `[${ncStart}][${ncChar}]*`;
+  return {
+    name: new RegExp(`^[${startChar}][${char}]*$`, flags),
+    ncName: new RegExp(`^${ncNamePat}$`, flags),
+    qName: new RegExp(`^${ncNamePat}(?::${ncNamePat})?$`, flags),
+    nmToken: new RegExp(`^[${char}]+$`, flags),
+    nmTokens: new RegExp(`^[${char}]+(?:\\s+[${char}]+)*$`, flags),
+  };
+};
+var regexes10 = buildRegexes(nameStartChar10, nameChar10);
+var regexes11 = buildRegexes(nameStartChar11, nameChar11, "u");
+var getRegexes = (xmlVersion = "1.0") =>
+  xmlVersion === "1.1" ? regexes11 : regexes10;
+var qName = (str, { xmlVersion = "1.0" } = {}) =>
+  getRegexes(xmlVersion).qName.test(str);
+
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
 var DocTypeReader = class {
-  constructor(options) {
+  constructor(options, xmlVersion) {
     this.suppressValidationErr = !options;
     this.options = options;
+    this.xmlVersion = xmlVersion || 1;
+  }
+  setXmlVersion(xmlVersion = 1) {
+    this.xmlVersion = xmlVersion;
   }
   readDocType(xmlData, i) {
     const entities = /* @__PURE__ */ Object.create(null);
@@ -184535,7 +185715,9 @@ var DocTypeReader = class {
       i++;
     }
     let entityName = xmlData.substring(startIndex, i);
-    validateEntityName2(entityName);
+    validateEntityName2(entityName, {
+      xmlVersion: this.xmlVersion,
+    });
     i = skipWhitespace(xmlData, i);
     if (!this.suppressValidationErr) {
       if (xmlData.substring(i, i + 6).toUpperCase() === "SYSTEM") {
@@ -184568,7 +185750,9 @@ var DocTypeReader = class {
       i++;
     }
     let notationName = xmlData.substring(startIndex, i);
-    !this.suppressValidationErr && validateEntityName2(notationName);
+    !this.suppressValidationErr && validateEntityName2(notationName, {
+      xmlVersion: this.xmlVersion,
+    });
     i = skipWhitespace(xmlData, i);
     const identifierType = xmlData.substring(i, i + 6).toUpperCase();
     if (
@@ -184642,7 +185826,11 @@ var DocTypeReader = class {
       i++;
     }
     let elementName = xmlData.substring(startIndex, i);
-    if (!this.suppressValidationErr && !isName(elementName)) {
+    if (
+      !this.suppressValidationErr && !qName(elementName, {
+        xmlVersion: this.xmlVersion,
+      })
+    ) {
       throw new Error(`Invalid element name: "${elementName}"`);
     }
     i = skipWhitespace(xmlData, i);
@@ -184675,14 +185863,20 @@ var DocTypeReader = class {
       i++;
     }
     let elementName = xmlData.substring(startIndex, i);
-    validateEntityName2(elementName);
+    validateEntityName2(elementName, {
+      xmlVersion: this.xmlVersion,
+    });
     i = skipWhitespace(xmlData, i);
     startIndex = i;
     while (i < xmlData.length && !/\s/.test(xmlData[i])) {
       i++;
     }
     let attributeName = xmlData.substring(startIndex, i);
-    if (!validateEntityName2(attributeName)) {
+    if (
+      !validateEntityName2(attributeName, {
+        xmlVersion: this.xmlVersion,
+      })
+    ) {
       throw new Error(`Invalid attribute name: "${attributeName}"`);
     }
     i = skipWhitespace(xmlData, i);
@@ -184703,7 +185897,11 @@ var DocTypeReader = class {
         }
         let notation = xmlData.substring(startIndex2, i);
         notation = notation.trim();
-        if (!validateEntityName2(notation)) {
+        if (
+          !validateEntityName2(notation, {
+            xmlVersion: this.xmlVersion,
+          })
+        ) {
           throw new Error(`Invalid notation name: "${notation}"`);
         }
         allowedNotations.push(notation);
@@ -184772,8 +185970,12 @@ function hasSeq(data, seq, i) {
   }
   return true;
 }
-function validateEntityName2(name) {
-  if (isName(name)) return name;
+function validateEntityName2(name, xmlVersion) {
+  if (
+    qName(name, {
+      xmlVersion,
+    })
+  ) return name;
   else throw new Error(`Invalid entity name ${name}`);
 }
 
@@ -184917,7 +186119,7 @@ function handleInfinity(str, num, options) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/ignoreAttributes.js
 function getIgnoreAttributesFn(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -185752,7 +186954,7 @@ var Matcher = class {
   }
 };
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
 function extractRawAttributes(prefixedAttrs, options) {
   if (!prefixedAttrs) return {};
   const attrs = options.attributesGroupName
@@ -186052,6 +187254,7 @@ var parseXml = function (xmlData) {
         if (attsMap) {
           const ver = attsMap[this.options.attributeNamePrefix + "version"];
           this.entityDecoder.setXmlVersion(Number(ver) || 1);
+          docTypeReader.setXmlVersion(Number(ver) || 1);
         }
         if (
           options.ignoreDeclaration && tagData.tagName === "?xml" ||
@@ -186536,7 +187739,7 @@ function sanitizeName(name, options) {
   return name;
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/node2json.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/xmlparser/node2json.js
 var METADATA_SYMBOL2 = XmlNode.getMetaDataSymbol();
 function stripAttributePrefix(attrs, prefix2) {
   if (!attrs || typeof attrs !== "object") return {};
@@ -186673,7 +187876,7 @@ function isLeafTag(obj, options) {
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
 var XMLParser = class {
   constructor(options) {
     this.externalEntities = {};
@@ -186757,33 +187960,6 @@ function safeCdata(val) {
 function escapeAttribute(val) {
   return String(val).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 }
-
-// node_modules/.deno/xml-naming@0.1.0/node_modules/xml-naming/src/index.js
-var nameStartChar10 =
-  ":A-Za-z_\xC0-\xD6\xD8-\xF6\xF8-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD";
-var nameChar10 = nameStartChar10 + "\\-\\.\\d\xB7\u0300-\u036F\u203F-\u2040";
-var nameStartChar11 =
-  ":A-Za-z_\xC0-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u{10000}-\u{EFFFF}";
-var nameChar11 = nameStartChar11 +
-  "\\-\\.\\d\xB7\u0300-\u036F\u0487\u203F-\u2040";
-var buildRegexes = (startChar, char, flags = "") => {
-  const ncStart = startChar.replace(":", "");
-  const ncChar = char.replace(":", "");
-  const ncNamePat = `[${ncStart}][${ncChar}]*`;
-  return {
-    name: new RegExp(`^[${startChar}][${char}]*$`, flags),
-    ncName: new RegExp(`^${ncNamePat}$`, flags),
-    qName: new RegExp(`^${ncNamePat}(?::${ncNamePat})?$`, flags),
-    nmToken: new RegExp(`^[${char}]+$`, flags),
-    nmTokens: new RegExp(`^[${char}]+(?:\\s+[${char}]+)*$`, flags),
-  };
-};
-var regexes10 = buildRegexes(nameStartChar10, nameChar10);
-var regexes11 = buildRegexes(nameStartChar11, nameChar11, "u");
-var getRegexes = (xmlVersion = "1.0") =>
-  xmlVersion === "1.1" ? regexes11 : regexes10;
-var qName = (str, { xmlVersion = "1.0" } = {}) =>
-  getRegexes(xmlVersion).qName.test(str);
 
 // node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/orderedJs2Xml.js
 var EOL7 = "\n";
@@ -187700,10 +188876,10 @@ function isAttribute(name) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
 var json2xml_default = Builder;
 
-// node_modules/.deno/fast-xml-parser@5.7.3/node_modules/fast-xml-parser/src/fxp.js
+// node_modules/.deno/fast-xml-parser@5.8.0/node_modules/fast-xml-parser/src/fxp.js
 var XMLValidator = {
   validate,
 };
