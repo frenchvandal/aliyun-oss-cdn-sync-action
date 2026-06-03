@@ -41,9 +41,7 @@ var __toESM = (
     // file that has been converted to a CommonJS file using a Babel-
     // compatible transform (i.e. "__esModule" has not been set), then set
     // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod || !mod.__esModule
-      ? __defProp(target, "default", { value: mod, enumerable: true })
-      : target,
+    1 ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
     mod,
   ));
 
@@ -218380,126 +218378,6 @@ function setArbitraryLengthTimeout(callback, delay5) {
     valueOf: () => timeoutId,
   };
 }
-
-// deno:https://jsr.io/@std/async/1.4.0/mux_async_iterator.ts
-var _computedKey;
-_computedKey = Symbol.asyncIterator;
-var MuxAsyncIterator = class {
-  #iteratorCount = 0;
-  #yields = [];
-  // deno-lint-ignore no-explicit-any
-  #throws = [];
-  #signal = Promise.withResolvers();
-  /**
-   * Add an async iterable to the stream.
-   *
-   * @param iterable The async iterable to add.
-   *
-   * @example Usage
-   * ```ts
-   * import { MuxAsyncIterator } from "@std/async/mux-async-iterator";
-   * import { assertEquals } from "@std/assert";
-   *
-   * async function* gen123(): AsyncIterableIterator<number> {
-   *   yield 1;
-   *   yield 2;
-   *   yield 3;
-   * }
-   *
-   * const mux = new MuxAsyncIterator<number>();
-   * mux.add(gen123());
-   *
-   * const result = await Array.fromAsync(mux.iterate());
-   *
-   * assertEquals(result, [1, 2, 3]);
-   * ```
-   */
-  add(iterable) {
-    ++this.#iteratorCount;
-    this.#callIteratorNext(iterable[Symbol.asyncIterator]());
-  }
-  async #callIteratorNext(iterator) {
-    try {
-      const { value, done } = await iterator.next();
-      if (done) {
-        --this.#iteratorCount;
-      } else {
-        this.#yields.push({
-          iterator,
-          value,
-        });
-      }
-    } catch (e) {
-      this.#throws.push(e);
-    }
-    this.#signal.resolve();
-  }
-  /**
-   * Returns an async iterator of the stream.
-   * @returns the async iterator for all the added async iterables.
-   *
-   * @example Usage
-   * ```ts
-   * import { MuxAsyncIterator } from "@std/async/mux-async-iterator";
-   * import { assertEquals } from "@std/assert";
-   *
-   * async function* gen123(): AsyncIterableIterator<number> {
-   *   yield 1;
-   *   yield 2;
-   *   yield 3;
-   * }
-   *
-   * const mux = new MuxAsyncIterator<number>();
-   * mux.add(gen123());
-   *
-   * const result = await Array.fromAsync(mux.iterate());
-   *
-   * assertEquals(result, [1, 2, 3]);
-   * ```
-   */
-  async *iterate() {
-    while (this.#iteratorCount > 0) {
-      await this.#signal.promise;
-      for (const { iterator, value } of this.#yields) {
-        yield value;
-        this.#callIteratorNext(iterator);
-      }
-      if (this.#throws.length) {
-        for (const e of this.#throws) {
-          throw e;
-        }
-      }
-      this.#yields.length = 0;
-      this.#signal = Promise.withResolvers();
-    }
-  }
-  /**
-   * Implements an async iterator for the stream.
-   * @returns the async iterator for all the added async iterables.
-   *
-   * @example Usage
-   * ```ts
-   * import { MuxAsyncIterator } from "@std/async/mux-async-iterator";
-   * import { assertEquals } from "@std/assert";
-   *
-   * async function* gen123(): AsyncIterableIterator<number> {
-   *   yield 1;
-   *   yield 2;
-   *   yield 3;
-   * }
-   *
-   * const mux = new MuxAsyncIterator<number>();
-   * mux.add(gen123());
-   *
-   * const result = await Array.fromAsync(mux);
-   *
-   * assertEquals(result, [1, 2, 3]);
-   * ```
-   */
-  [_computedKey]() {
-    return this.iterate();
-  }
-};
 
 // src/_api-rate-limiter.ts
 var ApiRateLimiter = class {

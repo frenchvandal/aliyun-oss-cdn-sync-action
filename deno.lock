@@ -4,7 +4,6 @@
     "jsr:@miscellaneous/commitlint@~0.3.2": "0.3.2",
     "jsr:@std/async@^1.4.0": "1.4.0",
     "jsr:@std/collections@^1.2.0": "1.2.0",
-    "jsr:@std/data-structures@^1.1.0": "1.1.0",
     "jsr:@std/encoding@^1.0.10": "1.0.10",
     "npm:@actions/cache@^6.0.1": "6.0.1",
     "npm:@actions/core@^3.0.1": "3.0.1",
@@ -21,16 +20,10 @@
       "integrity": "f12be7602512b934cb501ed7a91130920b06a34a77ca9ca975148870f2d256e3"
     },
     "@std/async@1.4.0": {
-      "integrity": "4d70b008634f571cff9b554090d628c76141c32613aae0ff283fd5fa23d0c379",
-      "dependencies": [
-        "jsr:@std/data-structures"
-      ]
+      "integrity": "4d70b008634f571cff9b554090d628c76141c32613aae0ff283fd5fa23d0c379"
     },
     "@std/collections@1.2.0": {
       "integrity": "47627a21d3a13138b77fd0e4d790ba9d2e603c3510b686cde6b132fe9aa98a88"
-    },
-    "@std/data-structures@1.1.0": {
-      "integrity": "c35ae4ad5d8e41a38573c2fe3e19b18ea2505f63cfea201edcb8720aca1f7f58"
     },
     "@std/encoding@1.0.10": {
       "integrity": "8783c6384a2d13abd5e9e87a7ae0520a30e9f56aeeaa3bdf910a3eaaf5c811a1"
