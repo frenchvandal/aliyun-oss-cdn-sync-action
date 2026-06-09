@@ -11,7 +11,7 @@
     "npm/actions-exec": "npm:@actions/exec@^3.0.0",
     "npm/actions-io": "npm:@actions/io@^3.0.2",
     "npm/alicloud-cdn20180510": "npm:@alicloud/cdn20180510@9.2.0",
-    "npm/alicloud-credentials": "npm:@alicloud/credentials@^2.4.4",
+    "npm/alicloud-credentials": "npm:@alicloud/credentials@^2.4.5",
     "npm/ali-oss": "npm:ali-oss@^6.23.0",
     "npm/ernest-logger": "npm:ernest-logger@^2.0.4",
     "npm/ernest-logger-formatter": "npm:ernest-logger@^2.0.4/utils/formatter.js",

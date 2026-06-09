@@ -24382,9 +24382,9 @@ var require_tea = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/credential_model.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/credential_model.js
 var require_credential_model = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/credential_model.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/credential_model.js"(
     exports,
   ) {
     "use strict";
@@ -24467,9 +24467,9 @@ var require_credential_model = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/default_credential.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/default_credential.js
 var require_default_credential = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/default_credential.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/default_credential.js"(
     exports,
   ) {
     "use strict";
@@ -24861,9 +24861,9 @@ var require_lib2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/util/utils.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/utils.js
 var require_utils2 = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/util/utils.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/utils.js"(
     exports,
   ) {
     "use strict";
@@ -24974,9 +24974,9 @@ var require_utils2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/config.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/config.js
 var require_config = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/config.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/config.js"(
     exports,
   ) {
     "use strict";
@@ -25099,9 +25099,9 @@ var require_config = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/session_credential.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/session_credential.js
 var require_session_credential = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/session_credential.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/session_credential.js"(
     exports,
   ) {
     "use strict";
@@ -25229,15 +25229,15 @@ var require_session_credential = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/package.json
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/package.json
 var require_package = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/package.json"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/package.json"(
     exports,
     module,
   ) {
     module.exports = {
       name: "@alicloud/credentials",
-      version: "2.4.4",
+      version: "2.4.5",
       description: "alibaba cloud node.js sdk credentials",
       main: "dist/src/client.js",
       scripts: {
@@ -25301,9 +25301,9 @@ var require_package = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/util/helper.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/helper.js
 var require_helper = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/util/helper.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/helper.js"(
     exports,
   ) {
     "use strict";
@@ -25371,9 +25371,9 @@ var require_helper = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/util/http.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/http.js
 var require_http = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/util/http.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/http.js"(
     exports,
   ) {
     "use strict";
@@ -25568,9 +25568,9 @@ var require_http = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/rsa_key_pair_credential.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/rsa_key_pair_credential.js
 var require_rsa_key_pair_credential = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/rsa_key_pair_credential.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/rsa_key_pair_credential.js"(
     exports,
   ) {
     "use strict";
@@ -25678,9 +25678,9 @@ var require_rsa_key_pair_credential = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/bearer_token_credential.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/bearer_token_credential.js
 var require_bearer_token_credential = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/bearer_token_credential.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/bearer_token_credential.js"(
     exports,
   ) {
     "use strict";
@@ -25712,9 +25712,9 @@ var require_bearer_token_credential = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/credentials.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/credentials.js
 var require_credentials = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/credentials.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/credentials.js"(
     exports,
   ) {
     "use strict";
@@ -25759,9 +25759,9 @@ var require_credentials = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/static_ak.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/static_ak.js
 var require_static_ak = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/static_ak.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/static_ak.js"(
     exports,
   ) {
     "use strict";
@@ -25826,9 +25826,9 @@ var require_static_ak = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/static_sts.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/static_sts.js
 var require_static_sts = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/static_sts.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/static_sts.js"(
     exports,
   ) {
     "use strict";
@@ -25902,9 +25902,9 @@ var require_static_sts = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/http.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/http.js
 var require_http2 = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/http.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/http.js"(
     exports,
   ) {
     "use strict";
@@ -26072,9 +26072,9 @@ var require_http2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/time.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/time.js
 var require_time = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/time.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/time.js"(
     exports,
   ) {
     "use strict";
@@ -26163,9 +26163,9 @@ var require_time = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/session.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/session.js
 var require_session = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/session.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/session.js"(
     exports,
   ) {
     "use strict";
@@ -26296,9 +26296,9 @@ var require_session = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/ram_role_arn.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/ram_role_arn.js
 var require_ram_role_arn = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/ram_role_arn.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/ram_role_arn.js"(
     exports,
   ) {
     "use strict";
@@ -26596,9 +26596,9 @@ var require_ram_role_arn = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/oidc_role_arn.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/oidc_role_arn.js
 var require_oidc_role_arn = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/oidc_role_arn.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/oidc_role_arn.js"(
     exports,
   ) {
     "use strict";
@@ -26848,9 +26848,9 @@ var require_oidc_role_arn = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/ecs_ram_role.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/ecs_ram_role.js
 var require_ecs_ram_role = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/ecs_ram_role.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/ecs_ram_role.js"(
     exports,
   ) {
     "use strict";
@@ -27051,9 +27051,518 @@ var require_ecs_ram_role = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/cli_profile.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/cloud_sso.js
+var require_cloud_sso = __commonJS({
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/cloud_sso.js"(
+    exports,
+  ) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true,
+    });
+    var session_1 = require_session();
+    var http_1 = require_http2();
+    var CloudSSOCredentialsProviderBuilder = class {
+      withSignInUrl(signInUrl) {
+        this.signInUrl = signInUrl;
+        return this;
+      }
+      withAccountId(accountId) {
+        this.accountId = accountId;
+        return this;
+      }
+      withAccessConfig(accessConfig) {
+        this.accessConfig = accessConfig;
+        return this;
+      }
+      withAccessToken(accessToken) {
+        this.accessToken = accessToken;
+        return this;
+      }
+      withAccessTokenExpire(accessTokenExpire) {
+        this.accessTokenExpire = accessTokenExpire;
+        return this;
+      }
+      withConnectTimeout(connectTimeout) {
+        this.connectTimeout = connectTimeout;
+        return this;
+      }
+      withReadTimeout(readTimeout) {
+        this.readTimeout = readTimeout;
+        return this;
+      }
+      build() {
+        const now = Math.floor(Date.now() / 1e3);
+        if (
+          !this.accessToken || !this.accessTokenExpire ||
+          this.accessTokenExpire - now <= 0
+        ) {
+          throw new Error(
+            "CloudSSO access token is empty or expired, please re-login with cli.",
+          );
+        }
+        if (!this.signInUrl || !this.accountId || !this.accessConfig) {
+          throw new Error(
+            "CloudSSO sign in url, account id, and access config cannot be empty.",
+          );
+        }
+        return new CloudSSOCredentialsProvider(this);
+      }
+    };
+    var CloudSSOCredentialsProvider = class
+      extends session_1.SessionCredentialProvider {
+      static builder() {
+        return new CloudSSOCredentialsProviderBuilder();
+      }
+      constructor(builder) {
+        super(session_1.STALE_TIME);
+        this.doRequest = http_1.doRequest;
+        this.refresher = this.getCredentialsInternal;
+        this.signInUrl = builder.signInUrl;
+        this.accountId = builder.accountId;
+        this.accessConfig = builder.accessConfig;
+        this.accessToken = builder.accessToken;
+        this.accessTokenExpire = builder.accessTokenExpire;
+        this.connectTimeout = builder.connectTimeout || 5e3;
+        this.readTimeout = builder.readTimeout || 1e4;
+        this.doRequest = http_1.doRequest;
+      }
+      getProviderName() {
+        return "cloud_sso";
+      }
+      async getCredentialsInternal() {
+        const url = new URL(this.signInUrl);
+        const body = JSON.stringify({
+          AccountId: this.accountId,
+          AccessConfigurationId: this.accessConfig,
+        });
+        const headers = {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this.accessToken}`,
+        };
+        const request = http_1.Request.builder().withMethod("POST")
+          .withProtocol(url.protocol.replace(":", "")).withHost(url.host)
+          .withPath("/cloud-credentials").withHeaders(headers).withReadTimeout(
+            this.readTimeout,
+          ).withConnectTimeout(this.connectTimeout).build();
+        const response = await this.doRequest(request);
+        if (response.statusCode !== 200) {
+          throw new Error(
+            `get session token from CloudSSO failed: ${
+              response.body.toString("utf8")
+            }`,
+          );
+        }
+        let data;
+        try {
+          data = JSON.parse(response.body.toString("utf8"));
+        } catch (ex) {
+          throw new Error(
+            `get session token from CloudSSO failed, unmarshal fail: ${
+              response.body.toString("utf8")
+            }`,
+          );
+        }
+        if (!data || !data.CloudCredential) {
+          throw new Error(
+            "get session token from CloudSSO failed, fail to get credentials",
+          );
+        }
+        const { AccessKeyId, AccessKeySecret, SecurityToken, Expiration } =
+          data.CloudCredential;
+        if (!AccessKeyId || !AccessKeySecret || !SecurityToken) {
+          throw new Error(
+            "get session token from CloudSSO failed, fail to get credentials",
+          );
+        }
+        return new session_1.Session(
+          AccessKeyId,
+          AccessKeySecret,
+          SecurityToken,
+          Expiration,
+        );
+      }
+    };
+    exports.default = CloudSSOCredentialsProvider;
+  },
+});
+
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/oauth.js
+var require_oauth = __commonJS({
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/oauth.js"(
+    exports,
+  ) {
+    "use strict";
+    var __createBinding = exports && exports.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports && exports.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports && exports.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports, "__esModule", {
+      value: true,
+    });
+    var session_1 = require_session();
+    var http_1 = require_http2();
+    var utils = __importStar(require_utils2());
+    var OAuthCredentialsProviderBuilder = class {
+      withClientId(clientId) {
+        this.clientId = clientId;
+        return this;
+      }
+      withSignInUrl(signInUrl) {
+        this.signInUrl = signInUrl;
+        return this;
+      }
+      withRefreshToken(refreshToken) {
+        this.refreshToken = refreshToken;
+        return this;
+      }
+      withAccessToken(accessToken) {
+        this.accessToken = accessToken;
+        return this;
+      }
+      withAccessTokenExpire(accessTokenExpire) {
+        this.accessTokenExpire = accessTokenExpire;
+        return this;
+      }
+      withConnectTimeout(connectTimeout) {
+        this.connectTimeout = connectTimeout;
+        return this;
+      }
+      withReadTimeout(readTimeout) {
+        this.readTimeout = readTimeout;
+        return this;
+      }
+      withTokenUpdateCallback(callback) {
+        this.tokenUpdateCallback = callback;
+        return this;
+      }
+      build() {
+        if (!this.clientId) {
+          throw new Error("the clientId is empty");
+        }
+        if (!this.signInUrl) {
+          throw new Error("the url for sign-in is empty");
+        }
+        return new OAuthCredentialsProvider(this);
+      }
+    };
+    var OAuthCredentialsProvider = class
+      extends session_1.SessionCredentialProvider {
+      static builder() {
+        return new OAuthCredentialsProviderBuilder();
+      }
+      constructor(builder) {
+        super(session_1.STALE_TIME);
+        this.doRequest = http_1.doRequest;
+        this.refresher = this.getCredentialsInternal;
+        this.clientId = builder.clientId;
+        this.signInUrl = builder.signInUrl;
+        this.refreshToken = builder.refreshToken;
+        this.accessToken = builder.accessToken;
+        this.accessTokenExpire = builder.accessTokenExpire;
+        this.connectTimeout = builder.connectTimeout || 5e3;
+        this.readTimeout = builder.readTimeout || 1e4;
+        this.tokenUpdateCallback = builder.tokenUpdateCallback;
+        this.doRequest = http_1.doRequest;
+      }
+      getProviderName() {
+        return "oauth";
+      }
+      async tryRefreshOAuthToken() {
+        const url = new URL(this.signInUrl);
+        const bodyForm = {
+          "grant_type": "refresh_token",
+          "refresh_token": this.refreshToken,
+          "client_id": this.clientId,
+          "Timestamp": utils.timestamp(),
+        };
+        const headers = {
+          "Content-Type": "application/x-www-form-urlencoded",
+        };
+        const request = http_1.Request.builder().withMethod("POST")
+          .withProtocol(url.protocol.replace(":", "")).withHost(url.host)
+          .withPath("/v1/token").withHeaders(headers).withBodyForm(bodyForm)
+          .withReadTimeout(this.readTimeout).withConnectTimeout(
+            this.connectTimeout,
+          ).build();
+        const response = await this.doRequest(request);
+        if (response.statusCode !== 200) {
+          throw new Error(
+            `failed to refresh OAuth token, status code: ${response.statusCode}`,
+          );
+        }
+        let tokenResp;
+        try {
+          tokenResp = JSON.parse(response.body.toString("utf8"));
+        } catch (ex) {
+          throw new Error(
+            `failed to refresh OAuth token, unmarshal fail: ${
+              response.body.toString("utf8")
+            }`,
+          );
+        }
+        if (!tokenResp || !tokenResp.access_token || !tokenResp.refresh_token) {
+          throw new Error(
+            `failed to refresh OAuth token: ${response.body.toString("utf8")}`,
+          );
+        }
+        this.accessToken = tokenResp.access_token;
+        this.refreshToken = tokenResp.refresh_token;
+        this.accessTokenExpire = Math.floor(Date.now() / 1e3) +
+          (tokenResp.expires_in || 3600);
+      }
+      async getCredentialsInternal() {
+        const now = Math.floor(Date.now() / 1e3);
+        if (
+          this.refreshToken &&
+          (!this.accessToken || !this.accessTokenExpire ||
+            this.accessTokenExpire - now <= 1200)
+        ) {
+          await this.tryRefreshOAuthToken();
+        }
+        const url = new URL(this.signInUrl);
+        const headers = {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this.accessToken}`,
+        };
+        const request = http_1.Request.builder().withMethod("POST")
+          .withProtocol(url.protocol.replace(":", "")).withHost(url.host)
+          .withPath("/v1/exchange").withHeaders(headers).withReadTimeout(
+            this.readTimeout,
+          ).withConnectTimeout(this.connectTimeout).build();
+        const response = await this.doRequest(request);
+        if (response.statusCode !== 200) {
+          throw new Error(
+            `get session token from OAuth failed: ${
+              response.body.toString("utf8")
+            }`,
+          );
+        }
+        let data;
+        try {
+          data = JSON.parse(response.body.toString("utf8"));
+        } catch (ex) {
+          throw new Error(
+            `get session token from OAuth failed, unmarshal fail: ${
+              response.body.toString("utf8")
+            }`,
+          );
+        }
+        if (
+          !data || !data.accessKeyId || !data.accessKeySecret ||
+          !data.securityToken
+        ) {
+          throw new Error(
+            `refresh session token from OAuth failed, fail to get credentials: ${
+              response.body.toString("utf8")
+            }`,
+          );
+        }
+        if (this.tokenUpdateCallback) {
+          try {
+            const stsExpire = data.expiration
+              ? Math.floor(new Date(data.expiration).getTime() / 1e3)
+              : 0;
+            await this.tokenUpdateCallback(
+              this.refreshToken,
+              this.accessToken,
+              data.accessKeyId,
+              data.accessKeySecret,
+              data.securityToken,
+              this.accessTokenExpire,
+              stsExpire,
+            );
+          } catch (e) {
+          }
+        }
+        return new session_1.Session(
+          data.accessKeyId,
+          data.accessKeySecret,
+          data.securityToken,
+          data.expiration,
+        );
+      }
+    };
+    exports.default = OAuthCredentialsProvider;
+  },
+});
+
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/external.js
+var require_external = __commonJS({
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/external.js"(
+    exports,
+  ) {
+    "use strict";
+    var __importDefault = exports && exports.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod,
+      };
+    };
+    Object.defineProperty(exports, "__esModule", {
+      value: true,
+    });
+    var child_process_1 = __require("node:child_process");
+    var util_1 = __require("node:util");
+    var credentials_1 = __importDefault(require_credentials());
+    var execFileAsync = (0, util_1.promisify)(child_process_1.execFile);
+    var EXPIRATION_SLOT_SECONDS = 180;
+    var ExternalCredentialsProviderBuilder = class {
+      withProcessCommand(processCommand) {
+        this.processCommand = processCommand;
+        return this;
+      }
+      withTimeout(timeout) {
+        this.timeout = timeout;
+        return this;
+      }
+      withCredentialUpdateCallback(callback) {
+        this.credentialUpdateCallback = callback;
+        return this;
+      }
+      build() {
+        if (!this.processCommand) {
+          throw new Error("process_command is empty");
+        }
+        return new ExternalCredentialsProvider(this);
+      }
+    };
+    var ExternalCredentialsProvider = class {
+      static builder() {
+        return new ExternalCredentialsProviderBuilder();
+      }
+      constructor(builder) {
+        this.expirationTimestamp = 0;
+        this.processCommand = builder.processCommand;
+        this.timeout = builder.timeout || 60 * 1e3;
+        this.credentialUpdateCallback = builder.credentialUpdateCallback;
+      }
+      getProviderName() {
+        return "external";
+      }
+      needUpdateCredential() {
+        if (!this.session) {
+          return true;
+        }
+        if (!this.expirationTimestamp) {
+          return true;
+        }
+        return this.expirationTimestamp - Math.floor(Date.now() / 1e3) <=
+          EXPIRATION_SLOT_SECONDS;
+      }
+      async getCredentialsInternal() {
+        const args = this.processCommand.trim().split(/\s+/).filter(Boolean);
+        if (args.length === 0) {
+          throw new Error("process_command is empty");
+        }
+        let stdout;
+        try {
+          const result = await execFileAsync(args[0], args.slice(1), {
+            timeout: this.timeout,
+            env: process.env,
+          });
+          stdout = result.stdout;
+        } catch (ex) {
+          throw new Error(`failed to execute external command: ${ex.message}`);
+        }
+        let data;
+        try {
+          data = JSON.parse(stdout);
+        } catch (ex) {
+          throw new Error(
+            `failed to parse external command output: ${ex.message}`,
+          );
+        }
+        if (!data || !data.access_key_id || !data.access_key_secret) {
+          throw new Error(
+            "invalid credential response: access_key_id or access_key_secret is empty",
+          );
+        }
+        if (data.mode === "StsToken" && !data.sts_token) {
+          throw new Error(
+            "invalid StsToken credential response: sts_token is empty",
+          );
+        }
+        return data;
+      }
+      async getCredentials() {
+        if (this.needUpdateCredential()) {
+          const session = await this.getCredentialsInternal();
+          this.session = session;
+          this.expirationTimestamp = session.expiration
+            ? Math.floor(new Date(session.expiration).getTime() / 1e3)
+            : 0;
+          if (Number.isNaN(this.expirationTimestamp)) {
+            this.expirationTimestamp = 0;
+          }
+          if (this.credentialUpdateCallback) {
+            try {
+              await this.credentialUpdateCallback(
+                session.access_key_id,
+                session.access_key_secret,
+                session.sts_token,
+                this.expirationTimestamp,
+              );
+            } catch (e) {
+            }
+          }
+        }
+        return credentials_1.default.builder().withAccessKeyId(
+          this.session.access_key_id,
+        ).withAccessKeySecret(this.session.access_key_secret).withSecurityToken(
+          this.session.sts_token,
+        ).withProviderName(this.getProviderName()).build();
+      }
+    };
+    exports.default = ExternalCredentialsProvider;
+  },
+});
+
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/cli_profile.js
 var require_cli_profile = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/cli_profile.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/cli_profile.js"(
     exports,
   ) {
     "use strict";
@@ -27076,7 +27585,19 @@ var require_cli_profile = __commonJS({
     var ram_role_arn_1 = __importDefault(require_ram_role_arn());
     var oidc_role_arn_1 = __importDefault(require_oidc_role_arn());
     var ecs_ram_role_1 = __importDefault(require_ecs_ram_role());
+    var cloud_sso_1 = __importDefault(require_cloud_sso());
+    var oauth_1 = __importDefault(require_oauth());
+    var external_1 = __importDefault(require_external());
     var readFileAsync = (0, util_1.promisify)(fs_1.readFile);
+    var writeFileAsync = (0, util_1.promisify)(fs_1.writeFile);
+    var OAUTH_BASE_URL_MAP = {
+      "CN": "https://oauth.aliyun.com",
+      "INTL": "https://oauth.alibabacloud.com",
+    };
+    var OAUTH_CLIENT_MAP = {
+      "CN": "4038181954557748008",
+      "INTL": "4103531455503354461",
+    };
     var CLIProfileCredentialsProviderBuilder = class {
       build() {
         if (!this.profileName) {
@@ -27134,6 +27655,99 @@ var require_cli_profile = __commonJS({
         this.homedir = os_1.default.homedir();
         this.profileName = builder.profileName;
       }
+      createOAuthTokenUpdateCallback(conf, profileName) {
+        return async (
+          refreshToken,
+          accessToken,
+          accessKeyId,
+          accessKeySecret,
+          securityToken,
+          accessTokenExpire,
+          stsExpire,
+        ) => {
+          try {
+            const cfgPath = path_1.default.join(
+              this.homedir,
+              ".aliyun/config.json",
+            );
+            const content = await readFileAsync(cfgPath, "utf8");
+            const config = JSON.parse(content);
+            if (!config || !config.profiles) return;
+            const oauthProfile = this.findOAuthProfile(config, profileName);
+            if (!oauthProfile) return;
+            oauthProfile.oauth_refresh_token = refreshToken;
+            oauthProfile.oauth_access_token = accessToken;
+            oauthProfile.oauth_access_token_expire = accessTokenExpire;
+            oauthProfile.access_key_id = accessKeyId;
+            oauthProfile.access_key_secret = accessKeySecret;
+            oauthProfile.sts_token = securityToken;
+            oauthProfile.sts_expiration = stsExpire;
+            await writeFileAsync(
+              cfgPath,
+              JSON.stringify(config, null, 4),
+              "utf8",
+            );
+          } catch (e) {
+          }
+        };
+      }
+      findOAuthProfile(conf, profileName) {
+        for (const p of conf.profiles) {
+          if (p.name === profileName) {
+            if (p.mode === "OAuth") return p;
+            if (p.source_profile) {
+              return this.findOAuthProfile(conf, p.source_profile);
+            }
+            return null;
+          }
+        }
+        return null;
+      }
+      createExternalCredentialUpdateCallback(conf, profileName) {
+        return async (
+          accessKeyId,
+          accessKeySecret,
+          securityToken,
+          expiration,
+        ) => {
+          try {
+            const cfgPath = path_1.default.join(
+              this.homedir,
+              ".aliyun/config.json",
+            );
+            const content = await readFileAsync(cfgPath, "utf8");
+            const config = JSON.parse(content);
+            if (!config || !config.profiles) return;
+            const externalProfile = this.findExternalProfile(
+              config,
+              profileName,
+            );
+            if (!externalProfile) return;
+            externalProfile.access_key_id = accessKeyId;
+            externalProfile.access_key_secret = accessKeySecret;
+            externalProfile.sts_token = securityToken;
+            externalProfile.sts_expiration = expiration;
+            await writeFileAsync(
+              cfgPath,
+              JSON.stringify(config, null, 4),
+              "utf8",
+            );
+          } catch (e) {
+          }
+        };
+      }
+      findExternalProfile(conf, profileName) {
+        for (const p of conf.profiles) {
+          if (p.name === profileName) {
+            if (p.mode === "External") return p;
+            if (p.source_profile) {
+              return this.findExternalProfile(conf, p.source_profile);
+            }
+            return null;
+          }
+        }
+        return null;
+      }
       getCredentialsProvider(conf, profileName) {
         const p = getProfile(conf, profileName);
         switch (p.mode) {
@@ -27188,6 +27802,36 @@ var require_cli_profile = __commonJS({
               p.sts_region,
             ).build();
           }
+          case "CloudSSO":
+            return cloud_sso_1.default.builder().withSignInUrl(
+              p.cloud_sso_sign_in_url,
+            ).withAccountId(p.cloud_sso_account_id).withAccessConfig(
+              p.cloud_sso_access_config,
+            ).withAccessToken(p.access_token).withAccessTokenExpire(
+              p.cloud_sso_access_token_expire,
+            ).build();
+          case "OAuth": {
+            const siteType = (p.oauth_site_type || "").toUpperCase();
+            const oauthSignInUrl = OAUTH_BASE_URL_MAP[siteType];
+            if (!oauthSignInUrl) {
+              throw new Error("invalid OAuth site type, support CN or INTL");
+            }
+            const oauthClientId = OAUTH_CLIENT_MAP[siteType];
+            return oauth_1.default.builder().withSignInUrl(oauthSignInUrl)
+              .withClientId(oauthClientId).withRefreshToken(
+                p.oauth_refresh_token,
+              ).withAccessToken(p.oauth_access_token).withAccessTokenExpire(
+                p.oauth_access_token_expire,
+              ).withTokenUpdateCallback(
+                this.createOAuthTokenUpdateCallback(conf, profileName),
+              ).build();
+          }
+          case "External":
+            return external_1.default.builder().withProcessCommand(
+              p.process_command,
+            ).withCredentialUpdateCallback(
+              this.createExternalCredentialUpdateCallback(conf, profileName),
+            ).build();
           default:
             throw new Error(`unsupported profile mode '${p.mode}'`);
         }
@@ -27222,9 +27866,9 @@ var require_cli_profile = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/env.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/env.js
 var require_env = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/env.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/env.js"(
     exports,
   ) {
     "use strict";
@@ -27274,9 +27918,9 @@ var require_env = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/uri.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/uri.js
 var require_uri = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/uri.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/uri.js"(
     exports,
   ) {
     "use strict";
@@ -27370,9 +28014,9 @@ var require_uri = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/profile.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/profile.js
 var require_profile = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/profile.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/profile.js"(
     exports,
   ) {
     "use strict";
@@ -27475,9 +28119,9 @@ var require_profile = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/default.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/default.js
 var require_default = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/providers/default.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/default.js"(
     exports,
   ) {
     "use strict";
@@ -27588,9 +28232,9 @@ var require_default = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/client.js
+// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/client.js
 var require_client2 = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.4/node_modules/@alicloud/credentials/dist/src/client.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/client.js"(
     exports,
   ) {
     "use strict";
