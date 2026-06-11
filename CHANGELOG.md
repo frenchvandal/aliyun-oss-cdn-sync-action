@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.15](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.14...v1.0.15) (2026-06-11)
+
+
+### Bug Fixes
+
+* **oidc:** unwrap double-nested default export from @alicloud/credentials ([7cf3c9c](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/commit/7cf3c9c071877a83c8c97cf33093fa6f6705b8c1))
+
 ## [1.0.14](https://github.com/frenchvandal/aliyun-oss-cdn-sync-action/compare/v1.0.13...v1.0.14) (2026-05-02)
 
 
