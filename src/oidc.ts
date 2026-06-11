@@ -3,12 +3,15 @@ import os from "node:os";
 import { join } from "node:path";
 
 import { getIDToken, getInput, group, isDebug } from "npm/actions-core";
-import { Config } from "npm/alicloud-credentials";
-import * as credentials from "npm/alicloud-credentials";
+import CredentialClient, { Config } from "npm/alicloud-credentials";
 import { decodeBase64Url } from "jsr/encoding";
 
 import { debug, info } from "./logger.ts";
-import { getOptionalInput, parsePositiveIntegerValue } from "./shared.ts";
+import {
+  getOptionalInput,
+  parsePositiveIntegerValue,
+  resolveDefaultConstructor,
+} from "./shared.ts";
 
 export interface OidcInputs {
   audience: string | undefined;
@@ -45,15 +48,9 @@ type CredentialClientConstructor = new (
   provider?: unknown,
 ) => CredentialClientInstance;
 
-// @alicloud/credentials is a CJS module whose default export is wrapped
-// by Deno bundle as namespace.default === exports. The actual class lives
-// at exports.default, so we need to unwrap one level.
-const CredentialClientCtor = (
-  (credentials as unknown as Record<string, unknown>).default as Record<
-    string,
-    unknown
-  >
-)?.default as CredentialClientConstructor;
+const CredentialClientCtor = resolveDefaultConstructor<
+  CredentialClientConstructor
+>(CredentialClient, "@alicloud/credentials");
 
 function decodeJwtPayload(
   idToken: string,

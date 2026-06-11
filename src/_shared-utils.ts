@@ -3,6 +3,30 @@ export type QuotaSelection<T> = {
   deniedCount: number;
 };
 
+// CommonJS dependencies reach this codebase through bundler interop, and the
+// constructor may sit at the import itself, at `.default` (Babel-style
+// interop), or at `.default.default` (Node-style interop on a namespace
+// import of a transpiled module). Unwrap until a callable shows up.
+export function resolveDefaultConstructor<T>(
+  moduleExport: unknown,
+  moduleName: string,
+): T {
+  let current: unknown = moduleExport;
+  for (
+    let depth = 0;
+    depth < 3 && current !== null && current !== undefined;
+    depth++
+  ) {
+    if (typeof current === "function") {
+      return current as T;
+    }
+    current = (current as { default?: unknown }).default;
+  }
+  throw new Error(
+    `Unable to resolve the default export of '${moduleName}' as a constructor`,
+  );
+}
+
 export function errorMessage(error: unknown): string {
   if (!error || typeof error !== "object") {
     return String(error);

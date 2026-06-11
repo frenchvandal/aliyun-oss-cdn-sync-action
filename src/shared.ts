@@ -29,6 +29,7 @@ export {
   parsePositiveIntegerValue,
   parsePrefix,
   parseQuota,
+  resolveDefaultConstructor,
   resolveOssEndpoint,
   selectByQuota,
   toHost,

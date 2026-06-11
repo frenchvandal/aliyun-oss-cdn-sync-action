@@ -14,6 +14,7 @@ import {
   parseOssBaseInputs,
   parseQuota,
   requireCredentialsFromState,
+  resolveDefaultConstructor,
   resolveOssEndpoint,
   selectByQuota,
 } from "./shared.ts";
@@ -73,14 +74,13 @@ type CdnClient = {
   }>;
 };
 
-// deno-lint-ignore no-explicit-any
-const OssClientCtor = (AliOssModule as any).default as new (
-  config: Record<string, unknown>,
-) => OSSClient;
+const OssClientCtor = resolveDefaultConstructor<
+  new (config: Record<string, unknown>) => OSSClient
+>(AliOssModule, "ali-oss");
 
-const CdnClientCtor = Cdn.default as unknown as new (
-  config: Record<string, unknown>,
-) => CdnClient;
+const CdnClientCtor = resolveDefaultConstructor<
+  new (config: Record<string, unknown>) => CdnClient
+>(Cdn, "@alicloud/cdn20180510");
 const DescribeRefreshQuotaRequestCtor = Cdn
   .DescribeRefreshQuotaRequest as unknown as new (
     map?: Record<string, unknown>,

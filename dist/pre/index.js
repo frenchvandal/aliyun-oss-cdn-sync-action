@@ -30320,6 +30320,22 @@ import {
 var I32_MAX = 2 ** 31 - 1;
 
 // src/_shared-utils.ts
+function resolveDefaultConstructor(moduleExport, moduleName) {
+  let current = moduleExport;
+  for (
+    let depth = 0;
+    depth < 3 && current !== null && current !== void 0;
+    depth++
+  ) {
+    if (typeof current === "function") {
+      return current;
+    }
+    current = current.default;
+  }
+  throw new Error(
+    `Unable to resolve the default export of '${moduleName}' as a constructor`,
+  );
+}
 function parsePositiveIntegerValue(name, value, defaultValue, max) {
   if (value === void 0) {
     return defaultValue;
@@ -30368,7 +30384,10 @@ var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 var MAX_ROLE_SESSION_EXPIRATION = 43200;
 var MIN_ROLE_SESSION_EXPIRATION = 900;
 var textDecoder = new TextDecoder();
-var CredentialClientCtor = import_alicloud_credentials.default.default;
+var CredentialClientCtor = resolveDefaultConstructor(
+  import_alicloud_credentials.default,
+  "@alicloud/credentials",
+);
 function decodeJwtPayload(idToken) {
   const parts = idToken.split(".");
   const encodedPayload = parts[1];

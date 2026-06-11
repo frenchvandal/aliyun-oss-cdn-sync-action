@@ -6,6 +6,7 @@ import {
   parsePositiveIntegerValue,
   parsePrefix,
   parseQuota,
+  resolveDefaultConstructor,
   resolveOssEndpoint,
   selectByQuota,
 } from "./_shared-utils.ts";
@@ -71,6 +72,32 @@ Deno.test("resolveOssEndpoint accepts default regions and explicit URLs", () => 
       "https://oss-cn-shanghai.aliyuncs.com",
     ),
     "oss-cn-shanghai.aliyuncs.com",
+  );
+});
+
+Deno.test("resolveDefaultConstructor unwraps every CJS interop shape", () => {
+  class Client {}
+
+  // Direct constructor (module.exports = Client).
+  assertEquals(resolveDefaultConstructor(Client, "direct"), Client);
+  // Babel-style interop: default import resolves to exports.default.
+  assertEquals(resolveDefaultConstructor({ default: Client }, "babel"), Client);
+  // Node-style interop on a namespace import of a transpiled module:
+  // namespace.default is module.exports, whose .default is the class.
+  assertEquals(
+    resolveDefaultConstructor(
+      { default: { __esModule: true, default: Client } },
+      "node",
+    ),
+    Client,
+  );
+  assertThrows(
+    () => resolveDefaultConstructor({ default: {} }, "broken-module"),
+    "Unable to resolve the default export of 'broken-module' as a constructor",
+  );
+  assertThrows(
+    () => resolveDefaultConstructor(undefined, "missing-module"),
+    "Unable to resolve the default export of 'missing-module' as a constructor",
   );
 });
 

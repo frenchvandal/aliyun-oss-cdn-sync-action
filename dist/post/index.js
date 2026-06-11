@@ -176587,6 +176587,22 @@ function warning2(message) {
 }
 
 // src/_shared-utils.ts
+function resolveDefaultConstructor(moduleExport, moduleName) {
+  let current = moduleExport;
+  for (
+    let depth = 0;
+    depth < 3 && current !== null && current !== void 0;
+    depth++
+  ) {
+    if (typeof current === "function") {
+      return current;
+    }
+    current = current.default;
+  }
+  throw new Error(
+    `Unable to resolve the default export of '${moduleName}' as a constructor`,
+  );
+}
 function errorMessage(error2) {
   if (!error2 || typeof error2 !== "object") {
     return String(error2);
@@ -223949,7 +223965,10 @@ var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 var MAX_ROLE_SESSION_EXPIRATION = 43200;
 var MIN_ROLE_SESSION_EXPIRATION = 900;
 var textDecoder = new TextDecoder();
-var CredentialClientCtor = import_alicloud_credentials.default;
+var CredentialClientCtor = resolveDefaultConstructor(
+  import_alicloud_credentials.default,
+  "@alicloud/credentials",
+);
 function decodeJwtPayload(idToken) {
   const parts = idToken.split(".");
   const encodedPayload = parts[1];
@@ -224103,8 +224122,8 @@ async function resolveOidcCredential(inputs, options) {
 }
 
 // src/post.ts
-var OssClientCtor = AliOssModule.default;
-var CdnClientCtor = Cdn.default;
+var OssClientCtor = resolveDefaultConstructor(AliOssModule, "ali-oss");
+var CdnClientCtor = resolveDefaultConstructor(Cdn, "@alicloud/cdn20180510");
 var DescribeRefreshQuotaRequestCtor = Cdn.DescribeRefreshQuotaRequest;
 var DescribeRefreshTaskByIdRequestCtor = Cdn.DescribeRefreshTaskByIdRequest;
 var RefreshObjectCachesRequestCtor = Cdn.RefreshObjectCachesRequest;
