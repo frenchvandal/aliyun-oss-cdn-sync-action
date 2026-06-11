@@ -223552,7 +223552,7 @@ var DEFAULT_STS_REFRESH_INTERVAL_SECONDS = 300;
 var MAX_ROLE_SESSION_EXPIRATION = 43200;
 var MIN_ROLE_SESSION_EXPIRATION = 900;
 var textDecoder = new TextDecoder();
-var CredentialClientCtor = import_alicloud_credentials.default;
+var CredentialClientCtor = import_alicloud_credentials.default.default;
 function decodeJwtPayload(idToken) {
   const parts = idToken.split(".");
   const encodedPayload = parts[1];
