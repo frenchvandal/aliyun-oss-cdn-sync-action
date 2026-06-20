@@ -313,9 +313,9 @@ var require_tunnel2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/symbols.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/symbols.js
 var require_symbols = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/symbols.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/symbols.js"(
     exports2,
     module,
   ) {
@@ -389,9 +389,9 @@ var require_symbols = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/errors.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/errors.js
 var require_errors = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/errors.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/errors.js"(
     exports2,
     module,
   ) {
@@ -780,9 +780,9 @@ var require_errors = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/constants.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/constants.js
 var require_constants = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/constants.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/constants.js"(
     exports2,
     module,
   ) {
@@ -900,9 +900,9 @@ var require_constants = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/tree.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/tree.js
 var require_tree = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/tree.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/tree.js"(
     exports2,
     module,
   ) {
@@ -1041,9 +1041,9 @@ var require_tree = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/util.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/util.js
 var require_util = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/util.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/util.js"(
     exports2,
     module,
   ) {
@@ -1643,9 +1643,9 @@ var require_util = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/diagnostics.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/diagnostics.js
 var require_diagnostics = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/diagnostics.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/diagnostics.js"(
     exports2,
     module,
   ) {
@@ -1841,9 +1841,9 @@ var require_diagnostics = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/request.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/request.js
 var require_request = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/request.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/request.js"(
     exports2,
     module,
   ) {
@@ -2235,9 +2235,9 @@ var require_request = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/dispatcher.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/dispatcher.js
 var require_dispatcher = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/dispatcher.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/dispatcher.js"(
     exports2,
     module,
   ) {
@@ -2298,9 +2298,9 @@ var require_dispatcher = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/dispatcher-base.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/dispatcher-base.js
 var require_dispatcher_base = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/dispatcher-base.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/dispatcher-base.js"(
     exports2,
     module,
   ) {
@@ -2325,6 +2325,7 @@ var require_dispatcher_base = __commonJS({
       }
       get webSocketOptions() {
         return {
+          maxFragments: this[kWebSocketOptions].maxFragments ?? 131072,
           maxPayloadSize: this[kWebSocketOptions].maxPayloadSize ??
             128 * 1024 * 1024,
         };
@@ -2470,9 +2471,9 @@ var require_dispatcher_base = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/util/timers.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/util/timers.js
 var require_timers = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/util/timers.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/util/timers.js"(
     exports2,
     module,
   ) {
@@ -2709,9 +2710,9 @@ var require_timers = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/connect.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/connect.js
 var require_connect = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/core/connect.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/connect.js"(
     exports2,
     module,
   ) {
@@ -2945,9 +2946,9 @@ var require_connect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/llhttp/utils.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/utils.js
 var require_utils = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/llhttp/utils.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/utils.js"(
     exports2,
   ) {
     "use strict";
@@ -2969,9 +2970,9 @@ var require_utils = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/llhttp/constants.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/constants.js
 var require_constants2 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/llhttp/constants.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/constants.js"(
     exports2,
   ) {
     "use strict";
@@ -3370,9 +3371,9 @@ var require_constants2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/llhttp/llhttp-wasm.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/llhttp-wasm.js
 var require_llhttp_wasm = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/llhttp/llhttp-wasm.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/llhttp-wasm.js"(
     exports2,
     module,
   ) {
@@ -3385,9 +3386,9 @@ var require_llhttp_wasm = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js
 var require_llhttp_simd_wasm = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js"(
     exports2,
     module,
   ) {
@@ -3400,9 +3401,9 @@ var require_llhttp_simd_wasm = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/constants.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/constants.js
 var require_constants3 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/constants.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/constants.js"(
     exports2,
     module,
   ) {
@@ -3658,9 +3659,9 @@ var require_constants3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/global.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/global.js
 var require_global = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/global.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/global.js"(
     exports2,
     module,
   ) {
@@ -3699,9 +3700,9 @@ var require_global = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/data-url.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/data-url.js
 var require_data_url = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/data-url.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/data-url.js"(
     exports2,
     module,
   ) {
@@ -4074,9 +4075,9 @@ var require_data_url = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/webidl.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/webidl.js
 var require_webidl = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/webidl.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/webidl.js"(
     exports2,
     module,
   ) {
@@ -4578,9 +4579,9 @@ var require_webidl = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/util.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/util.js
 var require_util2 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/util.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/util.js"(
     exports2,
     module,
   ) {
@@ -5595,9 +5596,9 @@ var require_util2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/symbols.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/symbols.js
 var require_symbols2 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/symbols.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/symbols.js"(
     exports2,
     module,
   ) {
@@ -5612,9 +5613,9 @@ var require_symbols2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/file.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/file.js
 var require_file = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/file.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/file.js"(
     exports2,
     module,
   ) {
@@ -5685,9 +5686,9 @@ var require_file = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/formdata.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/formdata.js
 var require_formdata = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/formdata.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/formdata.js"(
     exports2,
     module,
   ) {
@@ -5884,9 +5885,9 @@ var require_formdata = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/formdata-parser.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/formdata-parser.js
 var require_formdata_parser = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/formdata-parser.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/formdata-parser.js"(
     exports2,
     module,
   ) {
@@ -6201,9 +6202,9 @@ var require_formdata_parser = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/body.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/body.js
 var require_body = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/body.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/body.js"(
     exports2,
     module,
   ) {
@@ -6560,9 +6561,9 @@ Content-Type: ${value.type || "application/octet-stream"}\r
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/client-h1.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client-h1.js
 var require_client_h1 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/client-h1.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client-h1.js"(
     exports2,
     module,
   ) {
@@ -6621,6 +6622,9 @@ var require_client_h1 = __commonJS({
     var FastBuffer = Buffer[Symbol.species];
     var addListener = util6.addListener;
     var removeAllListeners = util6.removeAllListeners;
+    var kIdleSocketValidation = Symbol("kIdleSocketValidation");
+    var kIdleSocketValidationTimeout = Symbol("kIdleSocketValidationTimeout");
+    var kSocketUsed = Symbol("kSocketUsed");
     var extractBody;
     async function lazyllhttp() {
       const llhttpWasmData = process.env.JEST_WORKER_ID
@@ -6898,6 +6902,13 @@ var require_client_h1 = __commonJS({
         if (socket.destroyed) {
           return -1;
         }
+        if (client[kRunning] === 0) {
+          util6.destroy(
+            socket,
+            new SocketError("bad response", util6.getSocketInfo(socket)),
+          );
+          return -1;
+        }
         const request = client[kQueue][client[kRunningIdx]];
         if (!request) {
           return -1;
@@ -6986,6 +6997,13 @@ var require_client_h1 = __commonJS({
       onHeadersComplete(statusCode, upgrade, shouldKeepAlive) {
         const { client, socket, headers, statusText } = this;
         if (socket.destroyed) {
+          return -1;
+        }
+        if (client[kRunning] === 0) {
+          util6.destroy(
+            socket,
+            new SocketError("bad response", util6.getSocketInfo(socket)),
+          );
           return -1;
         }
         const request = client[kQueue][client[kRunningIdx]];
@@ -7140,6 +7158,7 @@ var require_client_h1 = __commonJS({
         }
         request.onComplete(headers);
         client[kQueue][client[kRunningIdx]++] = null;
+        socket[kSocketUsed] = true;
         if (socket[kWriting]) {
           assert5(client[kRunning] === 0);
           util6.destroy(socket, new InformationalError("reset"));
@@ -7185,6 +7204,9 @@ var require_client_h1 = __commonJS({
       socket[kWriting] = false;
       socket[kReset] = false;
       socket[kBlocking] = false;
+      socket[kIdleSocketValidation] = 0;
+      socket[kIdleSocketValidationTimeout] = null;
+      socket[kSocketUsed] = false;
       socket[kParser] = new Parser(client, socket, llhttpInstance);
       addListener(socket, "error", function (err) {
         assert5(err.code !== "ERR_TLS_CERT_ALTNAME_INVALID");
@@ -7226,6 +7248,7 @@ var require_client_h1 = __commonJS({
       addListener(socket, "close", function () {
         const client2 = this[kClient];
         const parser = this[kParser];
+        clearIdleSocketValidation(this);
         if (parser) {
           if (!this[kError] && parser.statusCode && !parser.shouldKeepAlive) {
             this[kError] = parser.finish() || this[kError];
@@ -7280,7 +7303,10 @@ var require_client_h1 = __commonJS({
           return socket.destroyed;
         },
         busy(request) {
-          if (socket[kWriting] || socket[kReset] || socket[kBlocking]) {
+          if (
+            socket[kWriting] || socket[kReset] || socket[kBlocking] ||
+            socket[kIdleSocketValidation] === 1
+          ) {
             return true;
           }
           if (request) {
@@ -7306,6 +7332,24 @@ var require_client_h1 = __commonJS({
         },
       };
     }
+    function clearIdleSocketValidation(socket) {
+      if (socket[kIdleSocketValidationTimeout]) {
+        clearTimeout(socket[kIdleSocketValidationTimeout]);
+        socket[kIdleSocketValidationTimeout] = null;
+      }
+      socket[kIdleSocketValidation] = 0;
+    }
+    function scheduleIdleSocketValidation(client, socket) {
+      socket[kIdleSocketValidation] = 1;
+      socket[kIdleSocketValidationTimeout] = setTimeout(() => {
+        socket[kIdleSocketValidationTimeout] = null;
+        socket[kIdleSocketValidation] = 2;
+        if (client[kSocket] === socket && !socket.destroyed) {
+          client[kResume]();
+        }
+      }, 0);
+      socket[kIdleSocketValidationTimeout].unref?.();
+    }
     function resumeH1(client) {
       const socket = client[kSocket];
       if (socket && !socket.destroyed) {
@@ -7317,6 +7361,31 @@ var require_client_h1 = __commonJS({
         } else if (socket[kNoRef] && socket.ref) {
           socket.ref();
           socket[kNoRef] = false;
+        }
+        if (
+          client[kRunning] === 0 && client[kPending] > 0 && socket[kSocketUsed]
+        ) {
+          if (socket[kIdleSocketValidation] === 0) {
+            scheduleIdleSocketValidation(client, socket);
+            socket[kParser].readMore();
+            if (socket.destroyed) {
+              return;
+            }
+            return;
+          }
+          if (socket[kIdleSocketValidation] === 1) {
+            socket[kParser].readMore();
+            if (socket.destroyed) {
+              return;
+            }
+            return;
+          }
+        }
+        if (client[kRunning] === 0) {
+          socket[kParser].readMore();
+          if (socket.destroyed) {
+            return;
+          }
         }
         if (client[kSize] === 0) {
           if (socket[kParser].timeoutType !== TIMEOUT_KEEP_ALIVE) {
@@ -7388,6 +7457,7 @@ var require_client_h1 = __commonJS({
         process.emitWarning(new RequestContentLengthMismatchError());
       }
       const socket = client[kSocket];
+      clearIdleSocketValidation(socket);
       const abort = (err) => {
         if (request.aborted || request.completed) {
           return;
@@ -7935,9 +8005,9 @@ ${len.toString(16)}\r
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/client-h2.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client-h2.js
 var require_client_h2 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/client-h2.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client-h2.js"(
     exports2,
     module,
   ) {
@@ -8588,9 +8658,9 @@ var require_client_h2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/handler/redirect-handler.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/redirect-handler.js
 var require_redirect_handler = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/handler/redirect-handler.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/redirect-handler.js"(
     exports2,
     module,
   ) {
@@ -8802,9 +8872,9 @@ var require_redirect_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/redirect-interceptor.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/redirect-interceptor.js
 var require_redirect_interceptor = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/redirect-interceptor.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/redirect-interceptor.js"(
     exports2,
     module,
   ) {
@@ -8837,9 +8907,9 @@ var require_redirect_interceptor = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/client.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client.js
 var require_client = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/client.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client.js"(
     exports2,
     module,
   ) {
@@ -9460,9 +9530,9 @@ var require_client = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/fixed-queue.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/fixed-queue.js
 var require_fixed_queue = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/fixed-queue.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/fixed-queue.js"(
     exports2,
     module,
   ) {
@@ -9519,9 +9589,9 @@ var require_fixed_queue = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/pool-stats.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool-stats.js
 var require_pool_stats = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/pool-stats.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool-stats.js"(
     exports2,
     module,
   ) {
@@ -9555,9 +9625,9 @@ var require_pool_stats = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/pool-base.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool-base.js
 var require_pool_base = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/pool-base.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool-base.js"(
     exports2,
     module,
   ) {
@@ -9753,9 +9823,9 @@ var require_pool_base = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/pool.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool.js
 var require_pool = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/pool.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool.js"(
     exports2,
     module,
   ) {
@@ -9867,9 +9937,9 @@ var require_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/balanced-pool.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/balanced-pool.js
 var require_balanced_pool = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/balanced-pool.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/balanced-pool.js"(
     exports2,
     module,
   ) {
@@ -10043,9 +10113,9 @@ var require_balanced_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/agent.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/agent.js
 var require_agent = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/agent.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/agent.js"(
     exports2,
     module,
   ) {
@@ -10195,9 +10265,9 @@ var require_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/proxy-agent.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/proxy-agent.js
 var require_proxy_agent = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/proxy-agent.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/proxy-agent.js"(
     exports2,
     module,
   ) {
@@ -10475,9 +10545,9 @@ var require_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js
 var require_env_http_proxy_agent = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js"(
     exports2,
     module,
   ) {
@@ -10634,9 +10704,9 @@ var require_env_http_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/handler/retry-handler.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/retry-handler.js
 var require_retry_handler = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/handler/retry-handler.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/retry-handler.js"(
     exports2,
     module,
   ) {
@@ -10978,9 +11048,9 @@ var require_retry_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/retry-agent.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/retry-agent.js
 var require_retry_agent = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/dispatcher/retry-agent.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/retry-agent.js"(
     exports2,
     module,
   ) {
@@ -11016,9 +11086,9 @@ var require_retry_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/readable.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/readable.js
 var require_readable = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/readable.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/readable.js"(
     exports2,
     module,
   ) {
@@ -11335,9 +11405,9 @@ var require_readable = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/util.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/util.js
 var require_util3 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/util.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/util.js"(
     exports2,
     module,
   ) {
@@ -11424,9 +11494,9 @@ var require_util3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-request.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-request.js
 var require_api_request = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-request.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-request.js"(
     exports2,
     module,
   ) {
@@ -11658,9 +11728,9 @@ var require_api_request = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/abort-signal.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/abort-signal.js
 var require_abort_signal = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/abort-signal.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/abort-signal.js"(
     exports2,
     module,
   ) {
@@ -11712,9 +11782,9 @@ var require_abort_signal = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-stream.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-stream.js
 var require_api_stream = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-stream.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-stream.js"(
     exports2,
     module,
   ) {
@@ -11939,9 +12009,9 @@ var require_api_stream = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-pipeline.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-pipeline.js
 var require_api_pipeline = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-pipeline.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-pipeline.js"(
     exports2,
     module,
   ) {
@@ -12154,9 +12224,9 @@ var require_api_pipeline = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-upgrade.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-upgrade.js
 var require_api_upgrade = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-upgrade.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-upgrade.js"(
     exports2,
     module,
   ) {
@@ -12262,9 +12332,9 @@ var require_api_upgrade = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-connect.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-connect.js
 var require_api_connect = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/api-connect.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-connect.js"(
     exports2,
     module,
   ) {
@@ -12371,9 +12441,9 @@ var require_api_connect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/index.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/index.js
 var require_api = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/api/index.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/index.js"(
     exports2,
     module,
   ) {
@@ -12386,9 +12456,9 @@ var require_api = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-errors.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-errors.js
 var require_mock_errors = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-errors.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-errors.js"(
     exports2,
     module,
   ) {
@@ -12417,9 +12487,9 @@ var require_mock_errors = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-symbols.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-symbols.js
 var require_mock_symbols = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-symbols.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-symbols.js"(
     exports2,
     module,
   ) {
@@ -12448,9 +12518,9 @@ var require_mock_symbols = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-utils.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-utils.js
 var require_mock_utils = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-utils.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-utils.js"(
     exports2,
     module,
   ) {
@@ -12828,9 +12898,9 @@ var require_mock_utils = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-interceptor.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-interceptor.js
 var require_mock_interceptor = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-interceptor.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-interceptor.js"(
     exports2,
     module,
   ) {
@@ -13042,9 +13112,9 @@ var require_mock_interceptor = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-client.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-client.js
 var require_mock_client = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-client.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-client.js"(
     exports2,
     module,
   ) {
@@ -13100,9 +13170,9 @@ var require_mock_client = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-pool.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-pool.js
 var require_mock_pool = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-pool.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-pool.js"(
     exports2,
     module,
   ) {
@@ -13158,9 +13228,9 @@ var require_mock_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/pluralizer.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/pluralizer.js
 var require_pluralizer = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/pluralizer.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/pluralizer.js"(
     exports2,
     module,
   ) {
@@ -13196,9 +13266,9 @@ var require_pluralizer = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js
 var require_pending_interceptors_formatter = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js"(
     exports2,
     module,
   ) {
@@ -13248,9 +13318,9 @@ var require_pending_interceptors_formatter = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-agent.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-agent.js
 var require_mock_agent = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/mock/mock-agent.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-agent.js"(
     exports2,
     module,
   ) {
@@ -13412,9 +13482,9 @@ ${pendingInterceptorsFormatter.format(pending)}
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/global.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/global.js
 var require_global2 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/global.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/global.js"(
     exports2,
     module,
   ) {
@@ -13446,9 +13516,9 @@ var require_global2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/handler/decorator-handler.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/decorator-handler.js
 var require_decorator_handler = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/handler/decorator-handler.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/decorator-handler.js"(
     exports2,
     module,
   ) {
@@ -13489,9 +13559,9 @@ var require_decorator_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/redirect.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/redirect.js
 var require_redirect = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/redirect.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/redirect.js"(
     exports2,
     module,
   ) {
@@ -13519,9 +13589,9 @@ var require_redirect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/retry.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/retry.js
 var require_retry = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/retry.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/retry.js"(
     exports2,
     module,
   ) {
@@ -13549,9 +13619,9 @@ var require_retry = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/dump.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/dump.js
 var require_dump = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/dump.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/dump.js"(
     exports2,
     module,
   ) {
@@ -13651,9 +13721,9 @@ var require_dump = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/dns.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/dns.js
 var require_dns = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/interceptor/dns.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/dns.js"(
     exports2,
     module,
   ) {
@@ -13976,9 +14046,9 @@ var require_dns = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/headers.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/headers.js
 var require_headers = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/headers.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/headers.js"(
     exports2,
     module,
   ) {
@@ -14494,9 +14564,9 @@ var require_headers = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/response.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/response.js
 var require_response = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/response.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/response.js"(
     exports2,
     module,
   ) {
@@ -14954,9 +15024,9 @@ var require_response = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js
 var require_dispatcher_weakref = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js"(
     exports2,
     module,
   ) {
@@ -15006,9 +15076,9 @@ var require_dispatcher_weakref = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/request.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/request.js
 var require_request2 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/request.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/request.js"(
     exports2,
     module,
   ) {
@@ -15775,9 +15845,9 @@ var require_request2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/index.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/index.js
 var require_fetch = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fetch/index.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/index.js"(
     exports2,
     module,
   ) {
@@ -17078,9 +17148,9 @@ var require_fetch = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/symbols.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/symbols.js
 var require_symbols3 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/symbols.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/symbols.js"(
     exports2,
     module,
   ) {
@@ -17098,9 +17168,9 @@ var require_symbols3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/progressevent.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/progressevent.js
 var require_progressevent = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/progressevent.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/progressevent.js"(
     exports2,
     module,
   ) {
@@ -17175,9 +17245,9 @@ var require_progressevent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/encoding.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/encoding.js
 var require_encoding = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/encoding.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/encoding.js"(
     exports2,
     module,
   ) {
@@ -17464,9 +17534,9 @@ var require_encoding = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/util.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/util.js
 var require_util4 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/util.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/util.js"(
     exports2,
     module,
   ) {
@@ -17656,9 +17726,9 @@ var require_util4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/filereader.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/filereader.js
 var require_filereader = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/fileapi/filereader.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/filereader.js"(
     exports2,
     module,
   ) {
@@ -17929,9 +17999,9 @@ var require_filereader = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cache/symbols.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/symbols.js
 var require_symbols4 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cache/symbols.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/symbols.js"(
     exports2,
     module,
   ) {
@@ -17942,9 +18012,9 @@ var require_symbols4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cache/util.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/util.js
 var require_util5 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cache/util.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/util.js"(
     exports2,
     module,
   ) {
@@ -17975,9 +18045,9 @@ var require_util5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cache/cache.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/cache.js
 var require_cache = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cache/cache.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/cache.js"(
     exports2,
     module,
   ) {
@@ -18599,9 +18669,9 @@ var require_cache = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cache/cachestorage.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/cachestorage.js
 var require_cachestorage = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cache/cachestorage.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/cachestorage.js"(
     exports2,
     module,
   ) {
@@ -18726,9 +18796,9 @@ var require_cachestorage = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cookies/constants.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cookies/constants.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/constants.js"(
     exports2,
     module,
   ) {
@@ -18742,9 +18812,9 @@ var require_constants4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cookies/util.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/util.js
 var require_util6 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cookies/util.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/util.js"(
     exports2,
     module,
   ) {
@@ -18935,9 +19005,9 @@ var require_util6 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cookies/parse.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/parse.js
 var require_parse = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cookies/parse.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/parse.js"(
     exports2,
     module,
   ) {
@@ -19062,18 +19132,14 @@ var require_parse = __commonJS({
       } else if (attributeNameLowercase === "httponly") {
         cookieAttributeList.httpOnly = true;
       } else if (attributeNameLowercase === "samesite") {
-        let enforcement = "Default";
         const attributeValueLowercase = attributeValue.toLowerCase();
-        if (attributeValueLowercase.includes("none")) {
-          enforcement = "None";
+        if (attributeValueLowercase === "none") {
+          cookieAttributeList.sameSite = "None";
+        } else if (attributeValueLowercase === "strict") {
+          cookieAttributeList.sameSite = "Strict";
+        } else if (attributeValueLowercase === "lax") {
+          cookieAttributeList.sameSite = "Lax";
         }
-        if (attributeValueLowercase.includes("strict")) {
-          enforcement = "Strict";
-        }
-        if (attributeValueLowercase.includes("lax")) {
-          enforcement = "Lax";
-        }
-        cookieAttributeList.sameSite = enforcement;
       } else {
         cookieAttributeList.unparsed ??= [];
         cookieAttributeList.unparsed.push(`${attributeName}=${attributeValue}`);
@@ -19087,9 +19153,9 @@ var require_parse = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cookies/index.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/index.js
 var require_cookies = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/cookies/index.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/index.js"(
     exports2,
     module,
   ) {
@@ -19231,9 +19297,9 @@ var require_cookies = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/events.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/events.js
 var require_events = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/events.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/events.js"(
     exports2,
     module,
   ) {
@@ -19517,9 +19583,9 @@ var require_events = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/constants.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/constants.js
 var require_constants5 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/constants.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/constants.js"(
     exports2,
     module,
   ) {
@@ -19577,9 +19643,9 @@ var require_constants5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/symbols.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/symbols.js
 var require_symbols5 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/symbols.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/symbols.js"(
     exports2,
     module,
   ) {
@@ -19597,9 +19663,9 @@ var require_symbols5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/util.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/util.js
 var require_util7 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/util.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/util.js"(
     exports2,
     module,
   ) {
@@ -19801,9 +19867,9 @@ var require_util7 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/frame.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/frame.js
 var require_frame = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/frame.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/frame.js"(
     exports2,
     module,
   ) {
@@ -19890,9 +19956,9 @@ var require_frame = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/connection.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/connection.js
 var require_connection = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/connection.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/connection.js"(
     exports2,
     module,
   ) {
@@ -20130,9 +20196,9 @@ var require_connection = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/permessage-deflate.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/permessage-deflate.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/permessage-deflate.js"(
     exports2,
     module,
   ) {
@@ -20233,9 +20299,9 @@ var require_permessage_deflate = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/receiver.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/receiver.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/receiver.js"(
     exports2,
     module,
   ) {
@@ -20261,6 +20327,10 @@ var require_receiver = __commonJS({
     var { closeWebSocketConnection } = require_connection();
     var { PerMessageDeflate } = require_permessage_deflate();
     var { MessageSizeExceededError } = require_errors();
+    function failWebsocketConnectionWithCode(ws, code, reason) {
+      closeWebSocketConnection(ws, code, reason, Buffer.byteLength(reason));
+      failWebsocketConnection(ws, reason);
+    }
     var ByteParser = class extends Writable {
       #buffers = [];
       #fragmentsBytes = 0;
@@ -20272,11 +20342,13 @@ var require_receiver = __commonJS({
       /** @type {Map<string, PerMessageDeflate>} */
       #extensions;
       /** @type {number} */
+      #maxFragments;
+      /** @type {number} */
       #maxPayloadSize;
       /**
        * @param {import('./websocket').WebSocket} ws
        * @param {Map<string, string>|null} extensions
-       * @param {{ maxPayloadSize?: number }} [options]
+       * @param {{ maxFragments?: number, maxPayloadSize?: number }} [options]
        */
       constructor(ws, extensions, options = {}) {
         super();
@@ -20284,6 +20356,7 @@ var require_receiver = __commonJS({
         this.#extensions = extensions == null
           ? /* @__PURE__ */ new Map()
           : extensions;
+        this.#maxFragments = options.maxFragments ?? 0;
         this.#maxPayloadSize = options.maxPayloadSize ?? 0;
         if (this.#extensions.has("permessage-deflate")) {
           this.#extensions.set(
@@ -20305,10 +20378,11 @@ var require_receiver = __commonJS({
       #validatePayloadLength() {
         if (
           this.#maxPayloadSize > 0 && !isControlFrame(this.#info.opcode) &&
-          this.#info.payloadLength > this.#maxPayloadSize
+          this.#info.payloadLength + this.#fragmentsBytes > this.#maxPayloadSize
         ) {
-          failWebsocketConnection(
+          failWebsocketConnectionWithCode(
             this.ws,
+            1009,
             "Payload size exceeds maximum allowed size",
           );
           return false;
@@ -20444,13 +20518,16 @@ var require_receiver = __commonJS({
               this.#state = parserStates.INFO;
             } else {
               if (!this.#info.compressed) {
-                this.writeFragments(body2);
+                if (!this.writeFragments(body2)) {
+                  return;
+                }
                 if (
                   this.#maxPayloadSize > 0 &&
                   this.#fragmentsBytes > this.#maxPayloadSize
                 ) {
-                  failWebsocketConnection(
+                  failWebsocketConnectionWithCode(
                     this.ws,
+                    1009,
                     new MessageSizeExceededError().message,
                   );
                   return;
@@ -20469,16 +20546,26 @@ var require_receiver = __commonJS({
                   this.#info.fin,
                   (error2, data) => {
                     if (error2) {
-                      failWebsocketConnection(this.ws, error2.message);
+                      const code = error2 instanceof MessageSizeExceededError
+                        ? 1009
+                        : 1007;
+                      failWebsocketConnectionWithCode(
+                        this.ws,
+                        code,
+                        error2.message,
+                      );
                       return;
                     }
-                    this.writeFragments(data);
+                    if (!this.writeFragments(data)) {
+                      return;
+                    }
                     if (
                       this.#maxPayloadSize > 0 &&
                       this.#fragmentsBytes > this.#maxPayloadSize
                     ) {
-                      failWebsocketConnection(
+                      failWebsocketConnectionWithCode(
                         this.ws,
+                        1009,
                         new MessageSizeExceededError().message,
                       );
                       return;
@@ -20542,8 +20629,20 @@ var require_receiver = __commonJS({
         return buffer3;
       }
       writeFragments(fragment) {
+        if (
+          this.#maxFragments > 0 &&
+          this.#fragments.length === this.#maxFragments
+        ) {
+          failWebsocketConnectionWithCode(
+            this.ws,
+            1008,
+            "Too many message fragments",
+          );
+          return false;
+        }
         this.#fragmentsBytes += fragment.length;
         this.#fragments.push(fragment);
+        return true;
       }
       consumeFragments() {
         const fragments = this.#fragments;
@@ -20657,9 +20756,9 @@ var require_receiver = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/sender.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/sender.js
 var require_sender = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/sender.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/sender.js"(
     exports2,
     module,
   ) {
@@ -20746,9 +20845,9 @@ var require_sender = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/websocket.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/websocket/websocket.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/websocket.js"(
     exports2,
     module,
   ) {
@@ -21041,9 +21140,12 @@ var require_websocket = __commonJS({
        */
       #onConnectionEstablished(response, parsedExtensions) {
         this[kResponse] = response;
-        const maxPayloadSize = this[kController]?.dispatcher?.webSocketOptions
-          ?.maxPayloadSize;
+        const webSocketOptions = this[kController]?.dispatcher
+          ?.webSocketOptions;
+        const maxFragments = webSocketOptions?.maxFragments;
+        const maxPayloadSize = webSocketOptions?.maxPayloadSize;
         const parser = new ByteParser(this, parsedExtensions, {
+          maxFragments,
           maxPayloadSize,
         });
         parser.on("drain", onParserDrain);
@@ -21173,9 +21275,9 @@ var require_websocket = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/eventsource/util.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/util.js
 var require_util8 = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/eventsource/util.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/util.js"(
     exports2,
     module,
   ) {
@@ -21203,9 +21305,9 @@ var require_util8 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js
 var require_eventsource_stream = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js"(
     exports2,
     module,
   ) {
@@ -21452,9 +21554,9 @@ ${value}`;
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/eventsource/eventsource.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/eventsource.js
 var require_eventsource = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/lib/web/eventsource/eventsource.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/eventsource.js"(
     exports2,
     module,
   ) {
@@ -21776,9 +21878,9 @@ var require_eventsource = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.26.0/node_modules/undici/index.js
+// node_modules/.deno/undici@6.27.0/node_modules/undici/index.js
 var require_undici = __commonJS({
-  "node_modules/.deno/undici@6.26.0/node_modules/undici/index.js"(
+  "node_modules/.deno/undici@6.27.0/node_modules/undici/index.js"(
     exports2,
     module,
   ) {
@@ -148181,9 +148283,9 @@ var require_formstream = __commonJS({
   },
 });
 
-// node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/get_proxy_from_uri.js
+// node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/get_proxy_from_uri.js
 var require_get_proxy_from_uri = __commonJS({
-  "node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/get_proxy_from_uri.js"(
+  "node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/get_proxy_from_uri.js"(
     exports2,
     module,
   ) {
@@ -148238,9 +148340,9 @@ var require_get_proxy_from_uri = __commonJS({
   },
 });
 
-// node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/detect_proxy_agent.js
+// node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/detect_proxy_agent.js
 var require_detect_proxy_agent = __commonJS({
-  "node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/detect_proxy_agent.js"(
+  "node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/detect_proxy_agent.js"(
     exports2,
     module,
   ) {
@@ -148272,15 +148374,15 @@ var require_detect_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/urllib@2.44.0/node_modules/urllib/package.json
+// node_modules/.deno/urllib@2.44.1/node_modules/urllib/package.json
 var require_package2 = __commonJS({
-  "node_modules/.deno/urllib@2.44.0/node_modules/urllib/package.json"(
+  "node_modules/.deno/urllib@2.44.1/node_modules/urllib/package.json"(
     exports2,
     module,
   ) {
     module.exports = {
       name: "urllib",
-      version: "2.44.0",
+      version: "2.44.1",
       publishConfig: {
         tag: "latest-2",
       },
@@ -158149,9 +158251,9 @@ var require_lib6 = __commonJS({
   },
 });
 
-// node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/urllib.js
+// node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/urllib.js
 var require_urllib = __commonJS({
-  "node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/urllib.js"(
+  "node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/urllib.js"(
     exports2,
   ) {
     "use strict";
@@ -158201,6 +158303,62 @@ var require_urllib = __commonJS({
       "text",
     ];
     var PROTO_RE = /^https?:\/\//i;
+    var CROSS_ORIGIN_SENSITIVE_HEADERS = [
+      "authorization",
+      "cookie",
+      "proxy-authorization",
+    ];
+    function resolveOriginHref(currentUrl) {
+      if (currentUrl.href) {
+        return currentUrl.href;
+      }
+      var host = currentUrl.host || currentUrl.hostname;
+      if (!host) {
+        return null;
+      }
+      var protocol = currentUrl.protocol || "http:";
+      if (protocol.charAt(protocol.length - 1) !== ":") {
+        protocol += ":";
+      }
+      if (currentUrl.port && String(host).indexOf(":") === -1) {
+        host += ":" + currentUrl.port;
+      }
+      return protocol + "//" + host +
+        (currentUrl.path || currentUrl.pathname || "/");
+    }
+    function isCrossOriginRedirect(currentUrl, toUrl) {
+      try {
+        var fromHref = resolveOriginHref(currentUrl);
+        if (!fromHref) {
+          return true;
+        }
+        if (URL3) {
+          return new URL3(fromHref).origin !== new URL3(toUrl, fromHref).origin;
+        }
+        var from = urlutil.parse(fromHref);
+        var to = urlutil.parse(urlutil.resolve(fromHref, toUrl));
+        var fromPort = from.port || (from.protocol === "https:" ? "443" : "80");
+        var toPort = to.port || (to.protocol === "https:" ? "443" : "80");
+        return from.protocol !== to.protocol || from.hostname !== to.hostname ||
+          fromPort !== toPort;
+      } catch (err) {
+        return true;
+      }
+    }
+    function cleanCrossOriginHeaders(headers, sensitive) {
+      var list = sensitive || CROSS_ORIGIN_SENSITIVE_HEADERS;
+      var cleaned = {};
+      if (headers) {
+        var names = utility.getOwnEnumerables(headers, true);
+        for (var i = 0; i < names.length; i++) {
+          var name = names[i];
+          if (list.indexOf(name.toLowerCase()) === -1) {
+            cleaned[name] = headers[name];
+          }
+        }
+      }
+      return cleaned;
+    }
     var KEEP_ALIVE_RE = /^timeout=(\d+)/i;
     var SOCKET_REQUEST_COUNT = "_URLLIB_SOCKET_REQUEST_COUNT";
     var SOCKET_RESPONSE_COUNT = "_URLLIB_SOCKET_RESPONSE_COUNT";
@@ -158762,6 +158920,22 @@ var require_urllib = __commonJS({
             if (options.headers.host && PROTO_RE.test(location)) {
               options.headers.host = null;
               args.headers = options.headers;
+            }
+            if (isCrossOriginRedirect(parsedUrl, newUrl)) {
+              var redirectArgs = Object.assign({}, args);
+              var sensitiveHeaders = CROSS_ORIGIN_SENSITIVE_HEADERS;
+              if (proxyTunnelAgent) {
+                sensitiveHeaders = sensitiveHeaders.filter(function (name2) {
+                  return name2 !== "proxy-authorization";
+                });
+              }
+              redirectArgs.headers = cleanCrossOriginHeaders(
+                args.headers || options.headers,
+                sensitiveHeaders,
+              );
+              redirectArgs.auth = null;
+              redirectArgs.digestAuth = null;
+              args = redirectArgs;
             }
             var cb = callback;
             callback = null;
@@ -159378,9 +159552,9 @@ var require_urllib = __commonJS({
   },
 });
 
-// node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/httpclient.js
+// node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/httpclient.js
 var require_httpclient = __commonJS({
-  "node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/httpclient.js"(
+  "node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/httpclient.js"(
     exports2,
     module,
   ) {
@@ -159450,9 +159624,9 @@ var require_httpclient = __commonJS({
   },
 });
 
-// node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/httpclient2.js
+// node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/httpclient2.js
 var require_httpclient2 = __commonJS({
-  "node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/httpclient2.js"(
+  "node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/httpclient2.js"(
     exports2,
     module,
   ) {
@@ -159543,9 +159717,9 @@ var require_httpclient2 = __commonJS({
   },
 });
 
-// node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/index.js
+// node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/index.js
 var require_lib7 = __commonJS({
-  "node_modules/.deno/urllib@2.44.0/node_modules/urllib/lib/index.js"(
+  "node_modules/.deno/urllib@2.44.1/node_modules/urllib/lib/index.js"(
     exports2,
   ) {
     "use strict";
@@ -170757,9 +170931,9 @@ var require_minimatch = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/internal/constants.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/internal/constants.js
 var require_constants6 = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/internal/constants.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/internal/constants.js"(
     exports2,
     module,
   ) {
@@ -170792,9 +170966,9 @@ var require_constants6 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/internal/debug.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/internal/debug.js
 var require_debug = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/internal/debug.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/internal/debug.js"(
     exports2,
     module,
   ) {
@@ -170809,9 +170983,9 @@ var require_debug = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/internal/re.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/internal/re.js
 var require_re = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/internal/re.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/internal/re.js"(
     exports2,
     module,
   ) {
@@ -170993,9 +171167,9 @@ var require_re = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/internal/parse-options.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/internal/parse-options.js
 var require_parse_options = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/internal/parse-options.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/internal/parse-options.js"(
     exports2,
     module,
   ) {
@@ -171017,9 +171191,9 @@ var require_parse_options = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/internal/identifiers.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/internal/identifiers.js
 var require_identifiers = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/internal/identifiers.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/internal/identifiers.js"(
     exports2,
     module,
   ) {
@@ -171053,9 +171227,9 @@ var require_identifiers = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/classes/semver.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/classes/semver.js
 var require_semver2 = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/classes/semver.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/classes/semver.js"(
     exports2,
     module,
   ) {
@@ -171373,9 +171547,9 @@ var require_semver2 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/parse.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/parse.js
 var require_parse3 = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/parse.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/parse.js"(
     exports2,
     module,
   ) {
@@ -171398,9 +171572,9 @@ var require_parse3 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/valid.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/valid.js
 var require_valid = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/valid.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/valid.js"(
     exports2,
     module,
   ) {
@@ -171414,9 +171588,9 @@ var require_valid = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/clean.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/clean.js
 var require_clean = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/clean.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/clean.js"(
     exports2,
     module,
   ) {
@@ -171430,9 +171604,9 @@ var require_clean = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/inc.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/inc.js
 var require_inc = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/inc.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/inc.js"(
     exports2,
     module,
   ) {
@@ -171457,9 +171631,9 @@ var require_inc = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/diff.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/diff.js
 var require_diff = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/diff.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/diff.js"(
     exports2,
     module,
   ) {
@@ -171504,9 +171678,9 @@ var require_diff = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/major.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/major.js
 var require_major = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/major.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/major.js"(
     exports2,
     module,
   ) {
@@ -171517,9 +171691,9 @@ var require_major = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/minor.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/minor.js
 var require_minor = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/minor.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/minor.js"(
     exports2,
     module,
   ) {
@@ -171530,9 +171704,9 @@ var require_minor = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/patch.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/patch.js
 var require_patch = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/patch.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/patch.js"(
     exports2,
     module,
   ) {
@@ -171543,9 +171717,9 @@ var require_patch = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/prerelease.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/prerelease.js
 var require_prerelease = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/prerelease.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/prerelease.js"(
     exports2,
     module,
   ) {
@@ -171559,9 +171733,9 @@ var require_prerelease = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/compare.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/compare.js
 var require_compare = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/compare.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/compare.js"(
     exports2,
     module,
   ) {
@@ -171573,9 +171747,9 @@ var require_compare = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/rcompare.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/rcompare.js
 var require_rcompare = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/rcompare.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/rcompare.js"(
     exports2,
     module,
   ) {
@@ -171586,9 +171760,9 @@ var require_rcompare = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/compare-loose.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/compare-loose.js
 var require_compare_loose = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/compare-loose.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/compare-loose.js"(
     exports2,
     module,
   ) {
@@ -171599,9 +171773,9 @@ var require_compare_loose = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/compare-build.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/compare-build.js
 var require_compare_build = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/compare-build.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/compare-build.js"(
     exports2,
     module,
   ) {
@@ -171616,9 +171790,9 @@ var require_compare_build = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/sort.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/sort.js
 var require_sort = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/sort.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/sort.js"(
     exports2,
     module,
   ) {
@@ -171629,9 +171803,9 @@ var require_sort = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/rsort.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/rsort.js
 var require_rsort = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/rsort.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/rsort.js"(
     exports2,
     module,
   ) {
@@ -171642,9 +171816,9 @@ var require_rsort = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/gt.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/gt.js
 var require_gt = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/gt.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/gt.js"(
     exports2,
     module,
   ) {
@@ -171655,9 +171829,9 @@ var require_gt = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/lt.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/lt.js
 var require_lt = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/lt.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/lt.js"(
     exports2,
     module,
   ) {
@@ -171668,9 +171842,9 @@ var require_lt = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/eq.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/eq.js
 var require_eq = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/eq.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/eq.js"(
     exports2,
     module,
   ) {
@@ -171681,9 +171855,9 @@ var require_eq = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/neq.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/neq.js
 var require_neq = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/neq.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/neq.js"(
     exports2,
     module,
   ) {
@@ -171694,9 +171868,9 @@ var require_neq = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/gte.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/gte.js
 var require_gte = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/gte.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/gte.js"(
     exports2,
     module,
   ) {
@@ -171707,9 +171881,9 @@ var require_gte = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/lte.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/lte.js
 var require_lte = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/lte.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/lte.js"(
     exports2,
     module,
   ) {
@@ -171720,9 +171894,9 @@ var require_lte = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/cmp.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/cmp.js
 var require_cmp = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/cmp.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/cmp.js"(
     exports2,
     module,
   ) {
@@ -171773,9 +171947,9 @@ var require_cmp = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/coerce.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/coerce.js
 var require_coerce = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/coerce.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/coerce.js"(
     exports2,
     module,
   ) {
@@ -171837,9 +172011,9 @@ var require_coerce = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/truncate.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/truncate.js
 var require_truncate = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/truncate.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/truncate.js"(
     exports2,
     module,
   ) {
@@ -171883,9 +172057,9 @@ var require_truncate = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/internal/lrucache.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/internal/lrucache.js
 var require_lrucache = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/internal/lrucache.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/internal/lrucache.js"(
     exports2,
     module,
   ) {
@@ -171924,9 +172098,9 @@ var require_lrucache = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/classes/range.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/classes/range.js
 var require_range2 = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/classes/range.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/classes/range.js"(
     exports2,
     module,
   ) {
@@ -172153,15 +172327,16 @@ var require_range2 = __commonJS({
     };
     var replaceTilde = (comp26, options) => {
       const r = options.loose ? re[t.TILDELOOSE] : re[t.TILDE];
+      const z = options.includePrerelease ? "-0" : "";
       return comp26.replace(r, (_, M, m, p, pr) => {
         debug3("tilde", comp26, _, M, m, p, pr);
         let ret;
         if (isX(M)) {
           ret = "";
         } else if (isX(m)) {
-          ret = `>=${M}.0.0 <${+M + 1}.0.0-0`;
+          ret = `>=${M}.0.0${z} <${+M + 1}.0.0-0`;
         } else if (isX(p)) {
-          ret = `>=${M}.${m}.0 <${M}.${+m + 1}.0-0`;
+          ret = `>=${M}.${m}.0${z} <${M}.${+m + 1}.0-0`;
         } else if (pr) {
           debug3("replaceTilde pr", pr);
           ret = `>=${M}.${m}.${p}-${pr} <${M}.${+m + 1}.0-0`;
@@ -172353,9 +172528,9 @@ var require_range2 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/classes/comparator.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/classes/comparator.js
 var require_comparator = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/classes/comparator.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/classes/comparator.js"(
     exports2,
     module,
   ) {
@@ -172484,9 +172659,9 @@ var require_comparator = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/functions/satisfies.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/functions/satisfies.js
 var require_satisfies = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/functions/satisfies.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/functions/satisfies.js"(
     exports2,
     module,
   ) {
@@ -172504,9 +172679,9 @@ var require_satisfies = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/to-comparators.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/to-comparators.js
 var require_to_comparators = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/to-comparators.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/to-comparators.js"(
     exports2,
     module,
   ) {
@@ -172520,9 +172695,9 @@ var require_to_comparators = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/max-satisfying.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/max-satisfying.js
 var require_max_satisfying = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/max-satisfying.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/max-satisfying.js"(
     exports2,
     module,
   ) {
@@ -172552,9 +172727,9 @@ var require_max_satisfying = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/min-satisfying.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/min-satisfying.js
 var require_min_satisfying = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/min-satisfying.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/min-satisfying.js"(
     exports2,
     module,
   ) {
@@ -172584,9 +172759,9 @@ var require_min_satisfying = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/min-version.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/min-version.js
 var require_min_version = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/min-version.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/min-version.js"(
     exports2,
     module,
   ) {
@@ -172646,9 +172821,9 @@ var require_min_version = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/valid.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/valid.js
 var require_valid2 = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/valid.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/valid.js"(
     exports2,
     module,
   ) {
@@ -172665,9 +172840,9 @@ var require_valid2 = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/outside.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/outside.js
 var require_outside = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/outside.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/outside.js"(
     exports2,
     module,
   ) {
@@ -172740,9 +172915,9 @@ var require_outside = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/gtr.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/gtr.js
 var require_gtr = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/gtr.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/gtr.js"(
     exports2,
     module,
   ) {
@@ -172754,9 +172929,9 @@ var require_gtr = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/ltr.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/ltr.js
 var require_ltr = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/ltr.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/ltr.js"(
     exports2,
     module,
   ) {
@@ -172768,9 +172943,9 @@ var require_ltr = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/intersects.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/intersects.js
 var require_intersects = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/intersects.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/intersects.js"(
     exports2,
     module,
   ) {
@@ -172785,9 +172960,9 @@ var require_intersects = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/simplify.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/simplify.js
 var require_simplify = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/simplify.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/simplify.js"(
     exports2,
     module,
   ) {
@@ -172846,9 +173021,9 @@ var require_simplify = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/subset.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/subset.js
 var require_subset = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/ranges/subset.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/ranges/subset.js"(
     exports2,
     module,
   ) {
@@ -173048,9 +173223,9 @@ var require_subset = __commonJS({
   },
 });
 
-// node_modules/.deno/semver@7.8.4/node_modules/semver/index.js
+// node_modules/.deno/semver@7.8.5/node_modules/semver/index.js
 var require_semver3 = __commonJS({
-  "node_modules/.deno/semver@7.8.4/node_modules/semver/index.js"(
+  "node_modules/.deno/semver@7.8.5/node_modules/semver/index.js"(
     exports2,
     module,
   ) {
@@ -186987,7 +187162,7 @@ function getIgnoreAttributesFn(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/path-expression-matcher@1.5.0/node_modules/path-expression-matcher/src/Expression.js
+// node_modules/.deno/path-expression-matcher@1.6.0/node_modules/path-expression-matcher/src/Expression.js
 var Expression = class {
   /**
    * Create a new Expression
@@ -187165,12 +187340,13 @@ var Expression = class {
   }
 };
 
-// node_modules/.deno/path-expression-matcher@1.5.0/node_modules/path-expression-matcher/src/ExpressionSet.js
+// node_modules/.deno/path-expression-matcher@1.6.0/node_modules/path-expression-matcher/src/ExpressionSet.js
 var ExpressionSet = class {
   constructor() {
     this._byDepthAndTag = /* @__PURE__ */ new Map();
     this._wildcardByDepth = /* @__PURE__ */ new Map();
     this._deepWildcards = [];
+    this._deepByTerminalTag = /* @__PURE__ */ new Map();
     this._patterns = /* @__PURE__ */ new Set();
     this._sealed = false;
   }
@@ -187195,7 +187371,18 @@ var ExpressionSet = class {
     if (this._patterns.has(expression.pattern)) return this;
     this._patterns.add(expression.pattern);
     if (expression.hasDeepWildcard()) {
-      this._deepWildcards.push(expression);
+      const lastSeg2 = expression.segments[expression.segments.length - 1];
+      if (
+        lastSeg2 && lastSeg2.type !== "deep-wildcard" && lastSeg2.tag !== "*"
+      ) {
+        const tag2 = lastSeg2.tag;
+        if (!this._deepByTerminalTag.has(tag2)) {
+          this._deepByTerminalTag.set(tag2, []);
+        }
+        this._deepByTerminalTag.get(tag2).push(expression);
+      } else {
+        this._deepWildcards.push(expression);
+      }
       return this;
     }
     const depth = expression.length;
@@ -187315,6 +187502,12 @@ var ExpressionSet = class {
         if (matcher.matches(wildcardBucket[i])) return wildcardBucket[i];
       }
     }
+    const deepBucket = this._deepByTerminalTag.get(tag);
+    if (deepBucket) {
+      for (let i = 0; i < deepBucket.length; i++) {
+        if (matcher.matches(deepBucket[i])) return deepBucket[i];
+      }
+    }
     for (let i = 0; i < this._deepWildcards.length; i++) {
       if (matcher.matches(this._deepWildcards[i])) {
         return this._deepWildcards[i];
@@ -187324,7 +187517,7 @@ var ExpressionSet = class {
   }
 };
 
-// node_modules/.deno/path-expression-matcher@1.5.0/node_modules/path-expression-matcher/src/Matcher.js
+// node_modules/.deno/path-expression-matcher@1.6.0/node_modules/path-expression-matcher/src/Matcher.js
 var MatcherView = class {
   /**
    * @param {Matcher} matcher - The parent Matcher instance to read from.
@@ -187375,6 +187568,24 @@ var MatcherView = class {
     if (path14.length === 0) return false;
     const current = path14[path14.length - 1];
     return current.values !== void 0 && attrName in current.values;
+  }
+  /**
+   * Get the value of a "kept" attribute from the nearest ancestor (or
+   * current node) that declared it via `push(tag, attrs, ns, { keep: [...] })`.
+   * @param {string} attrName
+   * @returns {*}
+   */
+  getAnyParentAttr(attrName) {
+    return this._matcher.getAnyParentAttr(attrName);
+  }
+  /**
+   * Check whether any ancestor (or the current node) kept the given
+   * attribute via `push(tag, attrs, ns, { keep: [...] })`.
+   * @param {string} attrName
+   * @returns {boolean}
+   */
+  hasAnyParentAttr(attrName) {
+    return this._matcher.hasAnyParentAttr(attrName);
   }
   /**
    * Get current node's sibling position (child index in parent).
@@ -187454,14 +187665,17 @@ var Matcher = class {
     this.siblingStacks = [];
     this._pathStringCache = null;
     this._view = new MatcherView(this);
+    this._keptAttrs = [];
   }
   /**
    * Push a new tag onto the path.
    * @param {string} tagName
    * @param {Object|null} [attrValues=null]
    * @param {string|null} [namespace=null]
+   * @param {Object|null} [options=null]
+   * @param {string[]} [options.keep] - Names of attributes (from attrValues)
    */
-  push(tagName, attrValues = null, namespace = null) {
+  push(tagName, attrValues = null, namespace = null, options = null) {
     this._pathStringCache = null;
     if (this.path.length > 0) {
       this.path[this.path.length - 1].values = void 0;
@@ -187490,6 +187704,20 @@ var Matcher = class {
       node.values = attrValues;
     }
     this.path.push(node);
+    const depth = this.path.length;
+    const keep = options !== null ? options.keep : null;
+    if (keep !== null && keep !== void 0 && keep.length > 0 && attrValues) {
+      for (let i = 0; i < keep.length; i++) {
+        const name = keep[i];
+        if (attrValues[name] !== void 0) {
+          this._keptAttrs.push({
+            depth,
+            name,
+            value: attrValues[name],
+          });
+        }
+      }
+    }
   }
   /**
    * Pop the last tag from the path.
@@ -187501,6 +187729,13 @@ var Matcher = class {
     const node = this.path.pop();
     if (this.siblingStacks.length > this.path.length + 1) {
       this.siblingStacks.length = this.path.length + 1;
+    }
+    const poppedDepth = this.path.length + 1;
+    while (
+      this._keptAttrs.length > 0 &&
+      this._keptAttrs[this._keptAttrs.length - 1].depth >= poppedDepth
+    ) {
+      this._keptAttrs.pop();
     }
     return node;
   }
@@ -187551,6 +187786,36 @@ var Matcher = class {
     if (this.path.length === 0) return false;
     const current = this.path[this.path.length - 1];
     return current.values !== void 0 && attrName in current.values;
+  }
+  /**
+   * Get the value of a "kept" attribute from the nearest ancestor (or
+   * current node) that declared it via `push(tag, attrs, ns, { keep: [...] })`.
+   * Unlike getAttrValue(), this works regardless of how deep the path has
+   * gone since the attribute was pushed — but only for attribute names that
+   * were explicitly marked with `keep` at push time. Cost is proportional to
+   * the number of currently-kept attributes (typically 0-3), not path depth.
+   * @param {string} attrName
+   * @returns {*} the value, or undefined if no ancestor kept this attribute
+   */
+  getAnyParentAttr(attrName) {
+    const kept = this._keptAttrs;
+    for (let i = kept.length - 1; i >= 0; i--) {
+      if (kept[i].name === attrName) return kept[i].value;
+    }
+    return void 0;
+  }
+  /**
+   * Check whether any ancestor (or the current node) kept the given
+   * attribute via `push(tag, attrs, ns, { keep: [...] })`.
+   * @param {string} attrName
+   * @returns {boolean}
+   */
+  hasAnyParentAttr(attrName) {
+    const kept = this._keptAttrs;
+    for (let i = kept.length - 1; i >= 0; i--) {
+      if (kept[i].name === attrName) return true;
+    }
+    return false;
   }
   /**
    * Get current node's sibling position (child index in parent).
@@ -187620,6 +187885,7 @@ var Matcher = class {
     this._pathStringCache = null;
     this.path = [];
     this.siblingStacks = [];
+    this._keptAttrs = [];
   }
   /**
    * Match current path against an Expression.
@@ -187768,6 +188034,9 @@ var Matcher = class {
         ...node,
       })),
       siblingStacks: this.siblingStacks.map((map) => new Map(map)),
+      keptAttrs: this._keptAttrs.map((entry) => ({
+        ...entry,
+      })),
     };
   }
   /**
@@ -187780,6 +188049,9 @@ var Matcher = class {
       ...node,
     }));
     this.siblingStacks = snapshot2.siblingStacks.map((map) => new Map(map));
+    this._keptAttrs = (snapshot2.keptAttrs || []).map((entry) => ({
+      ...entry,
+    }));
   }
   /**
    * Return the read-only {@link MatcherView} for this matcher.
