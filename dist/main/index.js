@@ -186234,7 +186234,7 @@ function getIgnoreAttributesFn(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/path-expression-matcher@1.6.0/node_modules/path-expression-matcher/src/Expression.js
+// node_modules/.deno/path-expression-matcher@1.6.1/node_modules/path-expression-matcher/src/Expression.js
 var Expression = class {
   /**
    * Create a new Expression
@@ -186412,7 +186412,7 @@ var Expression = class {
   }
 };
 
-// node_modules/.deno/path-expression-matcher@1.6.0/node_modules/path-expression-matcher/src/ExpressionSet.js
+// node_modules/.deno/path-expression-matcher@1.6.1/node_modules/path-expression-matcher/src/ExpressionSet.js
 var ExpressionSet = class {
   constructor() {
     this._byDepthAndTag = /* @__PURE__ */ new Map();
@@ -186589,7 +186589,7 @@ var ExpressionSet = class {
   }
 };
 
-// node_modules/.deno/path-expression-matcher@1.6.0/node_modules/path-expression-matcher/src/Matcher.js
+// node_modules/.deno/path-expression-matcher@1.6.1/node_modules/path-expression-matcher/src/Matcher.js
 var MatcherView = class {
   /**
    * @param {Matcher} matcher - The parent Matcher instance to read from.
@@ -189962,13 +189962,13 @@ async function parseXML(str, opts = {}) {
   return parsedXml;
 }
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/log.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/log.js
 var logger4 = createClientLogger2("storage-blob");
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/BufferScheduler.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/BufferScheduler.js
 import { EventEmitter as EventEmitter2 } from "node:events";
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/BuffersStream.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/BuffersStream.js
 import { Readable as Readable3 } from "node:stream";
 var BuffersStream = class extends Readable3 {
   buffers;
@@ -190071,7 +190071,7 @@ var BuffersStream = class extends Readable3 {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/PooledBuffer.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/PooledBuffer.js
 import buffer from "node:buffer";
 var maxBufferLength = buffer.constants.MAX_LENGTH;
 var PooledBuffer = class {
@@ -190151,7 +190151,7 @@ var PooledBuffer = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/BufferScheduler.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/BufferScheduler.js
 var BufferScheduler = class {
   /**
    * Size of buffers in incoming and outgoing queues. This class will try to align
@@ -190422,10 +190422,10 @@ var BufferScheduler = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncodingStream.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncodingStream.js
 import Stream, { Readable as Readable4 } from "node:stream";
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/crc64.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/crc64.js
 import { createRequire } from "node:module";
 import { dirname as dirname5 } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -192987,7 +192987,7 @@ var NativeCRC64 = (() => {
 })();
 var crc64_default = NativeCRC64;
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StorageCRC64Calculator.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StorageCRC64Calculator.js
 var StorageCRC64Calculator = class _StorageCRC64Calculator {
   nativeCrc64Hash;
   static nativeInstance;
@@ -193043,12 +193043,12 @@ var StorageCRC64Calculator = class _StorageCRC64Calculator {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/streamHelpers.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/streamHelpers.js
 function signalStreamEnd(pushData) {
   pushData(null);
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncoding.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncoding.js
 var MESSAGE_VERSION = 1;
 var MESSAGE_HEADER_LENGTH = 13;
 var SEGMENT_HEADER_LENGTH = 10;
@@ -193194,7 +193194,7 @@ var StructuredMessageEncoding = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncodingStream.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncodingStream.js
 function isNodeReadableStream2(source) {
   return source !== null && source instanceof Stream &&
     typeof source._read === "function" &&
@@ -193382,10 +193382,10 @@ var StructuredMessageEncodingStream = class extends Readable4 {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecodingStream.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecodingStream.js
 import { Readable as Readable5 } from "node:stream";
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecoding.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecoding.js
 var MESSAGE_VERSION2 = 1;
 var MESSAGE_HEADER_LENGTH2 = 13;
 var SEGMENT_HEADER_LENGTH2 = 10;
@@ -193626,7 +193626,7 @@ var StructuredMessageDecoding = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecodingStream.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecodingStream.js
 async function structuredMessageDecodingBrowser(source) {
   source;
   throw new Error("structuredMessageDecodingBrowser is only for Browser");
@@ -193689,7 +193689,7 @@ var StructuredMessageDecodingStream = class extends Readable5 {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/cache.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/cache.js
 var _defaultHttpClient;
 function getCachedDefaultHttpClient2() {
   if (!_defaultHttpClient) {
@@ -193698,7 +193698,7 @@ function getCachedDefaultHttpClient2() {
   return _defaultHttpClient;
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/RequestPolicy.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/RequestPolicy.js
 var BaseRequestPolicy = class {
   _nextPolicy;
   _options;
@@ -193728,7 +193728,7 @@ var BaseRequestPolicy = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageBrowserPolicy.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageBrowserPolicy.js
 var StorageBrowserPolicy = class extends BaseRequestPolicy {
   /**
    * Creates an instance of StorageBrowserPolicy.
@@ -193750,7 +193750,7 @@ var StorageBrowserPolicy = class extends BaseRequestPolicy {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StorageBrowserPolicyFactory.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StorageBrowserPolicyFactory.js
 var StorageBrowserPolicyFactory = class {
   /**
    * Creates a StorageBrowserPolicyFactory object.
@@ -193763,7 +193763,7 @@ var StorageBrowserPolicyFactory = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/CredentialPolicy.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/CredentialPolicy.js
 var CredentialPolicy = class extends BaseRequestPolicy {
   /**
    * Sends out request.
@@ -193784,7 +193784,7 @@ var CredentialPolicy = class extends BaseRequestPolicy {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/AnonymousCredentialPolicy.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/AnonymousCredentialPolicy.js
 var AnonymousCredentialPolicy = class extends CredentialPolicy {
   /**
    * Creates an instance of AnonymousCredentialPolicy.
@@ -193798,7 +193798,7 @@ var AnonymousCredentialPolicy = class extends CredentialPolicy {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/credentials/Credential.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/Credential.js
 var Credential = class {
   /**
    * Creates a RequestPolicy object.
@@ -193811,7 +193811,7 @@ var Credential = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/credentials/AnonymousCredential.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/AnonymousCredential.js
 var AnonymousCredential = class extends Credential {
   /**
    * Creates an {@link AnonymousCredentialPolicy} object.
@@ -193824,10 +193824,10 @@ var AnonymousCredential = class extends Credential {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/credentials/StorageSharedKeyCredential.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/StorageSharedKeyCredential.js
 import { createHmac as createHmac2 } from "node:crypto";
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/utils/constants.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/utils/constants.js
 var URLConstants = {
   Parameters: {
     FORCE_BROWSER_NO_CACHE: "_",
@@ -193864,7 +193864,7 @@ var HeaderConstants = {
   X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/utils/utils.common.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/utils/utils.common.js
 function setURLParameter(url2, name, value) {
   const urlParsed = new URL(url2);
   const encodedName = encodeURIComponent(name);
@@ -193945,7 +193945,7 @@ async function delay3(timeInMs, aborter, abortError) {
   });
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/utils/SharedKeyComparator.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/utils/SharedKeyComparator.js
 var table_lv0 = new Uint32Array([
   0,
   0,
@@ -194377,7 +194377,7 @@ function isLessThan(lhs, rhs) {
   return false;
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageSharedKeyCredentialPolicy.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageSharedKeyCredentialPolicy.js
 var StorageSharedKeyCredentialPolicy = class extends CredentialPolicy {
   /**
    * Reference to StorageSharedKeyCredential which generates StorageSharedKeyCredentialPolicy
@@ -194521,7 +194521,7 @@ ${key}:${decodeURIComponent(lowercaseQueries[key])}`;
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/credentials/StorageSharedKeyCredential.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/StorageSharedKeyCredential.js
 var StorageSharedKeyCredential = class extends Credential {
   /**
    * Azure Storage account name; readonly.
@@ -194561,10 +194561,10 @@ var StorageSharedKeyCredential = class extends Credential {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/log.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/log.js
 var logger5 = createClientLogger2("storage-common");
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicyType.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicyType.js
 var StorageRetryPolicyType;
 (function (StorageRetryPolicyType2) {
   StorageRetryPolicyType2[StorageRetryPolicyType2["EXPONENTIAL"] = 0] =
@@ -194572,7 +194572,7 @@ var StorageRetryPolicyType;
   StorageRetryPolicyType2[StorageRetryPolicyType2["FIXED"] = 1] = "FIXED";
 })(StorageRetryPolicyType || (StorageRetryPolicyType = {}));
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicy.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicy.js
 var DEFAULT_RETRY_OPTIONS = {
   maxRetryDelayInMs: 120 * 1e3,
   maxTries: 4,
@@ -194793,7 +194793,7 @@ var StorageRetryPolicy = class extends BaseRequestPolicy {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/StorageRetryPolicyFactory.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StorageRetryPolicyFactory.js
 var StorageRetryPolicyFactory = class {
   retryOptions;
   /**
@@ -194814,7 +194814,7 @@ var StorageRetryPolicyFactory = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageBrowserPolicyV2.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageBrowserPolicyV2.js
 var storageBrowserPolicyName = "storageBrowserPolicy";
 function storageBrowserPolicy() {
   return {
@@ -194825,7 +194825,7 @@ function storageBrowserPolicy() {
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageCorrectContentLengthPolicy.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageCorrectContentLengthPolicy.js
 var storageCorrectContentLengthPolicyName = "StorageCorrectContentLengthPolicy";
 function storageCorrectContentLengthPolicy() {
   function correctContentLength(request) {
@@ -194849,7 +194849,7 @@ function storageCorrectContentLengthPolicy() {
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicyV2.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicyV2.js
 var storageRetryPolicyName = "storageRetryPolicy";
 var DEFAULT_RETRY_OPTIONS2 = {
   maxRetryDelayInMs: 120 * 1e3,
@@ -195034,7 +195034,7 @@ function storageRetryPolicy(options = {}) {
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageSharedKeyCredentialPolicyV2.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageSharedKeyCredentialPolicyV2.js
 import { createHmac as createHmac3 } from "node:crypto";
 var storageSharedKeyCredentialPolicyName = "storageSharedKeyCredentialPolicy";
 function storageSharedKeyCredentialPolicy(options) {
@@ -195149,7 +195149,7 @@ ${key}:${decodeURIComponent(lowercaseQueries[key])}`;
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/policies/StorageRequestFailureDetailsParserPolicy.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageRequestFailureDetailsParserPolicy.js
 var storageRequestFailureDetailsParserPolicyName =
   "storageRequestFailureDetailsParserPolicy";
 function storageRequestFailureDetailsParserPolicy() {
@@ -195178,7 +195178,7 @@ function storageRequestFailureDetailsParserPolicy() {
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.0/node_modules/@azure/storage-common/dist/esm/credentials/UserDelegationKeyCredential.js
+// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/UserDelegationKeyCredential.js
 import { createHmac as createHmac4 } from "node:crypto";
 var UserDelegationKeyCredential = class {
   /**
@@ -195215,9 +195215,9 @@ var UserDelegationKeyCredential = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/constants.js
-var SDK_VERSION3 = "12.32.0";
-var SERVICE_VERSION = "2026-04-06";
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/constants.js
+var SDK_VERSION3 = "12.33.0";
+var SERVICE_VERSION = "2026-06-06";
 var BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = 256 * 1024 * 1024;
 var BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = 4e3 * 1024 * 1024;
 var BLOCK_BLOB_MAX_BLOCKS = 5e4;
@@ -195402,7 +195402,7 @@ var PathStylePorts2 = [
   "11104",
 ];
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/Pipeline.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/Pipeline.js
 function isPipelineLike(pipeline3) {
   if (!pipeline3 || typeof pipeline3 !== "object") {
     return false;
@@ -195668,7 +195668,7 @@ function isCoreHttpPolicyFactory(factory) {
   });
 }
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/models/index.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/models/index.js
 var KnownEncryptionAlgorithmType;
 (function (KnownEncryptionAlgorithmType3) {
   KnownEncryptionAlgorithmType3["AES256"] = "AES256";
@@ -195847,7 +195847,7 @@ var KnownStorageErrorCode;
     "BlobAccessTierNotSupportedForAccountType";
 })(KnownStorageErrorCode || (KnownStorageErrorCode = {}));
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/models/mappers.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/models/mappers.js
 var mappers_exports = {};
 __export(mappers_exports, {
   AccessPolicy: () => AccessPolicy,
@@ -197428,6 +197428,7 @@ var BlobPropertiesInternal = {
             "Cool",
             "Archive",
             "Cold",
+            "Smart",
           ],
         },
       },
@@ -197447,6 +197448,32 @@ var BlobPropertiesInternal = {
             "rehydrate-pending-to-hot",
             "rehydrate-pending-to-cool",
             "rehydrate-pending-to-cold",
+            "rehydrate-pending-to-smart",
+          ],
+        },
+      },
+      smartAccessTier: {
+        serializedName: "SmartAccessTier",
+        xmlName: "SmartAccessTier",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "P4",
+            "P6",
+            "P10",
+            "P15",
+            "P20",
+            "P30",
+            "P40",
+            "P50",
+            "P60",
+            "P70",
+            "P80",
+            "Hot",
+            "Cool",
+            "Archive",
+            "Cold",
+            "Smart",
           ],
         },
       },
@@ -200672,6 +200699,13 @@ var BlobGetPropertiesHeaders = {
         xmlName: "x-ms-access-tier-change-time",
         type: {
           name: "DateTimeRfc1123",
+        },
+      },
+      smartAccessTier: {
+        serializedName: "x-ms-smart-access-tier",
+        xmlName: "x-ms-smart-access-tier",
+        type: {
+          name: "String",
         },
       },
       versionId: {
@@ -204623,7 +204657,7 @@ var BlockBlobGetBlockListExceptionHeaders = {
   },
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/models/parameters.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/models/parameters.js
 var contentType = {
   parameterPath: [
     "options",
@@ -204706,7 +204740,7 @@ var timeoutInSeconds = {
 var version = {
   parameterPath: "version",
   mapper: {
-    defaultValue: "2026-04-06",
+    defaultValue: "2026-06-06",
     isConstant: true,
     serializedName: "x-ms-version",
     type: {
@@ -205787,6 +205821,7 @@ var tier = {
         "Cool",
         "Archive",
         "Cold",
+        "Smart",
       ],
     },
   },
@@ -206063,6 +206098,7 @@ var tier1 = {
         "Cool",
         "Archive",
         "Cold",
+        "Smart",
       ],
     },
   },
@@ -206650,7 +206686,7 @@ var listType = {
   },
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/service.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/service.js
 var ServiceImpl = class {
   client;
   /**
@@ -207009,7 +207045,7 @@ var filterBlobsOperationSpec = {
   serializer: xmlSerializer,
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/container.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/container.js
 var ContainerImpl = class {
   client;
   /**
@@ -207813,7 +207849,7 @@ var getAccountInfoOperationSpec2 = {
   serializer: xmlSerializer2,
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/blob.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/blob.js
 var BlobImpl = class {
   client;
   /**
@@ -208987,7 +209023,7 @@ var setTagsOperationSpec = {
   serializer: xmlSerializer3,
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/pageBlob.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/pageBlob.js
 var PageBlobImpl = class {
   client;
   /**
@@ -209517,7 +209553,7 @@ var copyIncrementalOperationSpec = {
   serializer: xmlSerializer4,
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/appendBlob.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/appendBlob.js
 var AppendBlobImpl = class {
   client;
   /**
@@ -209770,7 +209806,7 @@ var sealOperationSpec = {
   serializer: xmlSerializer5,
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/blockBlob.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/operations/blockBlob.js
 var BlockBlobImpl = class {
   client;
   /**
@@ -210184,7 +210220,7 @@ var getBlockListOperationSpec = {
   serializer: xmlSerializer6,
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generated/src/storageClient.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generated/src/storageClient.js
 var StorageClient = class extends ExtendedServiceClient {
   url;
   version;
@@ -210204,7 +210240,7 @@ var StorageClient = class extends ExtendedServiceClient {
     const defaults = {
       requestContentType: "application/json; charset=utf-8",
     };
-    const packageDetails = `azsdk-js-azure-storage-blob/12.32.0`;
+    const packageDetails = `azsdk-js-azure-storage-blob/12.33.0`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
@@ -210219,7 +210255,7 @@ var StorageClient = class extends ExtendedServiceClient {
     };
     super(optionsWithDefaults);
     this.url = url2;
-    this.version = options.version || "2026-04-06";
+    this.version = options.version || "2026-06-06";
     this.service = new ServiceImpl(this);
     this.container = new ContainerImpl(this);
     this.blob = new BlobImpl(this);
@@ -210235,7 +210271,7 @@ var StorageClient = class extends ExtendedServiceClient {
   blockBlob;
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/StorageContextClient.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/StorageContextClient.js
 var StorageContextClient = class extends StorageClient {
   async sendOperationRequest(operationArguments, operationSpec) {
     const operationSpecToSend = {
@@ -210251,7 +210287,14 @@ var StorageContextClient = class extends StorageClient {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/utils.common.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/utils.common.js
+var accountNameSuffixes = [
+  "-secondary-ipv6",
+  "-secondary-dualstack",
+  "-ipv6",
+  "-dualstack",
+  "-secondary",
+];
 function escapeURLPath(url2) {
   const urlParsed = new URL(url2);
   let path14 = urlParsed.pathname;
@@ -210472,6 +210515,16 @@ function getAccountNameFromUrl(url2) {
   try {
     if (parsedUrl.hostname.split(".")[1] === "blob") {
       accountName = parsedUrl.hostname.split(".")[0];
+      for (let i = 0; i < accountNameSuffixes.length; ++i) {
+        const suffix = accountNameSuffixes[i];
+        if (accountName.endsWith(suffix)) {
+          accountName = accountName.substring(
+            0,
+            accountName.length - suffix.length,
+          );
+          break;
+        }
+      }
     } else if (isIpEndpointStyle(parsedUrl)) {
       accountName = parsedUrl.pathname.split("/")[1];
     } else {
@@ -210700,7 +210753,7 @@ async function setUploadChecksumParameters(
   };
 }
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/StorageClient.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/StorageClient.js
 var StorageClient2 = class {
   /**
    * Encoded URL string value.
@@ -210744,14 +210797,14 @@ var StorageClient2 = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/tracing.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/tracing.js
 var tracingClient = createTracingClient({
   packageName: "@azure/storage-blob",
   packageVersion: SDK_VERSION3,
   namespace: "Microsoft.Storage",
 });
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/sas/BlobSASPermissions.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/sas/BlobSASPermissions.js
 var BlobSASPermissions = class _BlobSASPermissions {
   /**
    * Creates a {@link BlobSASPermissions} from the specified permissions string. This method will throw an
@@ -210934,7 +210987,7 @@ var BlobSASPermissions = class _BlobSASPermissions {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/sas/ContainerSASPermissions.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/sas/ContainerSASPermissions.js
 var ContainerSASPermissions = class _ContainerSASPermissions {
   /**
    * Creates an {@link ContainerSASPermissions} from the specified permissions string. This method will throw an
@@ -211144,12 +211197,12 @@ var ContainerSASPermissions = class _ContainerSASPermissions {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/sas/SasIPRange.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/sas/SasIPRange.js
 function ipRangeToString(ipRange) {
   return ipRange.end ? `${ipRange.start}-${ipRange.end}` : ipRange.start;
 }
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/sas/SASQueryParameters.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/sas/SASQueryParameters.js
 var SASProtocol;
 (function (SASProtocol2) {
   SASProtocol2["Https"] = "https";
@@ -211292,6 +211345,10 @@ var SASQueryParameters = class {
    * Keys for request query parameters required in the SAS token
    */
   requestQueryParameterKeys;
+  /** To indicate the depth of the virtual blob directory specified
+   * in the canonicalizedresource field of the string-to-sign.
+   */
+  directoryDepth;
   /**
    * Optional. IP range allowed for this SAS.
    *
@@ -211330,6 +211387,7 @@ var SASQueryParameters = class {
     delegatedUserObjectId,
     requestHeaderKeys,
     requestQueryParameterKeys,
+    directoryDepth,
   ) {
     this.version = version3;
     this.signature = signature;
@@ -211356,6 +211414,7 @@ var SASQueryParameters = class {
       this.requestHeaderKeys = permissionsOrOptions.requestHeaderKeys;
       this.requestQueryParameterKeys =
         permissionsOrOptions.requestQueryParameterKeys;
+      this.directoryDepth = permissionsOrOptions.directoryDepth;
       if (permissionsOrOptions.userDelegationKey) {
         this.signedOid = permissionsOrOptions.userDelegationKey.signedObjectId;
         this.signedTenantId =
@@ -211393,6 +211452,7 @@ var SASQueryParameters = class {
       this.contentType = contentType2;
       this.requestHeaderKeys = requestHeaderKeys;
       this.requestQueryParameterKeys = requestQueryParameterKeys;
+      this.directoryDepth = directoryDepth;
       if (userDelegationKey) {
         this.signedOid = userDelegationKey.signedObjectId;
         this.signedTenantId = userDelegationKey.signedTenantId;
@@ -211436,6 +211496,7 @@ var SASQueryParameters = class {
       "rsct",
       "saoid",
       "scid",
+      "sdd",
       "sduoid",
       "skdutid",
       "srh",
@@ -211574,6 +211635,15 @@ var SASQueryParameters = class {
             this.requestQueryParameterKeys,
           );
           break;
+        case "sdd":
+          this.tryAppendQueryParameter(
+            queries,
+            param,
+            this.directoryDepth !== void 0
+              ? this.directoryDepth.toString()
+              : "",
+          );
+          break;
       }
     }
     return queries.join("&");
@@ -211597,7 +211667,7 @@ var SASQueryParameters = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/sas/BlobSASSignatureValues.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/sas/BlobSASSignatureValues.js
 function generateBlobSASQueryParameters(
   blobSASSignatureValues,
   sharedKeyCredentialOrUserDelegationKey,
@@ -211662,10 +211732,17 @@ function generateBlobSASQueryParametersInternal(
   }
   if (version3 >= "2018-11-09") {
     if (sharedKeyCredential !== void 0) {
-      return generateBlobSASQueryParameters20181109(
-        blobSASSignatureValues,
-        sharedKeyCredential,
-      );
+      if (version3 >= "2020-02-10") {
+        return generateBlobSASQueryParameters20200210(
+          blobSASSignatureValues,
+          sharedKeyCredential,
+        );
+      } else {
+        return generateBlobSASQueryParameters20181109(
+          blobSASSignatureValues,
+          sharedKeyCredential,
+        );
+      }
     } else {
       if (version3 >= "2020-02-10") {
         return generateBlobSASQueryParametersUDK20200210(
@@ -211881,6 +211958,119 @@ function generateBlobSASQueryParameters20181109(
     stringToSign,
   };
 }
+function generateBlobSASQueryParameters20200210(
+  blobSASSignatureValues,
+  sharedKeyCredential,
+) {
+  blobSASSignatureValues = SASSignatureValuesSanityCheckAndAutofill(
+    blobSASSignatureValues,
+  );
+  if (
+    !blobSASSignatureValues.identifier &&
+    !(blobSASSignatureValues.permissions && blobSASSignatureValues.expiresOn)
+  ) {
+    throw new RangeError(
+      "Must provide 'permissions' and 'expiresOn' for Blob SAS generation when 'identifier' is not provided.",
+    );
+  }
+  let resource = "c";
+  let timestamp = blobSASSignatureValues.snapshotTime;
+  let directoryDepth = void 0;
+  if (blobSASSignatureValues.blobName) {
+    if (blobSASSignatureValues.isDirectory === true) {
+      resource = "d";
+      directoryDepth =
+        trimBlobName(blobSASSignatureValues.blobName).split("/").length;
+    } else {
+      resource = "b";
+      if (blobSASSignatureValues.snapshotTime) {
+        resource = "bs";
+      } else if (blobSASSignatureValues.versionId) {
+        resource = "bv";
+        timestamp = blobSASSignatureValues.versionId;
+      }
+    }
+  }
+  let verifiedPermissions;
+  if (blobSASSignatureValues.permissions) {
+    if (blobSASSignatureValues.blobName) {
+      verifiedPermissions = BlobSASPermissions.parse(
+        blobSASSignatureValues.permissions.toString(),
+      ).toString();
+    } else {
+      verifiedPermissions = ContainerSASPermissions.parse(
+        blobSASSignatureValues.permissions.toString(),
+      ).toString();
+    }
+  }
+  const stringToSign = [
+    verifiedPermissions ? verifiedPermissions : "",
+    blobSASSignatureValues.startsOn
+      ? truncatedISO8061Date(blobSASSignatureValues.startsOn, false)
+      : "",
+    blobSASSignatureValues.expiresOn
+      ? truncatedISO8061Date(blobSASSignatureValues.expiresOn, false)
+      : "",
+    getCanonicalName(
+      sharedKeyCredential.accountName,
+      blobSASSignatureValues.containerName,
+      blobSASSignatureValues.blobName,
+    ),
+    blobSASSignatureValues.identifier,
+    blobSASSignatureValues.ipRange
+      ? ipRangeToString(blobSASSignatureValues.ipRange)
+      : "",
+    blobSASSignatureValues.protocol ? blobSASSignatureValues.protocol : "",
+    blobSASSignatureValues.version,
+    resource,
+    timestamp,
+    blobSASSignatureValues.cacheControl
+      ? blobSASSignatureValues.cacheControl
+      : "",
+    blobSASSignatureValues.contentDisposition
+      ? blobSASSignatureValues.contentDisposition
+      : "",
+    blobSASSignatureValues.contentEncoding
+      ? blobSASSignatureValues.contentEncoding
+      : "",
+    blobSASSignatureValues.contentLanguage
+      ? blobSASSignatureValues.contentLanguage
+      : "",
+    blobSASSignatureValues.contentType
+      ? blobSASSignatureValues.contentType
+      : "",
+  ].join("\n");
+  const signature = sharedKeyCredential.computeHMACSHA256(stringToSign);
+  return {
+    sasQueryParameters: new SASQueryParameters(
+      blobSASSignatureValues.version,
+      signature,
+      verifiedPermissions,
+      void 0,
+      void 0,
+      blobSASSignatureValues.protocol,
+      blobSASSignatureValues.startsOn,
+      blobSASSignatureValues.expiresOn,
+      blobSASSignatureValues.ipRange,
+      blobSASSignatureValues.identifier,
+      resource,
+      blobSASSignatureValues.cacheControl,
+      blobSASSignatureValues.contentDisposition,
+      blobSASSignatureValues.contentEncoding,
+      blobSASSignatureValues.contentLanguage,
+      blobSASSignatureValues.contentType,
+      void 0,
+      void 0,
+      void 0,
+      void 0,
+      void 0,
+      void 0,
+      void 0,
+      directoryDepth,
+    ),
+    stringToSign,
+  };
+}
 function generateBlobSASQueryParameters20201206(
   blobSASSignatureValues,
   sharedKeyCredential,
@@ -211898,13 +212088,20 @@ function generateBlobSASQueryParameters20201206(
   }
   let resource = "c";
   let timestamp = blobSASSignatureValues.snapshotTime;
+  let directoryDepth = void 0;
   if (blobSASSignatureValues.blobName) {
-    resource = "b";
-    if (blobSASSignatureValues.snapshotTime) {
-      resource = "bs";
-    } else if (blobSASSignatureValues.versionId) {
-      resource = "bv";
-      timestamp = blobSASSignatureValues.versionId;
+    if (blobSASSignatureValues.isDirectory === true) {
+      resource = "d";
+      directoryDepth =
+        trimBlobName(blobSASSignatureValues.blobName).split("/").length;
+    } else {
+      resource = "b";
+      if (blobSASSignatureValues.snapshotTime) {
+        resource = "bs";
+      } else if (blobSASSignatureValues.versionId) {
+        resource = "bv";
+        timestamp = blobSASSignatureValues.versionId;
+      }
     }
   }
   let verifiedPermissions;
@@ -211980,6 +212177,10 @@ function generateBlobSASQueryParameters20201206(
       void 0,
       void 0,
       blobSASSignatureValues.encryptionScope,
+      void 0,
+      void 0,
+      void 0,
+      directoryDepth,
     ),
     stringToSign,
   };
@@ -212103,13 +212304,20 @@ function generateBlobSASQueryParametersUDK20200210(
   }
   let resource = "c";
   let timestamp = blobSASSignatureValues.snapshotTime;
+  let directoryDepth = void 0;
   if (blobSASSignatureValues.blobName) {
-    resource = "b";
-    if (blobSASSignatureValues.snapshotTime) {
-      resource = "bs";
-    } else if (blobSASSignatureValues.versionId) {
-      resource = "bv";
-      timestamp = blobSASSignatureValues.versionId;
+    if (blobSASSignatureValues.isDirectory === true) {
+      resource = "d";
+      directoryDepth =
+        trimBlobName(blobSASSignatureValues.blobName).split("/").length;
+    } else {
+      resource = "b";
+      if (blobSASSignatureValues.snapshotTime) {
+        resource = "bs";
+      } else if (blobSASSignatureValues.versionId) {
+        resource = "bv";
+        timestamp = blobSASSignatureValues.versionId;
+      }
     }
   }
   let verifiedPermissions;
@@ -212191,6 +212399,11 @@ function generateBlobSASQueryParametersUDK20200210(
       userDelegationKeyCredential.userDelegationKey,
       blobSASSignatureValues.preauthorizedAgentObjectId,
       blobSASSignatureValues.correlationId,
+      void 0,
+      void 0,
+      void 0,
+      void 0,
+      directoryDepth,
     ),
     stringToSign,
   };
@@ -212211,13 +212424,20 @@ function generateBlobSASQueryParametersUDK20201206(
   }
   let resource = "c";
   let timestamp = blobSASSignatureValues.snapshotTime;
+  let directoryDepth = void 0;
   if (blobSASSignatureValues.blobName) {
-    resource = "b";
-    if (blobSASSignatureValues.snapshotTime) {
-      resource = "bs";
-    } else if (blobSASSignatureValues.versionId) {
-      resource = "bv";
-      timestamp = blobSASSignatureValues.versionId;
+    if (blobSASSignatureValues.isDirectory === true) {
+      resource = "d";
+      directoryDepth =
+        trimBlobName(blobSASSignatureValues.blobName).split("/").length;
+    } else {
+      resource = "b";
+      if (blobSASSignatureValues.snapshotTime) {
+        resource = "bs";
+      } else if (blobSASSignatureValues.versionId) {
+        resource = "bv";
+        timestamp = blobSASSignatureValues.versionId;
+      }
     }
   }
   let verifiedPermissions;
@@ -212301,6 +212521,10 @@ function generateBlobSASQueryParametersUDK20201206(
       blobSASSignatureValues.preauthorizedAgentObjectId,
       blobSASSignatureValues.correlationId,
       blobSASSignatureValues.encryptionScope,
+      void 0,
+      void 0,
+      void 0,
+      directoryDepth,
     ),
     stringToSign,
   };
@@ -212321,13 +212545,20 @@ function generateBlobSASQueryParametersUDK20250705(
   }
   let resource = "c";
   let timestamp = blobSASSignatureValues.snapshotTime;
+  let directoryDepth = void 0;
   if (blobSASSignatureValues.blobName) {
-    resource = "b";
-    if (blobSASSignatureValues.snapshotTime) {
-      resource = "bs";
-    } else if (blobSASSignatureValues.versionId) {
-      resource = "bv";
-      timestamp = blobSASSignatureValues.versionId;
+    if (blobSASSignatureValues.isDirectory === true) {
+      resource = "d";
+      directoryDepth =
+        trimBlobName(blobSASSignatureValues.blobName).split("/").length;
+    } else {
+      resource = "b";
+      if (blobSASSignatureValues.snapshotTime) {
+        resource = "bs";
+      } else if (blobSASSignatureValues.versionId) {
+        resource = "bv";
+        timestamp = blobSASSignatureValues.versionId;
+      }
     }
   }
   let verifiedPermissions;
@@ -212414,6 +212645,9 @@ function generateBlobSASQueryParametersUDK20250705(
       blobSASSignatureValues.correlationId,
       blobSASSignatureValues.encryptionScope,
       blobSASSignatureValues.delegatedUserObjectId,
+      void 0,
+      void 0,
+      directoryDepth,
     ),
     stringToSign,
   };
@@ -212434,13 +212668,20 @@ function generateBlobSASQueryParametersUDK20260406(
   }
   let resource = "c";
   let timestamp = blobSASSignatureValues.snapshotTime;
+  let directoryDepth = void 0;
   if (blobSASSignatureValues.blobName) {
-    resource = "b";
-    if (blobSASSignatureValues.snapshotTime) {
-      resource = "bs";
-    } else if (blobSASSignatureValues.versionId) {
-      resource = "bv";
-      timestamp = blobSASSignatureValues.versionId;
+    if (blobSASSignatureValues.isDirectory === true) {
+      resource = "d";
+      directoryDepth =
+        trimBlobName(blobSASSignatureValues.blobName).split("/").length;
+    } else {
+      resource = "b";
+      if (blobSASSignatureValues.snapshotTime) {
+        resource = "bs";
+      } else if (blobSASSignatureValues.versionId) {
+        resource = "bv";
+        timestamp = blobSASSignatureValues.versionId;
+      }
     }
   }
   let verifiedPermissions;
@@ -212533,6 +212774,7 @@ function generateBlobSASQueryParametersUDK20260406(
       blobSASSignatureValues.delegatedUserObjectId,
       getKeysOfRequestHeaders(blobSASSignatureValues.requestHeaders),
       getKeysOfRequestHeaders(blobSASSignatureValues.requestQueryParameters),
+      directoryDepth,
     ),
     stringToSign,
   };
@@ -212675,8 +212917,18 @@ function SASSignatureValuesSanityCheckAndAutofill(blobSASSignatureValues) {
   blobSASSignatureValues.version = version3;
   return blobSASSignatureValues;
 }
+function trimBlobName(blobName) {
+  let internalName = blobName;
+  while (internalName.startsWith("/")) {
+    internalName = internalName.substring(1);
+  }
+  while (internalName.endsWith("/")) {
+    internalName = internalName.substring(0, internalName.length - 1);
+  }
+  return internalName;
+}
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/BlobLeaseClient.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/BlobLeaseClient.js
 var BlobLeaseClient = class {
   _leaseId;
   _url;
@@ -212930,7 +213182,7 @@ var BlobLeaseClient = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/RetriableReadableStream.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/RetriableReadableStream.js
 import { Readable as Readable6 } from "node:stream";
 var RetriableReadableStream = class extends Readable6 {
   start;
@@ -213050,7 +213302,7 @@ var RetriableReadableStream = class extends Readable6 {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/BlobDownloadResponse.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/BlobDownloadResponse.js
 var BlobDownloadResponse = class {
   /**
    * Indicates that the service supports
@@ -213517,10 +213769,10 @@ var BlobDownloadResponse = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/BlobQuickQueryStream.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/BlobQuickQueryStream.js
 import { Readable as Readable7 } from "node:stream";
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroConstants.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroConstants.js
 var AVRO_SYNC_MARKER_SIZE = 16;
 var AVRO_INIT_BYTES = new Uint8Array([
   79,
@@ -213531,7 +213783,7 @@ var AVRO_INIT_BYTES = new Uint8Array([
 var AVRO_CODEC_KEY = "avro.codec";
 var AVRO_SCHEMA_KEY = "avro.schema";
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroParser.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroParser.js
 var AvroParser = class _AvroParser {
   /**
    * Reads a fixed number of bytes from the stream.
@@ -213864,7 +214116,7 @@ var AvroRecordType = class extends AvroType {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/utils/utils.common.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/utils/utils.common.js
 function arraysEqual(a, b) {
   if (a === b) return true;
   if (a == null || b == null) return false;
@@ -213875,7 +214127,7 @@ function arraysEqual(a, b) {
   return true;
 }
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroReader.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroReader.js
 var AvroReader = class {
   _dataStream;
   _headerStream;
@@ -214007,11 +214259,11 @@ var AvroReader = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroReadable.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroReadable.js
 var AvroReadable = class {
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroReadableFromStream.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/internal-avro/AvroReadableFromStream.js
 import { Buffer as Buffer2 } from "node:buffer";
 var ABORT_ERROR = new AbortError2("Reading from the avro stream was aborted.");
 var AvroReadableFromStream = class extends AvroReadable {
@@ -214087,7 +214339,7 @@ var AvroReadableFromStream = class extends AvroReadable {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/BlobQuickQueryStream.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/BlobQuickQueryStream.js
 var BlobQuickQueryStream = class extends Readable7 {
   source;
   avroReader;
@@ -214201,7 +214453,7 @@ var BlobQuickQueryStream = class extends Readable7 {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/BlobQueryResponse.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/BlobQueryResponse.js
 var BlobQueryResponse = class {
   /**
    * Indicates that the service supports
@@ -214564,7 +214816,7 @@ var BlobQueryResponse = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/models.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/models.js
 var BlockBlobTier;
 (function (BlockBlobTier2) {
   BlockBlobTier2["Hot"] = "Hot";
@@ -214610,7 +214862,7 @@ var StorageBlobAudience;
     "https://disk.compute.azure.com/.default";
 })(StorageBlobAudience || (StorageBlobAudience = {}));
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/PageBlobRangeResponse.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/PageBlobRangeResponse.js
 function rangeResponseFromModel(response) {
   const pageRange = (response._response.parsedBody.pageRange || []).map((
     x,
@@ -214957,7 +215209,7 @@ var Poller = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/pollers/BlobStartCopyFromUrlPoller.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/pollers/BlobStartCopyFromUrlPoller.js
 var BlobBeginCopyFromUrlPoller = class extends Poller {
   intervalInMs;
   constructor(options) {
@@ -215074,7 +215326,7 @@ function makeBlobBeginCopyFromURLPollOperation(state3) {
   };
 }
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/Range.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/Range.js
 function rangeToString(iRange) {
   if (iRange.offset < 0) {
     throw new RangeError(`Range.offset cannot be smaller than 0.`);
@@ -215089,7 +215341,7 @@ function rangeToString(iRange) {
     : `bytes=${iRange.offset}-`;
 }
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/Batch.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/Batch.js
 import { EventEmitter as EventEmitter3 } from "node:events";
 var BatchStates;
 (function (BatchStates2) {
@@ -215203,7 +215455,7 @@ var Batch = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/utils.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/utils.js
 import fs6 from "node:fs";
 import util4 from "node:util";
 async function streamToBuffer(stream3, buffer3, offset, end, encoding) {
@@ -215274,7 +215526,7 @@ async function readStreamToLocalFile(rs, file) {
 var fsStat = util4.promisify(fs6.stat);
 var fsCreateReadStream = fs6.createReadStream;
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/Clients.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/Clients.js
 var BlobClient = class _BlobClient extends StorageClient2 {
   /**
    * blobContext provided by protocol layer.
@@ -215471,6 +215723,7 @@ var BlobClient = class _BlobClient extends StorageClient2 {
    * ```ts snippet:ReadmeSampleDownloadBlob_Node
    * import { BlobServiceClient } from "@azure/storage-blob";
    * import { DefaultAzureCredential } from "@azure/identity";
+   * import { buffer } from "node:stream/consumers";
    *
    * const account = "<account>";
    * const blobServiceClient = new BlobServiceClient(
@@ -215487,22 +215740,10 @@ var BlobClient = class _BlobClient extends StorageClient2 {
    * // In Node.js, get downloaded data by accessing downloadBlockBlobResponse.readableStreamBody
    * const downloadBlockBlobResponse = await blobClient.download();
    * if (downloadBlockBlobResponse.readableStreamBody) {
-   *   const downloaded = await streamToString(downloadBlockBlobResponse.readableStreamBody);
-   *   console.log(`Downloaded blob content: ${downloaded}`);
-   * }
-   *
-   * async function streamToString(stream: NodeJS.ReadableStream): Promise<string> {
-   *   const result = await new Promise<Buffer<ArrayBuffer>>((resolve, reject) => {
-   *     const chunks: Buffer[] = [];
-   *     stream.on("data", (data) => {
-   *       chunks.push(Buffer.isBuffer(data) ? data : Buffer.from(data));
-   *     });
-   *     stream.on("end", () => {
-   *       resolve(Buffer.concat(chunks));
-   *     });
-   *     stream.on("error", reject);
-   *   });
-   *   return result.toString();
+   *   // Download the raw bytes of the blob. Use `text` from "node:stream/consumers"
+   *   // instead if you want to read the content as a string directly.
+   *   const downloaded = await buffer(downloadBlockBlobResponse.readableStreamBody);
+   *   console.log(`Downloaded blob content: ${downloaded.toString()}`);
    * }
    * ```
    *
@@ -217103,6 +217344,7 @@ var BlockBlobClient = class _BlockBlobClient extends BlobClient {
    * ```ts snippet:ClientsQuery
    * import { BlobServiceClient } from "@azure/storage-blob";
    * import { DefaultAzureCredential } from "@azure/identity";
+   * import { buffer } from "node:stream/consumers";
    *
    * const account = "<account>";
    * const blobServiceClient = new BlobServiceClient(
@@ -217118,22 +217360,10 @@ var BlockBlobClient = class _BlockBlobClient extends BlobClient {
    * // Query and convert a blob to a string
    * const queryBlockBlobResponse = await blockBlobClient.query("select from BlobStorage");
    * if (queryBlockBlobResponse.readableStreamBody) {
-   *   const downloadedBuffer = await streamToBuffer(queryBlockBlobResponse.readableStreamBody);
-   *   const downloaded = downloadedBuffer.toString();
-   *   console.log(`Query blob content: ${downloaded}`);
-   * }
-   *
-   * async function streamToBuffer(readableStream: NodeJS.ReadableStream): Promise<Buffer> {
-   *   return new Promise((resolve, reject) => {
-   *     const chunks: Buffer[] = [];
-   *     readableStream.on("data", (data) => {
-   *       chunks.push(data instanceof Buffer ? data : Buffer.from(data));
-   *     });
-   *     readableStream.on("end", () => {
-   *       resolve(Buffer.concat(chunks));
-   *     });
-   *     readableStream.on("error", reject);
-   *   });
+   *   // Read the response bytes. Use `text` from "node:stream/consumers" instead
+   *   // if you want the response as a string directly.
+   *   const downloadedBuffer = await buffer(queryBlockBlobResponse.readableStreamBody);
+   *   console.log(`Query blob content: ${downloadedBuffer.toString()}`);
    * }
    * ```
    *
@@ -218804,14 +219034,14 @@ var PageBlobClient = class _PageBlobClient extends BlobClient {
   }
 };
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/utils/Mutex.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/utils/Mutex.js
 var MutexLockStatus;
 (function (MutexLockStatus2) {
   MutexLockStatus2[MutexLockStatus2["LOCKED"] = 0] = "LOCKED";
   MutexLockStatus2[MutexLockStatus2["UNLOCKED"] = 1] = "UNLOCKED";
 })(MutexLockStatus || (MutexLockStatus = {}));
 
-// node_modules/.deno/@azure+storage-blob@12.32.0/node_modules/@azure/storage-blob/dist/esm/generatedModels.js
+// node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/generatedModels.js
 var KnownEncryptionAlgorithmType2;
 (function (KnownEncryptionAlgorithmType3) {
   KnownEncryptionAlgorithmType3["AES256"] = "AES256";

@@ -4,7 +4,6 @@
     "jsr:@miscellaneous/commitlint@~0.3.2": "0.3.2",
     "jsr:@std/async@^1.4.0": "1.4.0",
     "jsr:@std/collections@^1.2.0": "1.2.0",
-    "jsr:@std/data-structures@^1.1.0": "1.1.0",
     "jsr:@std/encoding@^1.0.10": "1.0.10",
     "npm:@actions/cache@^6.1.0": "6.1.0",
     "npm:@actions/core@^3.0.1": "3.0.1",
@@ -21,16 +20,10 @@
       "integrity": "f12be7602512b934cb501ed7a91130920b06a34a77ca9ca975148870f2d256e3"
     },
     "@std/async@1.4.0": {
-      "integrity": "4d70b008634f571cff9b554090d628c76141c32613aae0ff283fd5fa23d0c379",
-      "dependencies": [
-        "jsr:@std/data-structures"
-      ]
+      "integrity": "4d70b008634f571cff9b554090d628c76141c32613aae0ff283fd5fa23d0c379"
     },
     "@std/collections@1.2.0": {
       "integrity": "47627a21d3a13138b77fd0e4d790ba9d2e603c3510b686cde6b132fe9aa98a88"
-    },
-    "@std/data-structures@1.1.0": {
-      "integrity": "c35ae4ad5d8e41a38573c2fe3e19b18ea2505f63cfea201edcb8720aca1f7f58"
     },
     "@std/encoding@1.0.10": {
       "integrity": "8783c6384a2d13abd5e9e87a7ae0520a30e9f56aeeaa3bdf910a3eaaf5c811a1"
@@ -287,8 +280,8 @@
         "tslib"
       ]
     },
-    "@azure/storage-blob@12.32.0": {
-      "integrity": "sha512-80LzSNnFQye2LCCBFghAJS6jJQJ7N4bfgZ6qDMgVGRtugZ7TLDKQZ2hczMigmZH3jAcMRdma/IygsC5+0gT7Tw==",
+    "@azure/storage-blob@12.33.0": {
+      "integrity": "sha512-2SX8oP8PyblUcAFZSg39c8Ls+tFjavM6sBeV+qpw33mRzRhI/5hrFJmJ/x0H9xx5l6ECPvgSP8uPxqTeVbHNIA==",
       "dependencies": [
         "@azure/abort-controller",
         "@azure/core-auth",
@@ -306,8 +299,8 @@
         "tslib"
       ]
     },
-    "@azure/storage-common@12.4.0_@azure+core-client@1.10.2": {
-      "integrity": "sha512-kNhJKMxQb374KOVt63CZnGIpDcrKNzJeyANLJymxE9mCJSdRGzb+Iv9oSIiCj6tNMLypr530b9ObOiA/5OvwOg==",
+    "@azure/storage-common@12.4.1_@azure+core-client@1.10.2": {
+      "integrity": "sha512-t14unw/WofGDUi7TKJrsyXyPsN+NLgRm7hMaq0llxNmTIzt7f257+6LE6FKIJPh88zLj6M7LPvzve0fEYg/L3A==",
       "dependencies": [
         "@azure/abort-controller",
         "@azure/core-auth",
@@ -812,8 +805,8 @@
       ],
       "bin": true
     },
-    "path-expression-matcher@1.6.0": {
-      "integrity": "sha512-e5y7RCLHKjemsgQ4eqGJtPyr10ILz25HO7flzxhTV8bgvd5yHx98DGtCAtbVW9f2TqnYI/gEVZd+vz7snrdPTw=="
+    "path-expression-matcher@1.6.1": {
+      "integrity": "sha512-h7bxdzhHk8Knyc4Tj+jMaa7fEEoUJy7p1qtbVgkYg1Uhpe5Np5VuGXCRZnkZvU+Q42M1vStt0ifa3ueykRJPmQ=="
     },
     "pause-stream@0.0.11": {
       "integrity": "sha512-e3FBlXLmN/D1S+zHzanP4E/4Z60oFAa3O051qt1pxa7DEJWKAyil6upYVXCWadEnuoqa4Pkc9oUx9zsxYeRv8A==",
