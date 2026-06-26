@@ -141254,9 +141254,9 @@ var require_side_channel = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/formats.js
+// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/formats.js
 var require_formats = __commonJS({
-  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/formats.js"(
+  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/formats.js"(
     exports2,
     module,
   ) {
@@ -141283,15 +141283,16 @@ var require_formats = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/utils.js
+// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/utils.js
 var require_utils4 = __commonJS({
-  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/utils.js"(
+  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/utils.js"(
     exports2,
     module,
   ) {
     "use strict";
     var formats = require_formats();
     var getSideChannel = require_side_channel();
+    var defineProperty = require_es_define_property();
     var has = Object.prototype.hasOwnProperty;
     var isArray = Array.isArray;
     var overflowChannel = getSideChannel();
@@ -141344,6 +141345,18 @@ var require_utils4 = __commonJS({
       }
       return obj;
     };
+    var setProperty = function setProperty2(obj, key, value) {
+      if (key === "__proto__" && defineProperty) {
+        defineProperty(obj, key, {
+          configurable: true,
+          enumerable: true,
+          value,
+          writable: true,
+        });
+      } else {
+        obj[key] = value;
+      }
+    };
     var merge = function merge2(target, source, options) {
       if (!source) {
         return target;
@@ -141353,8 +141366,15 @@ var require_utils4 = __commonJS({
           var nextIndex = target.length;
           if (
             options && typeof options.arrayLimit === "number" &&
-            nextIndex > options.arrayLimit
+            nextIndex >= options.arrayLimit
           ) {
+            if (options.throwOnLimitExceeded) {
+              throw new RangeError(
+                "Array limit exceeded. Only " + options.arrayLimit +
+                  " element" + (options.arrayLimit === 1 ? "" : "s") +
+                  " allowed in an array.",
+              );
+            }
             return markOverflow(
               arrayToObject(target.concat(source), options),
               nextIndex,
@@ -141409,6 +141429,12 @@ var require_utils4 = __commonJS({
           options && typeof options.arrayLimit === "number" &&
           combined.length > options.arrayLimit
         ) {
+          if (options.throwOnLimitExceeded) {
+            throw new RangeError(
+              "Array limit exceeded. Only " + options.arrayLimit + " element" +
+                (options.arrayLimit === 1 ? "" : "s") + " allowed in an array.",
+            );
+          }
           return markOverflow(
             arrayToObject(combined, options),
             combined.length - 1,
@@ -141436,14 +141462,29 @@ var require_utils4 = __commonJS({
             target[i] = item;
           }
         });
+        if (
+          options && typeof options.arrayLimit === "number" &&
+          target.length > options.arrayLimit
+        ) {
+          if (options.throwOnLimitExceeded) {
+            throw new RangeError(
+              "Array limit exceeded. Only " + options.arrayLimit + " element" +
+                (options.arrayLimit === 1 ? "" : "s") + " allowed in an array.",
+            );
+          }
+          return markOverflow(
+            arrayToObject(target, options),
+            target.length - 1,
+          );
+        }
         return target;
       }
       return Object.keys(source).reduce(function (acc, key) {
         var value = source[key];
         if (has.call(acc, key)) {
-          acc[key] = merge2(acc[key], value, options);
+          setProperty(acc, key, merge2(acc[key], value, options));
         } else {
-          acc[key] = value;
+          setProperty(acc, key, value);
         }
         if (isOverflow(source) && !isOverflow(acc)) {
           markOverflow(acc, getMaxIndex(source));
@@ -141461,7 +141502,7 @@ var require_utils4 = __commonJS({
     };
     var assign = function assignSingleSource(target, source) {
       return Object.keys(source).reduce(function (acc, key) {
-        acc[key] = source[key];
+        setProperty(acc, key, source[key]);
         return acc;
       }, target);
     };
@@ -141497,6 +141538,13 @@ var require_utils4 = __commonJS({
         var segment = string.length >= limit
           ? string.slice(j, j + limit)
           : string;
+        if (j + limit < string.length) {
+          var last = segment.charCodeAt(segment.length - 1);
+          if (last >= 55296 && last <= 56319) {
+            segment = segment.slice(0, -1);
+            j -= 1;
+          }
+        }
         var arr = [];
         for (var i = 0; i < segment.length; ++i) {
           var c = segment.charCodeAt(i);
@@ -141540,7 +141588,7 @@ var require_utils4 = __commonJS({
           prop: "o",
         },
       ];
-      var refs = [];
+      var refs = getSideChannel();
       for (var i = 0; i < queue.length; ++i) {
         var item = queue[i];
         var obj = item.obj[item.prop];
@@ -141548,14 +141596,12 @@ var require_utils4 = __commonJS({
         for (var j = 0; j < keys.length; ++j) {
           var key = keys[j];
           var val = obj[key];
-          if (
-            typeof val === "object" && val !== null && refs.indexOf(val) === -1
-          ) {
+          if (typeof val === "object" && val !== null && !refs.has(val)) {
             queue[queue.length] = {
               obj,
               prop: key,
             };
-            refs[refs.length] = val;
+            refs.set(val, true);
           }
         }
       }
@@ -141572,8 +141618,20 @@ var require_utils4 = __commonJS({
       return !!(obj.constructor && obj.constructor.isBuffer &&
         obj.constructor.isBuffer(obj));
     };
-    var combine = function combine2(a, b, arrayLimit, plainObjects) {
+    var combine = function combine2(
+      a,
+      b,
+      arrayLimit,
+      plainObjects,
+      throwOnLimitExceeded,
+    ) {
       if (isOverflow(a)) {
+        if (throwOnLimitExceeded) {
+          throw new RangeError(
+            "Array limit exceeded. Only " + arrayLimit + " element" +
+              (arrayLimit === 1 ? "" : "s") + " allowed in an array.",
+          );
+        }
         var newIndex = getMaxIndex(a) + 1;
         a[newIndex] = b;
         setMaxIndex(a, newIndex);
@@ -141581,6 +141639,12 @@ var require_utils4 = __commonJS({
       }
       var result = [].concat(a, b);
       if (result.length > arrayLimit) {
+        if (throwOnLimitExceeded) {
+          throw new RangeError(
+            "Array limit exceeded. Only " + arrayLimit + " element" +
+              (arrayLimit === 1 ? "" : "s") + " allowed in an array.",
+          );
+        }
         return markOverflow(
           arrayToObject(result, {
             plainObjects,
@@ -141617,9 +141681,9 @@ var require_utils4 = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/stringify.js
+// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/stringify.js
 var require_stringify = __commonJS({
-  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/stringify.js"(
+  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/stringify.js"(
     exports2,
     module,
   ) {
@@ -142018,9 +142082,9 @@ var require_stringify = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/parse.js
+// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/parse.js
 var require_parse2 = __commonJS({
-  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/parse.js"(
+  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/parse.js"(
     exports2,
     module,
   ) {
@@ -142057,10 +142121,30 @@ var require_parse2 = __commonJS({
         return String.fromCharCode(parseInt(numberStr, 10));
       });
     };
-    var parseArrayValue = function (val, options, currentArrayLength) {
+    var parseArrayValue = function (
+      val,
+      options,
+      currentArrayLength,
+      isFlatArrayValue,
+    ) {
       if (
         val && typeof val === "string" && options.comma && val.indexOf(",") > -1
       ) {
+        if (isFlatArrayValue && options.throwOnLimitExceeded) {
+          var commaCount = 0;
+          var commaIndex = val.indexOf(",");
+          while (commaIndex > -1) {
+            commaCount += 1;
+            if (commaCount >= options.arrayLimit) {
+              throw new RangeError(
+                "Array limit exceeded. Only " + options.arrayLimit +
+                  " element" + (options.arrayLimit === 1 ? "" : "s") +
+                  " allowed in an array.",
+              );
+            }
+            commaIndex = val.indexOf(",", commaIndex + 1);
+          }
+        }
         return val.split(",");
       }
       if (
@@ -142142,6 +142226,7 @@ var require_parse2 = __commonJS({
                 part.slice(pos + 1),
                 options,
                 isArray(obj[key]) ? obj[key].length : 0,
+                part.indexOf("[]=") === -1,
               ),
               function (encodedVal) {
                 return options.decoder(
@@ -142167,17 +142252,12 @@ var require_parse2 = __commonJS({
             : val;
         }
         if (options.comma && isArray(val) && val.length > options.arrayLimit) {
-          if (options.throwOnLimitExceeded) {
-            throw new RangeError(
-              "Array limit exceeded. Only " + options.arrayLimit + " element" +
-                (options.arrayLimit === 1 ? "" : "s") + " allowed in an array.",
-            );
-          }
           val = utils.combine(
             [],
             val,
             options.arrayLimit,
             options.plainObjects,
+            options.throwOnLimitExceeded,
           );
         }
         if (key !== null) {
@@ -142191,6 +142271,7 @@ var require_parse2 = __commonJS({
               val,
               options.arrayLimit,
               options.plainObjects,
+              options.throwOnLimitExceeded,
             );
           } else if (!existing || options.duplicates === "last") {
             obj[key] = val;
@@ -142225,6 +142306,7 @@ var require_parse2 = __commonJS({
                 leaf,
                 options.arrayLimit,
                 options.plainObjects,
+                options.throwOnLimitExceeded,
               );
           }
         } else {
@@ -142506,9 +142588,9 @@ var require_parse2 = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.2/node_modules/qs/lib/index.js
+// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/index.js
 var require_lib4 = __commonJS({
-  "node_modules/.deno/qs@6.15.2/node_modules/qs/lib/index.js"(
+  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/index.js"(
     exports2,
     module,
   ) {
