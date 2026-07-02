@@ -176688,7 +176688,7 @@ function getIDToken(aud) {
 var Cdn = __toESM(require_client5());
 var AliOssModule = __toESM(require_client6());
 
-// deno:https://jsr.io/@std/collections/1.2.0/chunk.ts
+// deno:https://jsr.io/@std/collections/1.3.0/chunk.ts
 function chunk(iterable, size) {
   if (size <= 0 || !Number.isInteger(size)) {
     throw new RangeError(
@@ -176736,7 +176736,16 @@ var STATE_CDN_PRELOAD_TASK_IDS = "main-cdn-preload-task-ids";
 var STATE_MAIN_COMPLETED = "main-completed";
 var STATE_CLEANUP_SAFE = "main-cleanup-safe";
 
-// deno:https://jsr.io/@std/async/1.4.0/delay.ts
+// deno:https://jsr.io/@std/async/1.5.0/channel.ts
+var RESOLVED = Promise.resolve();
+var EMPTY_RESULT = Object.freeze({
+  state: "empty",
+});
+var CLOSED_RESULT = Object.freeze({
+  state: "closed",
+});
+
+// deno:https://jsr.io/@std/async/1.5.0/delay.ts
 function delay(ms, options = {}) {
   const { signal, persistent = true } = options;
   if (signal?.aborted) return Promise.reject(signal.reason);
@@ -225342,10 +225351,10 @@ import os9 from "node:os";
 import { join as join8 } from "node:path";
 var import_alicloud_credentials = __toESM(require_client2());
 
-// deno:https://jsr.io/@std/encoding/1.0.10/_validate_binary_like.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/_validate_binary_like.ts
 var encoder = new TextEncoder();
 
-// deno:https://jsr.io/@std/encoding/1.0.10/_common32.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/_common32.ts
 var padding = "=".charCodeAt(0);
 var alphabet = {
   base32: new TextEncoder().encode("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"),
@@ -225363,17 +225372,17 @@ alphabet.base32crockford.forEach((byte, i) =>
   rAlphabet.base32crockford[byte] = i
 );
 
-// deno:https://jsr.io/@std/encoding/1.0.10/base32.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/base32.ts
 var padding2 = "=".charCodeAt(0);
 var alphabet2 = new TextEncoder().encode("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
 var rAlphabet2 = new Uint8Array(128).fill(32);
 alphabet2.forEach((byte, i) => rAlphabet2[byte] = i);
 
-// deno:https://jsr.io/@std/encoding/1.0.10/base58.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/base58.ts
 var base58alphabet =
   "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".split("");
 
-// deno:https://jsr.io/@std/encoding/1.0.10/_common64.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/_common64.ts
 var padding3 = "=".charCodeAt(0);
 var alphabet3 = {
   base64: new TextEncoder().encode(
@@ -225451,7 +225460,7 @@ function getByte(char, alphabet8) {
   return byte;
 }
 
-// deno:https://jsr.io/@std/encoding/1.0.10/base64.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/base64.ts
 var padding4 = "=".charCodeAt(0);
 var alphabet4 = new TextEncoder().encode(
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
@@ -225459,7 +225468,7 @@ var alphabet4 = new TextEncoder().encode(
 var rAlphabet4 = new Uint8Array(128).fill(64);
 alphabet4.forEach((byte, i) => rAlphabet4[byte] = i);
 
-// deno:https://jsr.io/@std/encoding/1.0.10/base64url.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/base64url.ts
 var padding5 = "=".charCodeAt(0);
 var alphabet5 = new TextEncoder().encode(
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
@@ -225473,7 +225482,7 @@ function decodeBase64Url(b64url) {
   );
 }
 
-// deno:https://jsr.io/@std/encoding/1.0.10/_common16.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/_common16.ts
 var alphabet6 = new TextEncoder().encode("0123456789abcdef");
 var rAlphabet6 = new Uint8Array(128).fill(16);
 alphabet6.forEach((byte, i) => rAlphabet6[byte] = i);
@@ -225481,7 +225490,7 @@ new TextEncoder().encode("ABCDEF").forEach((byte, i) =>
   rAlphabet6[byte] = i + 10
 );
 
-// deno:https://jsr.io/@std/encoding/1.0.10/hex.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/hex.ts
 var alphabet7 = new TextEncoder().encode("0123456789abcdef");
 var rAlphabet7 = new Uint8Array(128).fill(16);
 alphabet7.forEach((byte, i) => rAlphabet7[byte] = i);
@@ -225489,7 +225498,7 @@ new TextEncoder().encode("ABCDEF").forEach((byte, i) =>
   rAlphabet7[byte] = i + 10
 );
 
-// deno:https://jsr.io/@std/encoding/1.0.10/varint.ts
+// deno:https://jsr.io/@std/encoding/1.0.11/varint.ts
 var AB = new ArrayBuffer(8);
 var U32_VIEW = new Uint32Array(AB);
 var U64_VIEW = new BigUint64Array(AB);
