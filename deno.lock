@@ -352,8 +352,8 @@
         "undici-types"
       ]
     },
-    "@types/node@22.20.0": {
-      "integrity": "sha512-QWlFW2wf3nTjC13/DqRnBpR4ZO36VJH/JVBkA/vcnmbTBNQIlnObqyqZE1tUR7+Ni23Lda8R1BxMfbXRpCUx5g==",
+    "@types/node@22.20.1": {
+      "integrity": "sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==",
       "dependencies": [
         "undici-types"
       ]
@@ -420,8 +420,8 @@
     "bowser@1.9.4": {
       "integrity": "sha512-9IdMmj2KjigRq6oWhmwv1W36pDuA4STQZ8q6YO9um+x07xgYNCD3Oou+WP/3L1HNz7iqythGet3/p4wvc8AAwQ=="
     },
-    "brace-expansion@1.1.15": {
-      "integrity": "sha512-EwOCDEex4quD37XhqM3omwtMoJjr//isUZz1JopUNWms+4Z2ViyM/k1YIRePpoVNnQhENnxtFjLaxNHrT7xIUg==",
+    "brace-expansion@1.1.16": {
+      "integrity": "sha512-IDw48K2/2kRkg9LdJxurvq3lV3aBgq0REY89duEqFRthjlPdXHKMj7EnQOXVckxzgisinf3nHfrcE2FufFLXMw==",
       "dependencies": [
         "balanced-match",
         "concat-map"
@@ -524,8 +524,8 @@
         "is-extendable"
       ]
     },
-    "fast-xml-builder@1.2.0": {
-      "integrity": "sha512-00aAWieqff+ZJhsXA4g1g7M8k+7AYoMUUHF+/zFb5U6Uv/P0Vl4QZo84/IcufzYalLuEj9928bXN9PbbFzMF0Q==",
+    "fast-xml-builder@1.2.1": {
+      "integrity": "sha512-tPb5TTWfgfVx5BNSi2xV0eLr89POeXXn0dXIsCJ9m1narrWxeIyx6je9d7Rce/3NyXLbvuQmLkxq+RuxMWejvw==",
       "dependencies": [
         "path-expression-matcher",
         "xml-naming"
@@ -663,7 +663,7 @@
     "kitx@2.2.0": {
       "integrity": "sha512-tBMwe6AALTBQJb0woQDD40734NKzb0Kzi3k7wQj9ar3AbP9oqhoVrdXPh7rk2r00/glIgd0YbToIUJsnxWMiIg==",
       "dependencies": [
-        "@types/node@22.20.0"
+        "@types/node@22.20.1"
       ]
     },
     "lefthook-darwin-arm64@2.1.10": {
@@ -812,8 +812,8 @@
       ],
       "bin": true
     },
-    "path-expression-matcher@1.6.1": {
-      "integrity": "sha512-h7bxdzhHk8Knyc4Tj+jMaa7fEEoUJy7p1qtbVgkYg1Uhpe5Np5VuGXCRZnkZvU+Q42M1vStt0ifa3ueykRJPmQ=="
+    "path-expression-matcher@1.6.2": {
+      "integrity": "sha512-enSlaiat05iasnzmgNxRj8reFdj3puY2QpNgP1aPIaVfT6nn9ICuPoFlKHk8EN22HcwewshO+mN2DGbkCEOtqQ=="
     },
     "pause-stream@0.0.11": {
       "integrity": "sha512-e3FBlXLmN/D1S+zHzanP4E/4Z60oFAa3O051qt1pxa7DEJWKAyil6upYVXCWadEnuoqa4Pkc9oUx9zsxYeRv8A==",

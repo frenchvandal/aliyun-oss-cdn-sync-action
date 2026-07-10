@@ -169561,9 +169561,9 @@ var require_balanced_match = __commonJS({
   },
 });
 
-// node_modules/.deno/brace-expansion@1.1.15/node_modules/brace-expansion/index.js
+// node_modules/.deno/brace-expansion@1.1.16/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "node_modules/.deno/brace-expansion@1.1.15/node_modules/brace-expansion/index.js"(
+  "node_modules/.deno/brace-expansion@1.1.16/node_modules/brace-expansion/index.js"(
     exports2,
     module,
   ) {
@@ -169633,90 +169633,95 @@ var require_brace_expansion = __commonJS({
     }
     function expand(str, max, isTop) {
       var expansions = [];
-      var m = balanced("{", "}", str);
-      if (!m || /\$$/.test(m.pre)) {
-        return [
-          str,
-        ];
-      }
-      var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
-      var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
-      var isSequence = isNumericSequence || isAlphaSequence;
-      var isOptions = m.body.indexOf(",") >= 0;
-      if (!isSequence && !isOptions) {
-        if (m.post.match(/,(?!,).*\}/)) {
-          str = m.pre + "{" + m.body + escClose + m.post;
-          return expand(str, max, true);
+      for (;;) {
+        var m = balanced("{", "}", str);
+        if (!m || /\$$/.test(m.pre)) {
+          return [
+            str,
+          ];
         }
-        return [
-          str,
-        ];
-      }
-      var n;
-      if (isSequence) {
-        n = m.body.split(/\.\./);
-      } else {
-        n = parseCommaParts(m.body);
-        if (n.length === 1) {
-          n = expand(n[0], max, false).map(embrace);
-          if (n.length === 1) {
-            var post = m.post.length ? expand(m.post, max, false) : [
-              "",
-            ];
-            return post.map(function (p) {
-              return m.pre + n[0] + p;
-            });
+        var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
+        var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(
+          m.body,
+        );
+        var isSequence = isNumericSequence || isAlphaSequence;
+        var isOptions = m.body.indexOf(",") >= 0;
+        if (!isSequence && !isOptions) {
+          if (m.post.match(/,(?!,).*\}/)) {
+            str = m.pre + "{" + m.body + escClose + m.post;
+            isTop = true;
+            continue;
           }
+          return [
+            str,
+          ];
         }
-      }
-      var pre = m.pre;
-      var post = m.post.length ? expand(m.post, max, false) : [
-        "",
-      ];
-      var N;
-      if (isSequence) {
-        var x = numeric(n[0]);
-        var y = numeric(n[1]);
-        var width = Math.max(n[0].length, n[1].length);
-        var incr = n.length == 3 ? Math.max(Math.abs(numeric(n[2])), 1) : 1;
-        var test = lte;
-        var reverse = y < x;
-        if (reverse) {
-          incr *= -1;
-          test = gte;
-        }
-        var pad = n.some(isPadded);
-        N = [];
-        for (var i = x; test(i, y) && N.length < max; i += incr) {
-          var c;
-          if (isAlphaSequence) {
-            c = String.fromCharCode(i);
-            if (c === "\\") c = "";
-          } else {
-            c = String(i);
-            if (pad) {
-              var need = width - c.length;
-              if (need > 0) {
-                var z = new Array(need + 1).join("0");
-                if (i < 0) c = "-" + z + c.slice(1);
-                else c = z + c;
-              }
+        var n;
+        if (isSequence) {
+          n = m.body.split(/\.\./);
+        } else {
+          n = parseCommaParts(m.body);
+          if (n.length === 1) {
+            n = expand(n[0], max, false).map(embrace);
+            if (n.length === 1) {
+              var post = m.post.length ? expand(m.post, max, false) : [
+                "",
+              ];
+              return post.map(function (p) {
+                return m.pre + n[0] + p;
+              });
             }
           }
-          N.push(c);
         }
-      } else {
-        N = concatMap(n, function (el) {
-          return expand(el, max, false);
-        });
-      }
-      for (var j = 0; j < N.length; j++) {
-        for (var k = 0; k < post.length && expansions.length < max; k++) {
-          var expansion = pre + N[j] + post[k];
-          if (!isTop || isSequence || expansion) expansions.push(expansion);
+        var pre = m.pre;
+        var post = m.post.length ? expand(m.post, max, false) : [
+          "",
+        ];
+        var N;
+        if (isSequence) {
+          var x = numeric(n[0]);
+          var y = numeric(n[1]);
+          var width = Math.max(n[0].length, n[1].length);
+          var incr = n.length == 3 ? Math.max(Math.abs(numeric(n[2])), 1) : 1;
+          var test = lte;
+          var reverse = y < x;
+          if (reverse) {
+            incr *= -1;
+            test = gte;
+          }
+          var pad = n.some(isPadded);
+          N = [];
+          for (var i = x; test(i, y) && N.length < max; i += incr) {
+            var c;
+            if (isAlphaSequence) {
+              c = String.fromCharCode(i);
+              if (c === "\\") c = "";
+            } else {
+              c = String(i);
+              if (pad) {
+                var need = width - c.length;
+                if (need > 0) {
+                  var z = new Array(need + 1).join("0");
+                  if (i < 0) c = "-" + z + c.slice(1);
+                  else c = z + c;
+                }
+              }
+            }
+            N.push(c);
+          }
+        } else {
+          N = concatMap(n, function (el) {
+            return expand(el, max, false);
+          });
         }
+        for (var j = 0; j < N.length; j++) {
+          for (var k = 0; k < post.length && expansions.length < max; k++) {
+            var expansion = pre + N[j] + post[k];
+            if (!isTop || isSequence || expansion) expansions.push(expansion);
+          }
+        }
+        return expansions;
       }
-      return expansions;
     }
   },
 });
@@ -186316,7 +186321,7 @@ function getIgnoreAttributesFn(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/path-expression-matcher@1.6.1/node_modules/path-expression-matcher/src/Expression.js
+// node_modules/.deno/path-expression-matcher@1.6.2/node_modules/path-expression-matcher/src/Expression.js
 var Expression = class {
   /**
    * Create a new Expression
@@ -186494,7 +186499,7 @@ var Expression = class {
   }
 };
 
-// node_modules/.deno/path-expression-matcher@1.6.1/node_modules/path-expression-matcher/src/ExpressionSet.js
+// node_modules/.deno/path-expression-matcher@1.6.2/node_modules/path-expression-matcher/src/ExpressionSet.js
 var ExpressionSet = class {
   constructor() {
     this._byDepthAndTag = /* @__PURE__ */ new Map();
@@ -186671,7 +186676,7 @@ var ExpressionSet = class {
   }
 };
 
-// node_modules/.deno/path-expression-matcher@1.6.1/node_modules/path-expression-matcher/src/Matcher.js
+// node_modules/.deno/path-expression-matcher@1.6.2/node_modules/path-expression-matcher/src/Matcher.js
 var MatcherView = class {
   /**
    * @param {Matcher} matcher - The parent Matcher instance to read from.
@@ -186835,17 +186840,19 @@ var Matcher = class {
       this.path[this.path.length - 1].values = void 0;
     }
     const currentLevel = this.path.length;
-    if (!this.siblingStacks[currentLevel]) {
-      this.siblingStacks[currentLevel] = /* @__PURE__ */ new Map();
+    let level = this.siblingStacks[currentLevel];
+    if (!level) {
+      level = {
+        counts: /* @__PURE__ */ new Map(),
+        total: 0,
+      };
+      this.siblingStacks[currentLevel] = level;
     }
-    const siblings = this.siblingStacks[currentLevel];
     const siblingKey = namespace ? `${namespace}:${tagName}` : tagName;
-    const counter = siblings.get(siblingKey) || 0;
-    let position = 0;
-    for (const count of siblings.values()) {
-      position += count;
-    }
-    siblings.set(siblingKey, counter + 1);
+    const counter = level.counts.get(siblingKey) || 0;
+    const position = level.total;
+    level.counts.set(siblingKey, counter + 1);
+    level.total++;
     const node = {
       tag: tagName,
       position,
@@ -187187,7 +187194,14 @@ var Matcher = class {
       path: this.path.map((node) => ({
         ...node,
       })),
-      siblingStacks: this.siblingStacks.map((map) => new Map(map)),
+      siblingStacks: this.siblingStacks.map((level) =>
+        level
+          ? {
+            counts: new Map(level.counts),
+            total: level.total,
+          }
+          : level
+      ),
       keptAttrs: this._keptAttrs.map((entry) => ({
         ...entry,
       })),
@@ -187202,7 +187216,14 @@ var Matcher = class {
     this.path = snapshot2.path.map((node) => ({
       ...node,
     }));
-    this.siblingStacks = snapshot2.siblingStacks.map((map) => new Map(map));
+    this.siblingStacks = snapshot2.siblingStacks.map((level) =>
+      level
+        ? {
+          counts: new Map(level.counts),
+          total: level.total,
+        }
+        : level
+    );
     this._keptAttrs = (snapshot2.keptAttrs || []).map((entry) => ({
       ...entry,
     }));
@@ -189036,7 +189057,7 @@ var XMLParser = class {
   }
 };
 
-// node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/util.js
+// node_modules/.deno/fast-xml-builder@1.2.1/node_modules/fast-xml-builder/src/util.js
 function safeComment(val) {
   return String(val).replace(/--/g, "- -").replace(/--/g, "- -").replace(
     /-$/,
@@ -189050,7 +189071,7 @@ function escapeAttribute(val) {
   return String(val).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 }
 
-// node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/orderedJs2Xml.js
+// node_modules/.deno/fast-xml-builder@1.2.1/node_modules/fast-xml-builder/src/orderedJs2Xml.js
 var EOL7 = "\n";
 function detectXmlVersionFromArray(jArray, options) {
   if (!Array.isArray(jArray) || jArray.length === 0) return "1.0";
@@ -189347,7 +189368,7 @@ function replaceEntitiesValue2(textValue, options) {
   return textValue;
 }
 
-// node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-builder@1.2.1/node_modules/fast-xml-builder/src/ignoreAttributes.js
 function getIgnoreAttributesFn2(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -189367,7 +189388,7 @@ function getIgnoreAttributesFn2(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/fast-xml-builder@1.2.0/node_modules/fast-xml-builder/src/fxb.js
+// node_modules/.deno/fast-xml-builder@1.2.1/node_modules/fast-xml-builder/src/fxb.js
 var defaultOptions3 = {
   attributeNamePrefix: "@_",
   attributesGroupName: false,
@@ -189837,7 +189858,7 @@ Builder.prototype.buildAttributesForStopNode = function (obj) {
       if (val === true && this.options.suppressBooleanAttributes) {
         attrStr += " " + cleanKey;
       } else {
-        attrStr += " " + cleanKey + '="' + val + '"';
+        attrStr += " " + cleanKey + '="' + escapeAttribute(val) + '"';
       }
     }
   } else {
@@ -189849,7 +189870,7 @@ Builder.prototype.buildAttributesForStopNode = function (obj) {
         if (val === true && this.options.suppressBooleanAttributes) {
           attrStr += " " + attr;
         } else {
-          attrStr += " " + attr + '="' + val + '"';
+          attrStr += " " + attr + '="' + escapeAttribute(val) + '"';
         }
       }
     }
@@ -189881,7 +189902,8 @@ Builder.prototype.buildObjectNode = function (val, key, attrStr, level) {
       this.options.commentPropName !== false &&
       key === this.options.commentPropName && piClosingChar.length === 0
     ) {
-      return this.indentate(level) + `<!--${val}-->` + this.newLine;
+      return this.indentate(level) + `<!--${safeComment(val)}-->` +
+        this.newLine;
     } else {
       return this.indentate(level) + "<" + key + attrStr + piClosingChar +
         this.tagEndChar + val + this.indentate(level) + tagEndExp;
