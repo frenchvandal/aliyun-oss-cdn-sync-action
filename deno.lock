@@ -6,7 +6,7 @@
     "jsr:@std/collections@^1.3.0": "1.3.0",
     "jsr:@std/data-structures@^1.1.1": "1.1.1",
     "jsr:@std/encoding@^1.0.11": "1.0.11",
-    "npm:@actions/cache@^6.1.0": "6.1.0",
+    "npm:@actions/cache@^6.2.0": "6.2.0",
     "npm:@actions/core@^3.0.1": "3.0.1",
     "npm:@actions/exec@3": "3.0.0",
     "npm:@actions/io@^3.0.2": "3.0.2",
@@ -37,8 +37,8 @@
     }
   },
   "npm": {
-    "@actions/cache@6.1.0": {
-      "integrity": "sha512-LVqybSbzhBp2uAETOQ3HnVjXA4AcjavgMH+LCr+cjgO+PZfciv/1QAgoW+esXBaAhvDid+vXeV70GGJpAh4V5Q==",
+    "@actions/cache@6.2.0": {
+      "integrity": "sha512-Nv0xWRmbxfDbAn/70flO/F6tj2Nv4XTYMAsQHiDFSojCDfso/Zni+fRKa14ToI9hnmOW/rQcY1WYb6wsM7Pgwg==",
       "dependencies": [
         "@actions/core",
         "@actions/exec",
@@ -1041,7 +1041,7 @@
       "jsr:@std/async@^1.5.0",
       "jsr:@std/collections@^1.3.0",
       "jsr:@std/encoding@^1.0.11",
-      "npm:@actions/cache@^6.1.0",
+      "npm:@actions/cache@^6.2.0",
       "npm:@actions/core@^3.0.1",
       "npm:@actions/exec@3",
       "npm:@actions/io@^3.0.2",

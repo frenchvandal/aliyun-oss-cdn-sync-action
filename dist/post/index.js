@@ -174224,15 +174224,15 @@ var require_state_cjs = __commonJS({
   },
 });
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/package.json
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/package.json
 var require_package4 = __commonJS({
-  "node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/package.json"(
+  "node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/package.json"(
     exports2,
     module,
   ) {
     module.exports = {
       name: "@actions/cache",
-      version: "6.1.0",
+      version: "6.2.0",
       description: "Actions cache lib",
       keywords: [
         "github",
@@ -174301,9 +174301,9 @@ var require_package4 = __commonJS({
   },
 });
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/package-version.cjs
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/package-version.cjs
 var require_package_version = __commonJS({
-  "node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/package-version.cjs"(
+  "node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/package-version.cjs"(
     exports2,
     module,
   ) {
@@ -177114,7 +177114,7 @@ async function collectLocalObjectKeys(inputDir, prefix2) {
 import { mkdir as mkdir2 } from "node:fs/promises";
 import { resolve as resolve3 } from "node:path";
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/cache.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/cache.js
 import * as path13 from "node:path";
 
 // node_modules/.deno/@actions+glob@0.6.1/node_modules/@actions/glob/lib/internal-globber.js
@@ -177926,14 +177926,14 @@ function create(patterns, options) {
   });
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
 var semver = __toESM(require_semver3());
 import * as crypto4 from "node:crypto";
 import * as fs5 from "node:fs";
 import * as path11 from "node:path";
 import * as util2 from "node:util";
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/constants.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/constants.js
 var CacheFilename;
 (function (CacheFilename2) {
   CacheFilename2["Gzip"] = "cache.tgz";
@@ -177962,7 +177962,7 @@ var TarFilename = "cache.tar";
 var ManifestFilename = "manifest.txt";
 var CacheFileSizeLimit = 10 * Math.pow(1024, 3);
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
 var __awaiter12 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve4) {
@@ -178187,7 +178187,7 @@ function getRuntimeToken() {
   return token;
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/cacheHttpClient.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheHttpClient.js
 import * as fs8 from "node:fs";
 import { URL as URL2 } from "node:url";
 
@@ -220088,7 +220088,7 @@ var KnownEncryptionAlgorithmType2;
   KnownEncryptionAlgorithmType3["AES256"] = "AES256";
 })(KnownEncryptionAlgorithmType2 || (KnownEncryptionAlgorithmType2 = {}));
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/errors.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/errors.js
 var InvalidResponseError = class extends Error {
   constructor(message) {
     super(message);
@@ -220134,7 +220134,7 @@ var RateLimitError = class extends Error {
   }
 };
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/uploadUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/uploadUtils.js
 var __awaiter13 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve4) {
@@ -220296,13 +220296,13 @@ function uploadCacheArchiveSDK(signedUploadURL, archivePath, options) {
   });
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/downloadUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/downloadUtils.js
 import * as buffer2 from "node:buffer";
 import * as fs7 from "node:fs";
 import * as stream2 from "node:stream";
 import * as util5 from "node:util";
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/requestUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/requestUtils.js
 var __awaiter14 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve4) {
@@ -220469,7 +220469,7 @@ function retryHttpClientResponse(name_1, method_1) {
   );
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/options.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/options.js
 function getUploadOptions(copy) {
   const result = {
     useAzureSdk: false,
@@ -220504,7 +220504,7 @@ function getUploadOptions(copy) {
   return result;
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/config.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/config.js
 function isGhes() {
   const ghUrl = new URL(
     process.env["GITHUB_SERVER_URL"] || "https://github.com",
@@ -220519,6 +220519,19 @@ function getCacheServiceVersion() {
   if (isGhes()) return "v1";
   return process.env["ACTIONS_CACHE_SERVICE_V2"] ? "v2" : "v1";
 }
+var KNOWN_CACHE_MODES = [
+  "none",
+  "read",
+  "write",
+  "write-only",
+];
+function getCacheMode() {
+  return (process.env["ACTIONS_CACHE_MODE"] || "").trim().toLowerCase();
+}
+function isCacheWritable(mode) {
+  if (!KNOWN_CACHE_MODES.includes(mode)) return true;
+  return mode === "write" || mode === "write-only";
+}
 function getCacheServiceURL() {
   const version3 = getCacheServiceVersion();
   switch (version3) {
@@ -220532,13 +220545,13 @@ function getCacheServiceURL() {
   }
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/user-agent.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/user-agent.js
 var import_package_version = __toESM(require_package_version());
 function getUserAgentString2() {
   return `@actions/cache-${import_package_version.version}`;
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/cacheHttpClient.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheHttpClient.js
 var __awaiter15 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve4) {
@@ -223490,7 +223503,7 @@ var ServiceType = class {
   }
 };
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/generated/results/entities/v1/cachescope.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/generated/results/entities/v1/cachescope.js
 var CacheScope$Type = class extends MessageType {
   constructor() {
     super("github.actions.results.entities.v1.CacheScope", [
@@ -223577,7 +223590,7 @@ var CacheScope$Type = class extends MessageType {
 };
 var CacheScope = new CacheScope$Type();
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/generated/results/entities/v1/cachemetadata.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/generated/results/entities/v1/cachemetadata.js
 var CacheMetadata$Type = class extends MessageType {
   constructor() {
     super("github.actions.results.entities.v1.CacheMetadata", [
@@ -223670,7 +223683,7 @@ var CacheMetadata$Type = class extends MessageType {
 };
 var CacheMetadata = new CacheMetadata$Type();
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/generated/results/api/v1/cache.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/generated/results/api/v1/cache.js
 var CreateCacheEntryRequest$Type = class extends MessageType {
   constructor() {
     super("github.actions.results.api.v1.CreateCacheEntryRequest", [
@@ -224345,7 +224358,7 @@ var CacheService = new ServiceType(
   ],
 );
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/generated/results/api/v1/cache.twirp-client.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/generated/results/api/v1/cache.twirp-client.js
 var CacheServiceClientJSON = class {
   constructor(rpc) {
     this.rpc = rpc;
@@ -224406,7 +224419,7 @@ var CacheServiceClientJSON = class {
   }
 };
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/util.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/util.js
 function maskSigUrl(url2) {
   if (!url2) return;
   try {
@@ -224442,7 +224455,7 @@ function maskSecretUrls(body2) {
   }
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/cacheTwirpClient.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/cacheTwirpClient.js
 var __awaiter16 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve4) {
@@ -224649,7 +224662,7 @@ function internalCacheTwirpClient(options) {
   return new CacheServiceClientJSON(client);
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/tar.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/tar.js
 import {
   existsSync as existsSync3,
   writeFileSync as writeFileSync2,
@@ -224954,7 +224967,7 @@ function createTar(archiveFolder, sourceDirectories, compressionMethod) {
   });
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/cache.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/cache.js
 var __awaiter18 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve4) {
@@ -225044,6 +225057,16 @@ function saveCache2(paths_1, key_1, options_1) {
       debug(`Cache service version: ${cacheServiceVersion}`);
       checkPaths(paths);
       checkKey(key);
+      const cacheMode = getCacheMode();
+      if (!isCacheWritable(cacheMode)) {
+        info(
+          `Cache save skipped: the effective cache-mode '${cacheMode}' does not permit writes.`,
+        );
+        debug(
+          `Skipped save for paths [${paths.join(", ")}] with key '${key}'.`,
+        );
+        return -1;
+      }
       switch (cacheServiceVersion) {
         case "v2":
           return yield saveCacheV2(paths, key, options, enableCrossOsArchive);
@@ -225162,8 +225185,6 @@ function saveCacheV1(paths_1, key_1, options_1) {
         const typedError = error2;
         if (typedError.name === ValidationError.name) {
           throw error2;
-        } else if (typedError.name === CacheWriteDeniedError.name) {
-          warning(`Failed to save: ${typedError.message}`);
         } else if (typedError.name === ReserveCacheError.name) {
           info(`Failed to save: ${typedError.message}`);
         } else {
@@ -225288,8 +225309,6 @@ function saveCacheV2(paths_1, key_1, options_1) {
         const typedError = error2;
         if (typedError.name === ValidationError.name) {
           throw error2;
-        } else if (typedError.name === CacheWriteDeniedError.name) {
-          warning(`Failed to save: ${typedError.message}`);
         } else if (typedError.name === ReserveCacheError.name) {
           info(`Failed to save: ${typedError.message}`);
         } else if (typedError.name === FinalizeCacheError.name) {

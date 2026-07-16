@@ -173704,15 +173704,15 @@ var require_state_cjs = __commonJS({
   },
 });
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/package.json
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/package.json
 var require_package4 = __commonJS({
-  "node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/package.json"(
+  "node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/package.json"(
     exports2,
     module,
   ) {
     module.exports = {
       name: "@actions/cache",
-      version: "6.1.0",
+      version: "6.2.0",
       description: "Actions cache lib",
       keywords: [
         "github",
@@ -173781,9 +173781,9 @@ var require_package4 = __commonJS({
   },
 });
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/package-version.cjs
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/package-version.cjs
 var require_package_version = __commonJS({
-  "node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/package-version.cjs"(
+  "node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/package-version.cjs"(
     exports2,
     module,
   ) {
@@ -177023,7 +177023,7 @@ function firstNonEmptyLine(value) {
 import { mkdir as mkdir2 } from "node:fs/promises";
 import { resolve as resolve3 } from "node:path";
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/cache.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/cache.js
 import * as path13 from "node:path";
 
 // node_modules/.deno/@actions+glob@0.6.1/node_modules/@actions/glob/lib/internal-globber.js
@@ -177072,14 +177072,14 @@ import * as stream from "node:stream";
 import * as util from "node:util";
 import * as path10 from "node:path";
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
 var semver = __toESM(require_semver3());
 import * as crypto4 from "node:crypto";
 import * as fs5 from "node:fs";
 import * as path11 from "node:path";
 import * as util2 from "node:util";
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/constants.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/constants.js
 var CacheFilename;
 (function (CacheFilename2) {
   CacheFilename2["Gzip"] = "cache.tgz";
@@ -177108,8 +177108,9 @@ var SystemTarPathOnWindows = `${
 var TarFilename = "cache.tar";
 var ManifestFilename = "manifest.txt";
 var CacheFileSizeLimit = 10 * Math.pow(1024, 3);
+var CacheReadDeniedMessagePrefix = "cache read denied:";
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
 var __awaiter10 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve5) {
@@ -177250,7 +177251,7 @@ function getRuntimeToken() {
   return token;
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/cacheHttpClient.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheHttpClient.js
 import * as fs8 from "node:fs";
 import { URL as URL2 } from "node:url";
 
@@ -219151,7 +219152,7 @@ var KnownEncryptionAlgorithmType2;
   KnownEncryptionAlgorithmType3["AES256"] = "AES256";
 })(KnownEncryptionAlgorithmType2 || (KnownEncryptionAlgorithmType2 = {}));
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/errors.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/errors.js
 var NetworkError = class extends Error {
   constructor(code) {
     const message = `Unable to make request: ${code}
@@ -219191,13 +219192,13 @@ var RateLimitError = class extends Error {
   }
 };
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/downloadUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/downloadUtils.js
 import * as buffer2 from "node:buffer";
 import * as fs7 from "node:fs";
 import * as stream2 from "node:stream";
 import * as util5 from "node:util";
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/requestUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/requestUtils.js
 var __awaiter11 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve5) {
@@ -219364,7 +219365,7 @@ function retryHttpClientResponse(name_1, method_1) {
   );
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/downloadUtils.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/downloadUtils.js
 var __awaiter12 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve5) {
@@ -219743,7 +219744,7 @@ var promiseWithTimeout = (timeoutMs, promise) =>
     });
   });
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/options.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/options.js
 function getDownloadOptions(copy) {
   const result = {
     useAzureSdk: false,
@@ -219794,7 +219795,7 @@ function getDownloadOptions(copy) {
   return result;
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/config.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/config.js
 function isGhes() {
   const ghUrl = new URL(
     process.env["GITHUB_SERVER_URL"] || "https://github.com",
@@ -219809,6 +219810,19 @@ function getCacheServiceVersion() {
   if (isGhes()) return "v1";
   return process.env["ACTIONS_CACHE_SERVICE_V2"] ? "v2" : "v1";
 }
+var KNOWN_CACHE_MODES = [
+  "none",
+  "read",
+  "write",
+  "write-only",
+];
+function getCacheMode() {
+  return (process.env["ACTIONS_CACHE_MODE"] || "").trim().toLowerCase();
+}
+function isCacheReadable(mode) {
+  if (!KNOWN_CACHE_MODES.includes(mode)) return true;
+  return mode === "read" || mode === "write";
+}
 function getCacheServiceURL() {
   const version3 = getCacheServiceVersion();
   switch (version3) {
@@ -219822,13 +219836,13 @@ function getCacheServiceURL() {
   }
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/user-agent.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/user-agent.js
 var import_package_version = __toESM(require_package_version());
 function getUserAgentString2() {
   return `@actions/cache-${import_package_version.version}`;
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/cacheHttpClient.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheHttpClient.js
 var __awaiter13 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve5) {
@@ -219887,6 +219901,7 @@ function createHttpClient() {
 }
 function getCacheEntry(keys, paths, options) {
   return __awaiter13(this, void 0, void 0, function* () {
+    var _a;
     const httpClient = createHttpClient();
     const version3 = getCacheVersion(
       paths,
@@ -219914,6 +219929,16 @@ function getCacheEntry(keys, paths, options) {
       return null;
     }
     if (!isSuccessStatusCode(response.statusCode)) {
+      const errorMessage2 = (_a = response.error) === null || _a === void 0
+        ? void 0
+        : _a.message;
+      if (
+        errorMessage2 === null || errorMessage2 === void 0
+          ? void 0
+          : errorMessage2.includes(CacheReadDeniedMessagePrefix)
+      ) {
+        throw new Error(errorMessage2);
+      }
       throw new Error(`Cache service responded with ${response.statusCode}`);
     }
     const cacheResult = response.result;
@@ -222727,7 +222752,7 @@ var ServiceType = class {
   }
 };
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/generated/results/entities/v1/cachescope.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/generated/results/entities/v1/cachescope.js
 var CacheScope$Type = class extends MessageType {
   constructor() {
     super("github.actions.results.entities.v1.CacheScope", [
@@ -222814,7 +222839,7 @@ var CacheScope$Type = class extends MessageType {
 };
 var CacheScope = new CacheScope$Type();
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/generated/results/entities/v1/cachemetadata.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/generated/results/entities/v1/cachemetadata.js
 var CacheMetadata$Type = class extends MessageType {
   constructor() {
     super("github.actions.results.entities.v1.CacheMetadata", [
@@ -222907,7 +222932,7 @@ var CacheMetadata$Type = class extends MessageType {
 };
 var CacheMetadata = new CacheMetadata$Type();
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/generated/results/api/v1/cache.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/generated/results/api/v1/cache.js
 var CreateCacheEntryRequest$Type = class extends MessageType {
   constructor() {
     super("github.actions.results.api.v1.CreateCacheEntryRequest", [
@@ -223582,7 +223607,7 @@ var CacheService = new ServiceType(
   ],
 );
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/generated/results/api/v1/cache.twirp-client.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/generated/results/api/v1/cache.twirp-client.js
 var CacheServiceClientJSON = class {
   constructor(rpc) {
     this.rpc = rpc;
@@ -223643,7 +223668,7 @@ var CacheServiceClientJSON = class {
   }
 };
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/util.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/util.js
 function maskSigUrl(url2) {
   if (!url2) return;
   try {
@@ -223679,7 +223704,7 @@ function maskSecretUrls(body2) {
   }
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/shared/cacheTwirpClient.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/shared/cacheTwirpClient.js
 var __awaiter14 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve5) {
@@ -223886,7 +223911,7 @@ function internalCacheTwirpClient(options) {
   return new CacheServiceClientJSON(client);
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/internal/tar.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/tar.js
 import {
   existsSync as existsSync3,
   writeFileSync as writeFileSync2,
@@ -224193,7 +224218,7 @@ function extractTar(archivePath, compressionMethod) {
   });
 }
 
-// node_modules/.deno/@actions+cache@6.1.0/node_modules/@actions/cache/lib/cache.js
+// node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/cache.js
 var __awaiter16 = function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve5) {
@@ -224228,6 +224253,14 @@ var ValidationError = class _ValidationError extends Error {
     super(message);
     this.name = "ValidationError";
     Object.setPrototypeOf(this, _ValidationError.prototype);
+  }
+};
+var CACHE_READ_DENIED_PREFIX = CacheReadDeniedMessagePrefix;
+var CacheReadDeniedError = class _CacheReadDeniedError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "CacheReadDeniedError";
+    Object.setPrototypeOf(this, _CacheReadDeniedError.prototype);
   }
 };
 function checkPaths(paths) {
@@ -224265,6 +224298,18 @@ function restoreCache(paths_1, primaryKey_1, restoreKeys_1, options_1) {
       const cacheServiceVersion = getCacheServiceVersion();
       debug(`Cache service version: ${cacheServiceVersion}`);
       checkPaths(paths);
+      const cacheMode = getCacheMode();
+      if (!isCacheReadable(cacheMode)) {
+        info(
+          `Cache restore skipped: the effective cache-mode '${cacheMode}' does not permit reads.`,
+        );
+        debug(
+          `Skipped restore for paths [${
+            paths.join(", ")
+          }] with primary key '${primaryKey}'.`,
+        );
+        return void 0;
+      }
       switch (cacheServiceVersion) {
         case "v2":
           return yield restoreCacheV2(
@@ -224299,6 +224344,7 @@ function restoreCacheV1(paths_1, primaryKey_1, restoreKeys_1, options_1) {
       options,
       enableCrossOsArchive = false,
     ) {
+      var _a;
       restoreKeys = restoreKeys || [];
       const keys = [
         primaryKey,
@@ -224317,10 +224363,23 @@ function restoreCacheV1(paths_1, primaryKey_1, restoreKeys_1, options_1) {
       const compressionMethod = yield getCompressionMethod();
       let archivePath = "";
       try {
-        const cacheEntry = yield getCacheEntry(keys, paths, {
-          compressionMethod,
-          enableCrossOsArchive,
-        });
+        let cacheEntry;
+        try {
+          cacheEntry = yield getCacheEntry(keys, paths, {
+            compressionMethod,
+            enableCrossOsArchive,
+          });
+        } catch (error2) {
+          const errorMessage2 = (_a = error2 === null || error2 === void 0
+                  ? void 0
+                  : error2.message) !== null && _a !== void 0
+            ? _a
+            : "";
+          if (errorMessage2.includes(CACHE_READ_DENIED_PREFIX)) {
+            throw new CacheReadDeniedError(errorMessage2);
+          }
+          throw error2;
+        }
         if (
           !(cacheEntry === null || cacheEntry === void 0
             ? void 0
@@ -224390,6 +224449,7 @@ function restoreCacheV2(paths_1, primaryKey_1, restoreKeys_1, options_1) {
       options,
       enableCrossOsArchive = false,
     ) {
+      var _a;
       options = Object.assign(Object.assign({}, options), {
         useAzureSdk: true,
       });
@@ -224421,7 +224481,20 @@ function restoreCacheV2(paths_1, primaryKey_1, restoreKeys_1, options_1) {
             enableCrossOsArchive,
           ),
         };
-        const response = yield twirpClient.GetCacheEntryDownloadURL(request);
+        let response;
+        try {
+          response = yield twirpClient.GetCacheEntryDownloadURL(request);
+        } catch (error2) {
+          const errorMessage2 = (_a = error2 === null || error2 === void 0
+                  ? void 0
+                  : error2.message) !== null && _a !== void 0
+            ? _a
+            : "";
+          if (errorMessage2.includes(CACHE_READ_DENIED_PREFIX)) {
+            throw new CacheReadDeniedError(errorMessage2);
+          }
+          throw error2;
+        }
         if (!response.ok) {
           debug(
             `Cache not found for version ${request.version} of keys: ${
