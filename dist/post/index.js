@@ -4611,15 +4611,15 @@ var require_util2 = __commonJS({
     var { isUint8Array } = __require("node:util/types");
     var { webidl } = require_webidl();
     var supportedHashes = [];
-    var crypto5;
+    var crypto4;
     try {
-      crypto5 = __require("node:crypto");
+      crypto4 = __require("node:crypto");
       const possibleRelevantHashes = [
         "sha256",
         "sha384",
         "sha512",
       ];
-      supportedHashes = crypto5.getHashes().filter((hash) =>
+      supportedHashes = crypto4.getHashes().filter((hash) =>
         possibleRelevantHashes.includes(hash)
       );
     } catch {
@@ -4947,7 +4947,7 @@ var require_util2 = __commonJS({
       }
     }
     function bytesMatch(bytes, metadataList) {
-      if (crypto5 === void 0) {
+      if (crypto4 === void 0) {
         return true;
       }
       const parsedMetadata = parseMetadata(metadataList);
@@ -4965,7 +4965,7 @@ var require_util2 = __commonJS({
       for (const item of metadata2) {
         const algorithm = item.algo;
         const expectedValue = item.hash;
-        let actualValue = crypto5.createHash(algorithm).update(bytes).digest(
+        let actualValue = crypto4.createHash(algorithm).update(bytes).digest(
           "base64",
         );
         if (actualValue[actualValue.length - 1] === "=") {
@@ -6231,8 +6231,8 @@ var require_body = __commonJS({
     var { multipartFormDataParser } = require_formdata_parser();
     var random;
     try {
-      const crypto5 = __require("node:crypto");
-      random = (max) => crypto5.randomInt(0, max);
+      const crypto4 = __require("node:crypto");
+      random = (max) => crypto4.randomInt(0, max);
     } catch {
       random = (max) => Math.floor(Math.random(max));
     }
@@ -19876,13 +19876,13 @@ var require_frame = __commonJS({
     "use strict";
     var { maxUnsigned16Bit } = require_constants5();
     var BUFFER_SIZE = 16386;
-    var crypto5;
+    var crypto4;
     var buffer3 = null;
     var bufIdx = BUFFER_SIZE;
     try {
-      crypto5 = __require("node:crypto");
+      crypto4 = __require("node:crypto");
     } catch {
-      crypto5 = {
+      crypto4 = {
         // not full compatibility, but minimum.
         randomFillSync: function randomFillSync(buffer4, _offset, _size) {
           for (let i = 0; i < buffer4.length; ++i) {
@@ -19895,7 +19895,7 @@ var require_frame = __commonJS({
     function generateMask() {
       if (bufIdx === BUFFER_SIZE) {
         bufIdx = 0;
-        crypto5.randomFillSync(
+        crypto4.randomFillSync(
           buffer3 ??= Buffer.allocUnsafe(BUFFER_SIZE),
           0,
           BUFFER_SIZE,
@@ -19982,9 +19982,9 @@ var require_connection = __commonJS({
     var { Headers: Headers2, getHeadersList } = require_headers();
     var { getDecodeSplit } = require_util2();
     var { WebsocketFrameSend } = require_frame();
-    var crypto5;
+    var crypto4;
     try {
-      crypto5 = __require("node:crypto");
+      crypto4 = __require("node:crypto");
     } catch {
     }
     function establishWebSocketConnection(
@@ -20013,7 +20013,7 @@ var require_connection = __commonJS({
         const headersList = getHeadersList(new Headers2(options.headers));
         request.headersList = headersList;
       }
-      const keyValue = crypto5.randomBytes(16).toString("base64");
+      const keyValue = crypto4.randomBytes(16).toString("base64");
       request.headersList.append("sec-websocket-key", keyValue);
       request.headersList.append("sec-websocket-version", "13");
       for (const protocol of protocols) {
@@ -20062,7 +20062,7 @@ var require_connection = __commonJS({
             return;
           }
           const secWSAccept = response.headersList.get("Sec-WebSocket-Accept");
-          const digest = crypto5.createHash("sha1").update(keyValue + uid)
+          const digest = crypto4.createHash("sha1").update(keyValue + uid)
             .digest("base64");
           if (secWSAccept !== digest) {
             failWebsocketConnection(
@@ -23089,9 +23089,9 @@ var require_lib = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/retry.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/retry.js
 var require_retry2 = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/retry.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/retry.js"(
     exports2,
   ) {
     "use strict";
@@ -23378,9 +23378,9 @@ var require_retry2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/error.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/error.js
 var require_error = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/error.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/error.js"(
     exports2,
   ) {
     "use strict";
@@ -24236,9 +24236,9 @@ var require_tea = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/core.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/core.js
 var require_core = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/core.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/core.js"(
     exports2,
   ) {
     "use strict";
@@ -24933,7 +24933,11 @@ var require_core = __commonJS({
       function (_super) {
         __extends(RuntimeOptions2, _super);
         function RuntimeOptions2(map) {
-          return _super.call(this, map) || this;
+          var _this = _super.call(this, map) || this;
+          if (map && map.webSocketHandler) {
+            _this.webSocketHandler = map.webSocketHandler;
+          }
+          return _this;
         }
         RuntimeOptions2.names = function () {
           return {
@@ -24953,6 +24957,15 @@ var require_core = __commonJS({
             maxIdleConns: "maxIdleConns",
             keepAlive: "keepAlive",
             extendsParameters: "extendsParameters",
+            webSocketPingInterval: "webSocketPingInterval",
+            webSocketPongTimeout: "webSocketPongTimeout",
+            webSocketEnableReconnect: "webSocketEnableReconnect",
+            webSocketReconnectInterval: "webSocketReconnectInterval",
+            webSocketMaxReconnectTimes: "webSocketMaxReconnectTimes",
+            webSocketWriteTimeout: "webSocketWriteTimeout",
+            webSocketHandshakeTimeout: "webSocketHandshakeTimeout",
+            socks5Proxy: "socks5Proxy",
+            socks5NetWork: "socks5NetWork",
           };
         };
         RuntimeOptions2.types = function () {
@@ -24974,6 +24987,15 @@ var require_core = __commonJS({
             maxIdleConns: "number",
             keepAlive: "boolean",
             extendsParameters: ExtendsParameters,
+            webSocketPingInterval: "number",
+            webSocketPongTimeout: "number",
+            webSocketEnableReconnect: "boolean",
+            webSocketReconnectInterval: "number",
+            webSocketMaxReconnectTimes: "number",
+            webSocketWriteTimeout: "number",
+            webSocketHandshakeTimeout: "number",
+            socks5Proxy: "string",
+            socks5NetWork: "string",
           };
         };
         return RuntimeOptions2;
@@ -25147,6 +25169,11781 @@ var require_core = __commonJS({
       return err.name === "RetryError";
     }
     exports2.isRetryable = isRetryable;
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/constants.js
+var require_constants6 = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/constants.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var BINARY_TYPES = [
+      "nodebuffer",
+      "arraybuffer",
+      "fragments",
+    ];
+    var hasBlob = typeof Blob !== "undefined";
+    if (hasBlob) BINARY_TYPES.push("blob");
+    module.exports = {
+      BINARY_TYPES,
+      CLOSE_TIMEOUT: 3e4,
+      EMPTY_BUFFER: Buffer.alloc(0),
+      GUID: "258EAFA5-E914-47DA-95CA-C5AB0DC85B11",
+      hasBlob,
+      kForOnEventAttribute: Symbol("kIsForOnEventAttribute"),
+      kListener: Symbol("kListener"),
+      kStatusCode: Symbol("status-code"),
+      kWebSocket: Symbol("websocket"),
+      NOOP: () => {
+      },
+    };
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/buffer-util.js
+var require_buffer_util = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/buffer-util.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var { EMPTY_BUFFER } = require_constants6();
+    var FastBuffer = Buffer[Symbol.species];
+    function concat2(list, totalLength) {
+      if (list.length === 0) return EMPTY_BUFFER;
+      if (list.length === 1) return list[0];
+      const target = Buffer.allocUnsafe(totalLength);
+      let offset = 0;
+      for (let i = 0; i < list.length; i++) {
+        const buf = list[i];
+        target.set(buf, offset);
+        offset += buf.length;
+      }
+      if (offset < totalLength) {
+        return new FastBuffer(target.buffer, target.byteOffset, offset);
+      }
+      return target;
+    }
+    function _mask(source, mask, output, offset, length) {
+      for (let i = 0; i < length; i++) {
+        output[offset + i] = source[i] ^ mask[i & 3];
+      }
+    }
+    function _unmask(buffer3, mask) {
+      for (let i = 0; i < buffer3.length; i++) {
+        buffer3[i] ^= mask[i & 3];
+      }
+    }
+    function toArrayBuffer(buf) {
+      if (buf.length === buf.buffer.byteLength) {
+        return buf.buffer;
+      }
+      return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.length);
+    }
+    function toBuffer(data) {
+      toBuffer.readOnly = true;
+      if (Buffer.isBuffer(data)) return data;
+      let buf;
+      if (data instanceof ArrayBuffer) {
+        buf = new FastBuffer(data);
+      } else if (ArrayBuffer.isView(data)) {
+        buf = new FastBuffer(data.buffer, data.byteOffset, data.byteLength);
+      } else {
+        buf = Buffer.from(data);
+        toBuffer.readOnly = false;
+      }
+      return buf;
+    }
+    module.exports = {
+      concat: concat2,
+      mask: _mask,
+      toArrayBuffer,
+      toBuffer,
+      unmask: _unmask,
+    };
+    if (!process.env.WS_NO_BUFFER_UTIL) {
+      try {
+        const bufferUtil = __require("bufferutil");
+        module.exports.mask = function (source, mask, output, offset, length) {
+          if (length < 48) _mask(source, mask, output, offset, length);
+          else bufferUtil.mask(source, mask, output, offset, length);
+        };
+        module.exports.unmask = function (buffer3, mask) {
+          if (buffer3.length < 32) _unmask(buffer3, mask);
+          else bufferUtil.unmask(buffer3, mask);
+        };
+      } catch (e) {
+      }
+    }
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/limiter.js
+var require_limiter = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/limiter.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var kDone = Symbol("kDone");
+    var kRun = Symbol("kRun");
+    var Limiter = class {
+      /**
+       * Creates a new `Limiter`.
+       *
+       * @param {Number} [concurrency=Infinity] The maximum number of jobs allowed
+       *     to run concurrently
+       */
+      constructor(concurrency) {
+        this[kDone] = () => {
+          this.pending--;
+          this[kRun]();
+        };
+        this.concurrency = concurrency || Infinity;
+        this.jobs = [];
+        this.pending = 0;
+      }
+      /**
+       * Adds a job to the queue.
+       *
+       * @param {Function} job The job to run
+       * @public
+       */
+      add(job) {
+        this.jobs.push(job);
+        this[kRun]();
+      }
+      /**
+       * Removes a job from the queue and runs it if possible.
+       *
+       * @private
+       */
+      [kRun]() {
+        if (this.pending === this.concurrency) return;
+        if (this.jobs.length) {
+          const job = this.jobs.shift();
+          this.pending++;
+          job(this[kDone]);
+        }
+      }
+    };
+    module.exports = Limiter;
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/permessage-deflate.js
+var require_permessage_deflate2 = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/permessage-deflate.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var zlib2 = __require("node:zlib");
+    var bufferUtil = require_buffer_util();
+    var Limiter = require_limiter();
+    var { kStatusCode } = require_constants6();
+    var FastBuffer = Buffer[Symbol.species];
+    var TRAILER = Buffer.from([
+      0,
+      0,
+      255,
+      255,
+    ]);
+    var kPerMessageDeflate = Symbol("permessage-deflate");
+    var kTotalLength = Symbol("total-length");
+    var kCallback = Symbol("callback");
+    var kBuffers = Symbol("buffers");
+    var kError = Symbol("error");
+    var zlibLimiter;
+    var PerMessageDeflate = class {
+      /**
+       * Creates a PerMessageDeflate instance.
+       *
+       * @param {Object} [options] Configuration options
+       * @param {(Boolean|Number)} [options.clientMaxWindowBits] Advertise support
+       *     for, or request, a custom client window size
+       * @param {Boolean} [options.clientNoContextTakeover=false] Advertise/
+       *     acknowledge disabling of client context takeover
+       * @param {Number} [options.concurrencyLimit=10] The number of concurrent
+       *     calls to zlib
+       * @param {Boolean} [options.isServer=false] Create the instance in either
+       *     server or client mode
+       * @param {Number} [options.maxPayload=0] The maximum allowed message length
+       * @param {(Boolean|Number)} [options.serverMaxWindowBits] Request/confirm the
+       *     use of a custom server window size
+       * @param {Boolean} [options.serverNoContextTakeover=false] Request/accept
+       *     disabling of server context takeover
+       * @param {Number} [options.threshold=1024] Size (in bytes) below which
+       *     messages should not be compressed if context takeover is disabled
+       * @param {Object} [options.zlibDeflateOptions] Options to pass to zlib on
+       *     deflate
+       * @param {Object} [options.zlibInflateOptions] Options to pass to zlib on
+       *     inflate
+       */
+      constructor(options) {
+        this._options = options || {};
+        this._threshold = this._options.threshold !== void 0
+          ? this._options.threshold
+          : 1024;
+        this._maxPayload = this._options.maxPayload | 0;
+        this._isServer = !!this._options.isServer;
+        this._deflate = null;
+        this._inflate = null;
+        this.params = null;
+        if (!zlibLimiter) {
+          const concurrency = this._options.concurrencyLimit !== void 0
+            ? this._options.concurrencyLimit
+            : 10;
+          zlibLimiter = new Limiter(concurrency);
+        }
+      }
+      /**
+       * @type {String}
+       */
+      static get extensionName() {
+        return "permessage-deflate";
+      }
+      /**
+       * Create an extension negotiation offer.
+       *
+       * @return {Object} Extension parameters
+       * @public
+       */
+      offer() {
+        const params = {};
+        if (this._options.serverNoContextTakeover) {
+          params.server_no_context_takeover = true;
+        }
+        if (this._options.clientNoContextTakeover) {
+          params.client_no_context_takeover = true;
+        }
+        if (this._options.serverMaxWindowBits) {
+          params.server_max_window_bits = this._options.serverMaxWindowBits;
+        }
+        if (this._options.clientMaxWindowBits) {
+          params.client_max_window_bits = this._options.clientMaxWindowBits;
+        } else if (this._options.clientMaxWindowBits == null) {
+          params.client_max_window_bits = true;
+        }
+        return params;
+      }
+      /**
+       * Accept an extension negotiation offer/response.
+       *
+       * @param {Array} configurations The extension negotiation offers/reponse
+       * @return {Object} Accepted configuration
+       * @public
+       */
+      accept(configurations) {
+        configurations = this.normalizeParams(configurations);
+        this.params = this._isServer
+          ? this.acceptAsServer(configurations)
+          : this.acceptAsClient(configurations);
+        return this.params;
+      }
+      /**
+       * Releases all resources used by the extension.
+       *
+       * @public
+       */
+      cleanup() {
+        if (this._inflate) {
+          this._inflate.close();
+          this._inflate = null;
+        }
+        if (this._deflate) {
+          const callback = this._deflate[kCallback];
+          this._deflate.close();
+          this._deflate = null;
+          if (callback) {
+            callback(
+              new Error(
+                "The deflate stream was closed while data was being processed",
+              ),
+            );
+          }
+        }
+      }
+      /**
+       *  Accept an extension negotiation offer.
+       *
+       * @param {Array} offers The extension negotiation offers
+       * @return {Object} Accepted configuration
+       * @private
+       */
+      acceptAsServer(offers) {
+        const opts = this._options;
+        const accepted = offers.find((params) => {
+          if (
+            opts.serverNoContextTakeover === false &&
+              params.server_no_context_takeover ||
+            params.server_max_window_bits &&
+              (opts.serverMaxWindowBits === false ||
+                typeof opts.serverMaxWindowBits === "number" &&
+                  opts.serverMaxWindowBits > params.server_max_window_bits) ||
+            typeof opts.clientMaxWindowBits === "number" &&
+              !params.client_max_window_bits
+          ) {
+            return false;
+          }
+          return true;
+        });
+        if (!accepted) {
+          throw new Error("None of the extension offers can be accepted");
+        }
+        if (opts.serverNoContextTakeover) {
+          accepted.server_no_context_takeover = true;
+        }
+        if (opts.clientNoContextTakeover) {
+          accepted.client_no_context_takeover = true;
+        }
+        if (typeof opts.serverMaxWindowBits === "number") {
+          accepted.server_max_window_bits = opts.serverMaxWindowBits;
+        }
+        if (typeof opts.clientMaxWindowBits === "number") {
+          accepted.client_max_window_bits = opts.clientMaxWindowBits;
+        } else if (
+          accepted.client_max_window_bits === true ||
+          opts.clientMaxWindowBits === false
+        ) {
+          delete accepted.client_max_window_bits;
+        }
+        return accepted;
+      }
+      /**
+       * Accept the extension negotiation response.
+       *
+       * @param {Array} response The extension negotiation response
+       * @return {Object} Accepted configuration
+       * @private
+       */
+      acceptAsClient(response) {
+        const params = response[0];
+        if (
+          this._options.clientNoContextTakeover === false &&
+          params.client_no_context_takeover
+        ) {
+          throw new Error('Unexpected parameter "client_no_context_takeover"');
+        }
+        if (!params.client_max_window_bits) {
+          if (typeof this._options.clientMaxWindowBits === "number") {
+            params.client_max_window_bits = this._options.clientMaxWindowBits;
+          }
+        } else if (
+          this._options.clientMaxWindowBits === false ||
+          typeof this._options.clientMaxWindowBits === "number" &&
+            params.client_max_window_bits > this._options.clientMaxWindowBits
+        ) {
+          throw new Error(
+            'Unexpected or invalid parameter "client_max_window_bits"',
+          );
+        }
+        return params;
+      }
+      /**
+       * Normalize parameters.
+       *
+       * @param {Array} configurations The extension negotiation offers/reponse
+       * @return {Array} The offers/response with normalized parameters
+       * @private
+       */
+      normalizeParams(configurations) {
+        configurations.forEach((params) => {
+          Object.keys(params).forEach((key) => {
+            let value = params[key];
+            if (value.length > 1) {
+              throw new Error(
+                `Parameter "${key}" must have only a single value`,
+              );
+            }
+            value = value[0];
+            if (key === "client_max_window_bits") {
+              if (value !== true) {
+                const num = +value;
+                if (!Number.isInteger(num) || num < 8 || num > 15) {
+                  throw new TypeError(
+                    `Invalid value for parameter "${key}": ${value}`,
+                  );
+                }
+                value = num;
+              } else if (!this._isServer) {
+                throw new TypeError(
+                  `Invalid value for parameter "${key}": ${value}`,
+                );
+              }
+            } else if (key === "server_max_window_bits") {
+              const num = +value;
+              if (!Number.isInteger(num) || num < 8 || num > 15) {
+                throw new TypeError(
+                  `Invalid value for parameter "${key}": ${value}`,
+                );
+              }
+              value = num;
+            } else if (
+              key === "client_no_context_takeover" ||
+              key === "server_no_context_takeover"
+            ) {
+              if (value !== true) {
+                throw new TypeError(
+                  `Invalid value for parameter "${key}": ${value}`,
+                );
+              }
+            } else {
+              throw new Error(`Unknown parameter "${key}"`);
+            }
+            params[key] = value;
+          });
+        });
+        return configurations;
+      }
+      /**
+       * Decompress data. Concurrency limited.
+       *
+       * @param {Buffer} data Compressed data
+       * @param {Boolean} fin Specifies whether or not this is the last fragment
+       * @param {Function} callback Callback
+       * @public
+       */
+      decompress(data, fin, callback) {
+        zlibLimiter.add((done) => {
+          this._decompress(data, fin, (err, result) => {
+            done();
+            callback(err, result);
+          });
+        });
+      }
+      /**
+       * Compress data. Concurrency limited.
+       *
+       * @param {(Buffer|String)} data Data to compress
+       * @param {Boolean} fin Specifies whether or not this is the last fragment
+       * @param {Function} callback Callback
+       * @public
+       */
+      compress(data, fin, callback) {
+        zlibLimiter.add((done) => {
+          this._compress(data, fin, (err, result) => {
+            done();
+            callback(err, result);
+          });
+        });
+      }
+      /**
+       * Decompress data.
+       *
+       * @param {Buffer} data Compressed data
+       * @param {Boolean} fin Specifies whether or not this is the last fragment
+       * @param {Function} callback Callback
+       * @private
+       */
+      _decompress(data, fin, callback) {
+        const endpoint = this._isServer ? "client" : "server";
+        if (!this._inflate) {
+          const key = `${endpoint}_max_window_bits`;
+          const windowBits = typeof this.params[key] !== "number"
+            ? zlib2.Z_DEFAULT_WINDOWBITS
+            : this.params[key];
+          this._inflate = zlib2.createInflateRaw({
+            ...this._options.zlibInflateOptions,
+            windowBits,
+          });
+          this._inflate[kPerMessageDeflate] = this;
+          this._inflate[kTotalLength] = 0;
+          this._inflate[kBuffers] = [];
+          this._inflate.on("error", inflateOnError);
+          this._inflate.on("data", inflateOnData);
+        }
+        this._inflate[kCallback] = callback;
+        this._inflate.write(data);
+        if (fin) this._inflate.write(TRAILER);
+        this._inflate.flush(() => {
+          const err = this._inflate[kError];
+          if (err) {
+            this._inflate.close();
+            this._inflate = null;
+            callback(err);
+            return;
+          }
+          const data2 = bufferUtil.concat(
+            this._inflate[kBuffers],
+            this._inflate[kTotalLength],
+          );
+          if (this._inflate._readableState.endEmitted) {
+            this._inflate.close();
+            this._inflate = null;
+          } else {
+            this._inflate[kTotalLength] = 0;
+            this._inflate[kBuffers] = [];
+            if (fin && this.params[`${endpoint}_no_context_takeover`]) {
+              this._inflate.reset();
+            }
+          }
+          callback(null, data2);
+        });
+      }
+      /**
+       * Compress data.
+       *
+       * @param {(Buffer|String)} data Data to compress
+       * @param {Boolean} fin Specifies whether or not this is the last fragment
+       * @param {Function} callback Callback
+       * @private
+       */
+      _compress(data, fin, callback) {
+        const endpoint = this._isServer ? "server" : "client";
+        if (!this._deflate) {
+          const key = `${endpoint}_max_window_bits`;
+          const windowBits = typeof this.params[key] !== "number"
+            ? zlib2.Z_DEFAULT_WINDOWBITS
+            : this.params[key];
+          this._deflate = zlib2.createDeflateRaw({
+            ...this._options.zlibDeflateOptions,
+            windowBits,
+          });
+          this._deflate[kTotalLength] = 0;
+          this._deflate[kBuffers] = [];
+          this._deflate.on("data", deflateOnData);
+        }
+        this._deflate[kCallback] = callback;
+        this._deflate.write(data);
+        this._deflate.flush(zlib2.Z_SYNC_FLUSH, () => {
+          if (!this._deflate) {
+            return;
+          }
+          let data2 = bufferUtil.concat(
+            this._deflate[kBuffers],
+            this._deflate[kTotalLength],
+          );
+          if (fin) {
+            data2 = new FastBuffer(
+              data2.buffer,
+              data2.byteOffset,
+              data2.length - 4,
+            );
+          }
+          this._deflate[kCallback] = null;
+          this._deflate[kTotalLength] = 0;
+          this._deflate[kBuffers] = [];
+          if (fin && this.params[`${endpoint}_no_context_takeover`]) {
+            this._deflate.reset();
+          }
+          callback(null, data2);
+        });
+      }
+    };
+    module.exports = PerMessageDeflate;
+    function deflateOnData(chunk2) {
+      this[kBuffers].push(chunk2);
+      this[kTotalLength] += chunk2.length;
+    }
+    function inflateOnData(chunk2) {
+      this[kTotalLength] += chunk2.length;
+      if (
+        this[kPerMessageDeflate]._maxPayload < 1 ||
+        this[kTotalLength] <= this[kPerMessageDeflate]._maxPayload
+      ) {
+        this[kBuffers].push(chunk2);
+        return;
+      }
+      this[kError] = new RangeError("Max payload size exceeded");
+      this[kError].code = "WS_ERR_UNSUPPORTED_MESSAGE_LENGTH";
+      this[kError][kStatusCode] = 1009;
+      this.removeListener("data", inflateOnData);
+      this.reset();
+    }
+    function inflateOnError(err) {
+      this[kPerMessageDeflate]._inflate = null;
+      if (this[kError]) {
+        this[kCallback](this[kError]);
+        return;
+      }
+      err[kStatusCode] = 1007;
+      this[kCallback](err);
+    }
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/validation.js
+var require_validation = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/validation.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var { isUtf8 } = __require("node:buffer");
+    var { hasBlob } = require_constants6();
+    var tokenChars = [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      // 112 - 127
+    ];
+    function isValidStatusCode(code) {
+      return code >= 1e3 && code <= 1014 && code !== 1004 && code !== 1005 &&
+          code !== 1006 || code >= 3e3 && code <= 4999;
+    }
+    function _isValidUTF8(buf) {
+      const len = buf.length;
+      let i = 0;
+      while (i < len) {
+        if ((buf[i] & 128) === 0) {
+          i++;
+        } else if ((buf[i] & 224) === 192) {
+          if (
+            i + 1 === len || (buf[i + 1] & 192) !== 128 ||
+            (buf[i] & 254) === 192
+          ) {
+            return false;
+          }
+          i += 2;
+        } else if ((buf[i] & 240) === 224) {
+          if (
+            i + 2 >= len || (buf[i + 1] & 192) !== 128 ||
+            (buf[i + 2] & 192) !== 128 ||
+            buf[i] === 224 && (buf[i + 1] & 224) === 128 || // Overlong
+            buf[i] === 237 && (buf[i + 1] & 224) === 160
+          ) {
+            return false;
+          }
+          i += 3;
+        } else if ((buf[i] & 248) === 240) {
+          if (
+            i + 3 >= len || (buf[i + 1] & 192) !== 128 ||
+            (buf[i + 2] & 192) !== 128 || (buf[i + 3] & 192) !== 128 ||
+            buf[i] === 240 && (buf[i + 1] & 240) === 128 || // Overlong
+            buf[i] === 244 && buf[i + 1] > 143 || buf[i] > 244
+          ) {
+            return false;
+          }
+          i += 4;
+        } else {
+          return false;
+        }
+      }
+      return true;
+    }
+    function isBlob2(value) {
+      return hasBlob && typeof value === "object" &&
+        typeof value.arrayBuffer === "function" &&
+        typeof value.type === "string" && typeof value.stream === "function" &&
+        (value[Symbol.toStringTag] === "Blob" ||
+          value[Symbol.toStringTag] === "File");
+    }
+    module.exports = {
+      isBlob: isBlob2,
+      isValidStatusCode,
+      isValidUTF8: _isValidUTF8,
+      tokenChars,
+    };
+    if (isUtf8) {
+      module.exports.isValidUTF8 = function (buf) {
+        return buf.length < 24 ? _isValidUTF8(buf) : isUtf8(buf);
+      };
+    } else if (!process.env.WS_NO_UTF_8_VALIDATE) {
+      try {
+        const isValidUTF8 = __require("utf-8-validate");
+        module.exports.isValidUTF8 = function (buf) {
+          return buf.length < 32 ? _isValidUTF8(buf) : isValidUTF8(buf);
+        };
+      } catch (e) {
+      }
+    }
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/receiver.js
+var require_receiver2 = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/receiver.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var { Writable } = __require("node:stream");
+    var PerMessageDeflate = require_permessage_deflate2();
+    var { BINARY_TYPES, EMPTY_BUFFER, kStatusCode, kWebSocket } =
+      require_constants6();
+    var { concat: concat2, toArrayBuffer, unmask } = require_buffer_util();
+    var { isValidStatusCode, isValidUTF8 } = require_validation();
+    var FastBuffer = Buffer[Symbol.species];
+    var GET_INFO = 0;
+    var GET_PAYLOAD_LENGTH_16 = 1;
+    var GET_PAYLOAD_LENGTH_64 = 2;
+    var GET_MASK = 3;
+    var GET_DATA = 4;
+    var INFLATING = 5;
+    var DEFER_EVENT = 6;
+    var Receiver = class extends Writable {
+      /**
+       * Creates a Receiver instance.
+       *
+       * @param {Object} [options] Options object
+       * @param {Boolean} [options.allowSynchronousEvents=true] Specifies whether
+       *     any of the `'message'`, `'ping'`, and `'pong'` events can be emitted
+       *     multiple times in the same tick
+       * @param {String} [options.binaryType=nodebuffer] The type for binary data
+       * @param {Object} [options.extensions] An object containing the negotiated
+       *     extensions
+       * @param {Boolean} [options.isServer=false] Specifies whether to operate in
+       *     client or server mode
+       * @param {Number} [options.maxBufferedChunks=0] The maximum number of
+       *     buffered data chunks
+       * @param {Number} [options.maxFragments=0] The maximum number of message
+       *     fragments
+       * @param {Number} [options.maxPayload=0] The maximum allowed message length
+       * @param {Boolean} [options.skipUTF8Validation=false] Specifies whether or
+       *     not to skip UTF-8 validation for text and close messages
+       */
+      constructor(options = {}) {
+        super();
+        this._allowSynchronousEvents = options.allowSynchronousEvents !== void 0
+          ? options.allowSynchronousEvents
+          : true;
+        this._binaryType = options.binaryType || BINARY_TYPES[0];
+        this._extensions = options.extensions || {};
+        this._isServer = !!options.isServer;
+        this._maxBufferedChunks = options.maxBufferedChunks | 0;
+        this._maxFragments = options.maxFragments | 0;
+        this._maxPayload = options.maxPayload | 0;
+        this._skipUTF8Validation = !!options.skipUTF8Validation;
+        this[kWebSocket] = void 0;
+        this._bufferedBytes = 0;
+        this._buffers = [];
+        this._compressed = false;
+        this._payloadLength = 0;
+        this._mask = void 0;
+        this._fragmented = 0;
+        this._masked = false;
+        this._fin = false;
+        this._opcode = 0;
+        this._totalPayloadLength = 0;
+        this._messageLength = 0;
+        this._numFragments = 0;
+        this._fragments = [];
+        this._errored = false;
+        this._loop = false;
+        this._state = GET_INFO;
+      }
+      /**
+       * Implements `Writable.prototype._write()`.
+       *
+       * @param {Buffer} chunk The chunk of data to write
+       * @param {String} encoding The character encoding of `chunk`
+       * @param {Function} cb Callback
+       * @private
+       */
+      _write(chunk2, encoding, cb) {
+        if (this._opcode === 8 && this._state == GET_INFO) return cb();
+        if (
+          this._maxBufferedChunks > 0 &&
+          this._buffers.length >= this._maxBufferedChunks
+        ) {
+          cb(
+            this.createError(
+              RangeError,
+              "Too many buffered chunks",
+              false,
+              1008,
+              "WS_ERR_TOO_MANY_BUFFERED_PARTS",
+            ),
+          );
+          return;
+        }
+        this._bufferedBytes += chunk2.length;
+        this._buffers.push(chunk2);
+        this.startLoop(cb);
+      }
+      /**
+       * Consumes `n` bytes from the buffered data.
+       *
+       * @param {Number} n The number of bytes to consume
+       * @return {Buffer} The consumed bytes
+       * @private
+       */
+      consume(n) {
+        this._bufferedBytes -= n;
+        if (n === this._buffers[0].length) return this._buffers.shift();
+        if (n < this._buffers[0].length) {
+          const buf = this._buffers[0];
+          this._buffers[0] = new FastBuffer(
+            buf.buffer,
+            buf.byteOffset + n,
+            buf.length - n,
+          );
+          return new FastBuffer(buf.buffer, buf.byteOffset, n);
+        }
+        const dst = Buffer.allocUnsafe(n);
+        do {
+          const buf = this._buffers[0];
+          const offset = dst.length - n;
+          if (n >= buf.length) {
+            dst.set(this._buffers.shift(), offset);
+          } else {
+            dst.set(new Uint8Array(buf.buffer, buf.byteOffset, n), offset);
+            this._buffers[0] = new FastBuffer(
+              buf.buffer,
+              buf.byteOffset + n,
+              buf.length - n,
+            );
+          }
+          n -= buf.length;
+        } while (n > 0);
+        return dst;
+      }
+      /**
+       * Starts the parsing loop.
+       *
+       * @param {Function} cb Callback
+       * @private
+       */
+      startLoop(cb) {
+        this._loop = true;
+        do {
+          switch (this._state) {
+            case GET_INFO:
+              this.getInfo(cb);
+              break;
+            case GET_PAYLOAD_LENGTH_16:
+              this.getPayloadLength16(cb);
+              break;
+            case GET_PAYLOAD_LENGTH_64:
+              this.getPayloadLength64(cb);
+              break;
+            case GET_MASK:
+              this.getMask();
+              break;
+            case GET_DATA:
+              this.getData(cb);
+              break;
+            case INFLATING:
+            case DEFER_EVENT:
+              this._loop = false;
+              return;
+          }
+        } while (this._loop);
+        if (!this._errored) cb();
+      }
+      /**
+       * Reads the first two bytes of a frame.
+       *
+       * @param {Function} cb Callback
+       * @private
+       */
+      getInfo(cb) {
+        if (this._bufferedBytes < 2) {
+          this._loop = false;
+          return;
+        }
+        const buf = this.consume(2);
+        if ((buf[0] & 48) !== 0) {
+          const error2 = this.createError(
+            RangeError,
+            "RSV2 and RSV3 must be clear",
+            true,
+            1002,
+            "WS_ERR_UNEXPECTED_RSV_2_3",
+          );
+          cb(error2);
+          return;
+        }
+        const compressed = (buf[0] & 64) === 64;
+        if (compressed && !this._extensions[PerMessageDeflate.extensionName]) {
+          const error2 = this.createError(
+            RangeError,
+            "RSV1 must be clear",
+            true,
+            1002,
+            "WS_ERR_UNEXPECTED_RSV_1",
+          );
+          cb(error2);
+          return;
+        }
+        this._fin = (buf[0] & 128) === 128;
+        this._opcode = buf[0] & 15;
+        this._payloadLength = buf[1] & 127;
+        if (this._opcode === 0) {
+          if (compressed) {
+            const error2 = this.createError(
+              RangeError,
+              "RSV1 must be clear",
+              true,
+              1002,
+              "WS_ERR_UNEXPECTED_RSV_1",
+            );
+            cb(error2);
+            return;
+          }
+          if (!this._fragmented) {
+            const error2 = this.createError(
+              RangeError,
+              "invalid opcode 0",
+              true,
+              1002,
+              "WS_ERR_INVALID_OPCODE",
+            );
+            cb(error2);
+            return;
+          }
+          this._opcode = this._fragmented;
+        } else if (this._opcode === 1 || this._opcode === 2) {
+          if (this._fragmented) {
+            const error2 = this.createError(
+              RangeError,
+              `invalid opcode ${this._opcode}`,
+              true,
+              1002,
+              "WS_ERR_INVALID_OPCODE",
+            );
+            cb(error2);
+            return;
+          }
+          this._compressed = compressed;
+        } else if (this._opcode > 7 && this._opcode < 11) {
+          if (!this._fin) {
+            const error2 = this.createError(
+              RangeError,
+              "FIN must be set",
+              true,
+              1002,
+              "WS_ERR_EXPECTED_FIN",
+            );
+            cb(error2);
+            return;
+          }
+          if (compressed) {
+            const error2 = this.createError(
+              RangeError,
+              "RSV1 must be clear",
+              true,
+              1002,
+              "WS_ERR_UNEXPECTED_RSV_1",
+            );
+            cb(error2);
+            return;
+          }
+          if (
+            this._payloadLength > 125 ||
+            this._opcode === 8 && this._payloadLength === 1
+          ) {
+            const error2 = this.createError(
+              RangeError,
+              `invalid payload length ${this._payloadLength}`,
+              true,
+              1002,
+              "WS_ERR_INVALID_CONTROL_PAYLOAD_LENGTH",
+            );
+            cb(error2);
+            return;
+          }
+        } else {
+          const error2 = this.createError(
+            RangeError,
+            `invalid opcode ${this._opcode}`,
+            true,
+            1002,
+            "WS_ERR_INVALID_OPCODE",
+          );
+          cb(error2);
+          return;
+        }
+        if (!this._fin && !this._fragmented) this._fragmented = this._opcode;
+        this._masked = (buf[1] & 128) === 128;
+        if (this._isServer) {
+          if (!this._masked) {
+            const error2 = this.createError(
+              RangeError,
+              "MASK must be set",
+              true,
+              1002,
+              "WS_ERR_EXPECTED_MASK",
+            );
+            cb(error2);
+            return;
+          }
+        } else if (this._masked) {
+          const error2 = this.createError(
+            RangeError,
+            "MASK must be clear",
+            true,
+            1002,
+            "WS_ERR_UNEXPECTED_MASK",
+          );
+          cb(error2);
+          return;
+        }
+        if (this._payloadLength === 126) this._state = GET_PAYLOAD_LENGTH_16;
+        else if (this._payloadLength === 127) {
+          this._state = GET_PAYLOAD_LENGTH_64;
+        } else this.haveLength(cb);
+      }
+      /**
+       * Gets extended payload length (7+16).
+       *
+       * @param {Function} cb Callback
+       * @private
+       */
+      getPayloadLength16(cb) {
+        if (this._bufferedBytes < 2) {
+          this._loop = false;
+          return;
+        }
+        this._payloadLength = this.consume(2).readUInt16BE(0);
+        this.haveLength(cb);
+      }
+      /**
+       * Gets extended payload length (7+64).
+       *
+       * @param {Function} cb Callback
+       * @private
+       */
+      getPayloadLength64(cb) {
+        if (this._bufferedBytes < 8) {
+          this._loop = false;
+          return;
+        }
+        const buf = this.consume(8);
+        const num = buf.readUInt32BE(0);
+        if (num > Math.pow(2, 53 - 32) - 1) {
+          const error2 = this.createError(
+            RangeError,
+            "Unsupported WebSocket frame: payload length > 2^53 - 1",
+            false,
+            1009,
+            "WS_ERR_UNSUPPORTED_DATA_PAYLOAD_LENGTH",
+          );
+          cb(error2);
+          return;
+        }
+        this._payloadLength = num * Math.pow(2, 32) + buf.readUInt32BE(4);
+        this.haveLength(cb);
+      }
+      /**
+       * Payload length has been read.
+       *
+       * @param {Function} cb Callback
+       * @private
+       */
+      haveLength(cb) {
+        if (this._payloadLength && this._opcode < 8) {
+          this._totalPayloadLength += this._payloadLength;
+          if (
+            this._totalPayloadLength > this._maxPayload && this._maxPayload > 0
+          ) {
+            const error2 = this.createError(
+              RangeError,
+              "Max payload size exceeded",
+              false,
+              1009,
+              "WS_ERR_UNSUPPORTED_MESSAGE_LENGTH",
+            );
+            cb(error2);
+            return;
+          }
+        }
+        if (this._masked) this._state = GET_MASK;
+        else this._state = GET_DATA;
+      }
+      /**
+       * Reads mask bytes.
+       *
+       * @private
+       */
+      getMask() {
+        if (this._bufferedBytes < 4) {
+          this._loop = false;
+          return;
+        }
+        this._mask = this.consume(4);
+        this._state = GET_DATA;
+      }
+      /**
+       * Reads data bytes.
+       *
+       * @param {Function} cb Callback
+       * @private
+       */
+      getData(cb) {
+        let data = EMPTY_BUFFER;
+        if (this._payloadLength) {
+          if (this._bufferedBytes < this._payloadLength) {
+            this._loop = false;
+            return;
+          }
+          data = this.consume(this._payloadLength);
+          if (
+            this._masked &&
+            (this._mask[0] | this._mask[1] | this._mask[2] | this._mask[3]) !==
+              0
+          ) {
+            unmask(data, this._mask);
+          }
+        }
+        if (this._opcode > 7) {
+          this.controlMessage(data, cb);
+          return;
+        }
+        if (
+          this._maxFragments > 0 && ++this._numFragments > this._maxFragments
+        ) {
+          const error2 = this.createError(
+            RangeError,
+            "Too many message fragments",
+            false,
+            1008,
+            "WS_ERR_TOO_MANY_BUFFERED_PARTS",
+          );
+          cb(error2);
+          return;
+        }
+        if (this._compressed) {
+          this._state = INFLATING;
+          this.decompress(data, cb);
+          return;
+        }
+        if (data.length) {
+          this._messageLength = this._totalPayloadLength;
+          this._fragments.push(data);
+        }
+        this.dataMessage(cb);
+      }
+      /**
+       * Decompresses data.
+       *
+       * @param {Buffer} data Compressed data
+       * @param {Function} cb Callback
+       * @private
+       */
+      decompress(data, cb) {
+        const perMessageDeflate =
+          this._extensions[PerMessageDeflate.extensionName];
+        perMessageDeflate.decompress(data, this._fin, (err, buf) => {
+          if (err) return cb(err);
+          if (buf.length) {
+            this._messageLength += buf.length;
+            if (
+              this._messageLength > this._maxPayload && this._maxPayload > 0
+            ) {
+              const error2 = this.createError(
+                RangeError,
+                "Max payload size exceeded",
+                false,
+                1009,
+                "WS_ERR_UNSUPPORTED_MESSAGE_LENGTH",
+              );
+              cb(error2);
+              return;
+            }
+            this._fragments.push(buf);
+          }
+          this.dataMessage(cb);
+          if (this._state === GET_INFO) this.startLoop(cb);
+        });
+      }
+      /**
+       * Handles a data message.
+       *
+       * @param {Function} cb Callback
+       * @private
+       */
+      dataMessage(cb) {
+        if (!this._fin) {
+          this._state = GET_INFO;
+          return;
+        }
+        const messageLength = this._messageLength;
+        const fragments = this._fragments;
+        this._totalPayloadLength = 0;
+        this._messageLength = 0;
+        this._fragmented = 0;
+        this._numFragments = 0;
+        this._fragments = [];
+        if (this._opcode === 2) {
+          let data;
+          if (this._binaryType === "nodebuffer") {
+            data = concat2(fragments, messageLength);
+          } else if (this._binaryType === "arraybuffer") {
+            data = toArrayBuffer(concat2(fragments, messageLength));
+          } else if (this._binaryType === "blob") {
+            data = new Blob(fragments);
+          } else {
+            data = fragments;
+          }
+          if (this._allowSynchronousEvents) {
+            this.emit("message", data, true);
+            this._state = GET_INFO;
+          } else {
+            this._state = DEFER_EVENT;
+            setImmediate(() => {
+              this.emit("message", data, true);
+              this._state = GET_INFO;
+              this.startLoop(cb);
+            });
+          }
+        } else {
+          const buf = concat2(fragments, messageLength);
+          if (!this._skipUTF8Validation && !isValidUTF8(buf)) {
+            const error2 = this.createError(
+              Error,
+              "invalid UTF-8 sequence",
+              true,
+              1007,
+              "WS_ERR_INVALID_UTF8",
+            );
+            cb(error2);
+            return;
+          }
+          if (this._state === INFLATING || this._allowSynchronousEvents) {
+            this.emit("message", buf, false);
+            this._state = GET_INFO;
+          } else {
+            this._state = DEFER_EVENT;
+            setImmediate(() => {
+              this.emit("message", buf, false);
+              this._state = GET_INFO;
+              this.startLoop(cb);
+            });
+          }
+        }
+      }
+      /**
+       * Handles a control message.
+       *
+       * @param {Buffer} data Data to handle
+       * @return {(Error|RangeError|undefined)} A possible error
+       * @private
+       */
+      controlMessage(data, cb) {
+        if (this._opcode === 8) {
+          if (data.length === 0) {
+            this._loop = false;
+            this.emit("conclude", 1005, EMPTY_BUFFER);
+            this.end();
+          } else {
+            const code = data.readUInt16BE(0);
+            if (!isValidStatusCode(code)) {
+              const error2 = this.createError(
+                RangeError,
+                `invalid status code ${code}`,
+                true,
+                1002,
+                "WS_ERR_INVALID_CLOSE_CODE",
+              );
+              cb(error2);
+              return;
+            }
+            const buf = new FastBuffer(
+              data.buffer,
+              data.byteOffset + 2,
+              data.length - 2,
+            );
+            if (!this._skipUTF8Validation && !isValidUTF8(buf)) {
+              const error2 = this.createError(
+                Error,
+                "invalid UTF-8 sequence",
+                true,
+                1007,
+                "WS_ERR_INVALID_UTF8",
+              );
+              cb(error2);
+              return;
+            }
+            this._loop = false;
+            this.emit("conclude", code, buf);
+            this.end();
+          }
+          this._state = GET_INFO;
+          return;
+        }
+        if (this._allowSynchronousEvents) {
+          this.emit(this._opcode === 9 ? "ping" : "pong", data);
+          this._state = GET_INFO;
+        } else {
+          this._state = DEFER_EVENT;
+          setImmediate(() => {
+            this.emit(this._opcode === 9 ? "ping" : "pong", data);
+            this._state = GET_INFO;
+            this.startLoop(cb);
+          });
+        }
+      }
+      /**
+       * Builds an error object.
+       *
+       * @param {function(new:Error|RangeError)} ErrorCtor The error constructor
+       * @param {String} message The error message
+       * @param {Boolean} prefix Specifies whether or not to add a default prefix to
+       *     `message`
+       * @param {Number} statusCode The status code
+       * @param {String} errorCode The exposed error code
+       * @return {(Error|RangeError)} The error
+       * @private
+       */
+      createError(ErrorCtor, message, prefix2, statusCode, errorCode) {
+        this._loop = false;
+        this._errored = true;
+        const err = new ErrorCtor(
+          prefix2 ? `Invalid WebSocket frame: ${message}` : message,
+        );
+        Error.captureStackTrace(err, this.createError);
+        err.code = errorCode;
+        err[kStatusCode] = statusCode;
+        return err;
+      }
+    };
+    module.exports = Receiver;
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/sender.js
+var require_sender2 = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/sender.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var { Duplex } = __require("node:stream");
+    var { randomFillSync } = __require("node:crypto");
+    var { types: { isUint8Array } } = __require("node:util");
+    var PerMessageDeflate = require_permessage_deflate2();
+    var { EMPTY_BUFFER, kWebSocket, NOOP } = require_constants6();
+    var { isBlob: isBlob2, isValidStatusCode } = require_validation();
+    var { mask: applyMask, toBuffer } = require_buffer_util();
+    var kByteLength = Symbol("kByteLength");
+    var maskBuffer = Buffer.alloc(4);
+    var RANDOM_POOL_SIZE = 8 * 1024;
+    var randomPool;
+    var randomPoolPointer = RANDOM_POOL_SIZE;
+    var DEFAULT = 0;
+    var DEFLATING = 1;
+    var GET_BLOB_DATA = 2;
+    var Sender = class _Sender {
+      /**
+       * Creates a Sender instance.
+       *
+       * @param {Duplex} socket The connection socket
+       * @param {Object} [extensions] An object containing the negotiated extensions
+       * @param {Function} [generateMask] The function used to generate the masking
+       *     key
+       */
+      constructor(socket, extensions, generateMask) {
+        this._extensions = extensions || {};
+        if (generateMask) {
+          this._generateMask = generateMask;
+          this._maskBuffer = Buffer.alloc(4);
+        }
+        this._socket = socket;
+        this._firstFragment = true;
+        this._compress = false;
+        this._bufferedBytes = 0;
+        this._queue = [];
+        this._state = DEFAULT;
+        this.onerror = NOOP;
+        this[kWebSocket] = void 0;
+      }
+      /**
+       * Frames a piece of data according to the HyBi WebSocket protocol.
+       *
+       * @param {(Buffer|String)} data The data to frame
+       * @param {Object} options Options object
+       * @param {Boolean} [options.fin=false] Specifies whether or not to set the
+       *     FIN bit
+       * @param {Function} [options.generateMask] The function used to generate the
+       *     masking key
+       * @param {Boolean} [options.mask=false] Specifies whether or not to mask
+       *     `data`
+       * @param {Buffer} [options.maskBuffer] The buffer used to store the masking
+       *     key
+       * @param {Number} options.opcode The opcode
+       * @param {Boolean} [options.readOnly=false] Specifies whether `data` can be
+       *     modified
+       * @param {Boolean} [options.rsv1=false] Specifies whether or not to set the
+       *     RSV1 bit
+       * @return {(Buffer|String)[]} The framed data
+       * @public
+       */
+      static frame(data, options) {
+        let mask;
+        let merge = false;
+        let offset = 2;
+        let skipMasking = false;
+        if (options.mask) {
+          mask = options.maskBuffer || maskBuffer;
+          if (options.generateMask) {
+            options.generateMask(mask);
+          } else {
+            if (randomPoolPointer === RANDOM_POOL_SIZE) {
+              if (randomPool === void 0) {
+                randomPool = Buffer.alloc(RANDOM_POOL_SIZE);
+              }
+              randomFillSync(randomPool, 0, RANDOM_POOL_SIZE);
+              randomPoolPointer = 0;
+            }
+            mask[0] = randomPool[randomPoolPointer++];
+            mask[1] = randomPool[randomPoolPointer++];
+            mask[2] = randomPool[randomPoolPointer++];
+            mask[3] = randomPool[randomPoolPointer++];
+          }
+          skipMasking = (mask[0] | mask[1] | mask[2] | mask[3]) === 0;
+          offset = 6;
+        }
+        let dataLength;
+        if (typeof data === "string") {
+          if (
+            (!options.mask || skipMasking) && options[kByteLength] !== void 0
+          ) {
+            dataLength = options[kByteLength];
+          } else {
+            data = Buffer.from(data);
+            dataLength = data.length;
+          }
+        } else {
+          dataLength = data.length;
+          merge = options.mask && options.readOnly && !skipMasking;
+        }
+        let payloadLength = dataLength;
+        if (dataLength >= 65536) {
+          offset += 8;
+          payloadLength = 127;
+        } else if (dataLength > 125) {
+          offset += 2;
+          payloadLength = 126;
+        }
+        const target = Buffer.allocUnsafe(merge ? dataLength + offset : offset);
+        target[0] = options.fin ? options.opcode | 128 : options.opcode;
+        if (options.rsv1) target[0] |= 64;
+        target[1] = payloadLength;
+        if (payloadLength === 126) {
+          target.writeUInt16BE(dataLength, 2);
+        } else if (payloadLength === 127) {
+          target[2] = target[3] = 0;
+          target.writeUIntBE(dataLength, 4, 6);
+        }
+        if (!options.mask) {
+          return [
+            target,
+            data,
+          ];
+        }
+        target[1] |= 128;
+        target[offset - 4] = mask[0];
+        target[offset - 3] = mask[1];
+        target[offset - 2] = mask[2];
+        target[offset - 1] = mask[3];
+        if (skipMasking) {
+          return [
+            target,
+            data,
+          ];
+        }
+        if (merge) {
+          applyMask(data, mask, target, offset, dataLength);
+          return [
+            target,
+          ];
+        }
+        applyMask(data, mask, data, 0, dataLength);
+        return [
+          target,
+          data,
+        ];
+      }
+      /**
+       * Sends a close message to the other peer.
+       *
+       * @param {Number} [code] The status code component of the body
+       * @param {(String|Buffer)} [data] The message component of the body
+       * @param {Boolean} [mask=false] Specifies whether or not to mask the message
+       * @param {Function} [cb] Callback
+       * @public
+       */
+      close(code, data, mask, cb) {
+        let buf;
+        if (code === void 0) {
+          buf = EMPTY_BUFFER;
+        } else if (typeof code !== "number" || !isValidStatusCode(code)) {
+          throw new TypeError(
+            "First argument must be a valid error code number",
+          );
+        } else if (data === void 0 || !data.length) {
+          buf = Buffer.allocUnsafe(2);
+          buf.writeUInt16BE(code, 0);
+        } else {
+          const length = Buffer.byteLength(data);
+          if (length > 123) {
+            throw new RangeError(
+              "The message must not be greater than 123 bytes",
+            );
+          }
+          buf = Buffer.allocUnsafe(2 + length);
+          buf.writeUInt16BE(code, 0);
+          if (typeof data === "string") {
+            buf.write(data, 2);
+          } else if (isUint8Array(data)) {
+            buf.set(data, 2);
+          } else {
+            throw new TypeError(
+              "Second argument must be a string or a Uint8Array",
+            );
+          }
+        }
+        const options = {
+          [kByteLength]: buf.length,
+          fin: true,
+          generateMask: this._generateMask,
+          mask,
+          maskBuffer: this._maskBuffer,
+          opcode: 8,
+          readOnly: false,
+          rsv1: false,
+        };
+        if (this._state !== DEFAULT) {
+          this.enqueue([
+            this.dispatch,
+            buf,
+            false,
+            options,
+            cb,
+          ]);
+        } else {
+          this.sendFrame(_Sender.frame(buf, options), cb);
+        }
+      }
+      /**
+       * Sends a ping message to the other peer.
+       *
+       * @param {*} data The message to send
+       * @param {Boolean} [mask=false] Specifies whether or not to mask `data`
+       * @param {Function} [cb] Callback
+       * @public
+       */
+      ping(data, mask, cb) {
+        let byteLength;
+        let readOnly;
+        if (typeof data === "string") {
+          byteLength = Buffer.byteLength(data);
+          readOnly = false;
+        } else if (isBlob2(data)) {
+          byteLength = data.size;
+          readOnly = false;
+        } else {
+          data = toBuffer(data);
+          byteLength = data.length;
+          readOnly = toBuffer.readOnly;
+        }
+        if (byteLength > 125) {
+          throw new RangeError(
+            "The data size must not be greater than 125 bytes",
+          );
+        }
+        const options = {
+          [kByteLength]: byteLength,
+          fin: true,
+          generateMask: this._generateMask,
+          mask,
+          maskBuffer: this._maskBuffer,
+          opcode: 9,
+          readOnly,
+          rsv1: false,
+        };
+        if (isBlob2(data)) {
+          if (this._state !== DEFAULT) {
+            this.enqueue([
+              this.getBlobData,
+              data,
+              false,
+              options,
+              cb,
+            ]);
+          } else {
+            this.getBlobData(data, false, options, cb);
+          }
+        } else if (this._state !== DEFAULT) {
+          this.enqueue([
+            this.dispatch,
+            data,
+            false,
+            options,
+            cb,
+          ]);
+        } else {
+          this.sendFrame(_Sender.frame(data, options), cb);
+        }
+      }
+      /**
+       * Sends a pong message to the other peer.
+       *
+       * @param {*} data The message to send
+       * @param {Boolean} [mask=false] Specifies whether or not to mask `data`
+       * @param {Function} [cb] Callback
+       * @public
+       */
+      pong(data, mask, cb) {
+        let byteLength;
+        let readOnly;
+        if (typeof data === "string") {
+          byteLength = Buffer.byteLength(data);
+          readOnly = false;
+        } else if (isBlob2(data)) {
+          byteLength = data.size;
+          readOnly = false;
+        } else {
+          data = toBuffer(data);
+          byteLength = data.length;
+          readOnly = toBuffer.readOnly;
+        }
+        if (byteLength > 125) {
+          throw new RangeError(
+            "The data size must not be greater than 125 bytes",
+          );
+        }
+        const options = {
+          [kByteLength]: byteLength,
+          fin: true,
+          generateMask: this._generateMask,
+          mask,
+          maskBuffer: this._maskBuffer,
+          opcode: 10,
+          readOnly,
+          rsv1: false,
+        };
+        if (isBlob2(data)) {
+          if (this._state !== DEFAULT) {
+            this.enqueue([
+              this.getBlobData,
+              data,
+              false,
+              options,
+              cb,
+            ]);
+          } else {
+            this.getBlobData(data, false, options, cb);
+          }
+        } else if (this._state !== DEFAULT) {
+          this.enqueue([
+            this.dispatch,
+            data,
+            false,
+            options,
+            cb,
+          ]);
+        } else {
+          this.sendFrame(_Sender.frame(data, options), cb);
+        }
+      }
+      /**
+       * Sends a data message to the other peer.
+       *
+       * @param {*} data The message to send
+       * @param {Object} options Options object
+       * @param {Boolean} [options.binary=false] Specifies whether `data` is binary
+       *     or text
+       * @param {Boolean} [options.compress=false] Specifies whether or not to
+       *     compress `data`
+       * @param {Boolean} [options.fin=false] Specifies whether the fragment is the
+       *     last one
+       * @param {Boolean} [options.mask=false] Specifies whether or not to mask
+       *     `data`
+       * @param {Function} [cb] Callback
+       * @public
+       */
+      send(data, options, cb) {
+        const perMessageDeflate =
+          this._extensions[PerMessageDeflate.extensionName];
+        let opcode = options.binary ? 2 : 1;
+        let rsv1 = options.compress;
+        let byteLength;
+        let readOnly;
+        if (typeof data === "string") {
+          byteLength = Buffer.byteLength(data);
+          readOnly = false;
+        } else if (isBlob2(data)) {
+          byteLength = data.size;
+          readOnly = false;
+        } else {
+          data = toBuffer(data);
+          byteLength = data.length;
+          readOnly = toBuffer.readOnly;
+        }
+        if (this._firstFragment) {
+          this._firstFragment = false;
+          if (
+            rsv1 && perMessageDeflate &&
+            perMessageDeflate.params[
+              perMessageDeflate._isServer
+                ? "server_no_context_takeover"
+                : "client_no_context_takeover"
+            ]
+          ) {
+            rsv1 = byteLength >= perMessageDeflate._threshold;
+          }
+          this._compress = rsv1;
+        } else {
+          rsv1 = false;
+          opcode = 0;
+        }
+        if (options.fin) this._firstFragment = true;
+        const opts = {
+          [kByteLength]: byteLength,
+          fin: options.fin,
+          generateMask: this._generateMask,
+          mask: options.mask,
+          maskBuffer: this._maskBuffer,
+          opcode,
+          readOnly,
+          rsv1,
+        };
+        if (isBlob2(data)) {
+          if (this._state !== DEFAULT) {
+            this.enqueue([
+              this.getBlobData,
+              data,
+              this._compress,
+              opts,
+              cb,
+            ]);
+          } else {
+            this.getBlobData(data, this._compress, opts, cb);
+          }
+        } else if (this._state !== DEFAULT) {
+          this.enqueue([
+            this.dispatch,
+            data,
+            this._compress,
+            opts,
+            cb,
+          ]);
+        } else {
+          this.dispatch(data, this._compress, opts, cb);
+        }
+      }
+      /**
+       * Gets the contents of a blob as binary data.
+       *
+       * @param {Blob} blob The blob
+       * @param {Boolean} [compress=false] Specifies whether or not to compress
+       *     the data
+       * @param {Object} options Options object
+       * @param {Boolean} [options.fin=false] Specifies whether or not to set the
+       *     FIN bit
+       * @param {Function} [options.generateMask] The function used to generate the
+       *     masking key
+       * @param {Boolean} [options.mask=false] Specifies whether or not to mask
+       *     `data`
+       * @param {Buffer} [options.maskBuffer] The buffer used to store the masking
+       *     key
+       * @param {Number} options.opcode The opcode
+       * @param {Boolean} [options.readOnly=false] Specifies whether `data` can be
+       *     modified
+       * @param {Boolean} [options.rsv1=false] Specifies whether or not to set the
+       *     RSV1 bit
+       * @param {Function} [cb] Callback
+       * @private
+       */
+      getBlobData(blob, compress2, options, cb) {
+        this._bufferedBytes += options[kByteLength];
+        this._state = GET_BLOB_DATA;
+        blob.arrayBuffer().then((arrayBuffer) => {
+          if (this._socket.destroyed) {
+            const err = new Error(
+              "The socket was closed while the blob was being read",
+            );
+            process.nextTick(callCallbacks, this, err, cb);
+            return;
+          }
+          this._bufferedBytes -= options[kByteLength];
+          const data = toBuffer(arrayBuffer);
+          if (!compress2) {
+            this._state = DEFAULT;
+            this.sendFrame(_Sender.frame(data, options), cb);
+            this.dequeue();
+          } else {
+            this.dispatch(data, compress2, options, cb);
+          }
+        }).catch((err) => {
+          process.nextTick(onError, this, err, cb);
+        });
+      }
+      /**
+       * Dispatches a message.
+       *
+       * @param {(Buffer|String)} data The message to send
+       * @param {Boolean} [compress=false] Specifies whether or not to compress
+       *     `data`
+       * @param {Object} options Options object
+       * @param {Boolean} [options.fin=false] Specifies whether or not to set the
+       *     FIN bit
+       * @param {Function} [options.generateMask] The function used to generate the
+       *     masking key
+       * @param {Boolean} [options.mask=false] Specifies whether or not to mask
+       *     `data`
+       * @param {Buffer} [options.maskBuffer] The buffer used to store the masking
+       *     key
+       * @param {Number} options.opcode The opcode
+       * @param {Boolean} [options.readOnly=false] Specifies whether `data` can be
+       *     modified
+       * @param {Boolean} [options.rsv1=false] Specifies whether or not to set the
+       *     RSV1 bit
+       * @param {Function} [cb] Callback
+       * @private
+       */
+      dispatch(data, compress2, options, cb) {
+        if (!compress2) {
+          this.sendFrame(_Sender.frame(data, options), cb);
+          return;
+        }
+        const perMessageDeflate =
+          this._extensions[PerMessageDeflate.extensionName];
+        this._bufferedBytes += options[kByteLength];
+        this._state = DEFLATING;
+        perMessageDeflate.compress(data, options.fin, (_, buf) => {
+          if (this._socket.destroyed) {
+            const err = new Error(
+              "The socket was closed while data was being compressed",
+            );
+            callCallbacks(this, err, cb);
+            return;
+          }
+          this._bufferedBytes -= options[kByteLength];
+          this._state = DEFAULT;
+          options.readOnly = false;
+          this.sendFrame(_Sender.frame(buf, options), cb);
+          this.dequeue();
+        });
+      }
+      /**
+       * Executes queued send operations.
+       *
+       * @private
+       */
+      dequeue() {
+        while (this._state === DEFAULT && this._queue.length) {
+          const params = this._queue.shift();
+          this._bufferedBytes -= params[3][kByteLength];
+          Reflect.apply(params[0], this, params.slice(1));
+        }
+      }
+      /**
+       * Enqueues a send operation.
+       *
+       * @param {Array} params Send operation parameters.
+       * @private
+       */
+      enqueue(params) {
+        this._bufferedBytes += params[3][kByteLength];
+        this._queue.push(params);
+      }
+      /**
+       * Sends a frame.
+       *
+       * @param {(Buffer | String)[]} list The frame to send
+       * @param {Function} [cb] Callback
+       * @private
+       */
+      sendFrame(list, cb) {
+        if (list.length === 2) {
+          this._socket.cork();
+          this._socket.write(list[0]);
+          this._socket.write(list[1], cb);
+          this._socket.uncork();
+        } else {
+          this._socket.write(list[0], cb);
+        }
+      }
+    };
+    module.exports = Sender;
+    function callCallbacks(sender, err, cb) {
+      if (typeof cb === "function") cb(err);
+      for (let i = 0; i < sender._queue.length; i++) {
+        const params = sender._queue[i];
+        const callback = params[params.length - 1];
+        if (typeof callback === "function") callback(err);
+      }
+    }
+    function onError(sender, err, cb) {
+      callCallbacks(sender, err, cb);
+      sender.onerror(err);
+    }
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/event-target.js
+var require_event_target = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/event-target.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var { kForOnEventAttribute, kListener } = require_constants6();
+    var kCode = Symbol("kCode");
+    var kData = Symbol("kData");
+    var kError = Symbol("kError");
+    var kMessage = Symbol("kMessage");
+    var kReason = Symbol("kReason");
+    var kTarget = Symbol("kTarget");
+    var kType = Symbol("kType");
+    var kWasClean = Symbol("kWasClean");
+    var Event2 = class {
+      /**
+       * Create a new `Event`.
+       *
+       * @param {String} type The name of the event
+       * @throws {TypeError} If the `type` argument is not specified
+       */
+      constructor(type) {
+        this[kTarget] = null;
+        this[kType] = type;
+      }
+      /**
+       * @type {*}
+       */
+      get target() {
+        return this[kTarget];
+      }
+      /**
+       * @type {String}
+       */
+      get type() {
+        return this[kType];
+      }
+    };
+    Object.defineProperty(Event2.prototype, "target", {
+      enumerable: true,
+    });
+    Object.defineProperty(Event2.prototype, "type", {
+      enumerable: true,
+    });
+    var CloseEvent = class extends Event2 {
+      /**
+       * Create a new `CloseEvent`.
+       *
+       * @param {String} type The name of the event
+       * @param {Object} [options] A dictionary object that allows for setting
+       *     attributes via object members of the same name
+       * @param {Number} [options.code=0] The status code explaining why the
+       *     connection was closed
+       * @param {String} [options.reason=''] A human-readable string explaining why
+       *     the connection was closed
+       * @param {Boolean} [options.wasClean=false] Indicates whether or not the
+       *     connection was cleanly closed
+       */
+      constructor(type, options = {}) {
+        super(type);
+        this[kCode] = options.code === void 0 ? 0 : options.code;
+        this[kReason] = options.reason === void 0 ? "" : options.reason;
+        this[kWasClean] = options.wasClean === void 0
+          ? false
+          : options.wasClean;
+      }
+      /**
+       * @type {Number}
+       */
+      get code() {
+        return this[kCode];
+      }
+      /**
+       * @type {String}
+       */
+      get reason() {
+        return this[kReason];
+      }
+      /**
+       * @type {Boolean}
+       */
+      get wasClean() {
+        return this[kWasClean];
+      }
+    };
+    Object.defineProperty(CloseEvent.prototype, "code", {
+      enumerable: true,
+    });
+    Object.defineProperty(CloseEvent.prototype, "reason", {
+      enumerable: true,
+    });
+    Object.defineProperty(CloseEvent.prototype, "wasClean", {
+      enumerable: true,
+    });
+    var ErrorEvent = class extends Event2 {
+      /**
+       * Create a new `ErrorEvent`.
+       *
+       * @param {String} type The name of the event
+       * @param {Object} [options] A dictionary object that allows for setting
+       *     attributes via object members of the same name
+       * @param {*} [options.error=null] The error that generated this event
+       * @param {String} [options.message=''] The error message
+       */
+      constructor(type, options = {}) {
+        super(type);
+        this[kError] = options.error === void 0 ? null : options.error;
+        this[kMessage] = options.message === void 0 ? "" : options.message;
+      }
+      /**
+       * @type {*}
+       */
+      get error() {
+        return this[kError];
+      }
+      /**
+       * @type {String}
+       */
+      get message() {
+        return this[kMessage];
+      }
+    };
+    Object.defineProperty(ErrorEvent.prototype, "error", {
+      enumerable: true,
+    });
+    Object.defineProperty(ErrorEvent.prototype, "message", {
+      enumerable: true,
+    });
+    var MessageEvent = class extends Event2 {
+      /**
+       * Create a new `MessageEvent`.
+       *
+       * @param {String} type The name of the event
+       * @param {Object} [options] A dictionary object that allows for setting
+       *     attributes via object members of the same name
+       * @param {*} [options.data=null] The message content
+       */
+      constructor(type, options = {}) {
+        super(type);
+        this[kData] = options.data === void 0 ? null : options.data;
+      }
+      /**
+       * @type {*}
+       */
+      get data() {
+        return this[kData];
+      }
+    };
+    Object.defineProperty(MessageEvent.prototype, "data", {
+      enumerable: true,
+    });
+    var EventTarget2 = {
+      /**
+       * Register an event listener.
+       *
+       * @param {String} type A string representing the event type to listen for
+       * @param {(Function|Object)} handler The listener to add
+       * @param {Object} [options] An options object specifies characteristics about
+       *     the event listener
+       * @param {Boolean} [options.once=false] A `Boolean` indicating that the
+       *     listener should be invoked at most once after being added. If `true`,
+       *     the listener would be automatically removed when invoked.
+       * @public
+       */
+      addEventListener(type, handler, options = {}) {
+        for (const listener of this.listeners(type)) {
+          if (
+            !options[kForOnEventAttribute] && listener[kListener] === handler &&
+            !listener[kForOnEventAttribute]
+          ) {
+            return;
+          }
+        }
+        let wrapper;
+        if (type === "message") {
+          wrapper = function onMessage(data, isBinary) {
+            const event = new MessageEvent("message", {
+              data: isBinary ? data : data.toString(),
+            });
+            event[kTarget] = this;
+            callListener(handler, this, event);
+          };
+        } else if (type === "close") {
+          wrapper = function onClose(code, message) {
+            const event = new CloseEvent("close", {
+              code,
+              reason: message.toString(),
+              wasClean: this._closeFrameReceived && this._closeFrameSent,
+            });
+            event[kTarget] = this;
+            callListener(handler, this, event);
+          };
+        } else if (type === "error") {
+          wrapper = function onError(error2) {
+            const event = new ErrorEvent("error", {
+              error: error2,
+              message: error2.message,
+            });
+            event[kTarget] = this;
+            callListener(handler, this, event);
+          };
+        } else if (type === "open") {
+          wrapper = function onOpen() {
+            const event = new Event2("open");
+            event[kTarget] = this;
+            callListener(handler, this, event);
+          };
+        } else {
+          return;
+        }
+        wrapper[kForOnEventAttribute] = !!options[kForOnEventAttribute];
+        wrapper[kListener] = handler;
+        if (options.once) {
+          this.once(type, wrapper);
+        } else {
+          this.on(type, wrapper);
+        }
+      },
+      /**
+       * Remove an event listener.
+       *
+       * @param {String} type A string representing the event type to remove
+       * @param {(Function|Object)} handler The listener to remove
+       * @public
+       */
+      removeEventListener(type, handler) {
+        for (const listener of this.listeners(type)) {
+          if (
+            listener[kListener] === handler && !listener[kForOnEventAttribute]
+          ) {
+            this.removeListener(type, listener);
+            break;
+          }
+        }
+      },
+    };
+    module.exports = {
+      CloseEvent,
+      ErrorEvent,
+      Event: Event2,
+      EventTarget: EventTarget2,
+      MessageEvent,
+    };
+    function callListener(listener, thisArg, event) {
+      if (typeof listener === "object" && listener.handleEvent) {
+        listener.handleEvent.call(listener, event);
+      } else {
+        listener.call(thisArg, event);
+      }
+    }
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/extension.js
+var require_extension = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/extension.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var { tokenChars } = require_validation();
+    function push(dest, name, elem) {
+      if (dest[name] === void 0) {
+        dest[name] = [
+          elem,
+        ];
+      } else dest[name].push(elem);
+    }
+    function parse2(header) {
+      const offers = /* @__PURE__ */ Object.create(null);
+      let params = /* @__PURE__ */ Object.create(null);
+      let mustUnescape = false;
+      let isEscaping = false;
+      let inQuotes = false;
+      let extensionName;
+      let paramName;
+      let start = -1;
+      let code = -1;
+      let end = -1;
+      let i = 0;
+      for (; i < header.length; i++) {
+        code = header.charCodeAt(i);
+        if (extensionName === void 0) {
+          if (end === -1 && tokenChars[code] === 1) {
+            if (start === -1) start = i;
+          } else if (i !== 0 && (code === 32 || code === 9)) {
+            if (end === -1 && start !== -1) end = i;
+          } else if (code === 59 || code === 44) {
+            if (start === -1) {
+              throw new SyntaxError(`Unexpected character at index ${i}`);
+            }
+            if (end === -1) end = i;
+            const name = header.slice(start, end);
+            if (code === 44) {
+              push(offers, name, params);
+              params = /* @__PURE__ */ Object.create(null);
+            } else {
+              extensionName = name;
+            }
+            start = end = -1;
+          } else {
+            throw new SyntaxError(`Unexpected character at index ${i}`);
+          }
+        } else if (paramName === void 0) {
+          if (end === -1 && tokenChars[code] === 1) {
+            if (start === -1) start = i;
+          } else if (code === 32 || code === 9) {
+            if (end === -1 && start !== -1) end = i;
+          } else if (code === 59 || code === 44) {
+            if (start === -1) {
+              throw new SyntaxError(`Unexpected character at index ${i}`);
+            }
+            if (end === -1) end = i;
+            push(params, header.slice(start, end), true);
+            if (code === 44) {
+              push(offers, extensionName, params);
+              params = /* @__PURE__ */ Object.create(null);
+              extensionName = void 0;
+            }
+            start = end = -1;
+          } else if (code === 61 && start !== -1 && end === -1) {
+            paramName = header.slice(start, i);
+            start = end = -1;
+          } else {
+            throw new SyntaxError(`Unexpected character at index ${i}`);
+          }
+        } else {
+          if (isEscaping) {
+            if (tokenChars[code] !== 1) {
+              throw new SyntaxError(`Unexpected character at index ${i}`);
+            }
+            if (start === -1) start = i;
+            else if (!mustUnescape) mustUnescape = true;
+            isEscaping = false;
+          } else if (inQuotes) {
+            if (tokenChars[code] === 1) {
+              if (start === -1) start = i;
+            } else if (code === 34 && start !== -1) {
+              inQuotes = false;
+              end = i;
+            } else if (code === 92) {
+              isEscaping = true;
+            } else {
+              throw new SyntaxError(`Unexpected character at index ${i}`);
+            }
+          } else if (code === 34 && header.charCodeAt(i - 1) === 61) {
+            inQuotes = true;
+          } else if (end === -1 && tokenChars[code] === 1) {
+            if (start === -1) start = i;
+          } else if (start !== -1 && (code === 32 || code === 9)) {
+            if (end === -1) end = i;
+          } else if (code === 59 || code === 44) {
+            if (start === -1) {
+              throw new SyntaxError(`Unexpected character at index ${i}`);
+            }
+            if (end === -1) end = i;
+            let value = header.slice(start, end);
+            if (mustUnescape) {
+              value = value.replace(/\\/g, "");
+              mustUnescape = false;
+            }
+            push(params, paramName, value);
+            if (code === 44) {
+              push(offers, extensionName, params);
+              params = /* @__PURE__ */ Object.create(null);
+              extensionName = void 0;
+            }
+            paramName = void 0;
+            start = end = -1;
+          } else {
+            throw new SyntaxError(`Unexpected character at index ${i}`);
+          }
+        }
+      }
+      if (start === -1 || inQuotes || code === 32 || code === 9) {
+        throw new SyntaxError("Unexpected end of input");
+      }
+      if (end === -1) end = i;
+      const token = header.slice(start, end);
+      if (extensionName === void 0) {
+        push(offers, token, params);
+      } else {
+        if (paramName === void 0) {
+          push(params, token, true);
+        } else if (mustUnescape) {
+          push(params, paramName, token.replace(/\\/g, ""));
+        } else {
+          push(params, paramName, token);
+        }
+        push(offers, extensionName, params);
+      }
+      return offers;
+    }
+    function format(extensions) {
+      return Object.keys(extensions).map((extension) => {
+        let configurations = extensions[extension];
+        if (!Array.isArray(configurations)) {
+          configurations = [
+            configurations,
+          ];
+        }
+        return configurations.map((params) => {
+          return [
+            extension,
+          ].concat(
+            Object.keys(params).map((k) => {
+              let values = params[k];
+              if (!Array.isArray(values)) {
+                values = [
+                  values,
+                ];
+              }
+              return values.map((v) => v === true ? k : `${k}=${v}`).join("; ");
+            }),
+          ).join("; ");
+        }).join(", ");
+      }).join(", ");
+    }
+    module.exports = {
+      format,
+      parse: parse2,
+    };
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/websocket.js
+var require_websocket2 = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/websocket.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var EventEmitter4 = __require("node:events");
+    var https3 = __require("node:https");
+    var http3 = __require("node:http");
+    var net = __require("node:net");
+    var tls = __require("node:tls");
+    var { randomBytes, createHash: createHash4 } = __require("node:crypto");
+    var { Duplex, Readable: Readable8 } = __require("node:stream");
+    var { URL: URL3 } = __require("node:url");
+    var PerMessageDeflate = require_permessage_deflate2();
+    var Receiver = require_receiver2();
+    var Sender = require_sender2();
+    var { isBlob: isBlob2 } = require_validation();
+    var {
+      BINARY_TYPES,
+      CLOSE_TIMEOUT,
+      EMPTY_BUFFER,
+      GUID,
+      kForOnEventAttribute,
+      kListener,
+      kStatusCode,
+      kWebSocket,
+      NOOP,
+    } = require_constants6();
+    var { EventTarget: { addEventListener, removeEventListener } } =
+      require_event_target();
+    var { format, parse: parse2 } = require_extension();
+    var { toBuffer } = require_buffer_util();
+    var kAborted = Symbol("kAborted");
+    var protocolVersions = [
+      8,
+      13,
+    ];
+    var readyStates = [
+      "CONNECTING",
+      "OPEN",
+      "CLOSING",
+      "CLOSED",
+    ];
+    var subprotocolRegex = /^[!#$%&'*+\-.0-9A-Z^_`|a-z~]+$/;
+    var WebSocket = class _WebSocket extends EventEmitter4 {
+      /**
+       * Create a new `WebSocket`.
+       *
+       * @param {(String|URL)} address The URL to which to connect
+       * @param {(String|String[])} [protocols] The subprotocols
+       * @param {Object} [options] Connection options
+       */
+      constructor(address, protocols, options) {
+        super();
+        this._binaryType = BINARY_TYPES[0];
+        this._closeCode = 1006;
+        this._closeFrameReceived = false;
+        this._closeFrameSent = false;
+        this._closeMessage = EMPTY_BUFFER;
+        this._closeTimer = null;
+        this._errorEmitted = false;
+        this._extensions = {};
+        this._paused = false;
+        this._protocol = "";
+        this._readyState = _WebSocket.CONNECTING;
+        this._receiver = null;
+        this._sender = null;
+        this._socket = null;
+        if (address !== null) {
+          this._bufferedAmount = 0;
+          this._isServer = false;
+          this._redirects = 0;
+          if (protocols === void 0) {
+            protocols = [];
+          } else if (!Array.isArray(protocols)) {
+            if (typeof protocols === "object" && protocols !== null) {
+              options = protocols;
+              protocols = [];
+            } else {
+              protocols = [
+                protocols,
+              ];
+            }
+          }
+          initAsClient(this, address, protocols, options);
+        } else {
+          this._autoPong = options.autoPong;
+          this._closeTimeout = options.closeTimeout;
+          this._isServer = true;
+        }
+      }
+      /**
+       * For historical reasons, the custom "nodebuffer" type is used by the default
+       * instead of "blob".
+       *
+       * @type {String}
+       */
+      get binaryType() {
+        return this._binaryType;
+      }
+      set binaryType(type) {
+        if (!BINARY_TYPES.includes(type)) return;
+        this._binaryType = type;
+        if (this._receiver) this._receiver._binaryType = type;
+      }
+      /**
+       * @type {Number}
+       */
+      get bufferedAmount() {
+        if (!this._socket) return this._bufferedAmount;
+        return this._socket._writableState.length + this._sender._bufferedBytes;
+      }
+      /**
+       * @type {String}
+       */
+      get extensions() {
+        return Object.keys(this._extensions).join();
+      }
+      /**
+       * @type {Boolean}
+       */
+      get isPaused() {
+        return this._paused;
+      }
+      /**
+       * @type {Function}
+       */
+      /* istanbul ignore next */
+      get onclose() {
+        return null;
+      }
+      /**
+       * @type {Function}
+       */
+      /* istanbul ignore next */
+      get onerror() {
+        return null;
+      }
+      /**
+       * @type {Function}
+       */
+      /* istanbul ignore next */
+      get onopen() {
+        return null;
+      }
+      /**
+       * @type {Function}
+       */
+      /* istanbul ignore next */
+      get onmessage() {
+        return null;
+      }
+      /**
+       * @type {String}
+       */
+      get protocol() {
+        return this._protocol;
+      }
+      /**
+       * @type {Number}
+       */
+      get readyState() {
+        return this._readyState;
+      }
+      /**
+       * @type {String}
+       */
+      get url() {
+        return this._url;
+      }
+      /**
+       * Set up the socket and the internal resources.
+       *
+       * @param {Duplex} socket The network socket between the server and client
+       * @param {Buffer} head The first packet of the upgraded stream
+       * @param {Object} options Options object
+       * @param {Boolean} [options.allowSynchronousEvents=false] Specifies whether
+       *     any of the `'message'`, `'ping'`, and `'pong'` events can be emitted
+       *     multiple times in the same tick
+       * @param {Function} [options.generateMask] The function used to generate the
+       *     masking key
+       * @param {Number} [options.maxBufferedChunks=0] The maximum number of
+       *     buffered data chunks
+       * @param {Number} [options.maxFragments=0] The maximum number of message
+       *     fragments
+       * @param {Number} [options.maxPayload=0] The maximum allowed message size
+       * @param {Boolean} [options.skipUTF8Validation=false] Specifies whether or
+       *     not to skip UTF-8 validation for text and close messages
+       * @private
+       */
+      setSocket(socket, head, options) {
+        const receiver = new Receiver({
+          allowSynchronousEvents: options.allowSynchronousEvents,
+          binaryType: this.binaryType,
+          extensions: this._extensions,
+          isServer: this._isServer,
+          maxBufferedChunks: options.maxBufferedChunks,
+          maxFragments: options.maxFragments,
+          maxPayload: options.maxPayload,
+          skipUTF8Validation: options.skipUTF8Validation,
+        });
+        const sender = new Sender(
+          socket,
+          this._extensions,
+          options.generateMask,
+        );
+        this._receiver = receiver;
+        this._sender = sender;
+        this._socket = socket;
+        receiver[kWebSocket] = this;
+        sender[kWebSocket] = this;
+        socket[kWebSocket] = this;
+        receiver.on("conclude", receiverOnConclude);
+        receiver.on("drain", receiverOnDrain);
+        receiver.on("error", receiverOnError);
+        receiver.on("message", receiverOnMessage);
+        receiver.on("ping", receiverOnPing);
+        receiver.on("pong", receiverOnPong);
+        sender.onerror = senderOnError;
+        if (socket.setTimeout) socket.setTimeout(0);
+        if (socket.setNoDelay) socket.setNoDelay();
+        if (head.length > 0) socket.unshift(head);
+        socket.on("close", socketOnClose);
+        socket.on("data", socketOnData);
+        socket.on("end", socketOnEnd);
+        socket.on("error", socketOnError);
+        this._readyState = _WebSocket.OPEN;
+        this.emit("open");
+      }
+      /**
+       * Emit the `'close'` event.
+       *
+       * @private
+       */
+      emitClose() {
+        if (!this._socket) {
+          this._readyState = _WebSocket.CLOSED;
+          this.emit("close", this._closeCode, this._closeMessage);
+          return;
+        }
+        if (this._extensions[PerMessageDeflate.extensionName]) {
+          this._extensions[PerMessageDeflate.extensionName].cleanup();
+        }
+        this._receiver.removeAllListeners();
+        this._readyState = _WebSocket.CLOSED;
+        this.emit("close", this._closeCode, this._closeMessage);
+      }
+      /**
+       * Start a closing handshake.
+       *
+       *          +----------+   +-----------+   +----------+
+       *     - - -|ws.close()|-->|close frame|-->|ws.close()|- - -
+       *    |     +----------+   +-----------+   +----------+     |
+       *          +----------+   +-----------+         |
+       * CLOSING  |ws.close()|<--|close frame|<--+-----+       CLOSING
+       *          +----------+   +-----------+   |
+       *    |           |                        |   +---+        |
+       *                +------------------------+-->|fin| - - - -
+       *    |         +---+                      |   +---+
+       *     - - - - -|fin|<---------------------+
+       *              +---+
+       *
+       * @param {Number} [code] Status code explaining why the connection is closing
+       * @param {(String|Buffer)} [data] The reason why the connection is
+       *     closing
+       * @public
+       */
+      close(code, data) {
+        if (this.readyState === _WebSocket.CLOSED) return;
+        if (this.readyState === _WebSocket.CONNECTING) {
+          const msg =
+            "WebSocket was closed before the connection was established";
+          abortHandshake(this, this._req, msg);
+          return;
+        }
+        if (this.readyState === _WebSocket.CLOSING) {
+          if (
+            this._closeFrameSent &&
+            (this._closeFrameReceived ||
+              this._receiver._writableState.errorEmitted)
+          ) {
+            this._socket.end();
+          }
+          return;
+        }
+        this._readyState = _WebSocket.CLOSING;
+        this._sender.close(code, data, !this._isServer, (err) => {
+          if (err) return;
+          this._closeFrameSent = true;
+          if (
+            this._closeFrameReceived ||
+            this._receiver._writableState.errorEmitted
+          ) {
+            this._socket.end();
+          }
+        });
+        setCloseTimer(this);
+      }
+      /**
+       * Pause the socket.
+       *
+       * @public
+       */
+      pause() {
+        if (
+          this.readyState === _WebSocket.CONNECTING ||
+          this.readyState === _WebSocket.CLOSED
+        ) {
+          return;
+        }
+        this._paused = true;
+        this._socket.pause();
+      }
+      /**
+       * Send a ping.
+       *
+       * @param {*} [data] The data to send
+       * @param {Boolean} [mask] Indicates whether or not to mask `data`
+       * @param {Function} [cb] Callback which is executed when the ping is sent
+       * @public
+       */
+      ping(data, mask, cb) {
+        if (this.readyState === _WebSocket.CONNECTING) {
+          throw new Error("WebSocket is not open: readyState 0 (CONNECTING)");
+        }
+        if (typeof data === "function") {
+          cb = data;
+          data = mask = void 0;
+        } else if (typeof mask === "function") {
+          cb = mask;
+          mask = void 0;
+        }
+        if (typeof data === "number") data = data.toString();
+        if (this.readyState !== _WebSocket.OPEN) {
+          sendAfterClose(this, data, cb);
+          return;
+        }
+        if (mask === void 0) mask = !this._isServer;
+        this._sender.ping(data || EMPTY_BUFFER, mask, cb);
+      }
+      /**
+       * Send a pong.
+       *
+       * @param {*} [data] The data to send
+       * @param {Boolean} [mask] Indicates whether or not to mask `data`
+       * @param {Function} [cb] Callback which is executed when the pong is sent
+       * @public
+       */
+      pong(data, mask, cb) {
+        if (this.readyState === _WebSocket.CONNECTING) {
+          throw new Error("WebSocket is not open: readyState 0 (CONNECTING)");
+        }
+        if (typeof data === "function") {
+          cb = data;
+          data = mask = void 0;
+        } else if (typeof mask === "function") {
+          cb = mask;
+          mask = void 0;
+        }
+        if (typeof data === "number") data = data.toString();
+        if (this.readyState !== _WebSocket.OPEN) {
+          sendAfterClose(this, data, cb);
+          return;
+        }
+        if (mask === void 0) mask = !this._isServer;
+        this._sender.pong(data || EMPTY_BUFFER, mask, cb);
+      }
+      /**
+       * Resume the socket.
+       *
+       * @public
+       */
+      resume() {
+        if (
+          this.readyState === _WebSocket.CONNECTING ||
+          this.readyState === _WebSocket.CLOSED
+        ) {
+          return;
+        }
+        this._paused = false;
+        if (!this._receiver._writableState.needDrain) this._socket.resume();
+      }
+      /**
+       * Send a data message.
+       *
+       * @param {*} data The message to send
+       * @param {Object} [options] Options object
+       * @param {Boolean} [options.binary] Specifies whether `data` is binary or
+       *     text
+       * @param {Boolean} [options.compress] Specifies whether or not to compress
+       *     `data`
+       * @param {Boolean} [options.fin=true] Specifies whether the fragment is the
+       *     last one
+       * @param {Boolean} [options.mask] Specifies whether or not to mask `data`
+       * @param {Function} [cb] Callback which is executed when data is written out
+       * @public
+       */
+      send(data, options, cb) {
+        if (this.readyState === _WebSocket.CONNECTING) {
+          throw new Error("WebSocket is not open: readyState 0 (CONNECTING)");
+        }
+        if (typeof options === "function") {
+          cb = options;
+          options = {};
+        }
+        if (typeof data === "number") data = data.toString();
+        if (this.readyState !== _WebSocket.OPEN) {
+          sendAfterClose(this, data, cb);
+          return;
+        }
+        const opts = {
+          binary: typeof data !== "string",
+          mask: !this._isServer,
+          compress: true,
+          fin: true,
+          ...options,
+        };
+        if (!this._extensions[PerMessageDeflate.extensionName]) {
+          opts.compress = false;
+        }
+        this._sender.send(data || EMPTY_BUFFER, opts, cb);
+      }
+      /**
+       * Forcibly close the connection.
+       *
+       * @public
+       */
+      terminate() {
+        if (this.readyState === _WebSocket.CLOSED) return;
+        if (this.readyState === _WebSocket.CONNECTING) {
+          const msg =
+            "WebSocket was closed before the connection was established";
+          abortHandshake(this, this._req, msg);
+          return;
+        }
+        if (this._socket) {
+          this._readyState = _WebSocket.CLOSING;
+          this._socket.destroy();
+        }
+      }
+    };
+    Object.defineProperty(WebSocket, "CONNECTING", {
+      enumerable: true,
+      value: readyStates.indexOf("CONNECTING"),
+    });
+    Object.defineProperty(WebSocket.prototype, "CONNECTING", {
+      enumerable: true,
+      value: readyStates.indexOf("CONNECTING"),
+    });
+    Object.defineProperty(WebSocket, "OPEN", {
+      enumerable: true,
+      value: readyStates.indexOf("OPEN"),
+    });
+    Object.defineProperty(WebSocket.prototype, "OPEN", {
+      enumerable: true,
+      value: readyStates.indexOf("OPEN"),
+    });
+    Object.defineProperty(WebSocket, "CLOSING", {
+      enumerable: true,
+      value: readyStates.indexOf("CLOSING"),
+    });
+    Object.defineProperty(WebSocket.prototype, "CLOSING", {
+      enumerable: true,
+      value: readyStates.indexOf("CLOSING"),
+    });
+    Object.defineProperty(WebSocket, "CLOSED", {
+      enumerable: true,
+      value: readyStates.indexOf("CLOSED"),
+    });
+    Object.defineProperty(WebSocket.prototype, "CLOSED", {
+      enumerable: true,
+      value: readyStates.indexOf("CLOSED"),
+    });
+    [
+      "binaryType",
+      "bufferedAmount",
+      "extensions",
+      "isPaused",
+      "protocol",
+      "readyState",
+      "url",
+    ].forEach((property) => {
+      Object.defineProperty(WebSocket.prototype, property, {
+        enumerable: true,
+      });
+    });
+    [
+      "open",
+      "error",
+      "close",
+      "message",
+    ].forEach((method) => {
+      Object.defineProperty(WebSocket.prototype, `on${method}`, {
+        enumerable: true,
+        get() {
+          for (const listener of this.listeners(method)) {
+            if (listener[kForOnEventAttribute]) return listener[kListener];
+          }
+          return null;
+        },
+        set(handler) {
+          for (const listener of this.listeners(method)) {
+            if (listener[kForOnEventAttribute]) {
+              this.removeListener(method, listener);
+              break;
+            }
+          }
+          if (typeof handler !== "function") return;
+          this.addEventListener(method, handler, {
+            [kForOnEventAttribute]: true,
+          });
+        },
+      });
+    });
+    WebSocket.prototype.addEventListener = addEventListener;
+    WebSocket.prototype.removeEventListener = removeEventListener;
+    module.exports = WebSocket;
+    function initAsClient(websocket, address, protocols, options) {
+      const opts = {
+        allowSynchronousEvents: true,
+        autoPong: true,
+        closeTimeout: CLOSE_TIMEOUT,
+        protocolVersion: protocolVersions[1],
+        maxBufferedChunks: 256 * 1024,
+        maxFragments: 16 * 1024,
+        maxPayload: 100 * 1024 * 1024,
+        skipUTF8Validation: false,
+        perMessageDeflate: true,
+        followRedirects: false,
+        maxRedirects: 10,
+        ...options,
+        socketPath: void 0,
+        hostname: void 0,
+        protocol: void 0,
+        timeout: void 0,
+        method: "GET",
+        host: void 0,
+        path: void 0,
+        port: void 0,
+      };
+      websocket._autoPong = opts.autoPong;
+      websocket._closeTimeout = opts.closeTimeout;
+      if (!protocolVersions.includes(opts.protocolVersion)) {
+        throw new RangeError(
+          `Unsupported protocol version: ${opts.protocolVersion} (supported versions: ${
+            protocolVersions.join(", ")
+          })`,
+        );
+      }
+      let parsedUrl;
+      if (address instanceof URL3) {
+        parsedUrl = address;
+      } else {
+        try {
+          parsedUrl = new URL3(address);
+        } catch {
+          throw new SyntaxError(`Invalid URL: ${address}`);
+        }
+      }
+      if (parsedUrl.protocol === "http:") {
+        parsedUrl.protocol = "ws:";
+      } else if (parsedUrl.protocol === "https:") {
+        parsedUrl.protocol = "wss:";
+      }
+      websocket._url = parsedUrl.href;
+      const isSecure = parsedUrl.protocol === "wss:";
+      const isIpcUrl = parsedUrl.protocol === "ws+unix:";
+      let invalidUrlMessage;
+      if (parsedUrl.protocol !== "ws:" && !isSecure && !isIpcUrl) {
+        invalidUrlMessage =
+          `The URL's protocol must be one of "ws:", "wss:", "http:", "https:", or "ws+unix:"`;
+      } else if (isIpcUrl && !parsedUrl.pathname) {
+        invalidUrlMessage = "The URL's pathname is empty";
+      } else if (parsedUrl.hash) {
+        invalidUrlMessage = "The URL contains a fragment identifier";
+      }
+      if (invalidUrlMessage) {
+        const err = new SyntaxError(invalidUrlMessage);
+        if (websocket._redirects === 0) {
+          throw err;
+        } else {
+          emitErrorAndClose(websocket, err);
+          return;
+        }
+      }
+      const defaultPort = isSecure ? 443 : 80;
+      const key = randomBytes(16).toString("base64");
+      const request = isSecure ? https3.request : http3.request;
+      const protocolSet = /* @__PURE__ */ new Set();
+      let perMessageDeflate;
+      opts.createConnection = opts.createConnection ||
+        (isSecure ? tlsConnect : netConnect);
+      opts.defaultPort = opts.defaultPort || defaultPort;
+      opts.port = parsedUrl.port || defaultPort;
+      opts.host = parsedUrl.hostname.startsWith("[")
+        ? parsedUrl.hostname.slice(1, -1)
+        : parsedUrl.hostname;
+      opts.headers = {
+        ...opts.headers,
+        "Sec-WebSocket-Version": opts.protocolVersion,
+        "Sec-WebSocket-Key": key,
+        Connection: "Upgrade",
+        Upgrade: "websocket",
+      };
+      opts.path = parsedUrl.pathname + parsedUrl.search;
+      opts.timeout = opts.handshakeTimeout;
+      if (opts.perMessageDeflate) {
+        perMessageDeflate = new PerMessageDeflate({
+          ...opts.perMessageDeflate,
+          isServer: false,
+          maxPayload: opts.maxPayload,
+        });
+        opts.headers["Sec-WebSocket-Extensions"] = format({
+          [PerMessageDeflate.extensionName]: perMessageDeflate.offer(),
+        });
+      }
+      if (protocols.length) {
+        for (const protocol of protocols) {
+          if (
+            typeof protocol !== "string" || !subprotocolRegex.test(protocol) ||
+            protocolSet.has(protocol)
+          ) {
+            throw new SyntaxError(
+              "An invalid or duplicated subprotocol was specified",
+            );
+          }
+          protocolSet.add(protocol);
+        }
+        opts.headers["Sec-WebSocket-Protocol"] = protocols.join(",");
+      }
+      if (opts.origin) {
+        if (opts.protocolVersion < 13) {
+          opts.headers["Sec-WebSocket-Origin"] = opts.origin;
+        } else {
+          opts.headers.Origin = opts.origin;
+        }
+      }
+      if (parsedUrl.username || parsedUrl.password) {
+        opts.auth = `${parsedUrl.username}:${parsedUrl.password}`;
+      }
+      if (isIpcUrl) {
+        const parts = opts.path.split(":");
+        opts.socketPath = parts[0];
+        opts.path = parts[1];
+      }
+      let req;
+      if (opts.followRedirects) {
+        if (websocket._redirects === 0) {
+          websocket._originalIpc = isIpcUrl;
+          websocket._originalSecure = isSecure;
+          websocket._originalHostOrSocketPath = isIpcUrl
+            ? opts.socketPath
+            : parsedUrl.host;
+          const headers = options && options.headers;
+          options = {
+            ...options,
+            headers: {},
+          };
+          if (headers) {
+            for (const [key2, value] of Object.entries(headers)) {
+              options.headers[key2.toLowerCase()] = value;
+            }
+          }
+        } else if (websocket.listenerCount("redirect") === 0) {
+          const isSameHost = isIpcUrl
+            ? websocket._originalIpc
+              ? opts.socketPath === websocket._originalHostOrSocketPath
+              : false
+            : websocket._originalIpc
+            ? false
+            : parsedUrl.host === websocket._originalHostOrSocketPath;
+          if (!isSameHost || websocket._originalSecure && !isSecure) {
+            delete opts.headers.authorization;
+            delete opts.headers.cookie;
+            if (!isSameHost) delete opts.headers.host;
+            opts.auth = void 0;
+          }
+        }
+        if (opts.auth && !options.headers.authorization) {
+          options.headers.authorization = "Basic " +
+            Buffer.from(opts.auth).toString("base64");
+        }
+        req = websocket._req = request(opts);
+        if (websocket._redirects) {
+          websocket.emit("redirect", websocket.url, req);
+        }
+      } else {
+        req = websocket._req = request(opts);
+      }
+      if (opts.timeout) {
+        req.on("timeout", () => {
+          abortHandshake(websocket, req, "Opening handshake has timed out");
+        });
+      }
+      req.on("error", (err) => {
+        if (req === null || req[kAborted]) return;
+        req = websocket._req = null;
+        emitErrorAndClose(websocket, err);
+      });
+      req.on("response", (res) => {
+        const location = res.headers.location;
+        const statusCode = res.statusCode;
+        if (
+          location && opts.followRedirects && statusCode >= 300 &&
+          statusCode < 400
+        ) {
+          if (++websocket._redirects > opts.maxRedirects) {
+            abortHandshake(websocket, req, "Maximum redirects exceeded");
+            return;
+          }
+          req.abort();
+          let addr;
+          try {
+            addr = new URL3(location, address);
+          } catch (e) {
+            const err = new SyntaxError(`Invalid URL: ${location}`);
+            emitErrorAndClose(websocket, err);
+            return;
+          }
+          initAsClient(websocket, addr, protocols, options);
+        } else if (!websocket.emit("unexpected-response", req, res)) {
+          abortHandshake(
+            websocket,
+            req,
+            `Unexpected server response: ${res.statusCode}`,
+          );
+        }
+      });
+      req.on("upgrade", (res, socket, head) => {
+        websocket.emit("upgrade", res);
+        if (websocket.readyState !== WebSocket.CONNECTING) return;
+        req = websocket._req = null;
+        const upgrade = res.headers.upgrade;
+        if (upgrade === void 0 || upgrade.toLowerCase() !== "websocket") {
+          abortHandshake(websocket, socket, "Invalid Upgrade header");
+          return;
+        }
+        const digest = createHash4("sha1").update(key + GUID).digest("base64");
+        if (res.headers["sec-websocket-accept"] !== digest) {
+          abortHandshake(
+            websocket,
+            socket,
+            "Invalid Sec-WebSocket-Accept header",
+          );
+          return;
+        }
+        const serverProt = res.headers["sec-websocket-protocol"];
+        let protError;
+        if (serverProt !== void 0) {
+          if (!protocolSet.size) {
+            protError = "Server sent a subprotocol but none was requested";
+          } else if (!protocolSet.has(serverProt)) {
+            protError = "Server sent an invalid subprotocol";
+          }
+        } else if (protocolSet.size) {
+          protError = "Server sent no subprotocol";
+        }
+        if (protError) {
+          abortHandshake(websocket, socket, protError);
+          return;
+        }
+        if (serverProt) websocket._protocol = serverProt;
+        const secWebSocketExtensions = res.headers["sec-websocket-extensions"];
+        if (secWebSocketExtensions !== void 0) {
+          if (!perMessageDeflate) {
+            const message =
+              "Server sent a Sec-WebSocket-Extensions header but no extension was requested";
+            abortHandshake(websocket, socket, message);
+            return;
+          }
+          let extensions;
+          try {
+            extensions = parse2(secWebSocketExtensions);
+          } catch (err) {
+            const message = "Invalid Sec-WebSocket-Extensions header";
+            abortHandshake(websocket, socket, message);
+            return;
+          }
+          const extensionNames = Object.keys(extensions);
+          if (
+            extensionNames.length !== 1 ||
+            extensionNames[0] !== PerMessageDeflate.extensionName
+          ) {
+            const message =
+              "Server indicated an extension that was not requested";
+            abortHandshake(websocket, socket, message);
+            return;
+          }
+          try {
+            perMessageDeflate.accept(
+              extensions[PerMessageDeflate.extensionName],
+            );
+          } catch (err) {
+            const message = "Invalid Sec-WebSocket-Extensions header";
+            abortHandshake(websocket, socket, message);
+            return;
+          }
+          websocket._extensions[PerMessageDeflate.extensionName] =
+            perMessageDeflate;
+        }
+        websocket.setSocket(socket, head, {
+          allowSynchronousEvents: opts.allowSynchronousEvents,
+          generateMask: opts.generateMask,
+          maxBufferedChunks: opts.maxBufferedChunks,
+          maxFragments: opts.maxFragments,
+          maxPayload: opts.maxPayload,
+          skipUTF8Validation: opts.skipUTF8Validation,
+        });
+      });
+      if (opts.finishRequest) {
+        opts.finishRequest(req, websocket);
+      } else {
+        req.end();
+      }
+    }
+    function emitErrorAndClose(websocket, err) {
+      websocket._readyState = WebSocket.CLOSING;
+      websocket._errorEmitted = true;
+      websocket.emit("error", err);
+      websocket.emitClose();
+    }
+    function netConnect(options) {
+      options.path = options.socketPath;
+      return net.connect(options);
+    }
+    function tlsConnect(options) {
+      options.path = void 0;
+      if (!options.servername && options.servername !== "") {
+        options.servername = net.isIP(options.host) ? "" : options.host;
+      }
+      return tls.connect(options);
+    }
+    function abortHandshake(websocket, stream3, message) {
+      websocket._readyState = WebSocket.CLOSING;
+      const err = new Error(message);
+      Error.captureStackTrace(err, abortHandshake);
+      if (stream3.setHeader) {
+        stream3[kAborted] = true;
+        stream3.abort();
+        if (stream3.socket && !stream3.socket.destroyed) {
+          stream3.socket.destroy();
+        }
+        process.nextTick(emitErrorAndClose, websocket, err);
+      } else {
+        stream3.destroy(err);
+        stream3.once("error", websocket.emit.bind(websocket, "error"));
+        stream3.once("close", websocket.emitClose.bind(websocket));
+      }
+    }
+    function sendAfterClose(websocket, data, cb) {
+      if (data) {
+        const length = isBlob2(data) ? data.size : toBuffer(data).length;
+        if (websocket._socket) websocket._sender._bufferedBytes += length;
+        else websocket._bufferedAmount += length;
+      }
+      if (cb) {
+        const err = new Error(
+          `WebSocket is not open: readyState ${websocket.readyState} (${
+            readyStates[websocket.readyState]
+          })`,
+        );
+        process.nextTick(cb, err);
+      }
+    }
+    function receiverOnConclude(code, reason) {
+      const websocket = this[kWebSocket];
+      websocket._closeFrameReceived = true;
+      websocket._closeMessage = reason;
+      websocket._closeCode = code;
+      if (websocket._socket[kWebSocket] === void 0) return;
+      websocket._socket.removeListener("data", socketOnData);
+      process.nextTick(resume, websocket._socket);
+      if (code === 1005) websocket.close();
+      else websocket.close(code, reason);
+    }
+    function receiverOnDrain() {
+      const websocket = this[kWebSocket];
+      if (!websocket.isPaused) websocket._socket.resume();
+    }
+    function receiverOnError(err) {
+      const websocket = this[kWebSocket];
+      if (websocket._socket[kWebSocket] !== void 0) {
+        websocket._socket.removeListener("data", socketOnData);
+        process.nextTick(resume, websocket._socket);
+        websocket.close(err[kStatusCode]);
+      }
+      if (!websocket._errorEmitted) {
+        websocket._errorEmitted = true;
+        websocket.emit("error", err);
+      }
+    }
+    function receiverOnFinish() {
+      this[kWebSocket].emitClose();
+    }
+    function receiverOnMessage(data, isBinary) {
+      this[kWebSocket].emit("message", data, isBinary);
+    }
+    function receiverOnPing(data) {
+      const websocket = this[kWebSocket];
+      if (websocket._autoPong) websocket.pong(data, !this._isServer, NOOP);
+      websocket.emit("ping", data);
+    }
+    function receiverOnPong(data) {
+      this[kWebSocket].emit("pong", data);
+    }
+    function resume(stream3) {
+      stream3.resume();
+    }
+    function senderOnError(err) {
+      const websocket = this[kWebSocket];
+      if (websocket.readyState === WebSocket.CLOSED) return;
+      if (websocket.readyState === WebSocket.OPEN) {
+        websocket._readyState = WebSocket.CLOSING;
+        setCloseTimer(websocket);
+      }
+      this._socket.end();
+      if (!websocket._errorEmitted) {
+        websocket._errorEmitted = true;
+        websocket.emit("error", err);
+      }
+    }
+    function setCloseTimer(websocket) {
+      websocket._closeTimer = setTimeout(
+        websocket._socket.destroy.bind(websocket._socket),
+        websocket._closeTimeout,
+      );
+    }
+    function socketOnClose() {
+      const websocket = this[kWebSocket];
+      this.removeListener("close", socketOnClose);
+      this.removeListener("data", socketOnData);
+      this.removeListener("end", socketOnEnd);
+      websocket._readyState = WebSocket.CLOSING;
+      if (
+        !this._readableState.endEmitted && !websocket._closeFrameReceived &&
+        !websocket._receiver._writableState.errorEmitted &&
+        this._readableState.length !== 0
+      ) {
+        const chunk2 = this.read(this._readableState.length);
+        websocket._receiver.write(chunk2);
+      }
+      websocket._receiver.end();
+      this[kWebSocket] = void 0;
+      clearTimeout(websocket._closeTimer);
+      if (
+        websocket._receiver._writableState.finished ||
+        websocket._receiver._writableState.errorEmitted
+      ) {
+        websocket.emitClose();
+      } else {
+        websocket._receiver.on("error", receiverOnFinish);
+        websocket._receiver.on("finish", receiverOnFinish);
+      }
+    }
+    function socketOnData(chunk2) {
+      if (!this[kWebSocket]._receiver.write(chunk2)) {
+        this.pause();
+      }
+    }
+    function socketOnEnd() {
+      const websocket = this[kWebSocket];
+      websocket._readyState = WebSocket.CLOSING;
+      websocket._receiver.end();
+      this.end();
+    }
+    function socketOnError() {
+      const websocket = this[kWebSocket];
+      this.removeListener("error", socketOnError);
+      this.on("error", NOOP);
+      if (websocket) {
+        websocket._readyState = WebSocket.CLOSING;
+        this.destroy();
+      }
+    }
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/stream.js
+var require_stream = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/stream.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var WebSocket = require_websocket2();
+    var { Duplex } = __require("node:stream");
+    function emitClose(stream3) {
+      stream3.emit("close");
+    }
+    function duplexOnEnd() {
+      if (!this.destroyed && this._writableState.finished) {
+        this.destroy();
+      }
+    }
+    function duplexOnError(err) {
+      this.removeListener("error", duplexOnError);
+      this.destroy();
+      if (this.listenerCount("error") === 0) {
+        this.emit("error", err);
+      }
+    }
+    function createWebSocketStream(ws, options) {
+      let terminateOnDestroy = true;
+      const duplex = new Duplex({
+        ...options,
+        autoDestroy: false,
+        emitClose: false,
+        objectMode: false,
+        writableObjectMode: false,
+      });
+      ws.on("message", function message(msg, isBinary) {
+        const data = !isBinary && duplex._readableState.objectMode
+          ? msg.toString()
+          : msg;
+        if (!duplex.push(data)) ws.pause();
+      });
+      ws.once("error", function error2(err) {
+        if (duplex.destroyed) return;
+        terminateOnDestroy = false;
+        duplex.destroy(err);
+      });
+      ws.once("close", function close() {
+        if (duplex.destroyed) return;
+        duplex.push(null);
+      });
+      duplex._destroy = function (err, callback) {
+        if (ws.readyState === ws.CLOSED) {
+          callback(err);
+          process.nextTick(emitClose, duplex);
+          return;
+        }
+        let called = false;
+        ws.once("error", function error2(err2) {
+          called = true;
+          callback(err2);
+        });
+        ws.once("close", function close() {
+          if (!called) callback(err);
+          process.nextTick(emitClose, duplex);
+        });
+        if (terminateOnDestroy) ws.terminate();
+      };
+      duplex._final = function (callback) {
+        if (ws.readyState === ws.CONNECTING) {
+          ws.once("open", function open2() {
+            duplex._final(callback);
+          });
+          return;
+        }
+        if (ws._socket === null) return;
+        if (ws._socket._writableState.finished) {
+          callback();
+          if (duplex._readableState.endEmitted) duplex.destroy();
+        } else {
+          ws._socket.once("finish", function finish() {
+            callback();
+          });
+          ws.close();
+        }
+      };
+      duplex._read = function () {
+        if (ws.isPaused) ws.resume();
+      };
+      duplex._write = function (chunk2, encoding, callback) {
+        if (ws.readyState === ws.CONNECTING) {
+          ws.once("open", function open2() {
+            duplex._write(chunk2, encoding, callback);
+          });
+          return;
+        }
+        ws.send(chunk2, callback);
+      };
+      duplex.on("end", duplexOnEnd);
+      duplex.on("error", duplexOnError);
+      return duplex;
+    }
+    module.exports = createWebSocketStream;
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/subprotocol.js
+var require_subprotocol = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/subprotocol.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var { tokenChars } = require_validation();
+    function parse2(header) {
+      const protocols = /* @__PURE__ */ new Set();
+      let start = -1;
+      let end = -1;
+      let i = 0;
+      for (i; i < header.length; i++) {
+        const code = header.charCodeAt(i);
+        if (end === -1 && tokenChars[code] === 1) {
+          if (start === -1) start = i;
+        } else if (i !== 0 && (code === 32 || code === 9)) {
+          if (end === -1 && start !== -1) end = i;
+        } else if (code === 44) {
+          if (start === -1) {
+            throw new SyntaxError(`Unexpected character at index ${i}`);
+          }
+          if (end === -1) end = i;
+          const protocol2 = header.slice(start, end);
+          if (protocols.has(protocol2)) {
+            throw new SyntaxError(
+              `The "${protocol2}" subprotocol is duplicated`,
+            );
+          }
+          protocols.add(protocol2);
+          start = end = -1;
+        } else {
+          throw new SyntaxError(`Unexpected character at index ${i}`);
+        }
+      }
+      if (start === -1 || end !== -1) {
+        throw new SyntaxError("Unexpected end of input");
+      }
+      const protocol = header.slice(start, i);
+      if (protocols.has(protocol)) {
+        throw new SyntaxError(`The "${protocol}" subprotocol is duplicated`);
+      }
+      protocols.add(protocol);
+      return protocols;
+    }
+    module.exports = {
+      parse: parse2,
+    };
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/websocket-server.js
+var require_websocket_server = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/websocket-server.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var EventEmitter4 = __require("node:events");
+    var http3 = __require("node:http");
+    var { Duplex } = __require("node:stream");
+    var { createHash: createHash4 } = __require("node:crypto");
+    var extension = require_extension();
+    var PerMessageDeflate = require_permessage_deflate2();
+    var subprotocol = require_subprotocol();
+    var WebSocket = require_websocket2();
+    var { CLOSE_TIMEOUT, GUID, kWebSocket } = require_constants6();
+    var keyRegex = /^[+/0-9A-Za-z]{22}==$/;
+    var RUNNING = 0;
+    var CLOSING = 1;
+    var CLOSED = 2;
+    var WebSocketServer = class extends EventEmitter4 {
+      /**
+       * Create a `WebSocketServer` instance.
+       *
+       * @param {Object} options Configuration options
+       * @param {Boolean} [options.allowSynchronousEvents=true] Specifies whether
+       *     any of the `'message'`, `'ping'`, and `'pong'` events can be emitted
+       *     multiple times in the same tick
+       * @param {Boolean} [options.autoPong=true] Specifies whether or not to
+       *     automatically send a pong in response to a ping
+       * @param {Number} [options.backlog=511] The maximum length of the queue of
+       *     pending connections
+       * @param {Boolean} [options.clientTracking=true] Specifies whether or not to
+       *     track clients
+       * @param {Number} [options.closeTimeout=30000] Duration in milliseconds to
+       *     wait for the closing handshake to finish after `websocket.close()` is
+       *     called
+       * @param {Function} [options.handleProtocols] A hook to handle protocols
+       * @param {String} [options.host] The hostname where to bind the server
+       * @param {Number} [options.maxBufferedChunks=262144] The maximum number of
+       *     buffered data chunks
+       * @param {Number} [options.maxFragments=16384] The maximum number of message
+       *     fragments
+       * @param {Number} [options.maxPayload=104857600] The maximum allowed message
+       *     size
+       * @param {Boolean} [options.noServer=false] Enable no server mode
+       * @param {String} [options.path] Accept only connections matching this path
+       * @param {(Boolean|Object)} [options.perMessageDeflate=false] Enable/disable
+       *     permessage-deflate
+       * @param {Number} [options.port] The port where to bind the server
+       * @param {(http.Server|https.Server)} [options.server] A pre-created HTTP/S
+       *     server to use
+       * @param {Boolean} [options.skipUTF8Validation=false] Specifies whether or
+       *     not to skip UTF-8 validation for text and close messages
+       * @param {Function} [options.verifyClient] A hook to reject connections
+       * @param {Function} [options.WebSocket=WebSocket] Specifies the `WebSocket`
+       *     class to use. It must be the `WebSocket` class or class that extends it
+       * @param {Function} [callback] A listener for the `listening` event
+       */
+      constructor(options, callback) {
+        super();
+        options = {
+          allowSynchronousEvents: true,
+          autoPong: true,
+          maxBufferedChunks: 256 * 1024,
+          maxFragments: 16 * 1024,
+          maxPayload: 100 * 1024 * 1024,
+          skipUTF8Validation: false,
+          perMessageDeflate: false,
+          handleProtocols: null,
+          clientTracking: true,
+          closeTimeout: CLOSE_TIMEOUT,
+          verifyClient: null,
+          noServer: false,
+          backlog: null,
+          server: null,
+          host: null,
+          path: null,
+          port: null,
+          WebSocket,
+          ...options,
+        };
+        if (
+          options.port == null && !options.server && !options.noServer ||
+          options.port != null && (options.server || options.noServer) ||
+          options.server && options.noServer
+        ) {
+          throw new TypeError(
+            'One and only one of the "port", "server", or "noServer" options must be specified',
+          );
+        }
+        if (options.port != null) {
+          this._server = http3.createServer((req, res) => {
+            const body2 = http3.STATUS_CODES[426];
+            res.writeHead(426, {
+              "Content-Length": body2.length,
+              "Content-Type": "text/plain",
+            });
+            res.end(body2);
+          });
+          this._server.listen(
+            options.port,
+            options.host,
+            options.backlog,
+            callback,
+          );
+        } else if (options.server) {
+          this._server = options.server;
+        }
+        if (this._server) {
+          const emitConnection = this.emit.bind(this, "connection");
+          this._removeListeners = addListeners(this._server, {
+            listening: this.emit.bind(this, "listening"),
+            error: this.emit.bind(this, "error"),
+            upgrade: (req, socket, head) => {
+              this.handleUpgrade(req, socket, head, emitConnection);
+            },
+          });
+        }
+        if (options.perMessageDeflate === true) options.perMessageDeflate = {};
+        if (options.clientTracking) {
+          this.clients = /* @__PURE__ */ new Set();
+          this._shouldEmitClose = false;
+        }
+        this.options = options;
+        this._state = RUNNING;
+      }
+      /**
+       * Returns the bound address, the address family name, and port of the server
+       * as reported by the operating system if listening on an IP socket.
+       * If the server is listening on a pipe or UNIX domain socket, the name is
+       * returned as a string.
+       *
+       * @return {(Object|String|null)} The address of the server
+       * @public
+       */
+      address() {
+        if (this.options.noServer) {
+          throw new Error('The server is operating in "noServer" mode');
+        }
+        if (!this._server) return null;
+        return this._server.address();
+      }
+      /**
+       * Stop the server from accepting new connections and emit the `'close'` event
+       * when all existing connections are closed.
+       *
+       * @param {Function} [cb] A one-time listener for the `'close'` event
+       * @public
+       */
+      close(cb) {
+        if (this._state === CLOSED) {
+          if (cb) {
+            this.once("close", () => {
+              cb(new Error("The server is not running"));
+            });
+          }
+          process.nextTick(emitClose, this);
+          return;
+        }
+        if (cb) this.once("close", cb);
+        if (this._state === CLOSING) return;
+        this._state = CLOSING;
+        if (this.options.noServer || this.options.server) {
+          if (this._server) {
+            this._removeListeners();
+            this._removeListeners = this._server = null;
+          }
+          if (this.clients) {
+            if (!this.clients.size) {
+              process.nextTick(emitClose, this);
+            } else {
+              this._shouldEmitClose = true;
+            }
+          } else {
+            process.nextTick(emitClose, this);
+          }
+        } else {
+          const server = this._server;
+          this._removeListeners();
+          this._removeListeners = this._server = null;
+          server.close(() => {
+            emitClose(this);
+          });
+        }
+      }
+      /**
+       * See if a given request should be handled by this server instance.
+       *
+       * @param {http.IncomingMessage} req Request object to inspect
+       * @return {Boolean} `true` if the request is valid, else `false`
+       * @public
+       */
+      shouldHandle(req) {
+        if (this.options.path) {
+          const index = req.url.indexOf("?");
+          const pathname = index !== -1 ? req.url.slice(0, index) : req.url;
+          if (pathname !== this.options.path) return false;
+        }
+        return true;
+      }
+      /**
+       * Handle a HTTP Upgrade request.
+       *
+       * @param {http.IncomingMessage} req The request object
+       * @param {Duplex} socket The network socket between the server and client
+       * @param {Buffer} head The first packet of the upgraded stream
+       * @param {Function} cb Callback
+       * @public
+       */
+      handleUpgrade(req, socket, head, cb) {
+        socket.on("error", socketOnError);
+        const key = req.headers["sec-websocket-key"];
+        const upgrade = req.headers.upgrade;
+        const version3 = +req.headers["sec-websocket-version"];
+        if (req.method !== "GET") {
+          const message = "Invalid HTTP method";
+          abortHandshakeOrEmitwsClientError(this, req, socket, 405, message);
+          return;
+        }
+        if (upgrade === void 0 || upgrade.toLowerCase() !== "websocket") {
+          const message = "Invalid Upgrade header";
+          abortHandshakeOrEmitwsClientError(this, req, socket, 400, message);
+          return;
+        }
+        if (key === void 0 || !keyRegex.test(key)) {
+          const message = "Missing or invalid Sec-WebSocket-Key header";
+          abortHandshakeOrEmitwsClientError(this, req, socket, 400, message);
+          return;
+        }
+        if (version3 !== 13 && version3 !== 8) {
+          const message = "Missing or invalid Sec-WebSocket-Version header";
+          abortHandshakeOrEmitwsClientError(this, req, socket, 400, message, {
+            "Sec-WebSocket-Version": "13, 8",
+          });
+          return;
+        }
+        if (!this.shouldHandle(req)) {
+          abortHandshake(socket, 400);
+          return;
+        }
+        const secWebSocketProtocol = req.headers["sec-websocket-protocol"];
+        let protocols = /* @__PURE__ */ new Set();
+        if (secWebSocketProtocol !== void 0) {
+          try {
+            protocols = subprotocol.parse(secWebSocketProtocol);
+          } catch (err) {
+            const message = "Invalid Sec-WebSocket-Protocol header";
+            abortHandshakeOrEmitwsClientError(this, req, socket, 400, message);
+            return;
+          }
+        }
+        const secWebSocketExtensions = req.headers["sec-websocket-extensions"];
+        const extensions = {};
+        if (
+          this.options.perMessageDeflate && secWebSocketExtensions !== void 0
+        ) {
+          const perMessageDeflate = new PerMessageDeflate({
+            ...this.options.perMessageDeflate,
+            isServer: true,
+            maxPayload: this.options.maxPayload,
+          });
+          try {
+            const offers = extension.parse(secWebSocketExtensions);
+            if (offers[PerMessageDeflate.extensionName]) {
+              perMessageDeflate.accept(offers[PerMessageDeflate.extensionName]);
+              extensions[PerMessageDeflate.extensionName] = perMessageDeflate;
+            }
+          } catch (err) {
+            const message =
+              "Invalid or unacceptable Sec-WebSocket-Extensions header";
+            abortHandshakeOrEmitwsClientError(this, req, socket, 400, message);
+            return;
+          }
+        }
+        if (this.options.verifyClient) {
+          const info3 = {
+            origin: req
+              .headers[
+                `${version3 === 8 ? "sec-websocket-origin" : "origin"}`
+              ],
+            secure: !!(req.socket.authorized || req.socket.encrypted),
+            req,
+          };
+          if (this.options.verifyClient.length === 2) {
+            this.options.verifyClient(
+              info3,
+              (verified, code, message, headers) => {
+                if (!verified) {
+                  return abortHandshake(socket, code || 401, message, headers);
+                }
+                this.completeUpgrade(
+                  extensions,
+                  key,
+                  protocols,
+                  req,
+                  socket,
+                  head,
+                  cb,
+                );
+              },
+            );
+            return;
+          }
+          if (!this.options.verifyClient(info3)) {
+            return abortHandshake(socket, 401);
+          }
+        }
+        this.completeUpgrade(extensions, key, protocols, req, socket, head, cb);
+      }
+      /**
+       * Upgrade the connection to WebSocket.
+       *
+       * @param {Object} extensions The accepted extensions
+       * @param {String} key The value of the `Sec-WebSocket-Key` header
+       * @param {Set} protocols The subprotocols
+       * @param {http.IncomingMessage} req The request object
+       * @param {Duplex} socket The network socket between the server and client
+       * @param {Buffer} head The first packet of the upgraded stream
+       * @param {Function} cb Callback
+       * @throws {Error} If called more than once with the same socket
+       * @private
+       */
+      completeUpgrade(extensions, key, protocols, req, socket, head, cb) {
+        if (!socket.readable || !socket.writable) return socket.destroy();
+        if (socket[kWebSocket]) {
+          throw new Error(
+            "server.handleUpgrade() was called more than once with the same socket, possibly due to a misconfiguration",
+          );
+        }
+        if (this._state > RUNNING) return abortHandshake(socket, 503);
+        const digest = createHash4("sha1").update(key + GUID).digest("base64");
+        const headers = [
+          "HTTP/1.1 101 Switching Protocols",
+          "Upgrade: websocket",
+          "Connection: Upgrade",
+          `Sec-WebSocket-Accept: ${digest}`,
+        ];
+        const ws = new this.options.WebSocket(null, void 0, this.options);
+        if (protocols.size) {
+          const protocol = this.options.handleProtocols
+            ? this.options.handleProtocols(protocols, req)
+            : protocols.values().next().value;
+          if (protocol) {
+            headers.push(`Sec-WebSocket-Protocol: ${protocol}`);
+            ws._protocol = protocol;
+          }
+        }
+        if (extensions[PerMessageDeflate.extensionName]) {
+          const params = extensions[PerMessageDeflate.extensionName].params;
+          const value = extension.format({
+            [PerMessageDeflate.extensionName]: [
+              params,
+            ],
+          });
+          headers.push(`Sec-WebSocket-Extensions: ${value}`);
+          ws._extensions = extensions;
+        }
+        this.emit("headers", headers, req);
+        socket.write(headers.concat("\r\n").join("\r\n"));
+        socket.removeListener("error", socketOnError);
+        ws.setSocket(socket, head, {
+          allowSynchronousEvents: this.options.allowSynchronousEvents,
+          maxBufferedChunks: this.options.maxBufferedChunks,
+          maxFragments: this.options.maxFragments,
+          maxPayload: this.options.maxPayload,
+          skipUTF8Validation: this.options.skipUTF8Validation,
+        });
+        if (this.clients) {
+          this.clients.add(ws);
+          ws.on("close", () => {
+            this.clients.delete(ws);
+            if (this._shouldEmitClose && !this.clients.size) {
+              process.nextTick(emitClose, this);
+            }
+          });
+        }
+        cb(ws, req);
+      }
+    };
+    module.exports = WebSocketServer;
+    function addListeners(server, map) {
+      for (const event of Object.keys(map)) server.on(event, map[event]);
+      return function removeListeners() {
+        for (const event of Object.keys(map)) {
+          server.removeListener(event, map[event]);
+        }
+      };
+    }
+    function emitClose(server) {
+      server._state = CLOSED;
+      server.emit("close");
+    }
+    function socketOnError() {
+      this.destroy();
+    }
+    function abortHandshake(socket, code, message, headers) {
+      message = message || http3.STATUS_CODES[code];
+      headers = {
+        Connection: "close",
+        "Content-Type": "text/html",
+        "Content-Length": Buffer.byteLength(message),
+        ...headers,
+      };
+      socket.once("finish", socket.destroy);
+      socket.end(
+        `HTTP/1.1 ${code} ${http3.STATUS_CODES[code]}\r
+` + Object.keys(headers).map((h) => `${h}: ${headers[h]}`).join("\r\n") +
+          "\r\n\r\n" + message,
+      );
+    }
+    function abortHandshakeOrEmitwsClientError(
+      server,
+      req,
+      socket,
+      code,
+      message,
+      headers,
+    ) {
+      if (server.listenerCount("wsClientError")) {
+        const err = new Error(message);
+        Error.captureStackTrace(err, abortHandshakeOrEmitwsClientError);
+        server.emit("wsClientError", err, socket, req);
+      } else {
+        abortHandshake(socket, code, message, headers);
+      }
+    }
+  },
+});
+
+// node_modules/.deno/ws@8.21.1/node_modules/ws/index.js
+var require_ws = __commonJS({
+  "node_modules/.deno/ws@8.21.1/node_modules/ws/index.js"(exports2, module) {
+    "use strict";
+    var createWebSocketStream = require_stream();
+    var extension = require_extension();
+    var PerMessageDeflate = require_permessage_deflate2();
+    var Receiver = require_receiver2();
+    var Sender = require_sender2();
+    var subprotocol = require_subprotocol();
+    var WebSocket = require_websocket2();
+    var WebSocketServer = require_websocket_server();
+    WebSocket.createWebSocketStream = createWebSocketStream;
+    WebSocket.extension = extension;
+    WebSocket.PerMessageDeflate = PerMessageDeflate;
+    WebSocket.Receiver = Receiver;
+    WebSocket.Sender = Sender;
+    WebSocket.Server = WebSocketServer;
+    WebSocket.subprotocol = subprotocol;
+    WebSocket.WebSocket = WebSocket;
+    WebSocket.WebSocketServer = WebSocketServer;
+    module.exports = WebSocket;
+  },
+});
+
+// node_modules/.deno/agent-base@6.0.2/node_modules/agent-base/dist/src/promisify.js
+var require_promisify = __commonJS({
+  "node_modules/.deno/agent-base@6.0.2/node_modules/agent-base/dist/src/promisify.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    function promisify4(fn) {
+      return function (req, opts) {
+        return new Promise((resolve4, reject) => {
+          fn.call(this, req, opts, (err, rtn) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve4(rtn);
+            }
+          });
+        });
+      };
+    }
+    exports2.default = promisify4;
+  },
+});
+
+// node_modules/.deno/agent-base@6.0.2/node_modules/agent-base/dist/src/index.js
+var require_src2 = __commonJS({
+  "node_modules/.deno/agent-base@6.0.2/node_modules/agent-base/dist/src/index.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod,
+        };
+      };
+    var events_1 = __require("node:events");
+    var debug_1 = __importDefault(require_src());
+    var promisify_1 = __importDefault(require_promisify());
+    var debug3 = debug_1.default("agent-base");
+    function isAgent(v) {
+      return Boolean(v) && typeof v.addRequest === "function";
+    }
+    function isSecureEndpoint() {
+      const { stack } = new Error();
+      if (typeof stack !== "string") return false;
+      return stack.split("\n").some((l) =>
+        l.indexOf("(https.js:") !== -1 || l.indexOf("node:https:") !== -1
+      );
+    }
+    function createAgent(callback, opts) {
+      return new createAgent.Agent(callback, opts);
+    }
+    (function (createAgent2) {
+      class Agent3 extends events_1.EventEmitter {
+        constructor(callback, _opts) {
+          super();
+          let opts = _opts;
+          if (typeof callback === "function") {
+            this.callback = callback;
+          } else if (callback) {
+            opts = callback;
+          }
+          this.timeout = null;
+          if (opts && typeof opts.timeout === "number") {
+            this.timeout = opts.timeout;
+          }
+          this.maxFreeSockets = 1;
+          this.maxSockets = 1;
+          this.maxTotalSockets = Infinity;
+          this.sockets = {};
+          this.freeSockets = {};
+          this.requests = {};
+          this.options = {};
+        }
+        get defaultPort() {
+          if (typeof this.explicitDefaultPort === "number") {
+            return this.explicitDefaultPort;
+          }
+          return isSecureEndpoint() ? 443 : 80;
+        }
+        set defaultPort(v) {
+          this.explicitDefaultPort = v;
+        }
+        get protocol() {
+          if (typeof this.explicitProtocol === "string") {
+            return this.explicitProtocol;
+          }
+          return isSecureEndpoint() ? "https:" : "http:";
+        }
+        set protocol(v) {
+          this.explicitProtocol = v;
+        }
+        callback(req, opts, fn) {
+          throw new Error(
+            '"agent-base" has no default implementation, you must subclass and override `callback()`',
+          );
+        }
+        /**
+         * Called by node-core's "_http_client.js" module when creating
+         * a new HTTP request with this Agent instance.
+         *
+         * @api public
+         */
+        addRequest(req, _opts) {
+          const opts = Object.assign({}, _opts);
+          if (typeof opts.secureEndpoint !== "boolean") {
+            opts.secureEndpoint = isSecureEndpoint();
+          }
+          if (opts.host == null) {
+            opts.host = "localhost";
+          }
+          if (opts.port == null) {
+            opts.port = opts.secureEndpoint ? 443 : 80;
+          }
+          if (opts.protocol == null) {
+            opts.protocol = opts.secureEndpoint ? "https:" : "http:";
+          }
+          if (opts.host && opts.path) {
+            delete opts.path;
+          }
+          delete opts.agent;
+          delete opts.hostname;
+          delete opts._defaultAgent;
+          delete opts.defaultPort;
+          delete opts.createConnection;
+          req._last = true;
+          req.shouldKeepAlive = false;
+          let timedOut = false;
+          let timeoutId = null;
+          const timeoutMs = opts.timeout || this.timeout;
+          const onerror = (err) => {
+            if (req._hadError) return;
+            req.emit("error", err);
+            req._hadError = true;
+          };
+          const ontimeout = () => {
+            timeoutId = null;
+            timedOut = true;
+            const err = new Error(
+              `A "socket" was not created for HTTP request before ${timeoutMs}ms`,
+            );
+            err.code = "ETIMEOUT";
+            onerror(err);
+          };
+          const callbackError = (err) => {
+            if (timedOut) return;
+            if (timeoutId !== null) {
+              clearTimeout(timeoutId);
+              timeoutId = null;
+            }
+            onerror(err);
+          };
+          const onsocket = (socket) => {
+            if (timedOut) return;
+            if (timeoutId != null) {
+              clearTimeout(timeoutId);
+              timeoutId = null;
+            }
+            if (isAgent(socket)) {
+              debug3(
+                "Callback returned another Agent instance %o",
+                socket.constructor.name,
+              );
+              socket.addRequest(req, opts);
+              return;
+            }
+            if (socket) {
+              socket.once("free", () => {
+                this.freeSocket(socket, opts);
+              });
+              req.onSocket(socket);
+              return;
+            }
+            const err = new Error(
+              `no Duplex stream was returned to agent-base for \`${req.method} ${req.path}\``,
+            );
+            onerror(err);
+          };
+          if (typeof this.callback !== "function") {
+            onerror(new Error("`callback` is not defined"));
+            return;
+          }
+          if (!this.promisifiedCallback) {
+            if (this.callback.length >= 3) {
+              debug3("Converting legacy callback function to promise");
+              this.promisifiedCallback = promisify_1.default(this.callback);
+            } else {
+              this.promisifiedCallback = this.callback;
+            }
+          }
+          if (typeof timeoutMs === "number" && timeoutMs > 0) {
+            timeoutId = setTimeout(ontimeout, timeoutMs);
+          }
+          if ("port" in opts && typeof opts.port !== "number") {
+            opts.port = Number(opts.port);
+          }
+          try {
+            debug3(
+              "Resolving socket for %o request: %o",
+              opts.protocol,
+              `${req.method} ${req.path}`,
+            );
+            Promise.resolve(this.promisifiedCallback(req, opts)).then(
+              onsocket,
+              callbackError,
+            );
+          } catch (err) {
+            Promise.reject(err).catch(callbackError);
+          }
+        }
+        freeSocket(socket, opts) {
+          debug3("Freeing socket %o %o", socket.constructor.name, opts);
+          socket.destroy();
+        }
+        destroy() {
+          debug3("Destroying agent %o", this.constructor.name);
+        }
+      }
+      createAgent2.Agent = Agent3;
+      createAgent2.prototype = createAgent2.Agent.prototype;
+    })(createAgent || (createAgent = {}));
+    module.exports = createAgent;
+  },
+});
+
+// node_modules/.deno/https-proxy-agent@5.0.1/node_modules/https-proxy-agent/dist/parse-proxy-response.js
+var require_parse_proxy_response = __commonJS({
+  "node_modules/.deno/https-proxy-agent@5.0.1/node_modules/https-proxy-agent/dist/parse-proxy-response.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod,
+        };
+      };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    var debug_1 = __importDefault(require_src());
+    var debug3 = debug_1.default("https-proxy-agent:parse-proxy-response");
+    function parseProxyResponse(socket) {
+      return new Promise((resolve4, reject) => {
+        let buffersLength = 0;
+        const buffers = [];
+        function read2() {
+          const b = socket.read();
+          if (b) ondata(b);
+          else socket.once("readable", read2);
+        }
+        function cleanup() {
+          socket.removeListener("end", onend);
+          socket.removeListener("error", onerror);
+          socket.removeListener("close", onclose);
+          socket.removeListener("readable", read2);
+        }
+        function onclose(err) {
+          debug3("onclose had error %o", err);
+        }
+        function onend() {
+          debug3("onend");
+        }
+        function onerror(err) {
+          cleanup();
+          debug3("onerror %o", err);
+          reject(err);
+        }
+        function ondata(b) {
+          buffers.push(b);
+          buffersLength += b.length;
+          const buffered = Buffer.concat(buffers, buffersLength);
+          const endOfHeaders = buffered.indexOf("\r\n\r\n");
+          if (endOfHeaders === -1) {
+            debug3("have not received end of HTTP headers yet...");
+            read2();
+            return;
+          }
+          const firstLine = buffered.toString(
+            "ascii",
+            0,
+            buffered.indexOf("\r\n"),
+          );
+          const statusCode = +firstLine.split(" ")[1];
+          debug3("got proxy server response: %o", firstLine);
+          resolve4({
+            statusCode,
+            buffered,
+          });
+        }
+        socket.on("error", onerror);
+        socket.on("close", onclose);
+        socket.on("end", onend);
+        read2();
+      });
+    }
+    exports2.default = parseProxyResponse;
+  },
+});
+
+// node_modules/.deno/https-proxy-agent@5.0.1/node_modules/https-proxy-agent/dist/agent.js
+var require_agent2 = __commonJS({
+  "node_modules/.deno/https-proxy-agent@5.0.1/node_modules/https-proxy-agent/dist/agent.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __awaiter19 = exports2 && exports2.__awaiter ||
+      function (thisArg, _arguments, P, generator) {
+        function adopt(value) {
+          return value instanceof P ? value : new P(function (resolve4) {
+            resolve4(value);
+          });
+        }
+        return new (P || (P = Promise))(function (resolve4, reject) {
+          function fulfilled(value) {
+            try {
+              step(generator.next(value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function rejected(value) {
+            try {
+              step(generator["throw"](value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function step(result) {
+            result.done
+              ? resolve4(result.value)
+              : adopt(result.value).then(fulfilled, rejected);
+          }
+          step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+      };
+    var __importDefault = exports2 && exports2.__importDefault ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod,
+        };
+      };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    var net_1 = __importDefault(__require("node:net"));
+    var tls_1 = __importDefault(__require("node:tls"));
+    var url_1 = __importDefault(__require("node:url"));
+    var assert_1 = __importDefault(__require("node:assert"));
+    var debug_1 = __importDefault(require_src());
+    var agent_base_1 = require_src2();
+    var parse_proxy_response_1 = __importDefault(
+      require_parse_proxy_response(),
+    );
+    var debug3 = debug_1.default("https-proxy-agent:agent");
+    var HttpsProxyAgent2 = class extends agent_base_1.Agent {
+      constructor(_opts) {
+        let opts;
+        if (typeof _opts === "string") {
+          opts = url_1.default.parse(_opts);
+        } else {
+          opts = _opts;
+        }
+        if (!opts) {
+          throw new Error(
+            "an HTTP(S) proxy server `host` and `port` must be specified!",
+          );
+        }
+        debug3("creating new HttpsProxyAgent instance: %o", opts);
+        super(opts);
+        const proxy = Object.assign({}, opts);
+        this.secureProxy = opts.secureProxy || isHTTPS(proxy.protocol);
+        proxy.host = proxy.hostname || proxy.host;
+        if (typeof proxy.port === "string") {
+          proxy.port = parseInt(proxy.port, 10);
+        }
+        if (!proxy.port && proxy.host) {
+          proxy.port = this.secureProxy ? 443 : 80;
+        }
+        if (this.secureProxy && !("ALPNProtocols" in proxy)) {
+          proxy.ALPNProtocols = [
+            "http 1.1",
+          ];
+        }
+        if (proxy.host && proxy.path) {
+          delete proxy.path;
+          delete proxy.pathname;
+        }
+        this.proxy = proxy;
+      }
+      /**
+       * Called when the node-core HTTP client library is creating a
+       * new HTTP request.
+       *
+       * @api protected
+       */
+      callback(req, opts) {
+        return __awaiter19(this, void 0, void 0, function* () {
+          const { proxy, secureProxy } = this;
+          let socket;
+          if (secureProxy) {
+            debug3("Creating `tls.Socket`: %o", proxy);
+            socket = tls_1.default.connect(proxy);
+          } else {
+            debug3("Creating `net.Socket`: %o", proxy);
+            socket = net_1.default.connect(proxy);
+          }
+          const headers = Object.assign({}, proxy.headers);
+          const hostname = `${opts.host}:${opts.port}`;
+          let payload = `CONNECT ${hostname} HTTP/1.1\r
+`;
+          if (proxy.auth) {
+            headers["Proxy-Authorization"] = `Basic ${
+              Buffer.from(proxy.auth).toString("base64")
+            }`;
+          }
+          let { host, port, secureEndpoint } = opts;
+          if (!isDefaultPort(port, secureEndpoint)) {
+            host += `:${port}`;
+          }
+          headers.Host = host;
+          headers.Connection = "close";
+          for (const name of Object.keys(headers)) {
+            payload += `${name}: ${headers[name]}\r
+`;
+          }
+          const proxyResponsePromise = parse_proxy_response_1.default(socket);
+          socket.write(`${payload}\r
+`);
+          const { statusCode, buffered } = yield proxyResponsePromise;
+          if (statusCode === 200) {
+            req.once("socket", resume);
+            if (opts.secureEndpoint) {
+              debug3("Upgrading socket connection to TLS");
+              const servername = opts.servername || opts.host;
+              return tls_1.default.connect(
+                Object.assign(
+                  Object.assign(
+                    {},
+                    omit(opts, "host", "hostname", "path", "port"),
+                  ),
+                  {
+                    socket,
+                    servername,
+                  },
+                ),
+              );
+            }
+            return socket;
+          }
+          socket.destroy();
+          const fakeSocket = new net_1.default.Socket({
+            writable: false,
+          });
+          fakeSocket.readable = true;
+          req.once("socket", (s) => {
+            debug3("replaying proxy buffer for failed request");
+            assert_1.default(s.listenerCount("data") > 0);
+            s.push(buffered);
+            s.push(null);
+          });
+          return fakeSocket;
+        });
+      }
+    };
+    exports2.default = HttpsProxyAgent2;
+    function resume(socket) {
+      socket.resume();
+    }
+    function isDefaultPort(port, secure) {
+      return Boolean(!secure && port === 80 || secure && port === 443);
+    }
+    function isHTTPS(protocol) {
+      return typeof protocol === "string" ? /^https:?$/i.test(protocol) : false;
+    }
+    function omit(obj, ...keys) {
+      const ret = {};
+      let key;
+      for (key in obj) {
+        if (!keys.includes(key)) {
+          ret[key] = obj[key];
+        }
+      }
+      return ret;
+    }
+  },
+});
+
+// node_modules/.deno/https-proxy-agent@5.0.1/node_modules/https-proxy-agent/dist/index.js
+var require_dist = __commonJS({
+  "node_modules/.deno/https-proxy-agent@5.0.1/node_modules/https-proxy-agent/dist/index.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod,
+        };
+      };
+    var agent_1 = __importDefault(require_agent2());
+    function createHttpsProxyAgent(opts) {
+      return new agent_1.default(opts);
+    }
+    (function (createHttpsProxyAgent2) {
+      createHttpsProxyAgent2.HttpsProxyAgent = agent_1.default;
+      createHttpsProxyAgent2.prototype = agent_1.default.prototype;
+    })(createHttpsProxyAgent || (createHttpsProxyAgent = {}));
+    module.exports = createHttpsProxyAgent;
+  },
+});
+
+// node_modules/.deno/@tootallnate+once@2.0.1/node_modules/@tootallnate/once/dist/index.js
+var require_dist2 = __commonJS({
+  "node_modules/.deno/@tootallnate+once@2.0.1/node_modules/@tootallnate/once/dist/index.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    function once(emitter, name, { signal } = {}) {
+      return new Promise((resolve4, reject) => {
+        function cleanup() {
+          signal === null || signal === void 0
+            ? void 0
+            : signal.removeEventListener("abort", onAbort);
+          emitter.removeListener(name, onEvent);
+          emitter.removeListener("error", onError);
+        }
+        function onEvent(...args) {
+          cleanup();
+          resolve4(args);
+        }
+        function onError(err) {
+          cleanup();
+          reject(err);
+        }
+        function onAbort() {
+          cleanup();
+          const err = new Error("The operation was aborted");
+          err.name = "AbortError";
+          reject(err);
+        }
+        if (signal === null || signal === void 0 ? void 0 : signal.aborted) {
+          onAbort();
+          return;
+        }
+        signal === null || signal === void 0
+          ? void 0
+          : signal.addEventListener("abort", onAbort);
+        emitter.on(name, onEvent);
+        emitter.on("error", onError);
+      });
+    }
+    exports2.default = once;
+  },
+});
+
+// node_modules/.deno/http-proxy-agent@5.0.0/node_modules/http-proxy-agent/dist/agent.js
+var require_agent3 = __commonJS({
+  "node_modules/.deno/http-proxy-agent@5.0.0/node_modules/http-proxy-agent/dist/agent.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __awaiter19 = exports2 && exports2.__awaiter ||
+      function (thisArg, _arguments, P, generator) {
+        function adopt(value) {
+          return value instanceof P ? value : new P(function (resolve4) {
+            resolve4(value);
+          });
+        }
+        return new (P || (P = Promise))(function (resolve4, reject) {
+          function fulfilled(value) {
+            try {
+              step(generator.next(value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function rejected(value) {
+            try {
+              step(generator["throw"](value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function step(result) {
+            result.done
+              ? resolve4(result.value)
+              : adopt(result.value).then(fulfilled, rejected);
+          }
+          step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+      };
+    var __importDefault = exports2 && exports2.__importDefault ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod,
+        };
+      };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    var net_1 = __importDefault(__require("node:net"));
+    var tls_1 = __importDefault(__require("node:tls"));
+    var url_1 = __importDefault(__require("node:url"));
+    var debug_1 = __importDefault(require_src());
+    var once_1 = __importDefault(require_dist2());
+    var agent_base_1 = require_src2();
+    var debug3 = (0, debug_1.default)("http-proxy-agent");
+    function isHTTPS(protocol) {
+      return typeof protocol === "string" ? /^https:?$/i.test(protocol) : false;
+    }
+    var HttpProxyAgent2 = class extends agent_base_1.Agent {
+      constructor(_opts) {
+        let opts;
+        if (typeof _opts === "string") {
+          opts = url_1.default.parse(_opts);
+        } else {
+          opts = _opts;
+        }
+        if (!opts) {
+          throw new Error(
+            "an HTTP(S) proxy server `host` and `port` must be specified!",
+          );
+        }
+        debug3("Creating new HttpProxyAgent instance: %o", opts);
+        super(opts);
+        const proxy = Object.assign({}, opts);
+        this.secureProxy = opts.secureProxy || isHTTPS(proxy.protocol);
+        proxy.host = proxy.hostname || proxy.host;
+        if (typeof proxy.port === "string") {
+          proxy.port = parseInt(proxy.port, 10);
+        }
+        if (!proxy.port && proxy.host) {
+          proxy.port = this.secureProxy ? 443 : 80;
+        }
+        if (proxy.host && proxy.path) {
+          delete proxy.path;
+          delete proxy.pathname;
+        }
+        this.proxy = proxy;
+      }
+      /**
+       * Called when the node-core HTTP client library is creating a
+       * new HTTP request.
+       *
+       * @api protected
+       */
+      callback(req, opts) {
+        return __awaiter19(this, void 0, void 0, function* () {
+          const { proxy, secureProxy } = this;
+          const parsed = url_1.default.parse(req.path);
+          if (!parsed.protocol) {
+            parsed.protocol = "http:";
+          }
+          if (!parsed.hostname) {
+            parsed.hostname = opts.hostname || opts.host || null;
+          }
+          if (parsed.port == null && typeof opts.port) {
+            parsed.port = String(opts.port);
+          }
+          if (parsed.port === "80") {
+            parsed.port = "";
+          }
+          req.path = url_1.default.format(parsed);
+          if (proxy.auth) {
+            req.setHeader(
+              "Proxy-Authorization",
+              `Basic ${Buffer.from(proxy.auth).toString("base64")}`,
+            );
+          }
+          let socket;
+          if (secureProxy) {
+            debug3("Creating `tls.Socket`: %o", proxy);
+            socket = tls_1.default.connect(proxy);
+          } else {
+            debug3("Creating `net.Socket`: %o", proxy);
+            socket = net_1.default.connect(proxy);
+          }
+          if (req._header) {
+            let first;
+            let endOfHeaders;
+            debug3("Regenerating stored HTTP header string for request");
+            req._header = null;
+            req._implicitHeader();
+            if (req.output && req.output.length > 0) {
+              debug3(
+                "Patching connection write() output buffer with updated header",
+              );
+              first = req.output[0];
+              endOfHeaders = first.indexOf("\r\n\r\n") + 4;
+              req.output[0] = req._header + first.substring(endOfHeaders);
+              debug3("Output buffer: %o", req.output);
+            } else if (req.outputData && req.outputData.length > 0) {
+              debug3(
+                "Patching connection write() output buffer with updated header",
+              );
+              first = req.outputData[0].data;
+              endOfHeaders = first.indexOf("\r\n\r\n") + 4;
+              req.outputData[0].data = req._header +
+                first.substring(endOfHeaders);
+              debug3("Output buffer: %o", req.outputData[0].data);
+            }
+          }
+          yield (0, once_1.default)(socket, "connect");
+          return socket;
+        });
+      }
+    };
+    exports2.default = HttpProxyAgent2;
+  },
+});
+
+// node_modules/.deno/http-proxy-agent@5.0.0/node_modules/http-proxy-agent/dist/index.js
+var require_dist3 = __commonJS({
+  "node_modules/.deno/http-proxy-agent@5.0.0/node_modules/http-proxy-agent/dist/index.js"(
+    exports2,
+    module,
+  ) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod,
+        };
+      };
+    var agent_1 = __importDefault(require_agent3());
+    function createHttpProxyAgent(opts) {
+      return new agent_1.default(opts);
+    }
+    (function (createHttpProxyAgent2) {
+      createHttpProxyAgent2.HttpProxyAgent = agent_1.default;
+      createHttpProxyAgent2.prototype = agent_1.default.prototype;
+    })(createHttpProxyAgent || (createHttpProxyAgent = {}));
+    module.exports = createHttpProxyAgent;
+  },
+});
+
+// node_modules/.deno/smart-buffer@4.2.0/node_modules/smart-buffer/build/utils.js
+var require_utils2 = __commonJS({
+  "node_modules/.deno/smart-buffer@4.2.0/node_modules/smart-buffer/build/utils.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    var buffer_1 = __require("node:buffer");
+    var ERRORS = {
+      INVALID_ENCODING:
+        "Invalid encoding provided. Please specify a valid encoding the internal Node.js Buffer supports.",
+      INVALID_SMARTBUFFER_SIZE:
+        "Invalid size provided. Size must be a valid integer greater than zero.",
+      INVALID_SMARTBUFFER_BUFFER:
+        "Invalid Buffer provided in SmartBufferOptions.",
+      INVALID_SMARTBUFFER_OBJECT:
+        "Invalid SmartBufferOptions object supplied to SmartBuffer constructor or factory methods.",
+      INVALID_OFFSET: "An invalid offset value was provided.",
+      INVALID_OFFSET_NON_NUMBER:
+        "An invalid offset value was provided. A numeric value is required.",
+      INVALID_LENGTH: "An invalid length value was provided.",
+      INVALID_LENGTH_NON_NUMBER:
+        "An invalid length value was provived. A numeric value is required.",
+      INVALID_TARGET_OFFSET:
+        "Target offset is beyond the bounds of the internal SmartBuffer data.",
+      INVALID_TARGET_LENGTH:
+        "Specified length value moves cursor beyong the bounds of the internal SmartBuffer data.",
+      INVALID_READ_BEYOND_BOUNDS:
+        "Attempted to read beyond the bounds of the managed data.",
+      INVALID_WRITE_BEYOND_BOUNDS:
+        "Attempted to write beyond the bounds of the managed data.",
+    };
+    exports2.ERRORS = ERRORS;
+    function checkEncoding(encoding) {
+      if (!buffer_1.Buffer.isEncoding(encoding)) {
+        throw new Error(ERRORS.INVALID_ENCODING);
+      }
+    }
+    exports2.checkEncoding = checkEncoding;
+    function isFiniteInteger(value) {
+      return typeof value === "number" && isFinite(value) && isInteger(value);
+    }
+    exports2.isFiniteInteger = isFiniteInteger;
+    function checkOffsetOrLengthValue(value, offset) {
+      if (typeof value === "number") {
+        if (!isFiniteInteger(value) || value < 0) {
+          throw new Error(
+            offset ? ERRORS.INVALID_OFFSET : ERRORS.INVALID_LENGTH,
+          );
+        }
+      } else {
+        throw new Error(
+          offset
+            ? ERRORS.INVALID_OFFSET_NON_NUMBER
+            : ERRORS.INVALID_LENGTH_NON_NUMBER,
+        );
+      }
+    }
+    function checkLengthValue(length) {
+      checkOffsetOrLengthValue(length, false);
+    }
+    exports2.checkLengthValue = checkLengthValue;
+    function checkOffsetValue(offset) {
+      checkOffsetOrLengthValue(offset, true);
+    }
+    exports2.checkOffsetValue = checkOffsetValue;
+    function checkTargetOffset(offset, buff) {
+      if (offset < 0 || offset > buff.length) {
+        throw new Error(ERRORS.INVALID_TARGET_OFFSET);
+      }
+    }
+    exports2.checkTargetOffset = checkTargetOffset;
+    function isInteger(value) {
+      return typeof value === "number" && isFinite(value) &&
+        Math.floor(value) === value;
+    }
+    function bigIntAndBufferInt64Check(bufferMethod) {
+      if (typeof BigInt === "undefined") {
+        throw new Error("Platform does not support JS BigInt type.");
+      }
+      if (typeof buffer_1.Buffer.prototype[bufferMethod] === "undefined") {
+        throw new Error(
+          `Platform does not support Buffer.prototype.${bufferMethod}.`,
+        );
+      }
+    }
+    exports2.bigIntAndBufferInt64Check = bigIntAndBufferInt64Check;
+  },
+});
+
+// node_modules/.deno/smart-buffer@4.2.0/node_modules/smart-buffer/build/smartbuffer.js
+var require_smartbuffer = __commonJS({
+  "node_modules/.deno/smart-buffer@4.2.0/node_modules/smart-buffer/build/smartbuffer.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    var utils_1 = require_utils2();
+    var DEFAULT_SMARTBUFFER_SIZE = 4096;
+    var DEFAULT_SMARTBUFFER_ENCODING = "utf8";
+    var SmartBuffer = class _SmartBuffer {
+      /**
+       * Creates a new SmartBuffer instance.
+       *
+       * @param options { SmartBufferOptions } The SmartBufferOptions to apply to this instance.
+       */
+      constructor(options) {
+        this.length = 0;
+        this._encoding = DEFAULT_SMARTBUFFER_ENCODING;
+        this._writeOffset = 0;
+        this._readOffset = 0;
+        if (_SmartBuffer.isSmartBufferOptions(options)) {
+          if (options.encoding) {
+            utils_1.checkEncoding(options.encoding);
+            this._encoding = options.encoding;
+          }
+          if (options.size) {
+            if (utils_1.isFiniteInteger(options.size) && options.size > 0) {
+              this._buff = Buffer.allocUnsafe(options.size);
+            } else {
+              throw new Error(utils_1.ERRORS.INVALID_SMARTBUFFER_SIZE);
+            }
+          } else if (options.buff) {
+            if (Buffer.isBuffer(options.buff)) {
+              this._buff = options.buff;
+              this.length = options.buff.length;
+            } else {
+              throw new Error(utils_1.ERRORS.INVALID_SMARTBUFFER_BUFFER);
+            }
+          } else {
+            this._buff = Buffer.allocUnsafe(DEFAULT_SMARTBUFFER_SIZE);
+          }
+        } else {
+          if (typeof options !== "undefined") {
+            throw new Error(utils_1.ERRORS.INVALID_SMARTBUFFER_OBJECT);
+          }
+          this._buff = Buffer.allocUnsafe(DEFAULT_SMARTBUFFER_SIZE);
+        }
+      }
+      /**
+       * Creates a new SmartBuffer instance with the provided internal Buffer size and optional encoding.
+       *
+       * @param size { Number } The size of the internal Buffer.
+       * @param encoding { String } The BufferEncoding to use for strings.
+       *
+       * @return { SmartBuffer }
+       */
+      static fromSize(size, encoding) {
+        return new this({
+          size,
+          encoding,
+        });
+      }
+      /**
+       * Creates a new SmartBuffer instance with the provided Buffer and optional encoding.
+       *
+       * @param buffer { Buffer } The Buffer to use as the internal Buffer value.
+       * @param encoding { String } The BufferEncoding to use for strings.
+       *
+       * @return { SmartBuffer }
+       */
+      static fromBuffer(buff, encoding) {
+        return new this({
+          buff,
+          encoding,
+        });
+      }
+      /**
+       * Creates a new SmartBuffer instance with the provided SmartBufferOptions options.
+       *
+       * @param options { SmartBufferOptions } The options to use when creating the SmartBuffer instance.
+       */
+      static fromOptions(options) {
+        return new this(options);
+      }
+      /**
+       * Type checking function that determines if an object is a SmartBufferOptions object.
+       */
+      static isSmartBufferOptions(options) {
+        const castOptions = options;
+        return castOptions &&
+          (castOptions.encoding !== void 0 || castOptions.size !== void 0 ||
+            castOptions.buff !== void 0);
+      }
+      // Signed integers
+      /**
+       * Reads an Int8 value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readInt8(offset) {
+        return this._readNumberValue(Buffer.prototype.readInt8, 1, offset);
+      }
+      /**
+       * Reads an Int16BE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readInt16BE(offset) {
+        return this._readNumberValue(Buffer.prototype.readInt16BE, 2, offset);
+      }
+      /**
+       * Reads an Int16LE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readInt16LE(offset) {
+        return this._readNumberValue(Buffer.prototype.readInt16LE, 2, offset);
+      }
+      /**
+       * Reads an Int32BE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readInt32BE(offset) {
+        return this._readNumberValue(Buffer.prototype.readInt32BE, 4, offset);
+      }
+      /**
+       * Reads an Int32LE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readInt32LE(offset) {
+        return this._readNumberValue(Buffer.prototype.readInt32LE, 4, offset);
+      }
+      /**
+       * Reads a BigInt64BE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { BigInt }
+       */
+      readBigInt64BE(offset) {
+        utils_1.bigIntAndBufferInt64Check("readBigInt64BE");
+        return this._readNumberValue(
+          Buffer.prototype.readBigInt64BE,
+          8,
+          offset,
+        );
+      }
+      /**
+       * Reads a BigInt64LE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { BigInt }
+       */
+      readBigInt64LE(offset) {
+        utils_1.bigIntAndBufferInt64Check("readBigInt64LE");
+        return this._readNumberValue(
+          Buffer.prototype.readBigInt64LE,
+          8,
+          offset,
+        );
+      }
+      /**
+       * Writes an Int8 value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeInt8(value, offset) {
+        this._writeNumberValue(Buffer.prototype.writeInt8, 1, value, offset);
+        return this;
+      }
+      /**
+       * Inserts an Int8 value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertInt8(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeInt8,
+          1,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes an Int16BE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeInt16BE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeInt16BE,
+          2,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an Int16BE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertInt16BE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeInt16BE,
+          2,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes an Int16LE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeInt16LE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeInt16LE,
+          2,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an Int16LE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertInt16LE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeInt16LE,
+          2,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes an Int32BE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeInt32BE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeInt32BE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an Int32BE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertInt32BE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeInt32BE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes an Int32LE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeInt32LE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeInt32LE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an Int32LE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertInt32LE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeInt32LE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes a BigInt64BE value to the current write position (or at optional offset).
+       *
+       * @param value { BigInt } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeBigInt64BE(value, offset) {
+        utils_1.bigIntAndBufferInt64Check("writeBigInt64BE");
+        return this._writeNumberValue(
+          Buffer.prototype.writeBigInt64BE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts a BigInt64BE value at the given offset value.
+       *
+       * @param value { BigInt } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertBigInt64BE(value, offset) {
+        utils_1.bigIntAndBufferInt64Check("writeBigInt64BE");
+        return this._insertNumberValue(
+          Buffer.prototype.writeBigInt64BE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes a BigInt64LE value to the current write position (or at optional offset).
+       *
+       * @param value { BigInt } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeBigInt64LE(value, offset) {
+        utils_1.bigIntAndBufferInt64Check("writeBigInt64LE");
+        return this._writeNumberValue(
+          Buffer.prototype.writeBigInt64LE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts a Int64LE value at the given offset value.
+       *
+       * @param value { BigInt } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertBigInt64LE(value, offset) {
+        utils_1.bigIntAndBufferInt64Check("writeBigInt64LE");
+        return this._insertNumberValue(
+          Buffer.prototype.writeBigInt64LE,
+          8,
+          value,
+          offset,
+        );
+      }
+      // Unsigned Integers
+      /**
+       * Reads an UInt8 value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readUInt8(offset) {
+        return this._readNumberValue(Buffer.prototype.readUInt8, 1, offset);
+      }
+      /**
+       * Reads an UInt16BE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readUInt16BE(offset) {
+        return this._readNumberValue(Buffer.prototype.readUInt16BE, 2, offset);
+      }
+      /**
+       * Reads an UInt16LE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readUInt16LE(offset) {
+        return this._readNumberValue(Buffer.prototype.readUInt16LE, 2, offset);
+      }
+      /**
+       * Reads an UInt32BE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readUInt32BE(offset) {
+        return this._readNumberValue(Buffer.prototype.readUInt32BE, 4, offset);
+      }
+      /**
+       * Reads an UInt32LE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readUInt32LE(offset) {
+        return this._readNumberValue(Buffer.prototype.readUInt32LE, 4, offset);
+      }
+      /**
+       * Reads a BigUInt64BE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { BigInt }
+       */
+      readBigUInt64BE(offset) {
+        utils_1.bigIntAndBufferInt64Check("readBigUInt64BE");
+        return this._readNumberValue(
+          Buffer.prototype.readBigUInt64BE,
+          8,
+          offset,
+        );
+      }
+      /**
+       * Reads a BigUInt64LE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { BigInt }
+       */
+      readBigUInt64LE(offset) {
+        utils_1.bigIntAndBufferInt64Check("readBigUInt64LE");
+        return this._readNumberValue(
+          Buffer.prototype.readBigUInt64LE,
+          8,
+          offset,
+        );
+      }
+      /**
+       * Writes an UInt8 value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeUInt8(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeUInt8,
+          1,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an UInt8 value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertUInt8(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeUInt8,
+          1,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes an UInt16BE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeUInt16BE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeUInt16BE,
+          2,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an UInt16BE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertUInt16BE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeUInt16BE,
+          2,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes an UInt16LE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeUInt16LE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeUInt16LE,
+          2,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an UInt16LE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertUInt16LE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeUInt16LE,
+          2,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes an UInt32BE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeUInt32BE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeUInt32BE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an UInt32BE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertUInt32BE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeUInt32BE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes an UInt32LE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeUInt32LE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeUInt32LE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts an UInt32LE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertUInt32LE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeUInt32LE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes a BigUInt64BE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeBigUInt64BE(value, offset) {
+        utils_1.bigIntAndBufferInt64Check("writeBigUInt64BE");
+        return this._writeNumberValue(
+          Buffer.prototype.writeBigUInt64BE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts a BigUInt64BE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertBigUInt64BE(value, offset) {
+        utils_1.bigIntAndBufferInt64Check("writeBigUInt64BE");
+        return this._insertNumberValue(
+          Buffer.prototype.writeBigUInt64BE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes a BigUInt64LE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeBigUInt64LE(value, offset) {
+        utils_1.bigIntAndBufferInt64Check("writeBigUInt64LE");
+        return this._writeNumberValue(
+          Buffer.prototype.writeBigUInt64LE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts a BigUInt64LE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertBigUInt64LE(value, offset) {
+        utils_1.bigIntAndBufferInt64Check("writeBigUInt64LE");
+        return this._insertNumberValue(
+          Buffer.prototype.writeBigUInt64LE,
+          8,
+          value,
+          offset,
+        );
+      }
+      // Floating Point
+      /**
+       * Reads an FloatBE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readFloatBE(offset) {
+        return this._readNumberValue(Buffer.prototype.readFloatBE, 4, offset);
+      }
+      /**
+       * Reads an FloatLE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readFloatLE(offset) {
+        return this._readNumberValue(Buffer.prototype.readFloatLE, 4, offset);
+      }
+      /**
+       * Writes a FloatBE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeFloatBE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeFloatBE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts a FloatBE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertFloatBE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeFloatBE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes a FloatLE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeFloatLE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeFloatLE,
+          4,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts a FloatLE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertFloatLE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeFloatLE,
+          4,
+          value,
+          offset,
+        );
+      }
+      // Double Floating Point
+      /**
+       * Reads an DoublEBE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readDoubleBE(offset) {
+        return this._readNumberValue(Buffer.prototype.readDoubleBE, 8, offset);
+      }
+      /**
+       * Reads an DoubleLE value from the current read position or an optionally provided offset.
+       *
+       * @param offset { Number } The offset to read data from (optional)
+       * @return { Number }
+       */
+      readDoubleLE(offset) {
+        return this._readNumberValue(Buffer.prototype.readDoubleLE, 8, offset);
+      }
+      /**
+       * Writes a DoubleBE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeDoubleBE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeDoubleBE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts a DoubleBE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertDoubleBE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeDoubleBE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Writes a DoubleLE value to the current write position (or at optional offset).
+       *
+       * @param value { Number } The value to write.
+       * @param offset { Number } The offset to write the value at.
+       *
+       * @return this
+       */
+      writeDoubleLE(value, offset) {
+        return this._writeNumberValue(
+          Buffer.prototype.writeDoubleLE,
+          8,
+          value,
+          offset,
+        );
+      }
+      /**
+       * Inserts a DoubleLE value at the given offset value.
+       *
+       * @param value { Number } The value to insert.
+       * @param offset { Number } The offset to insert the value at.
+       *
+       * @return this
+       */
+      insertDoubleLE(value, offset) {
+        return this._insertNumberValue(
+          Buffer.prototype.writeDoubleLE,
+          8,
+          value,
+          offset,
+        );
+      }
+      // Strings
+      /**
+       * Reads a String from the current read position.
+       *
+       * @param arg1 { Number | String } The number of bytes to read as a String, or the BufferEncoding to use for
+       *             the string (Defaults to instance level encoding).
+       * @param encoding { String } The BufferEncoding to use for the string (Defaults to instance level encoding).
+       *
+       * @return { String }
+       */
+      readString(arg1, encoding) {
+        let lengthVal;
+        if (typeof arg1 === "number") {
+          utils_1.checkLengthValue(arg1);
+          lengthVal = Math.min(arg1, this.length - this._readOffset);
+        } else {
+          encoding = arg1;
+          lengthVal = this.length - this._readOffset;
+        }
+        if (typeof encoding !== "undefined") {
+          utils_1.checkEncoding(encoding);
+        }
+        const value = this._buff.slice(
+          this._readOffset,
+          this._readOffset + lengthVal,
+        ).toString(encoding || this._encoding);
+        this._readOffset += lengthVal;
+        return value;
+      }
+      /**
+       * Inserts a String
+       *
+       * @param value { String } The String value to insert.
+       * @param offset { Number } The offset to insert the string at.
+       * @param encoding { String } The BufferEncoding to use for writing strings (defaults to instance encoding).
+       *
+       * @return this
+       */
+      insertString(value, offset, encoding) {
+        utils_1.checkOffsetValue(offset);
+        return this._handleString(value, true, offset, encoding);
+      }
+      /**
+       * Writes a String
+       *
+       * @param value { String } The String value to write.
+       * @param arg2 { Number | String } The offset to write the string at, or the BufferEncoding to use.
+       * @param encoding { String } The BufferEncoding to use for writing strings (defaults to instance encoding).
+       *
+       * @return this
+       */
+      writeString(value, arg2, encoding) {
+        return this._handleString(value, false, arg2, encoding);
+      }
+      /**
+       * Reads a null-terminated String from the current read position.
+       *
+       * @param encoding { String } The BufferEncoding to use for the string (Defaults to instance level encoding).
+       *
+       * @return { String }
+       */
+      readStringNT(encoding) {
+        if (typeof encoding !== "undefined") {
+          utils_1.checkEncoding(encoding);
+        }
+        let nullPos = this.length;
+        for (let i = this._readOffset; i < this.length; i++) {
+          if (this._buff[i] === 0) {
+            nullPos = i;
+            break;
+          }
+        }
+        const value = this._buff.slice(this._readOffset, nullPos);
+        this._readOffset = nullPos + 1;
+        return value.toString(encoding || this._encoding);
+      }
+      /**
+       * Inserts a null-terminated String.
+       *
+       * @param value { String } The String value to write.
+       * @param arg2 { Number | String } The offset to write the string to, or the BufferEncoding to use.
+       * @param encoding { String } The BufferEncoding to use for writing strings (defaults to instance encoding).
+       *
+       * @return this
+       */
+      insertStringNT(value, offset, encoding) {
+        utils_1.checkOffsetValue(offset);
+        this.insertString(value, offset, encoding);
+        this.insertUInt8(0, offset + value.length);
+        return this;
+      }
+      /**
+       * Writes a null-terminated String.
+       *
+       * @param value { String } The String value to write.
+       * @param arg2 { Number | String } The offset to write the string to, or the BufferEncoding to use.
+       * @param encoding { String } The BufferEncoding to use for writing strings (defaults to instance encoding).
+       *
+       * @return this
+       */
+      writeStringNT(value, arg2, encoding) {
+        this.writeString(value, arg2, encoding);
+        this.writeUInt8(
+          0,
+          typeof arg2 === "number" ? arg2 + value.length : this.writeOffset,
+        );
+        return this;
+      }
+      // Buffers
+      /**
+       * Reads a Buffer from the internal read position.
+       *
+       * @param length { Number } The length of data to read as a Buffer.
+       *
+       * @return { Buffer }
+       */
+      readBuffer(length) {
+        if (typeof length !== "undefined") {
+          utils_1.checkLengthValue(length);
+        }
+        const lengthVal = typeof length === "number" ? length : this.length;
+        const endPoint = Math.min(this.length, this._readOffset + lengthVal);
+        const value = this._buff.slice(this._readOffset, endPoint);
+        this._readOffset = endPoint;
+        return value;
+      }
+      /**
+       * Writes a Buffer to the current write position.
+       *
+       * @param value { Buffer } The Buffer to write.
+       * @param offset { Number } The offset to write the Buffer to.
+       *
+       * @return this
+       */
+      insertBuffer(value, offset) {
+        utils_1.checkOffsetValue(offset);
+        return this._handleBuffer(value, true, offset);
+      }
+      /**
+       * Writes a Buffer to the current write position.
+       *
+       * @param value { Buffer } The Buffer to write.
+       * @param offset { Number } The offset to write the Buffer to.
+       *
+       * @return this
+       */
+      writeBuffer(value, offset) {
+        return this._handleBuffer(value, false, offset);
+      }
+      /**
+       * Reads a null-terminated Buffer from the current read poisiton.
+       *
+       * @return { Buffer }
+       */
+      readBufferNT() {
+        let nullPos = this.length;
+        for (let i = this._readOffset; i < this.length; i++) {
+          if (this._buff[i] === 0) {
+            nullPos = i;
+            break;
+          }
+        }
+        const value = this._buff.slice(this._readOffset, nullPos);
+        this._readOffset = nullPos + 1;
+        return value;
+      }
+      /**
+       * Inserts a null-terminated Buffer.
+       *
+       * @param value { Buffer } The Buffer to write.
+       * @param offset { Number } The offset to write the Buffer to.
+       *
+       * @return this
+       */
+      insertBufferNT(value, offset) {
+        utils_1.checkOffsetValue(offset);
+        this.insertBuffer(value, offset);
+        this.insertUInt8(0, offset + value.length);
+        return this;
+      }
+      /**
+       * Writes a null-terminated Buffer.
+       *
+       * @param value { Buffer } The Buffer to write.
+       * @param offset { Number } The offset to write the Buffer to.
+       *
+       * @return this
+       */
+      writeBufferNT(value, offset) {
+        if (typeof offset !== "undefined") {
+          utils_1.checkOffsetValue(offset);
+        }
+        this.writeBuffer(value, offset);
+        this.writeUInt8(
+          0,
+          typeof offset === "number"
+            ? offset + value.length
+            : this._writeOffset,
+        );
+        return this;
+      }
+      /**
+       * Clears the SmartBuffer instance to its original empty state.
+       */
+      clear() {
+        this._writeOffset = 0;
+        this._readOffset = 0;
+        this.length = 0;
+        return this;
+      }
+      /**
+       * Gets the remaining data left to be read from the SmartBuffer instance.
+       *
+       * @return { Number }
+       */
+      remaining() {
+        return this.length - this._readOffset;
+      }
+      /**
+       * Gets the current read offset value of the SmartBuffer instance.
+       *
+       * @return { Number }
+       */
+      get readOffset() {
+        return this._readOffset;
+      }
+      /**
+       * Sets the read offset value of the SmartBuffer instance.
+       *
+       * @param offset { Number } - The offset value to set.
+       */
+      set readOffset(offset) {
+        utils_1.checkOffsetValue(offset);
+        utils_1.checkTargetOffset(offset, this);
+        this._readOffset = offset;
+      }
+      /**
+       * Gets the current write offset value of the SmartBuffer instance.
+       *
+       * @return { Number }
+       */
+      get writeOffset() {
+        return this._writeOffset;
+      }
+      /**
+       * Sets the write offset value of the SmartBuffer instance.
+       *
+       * @param offset { Number } - The offset value to set.
+       */
+      set writeOffset(offset) {
+        utils_1.checkOffsetValue(offset);
+        utils_1.checkTargetOffset(offset, this);
+        this._writeOffset = offset;
+      }
+      /**
+       * Gets the currently set string encoding of the SmartBuffer instance.
+       *
+       * @return { BufferEncoding } The string Buffer encoding currently set.
+       */
+      get encoding() {
+        return this._encoding;
+      }
+      /**
+       * Sets the string encoding of the SmartBuffer instance.
+       *
+       * @param encoding { BufferEncoding } The string Buffer encoding to set.
+       */
+      set encoding(encoding) {
+        utils_1.checkEncoding(encoding);
+        this._encoding = encoding;
+      }
+      /**
+       * Gets the underlying internal Buffer. (This includes unmanaged data in the Buffer)
+       *
+       * @return { Buffer } The Buffer value.
+       */
+      get internalBuffer() {
+        return this._buff;
+      }
+      /**
+       * Gets the value of the internal managed Buffer (Includes managed data only)
+       *
+       * @param { Buffer }
+       */
+      toBuffer() {
+        return this._buff.slice(0, this.length);
+      }
+      /**
+       * Gets the String value of the internal managed Buffer
+       *
+       * @param encoding { String } The BufferEncoding to display the Buffer as (defaults to instance level encoding).
+       */
+      toString(encoding) {
+        const encodingVal = typeof encoding === "string"
+          ? encoding
+          : this._encoding;
+        utils_1.checkEncoding(encodingVal);
+        return this._buff.toString(encodingVal, 0, this.length);
+      }
+      /**
+       * Destroys the SmartBuffer instance.
+       */
+      destroy() {
+        this.clear();
+        return this;
+      }
+      /**
+       * Handles inserting and writing strings.
+       *
+       * @param value { String } The String value to insert.
+       * @param isInsert { Boolean } True if inserting a string, false if writing.
+       * @param arg2 { Number | String } The offset to insert the string at, or the BufferEncoding to use.
+       * @param encoding { String } The BufferEncoding to use for writing strings (defaults to instance encoding).
+       */
+      _handleString(value, isInsert, arg3, encoding) {
+        let offsetVal = this._writeOffset;
+        let encodingVal = this._encoding;
+        if (typeof arg3 === "number") {
+          offsetVal = arg3;
+        } else if (typeof arg3 === "string") {
+          utils_1.checkEncoding(arg3);
+          encodingVal = arg3;
+        }
+        if (typeof encoding === "string") {
+          utils_1.checkEncoding(encoding);
+          encodingVal = encoding;
+        }
+        const byteLength = Buffer.byteLength(value, encodingVal);
+        if (isInsert) {
+          this.ensureInsertable(byteLength, offsetVal);
+        } else {
+          this._ensureWriteable(byteLength, offsetVal);
+        }
+        this._buff.write(value, offsetVal, byteLength, encodingVal);
+        if (isInsert) {
+          this._writeOffset += byteLength;
+        } else {
+          if (typeof arg3 === "number") {
+            this._writeOffset = Math.max(
+              this._writeOffset,
+              offsetVal + byteLength,
+            );
+          } else {
+            this._writeOffset += byteLength;
+          }
+        }
+        return this;
+      }
+      /**
+       * Handles writing or insert of a Buffer.
+       *
+       * @param value { Buffer } The Buffer to write.
+       * @param offset { Number } The offset to write the Buffer to.
+       */
+      _handleBuffer(value, isInsert, offset) {
+        const offsetVal = typeof offset === "number"
+          ? offset
+          : this._writeOffset;
+        if (isInsert) {
+          this.ensureInsertable(value.length, offsetVal);
+        } else {
+          this._ensureWriteable(value.length, offsetVal);
+        }
+        value.copy(this._buff, offsetVal);
+        if (isInsert) {
+          this._writeOffset += value.length;
+        } else {
+          if (typeof offset === "number") {
+            this._writeOffset = Math.max(
+              this._writeOffset,
+              offsetVal + value.length,
+            );
+          } else {
+            this._writeOffset += value.length;
+          }
+        }
+        return this;
+      }
+      /**
+       * Ensures that the internal Buffer is large enough to read data.
+       *
+       * @param length { Number } The length of the data that needs to be read.
+       * @param offset { Number } The offset of the data that needs to be read.
+       */
+      ensureReadable(length, offset) {
+        let offsetVal = this._readOffset;
+        if (typeof offset !== "undefined") {
+          utils_1.checkOffsetValue(offset);
+          offsetVal = offset;
+        }
+        if (offsetVal < 0 || offsetVal + length > this.length) {
+          throw new Error(utils_1.ERRORS.INVALID_READ_BEYOND_BOUNDS);
+        }
+      }
+      /**
+       * Ensures that the internal Buffer is large enough to insert data.
+       *
+       * @param dataLength { Number } The length of the data that needs to be written.
+       * @param offset { Number } The offset of the data to be written.
+       */
+      ensureInsertable(dataLength, offset) {
+        utils_1.checkOffsetValue(offset);
+        this._ensureCapacity(this.length + dataLength);
+        if (offset < this.length) {
+          this._buff.copy(
+            this._buff,
+            offset + dataLength,
+            offset,
+            this._buff.length,
+          );
+        }
+        if (offset + dataLength > this.length) {
+          this.length = offset + dataLength;
+        } else {
+          this.length += dataLength;
+        }
+      }
+      /**
+       * Ensures that the internal Buffer is large enough to write data.
+       *
+       * @param dataLength { Number } The length of the data that needs to be written.
+       * @param offset { Number } The offset of the data to be written (defaults to writeOffset).
+       */
+      _ensureWriteable(dataLength, offset) {
+        const offsetVal = typeof offset === "number"
+          ? offset
+          : this._writeOffset;
+        this._ensureCapacity(offsetVal + dataLength);
+        if (offsetVal + dataLength > this.length) {
+          this.length = offsetVal + dataLength;
+        }
+      }
+      /**
+       * Ensures that the internal Buffer is large enough to write at least the given amount of data.
+       *
+       * @param minLength { Number } The minimum length of the data needs to be written.
+       */
+      _ensureCapacity(minLength) {
+        const oldLength = this._buff.length;
+        if (minLength > oldLength) {
+          let data = this._buff;
+          let newLength = oldLength * 3 / 2 + 1;
+          if (newLength < minLength) {
+            newLength = minLength;
+          }
+          this._buff = Buffer.allocUnsafe(newLength);
+          data.copy(this._buff, 0, 0, oldLength);
+        }
+      }
+      /**
+       * Reads a numeric number value using the provided function.
+       *
+       * @typeparam T { number | bigint } The type of the value to be read
+       *
+       * @param func { Function(offset: number) => number } The function to read data on the internal Buffer with.
+       * @param byteSize { Number } The number of bytes read.
+       * @param offset { Number } The offset to read from (optional). When this is not provided, the managed readOffset is used instead.
+       *
+       * @returns { T } the number value
+       */
+      _readNumberValue(func, byteSize, offset) {
+        this.ensureReadable(byteSize, offset);
+        const value = func.call(
+          this._buff,
+          typeof offset === "number" ? offset : this._readOffset,
+        );
+        if (typeof offset === "undefined") {
+          this._readOffset += byteSize;
+        }
+        return value;
+      }
+      /**
+       * Inserts a numeric number value based on the given offset and value.
+       *
+       * @typeparam T { number | bigint } The type of the value to be written
+       *
+       * @param func { Function(offset: T, offset?) => number} The function to write data on the internal Buffer with.
+       * @param byteSize { Number } The number of bytes written.
+       * @param value { T } The number value to write.
+       * @param offset { Number } the offset to write the number at (REQUIRED).
+       *
+       * @returns SmartBuffer this buffer
+       */
+      _insertNumberValue(func, byteSize, value, offset) {
+        utils_1.checkOffsetValue(offset);
+        this.ensureInsertable(byteSize, offset);
+        func.call(this._buff, value, offset);
+        this._writeOffset += byteSize;
+        return this;
+      }
+      /**
+       * Writes a numeric number value based on the given offset and value.
+       *
+       * @typeparam T { number | bigint } The type of the value to be written
+       *
+       * @param func { Function(offset: T, offset?) => number} The function to write data on the internal Buffer with.
+       * @param byteSize { Number } The number of bytes written.
+       * @param value { T } The number value to write.
+       * @param offset { Number } the offset to write the number at (REQUIRED).
+       *
+       * @returns SmartBuffer this buffer
+       */
+      _writeNumberValue(func, byteSize, value, offset) {
+        if (typeof offset === "number") {
+          if (offset < 0) {
+            throw new Error(utils_1.ERRORS.INVALID_WRITE_BEYOND_BOUNDS);
+          }
+          utils_1.checkOffsetValue(offset);
+        }
+        const offsetVal = typeof offset === "number"
+          ? offset
+          : this._writeOffset;
+        this._ensureWriteable(byteSize, offsetVal);
+        func.call(this._buff, value, offsetVal);
+        if (typeof offset === "number") {
+          this._writeOffset = Math.max(this._writeOffset, offsetVal + byteSize);
+        } else {
+          this._writeOffset += byteSize;
+        }
+        return this;
+      }
+    };
+    exports2.SmartBuffer = SmartBuffer;
+  },
+});
+
+// node_modules/.deno/socks@2.8.9/node_modules/socks/build/common/constants.js
+var require_constants7 = __commonJS({
+  "node_modules/.deno/socks@2.8.9/node_modules/socks/build/common/constants.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.SOCKS5_NO_ACCEPTABLE_AUTH =
+      exports2.SOCKS5_CUSTOM_AUTH_END =
+      exports2.SOCKS5_CUSTOM_AUTH_START =
+      exports2.SOCKS_INCOMING_PACKET_SIZES =
+      exports2.SocksClientState =
+      exports2.Socks5Response =
+      exports2.Socks5HostType =
+      exports2.Socks5Auth =
+      exports2.Socks4Response =
+      exports2.SocksCommand =
+      exports2.ERRORS =
+      exports2.DEFAULT_TIMEOUT =
+        void 0;
+    var DEFAULT_TIMEOUT = 3e4;
+    exports2.DEFAULT_TIMEOUT = DEFAULT_TIMEOUT;
+    var ERRORS = {
+      InvalidSocksCommand:
+        "An invalid SOCKS command was provided. Valid options are connect, bind, and associate.",
+      InvalidSocksCommandForOperation:
+        "An invalid SOCKS command was provided. Only a subset of commands are supported for this operation.",
+      InvalidSocksCommandChain:
+        "An invalid SOCKS command was provided. Chaining currently only supports the connect command.",
+      InvalidSocksClientOptionsDestination:
+        "An invalid destination host was provided.",
+      InvalidSocksClientOptionsExistingSocket:
+        "An invalid existing socket was provided. This should be an instance of stream.Duplex.",
+      InvalidSocksClientOptionsProxy:
+        "Invalid SOCKS proxy details were provided.",
+      InvalidSocksClientOptionsTimeout:
+        "An invalid timeout value was provided. Please enter a value above 0 (in ms).",
+      InvalidSocksClientOptionsProxiesLength:
+        "At least two socks proxies must be provided for chaining.",
+      InvalidSocksClientOptionsCustomAuthRange:
+        "Custom auth must be a value between 0x80 and 0xFE.",
+      InvalidSocksClientOptionsCustomAuthOptions:
+        "When a custom_auth_method is provided, custom_auth_request_handler, custom_auth_response_size, and custom_auth_response_handler must also be provided and valid.",
+      NegotiationError: "Negotiation error",
+      SocketClosed: "Socket closed",
+      ProxyConnectionTimedOut: "Proxy connection timed out",
+      InternalError: "SocksClient internal error (this should not happen)",
+      InvalidSocks4HandshakeResponse:
+        "Received invalid Socks4 handshake response",
+      Socks4ProxyRejectedConnection: "Socks4 Proxy rejected connection",
+      InvalidSocks4IncomingConnectionResponse:
+        "Socks4 invalid incoming connection response",
+      Socks4ProxyRejectedIncomingBoundConnection:
+        "Socks4 Proxy rejected incoming bound connection",
+      InvalidSocks5InitialHandshakeResponse:
+        "Received invalid Socks5 initial handshake response",
+      InvalidSocks5IntiailHandshakeSocksVersion:
+        "Received invalid Socks5 initial handshake (invalid socks version)",
+      InvalidSocks5InitialHandshakeNoAcceptedAuthType:
+        "Received invalid Socks5 initial handshake (no accepted authentication type)",
+      InvalidSocks5InitialHandshakeUnknownAuthType:
+        "Received invalid Socks5 initial handshake (unknown authentication type)",
+      Socks5AuthenticationFailed: "Socks5 Authentication failed",
+      InvalidSocks5FinalHandshake:
+        "Received invalid Socks5 final handshake response",
+      InvalidSocks5FinalHandshakeRejected: "Socks5 proxy rejected connection",
+      InvalidSocks5IncomingConnectionResponse:
+        "Received invalid Socks5 incoming connection response",
+      Socks5ProxyRejectedIncomingBoundConnection:
+        "Socks5 Proxy rejected incoming bound connection",
+    };
+    exports2.ERRORS = ERRORS;
+    var SOCKS_INCOMING_PACKET_SIZES = {
+      Socks5InitialHandshakeResponse: 2,
+      Socks5UserPassAuthenticationResponse: 2,
+      // Command response + incoming connection (bind)
+      Socks5ResponseHeader: 5,
+      Socks5ResponseIPv4: 10,
+      Socks5ResponseIPv6: 22,
+      Socks5ResponseHostname: (hostNameLength) => hostNameLength + 7,
+      // Command response + incoming connection (bind)
+      Socks4Response: 8,
+    };
+    exports2.SOCKS_INCOMING_PACKET_SIZES = SOCKS_INCOMING_PACKET_SIZES;
+    var SocksCommand;
+    (function (SocksCommand2) {
+      SocksCommand2[SocksCommand2["connect"] = 1] = "connect";
+      SocksCommand2[SocksCommand2["bind"] = 2] = "bind";
+      SocksCommand2[SocksCommand2["associate"] = 3] = "associate";
+    })(SocksCommand || (exports2.SocksCommand = SocksCommand = {}));
+    var Socks4Response;
+    (function (Socks4Response2) {
+      Socks4Response2[Socks4Response2["Granted"] = 90] = "Granted";
+      Socks4Response2[Socks4Response2["Failed"] = 91] = "Failed";
+      Socks4Response2[Socks4Response2["Rejected"] = 92] = "Rejected";
+      Socks4Response2[Socks4Response2["RejectedIdent"] = 93] = "RejectedIdent";
+    })(Socks4Response || (exports2.Socks4Response = Socks4Response = {}));
+    var Socks5Auth;
+    (function (Socks5Auth2) {
+      Socks5Auth2[Socks5Auth2["NoAuth"] = 0] = "NoAuth";
+      Socks5Auth2[Socks5Auth2["GSSApi"] = 1] = "GSSApi";
+      Socks5Auth2[Socks5Auth2["UserPass"] = 2] = "UserPass";
+    })(Socks5Auth || (exports2.Socks5Auth = Socks5Auth = {}));
+    var SOCKS5_CUSTOM_AUTH_START = 128;
+    exports2.SOCKS5_CUSTOM_AUTH_START = SOCKS5_CUSTOM_AUTH_START;
+    var SOCKS5_CUSTOM_AUTH_END = 254;
+    exports2.SOCKS5_CUSTOM_AUTH_END = SOCKS5_CUSTOM_AUTH_END;
+    var SOCKS5_NO_ACCEPTABLE_AUTH = 255;
+    exports2.SOCKS5_NO_ACCEPTABLE_AUTH = SOCKS5_NO_ACCEPTABLE_AUTH;
+    var Socks5Response;
+    (function (Socks5Response2) {
+      Socks5Response2[Socks5Response2["Granted"] = 0] = "Granted";
+      Socks5Response2[Socks5Response2["Failure"] = 1] = "Failure";
+      Socks5Response2[Socks5Response2["NotAllowed"] = 2] = "NotAllowed";
+      Socks5Response2[Socks5Response2["NetworkUnreachable"] = 3] =
+        "NetworkUnreachable";
+      Socks5Response2[Socks5Response2["HostUnreachable"] = 4] =
+        "HostUnreachable";
+      Socks5Response2[Socks5Response2["ConnectionRefused"] = 5] =
+        "ConnectionRefused";
+      Socks5Response2[Socks5Response2["TTLExpired"] = 6] = "TTLExpired";
+      Socks5Response2[Socks5Response2["CommandNotSupported"] = 7] =
+        "CommandNotSupported";
+      Socks5Response2[Socks5Response2["AddressNotSupported"] = 8] =
+        "AddressNotSupported";
+    })(Socks5Response || (exports2.Socks5Response = Socks5Response = {}));
+    var Socks5HostType;
+    (function (Socks5HostType2) {
+      Socks5HostType2[Socks5HostType2["IPv4"] = 1] = "IPv4";
+      Socks5HostType2[Socks5HostType2["Hostname"] = 3] = "Hostname";
+      Socks5HostType2[Socks5HostType2["IPv6"] = 4] = "IPv6";
+    })(Socks5HostType || (exports2.Socks5HostType = Socks5HostType = {}));
+    var SocksClientState;
+    (function (SocksClientState2) {
+      SocksClientState2[SocksClientState2["Created"] = 0] = "Created";
+      SocksClientState2[SocksClientState2["Connecting"] = 1] = "Connecting";
+      SocksClientState2[SocksClientState2["Connected"] = 2] = "Connected";
+      SocksClientState2[SocksClientState2["SentInitialHandshake"] = 3] =
+        "SentInitialHandshake";
+      SocksClientState2[
+        SocksClientState2["ReceivedInitialHandshakeResponse"] = 4
+      ] = "ReceivedInitialHandshakeResponse";
+      SocksClientState2[SocksClientState2["SentAuthentication"] = 5] =
+        "SentAuthentication";
+      SocksClientState2[
+        SocksClientState2["ReceivedAuthenticationResponse"] = 6
+      ] = "ReceivedAuthenticationResponse";
+      SocksClientState2[SocksClientState2["SentFinalHandshake"] = 7] =
+        "SentFinalHandshake";
+      SocksClientState2[SocksClientState2["ReceivedFinalResponse"] = 8] =
+        "ReceivedFinalResponse";
+      SocksClientState2[SocksClientState2["BoundWaitingForConnection"] = 9] =
+        "BoundWaitingForConnection";
+      SocksClientState2[SocksClientState2["Established"] = 10] = "Established";
+      SocksClientState2[SocksClientState2["Disconnected"] = 11] =
+        "Disconnected";
+      SocksClientState2[SocksClientState2["Error"] = 99] = "Error";
+    })(SocksClientState || (exports2.SocksClientState = SocksClientState = {}));
+  },
+});
+
+// node_modules/.deno/socks@2.8.9/node_modules/socks/build/common/util.js
+var require_util9 = __commonJS({
+  "node_modules/.deno/socks@2.8.9/node_modules/socks/build/common/util.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.shuffleArray = exports2.SocksClientError = void 0;
+    var SocksClientError = class extends Error {
+      constructor(message, options) {
+        super(message);
+        this.options = options;
+      }
+    };
+    exports2.SocksClientError = SocksClientError;
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [
+          array[j],
+          array[i],
+        ];
+      }
+    }
+    exports2.shuffleArray = shuffleArray;
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/address-error.js
+var require_address_error = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/address-error.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.AddressError = void 0;
+    var AddressError = class extends Error {
+      constructor(message, parseMessage) {
+        super(message);
+        this.name = "AddressError";
+        this.parseMessage = parseMessage;
+      }
+    };
+    exports2.AddressError = AddressError;
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/common.js
+var require_common2 = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/common.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.isInSubnet = isInSubnet;
+    exports2.isCorrect = isCorrect;
+    exports2.prefixLengthFromMask = prefixLengthFromMask;
+    exports2.numberToPaddedHex = numberToPaddedHex;
+    exports2.stringToPaddedHex = stringToPaddedHex;
+    exports2.testBit = testBit;
+    var address_error_1 = require_address_error();
+    function isInSubnet(address) {
+      if (this.subnetMask < address.subnetMask) {
+        return false;
+      }
+      if (this.mask(address.subnetMask) === address.mask()) {
+        return true;
+      }
+      return false;
+    }
+    function isCorrect(defaultBits) {
+      return function () {
+        if (this.addressMinusSuffix !== this.correctForm()) {
+          return false;
+        }
+        if (this.subnetMask === defaultBits && !this.parsedSubnet) {
+          return true;
+        }
+        return this.parsedSubnet === String(this.subnetMask);
+      };
+    }
+    function prefixLengthFromMask(value, totalBits) {
+      const binary = value.toString(2).padStart(totalBits, "0");
+      if (binary.length > totalBits) {
+        throw new address_error_1.AddressError("Invalid subnet mask.");
+      }
+      const firstZero = binary.indexOf("0");
+      if (firstZero === -1) {
+        return totalBits;
+      }
+      if (binary.slice(firstZero).includes("1")) {
+        throw new address_error_1.AddressError("Invalid subnet mask.");
+      }
+      return firstZero;
+    }
+    function numberToPaddedHex(number) {
+      return number.toString(16).padStart(2, "0");
+    }
+    function stringToPaddedHex(numberString) {
+      return numberToPaddedHex(parseInt(numberString, 10));
+    }
+    function testBit(binaryValue, position) {
+      const { length } = binaryValue;
+      if (position > length) {
+        return false;
+      }
+      const positionInString = length - position;
+      return binaryValue.substring(positionInString, positionInString + 1) ===
+        "1";
+    }
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v4/constants.js
+var require_constants8 = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v4/constants.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.RE_SUBNET_STRING =
+      exports2.RE_ADDRESS =
+      exports2.GROUPS =
+      exports2.BITS =
+        void 0;
+    exports2.BITS = 32;
+    exports2.GROUPS = 4;
+    exports2.RE_ADDRESS =
+      /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/g;
+    exports2.RE_SUBNET_STRING = /\/\d{1,2}$/;
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ipv4.js
+var require_ipv4 = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ipv4.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.Address4 = void 0;
+    var common = __importStar(require_common2());
+    var constants4 = __importStar(require_constants8());
+    var address_error_1 = require_address_error();
+    var isCorrect4 = common.isCorrect(constants4.BITS);
+    var Address4 = class _Address4 {
+      constructor(address) {
+        this.groups = constants4.GROUPS;
+        this.parsedAddress = [];
+        this.parsedSubnet = "";
+        this.subnet = "/32";
+        this.subnetMask = 32;
+        this.v4 = true;
+        this.isCorrect = isCorrect4;
+        this.isInSubnet = common.isInSubnet;
+        this.address = address;
+        const subnet = constants4.RE_SUBNET_STRING.exec(address);
+        if (subnet) {
+          this.parsedSubnet = subnet[0].replace("/", "");
+          this.subnetMask = parseInt(this.parsedSubnet, 10);
+          this.subnet = `/${this.subnetMask}`;
+          if (this.subnetMask < 0 || this.subnetMask > constants4.BITS) {
+            throw new address_error_1.AddressError("Invalid subnet mask.");
+          }
+          address = address.replace(constants4.RE_SUBNET_STRING, "");
+        }
+        this.addressMinusSuffix = address;
+        this.parsedAddress = this.parse(address);
+      }
+      /**
+       * Returns true if the given string is a valid IPv4 address (with optional
+       * CIDR subnet), false otherwise. Host bits in the subnet portion are
+       * allowed (e.g. `192.168.1.5/24` is valid); for strict network-address
+       * validation compare `correctForm()` to `startAddress().correctForm()`,
+       * or use `networkForm()`.
+       */
+      static isValid(address) {
+        try {
+          new _Address4(address);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+      /**
+       * Parses an IPv4 address string into its four octet groups and stores the
+       * result on `this.parsedAddress`. Called automatically by the constructor;
+       * you typically don't need to call it directly. Throws `AddressError` if
+       * the input is not a valid IPv4 address.
+       */
+      parse(address) {
+        const groups = address.split(".");
+        if (!address.match(constants4.RE_ADDRESS)) {
+          throw new address_error_1.AddressError("Invalid IPv4 address.");
+        }
+        return groups;
+      }
+      /**
+       * Returns the address in correct form: octets joined with `.` and any
+       * leading zeros stripped (e.g. `192.168.1.1`). For IPv4 this matches the
+       * canonical dotted-decimal representation.
+       */
+      correctForm() {
+        return this.parsedAddress.map((part) => parseInt(part, 10)).join(".");
+      }
+      /**
+       * Construct an `Address4` from an address and a dotted-decimal subnet
+       * mask given as separate strings (e.g. as returned by Node's
+       * `os.networkInterfaces()`). Throws `AddressError` if the mask is
+       * non-contiguous (e.g. `255.0.255.0`).
+       * @example
+       * var address = Address4.fromAddressAndMask('192.168.1.1', '255.255.255.0');
+       * address.subnetMask; // 24
+       */
+      static fromAddressAndMask(address, mask) {
+        const bits = common.prefixLengthFromMask(
+          new _Address4(mask).bigInt(),
+          constants4.BITS,
+        );
+        return new _Address4(`${address}/${bits}`);
+      }
+      /**
+       * Construct an `Address4` from an address and a Cisco-style wildcard mask
+       * given as separate strings (e.g. `0.0.0.255` for a `/24`). The wildcard
+       * mask is the bitwise inverse of the subnet mask. Throws `AddressError`
+       * if the mask is non-contiguous (e.g. `0.255.0.255`).
+       * @example
+       * var address = Address4.fromAddressAndWildcardMask('10.0.0.1', '0.0.0.255');
+       * address.subnetMask; // 24
+       */
+      static fromAddressAndWildcardMask(address, wildcardMask) {
+        const wildcard = new _Address4(wildcardMask).bigInt();
+        const allOnes = (BigInt(1) << BigInt(constants4.BITS)) - BigInt(1);
+        const mask = wildcard ^ allOnes;
+        const bits = common.prefixLengthFromMask(mask, constants4.BITS);
+        return new _Address4(`${address}/${bits}`);
+      }
+      /**
+       * Construct an `Address4` from a wildcard pattern with trailing `*`
+       * octets. The number of trailing wildcards determines the prefix
+       * length: each `*` represents 8 bits.
+       *
+       * Only trailing whole-octet wildcards are supported. Partial-octet
+       * wildcards (e.g. `192.168.0.1*`) and interior wildcards (e.g.
+       * `192.*.0.1`) throw `AddressError`.
+       * @example
+       * Address4.fromWildcard('192.168.0.*').subnet;   // '/24'
+       * Address4.fromWildcard('192.168.*.*').subnet;   // '/16'
+       * Address4.fromWildcard('*.*.*.*').subnet;       // '/0'
+       */
+      static fromWildcard(input) {
+        const groups = input.split(".");
+        if (groups.length !== constants4.GROUPS) {
+          throw new address_error_1.AddressError(
+            "Wildcard pattern must have 4 octets",
+          );
+        }
+        let firstWildcard = -1;
+        for (let i = 0; i < groups.length; i++) {
+          if (groups[i] === "*") {
+            if (firstWildcard === -1) {
+              firstWildcard = i;
+            }
+          } else if (firstWildcard !== -1) {
+            throw new address_error_1.AddressError(
+              "Wildcard `*` must only appear in trailing octets (e.g. `192.168.0.*`)",
+            );
+          }
+        }
+        const trailing = firstWildcard === -1
+          ? 0
+          : groups.length - firstWildcard;
+        const replaced = groups.map((g) => g === "*" ? "0" : g);
+        const subnetBits = constants4.BITS - trailing * 8;
+        return new _Address4(`${replaced.join(".")}/${subnetBits}`);
+      }
+      /**
+       * Converts a hex string to an IPv4 address object. Accepts 8 hex digits
+       * with optional `:` separators (e.g. `'7f000001'` or `'7f:00:00:01'`).
+       * Throws `AddressError` for any other length or for non-hex characters.
+       * @param {string} hex - a hex string to convert
+       * @returns {Address4}
+       */
+      static fromHex(hex) {
+        const stripped = hex.replace(/:/g, "");
+        if (!/^[0-9a-fA-F]{8}$/.test(stripped)) {
+          throw new address_error_1.AddressError(
+            "IPv4 hex must be exactly 8 hex digits",
+          );
+        }
+        const groups = [];
+        for (let i = 0; i < 8; i += 2) {
+          groups.push(parseInt(stripped.slice(i, i + 2), 16));
+        }
+        return new _Address4(groups.join("."));
+      }
+      /**
+       * Converts an integer into a IPv4 address object. The integer must be a
+       * non-negative safe integer in the range `[0, 2**32 - 1]`; otherwise
+       * `AddressError` is thrown.
+       * @param {integer} integer - a number to convert
+       * @returns {Address4}
+       */
+      static fromInteger(integer) {
+        if (!Number.isInteger(integer) || integer < 0 || integer > 4294967295) {
+          throw new address_error_1.AddressError(
+            "IPv4 integer must be in the range 0 to 2**32 - 1",
+          );
+        }
+        return _Address4.fromHex(integer.toString(16).padStart(8, "0"));
+      }
+      /**
+       * Return an address from in-addr.arpa form
+       * @param {string} arpaFormAddress - an 'in-addr.arpa' form ipv4 address
+       * @returns {Adress4}
+       * @example
+       * var address = Address4.fromArpa(42.2.0.192.in-addr.arpa.)
+       * address.correctForm(); // '192.0.2.42'
+       */
+      static fromArpa(arpaFormAddress) {
+        const leader = arpaFormAddress.replace(/(\.in-addr\.arpa)?\.$/, "");
+        const address = leader.split(".").reverse().join(".");
+        return new _Address4(address);
+      }
+      /**
+       * Converts an IPv4 address object to a hex string
+       * @returns {String}
+       */
+      toHex() {
+        return this.parsedAddress.map((part) => common.stringToPaddedHex(part))
+          .join(":");
+      }
+      /**
+       * Converts an IPv4 address object to an array of bytes.
+       *
+       * To get a Node.js `Buffer`, wrap the result: `Buffer.from(address.toArray())`.
+       * @returns {Array}
+       */
+      toArray() {
+        return this.parsedAddress.map((part) => parseInt(part, 10));
+      }
+      /**
+       * Converts an IPv4 address object to an IPv6 address group
+       * @returns {String}
+       */
+      toGroup6() {
+        const output = [];
+        let i;
+        for (i = 0; i < constants4.GROUPS; i += 2) {
+          output.push(
+            `${common.stringToPaddedHex(this.parsedAddress[i])}${
+              common.stringToPaddedHex(this.parsedAddress[i + 1])
+            }`,
+          );
+        }
+        return output.join(":");
+      }
+      /**
+       * Returns the address as a `bigint`
+       * @returns {bigint}
+       */
+      bigInt() {
+        return BigInt(
+          `0x${
+            this.parsedAddress.map((n) => common.stringToPaddedHex(n)).join("")
+          }`,
+        );
+      }
+      /**
+       * Helper function getting start address.
+       * @returns {bigint}
+       */
+      _startAddress() {
+        return BigInt(
+          `0b${this.mask() + "0".repeat(constants4.BITS - this.subnetMask)}`,
+        );
+      }
+      /**
+       * The first address in the range given by this address' subnet.
+       * Often referred to as the Network Address.
+       * @returns {Address4}
+       */
+      startAddress() {
+        return _Address4.fromBigInt(this._startAddress());
+      }
+      /**
+       * The first host address in the range given by this address's subnet ie
+       * the first address after the Network Address
+       * @returns {Address4}
+       */
+      startAddressExclusive() {
+        const adjust = BigInt("1");
+        return _Address4.fromBigInt(this._startAddress() + adjust);
+      }
+      /**
+       * Helper function getting end address.
+       * @returns {bigint}
+       */
+      _endAddress() {
+        return BigInt(
+          `0b${this.mask() + "1".repeat(constants4.BITS - this.subnetMask)}`,
+        );
+      }
+      /**
+       * The last address in the range given by this address' subnet
+       * Often referred to as the Broadcast
+       * @returns {Address4}
+       */
+      endAddress() {
+        return _Address4.fromBigInt(this._endAddress());
+      }
+      /**
+       * The last host address in the range given by this address's subnet ie
+       * the last address prior to the Broadcast Address
+       * @returns {Address4}
+       */
+      endAddressExclusive() {
+        const adjust = BigInt("1");
+        return _Address4.fromBigInt(this._endAddress() - adjust);
+      }
+      /**
+       * The dotted-decimal form of the subnet mask, e.g. `255.255.240.0` for
+       * a `/20`. Returns an `Address4`; call `.correctForm()` for the string.
+       * @returns {Address4}
+       */
+      subnetMaskAddress() {
+        return _Address4.fromBigInt(
+          BigInt(
+            `0b${"1".repeat(this.subnetMask)}${
+              "0".repeat(constants4.BITS - this.subnetMask)
+            }`,
+          ),
+        );
+      }
+      /**
+       * The Cisco-style wildcard mask, e.g. `0.0.0.255` for a `/24`. This is
+       * the bitwise inverse of `subnetMaskAddress()`. Returns an `Address4`;
+       * call `.correctForm()` for the string.
+       * @returns {Address4}
+       */
+      wildcardMask() {
+        return _Address4.fromBigInt(
+          BigInt(
+            `0b${"0".repeat(this.subnetMask)}${
+              "1".repeat(constants4.BITS - this.subnetMask)
+            }`,
+          ),
+        );
+      }
+      /**
+       * The network address in CIDR string form, e.g. `192.168.1.0/24` for
+       * `192.168.1.5/24`. For an address with no explicit subnet the prefix is
+       * `/32`, e.g. `networkForm()` on `192.168.1.5` returns `192.168.1.5/32`.
+       * @returns {string}
+       */
+      networkForm() {
+        return `${this.startAddress().correctForm()}/${this.subnetMask}`;
+      }
+      /**
+       * Converts a BigInt to a v4 address object. The value must be in the
+       * range `[0, 2**32 - 1]`; otherwise `AddressError` is thrown.
+       * @param {bigint} bigInt - a BigInt to convert
+       * @returns {Address4}
+       */
+      static fromBigInt(bigInt) {
+        if (bigInt < 0n || bigInt > 0xffffffffn) {
+          throw new address_error_1.AddressError(
+            "IPv4 BigInt must be in the range 0 to 2**32 - 1",
+          );
+        }
+        return _Address4.fromHex(bigInt.toString(16).padStart(8, "0"));
+      }
+      /**
+       * Convert a byte array to an Address4 object.
+       *
+       * To convert from a Node.js `Buffer`, spread it: `Address4.fromByteArray([...buf])`.
+       * @param {Array<number>} bytes - an array of 4 bytes (0-255)
+       * @returns {Address4}
+       */
+      static fromByteArray(bytes) {
+        if (bytes.length !== 4) {
+          throw new address_error_1.AddressError(
+            "IPv4 addresses require exactly 4 bytes",
+          );
+        }
+        for (let i = 0; i < bytes.length; i++) {
+          if (!Number.isInteger(bytes[i]) || bytes[i] < 0 || bytes[i] > 255) {
+            throw new address_error_1.AddressError(
+              "All bytes must be integers between 0 and 255",
+            );
+          }
+        }
+        return this.fromUnsignedByteArray(bytes);
+      }
+      /**
+       * Convert an unsigned byte array to an Address4 object
+       * @param {Array<number>} bytes - an array of 4 unsigned bytes (0-255)
+       * @returns {Address4}
+       */
+      static fromUnsignedByteArray(bytes) {
+        if (bytes.length !== 4) {
+          throw new address_error_1.AddressError(
+            "IPv4 addresses require exactly 4 bytes",
+          );
+        }
+        const address = bytes.join(".");
+        return new _Address4(address);
+      }
+      /**
+       * Returns the first n bits of the address, defaulting to the
+       * subnet mask
+       * @returns {String}
+       */
+      mask(mask) {
+        if (mask === void 0) {
+          mask = this.subnetMask;
+        }
+        return this.getBitsBase2(0, mask);
+      }
+      /**
+       * Returns the bits in the given range as a base-2 string
+       * @returns {string}
+       */
+      getBitsBase2(start, end) {
+        return this.binaryZeroPad().slice(start, end);
+      }
+      /**
+       * Return the reversed ip6.arpa form of the address
+       * @param {Object} options
+       * @param {boolean} options.omitSuffix - omit the "in-addr.arpa" suffix
+       * @returns {String}
+       */
+      reverseForm(options) {
+        if (!options) {
+          options = {};
+        }
+        const reversed = this.correctForm().split(".").reverse().join(".");
+        if (options.omitSuffix) {
+          return reversed;
+        }
+        return `${reversed}.in-addr.arpa.`;
+      }
+      /**
+       * Returns true if the given address is a multicast address
+       * @returns {boolean}
+       */
+      isMulticast() {
+        return this.isInSubnet(MULTICAST_V4);
+      }
+      /**
+       * Returns true if the address is in one of the [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private address ranges (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`).
+       * @returns {boolean}
+       */
+      isPrivate() {
+        return PRIVATE_V4.some((subnet) => this.isInSubnet(subnet));
+      }
+      /**
+       * Returns true if the address is in the loopback range `127.0.0.0/8` ([RFC 1122](https://datatracker.ietf.org/doc/html/rfc1122)).
+       * @returns {boolean}
+       */
+      isLoopback() {
+        return this.isInSubnet(LOOPBACK_V4);
+      }
+      /**
+       * Returns true if the address is in the link-local range `169.254.0.0/16` ([RFC 3927](https://datatracker.ietf.org/doc/html/rfc3927)).
+       * @returns {boolean}
+       */
+      isLinkLocal() {
+        return this.isInSubnet(LINK_LOCAL_V4);
+      }
+      /**
+       * Returns true if the address is the unspecified address `0.0.0.0`.
+       * @returns {boolean}
+       */
+      isUnspecified() {
+        return this.isInSubnet(UNSPECIFIED_V4);
+      }
+      /**
+       * Returns true if the address is the limited broadcast address `255.255.255.255` ([RFC 919](https://datatracker.ietf.org/doc/html/rfc919)).
+       * @returns {boolean}
+       */
+      isBroadcast() {
+        return this.isInSubnet(BROADCAST_V4);
+      }
+      /**
+       * Returns true if the address is in the carrier-grade NAT range `100.64.0.0/10` ([RFC 6598](https://datatracker.ietf.org/doc/html/rfc6598)).
+       * @returns {boolean}
+       */
+      isCGNAT() {
+        return this.isInSubnet(CGNAT_V4);
+      }
+      /**
+       * Returns a zero-padded base-2 string representation of the address
+       * @returns {string}
+       */
+      binaryZeroPad() {
+        if (this._binaryZeroPad === void 0) {
+          this._binaryZeroPad = this.bigInt().toString(2).padStart(
+            constants4.BITS,
+            "0",
+          );
+        }
+        return this._binaryZeroPad;
+      }
+      /**
+       * Groups an IPv4 address for inclusion at the end of an IPv6 address
+       * @returns {String}
+       */
+      groupForV6() {
+        const segments = this.parsedAddress;
+        return this.address.replace(
+          constants4.RE_ADDRESS,
+          `<span class="hover-group group-v4 group-6">${
+            segments.slice(0, 2).join(".")
+          }</span>.<span class="hover-group group-v4 group-7">${
+            segments.slice(2, 4).join(".")
+          }</span>`,
+        );
+      }
+    };
+    exports2.Address4 = Address4;
+    var MULTICAST_V4 = new Address4("224.0.0.0/4");
+    var PRIVATE_V4 = [
+      new Address4("10.0.0.0/8"),
+      new Address4("172.16.0.0/12"),
+      new Address4("192.168.0.0/16"),
+    ];
+    var LOOPBACK_V4 = new Address4("127.0.0.0/8");
+    var LINK_LOCAL_V4 = new Address4("169.254.0.0/16");
+    var UNSPECIFIED_V4 = new Address4("0.0.0.0/32");
+    var BROADCAST_V4 = new Address4("255.255.255.255/32");
+    var CGNAT_V4 = new Address4("100.64.0.0/10");
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/constants.js
+var require_constants9 = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/constants.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.RE_URL_WITH_PORT =
+      exports2.RE_URL =
+      exports2.RE_ZONE_STRING =
+      exports2.RE_SUBNET_STRING =
+      exports2.RE_BAD_ADDRESS =
+      exports2.RE_BAD_CHARACTERS =
+      exports2.TYPES =
+      exports2.SCOPES =
+      exports2.GROUPS =
+      exports2.BITS =
+        void 0;
+    exports2.BITS = 128;
+    exports2.GROUPS = 8;
+    exports2.SCOPES = {
+      0: "Reserved",
+      1: "Interface local",
+      2: "Link local",
+      4: "Admin local",
+      5: "Site local",
+      8: "Organization local",
+      14: "Global",
+      15: "Reserved",
+    };
+    exports2.TYPES = {
+      "ff01::1/128": "Multicast (All nodes on this interface)",
+      "ff01::2/128": "Multicast (All routers on this interface)",
+      "ff02::1/128": "Multicast (All nodes on this link)",
+      "ff02::2/128": "Multicast (All routers on this link)",
+      "ff05::2/128": "Multicast (All routers in this site)",
+      "ff02::5/128": "Multicast (OSPFv3 AllSPF routers)",
+      "ff02::6/128": "Multicast (OSPFv3 AllDR routers)",
+      "ff02::9/128": "Multicast (RIP routers)",
+      "ff02::a/128": "Multicast (EIGRP routers)",
+      "ff02::d/128": "Multicast (PIM routers)",
+      "ff02::16/128": "Multicast (MLDv2 reports)",
+      "ff01::fb/128": "Multicast (mDNSv6)",
+      "ff02::fb/128": "Multicast (mDNSv6)",
+      "ff05::fb/128": "Multicast (mDNSv6)",
+      "ff02::1:2/128":
+        "Multicast (All DHCP servers and relay agents on this link)",
+      "ff05::1:2/128":
+        "Multicast (All DHCP servers and relay agents in this site)",
+      "ff02::1:3/128": "Multicast (All DHCP servers on this link)",
+      "ff05::1:3/128": "Multicast (All DHCP servers in this site)",
+      "::/128": "Unspecified",
+      "::1/128": "Loopback",
+      "ff00::/8": "Multicast",
+      "fe80::/10": "Link-local unicast",
+      "fc00::/7": "Unique local",
+      "2002::/16": "6to4",
+      "2001:db8::/32": "Documentation",
+      "64:ff9b::/96": "NAT64 (well-known)",
+      "64:ff9b:1::/48": "NAT64 (local-use)",
+    };
+    exports2.RE_BAD_CHARACTERS = /([^0-9a-f:/%])/gi;
+    exports2.RE_BAD_ADDRESS = /([0-9a-f]{5,}|:{3,}|[^:]:$|^:[^:]|\/$)/gi;
+    exports2.RE_SUBNET_STRING = /\/\d{1,3}(?=%|$)/;
+    exports2.RE_ZONE_STRING = /%.*$/;
+    exports2.RE_URL = /^\[{0,1}([0-9a-f:]+)\]{0,1}/;
+    exports2.RE_URL_WITH_PORT = /\[([0-9a-f:]+)\]:([0-9]{1,5})/;
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/helpers.js
+var require_helpers = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/helpers.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.escapeHtml = escapeHtml;
+    exports2.spanAllZeroes = spanAllZeroes;
+    exports2.spanAll = spanAll;
+    exports2.spanLeadingZeroes = spanLeadingZeroes;
+    exports2.simpleGroup = simpleGroup;
+    function escapeHtml(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(
+        />/g,
+        "&gt;",
+      ).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    function spanAllZeroes(s) {
+      return escapeHtml(s).replace(/(0+)/g, '<span class="zero">$1</span>');
+    }
+    function spanAll(s, offset = 0) {
+      const letters = s.split("");
+      return letters.map((n, i) =>
+        `<span class="digit value-${escapeHtml(n)} position-${i + offset}">${
+          spanAllZeroes(n)
+        }</span>`
+      ).join("");
+    }
+    function spanLeadingZeroesSimple(group2) {
+      return escapeHtml(group2).replace(
+        /^(0+)/,
+        '<span class="zero">$1</span>',
+      );
+    }
+    function spanLeadingZeroes(address) {
+      const groups = address.split(":");
+      return groups.map((g) => spanLeadingZeroesSimple(g)).join(":");
+    }
+    function simpleGroup(addressString, offset = 0) {
+      const groups = addressString.split(":");
+      return groups.map((g, i) => {
+        if (/group-v4/.test(g)) {
+          return g;
+        }
+        return `<span class="hover-group group-${i + offset}">${
+          spanLeadingZeroesSimple(g)
+        }</span>`;
+      });
+    }
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/regular-expressions.js
+var require_regular_expressions = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/regular-expressions.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.ADDRESS_BOUNDARY = void 0;
+    exports2.groupPossibilities = groupPossibilities;
+    exports2.padGroup = padGroup;
+    exports2.simpleRegularExpression = simpleRegularExpression;
+    exports2.possibleElisions = possibleElisions;
+    var v6 = __importStar(require_constants9());
+    function groupPossibilities(possibilities) {
+      return `(${possibilities.join("|")})`;
+    }
+    function padGroup(group2) {
+      if (group2.length < 4) {
+        return `0{0,${4 - group2.length}}${group2}`;
+      }
+      return group2;
+    }
+    exports2.ADDRESS_BOUNDARY = "[^A-Fa-f0-9:]";
+    function simpleRegularExpression(groups) {
+      const zeroIndexes = [];
+      groups.forEach((group2, i) => {
+        const groupInteger = parseInt(group2, 16);
+        if (groupInteger === 0) {
+          zeroIndexes.push(i);
+        }
+      });
+      const possibilities = zeroIndexes.map((zeroIndex) =>
+        groups.map((group2, i) => {
+          if (i === zeroIndex) {
+            const elision = i === 0 || i === v6.GROUPS - 1 ? ":" : "";
+            return groupPossibilities([
+              padGroup(group2),
+              elision,
+            ]);
+          }
+          return padGroup(group2);
+        }).join(":")
+      );
+      possibilities.push(groups.map(padGroup).join(":"));
+      return groupPossibilities(possibilities);
+    }
+    function possibleElisions(elidedGroups, moreLeft, moreRight) {
+      const left = moreLeft ? "" : ":";
+      const right = moreRight ? "" : ":";
+      const possibilities = [];
+      if (!moreLeft && !moreRight) {
+        possibilities.push("::");
+      }
+      if (moreLeft && moreRight) {
+        possibilities.push("");
+      }
+      if (moreRight && !moreLeft || !moreRight && moreLeft) {
+        possibilities.push(":");
+      }
+      possibilities.push(`${left}(:0{1,4}){1,${elidedGroups - 1}}`);
+      possibilities.push(`(0{1,4}:){1,${elidedGroups - 1}}${right}`);
+      possibilities.push(`(0{1,4}:){${elidedGroups - 1}}0{1,4}`);
+      for (let groups = 1; groups < elidedGroups - 1; groups++) {
+        for (let position = 1; position < elidedGroups - groups; position++) {
+          possibilities.push(
+            `(0{1,4}:){${position}}:(0{1,4}:){${
+              elidedGroups - position - groups - 1
+            }}0{1,4}`,
+          );
+        }
+      }
+      return groupPossibilities(possibilities);
+    }
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ipv6.js
+var require_ipv6 = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ipv6.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.Address6 = void 0;
+    var common = __importStar(require_common2());
+    var constants4 = __importStar(require_constants8());
+    var constants6 = __importStar(require_constants9());
+    var helpers = __importStar(require_helpers());
+    var ipv4_1 = require_ipv4();
+    var regular_expressions_1 = require_regular_expressions();
+    var address_error_1 = require_address_error();
+    var common_1 = require_common2();
+    var isCorrect6 = common.isCorrect(constants6.BITS);
+    function assert5(condition) {
+      if (!condition) {
+        throw new Error("Assertion failed.");
+      }
+    }
+    function addCommas(number) {
+      const r = /(\d+)(\d{3})/;
+      while (r.test(number)) {
+        number = number.replace(r, "$1,$2");
+      }
+      return number;
+    }
+    function spanLeadingZeroes4(n) {
+      n = n.replace(
+        /^(0{1,})([1-9]+)$/,
+        '<span class="parse-error">$1</span>$2',
+      );
+      n = n.replace(/^(0{1,})(0)$/, '<span class="parse-error">$1</span>$2');
+      return n;
+    }
+    function compact(address, slice) {
+      const s1 = [];
+      const s2 = [];
+      let i;
+      for (i = 0; i < address.length; i++) {
+        if (i < slice[0]) {
+          s1.push(address[i]);
+        } else if (i > slice[1]) {
+          s2.push(address[i]);
+        }
+      }
+      return s1.concat([
+        "compact",
+      ]).concat(s2);
+    }
+    function paddedHex(octet) {
+      return parseInt(octet, 16).toString(16).padStart(4, "0");
+    }
+    function unsignByte(b) {
+      return b & 255;
+    }
+    var Address6 = class _Address6 {
+      constructor(address, optionalGroups) {
+        this.addressMinusSuffix = "";
+        this.parsedSubnet = "";
+        this.subnet = "/128";
+        this.subnetMask = 128;
+        this.v4 = false;
+        this.zone = "";
+        this.isInSubnet = common.isInSubnet;
+        this.isCorrect = isCorrect6;
+        if (optionalGroups === void 0) {
+          this.groups = constants6.GROUPS;
+        } else {
+          this.groups = optionalGroups;
+        }
+        this.address = address;
+        const subnet = constants6.RE_SUBNET_STRING.exec(address);
+        if (subnet) {
+          this.parsedSubnet = subnet[0].replace("/", "");
+          this.subnetMask = parseInt(this.parsedSubnet, 10);
+          this.subnet = `/${this.subnetMask}`;
+          if (
+            Number.isNaN(this.subnetMask) || this.subnetMask < 0 ||
+            this.subnetMask > constants6.BITS
+          ) {
+            throw new address_error_1.AddressError("Invalid subnet mask.");
+          }
+          address = address.replace(constants6.RE_SUBNET_STRING, "");
+        } else if (/\//.test(address)) {
+          throw new address_error_1.AddressError("Invalid subnet mask.");
+        }
+        const zone = constants6.RE_ZONE_STRING.exec(address);
+        if (zone) {
+          this.zone = zone[0];
+          address = address.replace(constants6.RE_ZONE_STRING, "");
+        }
+        this.addressMinusSuffix = address;
+        this.parsedAddress = this.parse(this.addressMinusSuffix);
+      }
+      /**
+       * Returns true if the given string is a valid IPv6 address (with optional
+       * CIDR subnet and zone identifier), false otherwise. Host bits in the
+       * subnet portion are allowed (e.g. `2001:db8::1/32` is valid); for strict
+       * network-address validation compare `correctForm()` to
+       * `startAddress().correctForm()`, or use `networkForm()`.
+       */
+      static isValid(address) {
+        try {
+          new _Address6(address);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+      /**
+       * Convert a BigInt to a v6 address object. The value must be in the
+       * range `[0, 2**128 - 1]`; otherwise `AddressError` is thrown.
+       * @param {bigint} bigInt - a BigInt to convert
+       * @returns {Address6}
+       * @example
+       * var bigInt = BigInt('1000000000000');
+       * var address = Address6.fromBigInt(bigInt);
+       * address.correctForm(); // '::e8:d4a5:1000'
+       */
+      static fromBigInt(bigInt) {
+        if (bigInt < 0n || bigInt > (1n << BigInt(constants6.BITS)) - 1n) {
+          throw new address_error_1.AddressError(
+            "IPv6 BigInt must be in the range 0 to 2**128 - 1",
+          );
+        }
+        const hex = bigInt.toString(16).padStart(32, "0");
+        const groups = [];
+        for (let i = 0; i < constants6.GROUPS; i++) {
+          groups.push(hex.slice(i * 4, (i + 1) * 4));
+        }
+        return new _Address6(groups.join(":"));
+      }
+      /**
+       * Parse a URL (with optional bracketed host and port) into an address and
+       * port. Returns either `{ address, port }` on success or
+       * `{ error, address: null, port: null }` if the URL could not be parsed.
+       * Ports are returned as numbers (or `null` if absent or out of range).
+       * @example
+       * var addressAndPort = Address6.fromURL('http://[ffff::]:8080/foo/');
+       * addressAndPort.address.correctForm(); // 'ffff::'
+       * addressAndPort.port; // 8080
+       */
+      static fromURL(url2) {
+        let host;
+        let port = null;
+        let result;
+        if (url2.indexOf("[") !== -1 && url2.indexOf("]:") !== -1) {
+          result = constants6.RE_URL_WITH_PORT.exec(url2);
+          if (result === null) {
+            return {
+              error: "failed to parse address with port",
+              address: null,
+              port: null,
+            };
+          }
+          host = result[1];
+          port = result[2];
+        } else if (url2.indexOf("/") !== -1) {
+          url2 = url2.replace(/^[a-z0-9]+:\/\//, "");
+          result = constants6.RE_URL.exec(url2);
+          if (result === null) {
+            return {
+              error: "failed to parse address from URL",
+              address: null,
+              port: null,
+            };
+          }
+          host = result[1];
+        } else {
+          host = url2;
+        }
+        if (port) {
+          port = parseInt(port, 10);
+          if (port < 0 || port > 65536) {
+            port = null;
+          }
+        } else {
+          port = null;
+        }
+        return {
+          address: new _Address6(host),
+          port,
+        };
+      }
+      /**
+       * Construct an `Address6` from an address and a hex subnet mask given as
+       * separate strings (e.g. as returned by Node's `os.networkInterfaces()`).
+       * Throws `AddressError` if the mask is non-contiguous (e.g.
+       * `ffff::ffff`).
+       * @example
+       * var address = Address6.fromAddressAndMask('fe80::1', 'ffff:ffff:ffff:ffff::');
+       * address.subnetMask; // 64
+       */
+      static fromAddressAndMask(address, mask) {
+        const bits = common.prefixLengthFromMask(
+          new _Address6(mask).bigInt(),
+          constants6.BITS,
+        );
+        return new _Address6(`${address}/${bits}`);
+      }
+      /**
+       * Construct an `Address6` from an address and a Cisco-style wildcard mask
+       * given as separate strings (e.g. `::ffff:ffff:ffff:ffff` for a `/64`).
+       * The wildcard mask is the bitwise inverse of the subnet mask. Throws
+       * `AddressError` if the mask is non-contiguous.
+       * @example
+       * var address = Address6.fromAddressAndWildcardMask('fe80::1', '::ffff:ffff:ffff:ffff');
+       * address.subnetMask; // 64
+       */
+      static fromAddressAndWildcardMask(address, wildcardMask) {
+        const wildcard = new _Address6(wildcardMask).bigInt();
+        const allOnes = (BigInt(1) << BigInt(constants6.BITS)) - BigInt(1);
+        const mask = wildcard ^ allOnes;
+        const bits = common.prefixLengthFromMask(mask, constants6.BITS);
+        return new _Address6(`${address}/${bits}`);
+      }
+      /**
+       * Construct an `Address6` from a wildcard pattern with trailing `*`
+       * groups. The number of trailing wildcards determines the prefix
+       * length: each `*` represents 16 bits. `::` is expanded to zero groups
+       * (not wildcards) before evaluating trailing wildcards.
+       *
+       * Only trailing whole-group wildcards are supported. Partial-group
+       * wildcards (e.g. `2001:db8::0*`) and interior wildcards (e.g.
+       * `*::1`) throw `AddressError`.
+       * @example
+       * Address6.fromWildcard('2001:db8:*:*:*:*:*:*').subnet;  // '/32'
+       * Address6.fromWildcard('2001:db8::*').subnet;           // '/112'
+       * Address6.fromWildcard('*:*:*:*:*:*:*:*').subnet;       // '/0'
+       */
+      static fromWildcard(input) {
+        if (input.includes("%") || input.includes("/")) {
+          throw new address_error_1.AddressError(
+            "Wildcard pattern must not include a zone or CIDR suffix",
+          );
+        }
+        const halves = input.split("::");
+        if (halves.length > 2) {
+          throw new address_error_1.AddressError(
+            "Wildcard pattern cannot contain more than one '::'",
+          );
+        }
+        let groups;
+        if (halves.length === 2) {
+          const left = halves[0] === "" ? [] : halves[0].split(":");
+          const right = halves[1] === "" ? [] : halves[1].split(":");
+          const remaining = constants6.GROUPS - left.length - right.length;
+          if (remaining < 1) {
+            throw new address_error_1.AddressError(
+              "Wildcard pattern with '::' has too many groups",
+            );
+          }
+          groups = [
+            ...left,
+            ...new Array(remaining).fill("0"),
+            ...right,
+          ];
+        } else {
+          groups = input.split(":");
+        }
+        if (groups.length !== constants6.GROUPS) {
+          throw new address_error_1.AddressError(
+            "Wildcard pattern must have 8 groups",
+          );
+        }
+        let firstWildcard = -1;
+        for (let i = 0; i < groups.length; i++) {
+          if (groups[i] === "*") {
+            if (firstWildcard === -1) {
+              firstWildcard = i;
+            }
+          } else if (firstWildcard !== -1) {
+            throw new address_error_1.AddressError(
+              "Wildcard `*` must only appear in trailing groups (e.g. `2001:db8:*:*:*:*:*:*`)",
+            );
+          }
+        }
+        const trailing = firstWildcard === -1
+          ? 0
+          : groups.length - firstWildcard;
+        const replaced = groups.map((g) => g === "*" ? "0" : g);
+        const subnetBits = constants6.BITS - trailing * 16;
+        return new _Address6(`${replaced.join(":")}/${subnetBits}`);
+      }
+      /**
+       * Create an IPv6-mapped address given an IPv4 address
+       * @param {string} address - An IPv4 address string
+       * @returns {Address6}
+       * @example
+       * var address = Address6.fromAddress4('192.168.0.1');
+       * address.correctForm(); // '::ffff:c0a8:1'
+       * address.to4in6(); // '::ffff:192.168.0.1'
+       */
+      static fromAddress4(address) {
+        const address4 = new ipv4_1.Address4(address);
+        const mask6 = constants6.BITS - (constants4.BITS - address4.subnetMask);
+        return new _Address6(`::ffff:${address4.correctForm()}/${mask6}`);
+      }
+      /**
+       * Return an address from ip6.arpa form
+       * @param {string} arpaFormAddress - an 'ip6.arpa' form address
+       * @returns {Adress6}
+       * @example
+       * var address = Address6.fromArpa(e.f.f.f.3.c.2.6.f.f.f.e.6.6.8.e.1.0.6.7.9.4.e.c.0.0.0.0.1.0.0.2.ip6.arpa.)
+       * address.correctForm(); // '2001:0:ce49:7601:e866:efff:62c3:fffe'
+       */
+      static fromArpa(arpaFormAddress) {
+        let address = arpaFormAddress.replace(/(\.ip6\.arpa)?\.$/, "");
+        const semicolonAmount = 7;
+        if (address.length !== 63) {
+          throw new address_error_1.AddressError("Invalid 'ip6.arpa' form.");
+        }
+        const parts = address.split(".").reverse();
+        for (let i = semicolonAmount; i > 0; i--) {
+          const insertIndex = i * 4;
+          parts.splice(insertIndex, 0, ":");
+        }
+        address = parts.join("");
+        return new _Address6(address);
+      }
+      /**
+       * Return the Microsoft UNC transcription of the address
+       * @returns {String} the Microsoft UNC transcription of the address
+       */
+      microsoftTranscription() {
+        return `${this.correctForm().replace(/:/g, "-")}.ipv6-literal.net`;
+      }
+      /**
+       * Return the first n bits of the address, defaulting to the subnet mask
+       * @param {number} [mask=subnet] - the number of bits to mask
+       * @returns {String} the first n bits of the address as a string
+       */
+      mask(mask = this.subnetMask) {
+        return this.getBitsBase2(0, mask);
+      }
+      /**
+       * Return the number of possible subnets of a given size in the address
+       * @param {number} [subnetSize=128] - the subnet size
+       * @returns {String}
+       */
+      // TODO: probably useful to have a numeric version of this too
+      possibleSubnets(subnetSize = 128) {
+        const availableBits = constants6.BITS - this.subnetMask;
+        const subnetBits = Math.abs(subnetSize - constants6.BITS);
+        const subnetPowers = availableBits - subnetBits;
+        if (subnetPowers < 0) {
+          return "0";
+        }
+        return addCommas((BigInt("2") ** BigInt(subnetPowers)).toString(10));
+      }
+      /**
+       * Helper function getting start address.
+       * @returns {bigint}
+       */
+      _startAddress() {
+        return BigInt(
+          `0b${this.mask() + "0".repeat(constants6.BITS - this.subnetMask)}`,
+        );
+      }
+      /**
+       * The first address in the range given by this address' subnet
+       * Often referred to as the Network Address.
+       * @returns {Address6}
+       */
+      startAddress() {
+        return _Address6.fromBigInt(this._startAddress());
+      }
+      /**
+       * The first host address in the range given by this address's subnet ie
+       * the first address after the Network Address
+       * @returns {Address6}
+       */
+      startAddressExclusive() {
+        const adjust = BigInt("1");
+        return _Address6.fromBigInt(this._startAddress() + adjust);
+      }
+      /**
+       * Helper function getting end address.
+       * @returns {bigint}
+       */
+      _endAddress() {
+        return BigInt(
+          `0b${this.mask() + "1".repeat(constants6.BITS - this.subnetMask)}`,
+        );
+      }
+      /**
+       * The last address in the range given by this address' subnet
+       * Often referred to as the Broadcast
+       * @returns {Address6}
+       */
+      endAddress() {
+        return _Address6.fromBigInt(this._endAddress());
+      }
+      /**
+       * The last host address in the range given by this address's subnet ie
+       * the last address prior to the Broadcast Address
+       * @returns {Address6}
+       */
+      endAddressExclusive() {
+        const adjust = BigInt("1");
+        return _Address6.fromBigInt(this._endAddress() - adjust);
+      }
+      /**
+       * The hex form of the subnet mask, e.g. `ffff:ffff:ffff:ffff::` for a
+       * `/64`. Returns an `Address6`; call `.correctForm()` for the string.
+       * @returns {Address6}
+       */
+      subnetMaskAddress() {
+        return _Address6.fromBigInt(
+          BigInt(
+            `0b${"1".repeat(this.subnetMask)}${
+              "0".repeat(constants6.BITS - this.subnetMask)
+            }`,
+          ),
+        );
+      }
+      /**
+       * The Cisco-style wildcard mask, e.g. `::ffff:ffff:ffff:ffff` for a
+       * `/64`. This is the bitwise inverse of `subnetMaskAddress()`. Returns
+       * an `Address6`; call `.correctForm()` for the string.
+       * @returns {Address6}
+       */
+      wildcardMask() {
+        return _Address6.fromBigInt(
+          BigInt(
+            `0b${"0".repeat(this.subnetMask)}${
+              "1".repeat(constants6.BITS - this.subnetMask)
+            }`,
+          ),
+        );
+      }
+      /**
+       * The network address in CIDR string form, e.g. `2001:db8::/32` for
+       * `2001:db8::1/32`. For an address with no explicit subnet the prefix
+       * is `/128`, e.g. `networkForm()` on `2001:db8::1` returns
+       * `2001:db8::1/128`.
+       * @returns {string}
+       */
+      networkForm() {
+        return `${this.startAddress().correctForm()}/${this.subnetMask}`;
+      }
+      /**
+       * Return the scope of the address. The 4-bit scope field
+       * ([RFC 4291 §2.7](https://datatracker.ietf.org/doc/html/rfc4291#section-2.7))
+       * is only defined for multicast addresses; for unicast addresses the scope
+       * is derived from the address type per
+       * [RFC 4007 §6](https://datatracker.ietf.org/doc/html/rfc4007#section-6).
+       * @returns {String}
+       */
+      getScope() {
+        const type = this.getType();
+        if (type === "Multicast" || type.startsWith("Multicast ")) {
+          const scope =
+            constants6.SCOPES[parseInt(this.getBits(12, 16).toString(10), 10)];
+          return scope || "Unknown";
+        }
+        if (type === "Link-local unicast" || type === "Loopback") {
+          return "Link local";
+        }
+        if (type === "Unspecified") {
+          return "Unknown";
+        }
+        return "Global";
+      }
+      /**
+       * Return the type of the address
+       * @returns {String}
+       */
+      getType() {
+        for (let i = 0; i < TYPE_SUBNETS.length; i++) {
+          const entry = TYPE_SUBNETS[i];
+          if (this.isInSubnet(entry[0])) {
+            return entry[1];
+          }
+        }
+        return "Global unicast";
+      }
+      /**
+       * Return the bits in the given range as a BigInt
+       * @returns {bigint}
+       */
+      getBits(start, end) {
+        return BigInt(`0b${this.getBitsBase2(start, end)}`);
+      }
+      /**
+       * Return the bits in the given range as a base-2 string
+       * @returns {String}
+       */
+      getBitsBase2(start, end) {
+        return this.binaryZeroPad().slice(start, end);
+      }
+      /**
+       * Return the bits in the given range as a base-16 string
+       * @returns {String}
+       */
+      getBitsBase16(start, end) {
+        const length = end - start;
+        if (length % 4 !== 0) {
+          throw new Error(
+            "Length of bits to retrieve must be divisible by four",
+          );
+        }
+        return this.getBits(start, end).toString(16).padStart(length / 4, "0");
+      }
+      /**
+       * Return the bits that are set past the subnet mask length
+       * @returns {String}
+       */
+      getBitsPastSubnet() {
+        return this.getBitsBase2(this.subnetMask, constants6.BITS);
+      }
+      /**
+       * Return the reversed ip6.arpa form of the address
+       * @param {Object} options
+       * @param {boolean} options.omitSuffix - omit the "ip6.arpa" suffix
+       * @returns {String}
+       */
+      reverseForm(options) {
+        if (!options) {
+          options = {};
+        }
+        const characters = Math.floor(this.subnetMask / 4);
+        const reversed = this.canonicalForm().replace(/:/g, "").split("").slice(
+          0,
+          characters,
+        ).reverse().join(".");
+        if (characters > 0) {
+          if (options.omitSuffix) {
+            return reversed;
+          }
+          return `${reversed}.ip6.arpa.`;
+        }
+        if (options.omitSuffix) {
+          return "";
+        }
+        return "ip6.arpa.";
+      }
+      /**
+       * Returns the address in correct form, per
+       * [RFC 5952](https://datatracker.ietf.org/doc/html/rfc5952): leading zeros
+       * stripped, the longest run of zero groups collapsed to `::`, and hex digits
+       * lowercased (e.g. `2001:db8::1`). This is the recommended form for display.
+       */
+      correctForm() {
+        let i;
+        let groups = [];
+        let zeroCounter = 0;
+        const zeroes = [];
+        for (i = 0; i < this.parsedAddress.length; i++) {
+          const value = parseInt(this.parsedAddress[i], 16);
+          if (value === 0) {
+            zeroCounter++;
+          }
+          if (value !== 0 && zeroCounter > 0) {
+            if (zeroCounter > 1) {
+              zeroes.push([
+                i - zeroCounter,
+                i - 1,
+              ]);
+            }
+            zeroCounter = 0;
+          }
+        }
+        if (zeroCounter > 1) {
+          zeroes.push([
+            this.parsedAddress.length - zeroCounter,
+            this.parsedAddress.length - 1,
+          ]);
+        }
+        const zeroLengths = zeroes.map((n) => n[1] - n[0] + 1);
+        if (zeroes.length > 0) {
+          const index = zeroLengths.indexOf(Math.max(...zeroLengths));
+          groups = compact(this.parsedAddress, zeroes[index]);
+        } else {
+          groups = this.parsedAddress;
+        }
+        for (i = 0; i < groups.length; i++) {
+          if (groups[i] !== "compact") {
+            groups[i] = parseInt(groups[i], 16).toString(16);
+          }
+        }
+        let correct = groups.join(":");
+        correct = correct.replace(/^compact$/, "::");
+        correct = correct.replace(/(^compact)|(compact$)/, ":");
+        correct = correct.replace(/compact/, "");
+        return correct;
+      }
+      /**
+       * Return a zero-padded base-2 string representation of the address
+       * @returns {String}
+       * @example
+       * var address = new Address6('2001:4860:4001:803::1011');
+       * address.binaryZeroPad();
+       * // '0010000000000001010010000110000001000000000000010000100000000011
+       * //  0000000000000000000000000000000000000000000000000001000000010001'
+       */
+      binaryZeroPad() {
+        if (this._binaryZeroPad === void 0) {
+          this._binaryZeroPad = this.bigInt().toString(2).padStart(
+            constants6.BITS,
+            "0",
+          );
+        }
+        return this._binaryZeroPad;
+      }
+      /**
+       * Parses a v4-in-v6 string (e.g. `::ffff:192.168.0.1`) by extracting the
+       * trailing IPv4 address into `this.address4` / `this.parsedAddress4` and
+       * returning the address with the v4 portion converted to two v6 groups.
+       * Used internally by `parse()`.
+       */
+      // TODO: Improve the semantics of this helper function
+      parse4in6(address) {
+        if (address.indexOf(".") === -1) {
+          return address;
+        }
+        const groups = address.split(":");
+        const lastGroup = groups.slice(-1)[0];
+        const address4 = lastGroup.match(constants4.RE_ADDRESS);
+        if (address4) {
+          this.parsedAddress4 = address4[0];
+          this.address4 = new ipv4_1.Address4(this.parsedAddress4);
+          for (let i = 0; i < this.address4.groups; i++) {
+            if (/^0[0-9]+/.test(this.address4.parsedAddress[i])) {
+              const highlighted = this.address4.parsedAddress.map(
+                spanLeadingZeroes4,
+              ).join(".");
+              const prefix2 = groups.slice(0, -1).map(helpers.escapeHtml).join(
+                ":",
+              );
+              const separator = groups.length > 1 ? ":" : "";
+              throw new address_error_1.AddressError(
+                "IPv4 addresses can't have leading zeroes.",
+                `${prefix2}${separator}${highlighted}`,
+              );
+            }
+          }
+          this.v4 = true;
+          groups[groups.length - 1] = this.address4.toGroup6();
+          address = groups.join(":");
+        }
+        return address;
+      }
+      /**
+       * Parses an IPv6 address string into its 8 hexadecimal groups (expanding
+       * any `::` elision and any trailing v4-in-v6 portion) and stores the result
+       * on `this.parsedAddress`. Called automatically by the constructor; you
+       * typically don't need to call it directly. Throws `AddressError` if the
+       * input is malformed.
+       */
+      // TODO: Make private?
+      parse(address) {
+        address = this.parse4in6(address);
+        const badCharacters = address.match(constants6.RE_BAD_CHARACTERS);
+        if (badCharacters) {
+          throw new address_error_1.AddressError(
+            `Bad character${
+              badCharacters.length > 1 ? "s" : ""
+            } detected in address: ${badCharacters.join("")}`,
+            address.replace(
+              constants6.RE_BAD_CHARACTERS,
+              '<span class="parse-error">$1</span>',
+            ),
+          );
+        }
+        const badAddress = address.match(constants6.RE_BAD_ADDRESS);
+        if (badAddress) {
+          throw new address_error_1.AddressError(
+            `Address failed regex: ${badAddress.join("")}`,
+            address.replace(
+              constants6.RE_BAD_ADDRESS,
+              '<span class="parse-error">$1</span>',
+            ),
+          );
+        }
+        let groups = [];
+        const halves = address.split("::");
+        if (halves.length === 2) {
+          let first = halves[0].split(":");
+          let last = halves[1].split(":");
+          if (first.length === 1 && first[0] === "") {
+            first = [];
+          }
+          if (last.length === 1 && last[0] === "") {
+            last = [];
+          }
+          const remaining = this.groups - (first.length + last.length);
+          if (!remaining) {
+            throw new address_error_1.AddressError("Error parsing groups");
+          }
+          this.elidedGroups = remaining;
+          this.elisionBegin = first.length;
+          this.elisionEnd = first.length + this.elidedGroups;
+          groups = groups.concat(first);
+          for (let i = 0; i < remaining; i++) {
+            groups.push("0");
+          }
+          groups = groups.concat(last);
+        } else if (halves.length === 1) {
+          groups = address.split(":");
+          this.elidedGroups = 0;
+        } else {
+          throw new address_error_1.AddressError("Too many :: groups found");
+        }
+        groups = groups.map((group2) => parseInt(group2, 16).toString(16));
+        if (groups.length !== this.groups) {
+          throw new address_error_1.AddressError(
+            "Incorrect number of groups found",
+          );
+        }
+        return groups;
+      }
+      /**
+       * Returns the canonical (fully expanded) form of the address: all 8 groups,
+       * each padded to 4 hex digits, with no `::` collapsing
+       * (e.g. `2001:0db8:0000:0000:0000:0000:0000:0001`). Useful for sorting and
+       * byte-exact comparison.
+       */
+      canonicalForm() {
+        return this.parsedAddress.map(paddedHex).join(":");
+      }
+      /**
+       * Return the decimal form of the address
+       * @returns {String}
+       */
+      decimal() {
+        return this.parsedAddress.map((n) =>
+          parseInt(n, 16).toString(10).padStart(5, "0")
+        ).join(":");
+      }
+      /**
+       * Return the address as a BigInt
+       * @returns {bigint}
+       */
+      bigInt() {
+        return BigInt(`0x${this.parsedAddress.map(paddedHex).join("")}`);
+      }
+      /**
+       * Return the last two groups of this address as an IPv4 address string
+       * @returns {Address4}
+       * @example
+       * var address = new Address6('2001:4860:4001::1825:bf11');
+       * address.to4().correctForm(); // '24.37.191.17'
+       */
+      to4() {
+        const binary = this.binaryZeroPad().split("");
+        return ipv4_1.Address4.fromHex(
+          BigInt(`0b${binary.slice(96, 128).join("")}`).toString(16).padStart(
+            8,
+            "0",
+          ),
+        );
+      }
+      /**
+       * Return the v4-in-v6 form of the address
+       * @returns {String}
+       */
+      to4in6() {
+        const address4 = this.to4();
+        const address6 = new _Address6(
+          this.parsedAddress.slice(0, 6).join(":"),
+          6,
+        );
+        const correct = address6.correctForm();
+        let infix = "";
+        if (!/:$/.test(correct)) {
+          infix = ":";
+        }
+        return correct + infix + address4.address;
+      }
+      /**
+       * Decodes the Teredo tunneling fields embedded in this address. Returns the
+       * Teredo prefix, server IPv4, client IPv4, raw flag bits, cone-NAT flag,
+       * UDP port, and Microsoft-format flag breakdown (reserved, universal/local,
+       * group/individual, nonce). Only meaningful for addresses in `2001::/32`.
+       */
+      inspectTeredo() {
+        const prefix2 = this.getBitsBase16(0, 32);
+        const bitsForUdpPort = this.getBits(80, 96);
+        const udpPort = (bitsForUdpPort ^ BigInt("0xffff")).toString();
+        const server4 = ipv4_1.Address4.fromHex(this.getBitsBase16(32, 64));
+        const bitsForClient4 = this.getBits(96, 128);
+        const client4 = ipv4_1.Address4.fromHex(
+          (bitsForClient4 ^ BigInt("0xffffffff")).toString(16).padStart(8, "0"),
+        );
+        const flagsBase2 = this.getBitsBase2(64, 80);
+        const coneNat = (0, common_1.testBit)(flagsBase2, 15);
+        const reserved = (0, common_1.testBit)(flagsBase2, 14);
+        const groupIndividual = (0, common_1.testBit)(flagsBase2, 8);
+        const universalLocal = (0, common_1.testBit)(flagsBase2, 9);
+        const nonce = BigInt(
+          `0b${flagsBase2.slice(2, 6) + flagsBase2.slice(8, 16)}`,
+        ).toString(10);
+        return {
+          prefix: `${prefix2.slice(0, 4)}:${prefix2.slice(4, 8)}`,
+          server4: server4.address,
+          client4: client4.address,
+          flags: flagsBase2,
+          coneNat,
+          microsoft: {
+            reserved,
+            universalLocal,
+            groupIndividual,
+            nonce,
+          },
+          udpPort,
+        };
+      }
+      /**
+       * Decodes the 6to4 tunneling fields embedded in this address. Returns the
+       * 6to4 prefix and the embedded IPv4 gateway address. Only meaningful for
+       * addresses in `2002::/16`.
+       */
+      inspect6to4() {
+        const prefix2 = this.getBitsBase16(0, 16);
+        const gateway = ipv4_1.Address4.fromHex(this.getBitsBase16(16, 48));
+        return {
+          prefix: prefix2.slice(0, 4),
+          gateway: gateway.address,
+        };
+      }
+      /**
+       * Return a v6 6to4 address from a v6 v4inv6 address
+       * @returns {Address6}
+       */
+      to6to4() {
+        if (!this.is4()) {
+          return null;
+        }
+        const addr6to4 = [
+          "2002",
+          this.getBitsBase16(96, 112),
+          this.getBitsBase16(112, 128),
+          "",
+          "/16",
+        ].join(":");
+        return new _Address6(addr6to4);
+      }
+      /**
+       * Embed an IPv4 address into a NAT64 IPv6 address using the encoding
+       * defined by [RFC 6052](https://datatracker.ietf.org/doc/html/rfc6052).
+       * The default prefix is the well-known prefix `64:ff9b::/96`. The prefix
+       * length must be one of 32, 40, 48, 56, 64, or 96; for prefixes shorter
+       * than /64 the IPv4 octets are split around the reserved bits 64–71.
+       * @example
+       * Address6.fromAddress4Nat64('192.0.2.33').correctForm(); // '64:ff9b::c000:221'
+       * Address6.fromAddress4Nat64('192.0.2.33', '2001:db8::/32').correctForm(); // '2001:db8:c000:221::'
+       */
+      static fromAddress4Nat64(address, prefix2 = "64:ff9b::/96") {
+        const v4 = new ipv4_1.Address4(address);
+        const prefix6 = new _Address6(prefix2);
+        const pl = prefix6.subnetMask;
+        if (
+          pl !== 32 && pl !== 40 && pl !== 48 && pl !== 56 && pl !== 64 &&
+          pl !== 96
+        ) {
+          throw new address_error_1.AddressError(
+            "NAT64 prefix length must be 32, 40, 48, 56, 64, or 96",
+          );
+        }
+        const prefixBits = prefix6.binaryZeroPad();
+        const v4Bits = v4.binaryZeroPad();
+        let bits;
+        if (pl === 96) {
+          bits = prefixBits.slice(0, 96) + v4Bits;
+        } else {
+          const beforeU = 64 - pl;
+          bits = prefixBits.slice(0, pl) + v4Bits.slice(0, beforeU) +
+            "00000000" + v4Bits.slice(beforeU) +
+            "0".repeat(128 - 72 - (32 - beforeU));
+        }
+        const hex = BigInt(`0b${bits}`).toString(16).padStart(32, "0");
+        const groups = [];
+        for (let i = 0; i < 8; i++) {
+          groups.push(hex.slice(i * 4, (i + 1) * 4));
+        }
+        return new _Address6(groups.join(":"));
+      }
+      /**
+       * Extract the embedded IPv4 address from a NAT64 IPv6 address using the
+       * encoding defined by [RFC 6052](https://datatracker.ietf.org/doc/html/rfc6052).
+       * The default prefix is the well-known prefix `64:ff9b::/96`. Returns
+       * `null` if this address is not contained within the given prefix.
+       * @example
+       * new Address6('64:ff9b::c000:221').toAddress4Nat64()!.correctForm(); // '192.0.2.33'
+       */
+      toAddress4Nat64(prefix2 = "64:ff9b::/96") {
+        const prefix6 = new _Address6(prefix2);
+        const pl = prefix6.subnetMask;
+        if (
+          pl !== 32 && pl !== 40 && pl !== 48 && pl !== 56 && pl !== 64 &&
+          pl !== 96
+        ) {
+          throw new address_error_1.AddressError(
+            "NAT64 prefix length must be 32, 40, 48, 56, 64, or 96",
+          );
+        }
+        if (!this.isInSubnet(prefix6)) {
+          return null;
+        }
+        const bits = this.binaryZeroPad();
+        let v4Bits;
+        if (pl === 96) {
+          v4Bits = bits.slice(96, 128);
+        } else {
+          const beforeU = 64 - pl;
+          v4Bits = bits.slice(pl, pl + beforeU) +
+            bits.slice(72, 72 + (32 - beforeU));
+        }
+        const octets = [];
+        for (let i = 0; i < 4; i++) {
+          octets.push(parseInt(v4Bits.slice(i * 8, (i + 1) * 8), 2).toString());
+        }
+        return new ipv4_1.Address4(octets.join("."));
+      }
+      /**
+       * Return a byte array.
+       *
+       * To get a Node.js `Buffer`, wrap the result: `Buffer.from(address.toByteArray())`.
+       * @returns {Array}
+       */
+      toByteArray() {
+        const valueWithoutPadding = this.bigInt().toString(16);
+        const leadingPad = "0".repeat(valueWithoutPadding.length % 2);
+        const value = `${leadingPad}${valueWithoutPadding}`;
+        const bytes = [];
+        for (let i = 0, length = value.length; i < length; i += 2) {
+          bytes.push(parseInt(value.substring(i, i + 2), 16));
+        }
+        return bytes;
+      }
+      /**
+       * Return an unsigned byte array.
+       *
+       * To get a Node.js `Buffer`, wrap the result: `Buffer.from(address.toUnsignedByteArray())`.
+       * @returns {Array}
+       */
+      toUnsignedByteArray() {
+        return this.toByteArray().map(unsignByte);
+      }
+      /**
+       * Convert a byte array to an Address6 object.
+       *
+       * To convert from a Node.js `Buffer`, spread it: `Address6.fromByteArray([...buf])`.
+       * @returns {Address6}
+       */
+      static fromByteArray(bytes) {
+        return this.fromUnsignedByteArray(bytes.map(unsignByte));
+      }
+      /**
+       * Convert an unsigned byte array to an Address6 object.
+       *
+       * To convert from a Node.js `Buffer`, spread it: `Address6.fromUnsignedByteArray([...buf])`.
+       * @returns {Address6}
+       */
+      static fromUnsignedByteArray(bytes) {
+        const BYTE_MAX = BigInt("256");
+        let result = BigInt("0");
+        let multiplier = BigInt("1");
+        for (let i = bytes.length - 1; i >= 0; i--) {
+          result += multiplier * BigInt(bytes[i].toString(10));
+          multiplier *= BYTE_MAX;
+        }
+        return _Address6.fromBigInt(result);
+      }
+      /**
+       * Returns true if the address is in the canonical form, false otherwise
+       * @returns {boolean}
+       */
+      isCanonical() {
+        return this.addressMinusSuffix === this.canonicalForm();
+      }
+      /**
+       * Returns true if the address is a link local address, false otherwise
+       * @returns {boolean}
+       */
+      isLinkLocal() {
+        if (
+          this.getBitsBase2(0, 64) ===
+            "1111111010000000000000000000000000000000000000000000000000000000"
+        ) {
+          return true;
+        }
+        return false;
+      }
+      /**
+       * Returns true if the address is a multicast address, false otherwise
+       * @returns {boolean}
+       */
+      isMulticast() {
+        const type = this.getType();
+        return type === "Multicast" || type.startsWith("Multicast ");
+      }
+      /**
+       * Returns true if the address was written in v4-in-v6 dotted-quad notation
+       * (e.g. `::ffff:127.0.0.1`), false otherwise. This is a notation-level flag
+       * and does not reflect whether the address bits lie in the IPv4-mapped
+       * (`::ffff:0:0/96`) subnet — for that, see {@link isMapped4}.
+       * @returns {boolean}
+       */
+      is4() {
+        return this.v4;
+      }
+      /**
+       * Returns true if the address is an IPv4-mapped IPv6 address in
+       * `::ffff:0:0/96` ([RFC 4291 §2.5.5.2](https://datatracker.ietf.org/doc/html/rfc4291#section-2.5.5.2)),
+       * false otherwise. Unlike {@link is4}, this checks the underlying address
+       * bits rather than the textual notation, so `::ffff:127.0.0.1` and
+       * `::ffff:7f00:1` both return true.
+       * @returns {boolean}
+       */
+      isMapped4() {
+        return this.isInSubnet(IPV4_MAPPED_SUBNET);
+      }
+      /**
+       * Returns true if the address is a Teredo address, false otherwise
+       * @returns {boolean}
+       */
+      isTeredo() {
+        return this.isInSubnet(TEREDO_SUBNET);
+      }
+      /**
+       * Returns true if the address is a 6to4 address, false otherwise
+       * @returns {boolean}
+       */
+      is6to4() {
+        return this.isInSubnet(SIX_TO_FOUR_SUBNET);
+      }
+      /**
+       * Returns true if the address is a loopback address, false otherwise
+       * @returns {boolean}
+       */
+      isLoopback() {
+        return this.getType() === "Loopback";
+      }
+      /**
+       * Returns true if the address is a Unique Local Address in `fc00::/7` ([RFC 4193](https://datatracker.ietf.org/doc/html/rfc4193)). ULAs are the IPv6 equivalent of IPv4 [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private addresses.
+       * @returns {boolean}
+       */
+      isULA() {
+        return this.isInSubnet(ULA_SUBNET);
+      }
+      /**
+       * Returns true if the address is the unspecified address `::`.
+       * @returns {boolean}
+       */
+      isUnspecified() {
+        return this.getType() === "Unspecified";
+      }
+      /**
+       * Returns true if the address is in the documentation prefix `2001:db8::/32` ([RFC 3849](https://datatracker.ietf.org/doc/html/rfc3849)).
+       * @returns {boolean}
+       */
+      isDocumentation() {
+        return this.isInSubnet(DOCUMENTATION_SUBNET);
+      }
+      // #endregion
+      // #region HTML
+      /**
+       * Returns the address as an HTTP URL with the host bracketed, e.g.
+       * `http://[2001:db8::1]/`. If `optionalPort` is provided it is appended,
+       * e.g. `http://[2001:db8::1]:8080/`.
+       */
+      href(optionalPort) {
+        if (optionalPort === void 0) {
+          optionalPort = "";
+        } else {
+          optionalPort = `:${optionalPort}`;
+        }
+        return `http://[${this.correctForm()}]${optionalPort}/`;
+      }
+      /**
+       * Returns an HTML `<a>` element whose `href` encodes the address in a URL
+       * hash fragment (default prefix `/#address=`). Useful for linking between
+       * pages of an address-inspector UI.
+       * @param options.className - CSS class for the rendered `<a>` element
+       * @param options.prefix - hash prefix prepended to the address (default `/#address=`)
+       * @param options.v4 - when true, render the address in v4-in-v6 form
+       */
+      link(options) {
+        if (!options) {
+          options = {};
+        }
+        if (options.className === void 0) {
+          options.className = "";
+        }
+        if (options.prefix === void 0) {
+          options.prefix = "/#address=";
+        }
+        if (options.v4 === void 0) {
+          options.v4 = false;
+        }
+        let formFunction = this.correctForm;
+        if (options.v4) {
+          formFunction = this.to4in6;
+        }
+        const form = formFunction.call(this);
+        const safeHref = helpers.escapeHtml(`${options.prefix}${form}`);
+        const safeForm = helpers.escapeHtml(form);
+        if (options.className) {
+          const safeClass = helpers.escapeHtml(options.className);
+          return `<a href="${safeHref}" class="${safeClass}">${safeForm}</a>`;
+        }
+        return `<a href="${safeHref}">${safeForm}</a>`;
+      }
+      /**
+       * Groups an address
+       * @returns {String}
+       */
+      group() {
+        if (this.elidedGroups === 0) {
+          return helpers.simpleGroup(this.addressMinusSuffix).join(":");
+        }
+        assert5(typeof this.elidedGroups === "number");
+        assert5(typeof this.elisionBegin === "number");
+        const output = [];
+        const [left, right] = this.addressMinusSuffix.split("::");
+        if (left.length) {
+          output.push(...helpers.simpleGroup(left));
+        } else {
+          output.push("");
+        }
+        const classes = [
+          "hover-group",
+        ];
+        for (
+          let i = this.elisionBegin;
+          i < this.elisionBegin + this.elidedGroups;
+          i++
+        ) {
+          classes.push(`group-${i}`);
+        }
+        output.push(`<span class="${classes.join(" ")}"></span>`);
+        if (right.length) {
+          output.push(...helpers.simpleGroup(right, this.elisionEnd));
+        } else {
+          output.push("");
+        }
+        if (this.is4()) {
+          assert5(this.address4 instanceof ipv4_1.Address4);
+          output.pop();
+          output.push(this.address4.groupForV6());
+        }
+        return output.join(":");
+      }
+      // #endregion
+      // #region Regular expressions
+      /**
+       * Generate a regular expression string that can be used to find or validate
+       * all variations of this address
+       * @param {boolean} substringSearch
+       * @returns {string}
+       */
+      regularExpressionString(substringSearch = false) {
+        let output = [];
+        const address6 = new _Address6(this.correctForm());
+        if (address6.elidedGroups === 0) {
+          output.push(
+            (0, regular_expressions_1.simpleRegularExpression)(
+              address6.parsedAddress,
+            ),
+          );
+        } else if (address6.elidedGroups === constants6.GROUPS) {
+          output.push(
+            (0, regular_expressions_1.possibleElisions)(constants6.GROUPS),
+          );
+        } else {
+          const halves = address6.address.split("::");
+          if (halves[0].length) {
+            output.push(
+              (0, regular_expressions_1.simpleRegularExpression)(
+                halves[0].split(":"),
+              ),
+            );
+          }
+          assert5(typeof address6.elidedGroups === "number");
+          output.push(
+            (0, regular_expressions_1.possibleElisions)(
+              address6.elidedGroups,
+              halves[0].length !== 0,
+              halves[1].length !== 0,
+            ),
+          );
+          if (halves[1].length) {
+            output.push(
+              (0, regular_expressions_1.simpleRegularExpression)(
+                halves[1].split(":"),
+              ),
+            );
+          }
+          output = [
+            output.join(":"),
+          ];
+        }
+        if (!substringSearch) {
+          output = [
+            "(?=^|",
+            regular_expressions_1.ADDRESS_BOUNDARY,
+            "|[^\\w\\:])(",
+            ...output,
+            ")(?=[^\\w\\:]|",
+            regular_expressions_1.ADDRESS_BOUNDARY,
+            "|$)",
+          ];
+        }
+        return output.join("");
+      }
+      /**
+       * Generate a regular expression that can be used to find or validate all
+       * variations of this address.
+       * @param {boolean} substringSearch
+       * @returns {RegExp}
+       */
+      regularExpression(substringSearch = false) {
+        return new RegExp(this.regularExpressionString(substringSearch), "i");
+      }
+    };
+    exports2.Address6 = Address6;
+    var TYPE_SUBNETS = Object.keys(constants6.TYPES).map((subnet) => [
+      new Address6(subnet),
+      constants6.TYPES[subnet],
+    ]);
+    var TEREDO_SUBNET = new Address6("2001::/32");
+    var SIX_TO_FOUR_SUBNET = new Address6("2002::/16");
+    var ULA_SUBNET = new Address6("fc00::/7");
+    var DOCUMENTATION_SUBNET = new Address6("2001:db8::/32");
+    var IPV4_MAPPED_SUBNET = new Address6("::ffff:0:0/96");
+  },
+});
+
+// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ip-address.js
+var require_ip_address = __commonJS({
+  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ip-address.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.v6 =
+      exports2.AddressError =
+      exports2.Address6 =
+      exports2.Address4 =
+        void 0;
+    var ipv4_1 = require_ipv4();
+    Object.defineProperty(exports2, "Address4", {
+      enumerable: true,
+      get: function () {
+        return ipv4_1.Address4;
+      },
+    });
+    var ipv6_1 = require_ipv6();
+    Object.defineProperty(exports2, "Address6", {
+      enumerable: true,
+      get: function () {
+        return ipv6_1.Address6;
+      },
+    });
+    var address_error_1 = require_address_error();
+    Object.defineProperty(exports2, "AddressError", {
+      enumerable: true,
+      get: function () {
+        return address_error_1.AddressError;
+      },
+    });
+    var helpers = __importStar(require_helpers());
+    exports2.v6 = {
+      helpers,
+    };
+  },
+});
+
+// node_modules/.deno/socks@2.8.9/node_modules/socks/build/common/helpers.js
+var require_helpers2 = __commonJS({
+  "node_modules/.deno/socks@2.8.9/node_modules/socks/build/common/helpers.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.ipToBuffer =
+      exports2.int32ToIpv4 =
+      exports2.ipv4ToInt32 =
+      exports2.validateSocksClientChainOptions =
+      exports2.validateSocksClientOptions =
+        void 0;
+    var util_1 = require_util9();
+    var constants_1 = require_constants7();
+    var stream3 = __require("node:stream");
+    var ip_address_1 = require_ip_address();
+    var net = __require("node:net");
+    function validateSocksClientOptions(options, acceptedCommands = [
+      "connect",
+      "bind",
+      "associate",
+    ]) {
+      if (!constants_1.SocksCommand[options.command]) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksCommand,
+          options,
+        );
+      }
+      if (acceptedCommands.indexOf(options.command) === -1) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksCommandForOperation,
+          options,
+        );
+      }
+      if (!isValidSocksRemoteHost(options.destination)) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksClientOptionsDestination,
+          options,
+        );
+      }
+      if (!isValidSocksProxy(options.proxy)) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksClientOptionsProxy,
+          options,
+        );
+      }
+      validateCustomProxyAuth(options.proxy, options);
+      if (options.timeout && !isValidTimeoutValue(options.timeout)) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksClientOptionsTimeout,
+          options,
+        );
+      }
+      if (
+        options.existing_socket &&
+        !(options.existing_socket instanceof stream3.Duplex)
+      ) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksClientOptionsExistingSocket,
+          options,
+        );
+      }
+    }
+    exports2.validateSocksClientOptions = validateSocksClientOptions;
+    function validateSocksClientChainOptions(options) {
+      if (options.command !== "connect") {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksCommandChain,
+          options,
+        );
+      }
+      if (!isValidSocksRemoteHost(options.destination)) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksClientOptionsDestination,
+          options,
+        );
+      }
+      if (
+        !(options.proxies && Array.isArray(options.proxies) &&
+          options.proxies.length >= 2)
+      ) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksClientOptionsProxiesLength,
+          options,
+        );
+      }
+      options.proxies.forEach((proxy) => {
+        if (!isValidSocksProxy(proxy)) {
+          throw new util_1.SocksClientError(
+            constants_1.ERRORS.InvalidSocksClientOptionsProxy,
+            options,
+          );
+        }
+        validateCustomProxyAuth(proxy, options);
+      });
+      if (options.timeout && !isValidTimeoutValue(options.timeout)) {
+        throw new util_1.SocksClientError(
+          constants_1.ERRORS.InvalidSocksClientOptionsTimeout,
+          options,
+        );
+      }
+    }
+    exports2.validateSocksClientChainOptions = validateSocksClientChainOptions;
+    function validateCustomProxyAuth(proxy, options) {
+      if (proxy.custom_auth_method !== void 0) {
+        if (
+          proxy.custom_auth_method < constants_1.SOCKS5_CUSTOM_AUTH_START ||
+          proxy.custom_auth_method > constants_1.SOCKS5_CUSTOM_AUTH_END
+        ) {
+          throw new util_1.SocksClientError(
+            constants_1.ERRORS.InvalidSocksClientOptionsCustomAuthRange,
+            options,
+          );
+        }
+        if (
+          proxy.custom_auth_request_handler === void 0 ||
+          typeof proxy.custom_auth_request_handler !== "function"
+        ) {
+          throw new util_1.SocksClientError(
+            constants_1.ERRORS.InvalidSocksClientOptionsCustomAuthOptions,
+            options,
+          );
+        }
+        if (proxy.custom_auth_response_size === void 0) {
+          throw new util_1.SocksClientError(
+            constants_1.ERRORS.InvalidSocksClientOptionsCustomAuthOptions,
+            options,
+          );
+        }
+        if (
+          proxy.custom_auth_response_handler === void 0 ||
+          typeof proxy.custom_auth_response_handler !== "function"
+        ) {
+          throw new util_1.SocksClientError(
+            constants_1.ERRORS.InvalidSocksClientOptionsCustomAuthOptions,
+            options,
+          );
+        }
+      }
+    }
+    function isValidSocksRemoteHost(remoteHost) {
+      return remoteHost && typeof remoteHost.host === "string" &&
+        Buffer.byteLength(remoteHost.host) < 256 &&
+        typeof remoteHost.port === "number" && remoteHost.port >= 0 &&
+        remoteHost.port <= 65535;
+    }
+    function isValidSocksProxy(proxy) {
+      return proxy &&
+        (typeof proxy.host === "string" ||
+          typeof proxy.ipaddress === "string") &&
+        typeof proxy.port === "number" && proxy.port >= 0 &&
+        proxy.port <= 65535 && (proxy.type === 4 || proxy.type === 5);
+    }
+    function isValidTimeoutValue(value) {
+      return typeof value === "number" && value > 0;
+    }
+    function ipv4ToInt32(ip) {
+      const address = new ip_address_1.Address4(ip);
+      return address.toArray().reduce((acc, part) => (acc << 8) + part, 0) >>>
+        0;
+    }
+    exports2.ipv4ToInt32 = ipv4ToInt32;
+    function int32ToIpv4(int32) {
+      const octet1 = int32 >>> 24 & 255;
+      const octet2 = int32 >>> 16 & 255;
+      const octet3 = int32 >>> 8 & 255;
+      const octet4 = int32 & 255;
+      return [
+        octet1,
+        octet2,
+        octet3,
+        octet4,
+      ].join(".");
+    }
+    exports2.int32ToIpv4 = int32ToIpv4;
+    function ipToBuffer(ip) {
+      if (net.isIPv4(ip)) {
+        const address = new ip_address_1.Address4(ip);
+        return Buffer.from(address.toArray());
+      } else if (net.isIPv6(ip)) {
+        const address = new ip_address_1.Address6(ip);
+        return Buffer.from(
+          address.canonicalForm().split(":").map((segment) =>
+            segment.padStart(4, "0")
+          ).join(""),
+          "hex",
+        );
+      } else {
+        throw new Error("Invalid IP address format");
+      }
+    }
+    exports2.ipToBuffer = ipToBuffer;
+  },
+});
+
+// node_modules/.deno/socks@2.8.9/node_modules/socks/build/common/receivebuffer.js
+var require_receivebuffer = __commonJS({
+  "node_modules/.deno/socks@2.8.9/node_modules/socks/build/common/receivebuffer.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.ReceiveBuffer = void 0;
+    var ReceiveBuffer = class {
+      constructor(size = 4096) {
+        this.buffer = Buffer.allocUnsafe(size);
+        this.offset = 0;
+        this.originalSize = size;
+      }
+      get length() {
+        return this.offset;
+      }
+      append(data) {
+        if (!Buffer.isBuffer(data)) {
+          throw new Error(
+            "Attempted to append a non-buffer instance to ReceiveBuffer.",
+          );
+        }
+        if (this.offset + data.length >= this.buffer.length) {
+          const tmp = this.buffer;
+          this.buffer = Buffer.allocUnsafe(
+            Math.max(
+              this.buffer.length + this.originalSize,
+              this.buffer.length + data.length,
+            ),
+          );
+          tmp.copy(this.buffer);
+        }
+        data.copy(this.buffer, this.offset);
+        return this.offset += data.length;
+      }
+      peek(length) {
+        if (length > this.offset) {
+          throw new Error(
+            "Attempted to read beyond the bounds of the managed internal data.",
+          );
+        }
+        return this.buffer.slice(0, length);
+      }
+      get(length) {
+        if (length > this.offset) {
+          throw new Error(
+            "Attempted to read beyond the bounds of the managed internal data.",
+          );
+        }
+        const value = Buffer.allocUnsafe(length);
+        this.buffer.slice(0, length).copy(value);
+        this.buffer.copyWithin(0, length, length + this.offset - length);
+        this.offset -= length;
+        return value;
+      }
+    };
+    exports2.ReceiveBuffer = ReceiveBuffer;
+  },
+});
+
+// node_modules/.deno/socks@2.8.9/node_modules/socks/build/client/socksclient.js
+var require_socksclient = __commonJS({
+  "node_modules/.deno/socks@2.8.9/node_modules/socks/build/client/socksclient.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __awaiter19 = exports2 && exports2.__awaiter ||
+      function (thisArg, _arguments, P, generator) {
+        function adopt(value) {
+          return value instanceof P ? value : new P(function (resolve4) {
+            resolve4(value);
+          });
+        }
+        return new (P || (P = Promise))(function (resolve4, reject) {
+          function fulfilled(value) {
+            try {
+              step(generator.next(value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function rejected(value) {
+            try {
+              step(generator["throw"](value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function step(result) {
+            result.done
+              ? resolve4(result.value)
+              : adopt(result.value).then(fulfilled, rejected);
+          }
+          step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+      };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.SocksClientError = exports2.SocksClient = void 0;
+    var events_1 = __require("node:events");
+    var net = __require("node:net");
+    var smart_buffer_1 = require_smartbuffer();
+    var constants_1 = require_constants7();
+    var helpers_1 = require_helpers2();
+    var receivebuffer_1 = require_receivebuffer();
+    var util_1 = require_util9();
+    Object.defineProperty(exports2, "SocksClientError", {
+      enumerable: true,
+      get: function () {
+        return util_1.SocksClientError;
+      },
+    });
+    var ip_address_1 = require_ip_address();
+    var SocksClient = class _SocksClient extends events_1.EventEmitter {
+      constructor(options) {
+        super();
+        this.options = Object.assign({}, options);
+        (0, helpers_1.validateSocksClientOptions)(options);
+        this.setState(constants_1.SocksClientState.Created);
+      }
+      /**
+       * Creates a new SOCKS connection.
+       *
+       * Note: Supports callbacks and promises. Only supports the connect command.
+       * @param options { SocksClientOptions } Options.
+       * @param callback { Function } An optional callback function.
+       * @returns { Promise }
+       */
+      static createConnection(options, callback) {
+        return new Promise((resolve4, reject) => {
+          try {
+            (0, helpers_1.validateSocksClientOptions)(options, [
+              "connect",
+            ]);
+          } catch (err) {
+            if (typeof callback === "function") {
+              callback(err);
+              return resolve4(err);
+            } else {
+              return reject(err);
+            }
+          }
+          const client = new _SocksClient(options);
+          client.connect(options.existing_socket);
+          client.once("established", (info3) => {
+            client.removeAllListeners();
+            if (typeof callback === "function") {
+              callback(null, info3);
+              resolve4(info3);
+            } else {
+              resolve4(info3);
+            }
+          });
+          client.once("error", (err) => {
+            client.removeAllListeners();
+            if (typeof callback === "function") {
+              callback(err);
+              resolve4(err);
+            } else {
+              reject(err);
+            }
+          });
+        });
+      }
+      /**
+       * Creates a new SOCKS connection chain to a destination host through 2 or more SOCKS proxies.
+       *
+       * Note: Supports callbacks and promises. Only supports the connect method.
+       * Note: Implemented via createConnection() factory function.
+       * @param options { SocksClientChainOptions } Options
+       * @param callback { Function } An optional callback function.
+       * @returns { Promise }
+       */
+      static createConnectionChain(options, callback) {
+        return new Promise((resolve4, reject) =>
+          __awaiter19(this, void 0, void 0, function* () {
+            try {
+              (0, helpers_1.validateSocksClientChainOptions)(options);
+            } catch (err) {
+              if (typeof callback === "function") {
+                callback(err);
+                return resolve4(err);
+              } else {
+                return reject(err);
+              }
+            }
+            if (options.randomizeChain) {
+              (0, util_1.shuffleArray)(options.proxies);
+            }
+            try {
+              let sock;
+              for (let i = 0; i < options.proxies.length; i++) {
+                const nextProxy = options.proxies[i];
+                const nextDestination = i === options.proxies.length - 1
+                  ? options.destination
+                  : {
+                    host: options.proxies[i + 1].host ||
+                      options.proxies[i + 1].ipaddress,
+                    port: options.proxies[i + 1].port,
+                  };
+                const result = yield _SocksClient.createConnection({
+                  command: "connect",
+                  proxy: nextProxy,
+                  destination: nextDestination,
+                  existing_socket: sock,
+                });
+                sock = sock || result.socket;
+              }
+              if (typeof callback === "function") {
+                callback(null, {
+                  socket: sock,
+                });
+                resolve4({
+                  socket: sock,
+                });
+              } else {
+                resolve4({
+                  socket: sock,
+                });
+              }
+            } catch (err) {
+              if (typeof callback === "function") {
+                callback(err);
+                resolve4(err);
+              } else {
+                reject(err);
+              }
+            }
+          })
+        );
+      }
+      /**
+       * Creates a SOCKS UDP Frame.
+       * @param options
+       */
+      static createUDPFrame(options) {
+        const buff = new smart_buffer_1.SmartBuffer();
+        buff.writeUInt16BE(0);
+        buff.writeUInt8(options.frameNumber || 0);
+        if (net.isIPv4(options.remoteHost.host)) {
+          buff.writeUInt8(constants_1.Socks5HostType.IPv4);
+          buff.writeUInt32BE(
+            (0, helpers_1.ipv4ToInt32)(options.remoteHost.host),
+          );
+        } else if (net.isIPv6(options.remoteHost.host)) {
+          buff.writeUInt8(constants_1.Socks5HostType.IPv6);
+          buff.writeBuffer((0, helpers_1.ipToBuffer)(options.remoteHost.host));
+        } else {
+          buff.writeUInt8(constants_1.Socks5HostType.Hostname);
+          buff.writeUInt8(Buffer.byteLength(options.remoteHost.host));
+          buff.writeString(options.remoteHost.host);
+        }
+        buff.writeUInt16BE(options.remoteHost.port);
+        buff.writeBuffer(options.data);
+        return buff.toBuffer();
+      }
+      /**
+       * Parses a SOCKS UDP frame.
+       * @param data
+       */
+      static parseUDPFrame(data) {
+        const buff = smart_buffer_1.SmartBuffer.fromBuffer(data);
+        buff.readOffset = 2;
+        const frameNumber = buff.readUInt8();
+        const hostType = buff.readUInt8();
+        let remoteHost;
+        if (hostType === constants_1.Socks5HostType.IPv4) {
+          remoteHost = (0, helpers_1.int32ToIpv4)(buff.readUInt32BE());
+        } else if (hostType === constants_1.Socks5HostType.IPv6) {
+          remoteHost = ip_address_1.Address6.fromByteArray(
+            Array.from(buff.readBuffer(16)),
+          ).canonicalForm();
+        } else {
+          remoteHost = buff.readString(buff.readUInt8());
+        }
+        const remotePort = buff.readUInt16BE();
+        return {
+          frameNumber,
+          remoteHost: {
+            host: remoteHost,
+            port: remotePort,
+          },
+          data: buff.readBuffer(),
+        };
+      }
+      /**
+       * Internal state setter. If the SocksClient is in an error state, it cannot be changed to a non error state.
+       */
+      setState(newState) {
+        if (this.state !== constants_1.SocksClientState.Error) {
+          this.state = newState;
+        }
+      }
+      /**
+       * Starts the connection establishment to the proxy and destination.
+       * @param existingSocket Connected socket to use instead of creating a new one (internal use).
+       */
+      connect(existingSocket) {
+        this.onDataReceived = (data) => this.onDataReceivedHandler(data);
+        this.onClose = () => this.onCloseHandler();
+        this.onError = (err) => this.onErrorHandler(err);
+        this.onConnect = () => this.onConnectHandler();
+        const timer = setTimeout(
+          () => this.onEstablishedTimeout(),
+          this.options.timeout || constants_1.DEFAULT_TIMEOUT,
+        );
+        if (timer.unref && typeof timer.unref === "function") {
+          timer.unref();
+        }
+        if (existingSocket) {
+          this.socket = existingSocket;
+        } else {
+          this.socket = new net.Socket();
+        }
+        this.socket.once("close", this.onClose);
+        this.socket.once("error", this.onError);
+        this.socket.once("connect", this.onConnect);
+        this.socket.on("data", this.onDataReceived);
+        this.setState(constants_1.SocksClientState.Connecting);
+        this.receiveBuffer = new receivebuffer_1.ReceiveBuffer();
+        if (existingSocket) {
+          this.socket.emit("connect");
+        } else {
+          this.socket.connect(this.getSocketOptions());
+          if (
+            this.options.set_tcp_nodelay !== void 0 &&
+            this.options.set_tcp_nodelay !== null
+          ) {
+            this.socket.setNoDelay(!!this.options.set_tcp_nodelay);
+          }
+        }
+        this.prependOnceListener("established", (info3) => {
+          setImmediate(() => {
+            if (this.receiveBuffer.length > 0) {
+              const excessData = this.receiveBuffer.get(
+                this.receiveBuffer.length,
+              );
+              info3.socket.emit("data", excessData);
+            }
+            info3.socket.resume();
+          });
+        });
+      }
+      // Socket options (defaults host/port to options.proxy.host/options.proxy.port)
+      getSocketOptions() {
+        return Object.assign(Object.assign({}, this.options.socket_options), {
+          host: this.options.proxy.host || this.options.proxy.ipaddress,
+          port: this.options.proxy.port,
+        });
+      }
+      /**
+       * Handles internal Socks timeout callback.
+       * Note: If the Socks client is not BoundWaitingForConnection or Established, the connection will be closed.
+       */
+      onEstablishedTimeout() {
+        if (
+          this.state !== constants_1.SocksClientState.Established &&
+          this.state !== constants_1.SocksClientState.BoundWaitingForConnection
+        ) {
+          this.closeSocket(constants_1.ERRORS.ProxyConnectionTimedOut);
+        }
+      }
+      /**
+       * Handles Socket connect event.
+       */
+      onConnectHandler() {
+        this.setState(constants_1.SocksClientState.Connected);
+        if (this.options.proxy.type === 4) {
+          this.sendSocks4InitialHandshake();
+        } else {
+          this.sendSocks5InitialHandshake();
+        }
+        this.setState(constants_1.SocksClientState.SentInitialHandshake);
+      }
+      /**
+       * Handles Socket data event.
+       * @param data
+       */
+      onDataReceivedHandler(data) {
+        this.receiveBuffer.append(data);
+        this.processData();
+      }
+      /**
+       * Handles processing of the data we have received.
+       */
+      processData() {
+        while (
+          this.state !== constants_1.SocksClientState.Established &&
+          this.state !== constants_1.SocksClientState.Error &&
+          this.receiveBuffer.length >= this.nextRequiredPacketBufferSize
+        ) {
+          if (
+            this.state === constants_1.SocksClientState.SentInitialHandshake
+          ) {
+            if (this.options.proxy.type === 4) {
+              this.handleSocks4FinalHandshakeResponse();
+            } else {
+              this.handleInitialSocks5HandshakeResponse();
+            }
+          } else if (
+            this.state === constants_1.SocksClientState.SentAuthentication
+          ) {
+            this.handleInitialSocks5AuthenticationHandshakeResponse();
+          } else if (
+            this.state === constants_1.SocksClientState.SentFinalHandshake
+          ) {
+            this.handleSocks5FinalHandshakeResponse();
+          } else if (
+            this.state ===
+              constants_1.SocksClientState.BoundWaitingForConnection
+          ) {
+            if (this.options.proxy.type === 4) {
+              this.handleSocks4IncomingConnectionResponse();
+            } else {
+              this.handleSocks5IncomingConnectionResponse();
+            }
+          } else {
+            this.closeSocket(constants_1.ERRORS.InternalError);
+            break;
+          }
+        }
+      }
+      /**
+       * Handles Socket close event.
+       * @param had_error
+       */
+      onCloseHandler() {
+        this.closeSocket(constants_1.ERRORS.SocketClosed);
+      }
+      /**
+       * Handles Socket error event.
+       * @param err
+       */
+      onErrorHandler(err) {
+        this.closeSocket(err.message);
+      }
+      /**
+       * Removes internal event listeners on the underlying Socket.
+       */
+      removeInternalSocketHandlers() {
+        this.socket.pause();
+        this.socket.removeListener("data", this.onDataReceived);
+        this.socket.removeListener("close", this.onClose);
+        this.socket.removeListener("error", this.onError);
+        this.socket.removeListener("connect", this.onConnect);
+      }
+      /**
+       * Closes and destroys the underlying Socket. Emits an error event.
+       * @param err { String } An error string to include in error event.
+       */
+      closeSocket(err) {
+        if (this.state !== constants_1.SocksClientState.Error) {
+          this.setState(constants_1.SocksClientState.Error);
+          this.socket.destroy();
+          this.removeInternalSocketHandlers();
+          this.emit("error", new util_1.SocksClientError(err, this.options));
+        }
+      }
+      /**
+       * Sends initial Socks v4 handshake request.
+       */
+      sendSocks4InitialHandshake() {
+        const userId = this.options.proxy.userId || "";
+        const buff = new smart_buffer_1.SmartBuffer();
+        buff.writeUInt8(4);
+        buff.writeUInt8(constants_1.SocksCommand[this.options.command]);
+        buff.writeUInt16BE(this.options.destination.port);
+        if (net.isIPv4(this.options.destination.host)) {
+          buff.writeBuffer(
+            (0, helpers_1.ipToBuffer)(this.options.destination.host),
+          );
+          buff.writeStringNT(userId);
+        } else {
+          buff.writeUInt8(0);
+          buff.writeUInt8(0);
+          buff.writeUInt8(0);
+          buff.writeUInt8(1);
+          buff.writeStringNT(userId);
+          buff.writeStringNT(this.options.destination.host);
+        }
+        this.nextRequiredPacketBufferSize =
+          constants_1.SOCKS_INCOMING_PACKET_SIZES.Socks4Response;
+        this.socket.write(buff.toBuffer());
+      }
+      /**
+       * Handles Socks v4 handshake response.
+       * @param data
+       */
+      handleSocks4FinalHandshakeResponse() {
+        const data = this.receiveBuffer.get(8);
+        if (data[1] !== constants_1.Socks4Response.Granted) {
+          this.closeSocket(
+            `${constants_1.ERRORS.Socks4ProxyRejectedConnection} - (${
+              constants_1.Socks4Response[data[1]]
+            })`,
+          );
+        } else {
+          if (
+            constants_1.SocksCommand[this.options.command] ===
+              constants_1.SocksCommand.bind
+          ) {
+            const buff = smart_buffer_1.SmartBuffer.fromBuffer(data);
+            buff.readOffset = 2;
+            const remoteHost = {
+              port: buff.readUInt16BE(),
+              host: (0, helpers_1.int32ToIpv4)(buff.readUInt32BE()),
+            };
+            if (remoteHost.host === "0.0.0.0") {
+              remoteHost.host = this.options.proxy.ipaddress;
+            }
+            this.setState(
+              constants_1.SocksClientState.BoundWaitingForConnection,
+            );
+            this.emit("bound", {
+              remoteHost,
+              socket: this.socket,
+            });
+          } else {
+            this.setState(constants_1.SocksClientState.Established);
+            this.removeInternalSocketHandlers();
+            this.emit("established", {
+              socket: this.socket,
+            });
+          }
+        }
+      }
+      /**
+       * Handles Socks v4 incoming connection request (BIND)
+       * @param data
+       */
+      handleSocks4IncomingConnectionResponse() {
+        const data = this.receiveBuffer.get(8);
+        if (data[1] !== constants_1.Socks4Response.Granted) {
+          this.closeSocket(
+            `${constants_1.ERRORS.Socks4ProxyRejectedIncomingBoundConnection} - (${
+              constants_1.Socks4Response[data[1]]
+            })`,
+          );
+        } else {
+          const buff = smart_buffer_1.SmartBuffer.fromBuffer(data);
+          buff.readOffset = 2;
+          const remoteHost = {
+            port: buff.readUInt16BE(),
+            host: (0, helpers_1.int32ToIpv4)(buff.readUInt32BE()),
+          };
+          this.setState(constants_1.SocksClientState.Established);
+          this.removeInternalSocketHandlers();
+          this.emit("established", {
+            remoteHost,
+            socket: this.socket,
+          });
+        }
+      }
+      /**
+       * Sends initial Socks v5 handshake request.
+       */
+      sendSocks5InitialHandshake() {
+        const buff = new smart_buffer_1.SmartBuffer();
+        const supportedAuthMethods = [
+          constants_1.Socks5Auth.NoAuth,
+        ];
+        if (this.options.proxy.userId || this.options.proxy.password) {
+          supportedAuthMethods.push(constants_1.Socks5Auth.UserPass);
+        }
+        if (this.options.proxy.custom_auth_method !== void 0) {
+          supportedAuthMethods.push(this.options.proxy.custom_auth_method);
+        }
+        buff.writeUInt8(5);
+        buff.writeUInt8(supportedAuthMethods.length);
+        for (const authMethod of supportedAuthMethods) {
+          buff.writeUInt8(authMethod);
+        }
+        this.nextRequiredPacketBufferSize =
+          constants_1.SOCKS_INCOMING_PACKET_SIZES
+            .Socks5InitialHandshakeResponse;
+        this.socket.write(buff.toBuffer());
+        this.setState(constants_1.SocksClientState.SentInitialHandshake);
+      }
+      /**
+       * Handles initial Socks v5 handshake response.
+       * @param data
+       */
+      handleInitialSocks5HandshakeResponse() {
+        const data = this.receiveBuffer.get(2);
+        if (data[0] !== 5) {
+          this.closeSocket(
+            constants_1.ERRORS.InvalidSocks5IntiailHandshakeSocksVersion,
+          );
+        } else if (data[1] === constants_1.SOCKS5_NO_ACCEPTABLE_AUTH) {
+          this.closeSocket(
+            constants_1.ERRORS.InvalidSocks5InitialHandshakeNoAcceptedAuthType,
+          );
+        } else {
+          if (data[1] === constants_1.Socks5Auth.NoAuth) {
+            this.socks5ChosenAuthType = constants_1.Socks5Auth.NoAuth;
+            this.sendSocks5CommandRequest();
+          } else if (data[1] === constants_1.Socks5Auth.UserPass) {
+            this.socks5ChosenAuthType = constants_1.Socks5Auth.UserPass;
+            this.sendSocks5UserPassAuthentication();
+          } else if (data[1] === this.options.proxy.custom_auth_method) {
+            this.socks5ChosenAuthType = this.options.proxy.custom_auth_method;
+            this.sendSocks5CustomAuthentication();
+          } else {
+            this.closeSocket(
+              constants_1.ERRORS.InvalidSocks5InitialHandshakeUnknownAuthType,
+            );
+          }
+        }
+      }
+      /**
+       * Sends Socks v5 user & password auth handshake.
+       *
+       * Note: No auth and user/pass are currently supported.
+       */
+      sendSocks5UserPassAuthentication() {
+        const userId = this.options.proxy.userId || "";
+        const password = this.options.proxy.password || "";
+        const buff = new smart_buffer_1.SmartBuffer();
+        buff.writeUInt8(1);
+        buff.writeUInt8(Buffer.byteLength(userId));
+        buff.writeString(userId);
+        buff.writeUInt8(Buffer.byteLength(password));
+        buff.writeString(password);
+        this.nextRequiredPacketBufferSize =
+          constants_1.SOCKS_INCOMING_PACKET_SIZES
+            .Socks5UserPassAuthenticationResponse;
+        this.socket.write(buff.toBuffer());
+        this.setState(constants_1.SocksClientState.SentAuthentication);
+      }
+      sendSocks5CustomAuthentication() {
+        return __awaiter19(this, void 0, void 0, function* () {
+          this.nextRequiredPacketBufferSize =
+            this.options.proxy.custom_auth_response_size;
+          this.socket.write(
+            yield this.options.proxy.custom_auth_request_handler(),
+          );
+          this.setState(constants_1.SocksClientState.SentAuthentication);
+        });
+      }
+      handleSocks5CustomAuthHandshakeResponse(data) {
+        return __awaiter19(this, void 0, void 0, function* () {
+          return yield this.options.proxy.custom_auth_response_handler(data);
+        });
+      }
+      handleSocks5AuthenticationNoAuthHandshakeResponse(data) {
+        return __awaiter19(this, void 0, void 0, function* () {
+          return data[1] === 0;
+        });
+      }
+      handleSocks5AuthenticationUserPassHandshakeResponse(data) {
+        return __awaiter19(this, void 0, void 0, function* () {
+          return data[1] === 0;
+        });
+      }
+      /**
+       * Handles Socks v5 auth handshake response.
+       * @param data
+       */
+      handleInitialSocks5AuthenticationHandshakeResponse() {
+        return __awaiter19(this, void 0, void 0, function* () {
+          this.setState(
+            constants_1.SocksClientState.ReceivedAuthenticationResponse,
+          );
+          let authResult = false;
+          if (this.socks5ChosenAuthType === constants_1.Socks5Auth.NoAuth) {
+            authResult = yield this
+              .handleSocks5AuthenticationNoAuthHandshakeResponse(
+                this.receiveBuffer.get(2),
+              );
+          } else if (
+            this.socks5ChosenAuthType === constants_1.Socks5Auth.UserPass
+          ) {
+            authResult = yield this
+              .handleSocks5AuthenticationUserPassHandshakeResponse(
+                this.receiveBuffer.get(2),
+              );
+          } else if (
+            this.socks5ChosenAuthType === this.options.proxy.custom_auth_method
+          ) {
+            authResult = yield this.handleSocks5CustomAuthHandshakeResponse(
+              this.receiveBuffer.get(
+                this.options.proxy.custom_auth_response_size,
+              ),
+            );
+          }
+          if (!authResult) {
+            this.closeSocket(constants_1.ERRORS.Socks5AuthenticationFailed);
+          } else {
+            this.sendSocks5CommandRequest();
+          }
+        });
+      }
+      /**
+       * Sends Socks v5 final handshake request.
+       */
+      sendSocks5CommandRequest() {
+        const buff = new smart_buffer_1.SmartBuffer();
+        buff.writeUInt8(5);
+        buff.writeUInt8(constants_1.SocksCommand[this.options.command]);
+        buff.writeUInt8(0);
+        if (net.isIPv4(this.options.destination.host)) {
+          buff.writeUInt8(constants_1.Socks5HostType.IPv4);
+          buff.writeBuffer(
+            (0, helpers_1.ipToBuffer)(this.options.destination.host),
+          );
+        } else if (net.isIPv6(this.options.destination.host)) {
+          buff.writeUInt8(constants_1.Socks5HostType.IPv6);
+          buff.writeBuffer(
+            (0, helpers_1.ipToBuffer)(this.options.destination.host),
+          );
+        } else {
+          buff.writeUInt8(constants_1.Socks5HostType.Hostname);
+          buff.writeUInt8(this.options.destination.host.length);
+          buff.writeString(this.options.destination.host);
+        }
+        buff.writeUInt16BE(this.options.destination.port);
+        this.nextRequiredPacketBufferSize =
+          constants_1.SOCKS_INCOMING_PACKET_SIZES.Socks5ResponseHeader;
+        this.socket.write(buff.toBuffer());
+        this.setState(constants_1.SocksClientState.SentFinalHandshake);
+      }
+      /**
+       * Handles Socks v5 final handshake response.
+       * @param data
+       */
+      handleSocks5FinalHandshakeResponse() {
+        const header = this.receiveBuffer.peek(5);
+        if (
+          header[0] !== 5 || header[1] !== constants_1.Socks5Response.Granted
+        ) {
+          this.closeSocket(
+            `${constants_1.ERRORS.InvalidSocks5FinalHandshakeRejected} - ${
+              constants_1.Socks5Response[header[1]]
+            }`,
+          );
+        } else {
+          const addressType = header[3];
+          let remoteHost;
+          let buff;
+          if (addressType === constants_1.Socks5HostType.IPv4) {
+            const dataNeeded =
+              constants_1.SOCKS_INCOMING_PACKET_SIZES.Socks5ResponseIPv4;
+            if (this.receiveBuffer.length < dataNeeded) {
+              this.nextRequiredPacketBufferSize = dataNeeded;
+              return;
+            }
+            buff = smart_buffer_1.SmartBuffer.fromBuffer(
+              this.receiveBuffer.get(dataNeeded).slice(4),
+            );
+            remoteHost = {
+              host: (0, helpers_1.int32ToIpv4)(buff.readUInt32BE()),
+              port: buff.readUInt16BE(),
+            };
+            if (remoteHost.host === "0.0.0.0") {
+              remoteHost.host = this.options.proxy.ipaddress;
+            }
+          } else if (addressType === constants_1.Socks5HostType.Hostname) {
+            const hostLength = header[4];
+            const dataNeeded = constants_1.SOCKS_INCOMING_PACKET_SIZES
+              .Socks5ResponseHostname(hostLength);
+            if (this.receiveBuffer.length < dataNeeded) {
+              this.nextRequiredPacketBufferSize = dataNeeded;
+              return;
+            }
+            buff = smart_buffer_1.SmartBuffer.fromBuffer(
+              this.receiveBuffer.get(dataNeeded).slice(5),
+            );
+            remoteHost = {
+              host: buff.readString(hostLength),
+              port: buff.readUInt16BE(),
+            };
+          } else if (addressType === constants_1.Socks5HostType.IPv6) {
+            const dataNeeded =
+              constants_1.SOCKS_INCOMING_PACKET_SIZES.Socks5ResponseIPv6;
+            if (this.receiveBuffer.length < dataNeeded) {
+              this.nextRequiredPacketBufferSize = dataNeeded;
+              return;
+            }
+            buff = smart_buffer_1.SmartBuffer.fromBuffer(
+              this.receiveBuffer.get(dataNeeded).slice(4),
+            );
+            remoteHost = {
+              host: ip_address_1.Address6.fromByteArray(
+                Array.from(buff.readBuffer(16)),
+              ).canonicalForm(),
+              port: buff.readUInt16BE(),
+            };
+          }
+          this.setState(constants_1.SocksClientState.ReceivedFinalResponse);
+          if (
+            constants_1.SocksCommand[this.options.command] ===
+              constants_1.SocksCommand.connect
+          ) {
+            this.setState(constants_1.SocksClientState.Established);
+            this.removeInternalSocketHandlers();
+            this.emit("established", {
+              remoteHost,
+              socket: this.socket,
+            });
+          } else if (
+            constants_1.SocksCommand[this.options.command] ===
+              constants_1.SocksCommand.bind
+          ) {
+            this.setState(
+              constants_1.SocksClientState.BoundWaitingForConnection,
+            );
+            this.nextRequiredPacketBufferSize =
+              constants_1.SOCKS_INCOMING_PACKET_SIZES.Socks5ResponseHeader;
+            this.emit("bound", {
+              remoteHost,
+              socket: this.socket,
+            });
+          } else if (
+            constants_1.SocksCommand[this.options.command] ===
+              constants_1.SocksCommand.associate
+          ) {
+            this.setState(constants_1.SocksClientState.Established);
+            this.removeInternalSocketHandlers();
+            this.emit("established", {
+              remoteHost,
+              socket: this.socket,
+            });
+          }
+        }
+      }
+      /**
+       * Handles Socks v5 incoming connection request (BIND).
+       */
+      handleSocks5IncomingConnectionResponse() {
+        const header = this.receiveBuffer.peek(5);
+        if (
+          header[0] !== 5 || header[1] !== constants_1.Socks5Response.Granted
+        ) {
+          this.closeSocket(
+            `${constants_1.ERRORS.Socks5ProxyRejectedIncomingBoundConnection} - ${
+              constants_1.Socks5Response[header[1]]
+            }`,
+          );
+        } else {
+          const addressType = header[3];
+          let remoteHost;
+          let buff;
+          if (addressType === constants_1.Socks5HostType.IPv4) {
+            const dataNeeded =
+              constants_1.SOCKS_INCOMING_PACKET_SIZES.Socks5ResponseIPv4;
+            if (this.receiveBuffer.length < dataNeeded) {
+              this.nextRequiredPacketBufferSize = dataNeeded;
+              return;
+            }
+            buff = smart_buffer_1.SmartBuffer.fromBuffer(
+              this.receiveBuffer.get(dataNeeded).slice(4),
+            );
+            remoteHost = {
+              host: (0, helpers_1.int32ToIpv4)(buff.readUInt32BE()),
+              port: buff.readUInt16BE(),
+            };
+            if (remoteHost.host === "0.0.0.0") {
+              remoteHost.host = this.options.proxy.ipaddress;
+            }
+          } else if (addressType === constants_1.Socks5HostType.Hostname) {
+            const hostLength = header[4];
+            const dataNeeded = constants_1.SOCKS_INCOMING_PACKET_SIZES
+              .Socks5ResponseHostname(hostLength);
+            if (this.receiveBuffer.length < dataNeeded) {
+              this.nextRequiredPacketBufferSize = dataNeeded;
+              return;
+            }
+            buff = smart_buffer_1.SmartBuffer.fromBuffer(
+              this.receiveBuffer.get(dataNeeded).slice(5),
+            );
+            remoteHost = {
+              host: buff.readString(hostLength),
+              port: buff.readUInt16BE(),
+            };
+          } else if (addressType === constants_1.Socks5HostType.IPv6) {
+            const dataNeeded =
+              constants_1.SOCKS_INCOMING_PACKET_SIZES.Socks5ResponseIPv6;
+            if (this.receiveBuffer.length < dataNeeded) {
+              this.nextRequiredPacketBufferSize = dataNeeded;
+              return;
+            }
+            buff = smart_buffer_1.SmartBuffer.fromBuffer(
+              this.receiveBuffer.get(dataNeeded).slice(4),
+            );
+            remoteHost = {
+              host: ip_address_1.Address6.fromByteArray(
+                Array.from(buff.readBuffer(16)),
+              ).canonicalForm(),
+              port: buff.readUInt16BE(),
+            };
+          }
+          this.setState(constants_1.SocksClientState.Established);
+          this.removeInternalSocketHandlers();
+          this.emit("established", {
+            remoteHost,
+            socket: this.socket,
+          });
+        }
+      }
+      get socksClientOptions() {
+        return Object.assign({}, this.options);
+      }
+    };
+    exports2.SocksClient = SocksClient;
+  },
+});
+
+// node_modules/.deno/socks@2.8.9/node_modules/socks/build/index.js
+var require_build = __commonJS({
+  "node_modules/.deno/socks@2.8.9/node_modules/socks/build/index.js"(exports2) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __exportStar = exports2 && exports2.__exportStar ||
+      function (m, exports3) {
+        for (var p in m) {
+          if (
+            p !== "default" &&
+            !Object.prototype.hasOwnProperty.call(exports3, p)
+          ) __createBinding(exports3, m, p);
+        }
+      };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    __exportStar(require_socksclient(), exports2);
+  },
+});
+
+// node_modules/.deno/socks-proxy-agent@6.2.1/node_modules/socks-proxy-agent/dist/index.js
+var require_dist4 = __commonJS({
+  "node_modules/.deno/socks-proxy-agent@6.2.1/node_modules/socks-proxy-agent/dist/index.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __awaiter19 = exports2 && exports2.__awaiter ||
+      function (thisArg, _arguments, P, generator) {
+        function adopt(value) {
+          return value instanceof P ? value : new P(function (resolve4) {
+            resolve4(value);
+          });
+        }
+        return new (P || (P = Promise))(function (resolve4, reject) {
+          function fulfilled(value) {
+            try {
+              step(generator.next(value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function rejected(value) {
+            try {
+              step(generator["throw"](value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function step(result) {
+            result.done
+              ? resolve4(result.value)
+              : adopt(result.value).then(fulfilled, rejected);
+          }
+          step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+      };
+    var __importDefault = exports2 && exports2.__importDefault ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod,
+        };
+      };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.SocksProxyAgent = void 0;
+    var socks_1 = require_build();
+    var agent_base_1 = require_src2();
+    var debug_1 = __importDefault(require_src());
+    var dns_1 = __importDefault(__require("node:dns"));
+    var tls_1 = __importDefault(__require("node:tls"));
+    var debug3 = (0, debug_1.default)("socks-proxy-agent");
+    function parseSocksProxy(opts) {
+      var _a;
+      let port = 0;
+      let lookup = false;
+      let type = 5;
+      const host = opts.hostname || opts.host;
+      if (host == null) {
+        throw new TypeError('No "hostname"');
+      }
+      if (typeof opts.port === "number") {
+        port = opts.port;
+      } else if (typeof opts.port === "string") {
+        port = parseInt(opts.port, 10);
+      }
+      if (port == null) {
+        port = 1080;
+      }
+      if (opts.protocol != null) {
+        switch (opts.protocol.replace(":", "")) {
+          case "socks4":
+            lookup = true;
+          // pass through
+          case "socks4a":
+            type = 4;
+            break;
+          case "socks5":
+            lookup = true;
+          // pass through
+          case "socks":
+          case "socks5h":
+            type = 5;
+            break;
+          default:
+            throw new TypeError(
+              `A "socks" protocol must be specified! Got: ${
+                String(opts.protocol)
+              }`,
+            );
+        }
+      }
+      if (typeof opts.type !== "undefined") {
+        if (opts.type === 4 || opts.type === 5) {
+          type = opts.type;
+        } else {
+          throw new TypeError(
+            `"type" must be 4 or 5, got: ${String(opts.type)}`,
+          );
+        }
+      }
+      const proxy = {
+        host,
+        port,
+        type,
+      };
+      let userId = (_a = opts.userId) !== null && _a !== void 0
+        ? _a
+        : opts.username;
+      let password = opts.password;
+      if (opts.auth != null) {
+        const auth = opts.auth.split(":");
+        userId = auth[0];
+        password = auth[1];
+      }
+      if (userId != null) {
+        Object.defineProperty(proxy, "userId", {
+          value: userId,
+          enumerable: false,
+        });
+      }
+      if (password != null) {
+        Object.defineProperty(proxy, "password", {
+          value: password,
+          enumerable: false,
+        });
+      }
+      return {
+        lookup,
+        proxy,
+      };
+    }
+    var normalizeProxyOptions = (input) => {
+      let proxyOptions;
+      if (typeof input === "string") {
+        proxyOptions = new URL(input);
+      } else {
+        proxyOptions = input;
+      }
+      if (proxyOptions == null) {
+        throw new TypeError(
+          "a SOCKS proxy server `hostname` and `port` must be specified!",
+        );
+      }
+      return proxyOptions;
+    };
+    var SocksProxyAgent = class extends agent_base_1.Agent {
+      constructor(input, options) {
+        var _a;
+        const proxyOptions = normalizeProxyOptions(input);
+        super(proxyOptions);
+        const parsedProxy = parseSocksProxy(proxyOptions);
+        this.shouldLookup = parsedProxy.lookup;
+        this.proxy = parsedProxy.proxy;
+        this.tlsConnectionOptions = proxyOptions.tls != null
+          ? proxyOptions.tls
+          : {};
+        this.timeout = (_a = options === null || options === void 0
+                ? void 0
+                : options.timeout) !== null && _a !== void 0
+          ? _a
+          : null;
+      }
+      /**
+       * Initiates a SOCKS connection to the specified SOCKS proxy server,
+       * which in turn connects to the specified remote host and port.
+       *
+       * @api protected
+       */
+      callback(req, opts) {
+        var _a;
+        return __awaiter19(this, void 0, void 0, function* () {
+          const { shouldLookup, proxy, timeout } = this;
+          let { host, port, lookup: lookupCallback } = opts;
+          if (host == null) {
+            throw new Error("No `host` defined!");
+          }
+          if (shouldLookup) {
+            host = yield new Promise((resolve4, reject) => {
+              const lookupFn =
+                lookupCallback !== null && lookupCallback !== void 0
+                  ? lookupCallback
+                  : dns_1.default.lookup;
+              lookupFn(host, {}, (err, res) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve4(res);
+                }
+              });
+            });
+          }
+          const socksOpts = {
+            proxy,
+            destination: {
+              host,
+              port,
+            },
+            command: "connect",
+            timeout: timeout !== null && timeout !== void 0 ? timeout : void 0,
+          };
+          const cleanup = (tlsSocket) => {
+            req.destroy();
+            socket.destroy();
+            if (tlsSocket) {
+              tlsSocket.destroy();
+            }
+          };
+          debug3("Creating socks proxy connection: %o", socksOpts);
+          const { socket } = yield socks_1.SocksClient.createConnection(
+            socksOpts,
+          );
+          debug3("Successfully created socks proxy connection");
+          if (timeout !== null) {
+            socket.setTimeout(timeout);
+            socket.on("timeout", () =>
+              cleanup());
+          }
+          if (opts.secureEndpoint) {
+            debug3("Upgrading socket connection to TLS");
+            const servername = (_a = opts.servername) !== null && _a !== void 0
+              ? _a
+              : opts.host;
+            const tlsSocket = tls_1.default.connect(
+              Object.assign(
+                Object.assign(
+                  Object.assign(
+                    {},
+                    omit(opts, "host", "hostname", "path", "port"),
+                  ),
+                  {
+                    socket,
+                    servername,
+                  },
+                ),
+                this.tlsConnectionOptions,
+              ),
+            );
+            tlsSocket.once("error", (error2) => {
+              debug3("socket TLS error", error2.message);
+              cleanup(tlsSocket);
+            });
+            return tlsSocket;
+          }
+          return socket;
+        });
+      }
+    };
+    exports2.SocksProxyAgent = SocksProxyAgent;
+    function omit(obj, ...keys) {
+      const ret = {};
+      let key;
+      for (key in obj) {
+        if (!keys.includes(key)) {
+          ret[key] = obj[key];
+        }
+      }
+      return ret;
+    }
+  },
+});
+
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/websocket.js
+var require_websocket3 = __commonJS({
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/websocket.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (
+            !desc ||
+            ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)
+          ) {
+            desc = {
+              enumerable: true,
+              get: function () {
+                return m[k];
+              },
+            };
+          }
+          Object.defineProperty(o, k2, desc);
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    var __awaiter19 = exports2 && exports2.__awaiter ||
+      function (thisArg, _arguments, P, generator) {
+        function adopt(value) {
+          return value instanceof P ? value : new P(function (resolve4) {
+            resolve4(value);
+          });
+        }
+        return new (P || (P = Promise))(function (resolve4, reject) {
+          function fulfilled(value) {
+            try {
+              step(generator.next(value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function rejected(value) {
+            try {
+              step(generator["throw"](value));
+            } catch (e) {
+              reject(e);
+            }
+          }
+          function step(result) {
+            result.done
+              ? resolve4(result.value)
+              : adopt(result.value).then(fulfilled, rejected);
+          }
+          step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+      };
+    var __generator = exports2 && exports2.__generator ||
+      function (thisArg, body2) {
+        var _ = {
+            label: 0,
+            sent: function () {
+              if (t[0] & 1) throw t[1];
+              return t[1];
+            },
+            trys: [],
+            ops: [],
+          },
+          f,
+          y,
+          t,
+          g;
+        return g = {
+          next: verb(0),
+          "throw": verb(1),
+          "return": verb(2),
+        },
+          typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+            return this;
+          }),
+          g;
+        function verb(n) {
+          return function (v) {
+            return step([
+              n,
+              v,
+            ]);
+          };
+        }
+        function step(op) {
+          if (f) throw new TypeError("Generator is already executing.");
+          while (g && (g = 0, op[0] && (_ = 0)), _) {
+            try {
+              if (
+                f = 1,
+                  y && (t = op[0] & 2
+                    ? y["return"]
+                    : op[0]
+                    ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                    : y.next) &&
+                  !(t = t.call(y, op[1])).done
+              ) return t;
+              if (y = 0, t) {
+                op = [
+                  op[0] & 2,
+                  t.value,
+                ];
+              }
+              switch (op[0]) {
+                case 0:
+                case 1:
+                  t = op;
+                  break;
+                case 4:
+                  _.label++;
+                  return {
+                    value: op[1],
+                    done: false,
+                  };
+                case 5:
+                  _.label++;
+                  y = op[1];
+                  op = [
+                    0,
+                  ];
+                  continue;
+                case 7:
+                  op = _.ops.pop();
+                  _.trys.pop();
+                  continue;
+                default:
+                  if (
+                    !(t = _.trys, t = t.length > 0 && t[t.length - 1]) &&
+                    (op[0] === 6 || op[0] === 2)
+                  ) {
+                    _ = 0;
+                    continue;
+                  }
+                  if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+                    _.label = op[1];
+                    break;
+                  }
+                  if (op[0] === 6 && _.label < t[1]) {
+                    _.label = t[1];
+                    t = op;
+                    break;
+                  }
+                  if (t && _.label < t[2]) {
+                    _.label = t[2];
+                    _.ops.push(op);
+                    break;
+                  }
+                  if (t[2]) _.ops.pop();
+                  _.trys.pop();
+                  continue;
+              }
+              op = body2.call(thisArg, _);
+            } catch (e) {
+              op = [
+                6,
+                e,
+              ];
+              y = 0;
+            } finally {
+              f = t = 0;
+            }
+          }
+          if (op[0] & 5) throw op[1];
+          return {
+            value: op[0] ? op[1] : void 0,
+            done: true,
+          };
+        }
+      };
+    var __importDefault = exports2 && exports2.__importDefault ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : {
+          "default": mod,
+        };
+      };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.convertToWebSocketMessageType =
+      exports2.buildWebSocketURL =
+      exports2.newWebSocketClientAndConnect =
+      exports2.newDefaultWebSocketClient =
+      exports2.DefaultWebSocketClient =
+      exports2.AbstractWebSocketHandler =
+      exports2.newWebSocketResponse =
+      exports2.getWebSocketHandler =
+      exports2.getWebSocketHandshakeTimeout =
+      exports2.getWebSocketWriteTimeout =
+      exports2.getWebSocketMaxReconnectTimes =
+      exports2.getWebSocketReconnectInterval =
+      exports2.getWebSocketEnableReconnect =
+      exports2.getWebSocketPongTimeout =
+      exports2.getWebSocketPingInterval =
+      exports2.WebSocketMessageType =
+        void 0;
+    var crypto4 = __importStar(__require("node:crypto"));
+    var querystring = __importStar(__require("node:querystring"));
+    var url_1 = __require("node:url");
+    var ws_1 = __importDefault(require_ws());
+    var https_proxy_agent_1 = __importDefault(require_dist());
+    var http_proxy_agent_1 = __importDefault(require_dist3());
+    var socks_proxy_agent_1 = require_dist4();
+    var core_1 = require_core();
+    var PolyfillAbortSignal = (
+      /** @class */
+      function () {
+        function PolyfillAbortSignal2() {
+          this.aborted = false;
+          this.listeners = [];
+        }
+        PolyfillAbortSignal2.prototype.addEventListener = function (
+          type,
+          listener,
+          options,
+        ) {
+          var _this = this;
+          if (type !== "abort") {
+            return;
+          }
+          var wrapped = options && options.once
+            ? function () {
+              _this.removeListener(wrapped);
+              listener();
+            }
+            : listener;
+          this.listeners.push(wrapped);
+        };
+        PolyfillAbortSignal2.prototype.removeListener = function (listener) {
+          var idx = this.listeners.indexOf(listener);
+          if (idx >= 0) {
+            this.listeners.splice(idx, 1);
+          }
+        };
+        PolyfillAbortSignal2.prototype.dispatchAbort = function () {
+          if (this.aborted) {
+            return;
+          }
+          this.aborted = true;
+          var copy = this.listeners.slice();
+          this.listeners = [];
+          copy.forEach(function (fn) {
+            return fn();
+          });
+        };
+        return PolyfillAbortSignal2;
+      }()
+    );
+    var PolyfillAbortController = (
+      /** @class */
+      function () {
+        function PolyfillAbortController2() {
+          this.signal = new PolyfillAbortSignal();
+        }
+        PolyfillAbortController2.prototype.abort = function () {
+          this.signal.dispatchAbort();
+        };
+        return PolyfillAbortController2;
+      }()
+    );
+    function createAbortController() {
+      if (typeof AbortController !== "undefined") {
+        return new AbortController();
+      }
+      return new PolyfillAbortController();
+    }
+    var WebSocketMessageType;
+    (function (WebSocketMessageType2) {
+      WebSocketMessageType2[WebSocketMessageType2["Text"] = 0] = "Text";
+      WebSocketMessageType2[WebSocketMessageType2["Binary"] = 1] = "Binary";
+      WebSocketMessageType2[WebSocketMessageType2["Ping"] = 2] = "Ping";
+      WebSocketMessageType2[WebSocketMessageType2["Pong"] = 3] = "Pong";
+      WebSocketMessageType2[WebSocketMessageType2["Close"] = 4] = "Close";
+    })(
+      WebSocketMessageType = exports2.WebSocketMessageType ||
+        (exports2.WebSocketMessageType = {}),
+    );
+    var STATE_DISCONNECTED = 0;
+    var STATE_CONNECTING = 1;
+    var STATE_CONNECTED = 2;
+    var STATE_DISCONNECTING = 3;
+    function getWebSocketPingInterval(runtime) {
+      return runtime === null || runtime === void 0
+        ? void 0
+        : runtime.webSocketPingInterval;
+    }
+    exports2.getWebSocketPingInterval = getWebSocketPingInterval;
+    function getWebSocketPongTimeout(runtime) {
+      return runtime === null || runtime === void 0
+        ? void 0
+        : runtime.webSocketPongTimeout;
+    }
+    exports2.getWebSocketPongTimeout = getWebSocketPongTimeout;
+    function getWebSocketEnableReconnect(runtime) {
+      return runtime === null || runtime === void 0
+        ? void 0
+        : runtime.webSocketEnableReconnect;
+    }
+    exports2.getWebSocketEnableReconnect = getWebSocketEnableReconnect;
+    function getWebSocketReconnectInterval(runtime) {
+      return runtime === null || runtime === void 0
+        ? void 0
+        : runtime.webSocketReconnectInterval;
+    }
+    exports2.getWebSocketReconnectInterval = getWebSocketReconnectInterval;
+    function getWebSocketMaxReconnectTimes(runtime) {
+      return runtime === null || runtime === void 0
+        ? void 0
+        : runtime.webSocketMaxReconnectTimes;
+    }
+    exports2.getWebSocketMaxReconnectTimes = getWebSocketMaxReconnectTimes;
+    function getWebSocketWriteTimeout(runtime) {
+      return runtime === null || runtime === void 0
+        ? void 0
+        : runtime.webSocketWriteTimeout;
+    }
+    exports2.getWebSocketWriteTimeout = getWebSocketWriteTimeout;
+    function getWebSocketHandshakeTimeout(runtime) {
+      return runtime === null || runtime === void 0
+        ? void 0
+        : runtime.webSocketHandshakeTimeout;
+    }
+    exports2.getWebSocketHandshakeTimeout = getWebSocketHandshakeTimeout;
+    function getWebSocketHandler(runtime) {
+      return runtime === null || runtime === void 0
+        ? void 0
+        : runtime.webSocketHandler;
+    }
+    exports2.getWebSocketHandler = getWebSocketHandler;
+    function newWebSocketResponse(statusCode, statusMessage, headers) {
+      var fakeResponse = {
+        statusCode,
+        statusMessage,
+        headers,
+      };
+      var res = new core_1.Response(fakeResponse);
+      var normalizedHeaders = {};
+      Object.keys(headers || {}).forEach(function (key) {
+        var val = headers[key];
+        if (val) {
+          normalizedHeaders[key.toLowerCase()] = Array.isArray(val)
+            ? val[0]
+            : "".concat(val);
+        }
+      });
+      res.headers = normalizedHeaders;
+      return res;
+    }
+    exports2.newWebSocketResponse = newWebSocketResponse;
+    var AbstractWebSocketHandler = (
+      /** @class */
+      function () {
+        function AbstractWebSocketHandler2() {
+        }
+        AbstractWebSocketHandler2.prototype.afterConnectionEstablished =
+          function (_session) {
+            return;
+          };
+        AbstractWebSocketHandler2.prototype.handleRawMessage = function (
+          _session,
+          _message,
+        ) {
+          return;
+        };
+        AbstractWebSocketHandler2.prototype.handleError = function (
+          _session,
+          _err,
+        ) {
+          return;
+        };
+        AbstractWebSocketHandler2.prototype.afterConnectionClosed = function (
+          _session,
+          _code,
+          _reason,
+        ) {
+          return;
+        };
+        return AbstractWebSocketHandler2;
+      }()
+    );
+    exports2.AbstractWebSocketHandler = AbstractWebSocketHandler;
+    var DefaultWebSocketClient = (
+      /** @class */
+      function () {
+        function DefaultWebSocketClient2(handler) {
+          this.stopped = false;
+          this.pongReceived = false;
+          this.state = STATE_DISCONNECTED;
+          this.conn = null;
+          this.session = null;
+          this.request = null;
+          this.runtimeObject = null;
+          this.reconnectCount = 0;
+          this.pingTimer = null;
+          this.pingInterval = 3e4;
+          this.reconnectInterval = 5e3;
+          this.writeTimeout = 3e4;
+          this.readTimeout = 0;
+          this.pongTimeout = 5e3;
+          this.maxReconnectTimes = 5;
+          this.reconnectLock = false;
+          this.abortController = null;
+          this.messageHandlersStarted = false;
+          if (!handler) {
+            throw new Error("handler cannot be nil");
+          }
+          this.handler = handler;
+        }
+        DefaultWebSocketClient2.prototype.connect = function (
+          request,
+          runtimeObject,
+        ) {
+          return __awaiter19(this, void 0, void 0, function () {
+            var requestURL,
+              parsed,
+              handshakeTimeout,
+              connectTimeout,
+              headers,
+              wsOptions,
+              tlsOptions;
+            var _this = this;
+            return __generator(this, function (_a) {
+              if (!request) {
+                throw new Error("request cannot be nil");
+              }
+              if (!runtimeObject) {
+                throw new Error("runtimeObject cannot be nil");
+              }
+              this.request = request;
+              this.runtimeObject = runtimeObject;
+              this.updateTimeoutConfig(runtimeObject);
+              this.state = STATE_CONNECTING;
+              this.stopped = false;
+              this.pongReceived = false;
+              if (this.abortController) {
+                this.abortController.abort();
+              }
+              this.abortController = createAbortController();
+              requestURL = buildWebSocketURL(request);
+              parsed = (0, url_1.parse)(requestURL);
+              if (!parsed.protocol || !parsed.host) {
+                this.state = STATE_DISCONNECTED;
+                throw new Error("invalid websocket url: ".concat(requestURL));
+              }
+              handshakeTimeout = runtimeObject.webSocketHandshakeTimeout &&
+                  runtimeObject.webSocketHandshakeTimeout > 0
+                ? runtimeObject.webSocketHandshakeTimeout
+                : 3e4;
+              connectTimeout =
+                runtimeObject.connectTimeout && runtimeObject.connectTimeout > 0
+                  ? runtimeObject.connectTimeout
+                  : 1e4;
+              headers = {};
+              if (request.headers) {
+                Object.keys(request.headers).forEach(function (k) {
+                  var v = request.headers[k];
+                  if (v && k !== "host" && k !== "content-length") {
+                    headers[k] = v;
+                  }
+                });
+              }
+              wsOptions = {
+                handshakeTimeout,
+                headers,
+                rejectUnauthorized: !runtimeObject.ignoreSSL,
+              };
+              if (parsed.protocol === "wss:" || parsed.protocol === "https:") {
+                tlsOptions = this.configureTLS(runtimeObject);
+                wsOptions.rejectUnauthorized = tlsOptions.rejectUnauthorized;
+                if (tlsOptions.cert) {
+                  wsOptions.cert = tlsOptions.cert;
+                }
+                if (tlsOptions.key) {
+                  wsOptions.key = tlsOptions.key;
+                }
+                if (tlsOptions.ca) {
+                  wsOptions.ca = tlsOptions.ca;
+                }
+              }
+              this.configureProxy(wsOptions, parsed, runtimeObject, request);
+              return [
+                2,
+                new Promise(function (resolve4, reject) {
+                  var timeoutId = setTimeout(function () {
+                    if (_this.state === STATE_CONNECTING) {
+                      _this.state = STATE_DISCONNECTED;
+                      reject(new Error("WebSocket connection timeout"));
+                    }
+                  }, connectTimeout);
+                  var upgradeResponse = null;
+                  var ws = new ws_1.default(requestURL, wsOptions);
+                  ws.on("upgrade", function (response) {
+                    upgradeResponse = response;
+                  });
+                  ws.on("open", function () {
+                    return __awaiter19(_this, void 0, void 0, function () {
+                      var sessionID,
+                        requestID,
+                        err_1,
+                        statusCode,
+                        statusMessage;
+                      return __generator(this, function (_a2) {
+                        switch (_a2.label) {
+                          case 0:
+                            clearTimeout(timeoutId);
+                            this.conn = ws;
+                            this.state = STATE_CONNECTED;
+                            this.setupPongHandler();
+                            this.startMessageHandlers();
+                            if (this.pingInterval > 0) {
+                              this.startPingPong();
+                            }
+                            sessionID = (upgradeResponse === null ||
+                                upgradeResponse === void 0
+                              ? void 0
+                              : upgradeResponse
+                                .headers["x-acs-ws-session-id"]) ||
+                              (upgradeResponse === null ||
+                                  upgradeResponse === void 0
+                                ? void 0
+                                : upgradeResponse
+                                  .headers["X-Acs-Ws-Session-Id"]) ||
+                              generateSessionID();
+                            requestID = (upgradeResponse === null ||
+                                upgradeResponse === void 0
+                              ? void 0
+                              : upgradeResponse
+                                .headers["x-acs-request-id"]) ||
+                              (upgradeResponse === null ||
+                                  upgradeResponse === void 0
+                                ? void 0
+                                : upgradeResponse
+                                  .headers["X-Acs-Request-Id"]) ||
+                              "";
+                            this.session = {
+                              sessionID: Array.isArray(sessionID)
+                                ? sessionID[0]
+                                : "".concat(sessionID),
+                              requestID: Array.isArray(requestID)
+                                ? requestID[0]
+                                : "".concat(requestID),
+                              connectedAt: /* @__PURE__ */ new Date(),
+                              remoteAddr: "".concat(ws.url),
+                              localAddr: "",
+                              attributes: {},
+                            };
+                            _a2.label = 1;
+                          case 1:
+                            _a2.trys.push([
+                              1,
+                              3,
+                              ,
+                              5,
+                            ]);
+                            return [
+                              4,
+                              this.handler.afterConnectionEstablished(
+                                this.session,
+                              ),
+                            ];
+                          case 2:
+                            _a2.sent();
+                            return [
+                              3,
+                              5,
+                            ];
+                          case 3:
+                            err_1 = _a2.sent();
+                            return [
+                              4,
+                              this.cleanupConnection(),
+                            ];
+                          case 4:
+                            _a2.sent();
+                            this.state = STATE_DISCONNECTED;
+                            reject(err_1);
+                            return [
+                              2,
+                              /*return*/
+                            ];
+                          case 5:
+                            statusCode = (upgradeResponse === null ||
+                                upgradeResponse === void 0
+                              ? void 0
+                              : upgradeResponse.statusCode) || 101;
+                            statusMessage = (upgradeResponse === null ||
+                                upgradeResponse === void 0
+                              ? void 0
+                              : upgradeResponse.statusMessage) ||
+                              "Switching Protocols";
+                            resolve4(
+                              newWebSocketResponse(
+                                statusCode,
+                                statusMessage,
+                                (upgradeResponse === null ||
+                                    upgradeResponse === void 0
+                                  ? void 0
+                                  : upgradeResponse.headers) || {},
+                              ),
+                            );
+                            return [
+                              2,
+                              /*return*/
+                            ];
+                        }
+                      });
+                    });
+                  });
+                  ws.on("error", function (err) {
+                    clearTimeout(timeoutId);
+                    if (_this.state === STATE_CONNECTING) {
+                      _this.state = STATE_DISCONNECTED;
+                      reject(err);
+                    }
+                  });
+                  ws.on("unexpected-response", function (_req, res) {
+                    clearTimeout(timeoutId);
+                    _this.state = STATE_DISCONNECTED;
+                    reject(
+                      new Error(
+                        "WebSocket handshake failed with status ".concat(
+                          res.statusCode,
+                        ),
+                      ),
+                    );
+                  });
+                }),
+              ];
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.disconnect = function () {
+          return __awaiter19(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+              return [
+                2,
+                this.disconnectInternal(1e3, "Normal closure"),
+              ];
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.disconnectInternal = function (
+          code,
+          reason,
+        ) {
+          return __awaiter19(this, void 0, void 0, function () {
+            var conn;
+            return __generator(this, function (_a) {
+              switch (_a.label) {
+                case 0:
+                  if (
+                    this.state === STATE_DISCONNECTED && !this.abortController
+                  ) {
+                    return [
+                      2,
+                      /*return*/
+                    ];
+                  }
+                  this.state = STATE_DISCONNECTING;
+                  this.stopPingPong();
+                  this.stopped = true;
+                  conn = this.conn;
+                  this.conn = null;
+                  if (conn && conn.readyState === ws_1.default.OPEN) {
+                    try {
+                      conn.close(code, reason);
+                    } catch (_err) {
+                    }
+                  } else if (conn) {
+                    conn.terminate();
+                  }
+                  return [
+                    4,
+                    this.waitForClose(conn),
+                  ];
+                case 1:
+                  _a.sent();
+                  if (!this.session) {
+                    return [
+                      3,
+                      3,
+                    ];
+                  }
+                  return [
+                    4,
+                    this.handler.afterConnectionClosed(
+                      this.session,
+                      code,
+                      reason,
+                    ),
+                  ];
+                case 2:
+                  _a.sent();
+                  _a.label = 3;
+                case 3:
+                  this.state = STATE_DISCONNECTED;
+                  if (this.abortController) {
+                    this.abortController.abort();
+                    this.abortController = null;
+                  }
+                  return [
+                    2,
+                    /*return*/
+                  ];
+              }
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.reconnect = function () {
+          return __awaiter19(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+              return [
+                2,
+                this.reconnectInternal(false),
+              ];
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.reconnectGracefully = function () {
+          return __awaiter19(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+              return [
+                2,
+                this.reconnectInternal(true),
+              ];
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.reconnectInternal = function (
+          graceful,
+        ) {
+          var _a, _b, _c, _d;
+          return __awaiter19(this, void 0, void 0, function () {
+            var previousSessionID, result;
+            return __generator(this, function (_e) {
+              switch (_e.label) {
+                case 0:
+                  if (!graceful && this.isConnected()) {
+                    throw new Error("already connected");
+                  }
+                  if (
+                    (_a = this.abortController) === null || _a === void 0
+                      ? void 0
+                      : _a.signal.aborted
+                  ) {
+                    throw new Error("connection aborted");
+                  }
+                  if (this.reconnectLock) {
+                    throw new Error("reconnect already in progress");
+                  }
+                  this.reconnectLock = true;
+                  _e.label = 1;
+                case 1:
+                  _e.trys.push([
+                    1,
+                    ,
+                    5,
+                    6,
+                  ]);
+                  if (
+                    !((_b = this.runtimeObject) === null || _b === void 0
+                      ? void 0
+                      : _b.webSocketEnableReconnect)
+                  ) {
+                    throw new Error("reconnect is disabled");
+                  }
+                  if (this.reconnectCount >= this.maxReconnectTimes) {
+                    throw new Error(
+                      "max reconnect times reached: ".concat(
+                        this.maxReconnectTimes,
+                      ),
+                    );
+                  }
+                  previousSessionID = "";
+                  if (graceful) {
+                    if (
+                      (_c = this.session) === null || _c === void 0
+                        ? void 0
+                        : _c.sessionID
+                    ) {
+                      previousSessionID = this.session.sessionID;
+                    } else {
+                      throw new Error(
+                        "graceful reconnection requires existing session ID",
+                      );
+                    }
+                  }
+                  return [
+                    4,
+                    this.cleanupResources(),
+                  ];
+                case 2:
+                  _e.sent();
+                  this.stopped = false;
+                  this.reconnectCount++;
+                  if (!this.request) {
+                    throw new Error("request is nil, cannot reconnect");
+                  }
+                  if (graceful && previousSessionID) {
+                    this.request.headers = this.request.headers || {};
+                    this.request.headers["X-Acs-Ws-Session-Id"] =
+                      previousSessionID;
+                  } else if (this.request.headers) {
+                    delete this.request.headers["X-Acs-Ws-Session-Id"];
+                  }
+                  return [
+                    4,
+                    this.sleepInterruptible(this.reconnectInterval),
+                  ];
+                case 3:
+                  _e.sent();
+                  if (
+                    (_d = this.abortController) === null || _d === void 0
+                      ? void 0
+                      : _d.signal.aborted
+                  ) {
+                    throw new Error("connection aborted");
+                  }
+                  return [
+                    4,
+                    this.connect(this.request, this.runtimeObject),
+                  ];
+                case 4:
+                  result = _e.sent();
+                  this.reconnectCount = 0;
+                  return [
+                    2,
+                    result,
+                  ];
+                case 5:
+                  this.reconnectLock = false;
+                  return [
+                    7,
+                    /*endfinally*/
+                  ];
+                case 6:
+                  return [
+                    2,
+                    /*return*/
+                  ];
+              }
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.cleanupResources = function () {
+          return __awaiter19(this, void 0, void 0, function () {
+            var conn;
+            return __generator(this, function (_a) {
+              switch (_a.label) {
+                case 0:
+                  this.state = STATE_DISCONNECTING;
+                  this.stopPingPong();
+                  this.stopped = true;
+                  conn = this.conn;
+                  this.conn = null;
+                  if (!conn) {
+                    return [
+                      3,
+                      2,
+                    ];
+                  }
+                  try {
+                    if (conn.readyState === ws_1.default.OPEN) {
+                      conn.close(1001, "Reconnecting");
+                    } else {
+                      conn.terminate();
+                    }
+                  } catch (_err) {
+                  }
+                  return [
+                    4,
+                    this.waitForClose(conn),
+                  ];
+                case 1:
+                  _a.sent();
+                  _a.label = 2;
+                case 2:
+                  this.session = null;
+                  this.messageHandlersStarted = false;
+                  this.state = STATE_DISCONNECTED;
+                  return [
+                    2,
+                    /*return*/
+                  ];
+              }
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.isConnected = function () {
+          return this.state === STATE_CONNECTED;
+        };
+        DefaultWebSocketClient2.prototype.sendText = function (text) {
+          return __awaiter19(this, void 0, void 0, function () {
+            var conn;
+            return __generator(this, function (_a) {
+              switch (_a.label) {
+                case 0:
+                  if (!this.isConnected()) {
+                    throw new Error("not connected");
+                  }
+                  conn = this.conn;
+                  if (!conn) {
+                    throw new Error("connection is nil");
+                  }
+                  return [
+                    4,
+                    this.sendWithTimeout(conn, text, false),
+                  ];
+                case 1:
+                  _a.sent();
+                  return [
+                    2,
+                    /*return*/
+                  ];
+              }
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.sendBinary = function (data) {
+          return __awaiter19(this, void 0, void 0, function () {
+            var conn;
+            return __generator(this, function (_a) {
+              switch (_a.label) {
+                case 0:
+                  if (!this.isConnected()) {
+                    throw new Error("not connected");
+                  }
+                  conn = this.conn;
+                  if (!conn) {
+                    throw new Error("connection is nil");
+                  }
+                  return [
+                    4,
+                    this.sendWithTimeout(conn, data, true),
+                  ];
+                case 1:
+                  _a.sent();
+                  return [
+                    2,
+                    /*return*/
+                  ];
+              }
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.getSessionInfo = function () {
+          return this.session;
+        };
+        DefaultWebSocketClient2.prototype.close = function () {
+          return __awaiter19(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+              return [
+                2,
+                this.disconnectInternal(1e3, "Client closed"),
+              ];
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.configureTLS = function (
+          runtimeObject,
+        ) {
+          if (runtimeObject.ignoreSSL) {
+            return {
+              rejectUnauthorized: false,
+            };
+          }
+          var tlsOptions = {
+            rejectUnauthorized: true,
+          };
+          if (runtimeObject.key && runtimeObject.cert) {
+            tlsOptions.cert = runtimeObject.cert;
+            tlsOptions.key = runtimeObject.key;
+          }
+          if (runtimeObject.ca) {
+            tlsOptions.ca = runtimeObject.ca;
+          }
+          return tlsOptions;
+        };
+        DefaultWebSocketClient2.prototype.configureProxy = function (
+          wsOptions,
+          parsed,
+          runtimeObject,
+          request,
+        ) {
+          if (runtimeObject.socks5Proxy) {
+            this.configureSOCKS5Proxy(wsOptions, runtimeObject);
+            return;
+          }
+          this.configureHTTPProxy(wsOptions, parsed, runtimeObject, request);
+        };
+        DefaultWebSocketClient2.prototype.configureSOCKS5Proxy = function (
+          wsOptions,
+          runtimeObject,
+        ) {
+          var socks5Proxy = runtimeObject.socks5Proxy;
+          if (!socks5Proxy) {
+            return;
+          }
+          wsOptions.agent = new socks_proxy_agent_1.SocksProxyAgent(
+            socks5Proxy,
+          );
+        };
+        DefaultWebSocketClient2.prototype.configureHTTPProxy = function (
+          wsOptions,
+          parsed,
+          runtimeObject,
+          request,
+        ) {
+          if (!parsed) {
+            return;
+          }
+          var protocol = parsed.protocol.replace(":", "");
+          var host = parsed.hostname;
+          var noProxyList = getNoProxy(protocol, runtimeObject);
+          for (
+            var _i = 0, noProxyList_1 = noProxyList;
+            _i < noProxyList_1.length;
+            _i++
+          ) {
+            var noProxyHost = noProxyList_1[_i];
+            if (noProxyHost === host) {
+              return;
+            }
+          }
+          var proxyURL = getHttpProxyURL(protocol, host, runtimeObject);
+          if (!proxyURL) {
+            return;
+          }
+          if (protocol === "wss" || protocol === "https") {
+            wsOptions.agent = (0, https_proxy_agent_1.default)(proxyURL);
+          } else {
+            wsOptions.agent = (0, http_proxy_agent_1.default)(proxyURL);
+          }
+          var parsedProxy = (0, url_1.parse)(proxyURL);
+          if (parsedProxy.auth) {
+            request.headers = request.headers || {};
+            request.headers["Proxy-Authorization"] = "Basic ".concat(
+              Buffer.from(parsedProxy.auth).toString("base64"),
+            );
+          }
+        };
+        DefaultWebSocketClient2.prototype.configureNetDialer = function (
+          _wsOptions,
+          _runtimeObject,
+          _connectTimeout,
+        ) {
+        };
+        DefaultWebSocketClient2.prototype.updateTimeoutConfig = function (
+          runtimeObject,
+        ) {
+          this.pingInterval = runtimeObject.webSocketPingInterval &&
+              runtimeObject.webSocketPingInterval > 0
+            ? runtimeObject.webSocketPingInterval
+            : 3e4;
+          this.reconnectInterval = runtimeObject.webSocketReconnectInterval &&
+              runtimeObject.webSocketReconnectInterval > 0
+            ? runtimeObject.webSocketReconnectInterval
+            : 5e3;
+          this.writeTimeout = runtimeObject.webSocketWriteTimeout &&
+              runtimeObject.webSocketWriteTimeout > 0
+            ? runtimeObject.webSocketWriteTimeout
+            : 3e4;
+          this.readTimeout =
+            runtimeObject.readTimeout && runtimeObject.readTimeout > 0
+              ? runtimeObject.readTimeout
+              : 0;
+          this.pongTimeout = runtimeObject.webSocketPongTimeout &&
+              runtimeObject.webSocketPongTimeout > 0
+            ? runtimeObject.webSocketPongTimeout
+            : 5e3;
+          this.maxReconnectTimes = runtimeObject.webSocketMaxReconnectTimes &&
+              runtimeObject.webSocketMaxReconnectTimes > 0
+            ? runtimeObject.webSocketMaxReconnectTimes
+            : 5;
+        };
+        DefaultWebSocketClient2.prototype.setupPongHandler = function () {
+          var _this = this;
+          var conn = this.conn;
+          if (!conn) {
+            return;
+          }
+          conn.on("pong", function () {
+            _this.pongReceived = true;
+          });
+        };
+        DefaultWebSocketClient2.prototype.startMessageHandlers = function () {
+          var _this = this;
+          if (this.messageHandlersStarted) {
+            return;
+          }
+          this.messageHandlersStarted = true;
+          var conn = this.conn;
+          if (!conn) {
+            return;
+          }
+          conn.on("message", function (data, isBinary) {
+            return __awaiter19(_this, void 0, void 0, function () {
+              var payload, msg, err_2;
+              return __generator(this, function (_a) {
+                switch (_a.label) {
+                  case 0:
+                    if (this.stopped) {
+                      return [
+                        2,
+                        /*return*/
+                      ];
+                    }
+                    payload = Buffer.isBuffer(data) ? data : Buffer.from(data);
+                    msg = {
+                      type: isBinary
+                        ? WebSocketMessageType.Binary
+                        : WebSocketMessageType.Text,
+                      payload,
+                      headers: {},
+                      timestamp: /* @__PURE__ */ new Date(),
+                    };
+                    if (!this.session) {
+                      return [
+                        2,
+                        /*return*/
+                      ];
+                    }
+                    _a.label = 1;
+                  case 1:
+                    _a.trys.push([
+                      1,
+                      3,
+                      ,
+                      5,
+                    ]);
+                    return [
+                      4,
+                      this.handler.handleRawMessage(this.session, msg),
+                    ];
+                  case 2:
+                    _a.sent();
+                    return [
+                      3,
+                      5,
+                    ];
+                  case 3:
+                    err_2 = _a.sent();
+                    return [
+                      4,
+                      this.handler.handleError(this.session, err_2),
+                    ];
+                  case 4:
+                    _a.sent();
+                    return [
+                      3,
+                      5,
+                    ];
+                  case 5:
+                    return [
+                      2,
+                      /*return*/
+                    ];
+                }
+              });
+            });
+          });
+          conn.on("close", function (code, reasonBuffer) {
+            return __awaiter19(_this, void 0, void 0, function () {
+              var reason;
+              var _a;
+              return __generator(this, function (_b) {
+                switch (_b.label) {
+                  case 0:
+                    if (this.stopped) {
+                      return [
+                        2,
+                        /*return*/
+                      ];
+                    }
+                    reason = reasonBuffer.toString();
+                    if (!(this.session && code !== 1e3 && code !== 1001)) {
+                      return [
+                        3,
+                        2,
+                      ];
+                    }
+                    return [
+                      4,
+                      this.handler.handleError(
+                        this.session,
+                        new Error(
+                          "WebSocket closed: ".concat(code, " ").concat(reason),
+                        ),
+                      ),
+                    ];
+                  case 1:
+                    _b.sent();
+                    _b.label = 2;
+                  case 2:
+                    if (
+                      ((_a = this.runtimeObject) === null || _a === void 0
+                        ? void 0
+                        : _a.webSocketEnableReconnect) &&
+                      this.request && !this.stopped
+                    ) {
+                      this.reconnect().catch(function () {
+                      });
+                    }
+                    return [
+                      2,
+                      /*return*/
+                    ];
+                }
+              });
+            });
+          });
+          conn.on("error", function (err) {
+            return __awaiter19(_this, void 0, void 0, function () {
+              return __generator(this, function (_a) {
+                switch (_a.label) {
+                  case 0:
+                    if (this.stopped || !this.session) {
+                      return [
+                        2,
+                        /*return*/
+                      ];
+                    }
+                    return [
+                      4,
+                      this.handler.handleError(this.session, err),
+                    ];
+                  case 1:
+                    _a.sent();
+                    return [
+                      2,
+                      /*return*/
+                    ];
+                }
+              });
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.startPingPong = function () {
+          var _this = this;
+          if (this.pingInterval <= 0) {
+            return;
+          }
+          this.stopPingPong();
+          this.pingTimer = setInterval(function () {
+            return __awaiter19(_this, void 0, void 0, function () {
+              var err_3;
+              var _a;
+              return __generator(this, function (_b) {
+                switch (_b.label) {
+                  case 0:
+                    if (
+                      this.stopped || !this.conn ||
+                      this.conn.readyState !== ws_1.default.OPEN
+                    ) {
+                      return [
+                        2,
+                        /*return*/
+                      ];
+                    }
+                    this.pongReceived = false;
+                    _b.label = 1;
+                  case 1:
+                    _b.trys.push([
+                      1,
+                      2,
+                      ,
+                      5,
+                    ]);
+                    this.conn.ping();
+                    return [
+                      3,
+                      5,
+                    ];
+                  case 2:
+                    err_3 = _b.sent();
+                    if (!this.session) {
+                      return [
+                        3,
+                        4,
+                      ];
+                    }
+                    return [
+                      4,
+                      this.handler.handleError(this.session, err_3),
+                    ];
+                  case 3:
+                    _b.sent();
+                    _b.label = 4;
+                  case 4:
+                    return [
+                      2,
+                      /*return*/
+                    ];
+                  case 5:
+                    return [
+                      4,
+                      this.sleepInterruptible(this.pongTimeout),
+                    ];
+                  case 6:
+                    _b.sent();
+                    if (
+                      !this.pongReceived &&
+                      ((_a = this.runtimeObject) === null || _a === void 0
+                        ? void 0
+                        : _a.webSocketEnableReconnect)
+                    ) {
+                      this.reconnect().catch(function () {
+                      });
+                    }
+                    return [
+                      2,
+                      /*return*/
+                    ];
+                }
+              });
+            });
+          }, this.pingInterval);
+        };
+        DefaultWebSocketClient2.prototype.stopPingPong = function () {
+          if (this.pingTimer) {
+            clearInterval(this.pingTimer);
+            this.pingTimer = null;
+          }
+        };
+        DefaultWebSocketClient2.prototype.cleanupConnection = function () {
+          return __awaiter19(this, void 0, void 0, function () {
+            var conn;
+            return __generator(this, function (_a) {
+              switch (_a.label) {
+                case 0:
+                  this.stopPingPong();
+                  this.stopped = true;
+                  conn = this.conn;
+                  this.conn = null;
+                  if (!conn) {
+                    return [
+                      3,
+                      2,
+                    ];
+                  }
+                  conn.terminate();
+                  return [
+                    4,
+                    this.waitForClose(conn),
+                  ];
+                case 1:
+                  _a.sent();
+                  _a.label = 2;
+                case 2:
+                  return [
+                    2,
+                    /*return*/
+                  ];
+              }
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.sendWithTimeout = function (
+          conn,
+          data,
+          binary,
+        ) {
+          return __awaiter19(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+              return [
+                2,
+                new Promise(function (resolve4, reject) {
+                  var timer = _this.writeTimeout > 0
+                    ? setTimeout(function () {
+                      return reject(new Error("write timeout"));
+                    }, _this.writeTimeout)
+                    : null;
+                  conn.send(data, {
+                    binary,
+                  }, function (err) {
+                    if (timer) {
+                      clearTimeout(timer);
+                    }
+                    if (err) {
+                      reject(err);
+                    } else {
+                      resolve4();
+                    }
+                  });
+                }),
+              ];
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.waitForClose = function (conn) {
+          return __awaiter19(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+              switch (_a.label) {
+                case 0:
+                  if (!conn) {
+                    return [
+                      2,
+                      /*return*/
+                    ];
+                  }
+                  if (conn.readyState === ws_1.default.CLOSED) {
+                    return [
+                      2,
+                      /*return*/
+                    ];
+                  }
+                  return [
+                    4,
+                    new Promise(function (resolve4) {
+                      var timer = setTimeout(resolve4, 5e3);
+                      conn.once("close", function () {
+                        clearTimeout(timer);
+                        resolve4();
+                      });
+                    }),
+                  ];
+                case 1:
+                  _a.sent();
+                  return [
+                    2,
+                    /*return*/
+                  ];
+              }
+            });
+          });
+        };
+        DefaultWebSocketClient2.prototype.sleepInterruptible = function (ms) {
+          var _this = this;
+          return new Promise(function (resolve4) {
+            var timer = setTimeout(resolve4, ms);
+            if (_this.abortController) {
+              _this.abortController.signal.addEventListener(
+                "abort",
+                function () {
+                  clearTimeout(timer);
+                  resolve4();
+                },
+                {
+                  once: true,
+                },
+              );
+            }
+          });
+        };
+        return DefaultWebSocketClient2;
+      }()
+    );
+    exports2.DefaultWebSocketClient = DefaultWebSocketClient;
+    function newDefaultWebSocketClient(handler) {
+      return new DefaultWebSocketClient(handler);
+    }
+    exports2.newDefaultWebSocketClient = newDefaultWebSocketClient;
+    function newWebSocketClientAndConnect(request, runtimeObject) {
+      return __awaiter19(this, void 0, void 0, function () {
+        var handler, client, response;
+        return __generator(this, function (_a) {
+          switch (_a.label) {
+            case 0:
+              if (!runtimeObject) {
+                throw new Error("runtimeObject cannot be nil");
+              }
+              handler = runtimeObject.webSocketHandler;
+              if (!handler) {
+                throw new Error(
+                  "WebSocketHandler is required: please set it in runtimeObject.webSocketHandler",
+                );
+              }
+              client = new DefaultWebSocketClient(handler);
+              return [
+                4,
+                client.connect(request, runtimeObject),
+              ];
+            case 1:
+              response = _a.sent();
+              return [
+                2,
+                {
+                  client,
+                  response,
+                },
+              ];
+          }
+        });
+      });
+    }
+    exports2.newWebSocketClientAndConnect = newWebSocketClientAndConnect;
+    function buildWebSocketURL(request) {
+      if (!request) {
+        throw new Error("request cannot be nil");
+      }
+      var protocol = request.protocol || "ws";
+      protocol = protocol.toLowerCase();
+      if (protocol === "http") {
+        protocol = "ws";
+      } else if (protocol === "https") {
+        protocol = "wss";
+      }
+      var domain = request.domain;
+      if (!domain) {
+        domain = request.headers["host"];
+      }
+      if (!domain) {
+        throw new Error(
+          'domain is required (set in request.headers["host"] or request.domain)',
+        );
+      }
+      var requestURL = "".concat(protocol, "://").concat(domain);
+      requestURL += request.pathname || "/";
+      if (request.query && Object.keys(request.query).length > 0) {
+        var qs = querystring.stringify(request.query);
+        if (qs) {
+          requestURL += requestURL.indexOf("?") >= 0
+            ? "&".concat(qs)
+            : "?".concat(qs);
+        }
+      }
+      return requestURL;
+    }
+    exports2.buildWebSocketURL = buildWebSocketURL;
+    function convertToWebSocketMessageType(messageType) {
+      switch (messageType) {
+        case 1:
+          return WebSocketMessageType.Text;
+        case 2:
+          return WebSocketMessageType.Binary;
+        case 9:
+          return WebSocketMessageType.Ping;
+        case 10:
+          return WebSocketMessageType.Pong;
+        case 8:
+          return WebSocketMessageType.Close;
+        default:
+          return WebSocketMessageType.Binary;
+      }
+    }
+    exports2.convertToWebSocketMessageType = convertToWebSocketMessageType;
+    function generateSessionID() {
+      return "ws-session-".concat(Date.now()).concat(
+        crypto4.randomBytes(4).toString("hex"),
+      );
+    }
+    function getNoProxy(protocol, runtime) {
+      if (runtime.noProxy) {
+        return runtime.noProxy.split(",");
+      }
+      if (process.env.NO_PROXY) {
+        return process.env.NO_PROXY.split(",");
+      }
+      if (process.env.no_proxy) {
+        return process.env.no_proxy.split(",");
+      }
+      return [];
+    }
+    function getHttpProxyURL(protocol, host, runtime) {
+      var noProxyList = getNoProxy(protocol, runtime);
+      for (
+        var _i = 0, noProxyList_2 = noProxyList;
+        _i < noProxyList_2.length;
+        _i++
+      ) {
+        var noProxyHost = noProxyList_2[_i];
+        if (noProxyHost === host) {
+          return null;
+        }
+      }
+      var proxyProtocol = protocol;
+      if (protocol === "wss") {
+        proxyProtocol = "https";
+      } else if (protocol === "ws") {
+        proxyProtocol = "http";
+      }
+      if (proxyProtocol === "https") {
+        if (runtime.httpsProxy) {
+          return runtime.httpsProxy;
+        }
+        if (process.env.HTTPS_PROXY) {
+          return process.env.HTTPS_PROXY;
+        }
+        if (process.env.https_proxy) {
+          return process.env.https_proxy;
+        }
+      } else {
+        if (runtime.httpProxy) {
+          return runtime.httpProxy;
+        }
+        if (process.env.HTTP_PROXY) {
+          return process.env.HTTP_PROXY;
+        }
+        if (process.env.http_proxy) {
+          return process.env.http_proxy;
+        }
+      }
+      return null;
+    }
   },
 });
 
@@ -30086,9 +41883,9 @@ var require_moment = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/date.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/date.js
 var require_date = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/date.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/date.js"(
     exports2,
   ) {
     "use strict";
@@ -30185,9 +41982,9 @@ var require_date = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/file.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/file.js
 var require_file2 = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/file.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/file.js"(
     exports2,
   ) {
     "use strict";
@@ -30640,9 +42437,9 @@ var require_file2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/form.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/form.js
 var require_form = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/form.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/form.js"(
     exports2,
   ) {
     "use strict";
@@ -37878,9 +49675,9 @@ var require_lodash = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/func.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/func.js
 var require_func = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/func.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/func.js"(
     exports2,
   ) {
     "use strict";
@@ -37958,9 +49755,9 @@ var require_func = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/stream.js
-var require_stream = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/stream.js"(
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/stream.js
+var require_stream2 = __commonJS({
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/stream.js"(
     exports2,
   ) {
     "use strict";
@@ -38461,9 +50258,9 @@ var require_stream = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/url.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/url.js
 var require_url = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/url.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/url.js"(
     exports2,
   ) {
     "use strict";
@@ -45829,9 +57626,9 @@ var require_xml2js = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/xml.js
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/xml.js
 var require_xml = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/xml.js"(
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/xml.js"(
     exports2,
   ) {
     "use strict";
@@ -45939,9 +57736,9 @@ var require_xml = __commonJS({
   },
 });
 
-// node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/index.js
-var require_dist = __commonJS({
-  "node_modules/.deno/@darabonba+typescript@1.0.4/node_modules/@darabonba/typescript/dist/index.js"(
+// node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/index.js
+var require_dist5 = __commonJS({
+  "node_modules/.deno/@darabonba+typescript@1.0.5/node_modules/@darabonba/typescript/dist/index.js"(
     exports2,
   ) {
     "use strict";
@@ -45995,6 +57792,7 @@ var require_dist = __commonJS({
       exports2.Date =
         void 0;
     __exportStar(require_core(), exports2);
+    __exportStar(require_websocket3(), exports2);
     var date_1 = require_date();
     Object.defineProperty(exports2, "Date", {
       enumerable: true,
@@ -46025,7 +57823,7 @@ var require_dist = __commonJS({
     });
     __exportStar(require_func(), exports2);
     __exportStar(require_retry2(), exports2);
-    var stream_1 = require_stream();
+    var stream_1 = require_stream2();
     Object.defineProperty(exports2, "Stream", {
       enumerable: true,
       get: function () {
@@ -46357,7 +58155,7 @@ var require_lib3 = __commonJS({
     "use strict";
     var fs9 = __require("node:fs");
     var os10 = __require("node:os");
-    var crypto5 = __require("node:crypto");
+    var crypto4 = __require("node:crypto");
     exports2.loadJSONSync = function (filename) {
       var content = fs9.readFileSync(filename, "utf8");
       if (content.charCodeAt(0) === 65279) {
@@ -46378,7 +58176,7 @@ var require_lib3 = __commonJS({
     };
     exports2.makeHasher = function (algorithm) {
       return function (data, encoding) {
-        var shasum = crypto5.createHash(algorithm);
+        var shasum = crypto4.createHash(algorithm);
         shasum.update(data);
         return shasum.digest(encoding);
       };
@@ -46387,7 +58185,7 @@ var require_lib3 = __commonJS({
     exports2.md5 = exports2.makeHasher("md5");
     exports2.createHmac = function (algorithm) {
       return function (data, key, encoding) {
-        return crypto5.createHmac(algorithm, key).update(data).digest(encoding);
+        return crypto4.createHmac(algorithm, key).update(data).digest(encoding);
       };
     };
     exports2.sha1 = exports2.createHmac("sha1");
@@ -46500,7 +58298,7 @@ var require_lib3 = __commonJS({
         this.iv = iv;
       }
       encrypt(data, inputEncoding, outputEncoding) {
-        const cipher = crypto5.createCipheriv(
+        const cipher = crypto4.createCipheriv(
           this.algorithm,
           this.key,
           this.iv,
@@ -46510,7 +58308,7 @@ var require_lib3 = __commonJS({
         return output;
       }
       decrypt(encrypted, inputEncoding, outputEncoding) {
-        const decipher = crypto5.createDecipheriv(
+        const decipher = crypto4.createDecipheriv(
           this.algorithm,
           this.key,
           this.iv,
@@ -46536,7 +58334,7 @@ var require_lib3 = __commonJS({
 });
 
 // node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/utils.js
-var require_utils2 = __commonJS({
+var require_utils3 = __commonJS({
   "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/utils.js"(
     exports2,
   ) {
@@ -46836,7 +58634,7 @@ var require_session_credential = __commonJS({
       value: true,
     });
     var default_credential_1 = __importDefault(require_default_credential());
-    var utils = __importStar(require_utils2());
+    var utils = __importStar(require_utils3());
     var config_1 = __importDefault(require_config());
     var credential_model_1 = __importDefault(require_credential_model());
     var SessionCredential = class extends default_credential_1.default {
@@ -47113,7 +58911,7 @@ var require_http = __commonJS({
     var httpx_1 = __importDefault(require_lib());
     var kitx = __importStar(require_lib3());
     var helper = __importStar(require_helper());
-    var utils = __importStar(require_utils2());
+    var utils = __importStar(require_utils3());
     var STATUS_CODE = /* @__PURE__ */ new Set([
       200,
       "200",
@@ -47309,7 +59107,7 @@ var require_rsa_key_pair_credential = __commonJS({
     });
     var fs_1 = __importDefault(__require("node:fs"));
     var session_credential_1 = __importDefault(require_session_credential());
-    var utils = __importStar(require_utils2());
+    var utils = __importStar(require_utils3());
     var http_1 = require_http();
     var config_1 = __importDefault(require_config());
     var SECURITY_CRED_URL =
@@ -47866,7 +59664,7 @@ var require_session = __commonJS({
         .STALE_TIME =
         void 0;
     var time_1 = require_time();
-    var utils_1 = require_utils2();
+    var utils_1 = require_utils3();
     var credentials_1 = __importDefault(require_credentials());
     exports2.STALE_TIME = 15 * 60;
     var Session = class {
@@ -48043,7 +59841,7 @@ var require_ram_role_arn = __commonJS({
     });
     var kitx = __importStar(require_lib3());
     var debug_1 = __importDefault(require_src());
-    var utils = __importStar(require_utils2());
+    var utils = __importStar(require_utils3());
     var http_1 = require_http2();
     var session_1 = require_session();
     var log2 = (0, debug_1.default)("sign");
@@ -48339,7 +60137,7 @@ var require_oidc_role_arn = __commonJS({
     var fs_1 = __require("node:fs");
     var util_1 = __require("node:util");
     var session_1 = require_session();
-    var utils = __importStar(require_utils2());
+    var utils = __importStar(require_utils3());
     var http_1 = require_http2();
     var readFileAsync = (0, util_1.promisify)(fs_1.readFile);
     var OIDCRoleArnCredentialsProviderBuilder = class {
@@ -48930,7 +60728,7 @@ var require_oauth = __commonJS({
     });
     var session_1 = require_session();
     var http_1 = require_http2();
-    var utils = __importStar(require_utils2());
+    var utils = __importStar(require_utils3());
     var OAuthCredentialsProviderBuilder = class {
       withClientId(clientId) {
         this.clientId = clientId;
@@ -49720,7 +61518,7 @@ var require_profile = __commonJS({
     var path_1 = __importDefault(__require("node:path"));
     var os_1 = __importDefault(__require("node:os"));
     var credentials_1 = __importDefault(require_credentials());
-    var utils_1 = require_utils2();
+    var utils_1 = require_utils3();
     var static_ak_1 = __importDefault(require_static_ak());
     var ecs_ram_role_1 = __importDefault(require_ecs_ram_role());
     var ram_role_arn_1 = __importDefault(require_ram_role_arn());
@@ -50199,9 +61997,9 @@ var require_client2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/utils.js
-var require_utils3 = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/utils.js"(
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/utils.js
+var require_utils4 = __commonJS({
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/utils.js"(
     exports2,
   ) {
     "use strict";
@@ -50259,7 +62057,7 @@ var require_utils3 = __commonJS({
       exports2.GlobalParameters =
         void 0;
     var $tea = __importStar(require_tea());
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var credentials_1 = __importDefault(require_client2());
     var querystring_1 = __importDefault(__require("node:querystring"));
     var crypto_1 = __importDefault(__require("node:crypto"));
@@ -50425,6 +62223,7 @@ var require_utils3 = __commonJS({
           bodyType: "bodyType",
           reqBodyType: "reqBodyType",
           style: "style",
+          websocketSubProtocol: "websocketSubProtocol",
         };
       }
       static types() {
@@ -50438,6 +62237,7 @@ var require_utils3 = __commonJS({
           bodyType: "string",
           reqBodyType: "string",
           style: "string",
+          websocketSubProtocol: "string",
         };
       }
     };
@@ -50602,26 +62402,6 @@ var require_utils3 = __commonJS({
     function isObjectOrArray(t) {
       return Array.isArray(t) || t instanceof Object && typeof t !== "function";
     }
-    function getTimeLeft(rateLimit) {
-      if (rateLimit) {
-        const pairs = rateLimit.split(",");
-        for (const pair of pairs) {
-          const kv = pair.split(":");
-          if (kv.length === 2) {
-            const key = kv[0].trim();
-            const value = kv[1].trim();
-            if (key === "TimeLeft") {
-              const timeLeftValue = parseInt(value, 10);
-              if (isNaN(timeLeftValue)) {
-                return null;
-              }
-              return timeLeftValue;
-            }
-          }
-        }
-      }
-      return null;
-    }
     function toMap(input) {
       if (!isObjectOrArray(input)) {
         return null;
@@ -50721,15 +62501,12 @@ var require_utils3 = __commonJS({
        * @return time left
        */
       static getThrottlingTimeLeft(headers) {
-        const rateLimitForUserApi = headers["x-ratelimit-user-api"];
-        const rateLimitForUser = headers["x-ratelimit-user"];
-        const timeLeftForUserApi = getTimeLeft(rateLimitForUserApi);
-        const timeLeftForUser = getTimeLeft(rateLimitForUser);
-        if (timeLeftForUserApi > timeLeftForUser) {
-          return timeLeftForUserApi;
-        } else {
-          return timeLeftForUser;
+        const retryAfter = headers["x-acs-retry-after"];
+        const timeLeftValue = parseInt(retryAfter, 10);
+        if (Number.isNaN(timeLeftValue)) {
+          return void 0;
         }
+        return timeLeftValue;
       }
       /**
        * Hash the raw data with signatureAlgorithm
@@ -50751,6 +62528,12 @@ var require_utils3 = __commonJS({
           return obj.digest();
         }
       }
+      static applyRetryHeaders(headers, retriesAttempted, backoffDelay) {
+        if (retriesAttempted > 0) {
+          headers["x-acs-retry-attempts"] = String(retriesAttempted);
+          headers["x-acs-retry-delay"] = String(backoffDelay);
+        }
+      }
       /**
        * Generate a nonce string
        * @return the nonce string
@@ -50768,9 +62551,9 @@ var require_utils3 = __commonJS({
         }
         last = val;
         var uid = `${machine}${pid}${val}${counter}`;
-        var shasum = crypto_1.default.createHash("md5");
-        shasum.update(uid);
-        return shasum.digest("hex");
+        const hash = crypto_1.default.createHash("sha256");
+        hash.update(uid);
+        return hash.digest("hex");
       }
       /**
        * Get the string to be signed according to request
@@ -50974,8 +62757,8 @@ ${date}
         accessKey,
         accessKeySecret,
       ) {
-        const canonicalURI = (request.pathname || "").replace("+", "%20")
-          .replace("*", "%2A").replace("%7E", "~");
+        const canonicalURI = (request.pathname || "").replace(/\+/g, "%20")
+          .replace(/\*/g, "%2A").replace(/%7E/g, "~");
         const method = request.method;
         const canonicalQueryString = getAuthorizationQueryString(request.query);
         const tuple = getAuthorizationHeaders(request.headers);
@@ -51046,11 +62829,12 @@ ${date}
           }
           return result;
         }
-        if (input instanceof $tea.Model) {
+        if (input instanceof $tea.Model || input instanceof $dara.Model) {
           for (const [key, value] of Object.entries(input)) {
             if (
               value !== null && value !== void 0 && typeof value === "object" &&
-              !Array.isArray(value) && !(value instanceof $tea.Model)
+              !Array.isArray(value) && !(value instanceof $tea.Model) &&
+              !(value instanceof $dara.Model)
             ) {
               const flatMap2 = {};
               for (const [nestedKey, nestedValue] of Object.entries(value)) {
@@ -51317,9 +63101,9 @@ var require_client3 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/AlibabaCloudError.js
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/AlibabaCloudError.js
 var require_AlibabaCloudError = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/AlibabaCloudError.js"(
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/AlibabaCloudError.js"(
     exports2,
   ) {
     "use strict";
@@ -51366,7 +63150,7 @@ var require_AlibabaCloudError = __commonJS({
       value: true,
     });
     exports2.AlibabaCloudError = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var AlibabaCloudError = class _AlibabaCloudError
       extends $dara.ResponseError {
       constructor(map) {
@@ -51375,6 +63159,7 @@ var require_AlibabaCloudError = __commonJS({
         Object.setPrototypeOf(this, _AlibabaCloudError.prototype);
         this.statusCode = map.statusCode;
         this.code = map.code;
+        this.detail = map.detail;
         this.description = map.description;
         this.requestId = map.requestId;
       }
@@ -51383,9 +63168,9 @@ var require_AlibabaCloudError = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/ClientError.js
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/ClientError.js
 var require_ClientError = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/ClientError.js"(
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/ClientError.js"(
     exports2,
   ) {
     "use strict";
@@ -51407,9 +63192,9 @@ var require_ClientError = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/ServerError.js
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/ServerError.js
 var require_ServerError = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/ServerError.js"(
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/ServerError.js"(
     exports2,
   ) {
     "use strict";
@@ -51430,9 +63215,9 @@ var require_ServerError = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/ThrottlingError.js
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/ThrottlingError.js
 var require_ThrottlingError = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/ThrottlingError.js"(
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/ThrottlingError.js"(
     exports2,
   ) {
     "use strict";
@@ -51454,9 +63239,9 @@ var require_ThrottlingError = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/error.js
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/error.js
 var require_error2 = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/exceptions/error.js"(
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/exceptions/error.js"(
     exports2,
   ) {
     "use strict";
@@ -51494,9 +63279,9 @@ var require_error2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/models/Sseresponse.js
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/models/Sseresponse.js
 var require_Sseresponse = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/models/Sseresponse.js"(
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/models/Sseresponse.js"(
     exports2,
   ) {
     "use strict";
@@ -51543,7 +63328,7 @@ var require_Sseresponse = __commonJS({
       value: true,
     });
     exports2.SSEResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SSEResponse = class extends $dara.Model {
       constructor(map) {
         super(map);
@@ -51580,9 +63365,9 @@ var require_Sseresponse = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/models/model.js
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/models/model.js
 var require_model = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/models/model.js"(
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/models/model.js"(
     exports2,
   ) {
     "use strict";
@@ -51599,9 +63384,723 @@ var require_model = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/client.js
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/awap.js
+var require_awap = __commonJS({
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/awap.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          Object.defineProperty(o, k2, {
+            enumerable: true,
+            get: function () {
+              return m[k];
+            },
+          });
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.ErrUseRawMessage =
+      exports2.parseAwapMessage =
+      exports2.buildAwapMessageBinary =
+      exports2.buildAwapMessageText =
+      exports2.newAwapMessage =
+      exports2.withHeader =
+      exports2.withID =
+      exports2.withType =
+      exports2.AbstractAwapWebSocketHandler =
+        void 0;
+    var $dara = __importStar(require_dist5());
+    var AbstractAwapWebSocketHandler = class
+      extends $dara.AbstractWebSocketHandler {
+      handleAwapMessage(_session, _message) {
+        throw exports2.ErrUseRawMessage;
+      }
+    };
+    exports2.AbstractAwapWebSocketHandler = AbstractAwapWebSocketHandler;
+    function withType(msgType) {
+      return (message) => {
+        message.type = msgType;
+      };
+    }
+    exports2.withType = withType;
+    function withID(id) {
+      return (message) => {
+        message.id = id;
+      };
+    }
+    exports2.withID = withID;
+    function withHeader(key, value) {
+      return (message) => {
+        message.headers = message.headers || {};
+        message.headers[key] = value;
+      };
+    }
+    exports2.withHeader = withHeader;
+    function newAwapMessage(payload, ...opts) {
+      const message = {
+        type: "UpstreamTextEvent",
+        id: generateMessageId(),
+        payload,
+        headers: {},
+      };
+      opts.forEach((opt) => opt(message));
+      return message;
+    }
+    exports2.newAwapMessage = newAwapMessage;
+    function buildAwapMessageText(message) {
+      if (!message) {
+        throw new Error("message cannot be nil");
+      }
+      const now = Date.now();
+      const headerLines = [
+        `type:${message.type}`,
+        `timestamp:${now}`,
+      ];
+      if (message.id) {
+        headerLines.push(`id:${message.id}`);
+      }
+      if (message.type === "AckRequiredTextEvent") {
+        headerLines.push("ack:required");
+      }
+      if (message.headers) {
+        Object.keys(message.headers).forEach((key) => {
+          headerLines.push(`${key}:${message.headers[key]}`);
+        });
+      }
+      let payloadJSON = "{}";
+      if (message.payload !== void 0 && message.payload !== null) {
+        payloadJSON = JSON.stringify(message.payload);
+      }
+      return `${headerLines.join("\n")}
+
+${payloadJSON}`;
+    }
+    exports2.buildAwapMessageText = buildAwapMessageText;
+    function buildAwapMessageBinary(message) {
+      if (!message) {
+        throw new Error("message cannot be nil");
+      }
+      const now = Date.now();
+      const headerLines = [
+        `type:${message.type}`,
+        `timestamp:${now}`,
+      ];
+      if (message.id) {
+        headerLines.push(`id:${message.id}`);
+      }
+      if (message.headers) {
+        Object.keys(message.headers).forEach((key) => {
+          headerLines.push(`${key}:${message.headers[key]}`);
+        });
+      }
+      const headerBytes = Buffer.from(
+        `${headerLines.join("\n")}
+
+`,
+        "utf8",
+      );
+      let bodyBytes;
+      if (message.payload !== void 0 && message.payload !== null) {
+        if (!Buffer.isBuffer(message.payload)) {
+          throw new Error(
+            `payload for binary AWAP message must be Buffer, got ${typeof message
+              .payload}`,
+          );
+        }
+        bodyBytes = message.payload;
+      } else {
+        bodyBytes = Buffer.alloc(0);
+      }
+      return Buffer.concat([
+        headerBytes,
+        bodyBytes,
+      ]);
+    }
+    exports2.buildAwapMessageBinary = buildAwapMessageBinary;
+    function parseAwapMessage(message) {
+      const data = message.payload;
+      let headerEndIndex = -1;
+      for (let i = 0; i < data.length - 1; i++) {
+        if (data[i] === 10 && data[i + 1] === 10) {
+          headerEndIndex = i;
+          break;
+        }
+      }
+      if (headerEndIndex === -1) {
+        throw new Error(
+          "failed to parse AWAP message: no \\n\\n separator found",
+        );
+      }
+      const awapMsg = {
+        type: "",
+        id: "",
+        headers: {},
+      };
+      const headerStr = data.slice(0, headerEndIndex).toString("utf8");
+      const payloadBytes = data.slice(headerEndIndex + 2);
+      headerStr.split("\n").forEach((line) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          return;
+        }
+        const colonIndex = trimmed.indexOf(":");
+        if (colonIndex > 0) {
+          const key = trimmed.slice(0, colonIndex).trim();
+          const value = trimmed.slice(colonIndex + 1).trim();
+          switch (key) {
+            case "type":
+              awapMsg.type = value;
+              break;
+            case "id":
+              awapMsg.id = value;
+              break;
+            default:
+              awapMsg.headers[key] = value;
+              break;
+          }
+        }
+      });
+      if (payloadBytes.length > 0) {
+        try {
+          awapMsg.payload = JSON.parse(payloadBytes.toString("utf8"));
+        } catch (_err) {
+          awapMsg.payload = payloadBytes;
+        }
+      }
+      awapMsg.format = message.type === $dara.WebSocketMessageType.Binary
+        ? "binary"
+        : "text";
+      return awapMsg;
+    }
+    exports2.parseAwapMessage = parseAwapMessage;
+    function generateMessageId() {
+      const crypto4 = __require("node:crypto");
+      const hexStr = crypto4.randomBytes(16).toString("hex");
+      if (hexStr.length >= 32) {
+        return hexStr.slice(0, 32);
+      }
+      const timestamp = `${Date.now()}`;
+      const combined = timestamp + hexStr;
+      if (combined.length >= 32) {
+        return combined.slice(0, 32);
+      }
+      return combined.padEnd(32, "0");
+    }
+    exports2.ErrUseRawMessage = new Error("use HandleRawMessage");
+  },
+});
+
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/general.js
+var require_general = __commonJS({
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/general.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          Object.defineProperty(o, k2, {
+            enumerable: true,
+            get: function () {
+              return m[k];
+            },
+          });
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.ErrUseRawMessage =
+      exports2.generalMessageToJSON =
+      exports2.parseGeneralMessage =
+      exports2.newGeneralMessage =
+      exports2.AbstractGeneralWebSocketHandler =
+        void 0;
+    var $dara = __importStar(require_dist5());
+    var awap_1 = require_awap();
+    Object.defineProperty(exports2, "ErrUseRawMessage", {
+      enumerable: true,
+      get: function () {
+        return awap_1.ErrUseRawMessage;
+      },
+    });
+    var AbstractGeneralWebSocketHandler = class
+      extends $dara.AbstractWebSocketHandler {
+      handleGeneralMessage(_session, _message) {
+        throw awap_1.ErrUseRawMessage;
+      }
+    };
+    exports2.AbstractGeneralWebSocketHandler = AbstractGeneralWebSocketHandler;
+    function newGeneralMessage(body2) {
+      return {
+        body: body2,
+      };
+    }
+    exports2.newGeneralMessage = newGeneralMessage;
+    function parseGeneralMessage(message) {
+      if (message.type === $dara.WebSocketMessageType.Binary) {
+        return {
+          body: message.payload,
+          format: "binary",
+        };
+      }
+      try {
+        return {
+          body: JSON.parse(message.payload.toString("utf8")),
+          format: "text",
+        };
+      } catch (_err) {
+        return {
+          body: message.payload,
+          format: "text",
+        };
+      }
+    }
+    exports2.parseGeneralMessage = parseGeneralMessage;
+    function generalMessageToJSON(message) {
+      return Buffer.from(JSON.stringify(message));
+    }
+    exports2.generalMessageToJSON = generalMessageToJSON;
+  },
+});
+
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/client.js
 var require_client4 = __commonJS({
-  "node_modules/.deno/@alicloud+openapi-core@1.0.7/node_modules/@alicloud/openapi-core/dist/client.js"(
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/client.js"(
+    exports2,
+  ) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.newWebSocketClient =
+      exports2.createWebSocketClient =
+      exports2
+        .WebSocketClient =
+        void 0;
+    var awap_1 = require_awap();
+    var general_1 = require_general();
+    var WebSocketClient = class _WebSocketClient {
+      constructor(wsClient, response) {
+        this.pendingRequests = {};
+        this.wsClient = wsClient;
+        this.response = response;
+      }
+      static createWebSocketClient(client) {
+        if (!client) {
+          return null;
+        }
+        if (client instanceof _WebSocketClient) {
+          return client;
+        }
+        return null;
+      }
+      getResponse() {
+        return this.response;
+      }
+      async close() {
+        if (this.wsClient) {
+          await this.wsClient.close();
+        }
+      }
+      async reconnect() {
+        return this.wsClient.reconnect();
+      }
+      async reconnectGracefully() {
+        return this.wsClient.reconnectGracefully();
+      }
+      async disconnect() {
+        await this.wsClient.disconnect();
+      }
+      isConnected() {
+        return this.wsClient.isConnected();
+      }
+      validate() {
+        if (!this.wsClient) {
+          throw new Error("failed to build websocket client");
+        }
+      }
+      getSessionInfo() {
+        return this.wsClient.getSessionInfo();
+      }
+      async sendAwapTextMessage(message) {
+        const messageText = awap_1.buildAwapMessageText(message);
+        await this.wsClient.sendText(messageText);
+      }
+      async sendRawAwapTextMessage(msgType, payload) {
+        const message = awap_1.newAwapMessage(
+          payload,
+          awap_1.withType(msgType),
+        );
+        await this.sendAwapTextMessage(message);
+      }
+      async sendRawAwapTextMessageWithId(msgType, id, payload) {
+        const message = awap_1.newAwapMessage(
+          payload,
+          awap_1.withType(msgType),
+          awap_1.withID(id),
+        );
+        await this.sendAwapTextMessage(message);
+      }
+      async sendAwapBinaryMessage(message) {
+        const messageBinary = awap_1.buildAwapMessageBinary(message);
+        await this.wsClient.sendBinary(messageBinary);
+      }
+      async sendRawAwapBinaryMessage(msgType, payload) {
+        const message = awap_1.newAwapMessage(
+          payload,
+          awap_1.withType(msgType),
+        );
+        await this.sendAwapBinaryMessage(message);
+      }
+      async sendRawAwapBinaryMessageWithId(msgType, id, payload) {
+        const message = awap_1.newAwapMessage(
+          payload,
+          awap_1.withType(msgType),
+          awap_1.withID(id),
+        );
+        await this.sendAwapBinaryMessage(message);
+      }
+      async sendAwapRequestWithAck(message, timeoutMs) {
+        const messageText = awap_1.buildAwapMessageText(message);
+        return this.sendRequest(message.id, messageText, timeoutMs);
+      }
+      async sendRequest(ackID, messageText, timeoutMs) {
+        if (!ackID) {
+          throw new Error(
+            "message ID cannot be empty for request-response pattern",
+          );
+        }
+        if (!messageText) {
+          throw new Error(
+            "message text cannot be empty for request-response pattern",
+          );
+        }
+        return new Promise((resolve4, reject) => {
+          this.pendingRequests[ackID] = this.pendingRequests[ackID] || [];
+          this.pendingRequests[ackID].push(resolve4);
+          this.wsClient.sendText(messageText).catch((err) => {
+            delete this.pendingRequests[ackID];
+            reject(err);
+          });
+          const timeout = timeoutMs > 0 ? timeoutMs : 3e4;
+          setTimeout(() => {
+            if (this.pendingRequests[ackID]) {
+              delete this.pendingRequests[ackID];
+              reject(
+                new Error(
+                  `request timeout after ${timeout}ms waiting for response to message ID: ${ackID}`,
+                ),
+              );
+            }
+          }, timeout);
+        });
+      }
+      completeRequest(ackID, response) {
+        const waiters = this.pendingRequests[ackID];
+        if (!waiters || waiters.length === 0) {
+          return false;
+        }
+        delete this.pendingRequests[ackID];
+        waiters.forEach((resolve4) => resolve4(response));
+        return true;
+      }
+      async sendGeneralTextMessage(text) {
+        const message = general_1.newGeneralMessage(text);
+        const jsonData = general_1.generalMessageToJSON(message);
+        await this.wsClient.sendText(jsonData.toString("utf8"));
+      }
+      async sendGeneralBinaryMessage(data) {
+        await this.wsClient.sendBinary(data);
+      }
+    };
+    exports2.WebSocketClient = WebSocketClient;
+    function createWebSocketClient(client) {
+      return WebSocketClient.createWebSocketClient(client);
+    }
+    exports2.createWebSocketClient = createWebSocketClient;
+    function newWebSocketClient(wsClient, response) {
+      return new WebSocketClient(wsClient, response);
+    }
+    exports2.newWebSocketClient = newWebSocketClient;
+  },
+});
+
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/handler.js
+var require_handler = __commonJS({
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/handler.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          Object.defineProperty(o, k2, {
+            enumerable: true,
+            get: function () {
+              return m[k];
+            },
+          });
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault ||
+      (Object.create
+        ? function (o, v) {
+          Object.defineProperty(o, "default", {
+            enumerable: true,
+            value: v,
+          });
+        }
+        : function (o, v) {
+          o["default"] = v;
+        });
+    var __importStar = exports2 && exports2.__importStar || function (mod) {
+      if (mod && mod.__esModule) return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod) {
+          if (k !== "default" && Object.hasOwnProperty.call(mod, k)) {
+            __createBinding(result, mod, k);
+          }
+        }
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    exports2.StreamHandler =
+      exports2.SubProtocolGeneral =
+      exports2
+        .SubProtocolAWAP =
+        void 0;
+    var $dara = __importStar(require_dist5());
+    var awap_1 = require_awap();
+    var general_1 = require_general();
+    exports2.SubProtocolAWAP = "awap";
+    exports2.SubProtocolGeneral = "general";
+    var StreamHandler = class extends $dara.AbstractWebSocketHandler {
+      constructor(userHandler, subProtocol) {
+        super();
+        this.client = null;
+        this.userHandler = userHandler;
+        this.subProtocol = subProtocol;
+      }
+      async afterConnectionEstablished(session) {
+        await this.userHandler.afterConnectionEstablished(session);
+      }
+      async handleError(session, err) {
+        await this.userHandler.handleError(session, err);
+      }
+      async afterConnectionClosed(session, code, reason) {
+        await this.userHandler.afterConnectionClosed(session, code, reason);
+      }
+      async handleRawMessage(session, message) {
+        const subProtocol = (this.subProtocol || "").toLowerCase();
+        switch (subProtocol) {
+          case exports2.SubProtocolAWAP:
+            await this.processAwapMessage(session, message);
+            break;
+          case exports2.SubProtocolGeneral:
+            await this.processGeneralMessage(session, message);
+            break;
+          default:
+            throw new Error(
+              `unsupported websocketSubProtocol: '${this.subProtocol}', must be 'awap' or 'general'`,
+            );
+        }
+      }
+      async processAwapMessage(session, message) {
+        const awapMsg = awap_1.parseAwapMessage(message);
+        if (awapMsg.type === "RECONNECT") {
+          if (this.client) {
+            try {
+              await this.client.reconnectGracefully();
+            } catch (err) {
+              await this.userHandler.handleError(session, err);
+            }
+          }
+          return;
+        }
+        const ackID = awapMsg.headers ? awapMsg.headers["ack-id"] : "";
+        if (
+          ackID && this.client && this.client.completeRequest(ackID, awapMsg)
+        ) {
+          return;
+        }
+        const awapHandler = this.userHandler;
+        if (typeof awapHandler.handleAwapMessage !== "function") {
+          await this.userHandler.handleError(
+            session,
+            new Error(
+              "WebSocketHandler must implement handleAwapMessage for awap sub-protocol",
+            ),
+          );
+          return;
+        }
+        try {
+          await awapHandler.handleAwapMessage(session, awapMsg);
+        } catch (err) {
+          if (err === awap_1.ErrUseRawMessage) {
+            await awapHandler.handleRawMessage(session, message);
+          } else {
+            await awapHandler.handleError(session, err);
+          }
+        }
+      }
+      async processGeneralMessage(session, message) {
+        const generalHandler = this.userHandler;
+        if (typeof generalHandler.handleGeneralMessage !== "function") {
+          await this.userHandler.handleError(
+            session,
+            new Error(
+              "WebSocketHandler must implement handleGeneralMessage for general sub-protocol",
+            ),
+          );
+          return;
+        }
+        const generalMsg = general_1.parseGeneralMessage(message);
+        try {
+          await generalHandler.handleGeneralMessage(session, generalMsg);
+        } catch (err) {
+          if (err === general_1.ErrUseRawMessage) {
+            await generalHandler.handleRawMessage(session, message);
+          } else {
+            await generalHandler.handleError(session, err);
+          }
+        }
+      }
+    };
+    exports2.StreamHandler = StreamHandler;
+  },
+});
+
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/index.js
+var require_websocketUtils = __commonJS({
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/websocketUtils/index.js"(
+    exports2,
+  ) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding ||
+      (Object.create
+        ? function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          Object.defineProperty(o, k2, {
+            enumerable: true,
+            get: function () {
+              return m[k];
+            },
+          });
+        }
+        : function (o, m, k, k2) {
+          if (k2 === void 0) k2 = k;
+          o[k2] = m[k];
+        });
+    var __exportStar = exports2 && exports2.__exportStar ||
+      function (m, exports3) {
+        for (var p in m) {
+          if (p !== "default" && !exports3.hasOwnProperty(p)) {
+            __createBinding(exports3, m, p);
+          }
+        }
+      };
+    Object.defineProperty(exports2, "__esModule", {
+      value: true,
+    });
+    __exportStar(require_awap(), exports2);
+    __exportStar(require_general(), exports2);
+    __exportStar(require_client4(), exports2);
+    var handler_1 = require_handler();
+    Object.defineProperty(exports2, "StreamHandler", {
+      enumerable: true,
+      get: function () {
+        return handler_1.StreamHandler;
+      },
+    });
+    Object.defineProperty(exports2, "SubProtocolAWAP", {
+      enumerable: true,
+      get: function () {
+        return handler_1.SubProtocolAWAP;
+      },
+    });
+    Object.defineProperty(exports2, "SubProtocolGeneral", {
+      enumerable: true,
+      get: function () {
+        return handler_1.SubProtocolGeneral;
+      },
+    });
+  },
+});
+
+// node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/client.js
+var require_client5 = __commonJS({
+  "node_modules/.deno/@alicloud+openapi-core@1.0.8/node_modules/@alicloud/openapi-core/dist/client.js"(
     exports2,
   ) {
     "use strict";
@@ -51748,13 +64247,13 @@ var require_client4 = __commonJS({
     Object.defineProperty(exports2, "__esModule", {
       value: true,
     });
-    var $dara = __importStar(require_dist());
-    var utils_1 = __importDefault(require_utils3());
+    var $dara = __importStar(require_dist5());
+    var utils_1 = __importDefault(require_utils4());
     var credentials_1 = __importStar(require_client2());
     var $Credential = credentials_1;
     var $SPI = __importStar(require_client3());
-    exports2.$OpenApiUtil = __importStar(require_utils3());
-    var utils_2 = require_utils3();
+    exports2.$OpenApiUtil = __importStar(require_utils4());
+    var utils_2 = require_utils4();
     Object.defineProperty(exports2, "OpenApiUtil", {
       enumerable: true,
       get: function () {
@@ -51765,6 +64264,10 @@ var require_client4 = __commonJS({
     __exportStar(require_error2(), exports2);
     var $_model = __importStar(require_model());
     __exportStar(require_model(), exports2);
+    var websocketUtils = __importStar(require_websocketUtils());
+    exports2.websocketUtils = __importStar(require_websocketUtils());
+    exports2.WebSocketUtils = __importStar(require_websocketUtils());
+    exports2.$WebSocketUtils = __importStar(require_websocketUtils());
     var Client = class {
       /**
        * @remarks
@@ -51809,6 +64312,11 @@ var require_client4 = __commonJS({
         } else if (!$dara.isNull(config.credential)) {
           this._credential = config.credential;
         }
+        if ($dara.isNull(config.userAgent)) {
+          this._userAgent = process.env["ALIBABA_CLOUD_USER_AGENT"];
+        } else {
+          this._userAgent = config.userAgent;
+        }
         this._endpoint = config.endpoint;
         this._endpointType = config.endpointType;
         this._network = config.network;
@@ -51816,7 +64324,6 @@ var require_client4 = __commonJS({
         this._protocol = config.protocol;
         this._method = config.method;
         this._regionId = config.regionId;
-        this._userAgent = config.userAgent;
         this._readTimeout = config.readTimeout;
         this._connectTimeout = config.connectTimeout;
         this._httpProxy = config.httpProxy;
@@ -51881,8 +64388,9 @@ var require_client4 = __commonJS({
           retriesAttempted: _retriesAttempted,
         });
         while ($dara.shouldRetry(_runtime["retryOptions"], _context)) {
+          let _backoffTime = 0;
           if (_retriesAttempted > 0) {
-            let _backoffTime = $dara.getBackoffDelay(
+            _backoffTime = $dara.getBackoffDelay(
               _runtime["retryOptions"],
               _context,
             );
@@ -51890,6 +64398,7 @@ var require_client4 = __commonJS({
               await $dara.sleep(_backoffTime);
             }
           }
+          const _retryAttempts = _retriesAttempted;
           _retriesAttempted = _retriesAttempted + 1;
           try {
             let request_ = new $dara.Request();
@@ -51964,6 +64473,11 @@ var require_client4 = __commonJS({
                 headers,
               );
             }
+            utils_1.default.applyRetryHeaders(
+              request_.headers,
+              _retryAttempts,
+              _backoffTime,
+            );
             if (!$dara.isNull(request.body)) {
               let m = request.body;
               let tmp = utils_1.default.query(m);
@@ -52027,16 +64541,14 @@ var require_client4 = __commonJS({
               let err = _res;
               let requestId2 = err["RequestId"] || err["requestId"];
               let code = err["Code"] || err["code"];
-              if (
-                `${code}` == "Throttling" || `${code}` == "Throttling.User" ||
-                `${code}` == "Throttling.Api"
-              ) {
+              if (`${code}`.includes("Throttling")) {
                 throw new $_error.ThrottlingError({
                   statusCode: response_.statusCode,
                   code: `${code}`,
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   retryAfter: utils_1.default.getThrottlingTimeLeft(
                     response_.headers,
@@ -52053,6 +64565,7 @@ var require_client4 = __commonJS({
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   data: err,
                   accessDeniedDetail: this.getAccessDeniedDetail(err),
@@ -52065,6 +64578,7 @@ var require_client4 = __commonJS({
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   data: err,
                   requestId: `${requestId2}`,
@@ -52173,8 +64687,9 @@ var require_client4 = __commonJS({
           retriesAttempted: _retriesAttempted,
         });
         while ($dara.shouldRetry(_runtime["retryOptions"], _context)) {
+          let _backoffTime = 0;
           if (_retriesAttempted > 0) {
-            let _backoffTime = $dara.getBackoffDelay(
+            _backoffTime = $dara.getBackoffDelay(
               _runtime["retryOptions"],
               _context,
             );
@@ -52182,6 +64697,7 @@ var require_client4 = __commonJS({
               await $dara.sleep(_backoffTime);
             }
           }
+          const _retryAttempts = _retriesAttempted;
           _retriesAttempted = _retriesAttempted + 1;
           try {
             let request_ = new $dara.Request();
@@ -52226,6 +64742,11 @@ var require_client4 = __commonJS({
                 extendsHeaders,
               ),
               request.headers,
+            );
+            utils_1.default.applyRetryHeaders(
+              request_.headers,
+              _retryAttempts,
+              _backoffTime,
             );
             if (!$dara.isNull(request.body)) {
               request_.body = new $dara.BytesReadable(
@@ -52295,16 +64816,14 @@ var require_client4 = __commonJS({
               let requestId2 = err["RequestId"] || err["requestId"];
               requestId2 = requestId2 || err["requestid"];
               let code = err["Code"] || err["code"];
-              if (
-                `${code}` == "Throttling" || `${code}` == "Throttling.User" ||
-                `${code}` == "Throttling.Api"
-              ) {
+              if (`${code}`.includes("Throttling")) {
                 throw new $_error.ThrottlingError({
                   statusCode: response_.statusCode,
                   code: `${code}`,
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   retryAfter: utils_1.default.getThrottlingTimeLeft(
                     response_.headers,
@@ -52321,6 +64840,7 @@ var require_client4 = __commonJS({
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   data: err,
                   accessDeniedDetail: this.getAccessDeniedDetail(err),
@@ -52333,6 +64853,7 @@ var require_client4 = __commonJS({
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   data: err,
                   requestId: `${requestId2}`,
@@ -52441,8 +64962,9 @@ var require_client4 = __commonJS({
           retriesAttempted: _retriesAttempted,
         });
         while ($dara.shouldRetry(_runtime["retryOptions"], _context)) {
+          let _backoffTime = 0;
           if (_retriesAttempted > 0) {
-            let _backoffTime = $dara.getBackoffDelay(
+            _backoffTime = $dara.getBackoffDelay(
               _runtime["retryOptions"],
               _context,
             );
@@ -52450,6 +64972,7 @@ var require_client4 = __commonJS({
               await $dara.sleep(_backoffTime);
             }
           }
+          const _retryAttempts = _retriesAttempted;
           _retriesAttempted = _retriesAttempted + 1;
           try {
             let request_ = new $dara.Request();
@@ -52494,6 +65017,11 @@ var require_client4 = __commonJS({
                 extendsHeaders,
               ),
               request.headers,
+            );
+            utils_1.default.applyRetryHeaders(
+              request_.headers,
+              _retryAttempts,
+              _backoffTime,
             );
             if (!$dara.isNull(request.body)) {
               let m = request.body;
@@ -52561,16 +65089,14 @@ var require_client4 = __commonJS({
               let err = _res;
               let requestId2 = err["RequestId"] || err["requestId"];
               let code = err["Code"] || err["code"];
-              if (
-                `${code}` == "Throttling" || `${code}` == "Throttling.User" ||
-                `${code}` == "Throttling.Api"
-              ) {
+              if (`${code}`.includes("Throttling")) {
                 throw new $_error.ThrottlingError({
                   statusCode: response_.statusCode,
                   code: `${code}`,
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   retryAfter: utils_1.default.getThrottlingTimeLeft(
                     response_.headers,
@@ -52587,6 +65113,7 @@ var require_client4 = __commonJS({
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   data: err,
                   accessDeniedDetail: this.getAccessDeniedDetail(err),
@@ -52599,6 +65126,7 @@ var require_client4 = __commonJS({
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   data: err,
                   requestId: `${requestId2}`,
@@ -52674,6 +65202,35 @@ var require_client4 = __commonJS({
        * @returns the response
        */
       async doRequest(params, request, runtime) {
+        const protocol = `${this._protocol || params.protocol || ""}`
+          .toLowerCase();
+        let isWebSocket = protocol === "ws" || protocol === "wss";
+        let wsHandler;
+        let websocketSubProtocol = "";
+        if (isWebSocket) {
+          websocketSubProtocol = params.websocketSubProtocol || "";
+          if (!websocketSubProtocol) {
+            throw new Error(
+              "websocketSubProtocol is required: please set it in params.websocketSubProtocol",
+            );
+          }
+          if (
+            websocketSubProtocol !== websocketUtils.SubProtocolAWAP &&
+            websocketSubProtocol !== websocketUtils.SubProtocolGeneral
+          ) {
+            throw new Error(
+              `websocketSubProtocol must be 'awap' or 'general', got: ${websocketSubProtocol}`,
+            );
+          }
+          request.headers = request.headers || {};
+          request.headers["sec-websocket-protocol"] = websocketSubProtocol;
+          wsHandler = $dara.getWebSocketHandler(runtime);
+          if (!wsHandler) {
+            throw new Error(
+              "WebSocketHandler is required: please set it in runtime.WebSocketHandler",
+            );
+          }
+        }
         let _runtime = {
           key: runtime.key || this._key,
           cert: runtime.cert || this._cert,
@@ -52690,14 +65247,35 @@ var require_client4 = __commonJS({
           ignoreSSL: runtime.ignoreSSL,
           tlsMinVersion: this._tlsMinVersion,
         };
+        if (isWebSocket) {
+          _runtime = Object.assign(Object.assign({}, _runtime), {
+            webSocketPingInterval: $dara.getWebSocketPingInterval(runtime),
+            webSocketPongTimeout: $dara.getWebSocketPongTimeout(runtime),
+            webSocketEnableReconnect: $dara.getWebSocketEnableReconnect(
+              runtime,
+            ),
+            webSocketReconnectInterval: $dara.getWebSocketReconnectInterval(
+              runtime,
+            ),
+            webSocketMaxReconnectTimes: $dara.getWebSocketMaxReconnectTimes(
+              runtime,
+            ),
+            webSocketWriteTimeout: $dara.getWebSocketWriteTimeout(runtime),
+            webSocketHandshakeTimeout: $dara.getWebSocketHandshakeTimeout(
+              runtime,
+            ),
+            webSocketHandler: wsHandler,
+          });
+        }
         let _retriesAttempted = 0;
         let _lastRequest = null, _lastResponse = null;
         let _context = new $dara.RetryPolicyContext({
           retriesAttempted: _retriesAttempted,
         });
         while ($dara.shouldRetry(_runtime["retryOptions"], _context)) {
+          let _backoffTime = 0;
           if (_retriesAttempted > 0) {
-            let _backoffTime = $dara.getBackoffDelay(
+            _backoffTime = $dara.getBackoffDelay(
               _runtime["retryOptions"],
               _context,
             );
@@ -52705,6 +65283,7 @@ var require_client4 = __commonJS({
               await $dara.sleep(_backoffTime);
             }
           }
+          const _retryAttempts = _retriesAttempted;
           _retriesAttempted = _retriesAttempted + 1;
           try {
             let request_ = new $dara.Request();
@@ -52761,6 +65340,11 @@ var require_client4 = __commonJS({
                 );
               }
             }
+            utils_1.default.applyRetryHeaders(
+              request_.headers,
+              _retryAttempts,
+              _backoffTime,
+            );
             let signatureAlgorithm = this._signatureAlgorithm ||
               "ACS3-HMAC-SHA256";
             let hashedRequestPayload = utils_1.default.hash(
@@ -52852,8 +65436,34 @@ var require_client4 = __commonJS({
                     accessKeySecret,
                   );
               }
+            } else {
+              if (params.style == "RPC") {
+                request_.query["Format"] = "json";
+              }
             }
             _lastRequest = request_;
+            if (isWebSocket) {
+              const streamHandler = new websocketUtils.StreamHandler(
+                wsHandler,
+                websocketSubProtocol,
+              );
+              const wsRuntime = $dara.cast(
+                Object.assign(Object.assign({}, _runtime), {
+                  webSocketHandler: streamHandler,
+                }),
+                new $dara.RuntimeOptions({}),
+              );
+              const { client: wsClient, response: response_2 } = await $dara
+                .newWebSocketClientAndConnect(request_, wsRuntime);
+              const wsClientObj = websocketUtils.newWebSocketClient(
+                wsClient,
+                response_2,
+              );
+              streamHandler.client = wsClientObj;
+              return {
+                webSocketClient: wsClientObj,
+              };
+            }
             let response_ = await $dara.doAction(request_, _runtime);
             _lastResponse = response_;
             if (response_.statusCode >= 400 && response_.statusCode < 600) {
@@ -52871,16 +65481,14 @@ var require_client4 = __commonJS({
               }
               let requestId2 = err["RequestId"] || err["requestId"];
               let code = err["Code"] || err["code"];
-              if (
-                `${code}` == "Throttling" || `${code}` == "Throttling.User" ||
-                `${code}` == "Throttling.Api"
-              ) {
+              if (`${code}`.includes("Throttling")) {
                 throw new $_error.ThrottlingError({
                   statusCode: response_.statusCode,
                   code: `${code}`,
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   retryAfter: utils_1.default.getThrottlingTimeLeft(
                     response_.headers,
@@ -52897,6 +65505,7 @@ var require_client4 = __commonJS({
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   data: err,
                   accessDeniedDetail: this.getAccessDeniedDetail(err),
@@ -52909,6 +65518,7 @@ var require_client4 = __commonJS({
                   message: `code: ${response_.statusCode}, ${
                     err["Message"] || err["message"]
                   } request id: ${requestId2}`,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   data: err,
                   requestId: `${requestId2}`,
@@ -53009,8 +65619,9 @@ var require_client4 = __commonJS({
           retriesAttempted: _retriesAttempted,
         });
         while ($dara.shouldRetry(_runtime["retryOptions"], _context)) {
+          let _backoffTime = 0;
           if (_retriesAttempted > 0) {
-            let _backoffTime = $dara.getBackoffDelay(
+            _backoffTime = $dara.getBackoffDelay(
               _runtime["retryOptions"],
               _context,
             );
@@ -53018,6 +65629,7 @@ var require_client4 = __commonJS({
               await $dara.sleep(_backoffTime);
             }
           }
+          const _retryAttempts = _retriesAttempted;
           _retriesAttempted = _retriesAttempted + 1;
           try {
             let request_ = new $dara.Request();
@@ -53117,11 +65729,12 @@ var require_client4 = __commonJS({
             });
             interceptorContext.response = responseContext;
             await this._spi.modifyResponse(interceptorContext, attributeMap);
-            return {
+            let resp = {
               headers: interceptorContext.response.headers,
               statusCode: interceptorContext.response.statusCode,
               body: interceptorContext.response.deserializedBody,
             };
+            return resp;
           } catch (ex) {
             _context = new $dara.RetryPolicyContext({
               retriesAttempted: _retriesAttempted,
@@ -53159,8 +65772,9 @@ var require_client4 = __commonJS({
             retriesAttempted: _retriesAttempted,
           });
           while ($dara.shouldRetry(_runtime["retryOptions"], _context)) {
+            let _backoffTime = 0;
             if (_retriesAttempted > 0) {
-              let _backoffTime = $dara.getBackoffDelay(
+              _backoffTime = $dara.getBackoffDelay(
                 _runtime["retryOptions"],
                 _context,
               );
@@ -53168,6 +65782,7 @@ var require_client4 = __commonJS({
                 yield __await2($dara.sleep(_backoffTime));
               }
             }
+            const _retryAttempts = _retriesAttempted;
             _retriesAttempted = _retriesAttempted + 1;
             try {
               let request_ = new $dara.Request();
@@ -53224,6 +65839,11 @@ var require_client4 = __commonJS({
                   );
                 }
               }
+              utils_1.default.applyRetryHeaders(
+                request_.headers,
+                _retryAttempts,
+                _backoffTime,
+              );
               let signatureAlgorithm = this._signatureAlgorithm ||
                 "ACS3-HMAC-SHA256";
               let hashedRequestPayload = utils_1.default.hash(
@@ -53337,6 +65957,7 @@ var require_client4 = __commonJS({
                     err["Message"] || err["message"]
                   } request id: ${err["RequestId"] || err["requestId"]}`,
                   data: err,
+                  detail: `${err["Detail"] || err["detail"]}`,
                   description: `${err["Description"] || err["description"]}`,
                   accessDeniedDetail: err["AccessDeniedDetail"] ||
                     err["accessDeniedDetail"],
@@ -53629,7 +66250,7 @@ var require_AddCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.AddCdnDomainRequest = exports2.AddCdnDomainRequestTag = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var AddCdnDomainRequestTag = class extends $dara.Model {
       static names() {
         return {
@@ -53771,7 +66392,7 @@ var require_BatchDescribeCdnIpInfoResponseBody = __commonJS({
       exports2
         .BatchDescribeCdnIpInfoResponseBodyIpInfoList =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchDescribeCdnIpInfoResponseBodyIpInfoList = class
       extends $dara.Model {
       static names() {
@@ -53907,7 +66528,7 @@ var require_BatchSetCdnDomainConfigResponseBody = __commonJS({
       exports2
         .BatchSetCdnDomainConfigResponseBodyDomainConfigListDomainConfigModel =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchSetCdnDomainConfigResponseBodyDomainConfigListDomainConfigModel =
       class extends $dara.Model {
         static names() {
@@ -54065,7 +66686,7 @@ var require_BatchSetGrayDomainFunctionResponseBody = __commonJS({
       exports2
         .BatchSetGrayDomainFunctionResponseBodyDomainConfigList =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchSetGrayDomainFunctionResponseBodyDomainConfigList = class
       extends $dara.Model {
       static names() {
@@ -54196,7 +66817,7 @@ var require_DescribeBlockedRegionsResponseBody = __commonJS({
       exports2
         .DescribeBlockedRegionsResponseBodyInfoListInfoItem =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeBlockedRegionsResponseBodyInfoListInfoItem = class
       extends $dara.Model {
       static names() {
@@ -54351,7 +66972,7 @@ var require_DescribeCdnCertificateListResponseBody = __commonJS({
       exports2
         .DescribeCdnCertificateListResponseBodyCertificateListModelCertListCert =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateListResponseBodyCertificateListModelCertListCert =
       class extends $dara.Model {
         static names() {
@@ -54544,7 +67165,7 @@ var require_DescribeCdnConditionIpbinfoResponseBody = __commonJS({
       exports2
         .DescribeCdnConditionIPBInfoResponseBodyDatas =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnConditionIPBInfoResponseBodyDatas = class
       extends $dara.Model {
       static names() {
@@ -54671,7 +67292,7 @@ var require_DescribeCdnDeletedDomainsResponseBody = __commonJS({
       exports2
         .DescribeCdnDeletedDomainsResponseBodyDomainsPageData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDeletedDomainsResponseBodyDomainsPageData = class
       extends $dara.Model {
       static names() {
@@ -54831,7 +67452,7 @@ var require_DescribeCdnDeliverListResponseBody = __commonJS({
       exports2.DescribeCdnDeliverListResponseBodyContentDataDeliver =
       exports2.DescribeCdnDeliverListResponseBodyContentDataDeliverEmail =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDeliverListResponseBodyContentDataDeliverEmail = class
       extends $dara.Model {
       static names() {
@@ -55088,7 +67709,7 @@ var require_DescribeCdnDiagnoseReportResponseBody = __commonJS({
       exports2.DescribeCdnDiagnoseReportResponseBodyContentReportL1Tengine =
       exports2.DescribeCdnDiagnoseReportResponseBodyContentClientInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDiagnoseReportResponseBodyContentClientInfo = class
       extends $dara.Model {
       static names() {
@@ -55362,7 +67983,7 @@ var require_DescribeCdnDomainAtoaLogsResponseBody = __commonJS({
       exports2
         .DescribeCdnDomainAtoaLogsResponseBodyDomainLogDetailsDomainLogDetailLogInfosLogInfoDetail =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainAtoaLogsResponseBodyDomainLogDetailsDomainLogDetailLogInfosLogInfoDetail =
       class extends $dara.Model {
         static names() {
@@ -55618,7 +68239,7 @@ var require_DescribeCdnDomainByCertificateResponseBody = __commonJS({
       exports2
         .DescribeCdnDomainByCertificateResponseBodyCertInfosCertInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainByCertificateResponseBodyCertInfosCertInfo = class
       extends $dara.Model {
       static names() {
@@ -55788,7 +68409,7 @@ var require_DescribeCdnDomainConfigsResponseBody = __commonJS({
       exports2
         .DescribeCdnDomainConfigsResponseBodyDomainConfigsDomainConfigFunctionArgsFunctionArg =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainConfigsResponseBodyDomainConfigsDomainConfigFunctionArgsFunctionArg =
       class extends $dara.Model {
         static names() {
@@ -56011,7 +68632,7 @@ var require_DescribeCdnDomainDetailResponseBody = __commonJS({
       exports2
         .DescribeCdnDomainDetailResponseBodyGetDomainDetailModelSourceModelsSourceModel =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainDetailResponseBodyGetDomainDetailModelSourceModelsSourceModel =
       class extends $dara.Model {
         static names() {
@@ -56233,7 +68854,7 @@ var require_DescribeCdnDomainLogsResponseBody = __commonJS({
       exports2
         .DescribeCdnDomainLogsResponseBodyDomainLogDetailsDomainLogDetailLogInfosLogInfoDetail =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainLogsResponseBodyDomainLogDetailsDomainLogDetailLogInfosLogInfoDetail =
       class extends $dara.Model {
         static names() {
@@ -56492,7 +69113,7 @@ var require_DescribeCdnDomainLogsExTtlResponseBody = __commonJS({
       exports2
         .DescribeCdnDomainLogsExTtlResponseBodyDomainLogDetailsDomainLogDetailLogInfosLogInfoDetail =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainLogsExTtlResponseBodyDomainLogDetailsDomainLogDetailLogInfosLogInfoDetail =
       class extends $dara.Model {
         static names() {
@@ -56747,7 +69368,7 @@ var require_DescribeCdnDomainStagingConfigResponseBody = __commonJS({
       exports2
         .DescribeCdnDomainStagingConfigResponseBodyDomainConfigsFunctionArgs =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainStagingConfigResponseBodyDomainConfigsFunctionArgs =
       class extends $dara.Model {
         static names() {
@@ -56913,7 +69534,7 @@ var require_DescribeCdnFullDomainsBlockIphistoryResponseBody = __commonJS({
       exports2
         .DescribeCdnFullDomainsBlockIPHistoryResponseBodyIPBlockInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnFullDomainsBlockIPHistoryResponseBodyIPBlockInfo = class
       extends $dara.Model {
       static names() {
@@ -57050,7 +69671,7 @@ var require_DescribeCdnHttpsDomainListResponseBody = __commonJS({
       exports2
         .DescribeCdnHttpsDomainListResponseBodyCertInfosCertInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnHttpsDomainListResponseBodyCertInfosCertInfo = class
       extends $dara.Model {
       static names() {
@@ -57217,7 +69838,7 @@ var require_DescribeCdnRegionAndIspResponseBody = __commonJS({
       exports2.DescribeCdnRegionAndIspResponseBodyIsps =
       exports2.DescribeCdnRegionAndIspResponseBodyIspsIsp =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnRegionAndIspResponseBodyIspsIsp = class extends $dara.Model {
       static names() {
         return {
@@ -57422,7 +70043,7 @@ var require_DescribeCdnReportResponseBody = __commonJS({
       exports2.DescribeCdnReportResponseBodyContentDataDeliver =
       exports2.DescribeCdnReportResponseBodyContentDataDeliverReport =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnReportResponseBodyContentDataDeliverReport = class
       extends $dara.Model {
       static names() {
@@ -57646,7 +70267,7 @@ var require_DescribeCdnReportListResponseBody = __commonJS({
       exports2.DescribeCdnReportListResponseBodyContentDataDeliver =
       exports2.DescribeCdnReportListResponseBodyContentDataDeliverReport =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnReportListResponseBodyContentDataDeliverReport = class
       extends $dara.Model {
       static names() {
@@ -57863,7 +70484,7 @@ var require_DescribeCdnSmcertificateListResponseBody = __commonJS({
       exports2
         .DescribeCdnSMCertificateListResponseBodyCertificateListModelCertListCert =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSMCertificateListResponseBodyCertificateListModelCertListCert =
       class extends $dara.Model {
         static names() {
@@ -58055,7 +70676,7 @@ var require_DescribeCdnSslcertificateListResponseBody = __commonJS({
       exports2
         .DescribeCdnSSLCertificateListResponseBodyCertificateListModelCertListCert =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSSLCertificateListResponseBodyCertificateListModelCertListCert =
       class extends $dara.Model {
         static names() {
@@ -58254,7 +70875,7 @@ var require_DescribeCdnSecFuncInfoResponseBody = __commonJS({
       exports2
         .DescribeCdnSecFuncInfoResponseBodyContent =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSecFuncInfoResponseBodyContent = class extends $dara.Model {
       static names() {
         return {
@@ -58388,7 +71009,7 @@ var require_DescribeCdnServiceResponseBody = __commonJS({
       exports2
         .DescribeCdnServiceResponseBodyOperationLocksLockReason =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnServiceResponseBodyOperationLocksLockReason = class
       extends $dara.Model {
       static names() {
@@ -58555,7 +71176,7 @@ var require_DescribeCdnSubListResponseBody = __commonJS({
       exports2
         .DescribeCdnSubListResponseBodyContentData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSubListResponseBodyContentData = class extends $dara.Model {
       static names() {
         return {
@@ -58727,7 +71348,7 @@ var require_DescribeCdnTaskListResponseBody = __commonJS({
       exports2
         .DescribeCdnTaskListResponseBodyContentList =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnTaskListResponseBodyContentList = class extends $dara.Model {
       static names() {
         return {
@@ -58907,7 +71528,7 @@ var require_DescribeCdnTypesResponseBody = __commonJS({
       exports2
         .DescribeCdnTypesResponseBodyCdnTypesCdnType =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnTypesResponseBodyCdnTypesCdnType = class
       extends $dara.Model {
       static names() {
@@ -59061,7 +71682,7 @@ var require_DescribeCdnUserBillHistoryResponseBody = __commonJS({
       exports2
         .DescribeCdnUserBillHistoryResponseBodyBillHistoryDataBillHistoryDataItemBillingDataBillingDataItem =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillHistoryResponseBodyBillHistoryDataBillHistoryDataItemBillingDataBillingDataItem =
       class extends $dara.Model {
         static names() {
@@ -59288,7 +71909,7 @@ var require_DescribeCdnUserBillPredictionResponseBody = __commonJS({
       exports2
         .DescribeCdnUserBillPredictionResponseBodyBillPredictionDataBillPredictionDataItem =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillPredictionResponseBodyBillPredictionDataBillPredictionDataItem =
       class extends $dara.Model {
         static names() {
@@ -59455,7 +72076,7 @@ var require_DescribeCdnUserBillTypeResponseBody = __commonJS({
       exports2
         .DescribeCdnUserBillTypeResponseBodyBillTypeDataBillTypeDataItem =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillTypeResponseBodyBillTypeDataBillTypeDataItem = class
       extends $dara.Model {
       static names() {
@@ -59617,7 +72238,7 @@ var require_DescribeCdnUserConfigsResponseBody = __commonJS({
       exports2
         .DescribeCdnUserConfigsResponseBodyConfigs =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserConfigsResponseBodyConfigs = class extends $dara.Model {
       static names() {
         return {
@@ -59748,7 +72369,7 @@ var require_DescribeCdnUserDomainsByFuncResponseBody = __commonJS({
       exports2
         .DescribeCdnUserDomainsByFuncResponseBodyDomainsPageDataSourcesSource =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserDomainsByFuncResponseBodyDomainsPageDataSourcesSource =
       class extends $dara.Model {
         static names() {
@@ -59984,7 +72605,7 @@ var require_DescribeCdnUserResourcePackageResponseBody = __commonJS({
       exports2
         .DescribeCdnUserResourcePackageResponseBodyResourcePackageInfosResourcePackageInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserResourcePackageResponseBodyResourcePackageInfosResourcePackageInfo =
       class extends $dara.Model {
         static names() {
@@ -60169,7 +72790,7 @@ var require_DescribeCdnWafDomainResponseBody = __commonJS({
       exports2
         .DescribeCdnWafDomainResponseBodyOutPutDomains =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnWafDomainResponseBodyOutPutDomains = class
       extends $dara.Model {
       static names() {
@@ -60306,7 +72927,7 @@ var require_DescribeCertificateInfoByIdresponseBody = __commonJS({
       exports2
         .DescribeCertificateInfoByIDResponseBodyCertInfosCertInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCertificateInfoByIDResponseBodyCertInfosCertInfo = class
       extends $dara.Model {
       static names() {
@@ -60470,7 +73091,7 @@ var require_DescribeCustomDomainSampleRateResponseBody = __commonJS({
       exports2
         .DescribeCustomDomainSampleRateResponseBodyContentDomainContent =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCustomDomainSampleRateResponseBodyContentDomainContent = class
       extends $dara.Model {
       static names() {
@@ -60629,7 +73250,7 @@ var require_DescribeDomainAverageResponseTimeResponseBody = __commonJS({
       exports2
         .DescribeDomainAverageResponseTimeResponseBodyAvgRTPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainAverageResponseTimeResponseBodyAvgRTPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -60797,7 +73418,7 @@ var require_DescribeDomainBpsDataResponseBody = __commonJS({
       exports2
         .DescribeDomainBpsDataResponseBodyBpsDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataResponseBodyBpsDataPerIntervalDataModule = class
       extends $dara.Model {
       static names() {
@@ -60976,7 +73597,7 @@ var require_DescribeDomainBpsDataByLayerResponseBody = __commonJS({
       exports2
         .DescribeDomainBpsDataByLayerResponseBodyBpsDataIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataByLayerResponseBodyBpsDataIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -61137,7 +73758,7 @@ var require_DescribeDomainBpsDataByTimeStampResponseBody = __commonJS({
       exports2
         .DescribeDomainBpsDataByTimeStampResponseBodyBpsDataListBpsDataModel =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataByTimeStampResponseBodyBpsDataListBpsDataModel =
       class extends $dara.Model {
         static names() {
@@ -61301,7 +73922,7 @@ var require_DescribeDomainCcActivityLogResponseBody = __commonJS({
       exports2
         .DescribeDomainCcActivityLogResponseBodyActivityLog =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCcActivityLogResponseBodyActivityLog = class
       extends $dara.Model {
       static names() {
@@ -61446,7 +74067,7 @@ var require_DescribeDomainCertificateInfoResponseBody = __commonJS({
       exports2
         .DescribeDomainCertificateInfoResponseBodyCertInfosCertInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCertificateInfoResponseBodyCertInfosCertInfo = class
       extends $dara.Model {
       static names() {
@@ -61626,7 +74247,7 @@ var require_DescribeDomainCnameResponseBody = __commonJS({
       exports2
         .DescribeDomainCnameResponseBodyCnameDatasData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCnameResponseBodyCnameDatasData = class
       extends $dara.Model {
       static names() {
@@ -61783,7 +74404,7 @@ var require_DescribeDomainDetailDataByLayerResponseBody = __commonJS({
       exports2
         .DescribeDomainDetailDataByLayerResponseBodyDataDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainDetailDataByLayerResponseBodyDataDataModule = class
       extends $dara.Model {
       static names() {
@@ -61956,7 +74577,7 @@ var require_DescribeDomainHitRateDataResponseBody = __commonJS({
       exports2
         .DescribeDomainHitRateDataResponseBodyHitRateIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHitRateDataResponseBodyHitRateIntervalDataModule = class
       extends $dara.Model {
       static names() {
@@ -62125,7 +74746,7 @@ var require_DescribeDomainHttpCodeDataResponseBody = __commonJS({
       exports2
         .DescribeDomainHttpCodeDataResponseBodyHttpCodeDataUsageDataValueCodeProportionData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHttpCodeDataResponseBodyHttpCodeDataUsageDataValueCodeProportionData =
       class extends $dara.Model {
         static names() {
@@ -62347,7 +74968,7 @@ var require_DescribeDomainHttpCodeDataByLayerResponseBody = __commonJS({
       exports2
         .DescribeDomainHttpCodeDataByLayerResponseBodyHttpCodeDataIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHttpCodeDataByLayerResponseBodyHttpCodeDataIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -62511,7 +75132,7 @@ var require_DescribeDomainIspdataResponseBody = __commonJS({
       exports2
         .DescribeDomainISPDataResponseBodyValueISPProportionData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainISPDataResponseBodyValueISPProportionData = class
       extends $dara.Model {
       static names() {
@@ -62691,7 +75312,7 @@ var require_DescribeDomainMax95bpsDataResponseBody = __commonJS({
       exports2
         .DescribeDomainMax95BpsDataResponseBodyDetailDataMax95Detail =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainMax95BpsDataResponseBodyDetailDataMax95Detail = class
       extends $dara.Model {
       static names() {
@@ -62863,7 +75484,7 @@ var require_DescribeDomainMultiUsageDataResponseBody = __commonJS({
       exports2
         .DescribeDomainMultiUsageDataResponseBodyRequestPerIntervalRequestDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainMultiUsageDataResponseBodyRequestPerIntervalRequestDataModule =
       class extends $dara.Model {
         static names() {
@@ -63097,7 +75718,7 @@ var require_DescribeDomainPathDataResponseBody = __commonJS({
       exports2
         .DescribeDomainPathDataResponseBodyPathDataPerIntervalUsageData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainPathDataResponseBodyPathDataPerIntervalUsageData = class
       extends $dara.Model {
       static names() {
@@ -63273,7 +75894,7 @@ var require_DescribeDomainPvDataResponseBody = __commonJS({
       exports2
         .DescribeDomainPvDataResponseBodyPvDataIntervalUsageData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainPvDataResponseBodyPvDataIntervalUsageData = class
       extends $dara.Model {
       static names() {
@@ -63437,7 +76058,7 @@ var require_DescribeDomainQpsDataResponseBody = __commonJS({
       exports2
         .DescribeDomainQpsDataResponseBodyQpsDataIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainQpsDataResponseBodyQpsDataIntervalDataModule = class
       extends $dara.Model {
       static names() {
@@ -63623,7 +76244,7 @@ var require_DescribeDomainQpsDataByLayerResponseBody = __commonJS({
       exports2
         .DescribeDomainQpsDataByLayerResponseBodyQpsDataIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainQpsDataByLayerResponseBodyQpsDataIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -63801,7 +76422,7 @@ var require_DescribeDomainRealTimeBpsDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeBpsDataResponseBodyDataBpsModel =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeBpsDataResponseBodyDataBpsModel = class
       extends $dara.Model {
       static names() {
@@ -63953,7 +76574,7 @@ var require_DescribeDomainRealTimeByteHitRateDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeByteHitRateDataResponseBodyDataByteHitRateDataModel =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeByteHitRateDataResponseBodyDataByteHitRateDataModel =
       class extends $dara.Model {
         static names() {
@@ -64113,7 +76734,7 @@ var require_DescribeDomainRealTimeHttpCodeDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeHttpCodeDataResponseBodyRealTimeHttpCodeDataUsageDataValueRealTimeCodeProportionData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeHttpCodeDataResponseBodyRealTimeHttpCodeDataUsageDataValueRealTimeCodeProportionData =
       class extends $dara.Model {
         static names() {
@@ -64341,7 +76962,7 @@ var require_DescribeDomainRealTimeQpsDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeQpsDataResponseBodyDataQpsModel =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeQpsDataResponseBodyDataQpsModel = class
       extends $dara.Model {
       static names() {
@@ -64493,7 +77114,7 @@ var require_DescribeDomainRealTimeReqHitRateDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeReqHitRateDataResponseBodyDataReqHitRateDataModel =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeReqHitRateDataResponseBodyDataReqHitRateDataModel =
       class extends $dara.Model {
         static names() {
@@ -64649,7 +77270,7 @@ var require_DescribeDomainRealTimeSrcBpsDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeSrcBpsDataResponseBodyRealTimeSrcBpsDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcBpsDataResponseBodyRealTimeSrcBpsDataPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -64822,7 +77443,7 @@ var require_DescribeDomainRealTimeSrcHttpCodeDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeDataUsageDataValueRealTimeSrcCodeProportionData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcHttpCodeDataResponseBodyRealTimeSrcHttpCodeDataUsageDataValueRealTimeSrcCodeProportionData =
       class extends $dara.Model {
         static names() {
@@ -65050,7 +77671,7 @@ var require_DescribeDomainRealTimeSrcTrafficDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeSrcTrafficDataResponseBodyRealTimeSrcTrafficDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcTrafficDataResponseBodyRealTimeSrcTrafficDataPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -65220,7 +77841,7 @@ var require_DescribeDomainRealTimeTrafficDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRealTimeTrafficDataResponseBodyRealTimeTrafficDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeTrafficDataResponseBodyRealTimeTrafficDataPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -65389,7 +78010,7 @@ var require_DescribeDomainRegionDataResponseBody = __commonJS({
       exports2
         .DescribeDomainRegionDataResponseBodyValueRegionProportionData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRegionDataResponseBodyValueRegionProportionData = class
       extends $dara.Model {
       static names() {
@@ -65569,7 +78190,7 @@ var require_DescribeDomainReqHitRateDataResponseBody = __commonJS({
       exports2
         .DescribeDomainReqHitRateDataResponseBodyReqHitRateIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainReqHitRateDataResponseBodyReqHitRateIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -65737,7 +78358,7 @@ var require_DescribeDomainSrcBpsDataResponseBody = __commonJS({
       exports2
         .DescribeDomainSrcBpsDataResponseBodySrcBpsDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcBpsDataResponseBodySrcBpsDataPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -65908,7 +78529,7 @@ var require_DescribeDomainSrcHttpCodeDataResponseBody = __commonJS({
       exports2
         .DescribeDomainSrcHttpCodeDataResponseBodyHttpCodeDataUsageDataValueCodeProportionData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcHttpCodeDataResponseBodyHttpCodeDataUsageDataValueCodeProportionData =
       class extends $dara.Model {
         static names() {
@@ -66130,7 +78751,7 @@ var require_DescribeDomainSrcQpsDataResponseBody = __commonJS({
       exports2
         .DescribeDomainSrcQpsDataResponseBodySrcQpsDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcQpsDataResponseBodySrcQpsDataPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -66303,7 +78924,7 @@ var require_DescribeDomainSrcTopUrlVisitResponseBody = __commonJS({
       exports2.DescribeDomainSrcTopUrlVisitResponseBodyAllUrlList =
       exports2.DescribeDomainSrcTopUrlVisitResponseBodyAllUrlListUrlList =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcTopUrlVisitResponseBodyAllUrlListUrlList = class
       extends $dara.Model {
       static names() {
@@ -66715,7 +79336,7 @@ var require_DescribeDomainSrcTrafficDataResponseBody = __commonJS({
       exports2
         .DescribeDomainSrcTrafficDataResponseBodySrcTrafficDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcTrafficDataResponseBodySrcTrafficDataPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -66882,7 +79503,7 @@ var require_DescribeDomainTopClientIpVisitResponseBody = __commonJS({
       exports2
         .DescribeDomainTopClientIpVisitResponseBodyClientIpList =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopClientIpVisitResponseBodyClientIpList = class
       extends $dara.Model {
       static names() {
@@ -67015,7 +79636,7 @@ var require_DescribeDomainTopReferVisitResponseBody = __commonJS({
       exports2
         .DescribeDomainTopReferVisitResponseBodyTopReferListReferList =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopReferVisitResponseBodyTopReferListReferList = class
       extends $dara.Model {
       static names() {
@@ -67187,7 +79808,7 @@ var require_DescribeDomainTopUrlVisitResponseBody = __commonJS({
       exports2.DescribeDomainTopUrlVisitResponseBodyAllUrlList =
       exports2.DescribeDomainTopUrlVisitResponseBodyAllUrlListUrlList =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopUrlVisitResponseBodyAllUrlListUrlList = class
       extends $dara.Model {
       static names() {
@@ -67593,7 +80214,7 @@ var require_DescribeDomainTrafficDataResponseBody = __commonJS({
       exports2
         .DescribeDomainTrafficDataResponseBodyTrafficDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTrafficDataResponseBodyTrafficDataPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -67769,7 +80390,7 @@ var require_DescribeDomainUsageDataResponseBody = __commonJS({
       exports2
         .DescribeDomainUsageDataResponseBodyUsageDataPerIntervalDataModule =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainUsageDataResponseBodyUsageDataPerIntervalDataModule =
       class extends $dara.Model {
         static names() {
@@ -67943,7 +80564,7 @@ var require_DescribeDomainUvDataResponseBody = __commonJS({
       exports2
         .DescribeDomainUvDataResponseBodyUvDataIntervalUsageData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainUvDataResponseBodyUvDataIntervalUsageData = class
       extends $dara.Model {
       static names() {
@@ -68105,7 +80726,7 @@ var require_DescribeDomainVerifyDataResponseBody = __commonJS({
       exports2
         .DescribeDomainVerifyDataResponseBodyContent =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainVerifyDataResponseBodyContent = class
       extends $dara.Model {
       static names() {
@@ -68237,7 +80858,7 @@ var require_DescribeDomainsBySourceResponseBody = __commonJS({
       exports2
         .DescribeDomainsBySourceResponseBodyDomainsListDomainsDataDomainInfosDomainInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainsBySourceResponseBodyDomainsListDomainsDataDomainInfosDomainInfo =
       class extends $dara.Model {
         static names() {
@@ -68494,7 +81115,7 @@ var require_DescribeDomainsUsageByDayResponseBody = __commonJS({
       exports2.DescribeDomainsUsageByDayResponseBodyUsageByDays =
       exports2.DescribeDomainsUsageByDayResponseBodyUsageByDaysUsageByDay =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainsUsageByDayResponseBodyUsageByDaysUsageByDay = class
       extends $dara.Model {
       static names() {
@@ -68712,7 +81333,7 @@ var require_DescribeEsExceptionDataResponseBody = __commonJS({
       exports2
         .DescribeEsExceptionDataResponseBodyContents =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeEsExceptionDataResponseBodyContents = class
       extends $dara.Model {
       static names() {
@@ -68853,7 +81474,7 @@ var require_DescribeEsExecuteDataResponseBody = __commonJS({
       exports2
         .DescribeEsExecuteDataResponseBodyContents =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeEsExecuteDataResponseBodyContents = class extends $dara.Model {
       static names() {
         return {
@@ -68993,7 +81614,7 @@ var require_DescribeFctriggerResponseBody = __commonJS({
       exports2
         .DescribeFCTriggerResponseBodyFCTrigger =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeFCTriggerResponseBodyFCTrigger = class extends $dara.Model {
       static names() {
         return {
@@ -69123,7 +81744,7 @@ var require_DescribeIpStatusResponseBody = __commonJS({
       exports2
         .DescribeIpStatusResponseBodyIpStatus =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeIpStatusResponseBodyIpStatus = class extends $dara.Model {
       static names() {
         return {
@@ -69248,7 +81869,7 @@ var require_DescribeL2vipsByDomainResponseBody = __commonJS({
       exports2
         .DescribeL2VipsByDomainResponseBodyVips =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeL2VipsByDomainResponseBodyVips = class extends $dara.Model {
       static names() {
         return {
@@ -69379,7 +82000,7 @@ var require_DescribePreloadDetailByIdResponseBody = __commonJS({
       exports2
         .DescribePreloadDetailByIdResponseBodyUrlDetailsUrls =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribePreloadDetailByIdResponseBodyUrlDetailsUrls = class
       extends $dara.Model {
       static names() {
@@ -69552,7 +82173,7 @@ var require_DescribeRealtimeDeliveryAccResponseBody = __commonJS({
       exports2
         .DescribeRealtimeDeliveryAccResponseBodyReatTimeDeliveryAccDataAccData =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRealtimeDeliveryAccResponseBodyReatTimeDeliveryAccDataAccData =
       class extends $dara.Model {
         static names() {
@@ -69711,7 +82332,7 @@ var require_DescribeRefreshTaskByIdResponseBody = __commonJS({
       exports2
         .DescribeRefreshTaskByIdResponseBodyTasks =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshTaskByIdResponseBodyTasks = class extends $dara.Model {
       static names() {
         return {
@@ -69851,7 +82472,7 @@ var require_DescribeRefreshTasksResponseBody = __commonJS({
       exports2
         .DescribeRefreshTasksResponseBodyTasksCDNTask =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshTasksResponseBodyTasksCDNTask = class
       extends $dara.Model {
       static names() {
@@ -70017,7 +82638,7 @@ var require_DescribeStagingIpResponseBody = __commonJS({
       exports2
         .DescribeStagingIpResponseBodyIPV4s =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeStagingIpResponseBodyIPV4s = class extends $dara.Model {
       static names() {
         return {
@@ -70143,7 +82764,7 @@ var require_DescribeTagResourcesRequest = __commonJS({
       exports2
         .DescribeTagResourcesRequestTag =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeTagResourcesRequestTag = class extends $dara.Model {
       static names() {
         return {
@@ -70277,7 +82898,7 @@ var require_DescribeTagResourcesResponseBody = __commonJS({
       exports2
         .DescribeTagResourcesResponseBodyTagResourcesTag =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeTagResourcesResponseBodyTagResourcesTag = class
       extends $dara.Model {
       static names() {
@@ -70435,7 +83056,7 @@ var require_DescribeTopDomainsByFlowResponseBody = __commonJS({
       exports2
         .DescribeTopDomainsByFlowResponseBodyTopDomainsTopDomain =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeTopDomainsByFlowResponseBodyTopDomainsTopDomain = class
       extends $dara.Model {
       static names() {
@@ -70605,7 +83226,7 @@ var require_DescribeUserConfigsResponseBody = __commonJS({
       exports2.DescribeUserConfigsResponseBodyConfigsWafConfig =
       exports2.DescribeUserConfigsResponseBodyConfigsOssLogConfig =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserConfigsResponseBodyConfigsOssLogConfig = class
       extends $dara.Model {
       static names() {
@@ -70781,7 +83402,7 @@ var require_DescribeUserDomainsRequest = __commonJS({
       exports2
         .DescribeUserDomainsRequestTag =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserDomainsRequestTag = class extends $dara.Model {
       static names() {
         return {
@@ -70933,7 +83554,7 @@ var require_DescribeUserDomainsResponseBody = __commonJS({
       exports2.DescribeUserDomainsResponseBodyDomainsPageDataSources =
       exports2.DescribeUserDomainsResponseBodyDomainsPageDataSourcesSource =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserDomainsResponseBodyDomainsPageDataSourcesSource = class
       extends $dara.Model {
       static names() {
@@ -71170,7 +83791,7 @@ var require_DescribeUserTagsResponseBody = __commonJS({
       exports2
         .DescribeUserTagsResponseBodyTags =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserTagsResponseBodyTags = class extends $dara.Model {
       static names() {
         return {
@@ -71305,7 +83926,7 @@ var require_DescribeUserUsageDataExportTaskResponseBody = __commonJS({
       exports2
         .DescribeUserUsageDataExportTaskResponseBodyUsageDataPerPageDataDataItemTaskConfig =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserUsageDataExportTaskResponseBodyUsageDataPerPageDataDataItemTaskConfig =
       class extends $dara.Model {
         static names() {
@@ -71539,7 +84160,7 @@ var require_DescribeUserUsageDetailDataExportTaskResponseBody = __commonJS({
       exports2
         .DescribeUserUsageDetailDataExportTaskResponseBodyUsageDataPerPageDataDataItemTaskConfig =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserUsageDetailDataExportTaskResponseBodyUsageDataPerPageDataDataItemTaskConfig =
       class extends $dara.Model {
         static names() {
@@ -71769,7 +84390,7 @@ var require_DescribeUserVipsByDomainResponseBody = __commonJS({
       exports2
         .DescribeUserVipsByDomainResponseBodyVips =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserVipsByDomainResponseBodyVips = class extends $dara.Model {
       static names() {
         return {
@@ -71900,7 +84521,7 @@ var require_GetGrayDomainFunctionResponseBody = __commonJS({
       exports2
         .GetGrayDomainFunctionResponseBodyDomainConfigListFunctionArgs =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var GetGrayDomainFunctionResponseBodyDomainConfigListFunctionArgs = class
       extends $dara.Model {
       static names() {
@@ -72069,7 +84690,7 @@ var require_ListDomainsByLogConfigIdResponseBody = __commonJS({
       exports2
         .ListDomainsByLogConfigIdResponseBodyDomains =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListDomainsByLogConfigIdResponseBodyDomains = class
       extends $dara.Model {
       static names() {
@@ -72197,7 +84818,7 @@ var require_ListFctriggerResponseBody = __commonJS({
       exports2
         .ListFCTriggerResponseBodyFCTriggers =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListFCTriggerResponseBodyFCTriggers = class extends $dara.Model {
       static names() {
         return {
@@ -72331,7 +84952,7 @@ var require_ListRealtimeLogDeliveryResponseBody = __commonJS({
       exports2
         .ListRealtimeLogDeliveryResponseBodyContentRealtimeLogDeliveryInfo =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListRealtimeLogDeliveryResponseBodyContentRealtimeLogDeliveryInfo =
       class extends $dara.Model {
         static names() {
@@ -72492,7 +85113,7 @@ var require_ListRealtimeLogDeliveryDomainsResponseBody = __commonJS({
       exports2
         .ListRealtimeLogDeliveryDomainsResponseBodyContentDomains =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListRealtimeLogDeliveryDomainsResponseBodyContentDomains = class
       extends $dara.Model {
       static names() {
@@ -72645,7 +85266,7 @@ var require_ListRealtimeLogDeliveryInfosResponseBody = __commonJS({
       exports2
         .ListRealtimeLogDeliveryInfosResponseBodyContentRealtimeLogDeliveryInfos =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListRealtimeLogDeliveryInfosResponseBodyContentRealtimeLogDeliveryInfos =
       class extends $dara.Model {
         static names() {
@@ -72799,7 +85420,7 @@ var require_ListTagResourcesRequest = __commonJS({
     exports2.ListTagResourcesRequest =
       exports2.ListTagResourcesRequestTag =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListTagResourcesRequestTag = class extends $dara.Model {
       static names() {
         return {
@@ -72939,7 +85560,7 @@ var require_ListTagResourcesResponseBody = __commonJS({
       exports2
         .ListTagResourcesResponseBodyTagResourcesTagResource =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListTagResourcesResponseBodyTagResourcesTagResource = class
       extends $dara.Model {
       static names() {
@@ -73096,7 +85717,7 @@ var require_ListUserCustomLogConfigResponseBody = __commonJS({
       exports2
         .ListUserCustomLogConfigResponseBodyConfigIds =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListUserCustomLogConfigResponseBodyConfigIds = class
       extends $dara.Model {
       static names() {
@@ -73226,7 +85847,7 @@ var require_ModifyCustomDomainSampleRateResponseBody = __commonJS({
       exports2
         .ModifyCustomDomainSampleRateResponseBodyContentContent =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCustomDomainSampleRateResponseBodyContentContent = class
       extends $dara.Model {
       static names() {
@@ -73379,7 +86000,7 @@ var require_SetCdnDomainStagingConfigResponseBody = __commonJS({
       exports2
         .SetCdnDomainStagingConfigResponseBodyDomainConfigList =
         void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainStagingConfigResponseBodyDomainConfigList = class
       extends $dara.Model {
       static names() {
@@ -73505,7 +86126,7 @@ var require_TagResourcesRequest = __commonJS({
       value: true,
     });
     exports2.TagResourcesRequest = exports2.TagResourcesRequestTag = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var TagResourcesRequestTag = class extends $dara.Model {
       static names() {
         return {
@@ -73634,7 +86255,7 @@ var require_AddCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.AddCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var AddCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -73726,7 +86347,7 @@ var require_AddCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.AddCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var AddCdnDomainResponseBody_1 = require_AddCdnDomainResponseBody();
     var AddCdnDomainResponse = class extends $dara.Model {
       static names() {
@@ -73833,7 +86454,7 @@ var require_AddFctriggerRequest = __commonJS({
       value: true,
     });
     exports2.AddFCTriggerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var AddFCTriggerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -73937,7 +86558,7 @@ var require_AddFctriggerResponseBody = __commonJS({
       value: true,
     });
     exports2.AddFCTriggerResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var AddFCTriggerResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -74029,7 +86650,7 @@ var require_AddFctriggerResponse = __commonJS({
       value: true,
     });
     exports2.AddFCTriggerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var AddFctriggerResponseBody_1 = require_AddFctriggerResponseBody();
     var AddFCTriggerResponse = class extends $dara.Model {
       static names() {
@@ -74136,7 +86757,7 @@ var require_BatchAddCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.BatchAddCdnDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchAddCdnDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -74246,7 +86867,7 @@ var require_BatchAddCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.BatchAddCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchAddCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -74338,7 +86959,7 @@ var require_BatchAddCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.BatchAddCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchAddCdnDomainResponseBody_1 =
       require_BatchAddCdnDomainResponseBody();
     var BatchAddCdnDomainResponse = class extends $dara.Model {
@@ -74446,7 +87067,7 @@ var require_BatchDeleteCdnDomainConfigRequest = __commonJS({
       value: true,
     });
     exports2.BatchDeleteCdnDomainConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchDeleteCdnDomainConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -74547,7 +87168,7 @@ var require_BatchDeleteCdnDomainConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.BatchDeleteCdnDomainConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchDeleteCdnDomainConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -74640,7 +87261,7 @@ var require_BatchDeleteCdnDomainConfigResponse = __commonJS({
       value: true,
     });
     exports2.BatchDeleteCdnDomainConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchDeleteCdnDomainConfigResponseBody_1 =
       require_BatchDeleteCdnDomainConfigResponseBody();
     var BatchDeleteCdnDomainConfigResponse = class extends $dara.Model {
@@ -74750,7 +87371,7 @@ var require_BatchDescribeCdnIpInfoRequest = __commonJS({
       value: true,
     });
     exports2.BatchDescribeCdnIpInfoRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchDescribeCdnIpInfoRequest = class extends $dara.Model {
       static names() {
         return {
@@ -74844,7 +87465,7 @@ var require_BatchDescribeCdnIpInfoResponse = __commonJS({
       value: true,
     });
     exports2.BatchDescribeCdnIpInfoResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchDescribeCdnIpInfoResponseBody_1 =
       require_BatchDescribeCdnIpInfoResponseBody();
     var BatchDescribeCdnIpInfoResponse = class extends $dara.Model {
@@ -74953,7 +87574,7 @@ var require_BatchSetCdnDomainConfigRequest = __commonJS({
       value: true,
     });
     exports2.BatchSetCdnDomainConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchSetCdnDomainConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -75053,7 +87674,7 @@ var require_BatchSetCdnDomainConfigResponse = __commonJS({
       value: true,
     });
     exports2.BatchSetCdnDomainConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchSetCdnDomainConfigResponseBody_1 =
       require_BatchSetCdnDomainConfigResponseBody();
     var BatchSetCdnDomainConfigResponse = class extends $dara.Model {
@@ -75162,7 +87783,7 @@ var require_BatchSetGrayDomainFunctionRequest = __commonJS({
       value: true,
     });
     exports2.BatchSetGrayDomainFunctionRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchSetGrayDomainFunctionRequest = class extends $dara.Model {
       static names() {
         return {
@@ -75257,7 +87878,7 @@ var require_BatchSetGrayDomainFunctionResponse = __commonJS({
       value: true,
     });
     exports2.BatchSetGrayDomainFunctionResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchSetGrayDomainFunctionResponseBody_1 =
       require_BatchSetGrayDomainFunctionResponseBody();
     var BatchSetGrayDomainFunctionResponse = class extends $dara.Model {
@@ -75367,7 +87988,7 @@ var require_BatchStartCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.BatchStartCdnDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchStartCdnDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -75463,7 +88084,7 @@ var require_BatchStartCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.BatchStartCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchStartCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -75555,7 +88176,7 @@ var require_BatchStartCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.BatchStartCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchStartCdnDomainResponseBody_1 =
       require_BatchStartCdnDomainResponseBody();
     var BatchStartCdnDomainResponse = class extends $dara.Model {
@@ -75664,7 +88285,7 @@ var require_BatchStopCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.BatchStopCdnDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchStopCdnDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -75760,7 +88381,7 @@ var require_BatchStopCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.BatchStopCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchStopCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -75852,7 +88473,7 @@ var require_BatchStopCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.BatchStopCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchStopCdnDomainResponseBody_1 =
       require_BatchStopCdnDomainResponseBody();
     var BatchStopCdnDomainResponse = class extends $dara.Model {
@@ -75960,7 +88581,7 @@ var require_BatchUpdateCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.BatchUpdateCdnDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchUpdateCdnDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -76062,7 +88683,7 @@ var require_BatchUpdateCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.BatchUpdateCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchUpdateCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -76155,7 +88776,7 @@ var require_BatchUpdateCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.BatchUpdateCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var BatchUpdateCdnDomainResponseBody_1 =
       require_BatchUpdateCdnDomainResponseBody();
     var BatchUpdateCdnDomainResponse = class extends $dara.Model {
@@ -76264,7 +88885,7 @@ var require_CheckCdnDomainExistRequest = __commonJS({
       value: true,
     });
     exports2.CheckCdnDomainExistRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CheckCdnDomainExistRequest = class extends $dara.Model {
       static names() {
         return {
@@ -76362,7 +88983,7 @@ var require_CheckCdnDomainExistResponseBody = __commonJS({
       value: true,
     });
     exports2.CheckCdnDomainExistResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CheckCdnDomainExistResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -76456,7 +89077,7 @@ var require_CheckCdnDomainExistResponse = __commonJS({
       value: true,
     });
     exports2.CheckCdnDomainExistResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CheckCdnDomainExistResponseBody_1 =
       require_CheckCdnDomainExistResponseBody();
     var CheckCdnDomainExistResponse = class extends $dara.Model {
@@ -76565,7 +89186,7 @@ var require_CheckCdnDomainIcprequest = __commonJS({
       value: true,
     });
     exports2.CheckCdnDomainICPRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CheckCdnDomainICPRequest = class extends $dara.Model {
       static names() {
         return {
@@ -76663,7 +89284,7 @@ var require_CheckCdnDomainIcpresponseBody = __commonJS({
       value: true,
     });
     exports2.CheckCdnDomainICPResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CheckCdnDomainICPResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -76757,7 +89378,7 @@ var require_CheckCdnDomainIcpresponse = __commonJS({
       value: true,
     });
     exports2.CheckCdnDomainICPResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CheckCdnDomainIcpresponseBody_1 =
       require_CheckCdnDomainIcpresponseBody();
     var CheckCdnDomainICPResponse = class extends $dara.Model {
@@ -76865,7 +89486,7 @@ var require_CreateCdnCertificateSigningRequestRequest = __commonJS({
       value: true,
     });
     exports2.CreateCdnCertificateSigningRequestRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnCertificateSigningRequestRequest = class extends $dara.Model {
       static names() {
         return {
@@ -76972,7 +89593,7 @@ var require_CreateCdnCertificateSigningRequestResponseBody = __commonJS({
       value: true,
     });
     exports2.CreateCdnCertificateSigningRequestResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnCertificateSigningRequestResponseBody = class
       extends $dara.Model {
       static names() {
@@ -77072,7 +89693,7 @@ var require_CreateCdnCertificateSigningRequestResponse = __commonJS({
       value: true,
     });
     exports2.CreateCdnCertificateSigningRequestResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnCertificateSigningRequestResponseBody_1 =
       require_CreateCdnCertificateSigningRequestResponseBody();
     var CreateCdnCertificateSigningRequestResponse = class extends $dara.Model {
@@ -77182,7 +89803,7 @@ var require_CreateCdnDeliverTaskRequest = __commonJS({
       value: true,
     });
     exports2.CreateCdnDeliverTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnDeliverTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -77282,7 +89903,7 @@ var require_CreateCdnDeliverTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.CreateCdnDeliverTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnDeliverTaskResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -77377,7 +89998,7 @@ var require_CreateCdnDeliverTaskResponse = __commonJS({
       value: true,
     });
     exports2.CreateCdnDeliverTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnDeliverTaskResponseBody_1 =
       require_CreateCdnDeliverTaskResponseBody();
     var CreateCdnDeliverTaskResponse = class extends $dara.Model {
@@ -77486,7 +90107,7 @@ var require_CreateCdnSubTaskRequest = __commonJS({
       value: true,
     });
     exports2.CreateCdnSubTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnSubTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -77580,7 +90201,7 @@ var require_CreateCdnSubTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.CreateCdnSubTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnSubTaskResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -77672,7 +90293,7 @@ var require_CreateCdnSubTaskResponse = __commonJS({
       value: true,
     });
     exports2.CreateCdnSubTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateCdnSubTaskResponseBody_1 = require_CreateCdnSubTaskResponseBody();
     var CreateCdnSubTaskResponse = class extends $dara.Model {
       static names() {
@@ -77779,7 +90400,7 @@ var require_CreateRealTimeLogDeliveryRequest = __commonJS({
       value: true,
     });
     exports2.CreateRealTimeLogDeliveryRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateRealTimeLogDeliveryRequest = class extends $dara.Model {
       static names() {
         return {
@@ -77878,7 +90499,7 @@ var require_CreateRealTimeLogDeliveryResponseBody = __commonJS({
       value: true,
     });
     exports2.CreateRealTimeLogDeliveryResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateRealTimeLogDeliveryResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -77971,7 +90592,7 @@ var require_CreateRealTimeLogDeliveryResponse = __commonJS({
       value: true,
     });
     exports2.CreateRealTimeLogDeliveryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateRealTimeLogDeliveryResponseBody_1 =
       require_CreateRealTimeLogDeliveryResponseBody();
     var CreateRealTimeLogDeliveryResponse = class extends $dara.Model {
@@ -78081,7 +90702,7 @@ var require_CreateUsageDetailDataExportTaskRequest = __commonJS({
       value: true,
     });
     exports2.CreateUsageDetailDataExportTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateUsageDetailDataExportTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -78186,7 +90807,7 @@ var require_CreateUsageDetailDataExportTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.CreateUsageDetailDataExportTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateUsageDetailDataExportTaskResponseBody = class
       extends $dara.Model {
       static names() {
@@ -78286,7 +90907,7 @@ var require_CreateUsageDetailDataExportTaskResponse = __commonJS({
       value: true,
     });
     exports2.CreateUsageDetailDataExportTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateUsageDetailDataExportTaskResponseBody_1 =
       require_CreateUsageDetailDataExportTaskResponseBody();
     var CreateUsageDetailDataExportTaskResponse = class extends $dara.Model {
@@ -78396,7 +91017,7 @@ var require_CreateUserUsageDataExportTaskRequest = __commonJS({
       value: true,
     });
     exports2.CreateUserUsageDataExportTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateUserUsageDataExportTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -78495,7 +91116,7 @@ var require_CreateUserUsageDataExportTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.CreateUserUsageDataExportTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateUserUsageDataExportTaskResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -78594,7 +91215,7 @@ var require_CreateUserUsageDataExportTaskResponse = __commonJS({
       value: true,
     });
     exports2.CreateUserUsageDataExportTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var CreateUserUsageDataExportTaskResponseBody_1 =
       require_CreateUserUsageDataExportTaskResponseBody();
     var CreateUserUsageDataExportTaskResponse = class extends $dara.Model {
@@ -78704,7 +91325,7 @@ var require_DeleteCdnDeliverTaskRequest = __commonJS({
       value: true,
     });
     exports2.DeleteCdnDeliverTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCdnDeliverTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -78796,7 +91417,7 @@ var require_DeleteCdnDeliverTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteCdnDeliverTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCdnDeliverTaskResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -78889,7 +91510,7 @@ var require_DeleteCdnDeliverTaskResponse = __commonJS({
       value: true,
     });
     exports2.DeleteCdnDeliverTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCdnDeliverTaskResponseBody_1 =
       require_DeleteCdnDeliverTaskResponseBody();
     var DeleteCdnDeliverTaskResponse = class extends $dara.Model {
@@ -78998,7 +91619,7 @@ var require_DeleteCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.DeleteCdnDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCdnDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -79094,7 +91715,7 @@ var require_DeleteCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -79186,7 +91807,7 @@ var require_DeleteCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.DeleteCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCdnDomainResponseBody_1 = require_DeleteCdnDomainResponseBody();
     var DeleteCdnDomainResponse = class extends $dara.Model {
       static names() {
@@ -79293,7 +91914,7 @@ var require_DeleteCdnSubTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteCdnSubTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCdnSubTaskResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -79385,7 +92006,7 @@ var require_DeleteCdnSubTaskResponse = __commonJS({
       value: true,
     });
     exports2.DeleteCdnSubTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCdnSubTaskResponseBody_1 = require_DeleteCdnSubTaskResponseBody();
     var DeleteCdnSubTaskResponse = class extends $dara.Model {
       static names() {
@@ -79492,7 +92113,7 @@ var require_DeleteCustomDomainSampleRateRequest = __commonJS({
       value: true,
     });
     exports2.DeleteCustomDomainSampleRateRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCustomDomainSampleRateRequest = class extends $dara.Model {
       static names() {
         return {
@@ -79585,7 +92206,7 @@ var require_DeleteCustomDomainSampleRateResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteCustomDomainSampleRateResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCustomDomainSampleRateResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -79678,7 +92299,7 @@ var require_DeleteCustomDomainSampleRateResponse = __commonJS({
       value: true,
     });
     exports2.DeleteCustomDomainSampleRateResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteCustomDomainSampleRateResponseBody_1 =
       require_DeleteCustomDomainSampleRateResponseBody();
     var DeleteCustomDomainSampleRateResponse = class extends $dara.Model {
@@ -79788,7 +92409,7 @@ var require_DeleteFctriggerRequest = __commonJS({
       value: true,
     });
     exports2.DeleteFCTriggerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteFCTriggerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -79880,7 +92501,7 @@ var require_DeleteFctriggerResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteFCTriggerResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteFCTriggerResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -79972,7 +92593,7 @@ var require_DeleteFctriggerResponse = __commonJS({
       value: true,
     });
     exports2.DeleteFCTriggerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteFctriggerResponseBody_1 = require_DeleteFctriggerResponseBody();
     var DeleteFCTriggerResponse = class extends $dara.Model {
       static names() {
@@ -80079,7 +92700,7 @@ var require_DeleteRealTimeLogLogstoreRequest = __commonJS({
       value: true,
     });
     exports2.DeleteRealTimeLogLogstoreRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteRealTimeLogLogstoreRequest = class extends $dara.Model {
       static names() {
         return {
@@ -80176,7 +92797,7 @@ var require_DeleteRealTimeLogLogstoreResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteRealTimeLogLogstoreResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteRealTimeLogLogstoreResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -80269,7 +92890,7 @@ var require_DeleteRealTimeLogLogstoreResponse = __commonJS({
       value: true,
     });
     exports2.DeleteRealTimeLogLogstoreResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteRealTimeLogLogstoreResponseBody_1 =
       require_DeleteRealTimeLogLogstoreResponseBody();
     var DeleteRealTimeLogLogstoreResponse = class extends $dara.Model {
@@ -80379,7 +93000,7 @@ var require_DeleteRealtimeLogDeliveryRequest = __commonJS({
       value: true,
     });
     exports2.DeleteRealtimeLogDeliveryRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteRealtimeLogDeliveryRequest = class extends $dara.Model {
       static names() {
         return {
@@ -80478,7 +93099,7 @@ var require_DeleteRealtimeLogDeliveryResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteRealtimeLogDeliveryResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteRealtimeLogDeliveryResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -80571,7 +93192,7 @@ var require_DeleteRealtimeLogDeliveryResponse = __commonJS({
       value: true,
     });
     exports2.DeleteRealtimeLogDeliveryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteRealtimeLogDeliveryResponseBody_1 =
       require_DeleteRealtimeLogDeliveryResponseBody();
     var DeleteRealtimeLogDeliveryResponse = class extends $dara.Model {
@@ -80681,7 +93302,7 @@ var require_DeleteSpecificConfigRequest = __commonJS({
       value: true,
     });
     exports2.DeleteSpecificConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteSpecificConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -80779,7 +93400,7 @@ var require_DeleteSpecificConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteSpecificConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteSpecificConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -80872,7 +93493,7 @@ var require_DeleteSpecificConfigResponse = __commonJS({
       value: true,
     });
     exports2.DeleteSpecificConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteSpecificConfigResponseBody_1 =
       require_DeleteSpecificConfigResponseBody();
     var DeleteSpecificConfigResponse = class extends $dara.Model {
@@ -80981,7 +93602,7 @@ var require_DeleteSpecificStagingConfigRequest = __commonJS({
       value: true,
     });
     exports2.DeleteSpecificStagingConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteSpecificStagingConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -81080,7 +93701,7 @@ var require_DeleteSpecificStagingConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteSpecificStagingConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteSpecificStagingConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -81173,7 +93794,7 @@ var require_DeleteSpecificStagingConfigResponse = __commonJS({
       value: true,
     });
     exports2.DeleteSpecificStagingConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteSpecificStagingConfigResponseBody_1 =
       require_DeleteSpecificStagingConfigResponseBody();
     var DeleteSpecificStagingConfigResponse = class extends $dara.Model {
@@ -81283,7 +93904,7 @@ var require_DeleteUsageDetailDataExportTaskRequest = __commonJS({
       value: true,
     });
     exports2.DeleteUsageDetailDataExportTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteUsageDetailDataExportTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -81376,7 +93997,7 @@ var require_DeleteUsageDetailDataExportTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteUsageDetailDataExportTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteUsageDetailDataExportTaskResponseBody = class
       extends $dara.Model {
       static names() {
@@ -81470,7 +94091,7 @@ var require_DeleteUsageDetailDataExportTaskResponse = __commonJS({
       value: true,
     });
     exports2.DeleteUsageDetailDataExportTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteUsageDetailDataExportTaskResponseBody_1 =
       require_DeleteUsageDetailDataExportTaskResponseBody();
     var DeleteUsageDetailDataExportTaskResponse = class extends $dara.Model {
@@ -81580,7 +94201,7 @@ var require_DeleteUserUsageDataExportTaskRequest = __commonJS({
       value: true,
     });
     exports2.DeleteUserUsageDataExportTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteUserUsageDataExportTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -81673,7 +94294,7 @@ var require_DeleteUserUsageDataExportTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.DeleteUserUsageDataExportTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteUserUsageDataExportTaskResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -81766,7 +94387,7 @@ var require_DeleteUserUsageDataExportTaskResponse = __commonJS({
       value: true,
     });
     exports2.DeleteUserUsageDataExportTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DeleteUserUsageDataExportTaskResponseBody_1 =
       require_DeleteUserUsageDataExportTaskResponseBody();
     var DeleteUserUsageDataExportTaskResponse = class extends $dara.Model {
@@ -81876,7 +94497,7 @@ var require_DescribeBlockedRegionsRequest = __commonJS({
       value: true,
     });
     exports2.DescribeBlockedRegionsRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeBlockedRegionsRequest = class extends $dara.Model {
       static names() {
         return {
@@ -81968,7 +94589,7 @@ var require_DescribeBlockedRegionsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeBlockedRegionsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeBlockedRegionsResponseBody_1 =
       require_DescribeBlockedRegionsResponseBody();
     var DescribeBlockedRegionsResponse = class extends $dara.Model {
@@ -82077,7 +94698,7 @@ var require_DescribeCdnCertificateDetailRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnCertificateDetailRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateDetailRequest = class extends $dara.Model {
       static names() {
         return {
@@ -82174,7 +94795,7 @@ var require_DescribeCdnCertificateDetailResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeCdnCertificateDetailResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateDetailResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -82275,7 +94896,7 @@ var require_DescribeCdnCertificateDetailResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnCertificateDetailResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateDetailResponseBody_1 =
       require_DescribeCdnCertificateDetailResponseBody();
     var DescribeCdnCertificateDetailResponse = class extends $dara.Model {
@@ -82385,7 +95006,7 @@ var require_DescribeCdnCertificateDetailByIdRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnCertificateDetailByIdRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateDetailByIdRequest = class extends $dara.Model {
       static names() {
         return {
@@ -82484,7 +95105,7 @@ var require_DescribeCdnCertificateDetailByIdResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeCdnCertificateDetailByIdResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateDetailByIdResponseBody = class
       extends $dara.Model {
       static names() {
@@ -82586,7 +95207,7 @@ var require_DescribeCdnCertificateDetailByIdResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnCertificateDetailByIdResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateDetailByIdResponseBody_1 =
       require_DescribeCdnCertificateDetailByIdResponseBody();
     var DescribeCdnCertificateDetailByIdResponse = class extends $dara.Model {
@@ -82696,7 +95317,7 @@ var require_DescribeCdnCertificateListRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnCertificateListRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateListRequest = class extends $dara.Model {
       static names() {
         return {
@@ -82793,7 +95414,7 @@ var require_DescribeCdnCertificateListResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnCertificateListResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnCertificateListResponseBody_1 =
       require_DescribeCdnCertificateListResponseBody();
     var DescribeCdnCertificateListResponse = class extends $dara.Model {
@@ -82903,7 +95524,7 @@ var require_DescribeCdnConditionIpbinfoRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnConditionIPBInfoRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnConditionIPBInfoRequest = class extends $dara.Model {
       static names() {
         return {
@@ -82996,7 +95617,7 @@ var require_DescribeCdnConditionIpbinfoResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnConditionIPBInfoResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnConditionIpbinfoResponseBody_1 =
       require_DescribeCdnConditionIpbinfoResponseBody();
     var DescribeCdnConditionIPBInfoResponse = class extends $dara.Model {
@@ -83106,7 +95727,7 @@ var require_DescribeCdnDeletedDomainsRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDeletedDomainsRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDeletedDomainsRequest = class extends $dara.Model {
       static names() {
         return {
@@ -83201,7 +95822,7 @@ var require_DescribeCdnDeletedDomainsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDeletedDomainsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDeletedDomainsResponseBody_1 =
       require_DescribeCdnDeletedDomainsResponseBody();
     var DescribeCdnDeletedDomainsResponse = class extends $dara.Model {
@@ -83311,7 +95932,7 @@ var require_DescribeCdnDeliverListRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDeliverListRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDeliverListRequest = class extends $dara.Model {
       static names() {
         return {
@@ -83403,7 +96024,7 @@ var require_DescribeCdnDeliverListResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDeliverListResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDeliverListResponseBody_1 =
       require_DescribeCdnDeliverListResponseBody();
     var DescribeCdnDeliverListResponse = class extends $dara.Model {
@@ -83512,7 +96133,7 @@ var require_DescribeCdnDiagnoseReportRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDiagnoseReportRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDiagnoseReportRequest = class extends $dara.Model {
       static names() {
         return {
@@ -83607,7 +96228,7 @@ var require_DescribeCdnDiagnoseReportResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDiagnoseReportResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDiagnoseReportResponseBody_1 =
       require_DescribeCdnDiagnoseReportResponseBody();
     var DescribeCdnDiagnoseReportResponse = class extends $dara.Model {
@@ -83717,7 +96338,7 @@ var require_DescribeCdnDomainAtoaLogsRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainAtoaLogsRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainAtoaLogsRequest = class extends $dara.Model {
       static names() {
         return {
@@ -83818,7 +96439,7 @@ var require_DescribeCdnDomainAtoaLogsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainAtoaLogsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainAtoaLogsResponseBody_1 =
       require_DescribeCdnDomainAtoaLogsResponseBody();
     var DescribeCdnDomainAtoaLogsResponse = class extends $dara.Model {
@@ -83928,7 +96549,7 @@ var require_DescribeCdnDomainByCertificateRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainByCertificateRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainByCertificateRequest = class extends $dara.Model {
       static names() {
         return {
@@ -84025,7 +96646,7 @@ var require_DescribeCdnDomainByCertificateResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainByCertificateResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainByCertificateResponseBody_1 =
       require_DescribeCdnDomainByCertificateResponseBody();
     var DescribeCdnDomainByCertificateResponse = class extends $dara.Model {
@@ -84135,7 +96756,7 @@ var require_DescribeCdnDomainConfigsRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainConfigsRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainConfigsRequest = class extends $dara.Model {
       static names() {
         return {
@@ -84235,7 +96856,7 @@ var require_DescribeCdnDomainConfigsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainConfigsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainConfigsResponseBody_1 =
       require_DescribeCdnDomainConfigsResponseBody();
     var DescribeCdnDomainConfigsResponse = class extends $dara.Model {
@@ -84345,7 +96966,7 @@ var require_DescribeCdnDomainDetailRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainDetailRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainDetailRequest = class extends $dara.Model {
       static names() {
         return {
@@ -84441,7 +97062,7 @@ var require_DescribeCdnDomainDetailResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainDetailResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainDetailResponseBody_1 =
       require_DescribeCdnDomainDetailResponseBody();
     var DescribeCdnDomainDetailResponse = class extends $dara.Model {
@@ -84550,7 +97171,7 @@ var require_DescribeCdnDomainLogsRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainLogsRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainLogsRequest = class extends $dara.Model {
       static names() {
         return {
@@ -84650,7 +97271,7 @@ var require_DescribeCdnDomainLogsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainLogsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainLogsResponseBody_1 =
       require_DescribeCdnDomainLogsResponseBody();
     var DescribeCdnDomainLogsResponse = class extends $dara.Model {
@@ -84759,7 +97380,7 @@ var require_DescribeCdnDomainLogsExTtlRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainLogsExTtlRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainLogsExTtlRequest = class extends $dara.Model {
       static names() {
         return {
@@ -84860,7 +97481,7 @@ var require_DescribeCdnDomainLogsExTtlResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainLogsExTtlResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainLogsExTtlResponseBody_1 =
       require_DescribeCdnDomainLogsExTtlResponseBody();
     var DescribeCdnDomainLogsExTtlResponse = class extends $dara.Model {
@@ -84970,7 +97591,7 @@ var require_DescribeCdnDomainStagingConfigRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainStagingConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainStagingConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -85065,7 +97686,7 @@ var require_DescribeCdnDomainStagingConfigResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnDomainStagingConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnDomainStagingConfigResponseBody_1 =
       require_DescribeCdnDomainStagingConfigResponseBody();
     var DescribeCdnDomainStagingConfigResponse = class extends $dara.Model {
@@ -85175,7 +97796,7 @@ var require_DescribeCdnFullDomainsBlockIpconfigRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnFullDomainsBlockIPConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnFullDomainsBlockIPConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -85268,7 +97889,7 @@ var require_DescribeCdnFullDomainsBlockIpconfigResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeCdnFullDomainsBlockIPConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnFullDomainsBlockIPConfigResponseBody = class
       extends $dara.Model {
       static names() {
@@ -85366,7 +97987,7 @@ var require_DescribeCdnFullDomainsBlockIpconfigResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnFullDomainsBlockIPConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnFullDomainsBlockIpconfigResponseBody_1 =
       require_DescribeCdnFullDomainsBlockIpconfigResponseBody();
     var DescribeCdnFullDomainsBlockIPConfigResponse = class
@@ -85477,7 +98098,7 @@ var require_DescribeCdnFullDomainsBlockIphistoryRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnFullDomainsBlockIPHistoryRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnFullDomainsBlockIPHistoryRequest = class
       extends $dara.Model {
       static names() {
@@ -85575,7 +98196,7 @@ var require_DescribeCdnFullDomainsBlockIphistoryResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnFullDomainsBlockIPHistoryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnFullDomainsBlockIphistoryResponseBody_1 =
       require_DescribeCdnFullDomainsBlockIphistoryResponseBody();
     var DescribeCdnFullDomainsBlockIPHistoryResponse = class
@@ -85686,7 +98307,7 @@ var require_DescribeCdnHttpsDomainListRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnHttpsDomainListRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnHttpsDomainListRequest = class extends $dara.Model {
       static names() {
         return {
@@ -85783,7 +98404,7 @@ var require_DescribeCdnHttpsDomainListResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnHttpsDomainListResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnHttpsDomainListResponseBody_1 =
       require_DescribeCdnHttpsDomainListResponseBody();
     var DescribeCdnHttpsDomainListResponse = class extends $dara.Model {
@@ -85893,7 +98514,7 @@ var require_DescribeCdnOrderCommodityCodeRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnOrderCommodityCodeRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnOrderCommodityCodeRequest = class extends $dara.Model {
       static names() {
         return {
@@ -85990,7 +98611,7 @@ var require_DescribeCdnOrderCommodityCodeResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeCdnOrderCommodityCodeResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnOrderCommodityCodeResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -86085,7 +98706,7 @@ var require_DescribeCdnOrderCommodityCodeResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnOrderCommodityCodeResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnOrderCommodityCodeResponseBody_1 =
       require_DescribeCdnOrderCommodityCodeResponseBody();
     var DescribeCdnOrderCommodityCodeResponse = class extends $dara.Model {
@@ -86195,7 +98816,7 @@ var require_DescribeCdnRegionAndIspRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnRegionAndIspRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnRegionAndIspRequest = class extends $dara.Model {
       static names() {
         return {
@@ -86289,7 +98910,7 @@ var require_DescribeCdnRegionAndIspResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnRegionAndIspResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnRegionAndIspResponseBody_1 =
       require_DescribeCdnRegionAndIspResponseBody();
     var DescribeCdnRegionAndIspResponse = class extends $dara.Model {
@@ -86398,7 +99019,7 @@ var require_DescribeCdnReportRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnReportRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnReportRequest = class extends $dara.Model {
       static names() {
         return {
@@ -86502,7 +99123,7 @@ var require_DescribeCdnReportResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnReportResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnReportResponseBody_1 =
       require_DescribeCdnReportResponseBody();
     var DescribeCdnReportResponse = class extends $dara.Model {
@@ -86610,7 +99231,7 @@ var require_DescribeCdnReportListRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnReportListRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnReportListRequest = class extends $dara.Model {
       static names() {
         return {
@@ -86702,7 +99323,7 @@ var require_DescribeCdnReportListResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnReportListResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnReportListResponseBody_1 =
       require_DescribeCdnReportListResponseBody();
     var DescribeCdnReportListResponse = class extends $dara.Model {
@@ -86811,7 +99432,7 @@ var require_DescribeCdnSmcertificateDetailRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSMCertificateDetailRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSMCertificateDetailRequest = class extends $dara.Model {
       static names() {
         return {
@@ -86908,7 +99529,7 @@ var require_DescribeCdnSmcertificateDetailResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSMCertificateDetailResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSMCertificateDetailResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -87017,7 +99638,7 @@ var require_DescribeCdnSmcertificateDetailResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSMCertificateDetailResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSmcertificateDetailResponseBody_1 =
       require_DescribeCdnSmcertificateDetailResponseBody();
     var DescribeCdnSMCertificateDetailResponse = class extends $dara.Model {
@@ -87127,7 +99748,7 @@ var require_DescribeCdnSmcertificateListRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSMCertificateListRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSMCertificateListRequest = class extends $dara.Model {
       static names() {
         return {
@@ -87224,7 +99845,7 @@ var require_DescribeCdnSmcertificateListResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSMCertificateListResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSmcertificateListResponseBody_1 =
       require_DescribeCdnSmcertificateListResponseBody();
     var DescribeCdnSMCertificateListResponse = class extends $dara.Model {
@@ -87334,7 +99955,7 @@ var require_DescribeCdnSslcertificateListRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSSLCertificateListRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSSLCertificateListRequest = class extends $dara.Model {
       static names() {
         return {
@@ -87437,7 +100058,7 @@ var require_DescribeCdnSslcertificateListResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSSLCertificateListResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSslcertificateListResponseBody_1 =
       require_DescribeCdnSslcertificateListResponseBody();
     var DescribeCdnSSLCertificateListResponse = class extends $dara.Model {
@@ -87547,7 +100168,7 @@ var require_DescribeCdnSecFuncInfoRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSecFuncInfoRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSecFuncInfoRequest = class extends $dara.Model {
       static names() {
         return {
@@ -87641,7 +100262,7 @@ var require_DescribeCdnSecFuncInfoResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSecFuncInfoResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSecFuncInfoResponseBody_1 =
       require_DescribeCdnSecFuncInfoResponseBody();
     var DescribeCdnSecFuncInfoResponse = class extends $dara.Model {
@@ -87750,7 +100371,7 @@ var require_DescribeCdnServiceRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnServiceRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnServiceRequest = class extends $dara.Model {
       static names() {
         return {
@@ -87844,7 +100465,7 @@ var require_DescribeCdnServiceResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnServiceResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnServiceResponseBody_1 =
       require_DescribeCdnServiceResponseBody();
     var DescribeCdnServiceResponse = class extends $dara.Model {
@@ -87952,7 +100573,7 @@ var require_DescribeCdnSubListResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnSubListResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnSubListResponseBody_1 =
       require_DescribeCdnSubListResponseBody();
     var DescribeCdnSubListResponse = class extends $dara.Model {
@@ -88060,7 +100681,7 @@ var require_DescribeCdnTaskListRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnTaskListRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnTaskListRequest = class extends $dara.Model {
       static names() {
         return {
@@ -88168,7 +100789,7 @@ var require_DescribeCdnTaskListResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnTaskListResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnTaskListResponseBody_1 =
       require_DescribeCdnTaskListResponseBody();
     var DescribeCdnTaskListResponse = class extends $dara.Model {
@@ -88277,7 +100898,7 @@ var require_DescribeCdnTypesRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnTypesRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnTypesRequest = class extends $dara.Model {
       static names() {
         return {
@@ -88373,7 +100994,7 @@ var require_DescribeCdnTypesResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnTypesResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnTypesResponseBody_1 = require_DescribeCdnTypesResponseBody();
     var DescribeCdnTypesResponse = class extends $dara.Model {
       static names() {
@@ -88480,7 +101101,7 @@ var require_DescribeCdnUserBillHistoryRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserBillHistoryRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillHistoryRequest = class extends $dara.Model {
       static names() {
         return {
@@ -88575,7 +101196,7 @@ var require_DescribeCdnUserBillHistoryResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserBillHistoryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillHistoryResponseBody_1 =
       require_DescribeCdnUserBillHistoryResponseBody();
     var DescribeCdnUserBillHistoryResponse = class extends $dara.Model {
@@ -88685,7 +101306,7 @@ var require_DescribeCdnUserBillPredictionRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserBillPredictionRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillPredictionRequest = class extends $dara.Model {
       static names() {
         return {
@@ -88784,7 +101405,7 @@ var require_DescribeCdnUserBillPredictionResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserBillPredictionResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillPredictionResponseBody_1 =
       require_DescribeCdnUserBillPredictionResponseBody();
     var DescribeCdnUserBillPredictionResponse = class extends $dara.Model {
@@ -88894,7 +101515,7 @@ var require_DescribeCdnUserBillTypeRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserBillTypeRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillTypeRequest = class extends $dara.Model {
       static names() {
         return {
@@ -88988,7 +101609,7 @@ var require_DescribeCdnUserBillTypeResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserBillTypeResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserBillTypeResponseBody_1 =
       require_DescribeCdnUserBillTypeResponseBody();
     var DescribeCdnUserBillTypeResponse = class extends $dara.Model {
@@ -89097,7 +101718,7 @@ var require_DescribeCdnUserConfigsRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserConfigsRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserConfigsRequest = class extends $dara.Model {
       static names() {
         return {
@@ -89189,7 +101810,7 @@ var require_DescribeCdnUserConfigsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserConfigsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserConfigsResponseBody_1 =
       require_DescribeCdnUserConfigsResponseBody();
     var DescribeCdnUserConfigsResponse = class extends $dara.Model {
@@ -89298,7 +101919,7 @@ var require_DescribeCdnUserDomainsByFuncRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserDomainsByFuncRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserDomainsByFuncRequest = class extends $dara.Model {
       static names() {
         return {
@@ -89397,7 +102018,7 @@ var require_DescribeCdnUserDomainsByFuncResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserDomainsByFuncResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserDomainsByFuncResponseBody_1 =
       require_DescribeCdnUserDomainsByFuncResponseBody();
     var DescribeCdnUserDomainsByFuncResponse = class extends $dara.Model {
@@ -89507,7 +102128,7 @@ var require_DescribeCdnUserQuotaRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserQuotaRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserQuotaRequest = class extends $dara.Model {
       static names() {
         return {
@@ -89601,7 +102222,7 @@ var require_DescribeCdnUserQuotaResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserQuotaResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserQuotaResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -89716,7 +102337,7 @@ var require_DescribeCdnUserQuotaResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserQuotaResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserQuotaResponseBody_1 =
       require_DescribeCdnUserQuotaResponseBody();
     var DescribeCdnUserQuotaResponse = class extends $dara.Model {
@@ -89825,7 +102446,7 @@ var require_DescribeCdnUserResourcePackageRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserResourcePackageRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserResourcePackageRequest = class extends $dara.Model {
       static names() {
         return {
@@ -89922,7 +102543,7 @@ var require_DescribeCdnUserResourcePackageResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnUserResourcePackageResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnUserResourcePackageResponseBody_1 =
       require_DescribeCdnUserResourcePackageResponseBody();
     var DescribeCdnUserResourcePackageResponse = class extends $dara.Model {
@@ -90032,7 +102653,7 @@ var require_DescribeCdnWafDomainRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCdnWafDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnWafDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -90128,7 +102749,7 @@ var require_DescribeCdnWafDomainResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCdnWafDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCdnWafDomainResponseBody_1 =
       require_DescribeCdnWafDomainResponseBody();
     var DescribeCdnWafDomainResponse = class extends $dara.Model {
@@ -90237,7 +102858,7 @@ var require_DescribeCertificateInfoByIdrequest = __commonJS({
       value: true,
     });
     exports2.DescribeCertificateInfoByIDRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCertificateInfoByIDRequest = class extends $dara.Model {
       static names() {
         return {
@@ -90330,7 +102951,7 @@ var require_DescribeCertificateInfoByIdresponse = __commonJS({
       value: true,
     });
     exports2.DescribeCertificateInfoByIDResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCertificateInfoByIdresponseBody_1 =
       require_DescribeCertificateInfoByIdresponseBody();
     var DescribeCertificateInfoByIDResponse = class extends $dara.Model {
@@ -90440,7 +103061,7 @@ var require_DescribeCustomDomainSampleRateRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCustomDomainSampleRateRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCustomDomainSampleRateRequest = class extends $dara.Model {
       static names() {
         return {
@@ -90537,7 +103158,7 @@ var require_DescribeCustomDomainSampleRateResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCustomDomainSampleRateResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCustomDomainSampleRateResponseBody_1 =
       require_DescribeCustomDomainSampleRateResponseBody();
     var DescribeCustomDomainSampleRateResponse = class extends $dara.Model {
@@ -90647,7 +103268,7 @@ var require_DescribeCustomLogConfigRequest = __commonJS({
       value: true,
     });
     exports2.DescribeCustomLogConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCustomLogConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -90739,7 +103360,7 @@ var require_DescribeCustomLogConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeCustomLogConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCustomLogConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -90838,7 +103459,7 @@ var require_DescribeCustomLogConfigResponse = __commonJS({
       value: true,
     });
     exports2.DescribeCustomLogConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeCustomLogConfigResponseBody_1 =
       require_DescribeCustomLogConfigResponseBody();
     var DescribeCustomLogConfigResponse = class extends $dara.Model {
@@ -90947,7 +103568,7 @@ var require_DescribeDomainAverageResponseTimeRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainAverageResponseTimeRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainAverageResponseTimeRequest = class extends $dara.Model {
       static names() {
         return {
@@ -91054,7 +103675,7 @@ var require_DescribeDomainAverageResponseTimeResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainAverageResponseTimeResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainAverageResponseTimeResponseBody_1 =
       require_DescribeDomainAverageResponseTimeResponseBody();
     var DescribeDomainAverageResponseTimeResponse = class extends $dara.Model {
@@ -91164,7 +103785,7 @@ var require_DescribeDomainBpsDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainBpsDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -91266,7 +103887,7 @@ var require_DescribeDomainBpsDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainBpsDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataResponseBody_1 =
       require_DescribeDomainBpsDataResponseBody();
     var DescribeDomainBpsDataResponse = class extends $dara.Model {
@@ -91375,7 +103996,7 @@ var require_DescribeDomainBpsDataByLayerRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainBpsDataByLayerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataByLayerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -91480,7 +104101,7 @@ var require_DescribeDomainBpsDataByLayerResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainBpsDataByLayerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataByLayerResponseBody_1 =
       require_DescribeDomainBpsDataByLayerResponseBody();
     var DescribeDomainBpsDataByLayerResponse = class extends $dara.Model {
@@ -91590,7 +104211,7 @@ var require_DescribeDomainBpsDataByTimeStampRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainBpsDataByTimeStampRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataByTimeStampRequest = class extends $dara.Model {
       static names() {
         return {
@@ -91689,7 +104310,7 @@ var require_DescribeDomainBpsDataByTimeStampResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainBpsDataByTimeStampResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainBpsDataByTimeStampResponseBody_1 =
       require_DescribeDomainBpsDataByTimeStampResponseBody();
     var DescribeDomainBpsDataByTimeStampResponse = class extends $dara.Model {
@@ -91799,7 +104420,7 @@ var require_DescribeDomainCcActivityLogRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCcActivityLogRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCcActivityLogRequest = class extends $dara.Model {
       static names() {
         return {
@@ -91906,7 +104527,7 @@ var require_DescribeDomainCcActivityLogResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCcActivityLogResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCcActivityLogResponseBody_1 =
       require_DescribeDomainCcActivityLogResponseBody();
     var DescribeDomainCcActivityLogResponse = class extends $dara.Model {
@@ -92016,7 +104637,7 @@ var require_DescribeDomainCertificateInfoRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCertificateInfoRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCertificateInfoRequest = class extends $dara.Model {
       static names() {
         return {
@@ -92109,7 +104730,7 @@ var require_DescribeDomainCertificateInfoResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCertificateInfoResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCertificateInfoResponseBody_1 =
       require_DescribeDomainCertificateInfoResponseBody();
     var DescribeDomainCertificateInfoResponse = class extends $dara.Model {
@@ -92219,7 +104840,7 @@ var require_DescribeDomainCnameRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCnameRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCnameRequest = class extends $dara.Model {
       static names() {
         return {
@@ -92311,7 +104932,7 @@ var require_DescribeDomainCnameResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCnameResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCnameResponseBody_1 =
       require_DescribeDomainCnameResponseBody();
     var DescribeDomainCnameResponse = class extends $dara.Model {
@@ -92420,7 +105041,7 @@ var require_DescribeDomainCustomLogConfigRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCustomLogConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCustomLogConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -92513,7 +105134,7 @@ var require_DescribeDomainCustomLogConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCustomLogConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCustomLogConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -92614,7 +105235,7 @@ var require_DescribeDomainCustomLogConfigResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainCustomLogConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainCustomLogConfigResponseBody_1 =
       require_DescribeDomainCustomLogConfigResponseBody();
     var DescribeDomainCustomLogConfigResponse = class extends $dara.Model {
@@ -92724,7 +105345,7 @@ var require_DescribeDomainDetailDataByLayerRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainDetailDataByLayerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainDetailDataByLayerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -92829,7 +105450,7 @@ var require_DescribeDomainDetailDataByLayerResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainDetailDataByLayerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainDetailDataByLayerResponseBody_1 =
       require_DescribeDomainDetailDataByLayerResponseBody();
     var DescribeDomainDetailDataByLayerResponse = class extends $dara.Model {
@@ -92939,7 +105560,7 @@ var require_DescribeDomainHitRateDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainHitRateDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHitRateDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -93038,7 +105659,7 @@ var require_DescribeDomainHitRateDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainHitRateDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHitRateDataResponseBody_1 =
       require_DescribeDomainHitRateDataResponseBody();
     var DescribeDomainHitRateDataResponse = class extends $dara.Model {
@@ -93148,7 +105769,7 @@ var require_DescribeDomainHttpCodeDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainHttpCodeDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHttpCodeDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -93251,7 +105872,7 @@ var require_DescribeDomainHttpCodeDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainHttpCodeDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHttpCodeDataResponseBody_1 =
       require_DescribeDomainHttpCodeDataResponseBody();
     var DescribeDomainHttpCodeDataResponse = class extends $dara.Model {
@@ -93361,7 +105982,7 @@ var require_DescribeDomainHttpCodeDataByLayerRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainHttpCodeDataByLayerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHttpCodeDataByLayerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -93466,7 +106087,7 @@ var require_DescribeDomainHttpCodeDataByLayerResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainHttpCodeDataByLayerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainHttpCodeDataByLayerResponseBody_1 =
       require_DescribeDomainHttpCodeDataByLayerResponseBody();
     var DescribeDomainHttpCodeDataByLayerResponse = class extends $dara.Model {
@@ -93576,7 +106197,7 @@ var require_DescribeDomainIspdataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainISPDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainISPDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -93672,7 +106293,7 @@ var require_DescribeDomainIspdataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainISPDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainIspdataResponseBody_1 =
       require_DescribeDomainIspdataResponseBody();
     var DescribeDomainISPDataResponse = class extends $dara.Model {
@@ -93781,7 +106402,7 @@ var require_DescribeDomainMax95bpsDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainMax95BpsDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainMax95BpsDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -93882,7 +106503,7 @@ var require_DescribeDomainMax95bpsDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainMax95BpsDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainMax95bpsDataResponseBody_1 =
       require_DescribeDomainMax95bpsDataResponseBody();
     var DescribeDomainMax95BpsDataResponse = class extends $dara.Model {
@@ -93992,7 +106613,7 @@ var require_DescribeDomainMultiUsageDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainMultiUsageDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainMultiUsageDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -94089,7 +106710,7 @@ var require_DescribeDomainMultiUsageDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainMultiUsageDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainMultiUsageDataResponseBody_1 =
       require_DescribeDomainMultiUsageDataResponseBody();
     var DescribeDomainMultiUsageDataResponse = class extends $dara.Model {
@@ -94199,7 +106820,7 @@ var require_DescribeDomainPathDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainPathDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainPathDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -94301,7 +106922,7 @@ var require_DescribeDomainPathDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainPathDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainPathDataResponseBody_1 =
       require_DescribeDomainPathDataResponseBody();
     var DescribeDomainPathDataResponse = class extends $dara.Model {
@@ -94410,7 +107031,7 @@ var require_DescribeDomainPvDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainPvDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainPvDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -94506,7 +107127,7 @@ var require_DescribeDomainPvDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainPvDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainPvDataResponseBody_1 =
       require_DescribeDomainPvDataResponseBody();
     var DescribeDomainPvDataResponse = class extends $dara.Model {
@@ -94615,7 +107236,7 @@ var require_DescribeDomainQpsDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainQpsDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainQpsDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -94717,7 +107338,7 @@ var require_DescribeDomainQpsDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainQpsDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainQpsDataResponseBody_1 =
       require_DescribeDomainQpsDataResponseBody();
     var DescribeDomainQpsDataResponse = class extends $dara.Model {
@@ -94826,7 +107447,7 @@ var require_DescribeDomainQpsDataByLayerRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainQpsDataByLayerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainQpsDataByLayerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -94931,7 +107552,7 @@ var require_DescribeDomainQpsDataByLayerResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainQpsDataByLayerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainQpsDataByLayerResponseBody_1 =
       require_DescribeDomainQpsDataByLayerResponseBody();
     var DescribeDomainQpsDataByLayerResponse = class extends $dara.Model {
@@ -95041,7 +107662,7 @@ var require_DescribeDomainRealTimeBpsDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeBpsDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeBpsDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -95142,7 +107763,7 @@ var require_DescribeDomainRealTimeBpsDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeBpsDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeBpsDataResponseBody_1 =
       require_DescribeDomainRealTimeBpsDataResponseBody();
     var DescribeDomainRealTimeBpsDataResponse = class extends $dara.Model {
@@ -95252,7 +107873,7 @@ var require_DescribeDomainRealTimeByteHitRateDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeByteHitRateDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeByteHitRateDataRequest = class
       extends $dara.Model {
       static names() {
@@ -95350,7 +107971,7 @@ var require_DescribeDomainRealTimeByteHitRateDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeByteHitRateDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeByteHitRateDataResponseBody_1 =
       require_DescribeDomainRealTimeByteHitRateDataResponseBody();
     var DescribeDomainRealTimeByteHitRateDataResponse = class
@@ -95461,7 +108082,7 @@ var require_DescribeDomainRealTimeDetailDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeDetailDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeDetailDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -95568,7 +108189,7 @@ var require_DescribeDomainRealTimeDetailDataResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeDetailDataResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeDetailDataResponseBody = class
       extends $dara.Model {
       static names() {
@@ -95664,7 +108285,7 @@ var require_DescribeDomainRealTimeDetailDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeDetailDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeDetailDataResponseBody_1 =
       require_DescribeDomainRealTimeDetailDataResponseBody();
     var DescribeDomainRealTimeDetailDataResponse = class extends $dara.Model {
@@ -95774,7 +108395,7 @@ var require_DescribeDomainRealTimeHttpCodeDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeHttpCodeDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeHttpCodeDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -95875,7 +108496,7 @@ var require_DescribeDomainRealTimeHttpCodeDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeHttpCodeDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeHttpCodeDataResponseBody_1 =
       require_DescribeDomainRealTimeHttpCodeDataResponseBody();
     var DescribeDomainRealTimeHttpCodeDataResponse = class extends $dara.Model {
@@ -95985,7 +108606,7 @@ var require_DescribeDomainRealTimeQpsDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeQpsDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeQpsDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -96086,7 +108707,7 @@ var require_DescribeDomainRealTimeQpsDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeQpsDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeQpsDataResponseBody_1 =
       require_DescribeDomainRealTimeQpsDataResponseBody();
     var DescribeDomainRealTimeQpsDataResponse = class extends $dara.Model {
@@ -96196,7 +108817,7 @@ var require_DescribeDomainRealTimeReqHitRateDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeReqHitRateDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeReqHitRateDataRequest = class
       extends $dara.Model {
       static names() {
@@ -96294,7 +108915,7 @@ var require_DescribeDomainRealTimeReqHitRateDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeReqHitRateDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeReqHitRateDataResponseBody_1 =
       require_DescribeDomainRealTimeReqHitRateDataResponseBody();
     var DescribeDomainRealTimeReqHitRateDataResponse = class
@@ -96405,7 +109026,7 @@ var require_DescribeDomainRealTimeSrcBpsDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeSrcBpsDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcBpsDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -96502,7 +109123,7 @@ var require_DescribeDomainRealTimeSrcBpsDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeSrcBpsDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcBpsDataResponseBody_1 =
       require_DescribeDomainRealTimeSrcBpsDataResponseBody();
     var DescribeDomainRealTimeSrcBpsDataResponse = class extends $dara.Model {
@@ -96612,7 +109233,7 @@ var require_DescribeDomainRealTimeSrcHttpCodeDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeSrcHttpCodeDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcHttpCodeDataRequest = class
       extends $dara.Model {
       static names() {
@@ -96710,7 +109331,7 @@ var require_DescribeDomainRealTimeSrcHttpCodeDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeSrcHttpCodeDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcHttpCodeDataResponseBody_1 =
       require_DescribeDomainRealTimeSrcHttpCodeDataResponseBody();
     var DescribeDomainRealTimeSrcHttpCodeDataResponse = class
@@ -96821,7 +109442,7 @@ var require_DescribeDomainRealTimeSrcTrafficDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeSrcTrafficDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcTrafficDataRequest = class
       extends $dara.Model {
       static names() {
@@ -96919,7 +109540,7 @@ var require_DescribeDomainRealTimeSrcTrafficDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeSrcTrafficDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeSrcTrafficDataResponseBody_1 =
       require_DescribeDomainRealTimeSrcTrafficDataResponseBody();
     var DescribeDomainRealTimeSrcTrafficDataResponse = class
@@ -97030,7 +109651,7 @@ var require_DescribeDomainRealTimeTrafficDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeTrafficDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeTrafficDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -97131,7 +109752,7 @@ var require_DescribeDomainRealTimeTrafficDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealTimeTrafficDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealTimeTrafficDataResponseBody_1 =
       require_DescribeDomainRealTimeTrafficDataResponseBody();
     var DescribeDomainRealTimeTrafficDataResponse = class extends $dara.Model {
@@ -97241,7 +109862,7 @@ var require_DescribeDomainRealtimeLogDeliveryRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealtimeLogDeliveryRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealtimeLogDeliveryRequest = class extends $dara.Model {
       static names() {
         return {
@@ -97334,7 +109955,7 @@ var require_DescribeDomainRealtimeLogDeliveryResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealtimeLogDeliveryResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealtimeLogDeliveryResponseBody = class
       extends $dara.Model {
       static names() {
@@ -97436,7 +110057,7 @@ var require_DescribeDomainRealtimeLogDeliveryResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRealtimeLogDeliveryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRealtimeLogDeliveryResponseBody_1 =
       require_DescribeDomainRealtimeLogDeliveryResponseBody();
     var DescribeDomainRealtimeLogDeliveryResponse = class extends $dara.Model {
@@ -97546,7 +110167,7 @@ var require_DescribeDomainRegionDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRegionDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRegionDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -97642,7 +110263,7 @@ var require_DescribeDomainRegionDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainRegionDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainRegionDataResponseBody_1 =
       require_DescribeDomainRegionDataResponseBody();
     var DescribeDomainRegionDataResponse = class extends $dara.Model {
@@ -97752,7 +110373,7 @@ var require_DescribeDomainReqHitRateDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainReqHitRateDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainReqHitRateDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -97851,7 +110472,7 @@ var require_DescribeDomainReqHitRateDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainReqHitRateDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainReqHitRateDataResponseBody_1 =
       require_DescribeDomainReqHitRateDataResponseBody();
     var DescribeDomainReqHitRateDataResponse = class extends $dara.Model {
@@ -97961,7 +110582,7 @@ var require_DescribeDomainSrcBpsDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcBpsDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcBpsDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -98059,7 +110680,7 @@ var require_DescribeDomainSrcBpsDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcBpsDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcBpsDataResponseBody_1 =
       require_DescribeDomainSrcBpsDataResponseBody();
     var DescribeDomainSrcBpsDataResponse = class extends $dara.Model {
@@ -98169,7 +110790,7 @@ var require_DescribeDomainSrcHttpCodeDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcHttpCodeDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcHttpCodeDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -98268,7 +110889,7 @@ var require_DescribeDomainSrcHttpCodeDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcHttpCodeDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcHttpCodeDataResponseBody_1 =
       require_DescribeDomainSrcHttpCodeDataResponseBody();
     var DescribeDomainSrcHttpCodeDataResponse = class extends $dara.Model {
@@ -98378,7 +110999,7 @@ var require_DescribeDomainSrcQpsDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcQpsDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcQpsDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -98476,7 +111097,7 @@ var require_DescribeDomainSrcQpsDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcQpsDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcQpsDataResponseBody_1 =
       require_DescribeDomainSrcQpsDataResponseBody();
     var DescribeDomainSrcQpsDataResponse = class extends $dara.Model {
@@ -98586,7 +111207,7 @@ var require_DescribeDomainSrcTopUrlVisitRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcTopUrlVisitRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcTopUrlVisitRequest = class extends $dara.Model {
       static names() {
         return {
@@ -98685,7 +111306,7 @@ var require_DescribeDomainSrcTopUrlVisitResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcTopUrlVisitResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcTopUrlVisitResponseBody_1 =
       require_DescribeDomainSrcTopUrlVisitResponseBody();
     var DescribeDomainSrcTopUrlVisitResponse = class extends $dara.Model {
@@ -98795,7 +111416,7 @@ var require_DescribeDomainSrcTrafficDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcTrafficDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcTrafficDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -98894,7 +111515,7 @@ var require_DescribeDomainSrcTrafficDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainSrcTrafficDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainSrcTrafficDataResponseBody_1 =
       require_DescribeDomainSrcTrafficDataResponseBody();
     var DescribeDomainSrcTrafficDataResponse = class extends $dara.Model {
@@ -99004,7 +111625,7 @@ var require_DescribeDomainTopClientIpVisitRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainTopClientIpVisitRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopClientIpVisitRequest = class extends $dara.Model {
       static names() {
         return {
@@ -99107,7 +111728,7 @@ var require_DescribeDomainTopClientIpVisitResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainTopClientIpVisitResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopClientIpVisitResponseBody_1 =
       require_DescribeDomainTopClientIpVisitResponseBody();
     var DescribeDomainTopClientIpVisitResponse = class extends $dara.Model {
@@ -99217,7 +111838,7 @@ var require_DescribeDomainTopReferVisitRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainTopReferVisitRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopReferVisitRequest = class extends $dara.Model {
       static names() {
         return {
@@ -99316,7 +111937,7 @@ var require_DescribeDomainTopReferVisitResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainTopReferVisitResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopReferVisitResponseBody_1 =
       require_DescribeDomainTopReferVisitResponseBody();
     var DescribeDomainTopReferVisitResponse = class extends $dara.Model {
@@ -99426,7 +112047,7 @@ var require_DescribeDomainTopUrlVisitRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainTopUrlVisitRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopUrlVisitRequest = class extends $dara.Model {
       static names() {
         return {
@@ -99525,7 +112146,7 @@ var require_DescribeDomainTopUrlVisitResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainTopUrlVisitResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTopUrlVisitResponseBody_1 =
       require_DescribeDomainTopUrlVisitResponseBody();
     var DescribeDomainTopUrlVisitResponse = class extends $dara.Model {
@@ -99635,7 +112256,7 @@ var require_DescribeDomainTrafficDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainTrafficDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTrafficDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -99738,7 +112359,7 @@ var require_DescribeDomainTrafficDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainTrafficDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainTrafficDataResponseBody_1 =
       require_DescribeDomainTrafficDataResponseBody();
     var DescribeDomainTrafficDataResponse = class extends $dara.Model {
@@ -99848,7 +112469,7 @@ var require_DescribeDomainUsageDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainUsageDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainUsageDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -99956,7 +112577,7 @@ var require_DescribeDomainUsageDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainUsageDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainUsageDataResponseBody_1 =
       require_DescribeDomainUsageDataResponseBody();
     var DescribeDomainUsageDataResponse = class extends $dara.Model {
@@ -100065,7 +112686,7 @@ var require_DescribeDomainUvDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainUvDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainUvDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -100161,7 +112782,7 @@ var require_DescribeDomainUvDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainUvDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainUvDataResponseBody_1 =
       require_DescribeDomainUvDataResponseBody();
     var DescribeDomainUvDataResponse = class extends $dara.Model {
@@ -100270,7 +112891,7 @@ var require_DescribeDomainVerifyDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainVerifyDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainVerifyDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -100364,7 +112985,7 @@ var require_DescribeDomainVerifyDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainVerifyDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainVerifyDataResponseBody_1 =
       require_DescribeDomainVerifyDataResponseBody();
     var DescribeDomainVerifyDataResponse = class extends $dara.Model {
@@ -100474,7 +113095,7 @@ var require_DescribeDomainsBySourceRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainsBySourceRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainsBySourceRequest = class extends $dara.Model {
       static names() {
         return {
@@ -100570,7 +113191,7 @@ var require_DescribeDomainsBySourceResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainsBySourceResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainsBySourceResponseBody_1 =
       require_DescribeDomainsBySourceResponseBody();
     var DescribeDomainsBySourceResponse = class extends $dara.Model {
@@ -100679,7 +113300,7 @@ var require_DescribeDomainsUsageByDayRequest = __commonJS({
       value: true,
     });
     exports2.DescribeDomainsUsageByDayRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainsUsageByDayRequest = class extends $dara.Model {
       static names() {
         return {
@@ -100776,7 +113397,7 @@ var require_DescribeDomainsUsageByDayResponse = __commonJS({
       value: true,
     });
     exports2.DescribeDomainsUsageByDayResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeDomainsUsageByDayResponseBody_1 =
       require_DescribeDomainsUsageByDayResponseBody();
     var DescribeDomainsUsageByDayResponse = class extends $dara.Model {
@@ -100886,7 +113507,7 @@ var require_DescribeEsExceptionDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeEsExceptionDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeEsExceptionDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -100982,7 +113603,7 @@ var require_DescribeEsExceptionDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeEsExceptionDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeEsExceptionDataResponseBody_1 =
       require_DescribeEsExceptionDataResponseBody();
     var DescribeEsExceptionDataResponse = class extends $dara.Model {
@@ -101091,7 +113712,7 @@ var require_DescribeEsExecuteDataRequest = __commonJS({
       value: true,
     });
     exports2.DescribeEsExecuteDataRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeEsExecuteDataRequest = class extends $dara.Model {
       static names() {
         return {
@@ -101187,7 +113808,7 @@ var require_DescribeEsExecuteDataResponse = __commonJS({
       value: true,
     });
     exports2.DescribeEsExecuteDataResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeEsExecuteDataResponseBody_1 =
       require_DescribeEsExecuteDataResponseBody();
     var DescribeEsExecuteDataResponse = class extends $dara.Model {
@@ -101296,7 +113917,7 @@ var require_DescribeFctriggerRequest = __commonJS({
       value: true,
     });
     exports2.DescribeFCTriggerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeFCTriggerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -101388,7 +114009,7 @@ var require_DescribeFctriggerResponse = __commonJS({
       value: true,
     });
     exports2.DescribeFCTriggerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeFctriggerResponseBody_1 =
       require_DescribeFctriggerResponseBody();
     var DescribeFCTriggerResponse = class extends $dara.Model {
@@ -101496,7 +114117,7 @@ var require_DescribeIpInfoRequest = __commonJS({
       value: true,
     });
     exports2.DescribeIpInfoRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeIpInfoRequest = class extends $dara.Model {
       static names() {
         return {
@@ -101588,7 +114209,7 @@ var require_DescribeIpInfoResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeIpInfoResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeIpInfoResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -101690,7 +114311,7 @@ var require_DescribeIpInfoResponse = __commonJS({
       value: true,
     });
     exports2.DescribeIpInfoResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeIpInfoResponseBody_1 = require_DescribeIpInfoResponseBody();
     var DescribeIpInfoResponse = class extends $dara.Model {
       static names() {
@@ -101797,7 +114418,7 @@ var require_DescribeIpStatusRequest = __commonJS({
       value: true,
     });
     exports2.DescribeIpStatusRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeIpStatusRequest = class extends $dara.Model {
       static names() {
         return {
@@ -101889,7 +114510,7 @@ var require_DescribeIpStatusResponse = __commonJS({
       value: true,
     });
     exports2.DescribeIpStatusResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeIpStatusResponseBody_1 = require_DescribeIpStatusResponseBody();
     var DescribeIpStatusResponse = class extends $dara.Model {
       static names() {
@@ -101996,7 +114617,7 @@ var require_DescribeL2vipsByDomainRequest = __commonJS({
       value: true,
     });
     exports2.DescribeL2VipsByDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeL2VipsByDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -102092,7 +114713,7 @@ var require_DescribeL2vipsByDomainResponse = __commonJS({
       value: true,
     });
     exports2.DescribeL2VipsByDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeL2vipsByDomainResponseBody_1 =
       require_DescribeL2vipsByDomainResponseBody();
     var DescribeL2VipsByDomainResponse = class extends $dara.Model {
@@ -102201,7 +114822,7 @@ var require_DescribePreloadDetailByIdRequest = __commonJS({
       value: true,
     });
     exports2.DescribePreloadDetailByIdRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribePreloadDetailByIdRequest = class extends $dara.Model {
       static names() {
         return {
@@ -102294,7 +114915,7 @@ var require_DescribePreloadDetailByIdResponse = __commonJS({
       value: true,
     });
     exports2.DescribePreloadDetailByIdResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribePreloadDetailByIdResponseBody_1 =
       require_DescribePreloadDetailByIdResponseBody();
     var DescribePreloadDetailByIdResponse = class extends $dara.Model {
@@ -102404,7 +115025,7 @@ var require_DescribeRangeDataByLocateAndIspServiceRequest = __commonJS({
       value: true,
     });
     exports2.DescribeRangeDataByLocateAndIspServiceRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRangeDataByLocateAndIspServiceRequest = class
       extends $dara.Model {
       static names() {
@@ -102506,7 +115127,7 @@ var require_DescribeRangeDataByLocateAndIspServiceResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeRangeDataByLocateAndIspServiceResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRangeDataByLocateAndIspServiceResponseBody = class
       extends $dara.Model {
       static names() {
@@ -102602,7 +115223,7 @@ var require_DescribeRangeDataByLocateAndIspServiceResponse = __commonJS({
       value: true,
     });
     exports2.DescribeRangeDataByLocateAndIspServiceResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRangeDataByLocateAndIspServiceResponseBody_1 =
       require_DescribeRangeDataByLocateAndIspServiceResponseBody();
     var DescribeRangeDataByLocateAndIspServiceResponse = class
@@ -102713,7 +115334,7 @@ var require_DescribeRealtimeDeliveryAccRequest = __commonJS({
       value: true,
     });
     exports2.DescribeRealtimeDeliveryAccRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRealtimeDeliveryAccRequest = class extends $dara.Model {
       static names() {
         return {
@@ -102814,7 +115435,7 @@ var require_DescribeRealtimeDeliveryAccResponse = __commonJS({
       value: true,
     });
     exports2.DescribeRealtimeDeliveryAccResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRealtimeDeliveryAccResponseBody_1 =
       require_DescribeRealtimeDeliveryAccResponseBody();
     var DescribeRealtimeDeliveryAccResponse = class extends $dara.Model {
@@ -102924,7 +115545,7 @@ var require_DescribeRefreshQuotaRequest = __commonJS({
       value: true,
     });
     exports2.DescribeRefreshQuotaRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshQuotaRequest2 = class extends $dara.Model {
       static names() {
         return {
@@ -103018,7 +115639,7 @@ var require_DescribeRefreshQuotaResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeRefreshQuotaResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshQuotaResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -103139,7 +115760,7 @@ var require_DescribeRefreshQuotaResponse = __commonJS({
       value: true,
     });
     exports2.DescribeRefreshQuotaResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshQuotaResponseBody_1 =
       require_DescribeRefreshQuotaResponseBody();
     var DescribeRefreshQuotaResponse = class extends $dara.Model {
@@ -103248,7 +115869,7 @@ var require_DescribeRefreshTaskByIdRequest = __commonJS({
       value: true,
     });
     exports2.DescribeRefreshTaskByIdRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshTaskByIdRequest2 = class extends $dara.Model {
       static names() {
         return {
@@ -103340,7 +115961,7 @@ var require_DescribeRefreshTaskByIdResponse = __commonJS({
       value: true,
     });
     exports2.DescribeRefreshTaskByIdResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshTaskByIdResponseBody_1 =
       require_DescribeRefreshTaskByIdResponseBody();
     var DescribeRefreshTaskByIdResponse = class extends $dara.Model {
@@ -103449,7 +116070,7 @@ var require_DescribeRefreshTasksRequest = __commonJS({
       value: true,
     });
     exports2.DescribeRefreshTasksRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshTasksRequest = class extends $dara.Model {
       static names() {
         return {
@@ -103563,7 +116184,7 @@ var require_DescribeRefreshTasksResponse = __commonJS({
       value: true,
     });
     exports2.DescribeRefreshTasksResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeRefreshTasksResponseBody_1 =
       require_DescribeRefreshTasksResponseBody();
     var DescribeRefreshTasksResponse = class extends $dara.Model {
@@ -103672,7 +116293,7 @@ var require_DescribeStagingIpResponse = __commonJS({
       value: true,
     });
     exports2.DescribeStagingIpResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeStagingIpResponseBody_1 =
       require_DescribeStagingIpResponseBody();
     var DescribeStagingIpResponse = class extends $dara.Model {
@@ -103780,7 +116401,7 @@ var require_DescribeTagResourcesResponse = __commonJS({
       value: true,
     });
     exports2.DescribeTagResourcesResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeTagResourcesResponseBody_1 =
       require_DescribeTagResourcesResponseBody();
     var DescribeTagResourcesResponse = class extends $dara.Model {
@@ -103889,7 +116510,7 @@ var require_DescribeTopDomainsByFlowRequest = __commonJS({
       value: true,
     });
     exports2.DescribeTopDomainsByFlowRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeTopDomainsByFlowRequest = class extends $dara.Model {
       static names() {
         return {
@@ -103985,7 +116606,7 @@ var require_DescribeTopDomainsByFlowResponse = __commonJS({
       value: true,
     });
     exports2.DescribeTopDomainsByFlowResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeTopDomainsByFlowResponseBody_1 =
       require_DescribeTopDomainsByFlowResponseBody();
     var DescribeTopDomainsByFlowResponse = class extends $dara.Model {
@@ -104095,7 +116716,7 @@ var require_DescribeUserCdnStatusRequest = __commonJS({
       value: true,
     });
     exports2.DescribeUserCdnStatusRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserCdnStatusRequest = class extends $dara.Model {
       static names() {
         return {
@@ -104189,7 +116810,7 @@ var require_DescribeUserCdnStatusResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeUserCdnStatusResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserCdnStatusResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -104290,7 +116911,7 @@ var require_DescribeUserCdnStatusResponse = __commonJS({
       value: true,
     });
     exports2.DescribeUserCdnStatusResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserCdnStatusResponseBody_1 =
       require_DescribeUserCdnStatusResponseBody();
     var DescribeUserCdnStatusResponse = class extends $dara.Model {
@@ -104399,7 +117020,7 @@ var require_DescribeUserCertificateExpireCountResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeUserCertificateExpireCountResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserCertificateExpireCountResponseBody = class
       extends $dara.Model {
       static names() {
@@ -104497,7 +117118,7 @@ var require_DescribeUserCertificateExpireCountResponse = __commonJS({
       value: true,
     });
     exports2.DescribeUserCertificateExpireCountResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserCertificateExpireCountResponseBody_1 =
       require_DescribeUserCertificateExpireCountResponseBody();
     var DescribeUserCertificateExpireCountResponse = class extends $dara.Model {
@@ -104607,7 +117228,7 @@ var require_DescribeUserConfigsRequest = __commonJS({
       value: true,
     });
     exports2.DescribeUserConfigsRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserConfigsRequest = class extends $dara.Model {
       static names() {
         return {
@@ -104703,7 +117324,7 @@ var require_DescribeUserConfigsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeUserConfigsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserConfigsResponseBody_1 =
       require_DescribeUserConfigsResponseBody();
     var DescribeUserConfigsResponse = class extends $dara.Model {
@@ -104812,7 +117433,7 @@ var require_DescribeUserDomainsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeUserDomainsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserDomainsResponseBody_1 =
       require_DescribeUserDomainsResponseBody();
     var DescribeUserDomainsResponse = class extends $dara.Model {
@@ -104921,7 +117542,7 @@ var require_DescribeUserTagsResponse = __commonJS({
       value: true,
     });
     exports2.DescribeUserTagsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserTagsResponseBody_1 = require_DescribeUserTagsResponseBody();
     var DescribeUserTagsResponse = class extends $dara.Model {
       static names() {
@@ -105028,7 +117649,7 @@ var require_DescribeUserUsageDataExportTaskRequest = __commonJS({
       value: true,
     });
     exports2.DescribeUserUsageDataExportTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserUsageDataExportTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -105123,7 +117744,7 @@ var require_DescribeUserUsageDataExportTaskResponse = __commonJS({
       value: true,
     });
     exports2.DescribeUserUsageDataExportTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserUsageDataExportTaskResponseBody_1 =
       require_DescribeUserUsageDataExportTaskResponseBody();
     var DescribeUserUsageDataExportTaskResponse = class extends $dara.Model {
@@ -105233,7 +117854,7 @@ var require_DescribeUserUsageDetailDataExportTaskRequest = __commonJS({
       value: true,
     });
     exports2.DescribeUserUsageDetailDataExportTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserUsageDetailDataExportTaskRequest = class
       extends $dara.Model {
       static names() {
@@ -105329,7 +117950,7 @@ var require_DescribeUserUsageDetailDataExportTaskResponse = __commonJS({
       value: true,
     });
     exports2.DescribeUserUsageDetailDataExportTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserUsageDetailDataExportTaskResponseBody_1 =
       require_DescribeUserUsageDetailDataExportTaskResponseBody();
     var DescribeUserUsageDetailDataExportTaskResponse = class
@@ -105440,7 +118061,7 @@ var require_DescribeUserVipsByDomainRequest = __commonJS({
       value: true,
     });
     exports2.DescribeUserVipsByDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserVipsByDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -105534,7 +118155,7 @@ var require_DescribeUserVipsByDomainResponse = __commonJS({
       value: true,
     });
     exports2.DescribeUserVipsByDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeUserVipsByDomainResponseBody_1 =
       require_DescribeUserVipsByDomainResponseBody();
     var DescribeUserVipsByDomainResponse = class extends $dara.Model {
@@ -105644,7 +118265,7 @@ var require_DescribeVerifyContentRequest = __commonJS({
       value: true,
     });
     exports2.DescribeVerifyContentRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeVerifyContentRequest = class extends $dara.Model {
       static names() {
         return {
@@ -105736,7 +118357,7 @@ var require_DescribeVerifyContentResponseBody = __commonJS({
       value: true,
     });
     exports2.DescribeVerifyContentResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeVerifyContentResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -105831,7 +118452,7 @@ var require_DescribeVerifyContentResponse = __commonJS({
       value: true,
     });
     exports2.DescribeVerifyContentResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DescribeVerifyContentResponseBody_1 =
       require_DescribeVerifyContentResponseBody();
     var DescribeVerifyContentResponse = class extends $dara.Model {
@@ -105940,7 +118561,7 @@ var require_DisableRealtimeLogDeliveryRequest = __commonJS({
       value: true,
     });
     exports2.DisableRealtimeLogDeliveryRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DisableRealtimeLogDeliveryRequest = class extends $dara.Model {
       static names() {
         return {
@@ -106039,7 +118660,7 @@ var require_DisableRealtimeLogDeliveryResponseBody = __commonJS({
       value: true,
     });
     exports2.DisableRealtimeLogDeliveryResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DisableRealtimeLogDeliveryResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -106132,7 +118753,7 @@ var require_DisableRealtimeLogDeliveryResponse = __commonJS({
       value: true,
     });
     exports2.DisableRealtimeLogDeliveryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var DisableRealtimeLogDeliveryResponseBody_1 =
       require_DisableRealtimeLogDeliveryResponseBody();
     var DisableRealtimeLogDeliveryResponse = class extends $dara.Model {
@@ -106242,7 +118863,7 @@ var require_EnableRealtimeLogDeliveryRequest = __commonJS({
       value: true,
     });
     exports2.EnableRealtimeLogDeliveryRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var EnableRealtimeLogDeliveryRequest = class extends $dara.Model {
       static names() {
         return {
@@ -106341,7 +118962,7 @@ var require_EnableRealtimeLogDeliveryResponseBody = __commonJS({
       value: true,
     });
     exports2.EnableRealtimeLogDeliveryResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var EnableRealtimeLogDeliveryResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -106434,7 +119055,7 @@ var require_EnableRealtimeLogDeliveryResponse = __commonJS({
       value: true,
     });
     exports2.EnableRealtimeLogDeliveryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var EnableRealtimeLogDeliveryResponseBody_1 =
       require_EnableRealtimeLogDeliveryResponseBody();
     var EnableRealtimeLogDeliveryResponse = class extends $dara.Model {
@@ -106544,7 +119165,7 @@ var require_GenerateCdnDiagnoseRequest = __commonJS({
       value: true,
     });
     exports2.GenerateCdnDiagnoseRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var GenerateCdnDiagnoseRequest = class extends $dara.Model {
       static names() {
         return {
@@ -106636,7 +119257,7 @@ var require_GenerateCdnDiagnoseResponseBody = __commonJS({
       value: true,
     });
     exports2.GenerateCdnDiagnoseResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var GenerateCdnDiagnoseResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -106730,7 +119351,7 @@ var require_GenerateCdnDiagnoseResponse = __commonJS({
       value: true,
     });
     exports2.GenerateCdnDiagnoseResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var GenerateCdnDiagnoseResponseBody_1 =
       require_GenerateCdnDiagnoseResponseBody();
     var GenerateCdnDiagnoseResponse = class extends $dara.Model {
@@ -106839,7 +119460,7 @@ var require_GetGrayDomainFunctionRequest = __commonJS({
       value: true,
     });
     exports2.GetGrayDomainFunctionRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var GetGrayDomainFunctionRequest = class extends $dara.Model {
       static names() {
         return {
@@ -106933,7 +119554,7 @@ var require_GetGrayDomainFunctionResponse = __commonJS({
       value: true,
     });
     exports2.GetGrayDomainFunctionResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var GetGrayDomainFunctionResponseBody_1 =
       require_GetGrayDomainFunctionResponseBody();
     var GetGrayDomainFunctionResponse = class extends $dara.Model {
@@ -107042,7 +119663,7 @@ var require_ListDomainsByLogConfigIdRequest = __commonJS({
       value: true,
     });
     exports2.ListDomainsByLogConfigIdRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListDomainsByLogConfigIdRequest = class extends $dara.Model {
       static names() {
         return {
@@ -107134,7 +119755,7 @@ var require_ListDomainsByLogConfigIdResponse = __commonJS({
       value: true,
     });
     exports2.ListDomainsByLogConfigIdResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListDomainsByLogConfigIdResponseBody_1 =
       require_ListDomainsByLogConfigIdResponseBody();
     var ListDomainsByLogConfigIdResponse = class extends $dara.Model {
@@ -107244,7 +119865,7 @@ var require_ListFctriggerRequest = __commonJS({
       value: true,
     });
     exports2.ListFCTriggerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListFCTriggerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -107338,7 +119959,7 @@ var require_ListFctriggerResponse = __commonJS({
       value: true,
     });
     exports2.ListFCTriggerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListFctriggerResponseBody_1 = require_ListFctriggerResponseBody();
     var ListFCTriggerResponse = class extends $dara.Model {
       static names() {
@@ -107445,7 +120066,7 @@ var require_ListRealtimeLogDeliveryResponse = __commonJS({
       value: true,
     });
     exports2.ListRealtimeLogDeliveryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListRealtimeLogDeliveryResponseBody_1 =
       require_ListRealtimeLogDeliveryResponseBody();
     var ListRealtimeLogDeliveryResponse = class extends $dara.Model {
@@ -107554,7 +120175,7 @@ var require_ListRealtimeLogDeliveryDomainsRequest = __commonJS({
       value: true,
     });
     exports2.ListRealtimeLogDeliveryDomainsRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListRealtimeLogDeliveryDomainsRequest = class extends $dara.Model {
       static names() {
         return {
@@ -107651,7 +120272,7 @@ var require_ListRealtimeLogDeliveryDomainsResponse = __commonJS({
       value: true,
     });
     exports2.ListRealtimeLogDeliveryDomainsResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListRealtimeLogDeliveryDomainsResponseBody_1 =
       require_ListRealtimeLogDeliveryDomainsResponseBody();
     var ListRealtimeLogDeliveryDomainsResponse = class extends $dara.Model {
@@ -107761,7 +120382,7 @@ var require_ListRealtimeLogDeliveryInfosResponse = __commonJS({
       value: true,
     });
     exports2.ListRealtimeLogDeliveryInfosResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListRealtimeLogDeliveryInfosResponseBody_1 =
       require_ListRealtimeLogDeliveryInfosResponseBody();
     var ListRealtimeLogDeliveryInfosResponse = class extends $dara.Model {
@@ -107871,7 +120492,7 @@ var require_ListTagResourcesResponse = __commonJS({
       value: true,
     });
     exports2.ListTagResourcesResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListTagResourcesResponseBody_1 = require_ListTagResourcesResponseBody();
     var ListTagResourcesResponse = class extends $dara.Model {
       static names() {
@@ -107978,7 +120599,7 @@ var require_ListUserCustomLogConfigResponse = __commonJS({
       value: true,
     });
     exports2.ListUserCustomLogConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ListUserCustomLogConfigResponseBody_1 =
       require_ListUserCustomLogConfigResponseBody();
     var ListUserCustomLogConfigResponse = class extends $dara.Model {
@@ -108087,7 +120708,7 @@ var require_ModifyCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -108189,7 +120810,7 @@ var require_ModifyCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -108281,7 +120902,7 @@ var require_ModifyCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainResponseBody_1 = require_ModifyCdnDomainResponseBody();
     var ModifyCdnDomainResponse = class extends $dara.Model {
       static names() {
@@ -108388,7 +121009,7 @@ var require_ModifyCdnDomainOwnerRequest = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainOwnerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainOwnerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -108486,7 +121107,7 @@ var require_ModifyCdnDomainOwnerResponseBody = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainOwnerResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainOwnerResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -108588,7 +121209,7 @@ var require_ModifyCdnDomainOwnerResponse = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainOwnerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainOwnerResponseBody_1 =
       require_ModifyCdnDomainOwnerResponseBody();
     var ModifyCdnDomainOwnerResponse = class extends $dara.Model {
@@ -108697,7 +121318,7 @@ var require_ModifyCdnDomainSchdmByPropertyRequest = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainSchdmByPropertyRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainSchdmByPropertyRequest = class extends $dara.Model {
       static names() {
         return {
@@ -108792,7 +121413,7 @@ var require_ModifyCdnDomainSchdmByPropertyResponseBody = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainSchdmByPropertyResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainSchdmByPropertyResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -108885,7 +121506,7 @@ var require_ModifyCdnDomainSchdmByPropertyResponse = __commonJS({
       value: true,
     });
     exports2.ModifyCdnDomainSchdmByPropertyResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnDomainSchdmByPropertyResponseBody_1 =
       require_ModifyCdnDomainSchdmByPropertyResponseBody();
     var ModifyCdnDomainSchdmByPropertyResponse = class extends $dara.Model {
@@ -108995,7 +121616,7 @@ var require_ModifyCdnServiceRequest = __commonJS({
       value: true,
     });
     exports2.ModifyCdnServiceRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnServiceRequest = class extends $dara.Model {
       static names() {
         return {
@@ -109091,7 +121712,7 @@ var require_ModifyCdnServiceResponseBody = __commonJS({
       value: true,
     });
     exports2.ModifyCdnServiceResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnServiceResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -109183,7 +121804,7 @@ var require_ModifyCdnServiceResponse = __commonJS({
       value: true,
     });
     exports2.ModifyCdnServiceResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCdnServiceResponseBody_1 = require_ModifyCdnServiceResponseBody();
     var ModifyCdnServiceResponse = class extends $dara.Model {
       static names() {
@@ -109290,7 +121911,7 @@ var require_ModifyCustomDomainSampleRateRequest = __commonJS({
       value: true,
     });
     exports2.ModifyCustomDomainSampleRateRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCustomDomainSampleRateRequest = class extends $dara.Model {
       static names() {
         return {
@@ -109389,7 +122010,7 @@ var require_ModifyCustomDomainSampleRateResponse = __commonJS({
       value: true,
     });
     exports2.ModifyCustomDomainSampleRateResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyCustomDomainSampleRateResponseBody_1 =
       require_ModifyCustomDomainSampleRateResponseBody();
     var ModifyCustomDomainSampleRateResponse = class extends $dara.Model {
@@ -109499,7 +122120,7 @@ var require_ModifyRealtimeLogDeliveryRequest = __commonJS({
       value: true,
     });
     exports2.ModifyRealtimeLogDeliveryRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyRealtimeLogDeliveryRequest = class extends $dara.Model {
       static names() {
         return {
@@ -109598,7 +122219,7 @@ var require_ModifyRealtimeLogDeliveryResponseBody = __commonJS({
       value: true,
     });
     exports2.ModifyRealtimeLogDeliveryResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyRealtimeLogDeliveryResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -109691,7 +122312,7 @@ var require_ModifyRealtimeLogDeliveryResponse = __commonJS({
       value: true,
     });
     exports2.ModifyRealtimeLogDeliveryResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var ModifyRealtimeLogDeliveryResponseBody_1 =
       require_ModifyRealtimeLogDeliveryResponseBody();
     var ModifyRealtimeLogDeliveryResponse = class extends $dara.Model {
@@ -109801,7 +122422,7 @@ var require_OpenCdnServiceRequest = __commonJS({
       value: true,
     });
     exports2.OpenCdnServiceRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var OpenCdnServiceRequest = class extends $dara.Model {
       static names() {
         return {
@@ -109897,7 +122518,7 @@ var require_OpenCdnServiceResponseBody = __commonJS({
       value: true,
     });
     exports2.OpenCdnServiceResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var OpenCdnServiceResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -109989,7 +122610,7 @@ var require_OpenCdnServiceResponse = __commonJS({
       value: true,
     });
     exports2.OpenCdnServiceResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var OpenCdnServiceResponseBody_1 = require_OpenCdnServiceResponseBody();
     var OpenCdnServiceResponse = class extends $dara.Model {
       static names() {
@@ -110096,7 +122717,7 @@ var require_PublishGrayDomainConfigRequest = __commonJS({
       value: true,
     });
     exports2.PublishGrayDomainConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PublishGrayDomainConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -110196,7 +122817,7 @@ var require_PublishGrayDomainConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.PublishGrayDomainConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PublishGrayDomainConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -110289,7 +122910,7 @@ var require_PublishGrayDomainConfigResponse = __commonJS({
       value: true,
     });
     exports2.PublishGrayDomainConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PublishGrayDomainConfigResponseBody_1 =
       require_PublishGrayDomainConfigResponseBody();
     var PublishGrayDomainConfigResponse = class extends $dara.Model {
@@ -110398,7 +123019,7 @@ var require_PublishStagingConfigToProductionRequest = __commonJS({
       value: true,
     });
     exports2.PublishStagingConfigToProductionRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PublishStagingConfigToProductionRequest = class extends $dara.Model {
       static names() {
         return {
@@ -110491,7 +123112,7 @@ var require_PublishStagingConfigToProductionResponseBody = __commonJS({
       value: true,
     });
     exports2.PublishStagingConfigToProductionResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PublishStagingConfigToProductionResponseBody = class
       extends $dara.Model {
       static names() {
@@ -110585,7 +123206,7 @@ var require_PublishStagingConfigToProductionResponse = __commonJS({
       value: true,
     });
     exports2.PublishStagingConfigToProductionResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PublishStagingConfigToProductionResponseBody_1 =
       require_PublishStagingConfigToProductionResponseBody();
     var PublishStagingConfigToProductionResponse = class extends $dara.Model {
@@ -110695,7 +123316,7 @@ var require_PushObjectCacheRequest = __commonJS({
       value: true,
     });
     exports2.PushObjectCacheRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PushObjectCacheRequest = class extends $dara.Model {
       static names() {
         return {
@@ -110801,7 +123422,7 @@ var require_PushObjectCacheResponseBody = __commonJS({
       value: true,
     });
     exports2.PushObjectCacheResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PushObjectCacheResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -110895,7 +123516,7 @@ var require_PushObjectCacheResponse = __commonJS({
       value: true,
     });
     exports2.PushObjectCacheResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var PushObjectCacheResponseBody_1 = require_PushObjectCacheResponseBody();
     var PushObjectCacheResponse = class extends $dara.Model {
       static names() {
@@ -111002,7 +123623,7 @@ var require_RefreshObjectCacheByCacheTagRequest = __commonJS({
       value: true,
     });
     exports2.RefreshObjectCacheByCacheTagRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RefreshObjectCacheByCacheTagRequest = class extends $dara.Model {
       static names() {
         return {
@@ -111099,7 +123720,7 @@ var require_RefreshObjectCacheByCacheTagResponseBody = __commonJS({
       value: true,
     });
     exports2.RefreshObjectCacheByCacheTagResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RefreshObjectCacheByCacheTagResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -111194,7 +123815,7 @@ var require_RefreshObjectCacheByCacheTagResponse = __commonJS({
       value: true,
     });
     exports2.RefreshObjectCacheByCacheTagResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RefreshObjectCacheByCacheTagResponseBody_1 =
       require_RefreshObjectCacheByCacheTagResponseBody();
     var RefreshObjectCacheByCacheTagResponse = class extends $dara.Model {
@@ -111304,7 +123925,7 @@ var require_RefreshObjectCachesRequest = __commonJS({
       value: true,
     });
     exports2.RefreshObjectCachesRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RefreshObjectCachesRequest2 = class extends $dara.Model {
       static names() {
         return {
@@ -111404,7 +124025,7 @@ var require_RefreshObjectCachesResponseBody = __commonJS({
       value: true,
     });
     exports2.RefreshObjectCachesResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RefreshObjectCachesResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -111498,7 +124119,7 @@ var require_RefreshObjectCachesResponse = __commonJS({
       value: true,
     });
     exports2.RefreshObjectCachesResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RefreshObjectCachesResponseBody_1 =
       require_RefreshObjectCachesResponseBody();
     var RefreshObjectCachesResponse = class extends $dara.Model {
@@ -111607,7 +124228,7 @@ var require_RollbackStagingConfigRequest = __commonJS({
       value: true,
     });
     exports2.RollbackStagingConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RollbackStagingConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -111699,7 +124320,7 @@ var require_RollbackStagingConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.RollbackStagingConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RollbackStagingConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -111792,7 +124413,7 @@ var require_RollbackStagingConfigResponse = __commonJS({
       value: true,
     });
     exports2.RollbackStagingConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var RollbackStagingConfigResponseBody_1 =
       require_RollbackStagingConfigResponseBody();
     var RollbackStagingConfigResponse = class extends $dara.Model {
@@ -111901,7 +124522,7 @@ var require_SetCdnDomainCsrcertificateRequest = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainCSRCertificateRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainCSRCertificateRequest = class extends $dara.Model {
       static names() {
         return {
@@ -111996,7 +124617,7 @@ var require_SetCdnDomainCsrcertificateResponseBody = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainCSRCertificateResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainCSRCertificateResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -112089,7 +124710,7 @@ var require_SetCdnDomainCsrcertificateResponse = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainCSRCertificateResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainCsrcertificateResponseBody_1 =
       require_SetCdnDomainCsrcertificateResponseBody();
     var SetCdnDomainCSRCertificateResponse = class extends $dara.Model {
@@ -112199,7 +124820,7 @@ var require_SetCdnDomainSmcertificateRequest = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainSMCertificateRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainSMCertificateRequest = class extends $dara.Model {
       static names() {
         return {
@@ -112300,7 +124921,7 @@ var require_SetCdnDomainSmcertificateResponseBody = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainSMCertificateResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainSMCertificateResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -112393,7 +125014,7 @@ var require_SetCdnDomainSmcertificateResponse = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainSMCertificateResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainSmcertificateResponseBody_1 =
       require_SetCdnDomainSmcertificateResponseBody();
     var SetCdnDomainSMCertificateResponse = class extends $dara.Model {
@@ -112503,7 +125124,7 @@ var require_SetCdnDomainSslcertificateRequest = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainSSLCertificateRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainSSLCertificateRequest = class extends $dara.Model {
       static names() {
         return {
@@ -112614,7 +125235,7 @@ var require_SetCdnDomainSslcertificateResponseBody = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainSSLCertificateResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainSSLCertificateResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -112707,7 +125328,7 @@ var require_SetCdnDomainSslcertificateResponse = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainSSLCertificateResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainSslcertificateResponseBody_1 =
       require_SetCdnDomainSslcertificateResponseBody();
     var SetCdnDomainSSLCertificateResponse = class extends $dara.Model {
@@ -112817,7 +125438,7 @@ var require_SetCdnDomainStagingConfigRequest = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainStagingConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainStagingConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -112912,7 +125533,7 @@ var require_SetCdnDomainStagingConfigResponse = __commonJS({
       value: true,
     });
     exports2.SetCdnDomainStagingConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnDomainStagingConfigResponseBody_1 =
       require_SetCdnDomainStagingConfigResponseBody();
     var SetCdnDomainStagingConfigResponse = class extends $dara.Model {
@@ -113022,7 +125643,7 @@ var require_SetCdnFullDomainsBlockIprequest = __commonJS({
       value: true,
     });
     exports2.SetCdnFullDomainsBlockIPRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnFullDomainsBlockIPRequest = class extends $dara.Model {
       static names() {
         return {
@@ -113120,7 +125741,7 @@ var require_SetCdnFullDomainsBlockIpresponseBody = __commonJS({
       value: true,
     });
     exports2.SetCdnFullDomainsBlockIPResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnFullDomainsBlockIPResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -113217,7 +125838,7 @@ var require_SetCdnFullDomainsBlockIpresponse = __commonJS({
       value: true,
     });
     exports2.SetCdnFullDomainsBlockIPResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetCdnFullDomainsBlockIpresponseBody_1 =
       require_SetCdnFullDomainsBlockIpresponseBody();
     var SetCdnFullDomainsBlockIPResponse = class extends $dara.Model {
@@ -113327,7 +125948,7 @@ var require_SetReqHeaderConfigRequest = __commonJS({
       value: true,
     });
     exports2.SetReqHeaderConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetReqHeaderConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -113429,7 +126050,7 @@ var require_SetReqHeaderConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.SetReqHeaderConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetReqHeaderConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -113521,7 +126142,7 @@ var require_SetReqHeaderConfigResponse = __commonJS({
       value: true,
     });
     exports2.SetReqHeaderConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetReqHeaderConfigResponseBody_1 =
       require_SetReqHeaderConfigResponseBody();
     var SetReqHeaderConfigResponse = class extends $dara.Model {
@@ -113629,7 +126250,7 @@ var require_SetWaitingRoomConfigRequest = __commonJS({
       value: true,
     });
     exports2.SetWaitingRoomConfigRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetWaitingRoomConfigRequest = class extends $dara.Model {
       static names() {
         return {
@@ -113731,7 +126352,7 @@ var require_SetWaitingRoomConfigResponseBody = __commonJS({
       value: true,
     });
     exports2.SetWaitingRoomConfigResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetWaitingRoomConfigResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -113824,7 +126445,7 @@ var require_SetWaitingRoomConfigResponse = __commonJS({
       value: true,
     });
     exports2.SetWaitingRoomConfigResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var SetWaitingRoomConfigResponseBody_1 =
       require_SetWaitingRoomConfigResponseBody();
     var SetWaitingRoomConfigResponse = class extends $dara.Model {
@@ -113933,7 +126554,7 @@ var require_StartCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.StartCdnDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var StartCdnDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -114029,7 +126650,7 @@ var require_StartCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.StartCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var StartCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -114121,7 +126742,7 @@ var require_StartCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.StartCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var StartCdnDomainResponseBody_1 = require_StartCdnDomainResponseBody();
     var StartCdnDomainResponse = class extends $dara.Model {
       static names() {
@@ -114228,7 +126849,7 @@ var require_StopCdnDomainRequest = __commonJS({
       value: true,
     });
     exports2.StopCdnDomainRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var StopCdnDomainRequest = class extends $dara.Model {
       static names() {
         return {
@@ -114324,7 +126945,7 @@ var require_StopCdnDomainResponseBody = __commonJS({
       value: true,
     });
     exports2.StopCdnDomainResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var StopCdnDomainResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -114416,7 +127037,7 @@ var require_StopCdnDomainResponse = __commonJS({
       value: true,
     });
     exports2.StopCdnDomainResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var StopCdnDomainResponseBody_1 = require_StopCdnDomainResponseBody();
     var StopCdnDomainResponse = class extends $dara.Model {
       static names() {
@@ -114523,7 +127144,7 @@ var require_TagResourcesResponseBody = __commonJS({
       value: true,
     });
     exports2.TagResourcesResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var TagResourcesResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -114615,7 +127236,7 @@ var require_TagResourcesResponse = __commonJS({
       value: true,
     });
     exports2.TagResourcesResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var TagResourcesResponseBody_1 = require_TagResourcesResponseBody();
     var TagResourcesResponse = class extends $dara.Model {
       static names() {
@@ -114722,7 +127343,7 @@ var require_UntagResourcesRequest = __commonJS({
       value: true,
     });
     exports2.UntagResourcesRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UntagResourcesRequest = class extends $dara.Model {
       static names() {
         return {
@@ -114832,7 +127453,7 @@ var require_UntagResourcesResponseBody = __commonJS({
       value: true,
     });
     exports2.UntagResourcesResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UntagResourcesResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -114924,7 +127545,7 @@ var require_UntagResourcesResponse = __commonJS({
       value: true,
     });
     exports2.UntagResourcesResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UntagResourcesResponseBody_1 = require_UntagResourcesResponseBody();
     var UntagResourcesResponse = class extends $dara.Model {
       static names() {
@@ -115031,7 +127652,7 @@ var require_UpdateCdnDeliverTaskRequest = __commonJS({
       value: true,
     });
     exports2.UpdateCdnDeliverTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateCdnDeliverTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -115133,7 +127754,7 @@ var require_UpdateCdnDeliverTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.UpdateCdnDeliverTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateCdnDeliverTaskResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -115226,7 +127847,7 @@ var require_UpdateCdnDeliverTaskResponse = __commonJS({
       value: true,
     });
     exports2.UpdateCdnDeliverTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateCdnDeliverTaskResponseBody_1 =
       require_UpdateCdnDeliverTaskResponseBody();
     var UpdateCdnDeliverTaskResponse = class extends $dara.Model {
@@ -115335,7 +127956,7 @@ var require_UpdateCdnSubTaskRequest = __commonJS({
       value: true,
     });
     exports2.UpdateCdnSubTaskRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateCdnSubTaskRequest = class extends $dara.Model {
       static names() {
         return {
@@ -115433,7 +128054,7 @@ var require_UpdateCdnSubTaskResponseBody = __commonJS({
       value: true,
     });
     exports2.UpdateCdnSubTaskResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateCdnSubTaskResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -115525,7 +128146,7 @@ var require_UpdateCdnSubTaskResponse = __commonJS({
       value: true,
     });
     exports2.UpdateCdnSubTaskResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateCdnSubTaskResponseBody_1 = require_UpdateCdnSubTaskResponseBody();
     var UpdateCdnSubTaskResponse = class extends $dara.Model {
       static names() {
@@ -115632,7 +128253,7 @@ var require_UpdateFctriggerRequest = __commonJS({
       value: true,
     });
     exports2.UpdateFCTriggerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateFCTriggerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -115732,7 +128353,7 @@ var require_UpdateFctriggerResponseBody = __commonJS({
       value: true,
     });
     exports2.UpdateFCTriggerResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateFCTriggerResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -115824,7 +128445,7 @@ var require_UpdateFctriggerResponse = __commonJS({
       value: true,
     });
     exports2.UpdateFCTriggerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var UpdateFctriggerResponseBody_1 = require_UpdateFctriggerResponseBody();
     var UpdateFCTriggerResponse = class extends $dara.Model {
       static names() {
@@ -115931,7 +128552,7 @@ var require_VerifyDomainOwnerRequest = __commonJS({
       value: true,
     });
     exports2.VerifyDomainOwnerRequest = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var VerifyDomainOwnerRequest = class extends $dara.Model {
       static names() {
         return {
@@ -116025,7 +128646,7 @@ var require_VerifyDomainOwnerResponseBody = __commonJS({
       value: true,
     });
     exports2.VerifyDomainOwnerResponseBody = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var VerifyDomainOwnerResponseBody = class extends $dara.Model {
       static names() {
         return {
@@ -116119,7 +128740,7 @@ var require_VerifyDomainOwnerResponse = __commonJS({
       value: true,
     });
     exports2.VerifyDomainOwnerResponse = void 0;
-    var $dara = __importStar(require_dist());
+    var $dara = __importStar(require_dist5());
     var VerifyDomainOwnerResponseBody_1 =
       require_VerifyDomainOwnerResponseBody();
     var VerifyDomainOwnerResponse = class extends $dara.Model {
@@ -125205,7 +137826,7 @@ var require_model2 = __commonJS({
 });
 
 // node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/client.js
-var require_client5 = __commonJS({
+var require_client6 = __commonJS({
   "node_modules/.deno/@alicloud+cdn20180510@9.2.0/node_modules/@alicloud/cdn20180510/dist/client.js"(
     exports2,
   ) {
@@ -125287,9 +137908,9 @@ var require_client5 = __commonJS({
     Object.defineProperty(exports2, "__esModule", {
       value: true,
     });
-    var $dara = __importStar(require_dist());
-    var openapi_core_1 = __importDefault(require_client4());
-    var openapi_core_2 = require_client4();
+    var $dara = __importStar(require_dist5());
+    var openapi_core_1 = __importDefault(require_client5());
+    var openapi_core_2 = require_client5();
     var $_model = __importStar(require_model2());
     __exportStar(require_model2(), exports2);
     var Client = class extends openapi_core_1.default {
@@ -136143,7 +148764,7 @@ var require_humanize_ms = __commonJS({
 });
 
 // node_modules/.deno/agentkeepalive@3.5.3/node_modules/agentkeepalive/lib/agent.js
-var require_agent2 = __commonJS({
+var require_agent4 = __commonJS({
   "node_modules/.deno/agentkeepalive@3.5.3/node_modules/agentkeepalive/lib/agent.js"(
     exports2,
     module,
@@ -136263,7 +148884,7 @@ var require_https_agent = __commonJS({
   ) {
     "use strict";
     var https3 = __require("node:https");
-    var HttpAgent = require_agent2();
+    var HttpAgent = require_agent4();
     var OriginalHttpsAgent = https3.Agent;
     var HttpsAgent = class extends HttpAgent {
       constructor(options) {
@@ -136303,7 +148924,7 @@ var require_agentkeepalive = __commonJS({
     module,
   ) {
     "use strict";
-    module.exports = require_agent2();
+    module.exports = require_agent4();
     module.exports.HttpsAgent = require_https_agent();
   },
 });
@@ -137692,9 +150313,9 @@ var require_optimize = __commonJS({
 var require_crypto = __commonJS({
   "node_modules/.deno/utility@1.18.0/node_modules/utility/crypto.js"(exports2) {
     "use strict";
-    var crypto5 = __require("node:crypto");
+    var crypto4 = __require("node:crypto");
     exports2.hash = function hash(method, s, format) {
-      var sum = crypto5.createHash(method);
+      var sum = crypto4.createHash(method);
       var isBuffer = Buffer.isBuffer(s);
       if (!isBuffer && typeof s === "object") {
         s = JSON.stringify(sortObject(s));
@@ -137713,7 +150334,7 @@ var require_crypto = __commonJS({
     };
     exports2.hmac = function hmac(algorithm, key, data, encoding) {
       encoding = encoding || "base64";
-      var hmac2 = crypto5.createHmac(algorithm, key);
+      var hmac2 = crypto4.createHmac(algorithm, key);
       hmac2.update(data, Buffer.isBuffer(data) ? "binary" : "utf8");
       return hmac2.digest(encoding);
     };
@@ -141282,7 +153903,7 @@ var require_formats = __commonJS({
 });
 
 // node_modules/.deno/qs@6.15.3/node_modules/qs/lib/utils.js
-var require_utils4 = __commonJS({
+var require_utils5 = __commonJS({
   "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/utils.js"(
     exports2,
     module,
@@ -141687,7 +154308,7 @@ var require_stringify = __commonJS({
   ) {
     "use strict";
     var getSideChannel = require_side_channel();
-    var utils = require_utils4();
+    var utils = require_utils5();
     var formats = require_formats();
     var has = Object.prototype.hasOwnProperty;
     var arrayPrefixGenerators = {
@@ -142087,7 +154708,7 @@ var require_parse2 = __commonJS({
     module,
   ) {
     "use strict";
-    var utils = require_utils4();
+    var utils = require_utils5();
     var has = Object.prototype.hasOwnProperty;
     var isArray = Array.isArray;
     var defaults = {
@@ -143920,12 +156541,12 @@ var require_digest_header = __commonJS({
     exports2,
     module,
   ) {
-    var crypto5 = __require("node:crypto");
+    var crypto4 = __require("node:crypto");
     var AUTH_KEY_VALUE_RE = /(\w+)=["']?([^'"]{1,10000})["']?/;
     var NC = 0;
     var NC_PAD = "00000000";
     function md5(text) {
-      return crypto5.createHash("md5").update(text).digest("hex");
+      return crypto4.createHash("md5").update(text).digest("hex");
     }
     function digestAuthHeader(method, uri, wwwAuthenticate, userpass) {
       const parts = wwwAuthenticate.split(",");
@@ -143943,7 +156564,7 @@ var require_digest_header = __commonJS({
       userpass = userpass.split(":");
       let nc = String(++NC);
       nc = NC_PAD.substring(nc.length) + nc;
-      const cnonce = crypto5.randomBytes(8).toString("hex");
+      const cnonce = crypto4.randomBytes(8).toString("hex");
       const ha1 = md5(userpass[0] + ":" + opts.realm + ":" + userpass[1]);
       const ha2 = md5(method.toUpperCase() + ":" + uri);
       let s = ha1 + ":" + opts.nonce;
@@ -148001,7 +160622,7 @@ var require_formstream = __commonJS({
     "use strict";
     var debug3 = __require("node:util").debuglog("formstream");
     var Stream2 = __require("node:stream");
-    var crypto5 = __require("node:crypto");
+    var crypto4 = __require("node:crypto");
     var parseStream = require_pause_stream();
     var util6 = __require("node:util");
     var mime = require_mime();
@@ -148034,7 +160655,7 @@ var require_formstream = __commonJS({
     module.exports = FormStream;
     FormStream.prototype._generateBoundary = function () {
       return "--------------------------" +
-        crypto5.randomBytes(12).toString("hex");
+        crypto4.randomBytes(12).toString("hex");
     };
     FormStream.prototype.setTotalStreamSize = function (size) {
       if (this._isAllStreamSizeKnown) {
@@ -160558,7 +173179,7 @@ var require_bowser = __commonJS({
 });
 
 // node_modules/.deno/core-util-is@1.0.3/node_modules/core-util-is/lib/util.js
-var require_util9 = __commonJS({
+var require_util10 = __commonJS({
   "node_modules/.deno/core-util-is@1.0.3/node_modules/core-util-is/lib/util.js"(
     exports2,
   ) {
@@ -160700,7 +173321,7 @@ var require_is_type_of = __commonJS({
     exports2,
   ) {
     "use strict";
-    var utils = require_util9();
+    var utils = require_util10();
     var isStearm = require_isstream();
     var isClass = require_is_class();
     Object.keys(utils).map(function (name) {
@@ -161054,7 +173675,7 @@ var require_signUtils = __commonJS({
   "node_modules/.deno/ali-oss@6.23.0/node_modules/ali-oss/lib/common/signUtils.js"(
     exports2,
   ) {
-    var crypto5 = __require("node:crypto");
+    var crypto4 = __require("node:crypto");
     var is = require_is_type_of();
     var qs = require_lib4();
     var { lowercaseKeyHeader } = require_lowercaseKeyHeader();
@@ -161127,7 +173748,7 @@ var require_signUtils = __commonJS({
       canonicalString,
       headerEncoding = "utf-8",
     ) {
-      const signature = crypto5.createHmac("sha1", accessKeySecret);
+      const signature = crypto4.createHmac("sha1", accessKeySecret);
       return signature.update(Buffer.from(canonicalString, headerEncoding))
         .digest("base64");
     };
@@ -161237,7 +173858,7 @@ var require_signUtils = __commonJS({
         "OSS4-HMAC-SHA256",
         date,
         this.getCredential(date.split("T")[0], region, void 0, product),
-        crypto5.createHash("sha256").update(canonicalRequest).digest("hex"),
+        crypto4.createHash("sha256").update(canonicalRequest).digest("hex"),
         // Hashed Canonical Request
       ];
       return stringToSign.join("\n");
@@ -161249,20 +173870,20 @@ var require_signUtils = __commonJS({
       stringToSign,
       product = "oss",
     ) {
-      const signingDate = crypto5.createHmac(
+      const signingDate = crypto4.createHmac(
         "sha256",
         `aliyun_v4${accessKeySecret}`,
       ).update(date).digest();
-      const signingRegion = crypto5.createHmac("sha256", signingDate).update(
+      const signingRegion = crypto4.createHmac("sha256", signingDate).update(
         region,
       ).digest();
-      const signingOss = crypto5.createHmac("sha256", signingRegion).update(
+      const signingOss = crypto4.createHmac("sha256", signingRegion).update(
         product,
       ).digest();
-      const signingKey = crypto5.createHmac("sha256", signingOss).update(
+      const signingKey = crypto4.createHmac("sha256", signingOss).update(
         "aliyun_v4_request",
       ).digest();
-      const signatureValue = crypto5.createHmac("sha256", signingKey).update(
+      const signatureValue = crypto4.createHmac("sha256", signingKey).update(
         stringToSign,
       ).digest("hex");
       return signatureValue;
@@ -161959,7 +174580,7 @@ var require_createRequest = __commonJS({
       value: true,
     });
     exports2.createRequest = void 0;
-    var crypto5 = __require("node:crypto");
+    var crypto4 = __require("node:crypto");
     var debug3 = require_src()("ali-oss");
     var _isString = require_isString();
     var _isArray = require_isArray();
@@ -162028,7 +174649,7 @@ var require_createRequest = __commonJS({
       if (params.content) {
         if (!params.disabledMD5) {
           if (!params.headers || !params.headers["Content-MD5"]) {
-            headers["Content-MD5"] = crypto5.createHash("md5").update(
+            headers["Content-MD5"] = crypto4.createHash("md5").update(
               Buffer.from(params.content, "utf8"),
             ).digest("base64");
           } else {
@@ -168784,7 +181405,7 @@ var require_sts = __commonJS({
     module,
   ) {
     var debug3 = require_src()("ali-oss:sts");
-    var crypto5 = __require("node:crypto");
+    var crypto4 = __require("node:crypto");
     var querystring = __require("node:querystring");
     var copy = require_copy_to();
     var AgentKeepalive = require_agentkeepalive();
@@ -168911,7 +181532,7 @@ var require_sts = __commonJS({
         this._escape(canoQuery)
       }`;
       debug3("string to sign: %s", stringToSign);
-      let signature = crypto5.createHmac("sha1", `${key}&`);
+      let signature = crypto4.createHmac("sha1", `${key}&`);
       signature = signature.update(stringToSign).digest("base64");
       debug3("signature: %s", signature);
       return signature;
@@ -168924,7 +181545,7 @@ var require_sts = __commonJS({
 });
 
 // node_modules/.deno/ali-oss@6.23.0/node_modules/ali-oss/lib/client.js
-var require_client6 = __commonJS({
+var require_client7 = __commonJS({
   "node_modules/.deno/ali-oss@6.23.0/node_modules/ali-oss/lib/client.js"(
     exports2,
     module,
@@ -171019,7 +183640,7 @@ var require_minimatch = __commonJS({
 });
 
 // node_modules/.deno/semver@7.8.5/node_modules/semver/internal/constants.js
-var require_constants6 = __commonJS({
+var require_constants10 = __commonJS({
   "node_modules/.deno/semver@7.8.5/node_modules/semver/internal/constants.js"(
     exports2,
     module,
@@ -171078,7 +183699,7 @@ var require_re = __commonJS({
   ) {
     "use strict";
     var { MAX_SAFE_COMPONENT_LENGTH, MAX_SAFE_BUILD_LENGTH, MAX_LENGTH } =
-      require_constants6();
+      require_constants10();
     var debug3 = require_debug();
     exports2 = module.exports = {};
     var re = exports2.re = [];
@@ -171322,7 +183943,7 @@ var require_semver2 = __commonJS({
   ) {
     "use strict";
     var debug3 = require_debug();
-    var { MAX_LENGTH, MAX_SAFE_INTEGER } = require_constants6();
+    var { MAX_LENGTH, MAX_SAFE_INTEGER } = require_constants10();
     var { safeRe: re, t } = require_re();
     var parseOptions = require_parse_options();
     var { compareIdentifiers } = require_identifiers();
@@ -172106,7 +184727,7 @@ var require_truncate = __commonJS({
   ) {
     "use strict";
     var parse2 = require_parse3();
-    var constants4 = require_constants6();
+    var constants4 = require_constants10();
     var SemVer = require_semver2();
     var truncate = (version3, truncation, options) => {
       if (!constants4.RELEASE_TYPES.includes(truncation)) {
@@ -172376,7 +184997,7 @@ var require_range2 = __commonJS({
       tildeTrimReplace,
       caretTrimReplace,
     } = require_re();
-    var { FLAG_INCLUDE_PRERELEASE, FLAG_LOOSE } = require_constants6();
+    var { FLAG_INCLUDE_PRERELEASE, FLAG_LOOSE } = require_constants10();
     var BUILDSTRIPRE = new RegExp(src[t.BUILD], "g");
     var isNullSet = (c) => c.value === "<0.0.0-0";
     var isAny = (c) => c.value === "";
@@ -173318,7 +185939,7 @@ var require_semver3 = __commonJS({
   ) {
     "use strict";
     var internalRe = require_re();
-    var constants4 = require_constants6();
+    var constants4 = require_constants10();
     var SemVer = require_semver2();
     var identifiers = require_identifiers();
     var parse2 = require_parse3();
@@ -173411,7 +186032,7 @@ var require_semver3 = __commonJS({
 });
 
 // node_modules/.deno/agent-base@7.1.4/node_modules/agent-base/dist/helpers.js
-var require_helpers = __commonJS({
+var require_helpers3 = __commonJS({
   "node_modules/.deno/agent-base@7.1.4/node_modules/agent-base/dist/helpers.js"(
     exports2,
   ) {
@@ -173507,7 +186128,7 @@ var require_helpers = __commonJS({
 });
 
 // node_modules/.deno/agent-base@7.1.4/node_modules/agent-base/dist/index.js
-var require_dist2 = __commonJS({
+var require_dist6 = __commonJS({
   "node_modules/.deno/agent-base@7.1.4/node_modules/agent-base/dist/index.js"(
     exports2,
   ) {
@@ -173574,7 +186195,7 @@ var require_dist2 = __commonJS({
     var net = __importStar(__require("node:net"));
     var http3 = __importStar(__require("node:http"));
     var https_1 = __require("node:https");
-    __exportStar(require_helpers(), exports2);
+    __exportStar(require_helpers3(), exports2);
     var INTERNAL = Symbol("AgentBaseInternalState");
     var Agent3 = class extends http3.Agent {
       constructor(opts) {
@@ -173700,7 +186321,7 @@ var require_dist2 = __commonJS({
 });
 
 // node_modules/.deno/https-proxy-agent@7.0.6/node_modules/https-proxy-agent/dist/parse-proxy-response.js
-var require_parse_proxy_response = __commonJS({
+var require_parse_proxy_response2 = __commonJS({
   "node_modules/.deno/https-proxy-agent@7.0.6/node_modules/https-proxy-agent/dist/parse-proxy-response.js"(
     exports2,
   ) {
@@ -173814,7 +186435,7 @@ var require_parse_proxy_response = __commonJS({
 });
 
 // node_modules/.deno/https-proxy-agent@7.0.6/node_modules/https-proxy-agent/dist/index.js
-var require_dist3 = __commonJS({
+var require_dist7 = __commonJS({
   "node_modules/.deno/https-proxy-agent@7.0.6/node_modules/https-proxy-agent/dist/index.js"(
     exports2,
   ) {
@@ -173879,9 +186500,9 @@ var require_dist3 = __commonJS({
     var tls = __importStar(__require("node:tls"));
     var assert_1 = __importDefault(__require("node:assert"));
     var debug_1 = __importDefault(require_src());
-    var agent_base_1 = require_dist2();
+    var agent_base_1 = require_dist6();
     var url_1 = __require("node:url");
-    var parse_proxy_response_1 = require_parse_proxy_response();
+    var parse_proxy_response_1 = require_parse_proxy_response2();
     var debug3 = (0, debug_1.default)("https-proxy-agent");
     var setServernameFromNonIpHost = (options) => {
       if (
@@ -174017,7 +186638,7 @@ var require_dist3 = __commonJS({
 });
 
 // node_modules/.deno/http-proxy-agent@7.0.2/node_modules/http-proxy-agent/dist/index.js
-var require_dist4 = __commonJS({
+var require_dist8 = __commonJS({
   "node_modules/.deno/http-proxy-agent@7.0.2/node_modules/http-proxy-agent/dist/index.js"(
     exports2,
   ) {
@@ -174082,7 +186703,7 @@ var require_dist4 = __commonJS({
     var tls = __importStar(__require("node:tls"));
     var debug_1 = __importDefault(require_src());
     var events_1 = __require("node:events");
-    var agent_base_1 = require_dist2();
+    var agent_base_1 = require_dist6();
     var url_1 = __require("node:url");
     var debug3 = (0, debug_1.default)("http-proxy-agent");
     var HttpProxyAgent2 = class extends agent_base_1.Agent {
@@ -174192,9 +186813,9 @@ var require_dist4 = __commonJS({
   },
 });
 
-// node_modules/.deno/@azure+core-tracing@1.3.1/node_modules/@azure/core-tracing/dist/commonjs/state.js
-var require_state = __commonJS({
-  "node_modules/.deno/@azure+core-tracing@1.3.1/node_modules/@azure/core-tracing/dist/commonjs/state.js"(
+// node_modules/.deno/@azure+core-tracing@1.4.0/node_modules/@azure/core-tracing/dist/commonjs/state-cjs.js
+var require_state_cjs = __commonJS({
+  "node_modules/.deno/@azure+core-tracing@1.4.0/node_modules/@azure/core-tracing/dist/commonjs/state-cjs.js"(
     exports2,
   ) {
     "use strict";
@@ -174208,9 +186829,9 @@ var require_state = __commonJS({
   },
 });
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/commonjs/state-cjs.js
-var require_state_cjs = __commonJS({
-  "node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/commonjs/state-cjs.js"(
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/commonjs/state-cjs.js
+var require_state_cjs2 = __commonJS({
+  "node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/commonjs/state-cjs.js"(
     exports2,
   ) {
     "use strict";
@@ -174395,7 +187016,7 @@ function escapeProperty(s) {
 }
 
 // node_modules/.deno/@actions+core@3.0.1/node_modules/@actions/core/lib/file-command.js
-import * as crypto2 from "node:crypto";
+import * as crypto from "node:crypto";
 import * as fs from "node:fs";
 import * as os2 from "node:os";
 
@@ -176690,8 +189311,8 @@ function getIDToken(aud) {
 }
 
 // src/post.ts
-var Cdn = __toESM(require_client5());
-var AliOssModule = __toESM(require_client6());
+var Cdn = __toESM(require_client6());
+var AliOssModule = __toESM(require_client7());
 
 // deno:https://jsr.io/@std/collections/1.3.0/chunk.ts
 function chunk(iterable, size) {
@@ -177884,7 +190505,7 @@ var DefaultGlobber = class _DefaultGlobber {
 };
 
 // node_modules/.deno/@actions+glob@0.6.1/node_modules/@actions/glob/lib/internal-hash-files.js
-import * as crypto3 from "node:crypto";
+import * as crypto2 from "node:crypto";
 import * as fs4 from "node:fs";
 import * as stream from "node:stream";
 import * as util from "node:util";
@@ -177928,7 +190549,7 @@ function create(patterns, options) {
 
 // node_modules/.deno/@actions+cache@6.2.0/node_modules/@actions/cache/lib/internal/cacheUtils.js
 var semver = __toESM(require_semver3());
-import * as crypto4 from "node:crypto";
+import * as crypto3 from "node:crypto";
 import * as fs5 from "node:fs";
 import * as path11 from "node:path";
 import * as util2 from "node:util";
@@ -178042,7 +190663,7 @@ function createTempDirectory() {
       }
       tempDirectory = path11.join(baseLocation, "actions", "temp");
     }
-    const dest = path11.join(tempDirectory, crypto4.randomUUID());
+    const dest = path11.join(tempDirectory, crypto3.randomUUID());
     yield mkdirP(dest);
     return dest;
   });
@@ -178175,7 +190796,7 @@ function getCacheVersion(
     components.push("windows-only");
   }
   components.push(versionSalt);
-  return crypto4.createHash("sha256").update(components.join("|")).digest(
+  return crypto3.createHash("sha256").update(components.join("|")).digest(
     "hex",
   );
 }
@@ -178191,7 +190812,7 @@ function getRuntimeToken() {
 import * as fs8 from "node:fs";
 import { URL as URL2 } from "node:url";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/abort-controller/AbortError.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/abort-controller/AbortError.js
 var AbortError = class extends Error {
   constructor(message) {
     super(message);
@@ -178199,7 +190820,7 @@ var AbortError = class extends Error {
   }
 };
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
 import { EOL as EOL6 } from "node:os";
 import util3 from "node:util";
 import process2 from "node:process";
@@ -178207,7 +190828,7 @@ function log(message, ...args) {
   process2.stderr.write(`${util3.format(message, ...args)}${EOL6}`);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/env.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/env.js
 import process3 from "node:process";
 function getEnvironmentVariable(name) {
   return process3.env[name];
@@ -178218,7 +190839,7 @@ var isBun = typeof process3.versions.bun === "string" &&
   process3.versions.bun.length > 0;
 var isNodeLike = true;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/logger/debug.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/logger/debug.js
 var debugEnvVariable = getEnvironmentVariable("DEBUG");
 var enabledString;
 var enabledNamespaces = [];
@@ -178377,7 +190998,7 @@ function extend(namespace) {
 }
 var debug_default = debugObj;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/logger/logger.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/logger/logger.js
 var TYPESPEC_RUNTIME_LOG_LEVELS = [
   "verbose",
   "info",
@@ -178478,7 +191099,7 @@ function createClientLogger(namespace) {
   return context.createClientLogger(namespace);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/httpHeaders.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/httpHeaders.js
 function normalizeName(name) {
   return name.toLowerCase();
 }
@@ -178572,12 +191193,12 @@ function createHttpHeaders(rawHeaders) {
   return new HttpHeadersImpl(rawHeaders);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/uuidUtils.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/uuidUtils.js
 function randomUUID3() {
-  return crypto.randomUUID();
+  return globalThis.crypto.randomUUID();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/pipelineRequest.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/pipelineRequest.js
 var PipelineRequestImpl = class {
   url;
   method;
@@ -178624,7 +191245,7 @@ function createPipelineRequest(options) {
   return new PipelineRequestImpl(options);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/pipeline.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/pipeline.js
 var ValidPhaseNames = /* @__PURE__ */ new Set([
   "Deserialize",
   "Serialize",
@@ -178824,13 +191445,13 @@ function createEmptyPipeline() {
   return HttpPipeline.create();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/object.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/object.js
 function isObject(input) {
   return typeof input === "object" && input !== null && !Array.isArray(input) &&
     !(input instanceof RegExp) && !(input instanceof Date);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/error.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/error.js
 function isError(e) {
   if (isObject(e)) {
     const hasName = typeof e.name === "string";
@@ -178840,11 +191461,11 @@ function isError(e) {
   return false;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/inspect.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/inspect.js
 import { inspect } from "node:util";
 var custom = inspect.custom;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/sanitizer.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/sanitizer.js
 var RedactedString = "REDACTED";
 var defaultAllowedHeaderNames = [
   "x-ms-client-request-id",
@@ -178993,7 +191614,7 @@ var Sanitizer = class {
   }
 };
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/restError.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/restError.js
 var errorSanitizer = new Sanitizer();
 var RestError = class _RestError extends Error {
   /**
@@ -179074,7 +191695,7 @@ function isRestError(e) {
   return isError(e) && e.name === "RestError";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/bytesEncoding.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/bytesEncoding.js
 function uint8ArrayToString(bytes, format) {
   return Buffer.from(bytes).toString(format);
 }
@@ -179082,16 +191703,16 @@ function stringToUint8Array(value, format) {
   return Buffer.from(value, format);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
 import http2 from "node:http";
 import https2 from "node:https";
 import zlib from "node:zlib";
 import { Transform } from "node:stream";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/log.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/log.js
 var logger = createClientLogger("ts-http-runtime");
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
 var DEFAULT_TLS_SETTINGS = {};
 function isReadableStream(body2) {
   return body2 && typeof body2.pipe === "function";
@@ -179425,12 +192046,12 @@ function createNodeHttpClient() {
   return new NodeHttpClient();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/defaultHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/defaultHttpClient.js
 function createDefaultHttpClient() {
   return createNodeHttpClient();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/logPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/logPolicy.js
 var logPolicyName = "logPolicy";
 function logPolicy(options = {}) {
   const logger7 = options.logger ?? logger.info;
@@ -179447,31 +192068,35 @@ function logPolicy(options = {}) {
       logger7(`Request: ${sanitizer.sanitize(request)}`);
       const response = await next(request);
       logger7(`Response status code: ${response.status}`);
-      logger7(`Headers: ${sanitizer.sanitize(response.headers)}`);
+      logger7(`Headers: ${
+        sanitizer.sanitize({
+          headers: response.headers,
+        })
+      }`);
       return response;
     },
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgentPlatform.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgentPlatform.js
 import os7 from "node:os";
 import process4 from "node:process";
 function getHeaderName() {
   return "User-Agent";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/constants.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/constants.js
 var DEFAULT_RETRY_POLICY_COUNT = 3;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgent.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgent.js
 function getUserAgentHeaderName() {
   return getHeaderName();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/userAgentPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/userAgentPolicy.js
 var UserAgentHeaderName = getUserAgentHeaderName();
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/random.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/random.js
 function getRandomIntegerInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -179479,7 +192104,7 @@ function getRandomIntegerInclusive(min, max) {
   return offset + min;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/delay.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/delay.js
 function calculateRetryDelay(retryAttempt, config) {
   const exponentialDelay = config.retryDelayInMs * Math.pow(2, retryAttempt);
   const clampedDelay = Math.min(config.maxRetryDelayInMs, exponentialDelay);
@@ -179490,7 +192115,7 @@ function calculateRetryDelay(retryAttempt, config) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/helpers.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/helpers.js
 var StandardAbortMessage = "The operation was aborted.";
 function delay2(delayInMs, value, options) {
   return new Promise((resolve4, reject) => {
@@ -179537,7 +192162,7 @@ function parseHeaderValueAsNumber(response, headerName) {
   return valueAsNum;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/throttlingRetryStrategy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/throttlingRetryStrategy.js
 var RetryAfterHeader = "Retry-After";
 var AllRetryAfterHeaders = [
   "retry-after-ms",
@@ -179588,7 +192213,7 @@ function throttlingRetryStrategy() {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/exponentialRetryStrategy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/exponentialRetryStrategy.js
 var DEFAULT_CLIENT_RETRY_INTERVAL = 1e3;
 var DEFAULT_CLIENT_MAX_RETRY_INTERVAL = 1e3 * 64;
 function exponentialRetryStrategy(options = {}) {
@@ -179639,7 +192264,7 @@ function isSystemError(err) {
     err.code === "ENOENT" || err.code === "ENOTFOUND";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/retryPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/retryPolicy.js
 var retryPolicyLogger = createClientLogger("ts-http-runtime retryPolicy");
 var retryPolicyName = "retryPolicy";
 function retryPolicy(strategies, options = {
@@ -179755,7 +192380,7 @@ function retryPolicy(strategies, options = {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/defaultRetryPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/defaultRetryPolicy.js
 var defaultRetryPolicyName = "defaultRetryPolicy";
 function defaultRetryPolicy(options = {}) {
   return {
@@ -179769,7 +192394,7 @@ function defaultRetryPolicy(options = {}) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/formData.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/formData.js
 function convertBodyToFormDataMap(body2) {
   if (typeof FormData !== "undefined" && body2 instanceof FormData) {
     const formDataMap = {};
@@ -179793,7 +192418,7 @@ function convertBodyToFormDataMap(body2) {
   return void 0;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/formDataPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/formDataPolicy.js
 var formDataPolicyName = "formDataPolicy";
 function formDataPolicy() {
   return {
@@ -179879,7 +192504,7 @@ async function prepareFormData(formData, request) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/agentPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/agentPolicy.js
 var agentPolicyName = "agentPolicy";
 function agentPolicy(agent) {
   return {
@@ -179893,7 +192518,7 @@ function agentPolicy(agent) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/tlsPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/tlsPolicy.js
 var tlsPolicyName = "tlsPolicy";
 function tlsPolicy(tlsSettings) {
   return {
@@ -179907,9 +192532,9 @@ function tlsPolicy(tlsSettings) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/proxyPolicy.js
-var import_https_proxy_agent = __toESM(require_dist3());
-var import_http_proxy_agent = __toESM(require_dist4());
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/proxyPolicy.js
+var import_https_proxy_agent = __toESM(require_dist7());
+var import_http_proxy_agent = __toESM(require_dist8());
 var HTTPS_PROXY = "HTTPS_PROXY";
 var HTTP_PROXY = "HTTP_PROXY";
 var ALL_PROXY = "ALL_PROXY";
@@ -180068,7 +192693,7 @@ function proxyPolicy(proxySettings, options) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/decompressResponsePolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/decompressResponsePolicy.js
 var decompressResponsePolicyName = "decompressResponsePolicy";
 function decompressResponsePolicy() {
   return {
@@ -180082,7 +192707,7 @@ function decompressResponsePolicy() {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/redirectPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/redirectPolicy.js
 var redirectPolicyName = "redirectPolicy";
 var allowedRedirect = [
   "GET",
@@ -180149,15 +192774,15 @@ async function handleRedirect(
   return response;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards-node.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards-node.js
 import { Readable } from "node:stream";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards.js
 function isBlob(x) {
   return x instanceof Blob;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/concat.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/concat.js
 import { Readable as Readable2 } from "node:stream";
 async function* streamAsyncIterator() {
   const reader = this.getReader();
@@ -180213,7 +192838,7 @@ async function concat(sources) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/policies/multipartPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/multipartPolicy.js
 function generateBoundary() {
   return `----AzSDKFormBoundary${randomUUID3()}`;
 }
@@ -180331,12 +192956,12 @@ function multipartPolicy() {
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/pipeline.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/pipeline.js
 function createEmptyPipeline2() {
   return createEmptyPipeline();
 }
 
-// node_modules/.deno/@azure+logger@1.3.0/node_modules/@azure/logger/dist/esm/index.js
+// node_modules/.deno/@azure+logger@1.4.0/node_modules/@azure/logger/dist/esm/index.js
 var context2 = createLoggerContext({
   logLevelEnvVarName: "AZURE_LOG_LEVEL",
   namespace: "azure",
@@ -180346,10 +192971,10 @@ function createClientLogger2(namespace) {
   return context2.createClientLogger(namespace);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/log.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/log.js
 var logger2 = createClientLogger2("core-rest-pipeline");
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/logPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/logPolicy.js
 function logPolicy2(options = {}) {
   return logPolicy({
     logger: logger2.info,
@@ -180357,13 +192982,13 @@ function logPolicy2(options = {}) {
   });
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/redirectPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/redirectPolicy.js
 var redirectPolicyName2 = redirectPolicyName;
 function redirectPolicy2(options = {}) {
   return redirectPolicy(options);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/userAgentPlatform.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/userAgentPlatform.js
 import os8 from "node:os";
 import process5 from "node:process";
 function getHeaderName2() {
@@ -180382,10 +193007,10 @@ async function setPlatformSpecificData2(map) {
   }
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/constants.js
-var SDK_VERSION2 = "1.24.0";
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/constants.js
+var SDK_VERSION2 = "1.25.0";
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/userAgent.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/userAgent.js
 function getUserAgentString(telemetryInfo) {
   const parts = [];
   for (const [key, value] of telemetryInfo) {
@@ -180406,7 +193031,7 @@ async function getUserAgentValue2(prefix2) {
   return userAgentValue;
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/userAgentPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/userAgentPolicy.js
 var UserAgentHeaderName2 = getUserAgentHeaderName2();
 var userAgentPolicyName2 = "userAgentPolicy";
 function userAgentPolicy2(options = {}) {
@@ -180422,7 +193047,7 @@ function userAgentPolicy2(options = {}) {
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/file.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/file.js
 var rawContent = Symbol("rawContent");
 function hasRawContent(x) {
   return typeof x[rawContent] === "function";
@@ -180435,7 +193060,7 @@ function getRawContent(blob) {
   }
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/multipartPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/multipartPolicy.js
 var multipartPolicyName2 = multipartPolicyName;
 function multipartPolicy2() {
   const tspPolicy = multipartPolicy();
@@ -180454,26 +193079,26 @@ function multipartPolicy2() {
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/decompressResponsePolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/decompressResponsePolicy.js
 var decompressResponsePolicyName2 = decompressResponsePolicyName;
 function decompressResponsePolicy2() {
   return decompressResponsePolicy();
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/defaultRetryPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/defaultRetryPolicy.js
 function defaultRetryPolicy2(options = {}) {
   return defaultRetryPolicy(options);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/formDataPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/formDataPolicy.js
 function formDataPolicy2() {
   return formDataPolicy();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.6/node_modules/@typespec/ts-http-runtime/dist/esm/util/sha256.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/sha256.js
 import { createHash as createHash3, createHmac } from "node:crypto";
 
-// node_modules/.deno/@azure+abort-controller@2.1.2/node_modules/@azure/abort-controller/dist/esm/AbortError.js
+// node_modules/.deno/@azure+abort-controller@2.2.0/node_modules/@azure/abort-controller/dist/esm/AbortError.js
 var AbortError2 = class extends Error {
   constructor(message) {
     super(message);
@@ -180481,7 +193106,7 @@ var AbortError2 = class extends Error {
   }
 };
 
-// node_modules/.deno/@azure+core-util@1.13.1/node_modules/@azure/core-util/dist/esm/createAbortablePromise.js
+// node_modules/.deno/@azure+core-util@1.14.0/node_modules/@azure/core-util/dist/esm/createAbortablePromise.js
 function createAbortablePromise(buildPromise, options) {
   const { cleanupBeforeAbort, abortSignal, abortErrorMsg } = options ?? {};
   return new Promise((resolve4, reject) => {
@@ -180514,7 +193139,7 @@ function createAbortablePromise(buildPromise, options) {
   });
 }
 
-// node_modules/.deno/@azure+core-util@1.13.1/node_modules/@azure/core-util/dist/esm/delay.js
+// node_modules/.deno/@azure+core-util@1.14.0/node_modules/@azure/core-util/dist/esm/delay.js
 var StandardAbortMessage2 = "The delay was aborted.";
 function delay3(timeInMs, options) {
   let token;
@@ -180528,7 +193153,7 @@ function delay3(timeInMs, options) {
   });
 }
 
-// node_modules/.deno/@azure+core-util@1.13.1/node_modules/@azure/core-util/dist/esm/error.js
+// node_modules/.deno/@azure+core-util@1.14.0/node_modules/@azure/core-util/dist/esm/error.js
 function getErrorMessage(e) {
   if (isError(e)) {
     return e.message;
@@ -180547,7 +193172,7 @@ function getErrorMessage(e) {
   }
 }
 
-// node_modules/.deno/@azure+core-util@1.13.1/node_modules/@azure/core-util/dist/esm/index.js
+// node_modules/.deno/@azure+core-util@1.14.0/node_modules/@azure/core-util/dist/esm/index.js
 function isError2(e) {
   return isError(e);
 }
@@ -180562,7 +193187,7 @@ function stringToUint8Array2(value, format) {
   return stringToUint8Array(value, format);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/proxyPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/proxyPolicy.js
 function getDefaultProxySettings2(proxyUrl) {
   return getDefaultProxySettings(proxyUrl);
 }
@@ -180570,7 +193195,7 @@ function proxyPolicy2(proxySettings, options) {
   return proxyPolicy(proxySettings, options);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/setClientRequestIdPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/setClientRequestIdPolicy.js
 var setClientRequestIdPolicyName = "setClientRequestIdPolicy";
 function setClientRequestIdPolicy(
   requestIdHeaderName = "x-ms-client-request-id",
@@ -180586,17 +193211,17 @@ function setClientRequestIdPolicy(
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/agentPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/agentPolicy.js
 function agentPolicy2(agent) {
   return agentPolicy(agent);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/tlsPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/tlsPolicy.js
 function tlsPolicy2(tlsSettings) {
   return tlsPolicy(tlsSettings);
 }
 
-// node_modules/.deno/@azure+core-tracing@1.3.1/node_modules/@azure/core-tracing/dist/esm/tracingContext.js
+// node_modules/.deno/@azure+core-tracing@1.4.0/node_modules/@azure/core-tracing/dist/esm/tracingContext.js
 var knownContextKeys = {
   span: Symbol.for("@azure/core-tracing span"),
   namespace: Symbol.for("@azure/core-tracing namespace"),
@@ -180633,11 +193258,11 @@ var TracingContextImpl = class _TracingContextImpl {
   }
 };
 
-// node_modules/.deno/@azure+core-tracing@1.3.1/node_modules/@azure/core-tracing/dist/esm/state.js
-var import_state = __toESM(require_state());
-var state = import_state.state;
+// node_modules/.deno/@azure+core-tracing@1.4.0/node_modules/@azure/core-tracing/dist/esm/state.js
+var import_state_cjs = __toESM(require_state_cjs());
+var state = import_state_cjs.state;
 
-// node_modules/.deno/@azure+core-tracing@1.3.1/node_modules/@azure/core-tracing/dist/esm/instrumenter.js
+// node_modules/.deno/@azure+core-tracing@1.4.0/node_modules/@azure/core-tracing/dist/esm/instrumenter.js
 function createDefaultTracingSpan() {
   return {
     end: () => {
@@ -180681,7 +193306,7 @@ function getInstrumenter() {
   return state.instrumenterImplementation;
 }
 
-// node_modules/.deno/@azure+core-tracing@1.3.1/node_modules/@azure/core-tracing/dist/esm/tracingClient.js
+// node_modules/.deno/@azure+core-tracing@1.4.0/node_modules/@azure/core-tracing/dist/esm/tracingClient.js
 function createTracingClient(options) {
   const { namespace, packageName, packageVersion } = options;
   function startSpan(name, operationOptions, spanOptions) {
@@ -180723,7 +193348,7 @@ function createTracingClient(options) {
     try {
       const result = await withContext(
         updatedOptions.tracingOptions.tracingContext,
-        () => Promise.resolve(callback(updatedOptions, span)),
+        () => callback(updatedOptions, span),
       );
       span.setStatus({
         status: "success",
@@ -180757,13 +193382,13 @@ function createTracingClient(options) {
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/restError.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/restError.js
 var RestError2 = RestError;
 function isRestError2(e) {
   return isRestError(e);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/tracingPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/tracingPolicy.js
 var tracingPolicyName = "tracingPolicy";
 function tracingPolicy(options = {}) {
   const userAgentPromise = getUserAgentValue2(options.userAgentPrefix);
@@ -180890,7 +193515,7 @@ function tryProcessResponse(span, response) {
   }
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/wrapAbortSignal.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/wrapAbortSignal.js
 function wrapAbortSignalLike(abortSignalLike) {
   if (abortSignalLike instanceof AbortSignal) {
     return {
@@ -180925,7 +193550,7 @@ function wrapAbortSignalLike(abortSignalLike) {
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/wrapAbortSignalLikePolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/wrapAbortSignalLikePolicy.js
 var wrapAbortSignalLikePolicyName = "wrapAbortSignalLikePolicy";
 function wrapAbortSignalLikePolicy() {
   return {
@@ -180945,7 +193570,7 @@ function wrapAbortSignalLikePolicy() {
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/createPipelineFromOptions.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/createPipelineFromOptions.js
 function createPipelineFromOptions2(options) {
   const pipeline3 = createEmptyPipeline2();
   if (isNodeLike2) {
@@ -180996,7 +193621,7 @@ function createPipelineFromOptions2(options) {
   return pipeline3;
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/defaultHttpClient.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/defaultHttpClient.js
 function createDefaultHttpClient2() {
   const client = createDefaultHttpClient();
   return {
@@ -181014,20 +193639,20 @@ function createDefaultHttpClient2() {
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/httpHeaders.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/httpHeaders.js
 function createHttpHeaders2(rawHeaders) {
   return createHttpHeaders(rawHeaders);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/pipelineRequest.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/pipelineRequest.js
 function createPipelineRequest2(options) {
   return createPipelineRequest(options);
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/retryPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/retryPolicy.js
 var retryPolicyLogger2 = createClientLogger2("core-rest-pipeline retryPolicy");
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/tokenCycler.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/util/tokenCycler.js
 var DEFAULT_CYCLER_OPTIONS = {
   forcedRefreshWindowInMs: 1e3,
   retryIntervalInMs: 3e3,
@@ -181139,7 +193764,7 @@ function createTokenCycler(credential, tokenCyclerOptions) {
   };
 }
 
-// node_modules/.deno/@azure+core-rest-pipeline@1.24.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/bearerTokenAuthenticationPolicy.js
+// node_modules/.deno/@azure+core-rest-pipeline@1.25.0/node_modules/@azure/core-rest-pipeline/dist/esm/policies/bearerTokenAuthenticationPolicy.js
 var bearerTokenAuthenticationPolicyName = "bearerTokenAuthenticationPolicy";
 async function trySendRequest(request, next) {
   try {
@@ -181345,7 +193970,7 @@ function getCaeChallengeClaims(challenges) {
   )?.params.claims;
 }
 
-// node_modules/.deno/@azure+core-auth@1.10.1/node_modules/@azure/core-auth/dist/esm/tokenCredential.js
+// node_modules/.deno/@azure+core-auth@1.11.0/node_modules/@azure/core-auth/dist/esm/tokenCredential.js
 function isTokenCredential(credential) {
   const castCredential = credential;
   return castCredential && typeof castCredential.getToken === "function" &&
@@ -181353,12 +193978,12 @@ function isTokenCredential(credential) {
       castCredential.getToken.length > 0);
 }
 
-// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/policies/disableKeepAlivePolicy.js
+// node_modules/.deno/@azure+core-http-compat@2.5.0/node_modules/@azure/core-http-compat/dist/esm/policies/disableKeepAlivePolicy.js
 var disableKeepAlivePolicyName = "DisableKeepAlivePolicy";
 function createDisableKeepAlivePolicy() {
   return {
     name: disableKeepAlivePolicyName,
-    async sendRequest(request, next) {
+    sendRequest(request, next) {
       request.disableKeepAlive = true;
       return next(request);
     },
@@ -181370,7 +193995,7 @@ function pipelineContainsDisableKeepAlivePolicy(pipeline3) {
   );
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/base64.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/base64.js
 function encodeByteArray(value) {
   return uint8ArrayToString2(value, "base64");
 }
@@ -181378,11 +194003,11 @@ function decodeString(value) {
   return stringToUint8Array2(value, "base64");
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/interfaces.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/interfaces.js
 var XML_ATTRKEY = "$";
 var XML_CHARKEY = "_";
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/utils.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/utils.js
 function isPrimitiveBody(value, mapperTypeName) {
   return mapperTypeName !== "Composite" && mapperTypeName !== "Dictionary" &&
     (typeof value === "string" || typeof value === "number" ||
@@ -181477,7 +194102,7 @@ function flattenResponse(fullResponse, responseSpec) {
   });
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/serializer.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/serializer.js
 var SerializerImpl = class {
   modelMappers;
   isXML;
@@ -182597,11 +195222,11 @@ var MapperTypeNames = {
   UnixTime: "UnixTime",
 };
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/state.js
-var import_state_cjs = __toESM(require_state_cjs());
-var state2 = import_state_cjs.state;
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/state.js
+var import_state_cjs2 = __toESM(require_state_cjs2());
+var state2 = import_state_cjs2.state;
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/operationHelpers.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/operationHelpers.js
 function getOperationArgumentValueFromParameter(
   operationArguments,
   parameter,
@@ -182704,7 +195329,7 @@ function getOperationRequestInfo(request) {
   return info3;
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/deserializationPolicy.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/deserializationPolicy.js
 var defaultJsonContentTypes = [
   "application/json",
   "text/json",
@@ -183006,7 +195631,7 @@ async function parse(
   return operationResponse;
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/interfaceHelpers.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/interfaceHelpers.js
 function getStreamingResponseStatusCodes(operationSpec) {
   const result = /* @__PURE__ */ new Set();
   for (
@@ -183036,7 +195661,7 @@ function getPathStringFromParameter(parameter) {
   return result;
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/serializationPolicy.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/serializationPolicy.js
 var serializationPolicyName = "serializationPolicy";
 function serializationPolicy(options = {}) {
   const stringifyXML2 = options.stringifyXML;
@@ -183264,7 +195889,7 @@ function prepareXMLRootList(obj, elementName, xmlNamespaceKey, xmlNamespace) {
   return result;
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/pipeline.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/pipeline.js
 function createClientPipeline(options = {}) {
   const pipeline3 = createPipelineFromOptions2(options ?? {});
   if (options.credentialOptions) {
@@ -183282,7 +195907,7 @@ function createClientPipeline(options = {}) {
   return pipeline3;
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/httpClientCache.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/httpClientCache.js
 var cachedHttpClient;
 function getCachedDefaultHttpClient() {
   if (!cachedHttpClient) {
@@ -183291,7 +195916,7 @@ function getCachedDefaultHttpClient() {
   return cachedHttpClient;
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/urlHelpers.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/urlHelpers.js
 var CollectionFormatToDelimiterMap = {
   CSV: ",",
   SSV: " ",
@@ -183566,10 +196191,10 @@ function appendQueryParams(
   return parsedUrl.toString();
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/log.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/log.js
 var logger3 = createClientLogger2("core-client");
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/serviceClient.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/serviceClient.js
 var ServiceClient = class {
   /**
    * If specified, this is the base URI that requests will be made against for this ServiceClient.
@@ -183746,7 +196371,7 @@ function getCredentialScopes(options) {
   return void 0;
 }
 
-// node_modules/.deno/@azure+core-client@1.10.2/node_modules/@azure/core-client/dist/esm/authorizeRequestOnTenantChallenge.js
+// node_modules/.deno/@azure+core-client@1.11.0/node_modules/@azure/core-client/dist/esm/authorizeRequestOnTenantChallenge.js
 var Constants = {
   DefaultScope: "/.default",
   /**
@@ -183843,11 +196468,27 @@ function requestToOptions(request) {
   };
 }
 
-// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/util.js
+// node_modules/.deno/@azure+core-http-compat@2.5.0/node_modules/@azure/core-http-compat/dist/esm/util.js
 var originalRequestSymbol2 = Symbol("Original PipelineRequest");
 var originalClientRequestSymbol = Symbol.for(
   "@azure/core-client original request",
 );
+var passThroughProps = /* @__PURE__ */ new Set([
+  "url",
+  "method",
+  "withCredentials",
+  "timeout",
+  "requestId",
+  "abortSignal",
+  "body",
+  "formData",
+  "onDownloadProgress",
+  "onUploadProgress",
+  "proxySettings",
+  "streamResponseStatusCodes",
+  "agent",
+  "requestOverrides",
+]);
 function toPipelineRequest(webResource, options = {}) {
   const compatWebResource = webResource;
   const request = compatWebResource[originalRequestSymbol2];
@@ -183937,23 +196578,7 @@ function toWebResourceLike(request, options) {
         if (prop === "keepAlive") {
           request.disableKeepAlive = !value;
         }
-        const passThroughProps = [
-          "url",
-          "method",
-          "withCredentials",
-          "timeout",
-          "requestId",
-          "abortSignal",
-          "body",
-          "formData",
-          "onDownloadProgress",
-          "onUploadProgress",
-          "proxySettings",
-          "streamResponseStatusCodes",
-          "agent",
-          "requestOverrides",
-        ];
-        if (typeof prop === "string" && passThroughProps.includes(prop)) {
+        if (typeof prop === "string" && passThroughProps.has(prop)) {
           request[prop] = value;
         }
         return Reflect.set(target, prop, value, receiver);
@@ -184097,7 +196722,7 @@ var HttpHeaders = class _HttpHeaders {
   }
 };
 
-// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/response.js
+// node_modules/.deno/@azure+core-http-compat@2.5.0/node_modules/@azure/core-http-compat/dist/esm/response.js
 var originalResponse = Symbol("Original FullOperationResponse");
 function toCompatResponse(response, options) {
   let request = toWebResourceLike(response.request);
@@ -184149,7 +196774,7 @@ function toPipelineResponse(compatResponse) {
   }
 }
 
-// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/extendedClient.js
+// node_modules/.deno/@azure+core-http-compat@2.5.0/node_modules/@azure/core-http-compat/dist/esm/extendedClient.js
 var ExtendedServiceClient = class extends ServiceClient {
   constructor(options) {
     super(options);
@@ -184198,7 +196823,7 @@ var ExtendedServiceClient = class extends ServiceClient {
   }
 };
 
-// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/policies/requestPolicyFactoryPolicy.js
+// node_modules/.deno/@azure+core-http-compat@2.5.0/node_modules/@azure/core-http-compat/dist/esm/policies/requestPolicyFactoryPolicy.js
 var HttpPipelineLogLevel;
 (function (HttpPipelineLogLevel2) {
   HttpPipelineLogLevel2[HttpPipelineLogLevel2["ERROR"] = 1] = "ERROR";
@@ -184239,7 +196864,7 @@ function createRequestPolicyFactoryPolicy(factories) {
   };
 }
 
-// node_modules/.deno/@azure+core-http-compat@2.4.0/node_modules/@azure/core-http-compat/dist/esm/httpClientAdapter.js
+// node_modules/.deno/@azure+core-http-compat@2.5.0/node_modules/@azure/core-http-compat/dist/esm/httpClientAdapter.js
 function convertHttpClient(requestPolicyClient) {
   return {
     sendRequest: async (request) => {
@@ -184253,7 +196878,7 @@ function convertHttpClient(requestPolicyClient) {
   };
 }
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/util.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/util.js
 var nameStartChar =
   ":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
 var nameChar = nameStartChar + "\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
@@ -184299,7 +196924,7 @@ var criticalProperties = [
   "prototype",
 ];
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/validator.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/validator.js
 var defaultOptions = {
   allowBooleanAttributes: false,
   unpairedTags: [],
@@ -186329,7 +198954,7 @@ var EntityDecoder = class {
   }
 };
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
 var defaultOnDangerousProperty = (name) => {
   if (DANGEROUS_PROPERTY_NAMES.includes(name)) {
     return "__" + name;
@@ -186484,7 +199109,7 @@ var buildOptions = function (options) {
   return built;
 };
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
 var METADATA_SYMBOL;
 if (typeof Symbol !== "function") {
   METADATA_SYMBOL = "@@xmlMetadata";
@@ -186527,7 +199152,7 @@ var XmlNode = class {
   }
 };
 
-// node_modules/.deno/xml-naming@0.1.0/node_modules/xml-naming/src/index.js
+// node_modules/.deno/xml-naming@0.3.0/node_modules/xml-naming/src/index.js
 var nameStartChar10 =
   ":A-Za-z_\xC0-\xD6\xD8-\xF6\xF8-\u02FF\u0370-\u037D\u037F-\u0486\u0488-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD";
 var nameChar10 = nameStartChar10 + "\\-\\.\\d\xB7\u0300-\u036F\u203F-\u2040";
@@ -186549,12 +199174,49 @@ var buildRegexes = (startChar, char, flags = "") => {
 };
 var regexes10 = buildRegexes(nameStartChar10, nameChar10);
 var regexes11 = buildRegexes(nameStartChar11, nameChar11, "u");
-var getRegexes = (xmlVersion = "1.0") =>
-  xmlVersion === "1.1" ? regexes11 : regexes10;
-var qName = (str, { xmlVersion = "1.0" } = {}) =>
-  getRegexes(xmlVersion).qName.test(str);
+var nameStartCharAscii = ":A-Za-z_";
+var nameCharAscii = nameStartCharAscii + "\\-\\.\\d";
+var regexesAscii = buildRegexes(nameStartCharAscii, nameCharAscii);
+var getRegexes = (xmlVersion = "1.0", asciiOnly = false) => {
+  if (asciiOnly) return regexesAscii;
+  return xmlVersion === "1.1" ? regexes11 : regexes10;
+};
+var qName = (str, { xmlVersion = "1.0", asciiOnly = false } = {}) =>
+  getRegexes(xmlVersion, asciiOnly).qName.test(str);
+var PRODUCTIONS = [
+  "name",
+  "ncName",
+  "qName",
+  "nmToken",
+  "nmTokens",
+];
+var createValidator = (
+  production,
+  { xmlVersion = "1.0", asciiOnly = false, maxCacheSize = 2048 } = {},
+) => {
+  if (!PRODUCTIONS.includes(production)) {
+    throw new TypeError(
+      `Unknown production "${production}". Must be one of: ${
+        PRODUCTIONS.join(", ")
+      }`,
+    );
+  }
+  const regex = getRegexes(xmlVersion, asciiOnly)[production];
+  let cache = /* @__PURE__ */ new Map();
+  const validator = (str) => {
+    const cached = cache.get(str);
+    if (cached !== void 0) return cached;
+    const result = regex.test(str);
+    if (cache.size < maxCacheSize) cache.set(str, result);
+    return result;
+  };
+  validator.reset = () => {
+    cache = /* @__PURE__ */ new Map();
+  };
+  return validator;
+};
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
 var DocTypeReader = class {
   constructor(options, xmlVersion) {
     this.suppressValidationErr = !options;
@@ -187238,7 +199900,7 @@ function handleInfinity(str, num, options) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/ignoreAttributes.js
 function getIgnoreAttributesFn(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -188186,7 +200848,7 @@ var Matcher = class {
   }
 };
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/html.js
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/html.js
 var HTML_PATTERNS = [
   {
     id: "html-script-open",
@@ -188287,7 +200949,7 @@ var HTML_PATTERNS = [
 ];
 var html_default = HTML_PATTERNS;
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/xml.js
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/xml.js
 var XML_PATTERNS = [
   {
     id: "xml-cdata-injection",
@@ -188363,7 +201025,7 @@ var XML_PATTERNS = [
 ];
 var xml_default = XML_PATTERNS;
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/svg.js
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/svg.js
 var SVG_PATTERNS = [
   {
     id: "svg-script-element",
@@ -188447,7 +201109,7 @@ var SVG_PATTERNS = [
 ];
 var svg_default = SVG_PATTERNS;
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/sql.js
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/sql.js
 var SQL_PATTERNS = [
   {
     id: "sql-block-comment-open",
@@ -188532,33 +201194,7 @@ var SQL_PATTERNS = [
 ];
 var sql_default = SQL_PATTERNS;
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/sql-strict.js
-var SQL_STRICT_EXTRA = [
-  {
-    id: "sql-line-comment",
-    description: "SQL line comment: -- followed by whitespace or end of string",
-    pattern: /--(?:\s|$)/,
-  },
-  {
-    id: "sql-stacked-query",
-    description:
-      "Stacked queries: semicolon immediately followed by a SQL keyword",
-    pattern:
-      /;\s{0,10}(?:SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC)\b/i,
-  },
-  {
-    id: "sql-hex-encoding",
-    description: "Hex-encoded string injection: 0x41414141 style (MySQL)",
-    pattern: /\b0x[0-9a-f]{4,}/i,
-  },
-];
-var SQL_STRICT_PATTERNS = [
-  ...sql_default,
-  ...SQL_STRICT_EXTRA,
-];
-var sql_strict_default = SQL_STRICT_PATTERNS;
-
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/shell.js
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/shell.js
 var SHELL_PATTERNS = [
   {
     id: "shell-path-traversal-unix",
@@ -188662,7 +201298,7 @@ var SHELL_PATTERNS = [
 ];
 var shell_default = SHELL_PATTERNS;
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/redos.js
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/redos.js
 var REDOS_PATTERNS = [
   {
     id: "redos-nested-quantifier-plus",
@@ -188717,7 +201353,7 @@ var REDOS_PATTERNS = [
 ];
 var redos_default = REDOS_PATTERNS;
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/nosql.js
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/nosql.js
 var sep8 = `["'\\s]*:`;
 var NOSQL_PATTERNS = [
   // ─── MongoDB $ operator injection ────────────────────────────────────────
@@ -188816,7 +201452,7 @@ var NOSQL_PATTERNS = [
 ];
 var nosql_default = NOSQL_PATTERNS;
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/contexts/log.js
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/log.js
 var LOG_PATTERNS = [
   // ─── CRLF / newline injection ─────────────────────────────────────────────
   {
@@ -188901,8 +201537,43 @@ var LOG_PATTERNS = [
 ];
 var log_default = LOG_PATTERNS;
 
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/registry.js
-var CONTEXT_REGISTRY = {
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/sql-strict.js
+var SQL_STRICT_EXTRA = [
+  {
+    id: "sql-line-comment",
+    description: "SQL line comment: -- followed by whitespace or end of string",
+    pattern: /--(?:\s|$)/,
+  },
+  {
+    id: "sql-stacked-query",
+    description:
+      "Stacked queries: semicolon immediately followed by a SQL keyword",
+    pattern:
+      /;\s{0,10}(?:SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC)\b/i,
+  },
+  {
+    id: "sql-hex-encoding",
+    description: "Hex-encoded string injection: 0x41414141 style (MySQL)",
+    pattern: /\b0x[0-9a-f]{4,}/i,
+  },
+];
+var SQL_STRICT_PATTERNS = [
+  ...sql_default,
+  ...SQL_STRICT_EXTRA,
+];
+var sql_strict_default = SQL_STRICT_PATTERNS;
+
+// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/index.js
+html_default.label = "HTML";
+xml_default.label = "XML";
+svg_default.label = "SVG";
+sql_default.label = "SQL";
+sql_strict_default.label = "SQL-STRICT";
+shell_default.label = "SHELL";
+redos_default.label = "REDOS";
+nosql_default.label = "NOSQL";
+log_default.label = "LOG";
+var VALID_CONTEXTS = Object.freeze({
   HTML: html_default,
   XML: xml_default,
   SVG: svg_default,
@@ -188912,18 +201583,7 @@ var CONTEXT_REGISTRY = {
   REDOS: redos_default,
   NOSQL: nosql_default,
   LOG: log_default,
-};
-var registry_default = CONTEXT_REGISTRY;
-var VALID_CONTEXTS = Object.freeze(
-  Object.fromEntries(
-    Object.keys(CONTEXT_REGISTRY).map((k) => [
-      k,
-      k,
-    ]),
-  ),
-);
-
-// node_modules/.deno/is-unsafe@1.0.1/node_modules/is-unsafe/src/index.js
+});
 function assertString(value) {
   if (typeof value !== "string") {
     throw new TypeError(
@@ -188933,41 +201593,51 @@ function assertString(value) {
 }
 function assertContext(context3) {
   if (context3 instanceof RegExp) return;
-  if (typeof context3 === "string") {
-    if (!registry_default[context3]) {
-      throw new TypeError(
-        `is-unsafe: unknown context "${context3}". Valid contexts: ${
-          Object.keys(VALID_CONTEXTS).join(", ")
-        }`,
-      );
-    }
-    return;
-  }
   if (Array.isArray(context3)) {
     if (context3.length === 0) {
-      throw new TypeError("is-unsafe: context array must not be empty");
+      throw new TypeError("is-unsafe: context must not be an empty array");
     }
-    for (const c of context3) {
-      if (typeof c !== "string" || !registry_default[c]) {
-        throw new TypeError(
-          `is-unsafe: unknown context "${c}" in array. Valid contexts: ${
-            Object.keys(VALID_CONTEXTS).join(", ")
-          }`,
-        );
+    if (Array.isArray(context3[0])) {
+      for (const list of context3) {
+        if (!Array.isArray(list) || list.length === 0) {
+          throw new TypeError(
+            "is-unsafe: each context in the array must be a non-empty pattern array (PatternList)",
+          );
+        }
       }
     }
     return;
   }
   throw new TypeError(
-    `is-unsafe: second argument must be a context string, array of context strings, or RegExp. Got: ${typeof context3}`,
+    `is-unsafe: second argument must be a PatternList (e.g. HTML), an array of PatternLists (e.g. [HTML, XML]), or a RegExp. Got: ${typeof context3}`,
   );
 }
-function matchContext(value, contextName) {
-  const patterns = registry_default[contextName];
-  for (const rule of patterns) {
+function normalise(context3) {
+  if (context3 instanceof RegExp) {
+    return {
+      lists: null,
+      regex: context3,
+    };
+  }
+  if (Array.isArray(context3[0])) {
+    return {
+      lists: context3,
+      regex: null,
+    };
+  }
+  return {
+    lists: [
+      context3,
+    ],
+    regex: null,
+  };
+}
+function matchList(value, list) {
+  const label = list.label ?? "CUSTOM";
+  for (const rule of list) {
     if (rule.pattern.test(value)) {
       return {
-        context: contextName,
+        context: label,
         id: rule.id,
         description: rule.description,
         pattern: rule.pattern,
@@ -188979,19 +201649,15 @@ function matchContext(value, contextName) {
 function isUnsafe(value, context3) {
   assertString(value);
   assertContext(context3);
-  if (context3 instanceof RegExp) {
-    return context3.test(value);
-  }
-  if (typeof context3 === "string") {
-    return matchContext(value, context3) !== null;
-  }
-  for (const c of context3) {
-    if (matchContext(value, c) !== null) return true;
+  const { lists, regex } = normalise(context3);
+  if (regex) return regex.test(value);
+  for (const list of lists) {
+    if (matchList(value, list) !== null) return true;
   }
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
 function extractRawAttributes(prefixedAttrs, options) {
   if (!prefixedAttrs) return {};
   const attrs = options.attributesGroupName
@@ -189068,8 +201734,8 @@ var OrderedObjParser = class {
         onInputEntity: (name, value) => (
           //TODO: VALID_CONTEXTS.HTML should be set only if this.options.htmlEntities
           isUnsafe(value, [
-              VALID_CONTEXTS.HTML,
-              VALID_CONTEXTS.XML,
+              html_default,
+              xml_default,
             ])
             ? ENTITY_ACTION.BLOCK
             : ENTITY_ACTION.ALLOW
@@ -189786,7 +202452,7 @@ function sanitizeName(name, options) {
   return name;
 }
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/xmlparser/node2json.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/xmlparser/node2json.js
 var METADATA_SYMBOL2 = XmlNode.getMetaDataSymbol();
 function stripAttributePrefix(attrs, prefix2) {
   if (!attrs || typeof attrs !== "object") return {};
@@ -189923,7 +202589,7 @@ function isLeafTag(obj, options) {
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
 var XMLParser = class {
   constructor(options) {
     this.externalEntities = {};
@@ -189994,7 +202660,7 @@ var XMLParser = class {
   }
 };
 
-// node_modules/.deno/fast-xml-builder@1.2.1/node_modules/fast-xml-builder/src/util.js
+// node_modules/.deno/fast-xml-builder@1.3.0/node_modules/fast-xml-builder/src/util.js
 function safeComment(val) {
   return String(val).replace(/--/g, "- -").replace(/--/g, "- -").replace(
     /-$/,
@@ -190008,7 +202674,7 @@ function escapeAttribute(val) {
   return String(val).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 }
 
-// node_modules/.deno/fast-xml-builder@1.2.1/node_modules/fast-xml-builder/src/orderedJs2Xml.js
+// node_modules/.deno/fast-xml-builder@1.3.0/node_modules/fast-xml-builder/src/orderedJs2Xml.js
 var EOL7 = "\n";
 function detectXmlVersionFromArray(jArray, options) {
   if (!Array.isArray(jArray) || jArray.length === 0) return "1.0";
@@ -190023,13 +202689,9 @@ function detectXmlVersionFromArray(jArray, options) {
   }
   return "1.0";
 }
-function resolveTagName(name, isAttribute2, options, matcher, xmlVersion) {
+function resolveTagName(name, isAttribute2, options, matcher, qNameValidator) {
   if (!options.sanitizeName) return name;
-  if (
-    qName(name, {
-      xmlVersion,
-    })
-  ) return name;
+  if (qNameValidator(name)) return name;
   return options.sanitizeName(name, {
     isAttribute: isAttribute2,
     matcher: matcher.readOnly(),
@@ -190052,6 +202714,9 @@ function toXml(jArray, options) {
     }
   }
   const xmlVersion = detectXmlVersionFromArray(jArray, options);
+  const qNameValidator = createValidator("qName", {
+    xmlVersion,
+  });
   const matcher = new Matcher();
   return arrToStr(
     jArray,
@@ -190059,7 +202724,7 @@ function toXml(jArray, options) {
     indentation,
     matcher,
     stopNodeExpressions,
-    xmlVersion,
+    qNameValidator,
   );
 }
 function arrToStr(
@@ -190068,7 +202733,7 @@ function arrToStr(
   indentation,
   matcher,
   stopNodeExpressions,
-  xmlVersion,
+  qNameValidator,
 ) {
   let xmlStr = "";
   let isPreviousElementTag = false;
@@ -190092,7 +202757,7 @@ function arrToStr(
       rawTagName === options.commentPropName || rawTagName[0] === "?";
     const tagName = isSpecialName
       ? rawTagName
-      : resolveTagName(rawTagName, false, options, matcher, xmlVersion);
+      : resolveTagName(rawTagName, false, options, matcher, qNameValidator);
     const attrValues = extractAttributeValues(tagObj[":@"], options);
     matcher.push(tagName, attrValues);
     const isStopNode = checkStopNode(matcher, stopNodeExpressions);
@@ -190132,7 +202797,7 @@ function arrToStr(
         options,
         isStopNode,
         matcher,
-        xmlVersion,
+        qNameValidator,
       );
       const tempInd = tagName === "?xml" ? "" : indentation;
       xmlStr += tempInd + `<${tagName}${attStr2}?>`;
@@ -190149,7 +202814,7 @@ function arrToStr(
       options,
       isStopNode,
       matcher,
-      xmlVersion,
+      qNameValidator,
     );
     const tagStart = indentation + `<${tagName}${attStr}`;
     let tagValue;
@@ -190162,7 +202827,7 @@ function arrToStr(
         newIdentation,
         matcher,
         stopNodeExpressions,
-        xmlVersion,
+        qNameValidator,
       );
     }
     if (options.unpairedTags.indexOf(tagName) !== -1) {
@@ -190261,7 +202926,7 @@ function propName2(obj) {
     if (key !== ":@") return key;
   }
 }
-function attr_to_str(attrMap, options, isStopNode, matcher, xmlVersion) {
+function attr_to_str(attrMap, options, isStopNode, matcher, qNameValidator) {
   let attrStr = "";
   if (attrMap && !options.ignoreAttributes) {
     for (let attr in attrMap) {
@@ -190269,7 +202934,7 @@ function attr_to_str(attrMap, options, isStopNode, matcher, xmlVersion) {
       const cleanAttrName = attr.substr(options.attributeNamePrefix.length);
       const resolvedAttrName = isStopNode
         ? cleanAttrName
-        : resolveTagName(cleanAttrName, true, options, matcher, xmlVersion);
+        : resolveTagName(cleanAttrName, true, options, matcher, qNameValidator);
       let attrVal;
       if (isStopNode) {
         attrVal = attrMap[attr];
@@ -190305,7 +202970,7 @@ function replaceEntitiesValue2(textValue, options) {
   return textValue;
 }
 
-// node_modules/.deno/fast-xml-builder@1.2.1/node_modules/fast-xml-builder/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-builder@1.3.0/node_modules/fast-xml-builder/src/ignoreAttributes.js
 function getIgnoreAttributesFn2(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -190325,7 +202990,7 @@ function getIgnoreAttributesFn2(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/fast-xml-builder@1.2.1/node_modules/fast-xml-builder/src/fxb.js
+// node_modules/.deno/fast-xml-builder@1.3.0/node_modules/fast-xml-builder/src/fxb.js
 var defaultOptions3 = {
   attributeNamePrefix: "@_",
   attributesGroupName: false,
@@ -190439,13 +203104,9 @@ function detectXmlVersionFromObj(jObj, options) {
   }
   return "1.0";
 }
-function resolveTagName2(name, isAttribute2, options, matcher, xmlVersion) {
+function resolveTagName2(name, isAttribute2, options, matcher, qNameValidator) {
   if (!options.sanitizeName) return name;
-  if (
-    qName(name, {
-      xmlVersion,
-    })
-  ) return name;
+  if (qNameValidator(name)) return name;
   return options.sanitizeName(name, {
     isAttribute: isAttribute2,
     matcher: matcher.readOnly(),
@@ -190465,10 +203126,13 @@ Builder.prototype.build = function (jObj) {
     }
     const matcher = new Matcher();
     const xmlVersion = detectXmlVersionFromObj(jObj, this.options);
-    return this.j2x(jObj, 0, matcher, xmlVersion).val;
+    const qNameValidator = createValidator("qName", {
+      xmlVersion,
+    });
+    return this.j2x(jObj, 0, matcher, qNameValidator).val;
   }
 };
-Builder.prototype.j2x = function (jObj, level, matcher, xmlVersion) {
+Builder.prototype.j2x = function (jObj, level, matcher, qNameValidator) {
   let attrStr = "";
   let val = "";
   if (
@@ -190489,7 +203153,7 @@ Builder.prototype.j2x = function (jObj, level, matcher, xmlVersion) {
       this.isAttribute(key) || key[0] === "?";
     const resolvedKey = isSpecialKey
       ? key
-      : resolveTagName2(key, false, this.options, matcher, xmlVersion);
+      : resolveTagName2(key, false, this.options, matcher, qNameValidator);
     if (typeof jObj[key] === "undefined") {
       if (this.isAttribute(key)) {
         val += "";
@@ -190519,7 +203183,7 @@ Builder.prototype.j2x = function (jObj, level, matcher, xmlVersion) {
           true,
           this.options,
           matcher,
-          xmlVersion,
+          qNameValidator,
         );
         attrStr += this.buildAttrPairStr(
           resolvedAttr,
@@ -190570,7 +203234,7 @@ Builder.prototype.j2x = function (jObj, level, matcher, xmlVersion) {
         } else if (typeof item === "object") {
           if (this.options.oneListGroup) {
             matcher.push(resolvedKey);
-            const result = this.j2x(item, level + 1, matcher, xmlVersion);
+            const result = this.j2x(item, level + 1, matcher, qNameValidator);
             matcher.pop();
             listTagVal += result.val;
             if (
@@ -190585,7 +203249,7 @@ Builder.prototype.j2x = function (jObj, level, matcher, xmlVersion) {
               resolvedKey,
               level,
               matcher,
-              xmlVersion,
+              qNameValidator,
             );
           }
         } else {
@@ -190640,7 +203304,7 @@ Builder.prototype.j2x = function (jObj, level, matcher, xmlVersion) {
             true,
             this.options,
             matcher,
-            xmlVersion,
+            qNameValidator,
           );
           attrStr += this.buildAttrPairStr(
             resolvedAttr,
@@ -190654,7 +203318,7 @@ Builder.prototype.j2x = function (jObj, level, matcher, xmlVersion) {
           resolvedKey,
           level,
           matcher,
-          xmlVersion,
+          qNameValidator,
         );
       }
     }
@@ -190673,7 +203337,7 @@ Builder.prototype.buildAttrPairStr = function (attrName, val, isStopNode) {
     return " " + attrName;
   } else return " " + attrName + '="' + escapeAttribute(val) + '"';
 };
-function processTextOrObjNode(object, key, level, matcher, xmlVersion) {
+function processTextOrObjNode(object, key, level, matcher, qNameValidator) {
   const attrValues = this.extractAttributes(object);
   matcher.push(key, attrValues);
   const isStopNode = this.checkStopNode(matcher);
@@ -190683,7 +203347,7 @@ function processTextOrObjNode(object, key, level, matcher, xmlVersion) {
     matcher.pop();
     return this.buildObjectNode(rawContent2, key, attrStr, level);
   }
-  const result = this.j2x(object, level + 1, matcher, xmlVersion);
+  const result = this.j2x(object, level + 1, matcher, qNameValidator);
   matcher.pop();
   if (key[0] === "?") {
     return this.buildTextValNode("", key, result.attrStr, level, matcher);
@@ -190924,19 +203588,19 @@ function isAttribute(name) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
 var json2xml_default = Builder;
 
-// node_modules/.deno/fast-xml-parser@5.9.3/node_modules/fast-xml-parser/src/fxp.js
+// node_modules/.deno/fast-xml-parser@5.10.0/node_modules/fast-xml-parser/src/fxp.js
 var XMLValidator = {
   validate,
 };
 
-// node_modules/.deno/@azure+core-xml@1.5.1/node_modules/@azure/core-xml/dist/esm/xml.common.js
+// node_modules/.deno/@azure+core-xml@1.6.0/node_modules/@azure/core-xml/dist/esm/xml.common.js
 var XML_ATTRKEY2 = "$";
 var XML_CHARKEY2 = "_";
 
-// node_modules/.deno/@azure+core-xml@1.5.1/node_modules/@azure/core-xml/dist/esm/xml.js
+// node_modules/.deno/@azure+core-xml@1.6.0/node_modules/@azure/core-xml/dist/esm/xml.js
 function getCommonOptions(options) {
   return {
     attributesGroupName: XML_ATTRKEY2,
@@ -190991,7 +203655,8 @@ async function parseXML(str, opts = {}) {
     delete parsedXml["?xml"];
   }
   if (!opts.includeRoot) {
-    for (const key of Object.keys(parsedXml)) {
+    const key = Object.keys(parsedXml)[0];
+    if (key !== void 0) {
       const value = parsedXml[key];
       return typeof value === "object"
         ? {
