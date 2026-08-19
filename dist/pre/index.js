@@ -24484,9 +24484,9 @@ var require_tea = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/credential_model.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/credential_model.js
 var require_credential_model = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/credential_model.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/credential_model.js"(
     exports,
   ) {
     "use strict";
@@ -24569,9 +24569,9 @@ var require_credential_model = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/default_credential.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/default_credential.js
 var require_default_credential = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/default_credential.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/default_credential.js"(
     exports,
   ) {
     "use strict";
@@ -24963,9 +24963,9 @@ var require_lib2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/utils.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/util/utils.js
 var require_utils2 = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/utils.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/util/utils.js"(
     exports,
   ) {
     "use strict";
@@ -25076,9 +25076,9 @@ var require_utils2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/config.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/config.js
 var require_config = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/config.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/config.js"(
     exports,
   ) {
     "use strict";
@@ -25201,9 +25201,9 @@ var require_config = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/session_credential.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/session_credential.js
 var require_session_credential = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/session_credential.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/session_credential.js"(
     exports,
   ) {
     "use strict";
@@ -25331,15 +25331,15 @@ var require_session_credential = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/package.json
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/package.json
 var require_package = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/package.json"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/package.json"(
     exports,
     module,
   ) {
     module.exports = {
       name: "@alicloud/credentials",
-      version: "2.4.5",
+      version: "2.4.7",
       description: "alibaba cloud node.js sdk credentials",
       main: "dist/src/client.js",
       scripts: {
@@ -25403,9 +25403,9 @@ var require_package = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/helper.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/util/helper.js
 var require_helper = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/helper.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/util/helper.js"(
     exports,
   ) {
     "use strict";
@@ -25473,9 +25473,9 @@ var require_helper = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/http.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/util/http.js
 var require_http = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/util/http.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/util/http.js"(
     exports,
   ) {
     "use strict";
@@ -25670,9 +25670,9 @@ var require_http = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/rsa_key_pair_credential.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/rsa_key_pair_credential.js
 var require_rsa_key_pair_credential = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/rsa_key_pair_credential.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/rsa_key_pair_credential.js"(
     exports,
   ) {
     "use strict";
@@ -25780,9 +25780,9 @@ var require_rsa_key_pair_credential = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/bearer_token_credential.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/bearer_token_credential.js
 var require_bearer_token_credential = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/bearer_token_credential.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/bearer_token_credential.js"(
     exports,
   ) {
     "use strict";
@@ -25814,9 +25814,9 @@ var require_bearer_token_credential = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/credentials.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/credentials.js
 var require_credentials = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/credentials.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/credentials.js"(
     exports,
   ) {
     "use strict";
@@ -25861,9 +25861,9 @@ var require_credentials = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/static_ak.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/static_ak.js
 var require_static_ak = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/static_ak.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/static_ak.js"(
     exports,
   ) {
     "use strict";
@@ -25928,9 +25928,9 @@ var require_static_ak = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/static_sts.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/static_sts.js
 var require_static_sts = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/static_sts.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/static_sts.js"(
     exports,
   ) {
     "use strict";
@@ -26004,9 +26004,9 @@ var require_static_sts = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/http.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/http.js
 var require_http2 = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/http.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/http.js"(
     exports,
   ) {
     "use strict";
@@ -26174,9 +26174,9 @@ var require_http2 = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/time.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/time.js
 var require_time = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/time.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/time.js"(
     exports,
   ) {
     "use strict";
@@ -26265,9 +26265,9 @@ var require_time = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/session.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/session.js
 var require_session = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/session.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/session.js"(
     exports,
   ) {
     "use strict";
@@ -26398,9 +26398,9 @@ var require_session = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/ram_role_arn.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/ram_role_arn.js
 var require_ram_role_arn = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/ram_role_arn.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/ram_role_arn.js"(
     exports,
   ) {
     "use strict";
@@ -26698,9 +26698,9 @@ var require_ram_role_arn = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/oidc_role_arn.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/oidc_role_arn.js
 var require_oidc_role_arn = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/oidc_role_arn.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/oidc_role_arn.js"(
     exports,
   ) {
     "use strict";
@@ -26950,9 +26950,9 @@ var require_oidc_role_arn = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/ecs_ram_role.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/ecs_ram_role.js
 var require_ecs_ram_role = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/ecs_ram_role.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/ecs_ram_role.js"(
     exports,
   ) {
     "use strict";
@@ -27001,6 +27001,9 @@ var require_ecs_ram_role = __commonJS({
           this.checker = null;
         }
       }
+      shouldFallbackToIMDSv1(metadataToken) {
+        return metadataToken !== null && !this.disableIMDSv1;
+      }
       async getMetadataToken() {
         const request = http_1.Request.builder().withMethod("PUT").withProtocol(
           "http",
@@ -27028,6 +27031,17 @@ var require_ecs_ram_role = __commonJS({
         }
       }
       async getRoleName() {
+        const metadataToken = await this.getMetadataToken();
+        try {
+          return await this.doGetRoleName(metadataToken);
+        } catch (error2) {
+          if (this.shouldFallbackToIMDSv1(metadataToken)) {
+            return await this.doGetRoleName(null);
+          }
+          throw error2;
+        }
+      }
+      async doGetRoleName(metadataToken) {
         const builder = http_1.Request.builder().withMethod("GET").withProtocol(
           "http",
         ).withHost("100.100.100.200").withPath(
@@ -27035,7 +27049,6 @@ var require_ecs_ram_role = __commonJS({
         ).withReadTimeout(this.readTimeout || 1e3).withConnectTimeout(
           this.connectTimeout || 1e3,
         );
-        const metadataToken = await this.getMetadataToken();
         if (metadataToken !== null) {
           builder.withHeaders({
             "x-aliyun-ecs-metadata-token": metadataToken,
@@ -27055,6 +27068,17 @@ var require_ecs_ram_role = __commonJS({
         if (!roleName) {
           roleName = await this.getRoleName();
         }
+        const metadataToken = await this.getMetadataToken();
+        try {
+          return await this.doGetCredentials(roleName, metadataToken);
+        } catch (error2) {
+          if (this.shouldFallbackToIMDSv1(metadataToken)) {
+            return await this.doGetCredentials(roleName, null);
+          }
+          throw error2;
+        }
+      }
+      async doGetCredentials(roleName, metadataToken) {
         const builder = http_1.Request.builder().withMethod("GET").withProtocol(
           "http",
         ).withHost("100.100.100.200").withPath(
@@ -27062,7 +27086,6 @@ var require_ecs_ram_role = __commonJS({
         ).withReadTimeout(this.readTimeout || 1e3).withConnectTimeout(
           this.connectTimeout || 1e3,
         );
-        const metadataToken = await this.getMetadataToken();
         if (metadataToken !== null) {
           builder.withHeaders({
             "x-aliyun-ecs-metadata-token": metadataToken,
@@ -27153,9 +27176,9 @@ var require_ecs_ram_role = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/cloud_sso.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/cloud_sso.js
 var require_cloud_sso = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/cloud_sso.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/cloud_sso.js"(
     exports,
   ) {
     "use strict";
@@ -27290,9 +27313,9 @@ var require_cloud_sso = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/oauth.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/oauth.js
 var require_oauth = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/oauth.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/oauth.js"(
     exports,
   ) {
     "use strict";
@@ -27532,9 +27555,123 @@ var require_oauth = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/external.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/utils/command.js
+var require_command = __commonJS({
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/utils/command.js"(
+    exports,
+  ) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true,
+    });
+    exports.splitProcessCommand = void 0;
+    function splitProcessCommand(
+      command,
+      windows = process.platform === "win32",
+    ) {
+      const input = (command || "").trim();
+      if (!input) {
+        throw new Error("process_command is empty");
+      }
+      const args = [];
+      let current = "";
+      let inSingle = false;
+      let inDouble = false;
+      let hasToken = false;
+      const flush = () => {
+        if (hasToken) {
+          args.push(current);
+          current = "";
+          hasToken = false;
+        }
+      };
+      for (let i = 0; i < input.length; i++) {
+        const c = input[i];
+        if (inSingle) {
+          if (c === "'") {
+            inSingle = false;
+          } else {
+            current += c;
+          }
+          continue;
+        }
+        if (inDouble) {
+          if (c === '"') {
+            inDouble = false;
+            continue;
+          }
+          if (c === "\\" && i + 1 < input.length) {
+            const next = input[i + 1];
+            if (windows) {
+              if (next === '"') {
+                current += next;
+                i++;
+                continue;
+              }
+            } else if (next === "\n") {
+              i++;
+              continue;
+            } else if (
+              next === '"' || next === "\\" || next === "$" || next === "`"
+            ) {
+              current += next;
+              i++;
+              continue;
+            }
+          }
+          current += c;
+          continue;
+        }
+        if (c === "\\") {
+          if (windows) {
+            hasToken = true;
+            current += c;
+            continue;
+          }
+          if (i + 1 >= input.length) {
+            throw new Error("invalid process_command: trailing backslash");
+          }
+          if (input[i + 1] === "\n") {
+            i++;
+            continue;
+          }
+          hasToken = true;
+          current += input[++i];
+          continue;
+        }
+        if (c === "'") {
+          inSingle = true;
+          hasToken = true;
+          continue;
+        }
+        if (c === '"') {
+          inDouble = true;
+          hasToken = true;
+          continue;
+        }
+        if (/\s/.test(c)) {
+          flush();
+          continue;
+        }
+        hasToken = true;
+        current += c;
+      }
+      if (inSingle || inDouble) {
+        throw new Error("invalid process_command: unclosed quote");
+      }
+      flush();
+      if (args.length === 0 || args[0] === "") {
+        throw new Error("process_command is empty");
+      }
+      return args;
+    }
+    exports.splitProcessCommand = splitProcessCommand;
+  },
+});
+
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/external.js
 var require_external = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/external.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/external.js"(
     exports,
   ) {
     "use strict";
@@ -27549,6 +27686,7 @@ var require_external = __commonJS({
     var child_process_1 = __require("node:child_process");
     var util_1 = __require("node:util");
     var credentials_1 = __importDefault(require_credentials());
+    var command_1 = require_command();
     var execFileAsync = (0, util_1.promisify)(child_process_1.execFile);
     var EXPIRATION_SLOT_SECONDS = 180;
     var ExternalCredentialsProviderBuilder = class {
@@ -27595,10 +27733,7 @@ var require_external = __commonJS({
           EXPIRATION_SLOT_SECONDS;
       }
       async getCredentialsInternal() {
-        const args = this.processCommand.trim().split(/\s+/).filter(Boolean);
-        if (args.length === 0) {
-          throw new Error("process_command is empty");
-        }
+        const args = (0, command_1.splitProcessCommand)(this.processCommand);
         let stdout;
         try {
           const result = await execFileAsync(args[0], args.slice(1), {
@@ -27662,9 +27797,9 @@ var require_external = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/cli_profile.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/cli_profile.js
 var require_cli_profile = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/cli_profile.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/cli_profile.js"(
     exports,
   ) {
     "use strict";
@@ -27770,7 +27905,8 @@ var require_cli_profile = __commonJS({
           try {
             const cfgPath = path_1.default.join(
               this.homedir,
-              ".aliyun/config.json",
+              ".aliyun",
+              "config.json",
             );
             const content = await readFileAsync(cfgPath, "utf8");
             const config = JSON.parse(content);
@@ -27815,7 +27951,8 @@ var require_cli_profile = __commonJS({
           try {
             const cfgPath = path_1.default.join(
               this.homedir,
-              ".aliyun/config.json",
+              ".aliyun",
+              "config.json",
             );
             const content = await readFileAsync(cfgPath, "utf8");
             const config = JSON.parse(content);
@@ -27945,7 +28082,8 @@ var require_cli_profile = __commonJS({
           }
           const cfgPath = path_1.default.join(
             this.homedir,
-            ".aliyun/config.json",
+            ".aliyun",
+            "config.json",
           );
           const conf = await getConfiguration(cfgPath);
           const profileName = this.profileName || conf.current;
@@ -27968,9 +28106,9 @@ var require_cli_profile = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/env.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/env.js
 var require_env = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/env.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/env.js"(
     exports,
   ) {
     "use strict";
@@ -28020,9 +28158,9 @@ var require_env = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/uri.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/uri.js
 var require_uri = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/uri.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/uri.js"(
     exports,
   ) {
     "use strict";
@@ -28116,9 +28254,9 @@ var require_uri = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/profile.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/profile.js
 var require_profile = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/profile.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/profile.js"(
     exports,
   ) {
     "use strict";
@@ -28221,9 +28359,9 @@ var require_profile = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/default.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/default.js
 var require_default = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/providers/default.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/providers/default.js"(
     exports,
   ) {
     "use strict";
@@ -28334,9 +28472,9 @@ var require_default = __commonJS({
   },
 });
 
-// node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/client.js
+// node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/client.js
 var require_client2 = __commonJS({
-  "node_modules/.deno/@alicloud+credentials@2.4.5/node_modules/@alicloud/credentials/dist/src/client.js"(
+  "node_modules/.deno/@alicloud+credentials@2.4.7/node_modules/@alicloud/credentials/dist/src/client.js"(
     exports,
   ) {
     "use strict";
