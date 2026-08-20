@@ -313,9 +313,9 @@ var require_tunnel2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/symbols.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/symbols.js
 var require_symbols = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/symbols.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/symbols.js"(
     exports2,
     module,
   ) {
@@ -389,9 +389,9 @@ var require_symbols = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/errors.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/errors.js
 var require_errors = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/errors.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/errors.js"(
     exports2,
     module,
   ) {
@@ -780,9 +780,9 @@ var require_errors = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/constants.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/constants.js
 var require_constants = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/constants.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/constants.js"(
     exports2,
     module,
   ) {
@@ -900,9 +900,9 @@ var require_constants = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/tree.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/tree.js
 var require_tree = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/tree.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/tree.js"(
     exports2,
     module,
   ) {
@@ -1041,9 +1041,9 @@ var require_tree = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/util.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/util.js
 var require_util = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/util.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/util.js"(
     exports2,
     module,
   ) {
@@ -1643,9 +1643,9 @@ var require_util = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/diagnostics.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/diagnostics.js
 var require_diagnostics = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/diagnostics.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/diagnostics.js"(
     exports2,
     module,
   ) {
@@ -1841,9 +1841,9 @@ var require_diagnostics = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/request.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/request.js
 var require_request = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/request.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/request.js"(
     exports2,
     module,
   ) {
@@ -2178,7 +2178,11 @@ var require_request = __commonJS({
           } else if (typeof val[i] === "object") {
             throw new InvalidArgumentError(`invalid ${key} header`);
           } else {
-            arr.push(`${val[i]}`);
+            const str = `${val[i]}`;
+            if (!isValidHeaderValue(str)) {
+              throw new InvalidArgumentError(`invalid ${key} header`);
+            }
+            arr.push(str);
           }
         }
         val = arr;
@@ -2190,6 +2194,9 @@ var require_request = __commonJS({
         val = "";
       } else {
         val = `${val}`;
+        if (!isValidHeaderValue(val)) {
+          throw new InvalidArgumentError(`invalid ${key} header`);
+        }
       }
       if (headerName === "host") {
         if (request.host !== null) {
@@ -2235,9 +2242,9 @@ var require_request = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/dispatcher.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/dispatcher.js
 var require_dispatcher = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/dispatcher.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/dispatcher.js"(
     exports2,
     module,
   ) {
@@ -2298,9 +2305,9 @@ var require_dispatcher = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/dispatcher-base.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/dispatcher-base.js
 var require_dispatcher_base = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/dispatcher-base.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/dispatcher-base.js"(
     exports2,
     module,
   ) {
@@ -2471,9 +2478,9 @@ var require_dispatcher_base = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/util/timers.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/util/timers.js
 var require_timers = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/util/timers.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/util/timers.js"(
     exports2,
     module,
   ) {
@@ -2710,9 +2717,9 @@ var require_timers = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/connect.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/connect.js
 var require_connect = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/core/connect.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/core/connect.js"(
     exports2,
     module,
   ) {
@@ -2946,9 +2953,9 @@ var require_connect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/utils.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/llhttp/utils.js
 var require_utils = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/utils.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/llhttp/utils.js"(
     exports2,
   ) {
     "use strict";
@@ -2970,9 +2977,9 @@ var require_utils = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/constants.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/llhttp/constants.js
 var require_constants2 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/constants.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/llhttp/constants.js"(
     exports2,
   ) {
     "use strict";
@@ -3371,9 +3378,9 @@ var require_constants2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/llhttp-wasm.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/llhttp/llhttp-wasm.js
 var require_llhttp_wasm = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/llhttp-wasm.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/llhttp/llhttp-wasm.js"(
     exports2,
     module,
   ) {
@@ -3386,9 +3393,9 @@ var require_llhttp_wasm = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js
 var require_llhttp_simd_wasm = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/llhttp/llhttp_simd-wasm.js"(
     exports2,
     module,
   ) {
@@ -3401,9 +3408,9 @@ var require_llhttp_simd_wasm = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/constants.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/constants.js
 var require_constants3 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/constants.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/constants.js"(
     exports2,
     module,
   ) {
@@ -3659,9 +3666,9 @@ var require_constants3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/global.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/global.js
 var require_global = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/global.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/global.js"(
     exports2,
     module,
   ) {
@@ -3700,9 +3707,9 @@ var require_global = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/data-url.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/data-url.js
 var require_data_url = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/data-url.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/data-url.js"(
     exports2,
     module,
   ) {
@@ -4075,9 +4082,9 @@ var require_data_url = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/webidl.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/webidl.js
 var require_webidl = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/webidl.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/webidl.js"(
     exports2,
     module,
   ) {
@@ -4579,9 +4586,9 @@ var require_webidl = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/util.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/util.js
 var require_util2 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/util.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/util.js"(
     exports2,
     module,
   ) {
@@ -5596,9 +5603,9 @@ var require_util2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/symbols.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/symbols.js
 var require_symbols2 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/symbols.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/symbols.js"(
     exports2,
     module,
   ) {
@@ -5613,9 +5620,9 @@ var require_symbols2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/file.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/file.js
 var require_file = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/file.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/file.js"(
     exports2,
     module,
   ) {
@@ -5686,9 +5693,9 @@ var require_file = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/formdata.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/formdata.js
 var require_formdata = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/formdata.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/formdata.js"(
     exports2,
     module,
   ) {
@@ -5885,9 +5892,9 @@ var require_formdata = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/formdata-parser.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/formdata-parser.js
 var require_formdata_parser = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/formdata-parser.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/formdata-parser.js"(
     exports2,
     module,
   ) {
@@ -6202,9 +6209,9 @@ var require_formdata_parser = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/body.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/body.js
 var require_body = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/body.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/body.js"(
     exports2,
     module,
   ) {
@@ -6561,9 +6568,9 @@ Content-Type: ${value.type || "application/octet-stream"}\r
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client-h1.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/client-h1.js
 var require_client_h1 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client-h1.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/client-h1.js"(
     exports2,
     module,
   ) {
@@ -6576,6 +6583,7 @@ var require_client_h1 = __commonJS({
       RequestContentLengthMismatchError,
       ResponseContentLengthMismatchError,
       RequestAbortedError,
+      InvalidArgumentError,
       HeadersTimeoutError,
       HeadersOverflowError,
       SocketError,
@@ -7425,10 +7433,20 @@ var require_client_h1 = __commonJS({
         }
         body2 = bodyStream.stream;
         contentLength2 = bodyStream.length;
-      } else if (
-        util6.isBlobLike(body2) && request.contentType == null && body2.type
-      ) {
-        headers.push("content-type", body2.type);
+      } else if (util6.isBlobLike(body2) && request.contentType == null) {
+        const contentType2 = body2.type;
+        if (contentType2) {
+          const contentTypeValue = `${contentType2}`;
+          if (!util6.isValidHeaderValue(contentTypeValue)) {
+            util6.errorRequest(
+              client,
+              request,
+              new InvalidArgumentError("invalid content-type header"),
+            );
+            return false;
+          }
+          headers.push("content-type", contentTypeValue);
+        }
       }
       if (body2 && typeof body2.read === "function") {
         body2.read(0);
@@ -8005,9 +8023,9 @@ ${len.toString(16)}\r
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client-h2.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/client-h2.js
 var require_client_h2 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client-h2.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/client-h2.js"(
     exports2,
     module,
   ) {
@@ -8658,9 +8676,9 @@ var require_client_h2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/redirect-handler.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/handler/redirect-handler.js
 var require_redirect_handler = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/redirect-handler.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/handler/redirect-handler.js"(
     exports2,
     module,
   ) {
@@ -8872,9 +8890,9 @@ var require_redirect_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/redirect-interceptor.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/redirect-interceptor.js
 var require_redirect_interceptor = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/redirect-interceptor.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/redirect-interceptor.js"(
     exports2,
     module,
   ) {
@@ -8907,9 +8925,9 @@ var require_redirect_interceptor = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/client.js
 var require_client = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/client.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/client.js"(
     exports2,
     module,
   ) {
@@ -9530,9 +9548,9 @@ var require_client = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/fixed-queue.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/fixed-queue.js
 var require_fixed_queue = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/fixed-queue.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/fixed-queue.js"(
     exports2,
     module,
   ) {
@@ -9589,9 +9607,9 @@ var require_fixed_queue = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool-stats.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/pool-stats.js
 var require_pool_stats = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool-stats.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/pool-stats.js"(
     exports2,
     module,
   ) {
@@ -9625,9 +9643,9 @@ var require_pool_stats = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool-base.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/pool-base.js
 var require_pool_base = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool-base.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/pool-base.js"(
     exports2,
     module,
   ) {
@@ -9823,9 +9841,9 @@ var require_pool_base = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/pool.js
 var require_pool = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/pool.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/pool.js"(
     exports2,
     module,
   ) {
@@ -9937,9 +9955,9 @@ var require_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/balanced-pool.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/balanced-pool.js
 var require_balanced_pool = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/balanced-pool.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/balanced-pool.js"(
     exports2,
     module,
   ) {
@@ -10113,9 +10131,9 @@ var require_balanced_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/agent.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/agent.js
 var require_agent = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/agent.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/agent.js"(
     exports2,
     module,
   ) {
@@ -10265,9 +10283,9 @@ var require_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/proxy-agent.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/proxy-agent.js
 var require_proxy_agent = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/proxy-agent.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/proxy-agent.js"(
     exports2,
     module,
   ) {
@@ -10545,9 +10563,9 @@ var require_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js
 var require_env_http_proxy_agent = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/env-http-proxy-agent.js"(
     exports2,
     module,
   ) {
@@ -10704,9 +10722,9 @@ var require_env_http_proxy_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/retry-handler.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/handler/retry-handler.js
 var require_retry_handler = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/retry-handler.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/handler/retry-handler.js"(
     exports2,
     module,
   ) {
@@ -10719,6 +10737,31 @@ var require_retry_handler = __commonJS({
     function calculateRetryAfterHeader(retryAfter) {
       const current = Date.now();
       return new Date(retryAfter).getTime() - current;
+    }
+    function validatePartialResponseContentLength(
+      headers,
+      range2,
+      statusCode,
+      retryCount,
+    ) {
+      const contentLength2 = headers["content-length"];
+      if (contentLength2 == null) {
+        return null;
+      }
+      if (!Number.isFinite(range2.start) || !Number.isFinite(range2.end)) {
+        return null;
+      }
+      const length = Number(contentLength2);
+      const expectedLength = range2.end - range2.start + 1;
+      if (!Number.isFinite(length) || length !== expectedLength) {
+        return new RequestRetryError("Content-Length mismatch", statusCode, {
+          headers,
+          data: {
+            count: retryCount,
+          },
+        });
+      }
+      return null;
     }
     var RetryHandler = class _RetryHandler {
       constructor(opts, handlers) {
@@ -10925,6 +10968,16 @@ var require_retry_handler = __commonJS({
             );
             return false;
           }
+          const contentLengthError = validatePartialResponseContentLength(
+            headers,
+            contentRange,
+            statusCode,
+            this.retryCount,
+          );
+          if (contentLengthError != null) {
+            this.abort(contentLengthError);
+            return false;
+          }
           const { start, size, end = size - 1 } = contentRange;
           assert5(this.start === start, "content-range mismatch");
           assert5(
@@ -10944,6 +10997,16 @@ var require_retry_handler = __commonJS({
                 resume,
                 statusMessage,
               );
+            }
+            const contentLengthError = validatePartialResponseContentLength(
+              headers,
+              range2,
+              statusCode,
+              this.retryCount,
+            );
+            if (contentLengthError != null) {
+              this.abort(contentLengthError);
+              return false;
             }
             const { start, size, end = size - 1 } = range2;
             assert5(
@@ -11048,9 +11111,9 @@ var require_retry_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/retry-agent.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/retry-agent.js
 var require_retry_agent = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/dispatcher/retry-agent.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/dispatcher/retry-agent.js"(
     exports2,
     module,
   ) {
@@ -11086,9 +11149,9 @@ var require_retry_agent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/readable.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/readable.js
 var require_readable = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/readable.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/readable.js"(
     exports2,
     module,
   ) {
@@ -11405,9 +11468,9 @@ var require_readable = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/util.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/util.js
 var require_util3 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/util.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/util.js"(
     exports2,
     module,
   ) {
@@ -11494,9 +11557,9 @@ var require_util3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-request.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-request.js
 var require_api_request = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-request.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-request.js"(
     exports2,
     module,
   ) {
@@ -11728,9 +11791,9 @@ var require_api_request = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/abort-signal.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/abort-signal.js
 var require_abort_signal = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/abort-signal.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/abort-signal.js"(
     exports2,
     module,
   ) {
@@ -11782,9 +11845,9 @@ var require_abort_signal = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-stream.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-stream.js
 var require_api_stream = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-stream.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-stream.js"(
     exports2,
     module,
   ) {
@@ -12009,9 +12072,9 @@ var require_api_stream = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-pipeline.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-pipeline.js
 var require_api_pipeline = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-pipeline.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-pipeline.js"(
     exports2,
     module,
   ) {
@@ -12224,9 +12287,9 @@ var require_api_pipeline = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-upgrade.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-upgrade.js
 var require_api_upgrade = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-upgrade.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-upgrade.js"(
     exports2,
     module,
   ) {
@@ -12332,9 +12395,9 @@ var require_api_upgrade = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-connect.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-connect.js
 var require_api_connect = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/api-connect.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/api-connect.js"(
     exports2,
     module,
   ) {
@@ -12441,9 +12504,9 @@ var require_api_connect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/index.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/index.js
 var require_api = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/api/index.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/api/index.js"(
     exports2,
     module,
   ) {
@@ -12456,9 +12519,9 @@ var require_api = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-errors.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-errors.js
 var require_mock_errors = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-errors.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-errors.js"(
     exports2,
     module,
   ) {
@@ -12487,9 +12550,9 @@ var require_mock_errors = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-symbols.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-symbols.js
 var require_mock_symbols = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-symbols.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-symbols.js"(
     exports2,
     module,
   ) {
@@ -12518,9 +12581,9 @@ var require_mock_symbols = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-utils.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-utils.js
 var require_mock_utils = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-utils.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-utils.js"(
     exports2,
     module,
   ) {
@@ -12898,9 +12961,9 @@ var require_mock_utils = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-interceptor.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-interceptor.js
 var require_mock_interceptor = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-interceptor.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-interceptor.js"(
     exports2,
     module,
   ) {
@@ -13112,9 +13175,9 @@ var require_mock_interceptor = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-client.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-client.js
 var require_mock_client = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-client.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-client.js"(
     exports2,
     module,
   ) {
@@ -13170,9 +13233,9 @@ var require_mock_client = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-pool.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-pool.js
 var require_mock_pool = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-pool.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-pool.js"(
     exports2,
     module,
   ) {
@@ -13228,9 +13291,9 @@ var require_mock_pool = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/pluralizer.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/pluralizer.js
 var require_pluralizer = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/pluralizer.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/pluralizer.js"(
     exports2,
     module,
   ) {
@@ -13266,9 +13329,9 @@ var require_pluralizer = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js
 var require_pending_interceptors_formatter = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/pending-interceptors-formatter.js"(
     exports2,
     module,
   ) {
@@ -13318,9 +13381,9 @@ var require_pending_interceptors_formatter = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-agent.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-agent.js
 var require_mock_agent = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/mock/mock-agent.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/mock/mock-agent.js"(
     exports2,
     module,
   ) {
@@ -13482,9 +13545,9 @@ ${pendingInterceptorsFormatter.format(pending)}
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/global.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/global.js
 var require_global2 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/global.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/global.js"(
     exports2,
     module,
   ) {
@@ -13516,9 +13579,9 @@ var require_global2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/decorator-handler.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/handler/decorator-handler.js
 var require_decorator_handler = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/handler/decorator-handler.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/handler/decorator-handler.js"(
     exports2,
     module,
   ) {
@@ -13559,9 +13622,9 @@ var require_decorator_handler = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/redirect.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/redirect.js
 var require_redirect = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/redirect.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/redirect.js"(
     exports2,
     module,
   ) {
@@ -13589,9 +13652,9 @@ var require_redirect = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/retry.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/retry.js
 var require_retry = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/retry.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/retry.js"(
     exports2,
     module,
   ) {
@@ -13619,9 +13682,9 @@ var require_retry = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/dump.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/dump.js
 var require_dump = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/dump.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/dump.js"(
     exports2,
     module,
   ) {
@@ -13721,9 +13784,9 @@ var require_dump = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/dns.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/dns.js
 var require_dns = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/interceptor/dns.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/interceptor/dns.js"(
     exports2,
     module,
   ) {
@@ -14046,9 +14109,9 @@ var require_dns = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/headers.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/headers.js
 var require_headers = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/headers.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/headers.js"(
     exports2,
     module,
   ) {
@@ -14564,9 +14627,9 @@ var require_headers = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/response.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/response.js
 var require_response = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/response.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/response.js"(
     exports2,
     module,
   ) {
@@ -15024,9 +15087,9 @@ var require_response = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js
 var require_dispatcher_weakref = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/dispatcher-weakref.js"(
     exports2,
     module,
   ) {
@@ -15076,9 +15139,9 @@ var require_dispatcher_weakref = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/request.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/request.js
 var require_request2 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/request.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/request.js"(
     exports2,
     module,
   ) {
@@ -15845,9 +15908,9 @@ var require_request2 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/index.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/index.js
 var require_fetch = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fetch/index.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fetch/index.js"(
     exports2,
     module,
   ) {
@@ -17148,9 +17211,9 @@ var require_fetch = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/symbols.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/symbols.js
 var require_symbols3 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/symbols.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/symbols.js"(
     exports2,
     module,
   ) {
@@ -17168,9 +17231,9 @@ var require_symbols3 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/progressevent.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/progressevent.js
 var require_progressevent = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/progressevent.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/progressevent.js"(
     exports2,
     module,
   ) {
@@ -17245,9 +17308,9 @@ var require_progressevent = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/encoding.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/encoding.js
 var require_encoding = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/encoding.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/encoding.js"(
     exports2,
     module,
   ) {
@@ -17534,9 +17597,9 @@ var require_encoding = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/util.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/util.js
 var require_util4 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/util.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/util.js"(
     exports2,
     module,
   ) {
@@ -17726,9 +17789,9 @@ var require_util4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/filereader.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/filereader.js
 var require_filereader = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/fileapi/filereader.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/fileapi/filereader.js"(
     exports2,
     module,
   ) {
@@ -17999,9 +18062,9 @@ var require_filereader = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/symbols.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cache/symbols.js
 var require_symbols4 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/symbols.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cache/symbols.js"(
     exports2,
     module,
   ) {
@@ -18012,9 +18075,9 @@ var require_symbols4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/util.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cache/util.js
 var require_util5 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/util.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cache/util.js"(
     exports2,
     module,
   ) {
@@ -18045,9 +18108,9 @@ var require_util5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/cache.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cache/cache.js
 var require_cache = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/cache.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cache/cache.js"(
     exports2,
     module,
   ) {
@@ -18669,9 +18732,9 @@ var require_cache = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/cachestorage.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cache/cachestorage.js
 var require_cachestorage = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cache/cachestorage.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cache/cachestorage.js"(
     exports2,
     module,
   ) {
@@ -18796,9 +18859,9 @@ var require_cachestorage = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/constants.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cookies/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/constants.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cookies/constants.js"(
     exports2,
     module,
   ) {
@@ -18812,9 +18875,9 @@ var require_constants4 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/util.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cookies/util.js
 var require_util6 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/util.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cookies/util.js"(
     exports2,
     module,
   ) {
@@ -18887,17 +18950,49 @@ var require_util6 = __commonJS({
         const code = path14.charCodeAt(i);
         if (
           code < 32 || // exclude CTLs (0-31)
-          code === 127 || // DEL
+          code > 126 || // exclude DEL and non-ascii
           code === 59
         ) {
           throw new Error("Invalid cookie path");
         }
       }
     }
+    function isLetterOrDigit(code) {
+      return code >= 48 && code <= 57 || // 0-9
+        code >= 65 && code <= 90 || // A-Z
+        code >= 97 && code <= 122;
+    }
     function validateCookieDomain(domain) {
-      if (
-        domain.startsWith("-") || domain.endsWith(".") || domain.endsWith("-")
-      ) {
+      if (domain === " ") {
+        return;
+      }
+      if (domain.length > 255) {
+        throw new Error("Invalid cookie domain");
+      }
+      let labelLength = 0;
+      for (let i = 0; i < domain.length; ++i) {
+        const code = domain.charCodeAt(i);
+        if (code === 46) {
+          if (labelLength === 0) {
+            throw new Error("Invalid cookie domain");
+          }
+          if (domain.charCodeAt(i - 1) === 45) {
+            throw new Error("Invalid cookie domain");
+          }
+          labelLength = 0;
+          continue;
+        }
+        if (labelLength === 0 && !isLetterOrDigit(code)) {
+          throw new Error("Invalid cookie domain");
+        }
+        if (!isLetterOrDigit(code) && code !== 45) {
+          throw new Error("Invalid cookie domain");
+        }
+        if (++labelLength > 63) {
+          throw new Error("Invalid cookie domain");
+        }
+      }
+      if (labelLength === 0 || domain.charCodeAt(domain.length - 1) === 45) {
         throw new Error("Invalid cookie domain");
       }
     }
@@ -18990,7 +19085,11 @@ var require_util6 = __commonJS({
           throw new Error("Invalid unparsed");
         }
         const [key, ...value] = part.split("=");
-        out.push(`${key.trim()}=${value.join("=")}`);
+        const trimmedKey = key.trim();
+        const joinedValue = value.join("=");
+        validateCookieName(trimmedKey);
+        validateCookieValue(joinedValue);
+        out.push(`${trimmedKey}=${joinedValue}`);
       }
       return out.join("; ");
     }
@@ -19005,9 +19104,9 @@ var require_util6 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/parse.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cookies/parse.js
 var require_parse = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/parse.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cookies/parse.js"(
     exports2,
     module,
   ) {
@@ -19153,9 +19252,9 @@ var require_parse = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/index.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cookies/index.js
 var require_cookies = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/cookies/index.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/cookies/index.js"(
     exports2,
     module,
   ) {
@@ -19297,9 +19396,9 @@ var require_cookies = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/events.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/events.js
 var require_events = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/events.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/events.js"(
     exports2,
     module,
   ) {
@@ -19583,9 +19682,9 @@ var require_events = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/constants.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/constants.js
 var require_constants5 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/constants.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/constants.js"(
     exports2,
     module,
   ) {
@@ -19643,9 +19742,9 @@ var require_constants5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/symbols.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/symbols.js
 var require_symbols5 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/symbols.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/symbols.js"(
     exports2,
     module,
   ) {
@@ -19663,9 +19762,9 @@ var require_symbols5 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/util.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/util.js
 var require_util7 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/util.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/util.js"(
     exports2,
     module,
   ) {
@@ -19867,9 +19966,9 @@ var require_util7 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/frame.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/frame.js
 var require_frame = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/frame.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/frame.js"(
     exports2,
     module,
   ) {
@@ -19956,9 +20055,9 @@ var require_frame = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/connection.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/connection.js
 var require_connection = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/connection.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/connection.js"(
     exports2,
     module,
   ) {
@@ -20196,9 +20295,9 @@ var require_connection = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/permessage-deflate.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/permessage-deflate.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/permessage-deflate.js"(
     exports2,
     module,
   ) {
@@ -20299,9 +20398,9 @@ var require_permessage_deflate = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/receiver.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/receiver.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/receiver.js"(
     exports2,
     module,
   ) {
@@ -20756,9 +20855,9 @@ var require_receiver = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/sender.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/sender.js
 var require_sender = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/sender.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/sender.js"(
     exports2,
     module,
   ) {
@@ -20845,9 +20944,9 @@ var require_sender = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/websocket.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/websocket/websocket.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/websocket/websocket.js"(
     exports2,
     module,
   ) {
@@ -21275,9 +21374,9 @@ var require_websocket = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/util.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/eventsource/util.js
 var require_util8 = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/util.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/eventsource/util.js"(
     exports2,
     module,
   ) {
@@ -21305,9 +21404,9 @@ var require_util8 = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js
 var require_eventsource_stream = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/eventsource/eventsource-stream.js"(
     exports2,
     module,
   ) {
@@ -21554,9 +21653,9 @@ ${value}`;
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/eventsource.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/eventsource/eventsource.js
 var require_eventsource = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/lib/web/eventsource/eventsource.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/lib/web/eventsource/eventsource.js"(
     exports2,
     module,
   ) {
@@ -21878,9 +21977,9 @@ var require_eventsource = __commonJS({
   },
 });
 
-// node_modules/.deno/undici@6.27.0/node_modules/undici/index.js
+// node_modules/.deno/undici@6.28.0/node_modules/undici/index.js
 var require_undici = __commonJS({
-  "node_modules/.deno/undici@6.27.0/node_modules/undici/index.js"(
+  "node_modules/.deno/undici@6.28.0/node_modules/undici/index.js"(
     exports2,
     module,
   ) {
@@ -25172,9 +25271,9 @@ var require_core = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/constants.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/constants.js
 var require_constants6 = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/constants.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/constants.js"(
     exports2,
     module,
   ) {
@@ -25202,9 +25301,9 @@ var require_constants6 = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/buffer-util.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/buffer-util.js
 var require_buffer_util = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/buffer-util.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/buffer-util.js"(
     exports2,
     module,
   ) {
@@ -25280,9 +25379,9 @@ var require_buffer_util = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/limiter.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/limiter.js
 var require_limiter = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/limiter.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/limiter.js"(
     exports2,
     module,
   ) {
@@ -25333,9 +25432,9 @@ var require_limiter = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/permessage-deflate.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/permessage-deflate.js
 var require_permessage_deflate2 = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/permessage-deflate.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/permessage-deflate.js"(
     exports2,
     module,
   ) {
@@ -25484,7 +25583,9 @@ var require_permessage_deflate2 = __commonJS({
                 typeof opts.serverMaxWindowBits === "number" &&
                   opts.serverMaxWindowBits > params.server_max_window_bits) ||
             typeof opts.clientMaxWindowBits === "number" &&
-              !params.client_max_window_bits
+              (typeof params.client_max_window_bits === "number"
+                ? opts.clientMaxWindowBits > params.client_max_window_bits
+                : !params.client_max_window_bits)
           ) {
             return false;
           }
@@ -25765,9 +25866,9 @@ var require_permessage_deflate2 = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/validation.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/validation.js
 var require_validation = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/validation.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/validation.js"(
     exports2,
     module,
   ) {
@@ -25978,9 +26079,9 @@ var require_validation = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/receiver.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/receiver.js
 var require_receiver2 = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/receiver.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/receiver.js"(
     exports2,
     module,
   ) {
@@ -26620,9 +26721,9 @@ var require_receiver2 = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/sender.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/sender.js
 var require_sender2 = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/sender.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/sender.js"(
     exports2,
     module,
   ) {
@@ -27192,9 +27293,9 @@ var require_sender2 = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/event-target.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/event-target.js
 var require_event_target = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/event-target.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/event-target.js"(
     exports2,
     module,
   ) {
@@ -27447,9 +27548,9 @@ var require_event_target = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/extension.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/extension.js
 var require_extension = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/extension.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/extension.js"(
     exports2,
     module,
   ) {
@@ -27619,9 +27720,9 @@ var require_extension = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/websocket.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/websocket.js
 var require_websocket2 = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/websocket.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/websocket.js"(
     exports2,
     module,
   ) {
@@ -28598,9 +28699,9 @@ var require_websocket2 = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/stream.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/stream.js
 var require_stream = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/stream.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/stream.js"(
     exports2,
     module,
   ) {
@@ -28701,9 +28802,9 @@ var require_stream = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/subprotocol.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/subprotocol.js
 var require_subprotocol = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/subprotocol.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/subprotocol.js"(
     exports2,
     module,
   ) {
@@ -28753,9 +28854,9 @@ var require_subprotocol = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/lib/websocket-server.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/lib/websocket-server.js
 var require_websocket_server = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/lib/websocket-server.js"(
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/lib/websocket-server.js"(
     exports2,
     module,
   ) {
@@ -29183,9 +29284,9 @@ var require_websocket_server = __commonJS({
   },
 });
 
-// node_modules/.deno/ws@8.21.1/node_modules/ws/index.js
+// node_modules/.deno/ws@8.21.3/node_modules/ws/index.js
 var require_ws = __commonJS({
-  "node_modules/.deno/ws@8.21.1/node_modules/ws/index.js"(exports2, module) {
+  "node_modules/.deno/ws@8.21.3/node_modules/ws/index.js"(exports2, module) {
     "use strict";
     var createWebSocketStream = require_stream();
     var extension = require_extension();
@@ -29458,16 +29559,16 @@ var require_parse_proxy_response = __commonJS({
       return new Promise((resolve4, reject) => {
         let buffersLength = 0;
         const buffers = [];
-        function read2() {
+        function read() {
           const b = socket.read();
           if (b) ondata(b);
-          else socket.once("readable", read2);
+          else socket.once("readable", read);
         }
         function cleanup() {
           socket.removeListener("end", onend);
           socket.removeListener("error", onerror);
           socket.removeListener("close", onclose);
-          socket.removeListener("readable", read2);
+          socket.removeListener("readable", read);
         }
         function onclose(err) {
           debug3("onclose had error %o", err);
@@ -29487,7 +29588,7 @@ var require_parse_proxy_response = __commonJS({
           const endOfHeaders = buffered.indexOf("\r\n\r\n");
           if (endOfHeaders === -1) {
             debug3("have not received end of HTTP headers yet...");
-            read2();
+            read();
             return;
           }
           const firstLine = buffered.toString(
@@ -29505,7 +29606,7 @@ var require_parse_proxy_response = __commonJS({
         socket.on("error", onerror);
         socket.on("close", onclose);
         socket.on("end", onend);
-        read2();
+        read();
       });
     }
     exports2.default = parseProxyResponse;
@@ -31626,9 +31727,9 @@ var require_util9 = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/address-error.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/address-error.js
 var require_address_error = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/address-error.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/address-error.js"(
     exports2,
   ) {
     "use strict";
@@ -31647,9 +31748,9 @@ var require_address_error = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/common.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/common.js
 var require_common2 = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/common.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/common.js"(
     exports2,
   ) {
     "use strict";
@@ -31657,8 +31758,10 @@ var require_common2 = __commonJS({
       value: true,
     });
     exports2.isInSubnet = isInSubnet;
+    exports2.isHostInSubnet = isHostInSubnet;
     exports2.isCorrect = isCorrect;
     exports2.prefixLengthFromMask = prefixLengthFromMask;
+    exports2.assertByteArray = assertByteArray;
     exports2.numberToPaddedHex = numberToPaddedHex;
     exports2.stringToPaddedHex = stringToPaddedHex;
     exports2.testBit = testBit;
@@ -31667,13 +31770,13 @@ var require_common2 = __commonJS({
       if (this.subnetMask < address.subnetMask) {
         return false;
       }
-      if (this.mask(address.subnetMask) === address.mask()) {
-        return true;
-      }
-      return false;
+      return isHostInSubnet.call(this, address);
+    }
+    function isHostInSubnet(address) {
+      return this.mask(address.subnetMask) === address.mask();
     }
     function isCorrect(defaultBits) {
-      return function () {
+      return function isCorrectForm() {
         if (this.addressMinusSuffix !== this.correctForm()) {
           return false;
         }
@@ -31697,6 +31800,22 @@ var require_common2 = __commonJS({
       }
       return firstZero;
     }
+    function assertByteArray(bytes, byteCount, family, minimum) {
+      if (bytes.length !== byteCount) {
+        throw new address_error_1.AddressError(
+          `${family} addresses require exactly ${byteCount} bytes`,
+        );
+      }
+      for (let i = 0; i < bytes.length; i++) {
+        if (
+          !Number.isInteger(bytes[i]) || bytes[i] < minimum || bytes[i] > 255
+        ) {
+          throw new address_error_1.AddressError(
+            `All bytes must be integers between ${minimum} and 255`,
+          );
+        }
+      }
+    }
     function numberToPaddedHex(number) {
       return number.toString(16).padStart(2, "0");
     }
@@ -31715,9 +31834,9 @@ var require_common2 = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v4/constants.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v4/constants.js
 var require_constants8 = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v4/constants.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v4/constants.js"(
     exports2,
   ) {
     "use strict";
@@ -31732,14 +31851,14 @@ var require_constants8 = __commonJS({
     exports2.BITS = 32;
     exports2.GROUPS = 4;
     exports2.RE_ADDRESS =
-      /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/g;
+      /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/g;
     exports2.RE_SUBNET_STRING = /\/\d{1,2}$/;
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ipv4.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ipv4.js
 var require_ipv4 = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ipv4.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ipv4.js"(
     exports2,
   ) {
     "use strict";
@@ -31799,6 +31918,7 @@ var require_ipv4 = __commonJS({
     var isCorrect4 = common.isCorrect(constants4.BITS);
     var Address4 = class _Address4 {
       constructor(address) {
+        this.addressMinusSuffix = "";
         this.groups = constants4.GROUPS;
         this.parsedAddress = [];
         this.parsedSubnet = "";
@@ -31807,6 +31927,7 @@ var require_ipv4 = __commonJS({
         this.v4 = true;
         this.isCorrect = isCorrect4;
         this.isInSubnet = common.isInSubnet;
+        this.isHostInSubnet = common.isHostInSubnet;
         this.address = address;
         const subnet = constants4.RE_SUBNET_STRING.exec(address);
         if (subnet) {
@@ -31832,7 +31953,7 @@ var require_ipv4 = __commonJS({
         try {
           new _Address4(address);
           return true;
-        } catch (e) {
+        } catch {
           return false;
         }
       }
@@ -31844,6 +31965,11 @@ var require_ipv4 = __commonJS({
        */
       parse(address) {
         const groups = address.split(".");
+        if (groups.some((group2) => /^0\d/.test(group2))) {
+          throw new address_error_1.AddressError(
+            "IPv4 addresses can't have leading zeroes.",
+          );
+        }
         if (!address.match(constants4.RE_ADDRESS)) {
           throw new address_error_1.AddressError("Invalid IPv4 address.");
         }
@@ -32117,7 +32243,7 @@ var require_ipv4 = __commonJS({
        * @returns {Address4}
        */
       static fromBigInt(bigInt) {
-        if (bigInt < 0n || bigInt > 0xffffffffn) {
+        if (bigInt < BigInt(0) || bigInt > BigInt(4294967295)) {
           throw new address_error_1.AddressError(
             "IPv4 BigInt must be in the range 0 to 2**32 - 1",
           );
@@ -32125,29 +32251,26 @@ var require_ipv4 = __commonJS({
         return _Address4.fromHex(bigInt.toString(16).padStart(8, "0"));
       }
       /**
-       * Convert a byte array to an Address4 object.
+       * Convert a byte array to an Address4 object. Throws `AddressError` unless
+       * given exactly 4 integers from 0 to 255. Signed bytes are rejected, so
+       * this differs from `Address6.fromByteArray`, which folds them; the two
+       * contracts converge on this stricter form in the next major version.
        *
        * To convert from a Node.js `Buffer`, spread it: `Address4.fromByteArray([...buf])`.
        * @param {Array<number>} bytes - an array of 4 bytes (0-255)
        * @returns {Address4}
        */
       static fromByteArray(bytes) {
-        if (bytes.length !== 4) {
-          throw new address_error_1.AddressError(
-            "IPv4 addresses require exactly 4 bytes",
-          );
-        }
-        for (let i = 0; i < bytes.length; i++) {
-          if (!Number.isInteger(bytes[i]) || bytes[i] < 0 || bytes[i] > 255) {
-            throw new address_error_1.AddressError(
-              "All bytes must be integers between 0 and 255",
-            );
-          }
-        }
+        common.assertByteArray(bytes, 4, "IPv4", 0);
         return this.fromUnsignedByteArray(bytes);
       }
       /**
-       * Convert an unsigned byte array to an Address4 object
+       * Convert an unsigned byte array to an Address4 object. Throws
+       * `AddressError` unless given exactly 4 bytes, and rejects values outside
+       * 0 to 255 when parsing the resulting address.
+       *
+       * To convert from a Node.js `Buffer`, spread it:
+       * `Address4.fromUnsignedByteArray([...buf])`.
        * @param {Array<number>} bytes - an array of 4 unsigned bytes (0-255)
        * @returns {Address4}
        */
@@ -32179,7 +32302,8 @@ var require_ipv4 = __commonJS({
         return this.binaryZeroPad().slice(start, end);
       }
       /**
-       * Return the reversed ip6.arpa form of the address
+       * Return the reversed in-addr.arpa form of the address, e.g.
+       * `42.2.0.192.in-addr.arpa.` for `192.0.2.42`.
        * @param {Object} options
        * @param {boolean} options.omitSuffix - omit the "in-addr.arpa" suffix
        * @returns {String}
@@ -32199,49 +32323,49 @@ var require_ipv4 = __commonJS({
        * @returns {boolean}
        */
       isMulticast() {
-        return this.isInSubnet(MULTICAST_V4);
+        return this.isHostInSubnet(MULTICAST_V4);
       }
       /**
        * Returns true if the address is in one of the [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private address ranges (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`).
        * @returns {boolean}
        */
       isPrivate() {
-        return PRIVATE_V4.some((subnet) => this.isInSubnet(subnet));
+        return PRIVATE_V4.some((subnet) => this.isHostInSubnet(subnet));
       }
       /**
        * Returns true if the address is in the loopback range `127.0.0.0/8` ([RFC 1122](https://datatracker.ietf.org/doc/html/rfc1122)).
        * @returns {boolean}
        */
       isLoopback() {
-        return this.isInSubnet(LOOPBACK_V4);
+        return this.isHostInSubnet(LOOPBACK_V4);
       }
       /**
        * Returns true if the address is in the link-local range `169.254.0.0/16` ([RFC 3927](https://datatracker.ietf.org/doc/html/rfc3927)).
        * @returns {boolean}
        */
       isLinkLocal() {
-        return this.isInSubnet(LINK_LOCAL_V4);
+        return this.isHostInSubnet(LINK_LOCAL_V4);
       }
       /**
        * Returns true if the address is the unspecified address `0.0.0.0`.
        * @returns {boolean}
        */
       isUnspecified() {
-        return this.isInSubnet(UNSPECIFIED_V4);
+        return this.isHostInSubnet(UNSPECIFIED_V4);
       }
       /**
        * Returns true if the address is the limited broadcast address `255.255.255.255` ([RFC 919](https://datatracker.ietf.org/doc/html/rfc919)).
        * @returns {boolean}
        */
       isBroadcast() {
-        return this.isInSubnet(BROADCAST_V4);
+        return this.isHostInSubnet(BROADCAST_V4);
       }
       /**
        * Returns true if the address is in the carrier-grade NAT range `100.64.0.0/10` ([RFC 6598](https://datatracker.ietf.org/doc/html/rfc6598)).
        * @returns {boolean}
        */
       isCGNAT() {
-        return this.isInSubnet(CGNAT_V4);
+        return this.isHostInSubnet(CGNAT_V4);
       }
       /**
        * Returns a zero-padded base-2 string representation of the address
@@ -32257,12 +32381,17 @@ var require_ipv4 = __commonJS({
         return this._binaryZeroPad;
       }
       /**
-       * Groups an IPv4 address for inclusion at the end of an IPv6 address
+       * Groups an IPv4 address for inclusion at the end of an IPv6 address.
+       *
+       * Returns an HTML fragment: each half of the address is wrapped in a
+       * `<span>` carrying the group classes an address-inspector UI hovers on.
+       * The address content is HTML-escaped; anything you concatenate around it
+       * is your responsibility.
        * @returns {String}
        */
       groupForV6() {
         const segments = this.parsedAddress;
-        return this.address.replace(
+        return this.correctForm().replace(
           constants4.RE_ADDRESS,
           `<span class="hover-group group-v4 group-6">${
             segments.slice(0, 2).join(".")
@@ -32287,9 +32416,9 @@ var require_ipv4 = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/constants.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/constants.js
 var require_constants9 = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/constants.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/constants.js"(
     exports2,
   ) {
     "use strict";
@@ -32342,6 +32471,7 @@ var require_constants9 = __commonJS({
       "ff05::1:3/128": "Multicast (All DHCP servers in this site)",
       "::/128": "Unspecified",
       "::1/128": "Loopback",
+      "::ffff:0:0/96": "IPv4-mapped",
       "ff00::/8": "Multicast",
       "fe80::/10": "Link-local unicast",
       "fc00::/7": "Unique local",
@@ -32354,14 +32484,14 @@ var require_constants9 = __commonJS({
     exports2.RE_BAD_ADDRESS = /([0-9a-f]{5,}|:{3,}|[^:]:$|^:[^:]|\/$)/gi;
     exports2.RE_SUBNET_STRING = /\/\d{1,3}(?=%|$)/;
     exports2.RE_ZONE_STRING = /%.*$/;
-    exports2.RE_URL = /^\[{0,1}([0-9a-f:]+)\]{0,1}/;
-    exports2.RE_URL_WITH_PORT = /\[([0-9a-f:]+)\]:([0-9]{1,5})/;
+    exports2.RE_URL = /^(?:\[([0-9a-f:.]+)\]|([0-9a-f:.]+))(?:[/?#].*)?$/i;
+    exports2.RE_URL_WITH_PORT = /^\[([0-9a-f:.]+)\]:([0-9]{1,5})(?:[/?#].*)?$/i;
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/helpers.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/helpers.js
 var require_helpers = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/helpers.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/helpers.js"(
     exports2,
   ) {
     "use strict";
@@ -32414,9 +32544,9 @@ var require_helpers = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/regular-expressions.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/regular-expressions.js
 var require_regular_expressions = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/v6/regular-expressions.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/regular-expressions.js"(
     exports2,
   ) {
     "use strict";
@@ -32538,9 +32668,9 @@ var require_regular_expressions = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ipv6.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ipv6.js
 var require_ipv6 = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ipv6.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ipv6.js"(
     exports2,
   ) {
     "use strict";
@@ -32653,6 +32783,7 @@ var require_ipv6 = __commonJS({
         this.v4 = false;
         this.zone = "";
         this.isInSubnet = common.isInSubnet;
+        this.isHostInSubnet = common.isHostInSubnet;
         this.isCorrect = isCorrect6;
         if (optionalGroups === void 0) {
           this.groups = constants6.GROUPS;
@@ -32672,7 +32803,8 @@ var require_ipv6 = __commonJS({
             throw new address_error_1.AddressError("Invalid subnet mask.");
           }
           address = address.replace(constants6.RE_SUBNET_STRING, "");
-        } else if (/\//.test(address)) {
+        }
+        if (/\//.test(address)) {
           throw new address_error_1.AddressError("Invalid subnet mask.");
         }
         const zone = constants6.RE_ZONE_STRING.exec(address);
@@ -32694,7 +32826,7 @@ var require_ipv6 = __commonJS({
         try {
           new _Address6(address);
           return true;
-        } catch (e) {
+        } catch {
           return false;
         }
       }
@@ -32709,7 +32841,10 @@ var require_ipv6 = __commonJS({
        * address.correctForm(); // '::e8:d4a5:1000'
        */
       static fromBigInt(bigInt) {
-        if (bigInt < 0n || bigInt > (1n << BigInt(constants6.BITS)) - 1n) {
+        if (
+          bigInt < BigInt(0) ||
+          bigInt > (BigInt(1) << BigInt(constants6.BITS)) - BigInt(1)
+        ) {
           throw new address_error_1.AddressError(
             "IPv6 BigInt must be in the range 0 to 2**128 - 1",
           );
@@ -32732,44 +32867,56 @@ var require_ipv6 = __commonJS({
        * addressAndPort.port; // 8080
        */
       static fromURL(url2) {
+        var _a;
         let host;
         let port = null;
         let result;
-        if (url2.indexOf("[") !== -1 && url2.indexOf("]:") !== -1) {
-          result = constants6.RE_URL_WITH_PORT.exec(url2);
+        let error2;
+        const stripped = url2.replace(/^[a-z][a-z0-9+.-]*:\/\//i, "");
+        if (stripped.indexOf("[") !== -1 && stripped.indexOf("]:") !== -1) {
+          error2 = "failed to parse address with port";
+          result = constants6.RE_URL_WITH_PORT.exec(stripped);
           if (result === null) {
             return {
-              error: "failed to parse address with port",
+              error: error2,
               address: null,
               port: null,
             };
           }
           host = result[1];
           port = result[2];
-        } else if (url2.indexOf("/") !== -1) {
-          url2 = url2.replace(/^[a-z0-9]+:\/\//, "");
-          result = constants6.RE_URL.exec(url2);
+        } else {
+          error2 = "failed to parse address from URL";
+          result = constants6.RE_URL.exec(stripped);
           if (result === null) {
             return {
-              error: "failed to parse address from URL",
+              error: error2,
               address: null,
               port: null,
             };
           }
-          host = result[1];
-        } else {
-          host = url2;
+          host = (_a = result[1]) !== null && _a !== void 0 ? _a : result[2];
         }
         if (port) {
           port = parseInt(port, 10);
-          if (port < 0 || port > 65536) {
+          if (port < 0 || port > 65535) {
             port = null;
           }
         } else {
           port = null;
         }
+        let address;
+        try {
+          address = new _Address6(host);
+        } catch {
+          return {
+            error: error2,
+            address: null,
+            port: null,
+          };
+        }
         return {
-          address: new _Address6(host),
+          address,
           port,
         };
       }
@@ -33060,7 +33207,7 @@ var require_ipv6 = __commonJS({
       getType() {
         for (let i = 0; i < TYPE_SUBNETS.length; i++) {
           const entry = TYPE_SUBNETS[i];
-          if (this.isInSubnet(entry[0])) {
+          if (this.isHostInSubnet(entry[0])) {
             return entry[1];
           }
         }
@@ -33207,25 +33354,32 @@ var require_ipv6 = __commonJS({
         }
         const groups = address.split(":");
         const lastGroup = groups.slice(-1)[0];
+        const v4Octets = lastGroup.split(".");
+        if (
+          v4Octets.length === constants4.GROUPS &&
+          v4Octets.every((octet) => /^\d{1,3}$/.test(octet))
+        ) {
+          if (v4Octets.some((octet) => /^0\d/.test(octet))) {
+            const highlighted = v4Octets.map(spanLeadingZeroes4).join(".");
+            const prefix2 = groups.slice(0, -1).map(helpers.escapeHtml).join(
+              ":",
+            );
+            const separator = groups.length > 1 ? ":" : "";
+            throw new address_error_1.AddressError(
+              "IPv4 addresses can't have leading zeroes.",
+              `${prefix2}${separator}${highlighted}`,
+            );
+          }
+        }
         const address4 = lastGroup.match(constants4.RE_ADDRESS);
         if (address4) {
           this.parsedAddress4 = address4[0];
-          this.address4 = new ipv4_1.Address4(this.parsedAddress4);
-          for (let i = 0; i < this.address4.groups; i++) {
-            if (/^0[0-9]+/.test(this.address4.parsedAddress[i])) {
-              const highlighted = this.address4.parsedAddress.map(
-                spanLeadingZeroes4,
-              ).join(".");
-              const prefix2 = groups.slice(0, -1).map(helpers.escapeHtml).join(
-                ":",
-              );
-              const separator = groups.length > 1 ? ":" : "";
-              throw new address_error_1.AddressError(
-                "IPv4 addresses can't have leading zeroes.",
-                `${prefix2}${separator}${highlighted}`,
-              );
-            }
-          }
+          const v4Suffix = this.subnetMask >= 96
+            ? `/${this.subnetMask - 96}`
+            : "";
+          this.address4 = new ipv4_1.Address4(
+            `${this.parsedAddress4}${v4Suffix}`,
+          );
           this.v4 = true;
           groups[groups.length - 1] = this.address4.toGroup6();
           address = groups.join(":");
@@ -33327,7 +33481,11 @@ var require_ipv6 = __commonJS({
         return BigInt(`0x${this.parsedAddress.map(paddedHex).join("")}`);
       }
       /**
-       * Return the last two groups of this address as an IPv4 address string
+       * Return the last two groups of this address as an IPv4 address string.
+       * If this address carries a CIDR prefix that covers the trailing 32 bits
+       * (i.e. `subnetMask >= 96`), the resulting `Address4` inherits the
+       * corresponding v4 prefix (`subnetMask - 96`); otherwise it defaults to
+       * `/32`.
        * @returns {Address4}
        * @example
        * var address = new Address6('2001:4860:4001::1825:bf11');
@@ -33335,12 +33493,17 @@ var require_ipv6 = __commonJS({
        */
       to4() {
         const binary = this.binaryZeroPad().split("");
-        return ipv4_1.Address4.fromHex(
-          BigInt(`0b${binary.slice(96, 128).join("")}`).toString(16).padStart(
-            8,
-            "0",
-          ),
-        );
+        const hex = BigInt(`0b${binary.slice(96, 128).join("")}`).toString(16)
+          .padStart(8, "0");
+        if (this.subnetMask >= 96) {
+          const v4Mask = this.subnetMask - 96;
+          const groups = [];
+          for (let i = 0; i < 8; i += 2) {
+            groups.push(parseInt(hex.slice(i, i + 2), 16));
+          }
+          return new ipv4_1.Address4(`${groups.join(".")}/${v4Mask}`);
+        }
+        return ipv4_1.Address4.fromHex(hex);
       }
       /**
        * Return the v4-in-v6 form of the address
@@ -33357,7 +33520,7 @@ var require_ipv6 = __commonJS({
         if (!/:$/.test(correct)) {
           infix = ":";
         }
-        return correct + infix + address4.address;
+        return correct + infix + address4.correctForm();
       }
       /**
        * Decodes the Teredo tunneling fields embedded in this address. Returns the
@@ -33456,9 +33619,14 @@ var require_ipv6 = __commonJS({
           bits = prefixBits.slice(0, 96) + v4Bits;
         } else {
           const beforeU = 64 - pl;
-          bits = prefixBits.slice(0, pl) + v4Bits.slice(0, beforeU) +
-            "00000000" + v4Bits.slice(beforeU) +
-            "0".repeat(128 - 72 - (32 - beforeU));
+          bits = [
+            prefixBits.slice(0, pl),
+            v4Bits.slice(0, beforeU),
+            // Bits 64 to 71 are the reserved u octet and are always zero.
+            "00000000",
+            v4Bits.slice(beforeU),
+            "0".repeat(128 - 72 - (32 - beforeU)),
+          ].join("");
         }
         const hex = BigInt(`0b${bits}`).toString(16).padStart(32, "0");
         const groups = [];
@@ -33486,7 +33654,7 @@ var require_ipv6 = __commonJS({
             "NAT64 prefix length must be 32, 40, 48, 56, 64, or 96",
           );
         }
-        if (!this.isInSubnet(prefix6)) {
+        if (!this.isHostInSubnet(prefix6)) {
           return null;
         }
         const bits = this.binaryZeroPad();
@@ -33511,9 +33679,10 @@ var require_ipv6 = __commonJS({
        * @returns {Array}
        */
       toByteArray() {
-        const valueWithoutPadding = this.bigInt().toString(16);
-        const leadingPad = "0".repeat(valueWithoutPadding.length % 2);
-        const value = `${leadingPad}${valueWithoutPadding}`;
+        const value = this.bigInt().toString(16).padStart(
+          constants6.BITS / 4,
+          "0",
+        );
         const bytes = [];
         for (let i = 0, length = value.length; i < length; i += 2) {
           bytes.push(parseInt(value.substring(i, i + 2), 16));
@@ -33532,19 +33701,28 @@ var require_ipv6 = __commonJS({
       /**
        * Convert a byte array to an Address6 object.
        *
+       * Accepts unsigned bytes (0 to 255) or signed bytes (-128 to 127, as an
+       * `Int8Array` or a Java `byte[]` holds them), folding signed values to their
+       * unsigned equivalent. Throws `AddressError` unless given exactly 16
+       * integers from -128 to 255.
+       *
        * To convert from a Node.js `Buffer`, spread it: `Address6.fromByteArray([...buf])`.
        * @returns {Address6}
        */
       static fromByteArray(bytes) {
+        common.assertByteArray(bytes, 16, "IPv6", -128);
         return this.fromUnsignedByteArray(bytes.map(unsignByte));
       }
       /**
        * Convert an unsigned byte array to an Address6 object.
        *
+       * Throws `AddressError` unless given exactly 16 integers from 0 to 255.
+       *
        * To convert from a Node.js `Buffer`, spread it: `Address6.fromUnsignedByteArray([...buf])`.
        * @returns {Address6}
        */
       static fromUnsignedByteArray(bytes) {
+        common.assertByteArray(bytes, 16, "IPv6", 0);
         const BYTE_MAX = BigInt("256");
         let result = BigInt("0");
         let multiplier = BigInt("1");
@@ -33566,6 +33744,10 @@ var require_ipv6 = __commonJS({
        * @returns {boolean}
        */
       isLinkLocal() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isLinkLocal();
+        }
         if (
           this.getBitsBase2(0, 64) ===
             "1111111010000000000000000000000000000000000000000000000000000000"
@@ -33579,6 +33761,10 @@ var require_ipv6 = __commonJS({
        * @returns {boolean}
        */
       isMulticast() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isMulticast();
+        }
         const type = this.getType();
         return type === "Multicast" || type.startsWith("Multicast ");
       }
@@ -33601,27 +33787,54 @@ var require_ipv6 = __commonJS({
        * @returns {boolean}
        */
       isMapped4() {
-        return this.isInSubnet(IPV4_MAPPED_SUBNET);
+        return this.isHostInSubnet(IPV4_MAPPED_SUBNET);
+      }
+      /**
+       * If this address embeds a routable IPv4 address — i.e. it is IPv4-mapped
+       * (`::ffff:0:0/96`) or sits in the NAT64 well-known prefix (`64:ff9b::/96`,
+       * [RFC 6052](https://datatracker.ietf.org/doc/html/rfc6052)) — return that
+       * embedded address as an {@link Address4}; otherwise return null.
+       *
+       * The special-property checks (`isLoopback`, `isLinkLocal`, `isMulticast`,
+       * `isUnspecified`, `isPrivate`, `isCGNAT`, `isBroadcast`) call this first and
+       * delegate to the embedded {@link Address4} when present, so a literal such as
+       * `::ffff:127.0.0.1` is classified by what it actually reaches (loopback)
+       * rather than by its IPv6 wrapper (which `getType()` reports as IPv4-mapped).
+       * This matters wherever the checks back a trust-boundary decision (e.g. an
+       * SSRF allow/deny filter): without normalization, `::ffff:10.0.0.1`,
+       * `::ffff:169.254.169.254`, `64:ff9b::7f00:1`, etc. would all read as
+       * non-internal.
+       * @returns {Address4 | null}
+       */
+      embeddedIPv4() {
+        if (this.isMapped4() || this.isHostInSubnet(NAT64_WELL_KNOWN_SUBNET)) {
+          return this.to4();
+        }
+        return null;
       }
       /**
        * Returns true if the address is a Teredo address, false otherwise
        * @returns {boolean}
        */
       isTeredo() {
-        return this.isInSubnet(TEREDO_SUBNET);
+        return this.isHostInSubnet(TEREDO_SUBNET);
       }
       /**
        * Returns true if the address is a 6to4 address, false otherwise
        * @returns {boolean}
        */
       is6to4() {
-        return this.isInSubnet(SIX_TO_FOUR_SUBNET);
+        return this.isHostInSubnet(SIX_TO_FOUR_SUBNET);
       }
       /**
        * Returns true if the address is a loopback address, false otherwise
        * @returns {boolean}
        */
       isLoopback() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isLoopback();
+        }
         return this.getType() === "Loopback";
       }
       /**
@@ -33629,13 +33842,64 @@ var require_ipv6 = __commonJS({
        * @returns {boolean}
        */
       isULA() {
-        return this.isInSubnet(ULA_SUBNET);
+        return this.isHostInSubnet(ULA_SUBNET);
+      }
+      /**
+       * Returns true if the address is private, i.e. a Unique Local Address in
+       * `fc00::/7` ([RFC 4193](https://datatracker.ietf.org/doc/html/rfc4193)) or an
+       * IPv4-mapped / NAT64 address whose embedded IPv4 address is in one of the
+       * [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private ranges
+       * (e.g. `::ffff:10.0.0.1`). This is the IPv6 counterpart to
+       * {@link Address4.isPrivate}; use it instead of {@link isULA} when you need to
+       * catch mapped RFC 1918 addresses as well as native ULAs.
+       * @returns {boolean}
+       */
+      isPrivate() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isPrivate();
+        }
+        return this.isULA();
+      }
+      /**
+       * Returns true if the address is an IPv4-mapped / NAT64 address whose embedded
+       * IPv4 address is in the carrier-grade NAT range `100.64.0.0/10`
+       * ([RFC 6598](https://datatracker.ietf.org/doc/html/rfc6598)), false
+       * otherwise. There is no native IPv6 CGNAT range, so this only ever returns
+       * true for an embedded IPv4 address (e.g. `::ffff:100.64.0.1`).
+       * @returns {boolean}
+       */
+      isCGNAT() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isCGNAT();
+        }
+        return false;
+      }
+      /**
+       * Returns true if the address is an IPv4-mapped / NAT64 address whose embedded
+       * IPv4 address is the limited broadcast address `255.255.255.255`
+       * ([RFC 919](https://datatracker.ietf.org/doc/html/rfc919)), false otherwise.
+       * There is no IPv6 broadcast, so this only ever returns true for an embedded
+       * IPv4 address (e.g. `::ffff:255.255.255.255`).
+       * @returns {boolean}
+       */
+      isBroadcast() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isBroadcast();
+        }
+        return false;
       }
       /**
        * Returns true if the address is the unspecified address `::`.
        * @returns {boolean}
        */
       isUnspecified() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isUnspecified();
+        }
         return this.getType() === "Unspecified";
       }
       /**
@@ -33643,7 +33907,7 @@ var require_ipv6 = __commonJS({
        * @returns {boolean}
        */
       isDocumentation() {
-        return this.isInSubnet(DOCUMENTATION_SUBNET);
+        return this.isHostInSubnet(DOCUMENTATION_SUBNET);
       }
       // #endregion
       // #region HTML
@@ -33695,7 +33959,12 @@ var require_ipv6 = __commonJS({
         return `<a href="${safeHref}">${safeForm}</a>`;
       }
       /**
-       * Groups an address
+       * Groups an address.
+       *
+       * Returns an HTML fragment: each group is wrapped in a `<span>` carrying
+       * the group classes an address-inspector UI hovers on. The address content
+       * is HTML-escaped; anything you concatenate around it is your
+       * responsibility.
        * @returns {String}
        */
       group() {
@@ -33816,12 +34085,13 @@ var require_ipv6 = __commonJS({
     var ULA_SUBNET = new Address6("fc00::/7");
     var DOCUMENTATION_SUBNET = new Address6("2001:db8::/32");
     var IPV4_MAPPED_SUBNET = new Address6("::ffff:0:0/96");
+    var NAT64_WELL_KNOWN_SUBNET = new Address6("64:ff9b::/96");
   },
 });
 
-// node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ip-address.js
+// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ip-address.js
 var require_ip_address = __commonJS({
-  "node_modules/.deno/ip-address@10.2.0/node_modules/ip-address/dist/ip-address.js"(
+  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ip-address.js"(
     exports2,
   ) {
     "use strict";
@@ -42195,7 +42465,7 @@ var require_file2 = __commonJS({
     var date_1 = __importDefault(require_date());
     var exists2 = util6.promisify(fs9.exists);
     var stat2 = util6.promisify(fs9.stat);
-    var read2 = util6.promisify(fs9.read);
+    var read = util6.promisify(fs9.read);
     var write = util6.promisify(fs9.write);
     var open2 = util6.promisify(fs9.open);
     var close = util6.promisify(fs9.close);
@@ -42320,7 +42590,7 @@ var require_file2 = __commonJS({
                   buf = Buffer.alloc(size);
                   return [
                     4,
-                    read2(this._fd, buf, 0, size, this._position),
+                    read(this._fd, buf, 0, size, this._position),
                   ];
                 case 3:
                   _b = _c.sent(), bytesRead = _b.bytesRead, buffer3 = _b.buffer;
@@ -49994,7 +50264,7 @@ var require_stream2 = __commonJS({
       }()
     );
     exports2.SSEEvent = SSEEvent;
-    function read2(readable) {
+    function read(readable) {
       return new Promise(function (resolve4, reject) {
         var onData, onError, onEnd;
         var cleanup = function () {
@@ -50097,7 +50367,7 @@ var require_stream2 = __commonJS({
                 case 0:
                   return [
                     4,
-                    read2(stream3),
+                    read(stream3),
                   ];
                 case 1:
                   return [
@@ -55427,9 +55697,9 @@ var require_builder = __commonJS({
   },
 });
 
-// node_modules/.deno/sax@1.6.0/node_modules/sax/lib/sax.js
+// node_modules/.deno/sax@1.6.1/node_modules/sax/lib/sax.js
 var require_sax = __commonJS({
-  "node_modules/.deno/sax@1.6.0/node_modules/sax/lib/sax.js"(exports2) {
+  "node_modules/.deno/sax@1.6.1/node_modules/sax/lib/sax.js"(exports2) {
     (function (sax) {
       sax.parser = function (strict, opt) {
         return new SAXParser(strict, opt);
@@ -55746,8 +56016,8 @@ var require_sax = __commonJS({
         }
         return Stream2.prototype.on.call(me, ev, handler);
       };
-      var CDATA = "[CDATA[";
-      var DOCTYPE = "DOCTYPE";
+      var CDATAre = /^\[CDATA\[$/i;
+      var DOCTYPEre = /^DOCTYPE$/i;
       var XML_NAMESPACE = "http://www.w3.org/XML/1998/namespace";
       var XMLNS_NAMESPACE = "http://www.w3.org/2000/xmlns/";
       var rootNS = {
@@ -55816,14 +56086,14 @@ var require_sax = __commonJS({
         SCRIPT: S++,
         SCRIPT_ENDING: S++,
       };
-      sax.XML_ENTITIES = {
+      sax.XML_ENTITIES = Object.assign(/* @__PURE__ */ Object.create(null), {
         amp: "&",
         gt: ">",
         lt: "<",
         quot: '"',
         apos: "'",
-      };
-      sax.ENTITIES = {
+      });
+      sax.ENTITIES = Object.assign(/* @__PURE__ */ Object.create(null), {
         amp: "&",
         gt: ">",
         lt: "<",
@@ -56077,7 +56347,7 @@ var require_sax = __commonJS({
         clubs: 9827,
         hearts: 9829,
         diams: 9830,
-      };
+      });
       Object.keys(sax.ENTITIES).forEach(function (key) {
         var e = sax.ENTITIES[key];
         var s2 = typeof e === "number" ? String.fromCharCode(e) : e;
@@ -56419,12 +56689,17 @@ var require_sax = __commonJS({
         entity = entity.replace(/^0+/, "");
         if (
           isNaN(num) || numStr.toLowerCase() !== entity || num < 0 ||
-          num > 1114111
+          num > 1114111 || !isXmlChar(num)
         ) {
           strictFail(parser, "Invalid character entity");
           return "&" + parser.entity + ";";
         }
         return String.fromCodePoint(num);
+      }
+      function isXmlChar(num) {
+        return num === 9 || num === 10 || num === 13 ||
+          num >= 32 && num <= 55295 || num >= 57344 && num <= 65533 ||
+          num >= 65536 && num <= 1114111;
       }
       function beginWhiteSpace(parser, c) {
         if (c === "<") {
@@ -56576,12 +56851,12 @@ var require_sax = __commonJS({
                 parser.state = S.DOCTYPE_DTD;
                 parser.doctype += "<!" + parser.sgmlDecl + c;
                 parser.sgmlDecl = "";
-              } else if ((parser.sgmlDecl + c).toUpperCase() === CDATA) {
+              } else if (CDATAre.test(parser.sgmlDecl + c)) {
                 emitNode(parser, "onopencdata");
                 parser.state = S.CDATA;
                 parser.sgmlDecl = "";
                 parser.cdata = "";
-              } else if ((parser.sgmlDecl + c).toUpperCase() === DOCTYPE) {
+              } else if (DOCTYPEre.test(parser.sgmlDecl + c)) {
                 parser.state = S.DOCTYPE;
                 if (parser.doctype || parser.sawRoot) {
                   strictFail(
@@ -182840,9 +183115,9 @@ var require_balanced_match = __commonJS({
   },
 });
 
-// node_modules/.deno/brace-expansion@1.1.16/node_modules/brace-expansion/index.js
+// node_modules/.deno/brace-expansion@1.1.18/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "node_modules/.deno/brace-expansion@1.1.16/node_modules/brace-expansion/index.js"(
+  "node_modules/.deno/brace-expansion@1.1.18/node_modules/brace-expansion/index.js"(
     exports2,
     module,
   ) {
@@ -182854,6 +183129,8 @@ var require_brace_expansion = __commonJS({
     var escClose = "\0CLOSE" + Math.random() + "\0";
     var escComma = "\0COMMA" + Math.random() + "\0";
     var escPeriod = "\0PERIOD" + Math.random() + "\0";
+    var EXPANSION_MAX = 1e5;
+    var EXPANSION_MAX_LENGTH = 4e6;
     function numeric(str) {
       return parseInt(str, 10) == str ? parseInt(str, 10) : str.charCodeAt(0);
     }
@@ -182892,11 +183169,16 @@ var require_brace_expansion = __commonJS({
     function expandTop(str, options) {
       if (!str) return [];
       options = options || {};
-      var max = options.max == null ? Infinity : options.max;
+      var max = options.max == null ? EXPANSION_MAX : options.max;
+      var maxLength = options.maxLength == null
+        ? EXPANSION_MAX_LENGTH
+        : options.maxLength;
       if (str.substr(0, 2) === "{}") {
         str = "\\{\\}" + str.substr(2);
       }
-      return expand(escapeBraces(str), max, true).map(unescapeBraces);
+      return expand(escapeBraces(str), max, maxLength, true).map(
+        unescapeBraces,
+      );
     }
     function embrace(str) {
       return "{" + str + "}";
@@ -182910,14 +183192,118 @@ var require_brace_expansion = __commonJS({
     function gte(i, y) {
       return i >= y;
     }
-    function expand(str, max, isTop) {
-      var expansions = [];
+    function combine(
+      acc,
+      base,
+      pre,
+      values,
+      max,
+      maxLength,
+      dropEmpties,
+      outBase,
+    ) {
+      var out = [];
+      var length = 0;
+      for (var a = 0; a < acc.length; a++) {
+        for (var v = 0; v < values.length; v++) {
+          if (out.length >= max) return out;
+          var expansion = acc[a] + pre + values[v];
+          if (dropEmpties && expansion.length === base[a]) continue;
+          if (length + expansion.length > maxLength) return out;
+          out.push(expansion);
+          outBase.push(base[a]);
+          length += expansion.length;
+        }
+      }
+      return out;
+    }
+    function expandSequence(body2, isAlphaSequence, max, maxLength) {
+      var n = body2.split(/\.\./);
+      var N = [];
+      if (n[0] === void 0 || n[1] === void 0) {
+        return N;
+      }
+      var x = numeric(n[0]);
+      var y = numeric(n[1]);
+      var width = Math.max(n[0].length, n[1].length);
+      var incr = n.length === 3 && n[2] !== void 0
+        ? Math.max(Math.abs(numeric(n[2])), 1)
+        : 1;
+      var test = lte;
+      var reverse = y < x;
+      if (reverse) {
+        incr *= -1;
+        test = gte;
+      }
+      var pad = n.some(isPadded);
+      var length = 0;
+      for (var i = x; test(i, y) && N.length < max; i += incr) {
+        var c;
+        if (isAlphaSequence) {
+          c = String.fromCharCode(i);
+          if (c === "\\") {
+            c = "";
+          }
+        } else {
+          c = String(i);
+          if (pad) {
+            var need = width - c.length;
+            if (need > 0) {
+              var z = new Array(need + 1).join("0");
+              if (i < 0) {
+                c = "-" + z + c.slice(1);
+              } else {
+                c = z + c;
+              }
+            }
+          }
+        }
+        if (length + c.length > maxLength) break;
+        N.push(c);
+        length += c.length;
+      }
+      return N;
+    }
+    function expand(str, max, maxLength, isTop) {
+      var acc = [
+        "",
+      ];
+      var accBase = [
+        0,
+      ];
+      var dropEmpties = false;
+      var firstGroup = true;
+      var nextBase;
       for (;;) {
         var m = balanced("{", "}", str);
-        if (!m || /\$$/.test(m.pre)) {
-          return [
+        if (!m) {
+          return combine(
+            acc,
+            accBase,
             str,
-          ];
+            [
+              "",
+            ],
+            max,
+            maxLength,
+            dropEmpties,
+            [],
+          );
+        }
+        var pre = m.pre;
+        if (/\$$/.test(pre)) {
+          return combine(
+            acc,
+            accBase,
+            str,
+            [
+              "",
+            ],
+            max,
+            maxLength,
+            dropEmpties,
+            [],
+          );
         }
         var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
         var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(
@@ -182929,78 +183315,95 @@ var require_brace_expansion = __commonJS({
           if (m.post.match(/,(?!,).*\}/)) {
             str = m.pre + "{" + m.body + escClose + m.post;
             isTop = true;
+            firstGroup = true;
+            dropEmpties = false;
+            accBase = [];
+            for (var b = 0; b < acc.length; b++) {
+              accBase.push(acc[b].length);
+            }
             continue;
           }
-          return [
-            str,
-          ];
+          return combine(
+            acc,
+            accBase,
+            pre + "{" + m.body + "}" + m.post,
+            [
+              "",
+            ],
+            max,
+            maxLength,
+            dropEmpties,
+            [],
+          );
         }
-        var n;
+        if (firstGroup) {
+          dropEmpties = isTop && !isSequence;
+          firstGroup = false;
+        }
+        var values;
         if (isSequence) {
-          n = m.body.split(/\.\./);
+          values = expandSequence(m.body, isAlphaSequence, max, maxLength);
         } else {
-          n = parseCommaParts(m.body);
-          if (n.length === 1) {
-            n = expand(n[0], max, false).map(embrace);
+          var n = parseCommaParts(m.body);
+          if (n.length === 1 && n[0] !== void 0) {
+            n = expand(n[0], max, maxLength, false).map(embrace);
             if (n.length === 1) {
-              var post = m.post.length ? expand(m.post, max, false) : [
-                "",
-              ];
-              return post.map(function (p) {
-                return m.pre + n[0] + p;
-              });
+              nextBase = [];
+              acc = combine(
+                acc,
+                accBase,
+                pre + n[0],
+                [
+                  "",
+                ],
+                max,
+                maxLength,
+                dropEmpties && !m.post.length,
+                nextBase,
+              );
+              accBase = nextBase;
+              if (!m.post.length) break;
+              str = m.post;
+              continue;
             }
           }
-        }
-        var pre = m.pre;
-        var post = m.post.length ? expand(m.post, max, false) : [
-          "",
-        ];
-        var N;
-        if (isSequence) {
-          var x = numeric(n[0]);
-          var y = numeric(n[1]);
-          var width = Math.max(n[0].length, n[1].length);
-          var incr = n.length == 3 ? Math.max(Math.abs(numeric(n[2])), 1) : 1;
-          var test = lte;
-          var reverse = y < x;
-          if (reverse) {
-            incr *= -1;
-            test = gte;
+          var dropsEmpties = dropEmpties && !m.post.length && !pre;
+          for (var d = 0; dropsEmpties && d < acc.length; d++) {
+            if (acc[d].length !== accBase[d]) {
+              dropsEmpties = false;
+            }
           }
-          var pad = n.some(isPadded);
-          N = [];
-          for (var i = x; test(i, y) && N.length < max; i += incr) {
-            var c;
-            if (isAlphaSequence) {
-              c = String.fromCharCode(i);
-              if (c === "\\") c = "";
-            } else {
-              c = String(i);
-              if (pad) {
-                var need = width - c.length;
-                if (need > 0) {
-                  var z = new Array(need + 1).join("0");
-                  if (i < 0) c = "-" + z + c.slice(1);
-                  else c = z + c;
-                }
+          values = [];
+          var valuesLength = 0;
+          outer: for (var j = 0; j < n.length; j++) {
+            var expanded = expand(n[j], max, maxLength, false);
+            for (var k = 0; k < expanded.length; k++) {
+              var v = expanded[k];
+              if (dropsEmpties && !v) continue;
+              if (values.length >= max || valuesLength + v.length > maxLength) {
+                break outer;
               }
+              values.push(v);
+              valuesLength += v.length;
             }
-            N.push(c);
-          }
-        } else {
-          N = concatMap(n, function (el) {
-            return expand(el, max, false);
-          });
-        }
-        for (var j = 0; j < N.length; j++) {
-          for (var k = 0; k < post.length && expansions.length < max; k++) {
-            var expansion = pre + N[j] + post[k];
-            if (!isTop || isSequence || expansion) expansions.push(expansion);
           }
         }
-        return expansions;
+        nextBase = [];
+        acc = combine(
+          acc,
+          accBase,
+          pre,
+          values,
+          max,
+          maxLength,
+          dropEmpties && !m.post.length,
+          nextBase,
+        );
+        accBase = nextBase;
+        if (!m.post.length) break;
+        str = m.post;
       }
+      return acc;
     }
   },
 });
@@ -186480,15 +186883,15 @@ var require_parse_proxy_response2 = __commonJS({
       return new Promise((resolve4, reject) => {
         let buffersLength = 0;
         const buffers = [];
-        function read2() {
+        function read() {
           const b = socket.read();
           if (b) ondata(b);
-          else socket.once("readable", read2);
+          else socket.once("readable", read);
         }
         function cleanup() {
           socket.removeListener("end", onend);
           socket.removeListener("error", onerror);
-          socket.removeListener("readable", read2);
+          socket.removeListener("readable", read);
         }
         function onend() {
           cleanup();
@@ -186511,7 +186914,7 @@ var require_parse_proxy_response2 = __commonJS({
           const endOfHeaders = buffered.indexOf("\r\n\r\n");
           if (endOfHeaders === -1) {
             debug3("have not received end of HTTP headers yet...");
-            read2();
+            read();
             return;
           }
           const headerParts = buffered.slice(0, endOfHeaders).toString("ascii")
@@ -186565,7 +186968,7 @@ var require_parse_proxy_response2 = __commonJS({
         }
         socket.on("error", onerror);
         socket.on("end", onend);
-        read2();
+        read();
       });
     }
     exports2.parseProxyResponse = parseProxyResponse;
@@ -190950,7 +191353,7 @@ function getRuntimeToken() {
 import * as fs8 from "node:fs";
 import { URL as URL2 } from "node:url";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/abort-controller/AbortError.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/abort-controller/AbortError.js
 var AbortError = class extends Error {
   constructor(message) {
     super(message);
@@ -190958,7 +191361,7 @@ var AbortError = class extends Error {
   }
 };
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
 import { EOL as EOL6 } from "node:os";
 import util3 from "node:util";
 import process2 from "node:process";
@@ -190966,7 +191369,7 @@ function log(message, ...args) {
   process2.stderr.write(`${util3.format(message, ...args)}${EOL6}`);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/env.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/env.js
 import process3 from "node:process";
 function getEnvironmentVariable(name) {
   return process3.env[name];
@@ -190977,7 +191380,7 @@ var isBun = typeof process3.versions.bun === "string" &&
   process3.versions.bun.length > 0;
 var isNodeLike = true;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/logger/debug.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/logger/debug.js
 var debugEnvVariable = getEnvironmentVariable("DEBUG");
 var enabledString;
 var enabledNamespaces = [];
@@ -191136,7 +191539,7 @@ function extend(namespace) {
 }
 var debug_default = debugObj;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/logger/logger.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/logger/logger.js
 var TYPESPEC_RUNTIME_LOG_LEVELS = [
   "verbose",
   "info",
@@ -191237,7 +191640,7 @@ function createClientLogger(namespace) {
   return context.createClientLogger(namespace);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/httpHeaders.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/httpHeaders.js
 function normalizeName(name) {
   return name.toLowerCase();
 }
@@ -191331,12 +191734,12 @@ function createHttpHeaders(rawHeaders) {
   return new HttpHeadersImpl(rawHeaders);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/uuidUtils.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/uuidUtils.js
 function randomUUID3() {
   return globalThis.crypto.randomUUID();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/pipelineRequest.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/pipelineRequest.js
 var PipelineRequestImpl = class {
   url;
   method;
@@ -191383,7 +191786,7 @@ function createPipelineRequest(options) {
   return new PipelineRequestImpl(options);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/pipeline.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/pipeline.js
 var ValidPhaseNames = /* @__PURE__ */ new Set([
   "Deserialize",
   "Serialize",
@@ -191583,13 +191986,13 @@ function createEmptyPipeline() {
   return HttpPipeline.create();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/object.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/object.js
 function isObject(input) {
   return typeof input === "object" && input !== null && !Array.isArray(input) &&
     !(input instanceof RegExp) && !(input instanceof Date);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/error.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/error.js
 function isError(e) {
   if (isObject(e)) {
     const hasName = typeof e.name === "string";
@@ -191599,11 +192002,11 @@ function isError(e) {
   return false;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/inspect.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/inspect.js
 import { inspect } from "node:util";
 var custom = inspect.custom;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/sanitizer.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/sanitizer.js
 var RedactedString = "REDACTED";
 var defaultAllowedHeaderNames = [
   "x-ms-client-request-id",
@@ -191752,7 +192155,7 @@ var Sanitizer = class {
   }
 };
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/restError.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/restError.js
 var errorSanitizer = new Sanitizer();
 var RestError = class _RestError extends Error {
   /**
@@ -191833,7 +192236,7 @@ function isRestError(e) {
   return isError(e) && e.name === "RestError";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/bytesEncoding.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/bytesEncoding.js
 function uint8ArrayToString(bytes, format) {
   return Buffer.from(bytes).toString(format);
 }
@@ -191841,16 +192244,16 @@ function stringToUint8Array(value, format) {
   return Buffer.from(value, format);
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
 import http2 from "node:http";
 import https2 from "node:https";
 import zlib from "node:zlib";
 import { Transform } from "node:stream";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/log.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/log.js
 var logger = createClientLogger("ts-http-runtime");
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/nodeHttpClient.js
 var DEFAULT_TLS_SETTINGS = {};
 function isReadableStream(body2) {
   return body2 && typeof body2.pipe === "function";
@@ -192184,12 +192587,12 @@ function createNodeHttpClient() {
   return new NodeHttpClient();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/defaultHttpClient.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/defaultHttpClient.js
 function createDefaultHttpClient() {
   return createNodeHttpClient();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/logPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/logPolicy.js
 var logPolicyName = "logPolicy";
 function logPolicy(options = {}) {
   const logger7 = options.logger ?? logger.info;
@@ -192216,25 +192619,25 @@ function logPolicy(options = {}) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgentPlatform.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgentPlatform.js
 import os7 from "node:os";
 import process4 from "node:process";
 function getHeaderName() {
   return "User-Agent";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/constants.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/constants.js
 var DEFAULT_RETRY_POLICY_COUNT = 3;
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgent.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/userAgent.js
 function getUserAgentHeaderName() {
   return getHeaderName();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/userAgentPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/userAgentPolicy.js
 var UserAgentHeaderName = getUserAgentHeaderName();
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/random.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/random.js
 function getRandomIntegerInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -192242,7 +192645,7 @@ function getRandomIntegerInclusive(min, max) {
   return offset + min;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/delay.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/delay.js
 function calculateRetryDelay(retryAttempt, config) {
   const exponentialDelay = config.retryDelayInMs * Math.pow(2, retryAttempt);
   const clampedDelay = Math.min(config.maxRetryDelayInMs, exponentialDelay);
@@ -192253,7 +192656,7 @@ function calculateRetryDelay(retryAttempt, config) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/helpers.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/helpers.js
 var StandardAbortMessage = "The operation was aborted.";
 function delay2(delayInMs, value, options) {
   return new Promise((resolve4, reject) => {
@@ -192300,7 +192703,7 @@ function parseHeaderValueAsNumber(response, headerName) {
   return valueAsNum;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/throttlingRetryStrategy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/throttlingRetryStrategy.js
 var RetryAfterHeader = "Retry-After";
 var AllRetryAfterHeaders = [
   "retry-after-ms",
@@ -192351,7 +192754,7 @@ function throttlingRetryStrategy() {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/exponentialRetryStrategy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/retryStrategies/exponentialRetryStrategy.js
 var DEFAULT_CLIENT_RETRY_INTERVAL = 1e3;
 var DEFAULT_CLIENT_MAX_RETRY_INTERVAL = 1e3 * 64;
 function exponentialRetryStrategy(options = {}) {
@@ -192402,7 +192805,7 @@ function isSystemError(err) {
     err.code === "ENOENT" || err.code === "ENOTFOUND";
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/retryPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/retryPolicy.js
 var retryPolicyLogger = createClientLogger("ts-http-runtime retryPolicy");
 var retryPolicyName = "retryPolicy";
 function retryPolicy(strategies, options = {
@@ -192518,7 +192921,7 @@ function retryPolicy(strategies, options = {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/defaultRetryPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/defaultRetryPolicy.js
 var defaultRetryPolicyName = "defaultRetryPolicy";
 function defaultRetryPolicy(options = {}) {
   return {
@@ -192532,7 +192935,7 @@ function defaultRetryPolicy(options = {}) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/formData.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/formData.js
 function convertBodyToFormDataMap(body2) {
   if (typeof FormData !== "undefined" && body2 instanceof FormData) {
     const formDataMap = {};
@@ -192556,7 +192959,7 @@ function convertBodyToFormDataMap(body2) {
   return void 0;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/formDataPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/formDataPolicy.js
 var formDataPolicyName = "formDataPolicy";
 function formDataPolicy() {
   return {
@@ -192642,7 +193045,7 @@ async function prepareFormData(formData, request) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/agentPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/agentPolicy.js
 var agentPolicyName = "agentPolicy";
 function agentPolicy(agent) {
   return {
@@ -192656,7 +193059,7 @@ function agentPolicy(agent) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/tlsPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/tlsPolicy.js
 var tlsPolicyName = "tlsPolicy";
 function tlsPolicy(tlsSettings) {
   return {
@@ -192670,7 +193073,7 @@ function tlsPolicy(tlsSettings) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/proxyPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/proxyPolicy.js
 var import_https_proxy_agent = __toESM(require_dist7());
 var import_http_proxy_agent = __toESM(require_dist8());
 var HTTPS_PROXY = "HTTPS_PROXY";
@@ -192831,7 +193234,7 @@ function proxyPolicy(proxySettings, options) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/decompressResponsePolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/decompressResponsePolicy.js
 var decompressResponsePolicyName = "decompressResponsePolicy";
 function decompressResponsePolicy() {
   return {
@@ -192845,7 +193248,7 @@ function decompressResponsePolicy() {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/redirectPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/redirectPolicy.js
 var redirectPolicyName = "redirectPolicy";
 var allowedRedirect = [
   "GET",
@@ -192912,15 +193315,15 @@ async function handleRedirect(
   return response;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards-node.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards-node.js
 import { Readable } from "node:stream";
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/typeGuards.js
 function isBlob(x) {
   return x instanceof Blob;
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/concat.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/concat.js
 import { Readable as Readable2 } from "node:stream";
 async function* streamAsyncIterator() {
   const reader = this.getReader();
@@ -192976,7 +193379,7 @@ async function concat(sources) {
   };
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/policies/multipartPolicy.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/policies/multipartPolicy.js
 function generateBoundary() {
   return `----AzSDKFormBoundary${randomUUID3()}`;
 }
@@ -193233,7 +193636,7 @@ function formDataPolicy2() {
   return formDataPolicy();
 }
 
-// node_modules/.deno/@typespec+ts-http-runtime@0.3.7/node_modules/@typespec/ts-http-runtime/dist/esm/util/sha256.js
+// node_modules/.deno/@typespec+ts-http-runtime@0.3.8/node_modules/@typespec/ts-http-runtime/dist/esm/util/sha256.js
 import { createHash as createHash3, createHmac } from "node:crypto";
 
 // node_modules/.deno/@azure+abort-controller@2.2.0/node_modules/@azure/abort-controller/dist/esm/AbortError.js
@@ -197016,7 +197419,7 @@ function convertHttpClient(requestPolicyClient) {
   };
 }
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/util.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/util.js
 var nameStartChar =
   ":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
 var nameChar = nameStartChar + "\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
@@ -197062,7 +197465,7 @@ var criticalProperties = [
   "prototype",
 ];
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/validator.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/validator.js
 var defaultOptions = {
   allowBooleanAttributes: false,
   unpairedTags: [],
@@ -198058,7 +198461,7 @@ var EntityDecoder = class {
   }
 };
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
 var defaultOnDangerousProperty = (name) => {
   if (DANGEROUS_PROPERTY_NAMES.includes(name)) {
     return "__" + name;
@@ -198213,7 +198616,7 @@ var buildOptions = function (options) {
   return built;
 };
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
 var METADATA_SYMBOL;
 if (typeof Symbol !== "function") {
   METADATA_SYMBOL = "@@xmlMetadata";
@@ -198244,10 +198647,22 @@ var XmlNode = class {
         [node.tagname]: node.child,
       });
     }
+    this.addStartIndex(startIndex);
+  }
+  addStartIndex(startIndex) {
     if (startIndex !== void 0) {
       this.child[this.child.length - 1][METADATA_SYMBOL] = {
         startIndex,
       };
+    }
+  }
+  addEndIndex(endIndex) {
+    const lastChild = this.child[this.child.length - 1];
+    if (
+      lastChild !== void 0 && lastChild[METADATA_SYMBOL] !== void 0 &&
+      lastChild[METADATA_SYMBOL].endIndex === void 0
+    ) {
+      lastChild[METADATA_SYMBOL].endIndex = endIndex;
     }
   }
   /** symbol used for metadata */
@@ -198320,7 +198735,7 @@ var createValidator = (
   return validator;
 };
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
 var DocTypeReader = class {
   constructor(options, xmlVersion) {
     this.suppressValidationErr = !options;
@@ -198341,8 +198756,21 @@ var DocTypeReader = class {
       i = i + 9;
       let angleBracketsCount = 1;
       let hasBody = false, comment = false;
+      let quoteChar = null;
       let exp = "";
       for (; i < xmlData.length; i++) {
+        if (quoteChar !== null) {
+          if (xmlData[i] === quoteChar) quoteChar = null;
+          exp += xmlData[i];
+          continue;
+        }
+        if (
+          !hasBody && !comment && (xmlData[i] === '"' || xmlData[i] === "'")
+        ) {
+          quoteChar = xmlData[i];
+          exp += xmlData[i];
+          continue;
+        }
         if (xmlData[i] === "<" && !comment) {
           if (hasBody && hasSeq(xmlData, "!ENTITY", i)) {
             i += 7;
@@ -198403,7 +198831,7 @@ var DocTypeReader = class {
           exp += xmlData[i];
         }
       }
-      if (angleBracketsCount !== 0) {
+      if (quoteChar !== null || angleBracketsCount !== 0) {
         throw new Error(`Unclosed DOCTYPE`);
       }
     } else {
@@ -198859,7 +199287,7 @@ function anynum(str) {
 }
 var anynum_default = anynum;
 
-// node_modules/.deno/strnum@2.4.1/node_modules/strnum/strnum.js
+// node_modules/.deno/strnum@2.4.2/node_modules/strnum/strnum.js
 var hexRegex = /^[-+]?0x[a-fA-F0-9]+$/;
 var binRegex = /^0b[01]+$/;
 var octRegex = /^0o[0-7]+$/;
@@ -198968,7 +199396,9 @@ function resolveEnotation(str, trimmedStr, options) {
 }
 function trimZeros(numStr) {
   if (numStr && numStr.indexOf(".") !== -1) {
-    numStr = numStr.replace(/0+$/, "");
+    let end = numStr.length;
+    while (end > 0 && numStr.charCodeAt(end - 1) === 48) end--;
+    numStr = numStr.slice(0, end);
     if (numStr === ".") numStr = "0";
     else if (numStr[0] === ".") numStr = "0" + numStr;
     else if (numStr[numStr.length - 1] === ".") {
@@ -199004,7 +199434,7 @@ function handleInfinity(str, num, options) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/ignoreAttributes.js
 function getIgnoreAttributesFn(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -199952,7 +200382,7 @@ var Matcher = class {
   }
 };
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/html.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/html.js
 var HTML_PATTERNS = [
   {
     id: "html-script-open",
@@ -200053,7 +200483,7 @@ var HTML_PATTERNS = [
 ];
 var html_default = HTML_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/xml.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/xml.js
 var XML_PATTERNS = [
   {
     id: "xml-cdata-injection",
@@ -200108,7 +200538,8 @@ var XML_PATTERNS = [
     id: "xml-namespace-confusion",
     description:
       "xmlns: attribute injection \u2014 can redefine namespaces to confuse parsers",
-    pattern: /\bxmlns\s*(?::\w{1,40})?\s*=/i,
+    // pattern: /\bxmlns\s*(?::\w{1,40})?\s*=/i,
+    pattern: /\bxmlns(?::\w{1,40})?\s*=/i,
   },
   {
     id: "xml-comment-injection",
@@ -200129,7 +200560,7 @@ var XML_PATTERNS = [
 ];
 var xml_default = XML_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/svg.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/svg.js
 var SVG_PATTERNS = [
   {
     id: "svg-script-element",
@@ -200213,7 +200644,7 @@ var SVG_PATTERNS = [
 ];
 var svg_default = SVG_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/sql.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/sql.js
 var SQL_PATTERNS = [
   {
     id: "sql-block-comment-open",
@@ -200298,7 +200729,7 @@ var SQL_PATTERNS = [
 ];
 var sql_default = SQL_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/shell.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/shell.js
 var SHELL_PATTERNS = [
   {
     id: "shell-path-traversal-unix",
@@ -200402,7 +200833,7 @@ var SHELL_PATTERNS = [
 ];
 var shell_default = SHELL_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/redos.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/redos.js
 var REDOS_PATTERNS = [
   {
     id: "redos-nested-quantifier-plus",
@@ -200457,7 +200888,7 @@ var REDOS_PATTERNS = [
 ];
 var redos_default = REDOS_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/nosql.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/nosql.js
 var sep8 = `["'\\s]*:`;
 var NOSQL_PATTERNS = [
   // ─── MongoDB $ operator injection ────────────────────────────────────────
@@ -200556,7 +200987,7 @@ var NOSQL_PATTERNS = [
 ];
 var nosql_default = NOSQL_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/log.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/log.js
 var LOG_PATTERNS = [
   // ─── CRLF / newline injection ─────────────────────────────────────────────
   {
@@ -200641,7 +201072,7 @@ var LOG_PATTERNS = [
 ];
 var log_default = LOG_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/contexts/sql-strict.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/contexts/sql-strict.js
 var SQL_STRICT_EXTRA = [
   {
     id: "sql-line-comment",
@@ -200667,7 +201098,7 @@ var SQL_STRICT_PATTERNS = [
 ];
 var sql_strict_default = SQL_STRICT_PATTERNS;
 
-// node_modules/.deno/is-unsafe@2.0.0/node_modules/is-unsafe/src/index.js
+// node_modules/.deno/is-unsafe@2.0.2/node_modules/is-unsafe/src/index.js
 html_default.label = "HTML";
 xml_default.label = "XML";
 svg_default.label = "SVG";
@@ -200761,7 +201192,7 @@ function isUnsafe(value, context3) {
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
 function extractRawAttributes(prefixedAttrs, options) {
   if (!prefixedAttrs) return {};
   const attrs = options.attributesGroupName
@@ -201053,7 +201484,10 @@ var parseXml = function (xmlData) {
         }
         this.matcher.pop();
         this.isCurrentNodeStopNode = false;
-        currentNode = this.tagsNodeStack.pop();
+        currentNode = this.tagsNodeStack.pop() || xmlObj;
+        if (options.captureMetaData && currentNode) {
+          currentNode.addEndIndex(closeIndex + 1);
+        }
         textData = "";
         i = closeIndex;
       } else if (c1 === 63) {
@@ -201089,6 +201523,9 @@ var parseXml = function (xmlData) {
             childNode[":@"] = attsMap;
           }
           this.addChild(currentNode, childNode, this.readonlyMatcher, i);
+          if (options.captureMetaData) {
+            currentNode.addEndIndex(tagData.closeIndex + 2);
+          }
         }
         i = tagData.closeIndex + 1;
       } else if (
@@ -201261,6 +201698,9 @@ var parseXml = function (xmlData) {
             this.readonlyMatcher,
             startIndex,
           );
+          if (options.captureMetaData) {
+            currentNode.addEndIndex(i + 1);
+          }
         } else {
           if (isSelfClosing) {
             ({ tagName, tagExp } = transformTagName(
@@ -201279,6 +201719,9 @@ var parseXml = function (xmlData) {
               this.readonlyMatcher,
               startIndex,
             );
+            if (options.captureMetaData) {
+              currentNode.addEndIndex(closeIndex + 1);
+            }
             this.matcher.pop();
             this.isCurrentNodeStopNode = false;
           } else if (options.unpairedTagsSet.has(tagName)) {
@@ -201292,6 +201735,9 @@ var parseXml = function (xmlData) {
               this.readonlyMatcher,
               startIndex,
             );
+            if (options.captureMetaData) {
+              currentNode.addEndIndex(result.closeIndex + 1);
+            }
             this.matcher.pop();
             this.isCurrentNodeStopNode = false;
             i = result.closeIndex;
@@ -201562,7 +202008,7 @@ function sanitizeName(name, options) {
   return name;
 }
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/xmlparser/node2json.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/node2json.js
 var METADATA_SYMBOL2 = XmlNode.getMetaDataSymbol();
 function stripAttributePrefix(attrs, prefix2) {
   if (!attrs || typeof attrs !== "object") return {};
@@ -201699,7 +202145,7 @@ function isLeafTag(obj, options) {
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
 var XMLParser = class {
   constructor(options) {
     this.externalEntities = {};
@@ -201770,21 +202216,24 @@ var XMLParser = class {
   }
 };
 
-// node_modules/.deno/fast-xml-builder@1.3.0/node_modules/fast-xml-builder/src/util.js
+// node_modules/.deno/fast-xml-builder@1.3.1/node_modules/fast-xml-builder/src/util.js
+function valToStr(val) {
+  return typeof val === "number" && Object.is(val, -0) ? "-0" : String(val);
+}
 function safeComment(val) {
-  return String(val).replace(/--/g, "- -").replace(/--/g, "- -").replace(
+  return valToStr(val).replace(/--/g, "- -").replace(/--/g, "- -").replace(
     /-$/,
     "- ",
   );
 }
 function safeCdata(val) {
-  return String(val).replace(/\]\]>/g, "]]]]><![CDATA[>");
+  return valToStr(val).replace(/\]\]>/g, "]]]]><![CDATA[>");
 }
 function escapeAttribute(val) {
-  return String(val).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+  return valToStr(val).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 }
 
-// node_modules/.deno/fast-xml-builder@1.3.0/node_modules/fast-xml-builder/src/orderedJs2Xml.js
+// node_modules/.deno/fast-xml-builder@1.3.1/node_modules/fast-xml-builder/src/orderedJs2Xml.js
 var EOL7 = "\n";
 function detectXmlVersionFromArray(jArray, options) {
   if (!Array.isArray(jArray) || jArray.length === 0) return "1.0";
@@ -201852,7 +202301,7 @@ function arrToStr(
   }
   if (!Array.isArray(arr)) {
     if (arr !== void 0 && arr !== null) {
-      let text = arr.toString();
+      let text = valToStr(arr);
       text = replaceEntitiesValue2(text, options);
       return text;
     }
@@ -201877,6 +202326,7 @@ function arrToStr(
         tagText = options.tagValueProcessor(tagName, tagText);
         tagText = replaceEntitiesValue2(tagText, options);
       }
+      tagText = valToStr(tagText);
       if (isPreviousElementTag) {
         xmlStr += indentation;
       }
@@ -201983,7 +202433,7 @@ function extractAttributeValues(attrMap, options) {
 function getRawContent2(arr, options) {
   if (!Array.isArray(arr)) {
     if (arr !== void 0 && arr !== null) {
-      return arr.toString();
+      return valToStr(arr);
     }
     return "";
   }
@@ -201992,7 +202442,7 @@ function getRawContent2(arr, options) {
     const item = arr[i];
     const tagName = propName2(item);
     if (tagName === options.textNodeName) {
-      content += item[tagName];
+      content += valToStr(item[tagName]);
     } else if (tagName === options.cdataPropName) {
       content += item[tagName][0][options.textNodeName];
     } else if (tagName === options.commentPropName) {
@@ -202080,7 +202530,7 @@ function replaceEntitiesValue2(textValue, options) {
   return textValue;
 }
 
-// node_modules/.deno/fast-xml-builder@1.3.0/node_modules/fast-xml-builder/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-builder@1.3.1/node_modules/fast-xml-builder/src/ignoreAttributes.js
 function getIgnoreAttributesFn2(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -202100,7 +202550,7 @@ function getIgnoreAttributesFn2(ignoreAttributes) {
   return () => false;
 }
 
-// node_modules/.deno/fast-xml-builder@1.3.0/node_modules/fast-xml-builder/src/fxb.js
+// node_modules/.deno/fast-xml-builder@1.3.1/node_modules/fast-xml-builder/src/fxb.js
 var defaultOptions3 = {
   attributeNamePrefix: "@_",
   attributesGroupName: false,
@@ -202297,19 +202747,19 @@ Builder.prototype.j2x = function (jObj, level, matcher, qNameValidator) {
         );
         attrStr += this.buildAttrPairStr(
           resolvedAttr,
-          "" + jObj[key],
+          valToStr(jObj[key]),
           isCurrentStopNode,
         );
       } else if (!attr) {
         if (key === this.options.textNodeName) {
-          let newval = this.options.tagValueProcessor(key, "" + jObj[key]);
+          let newval = this.options.tagValueProcessor(key, valToStr(jObj[key]));
           val += this.replaceEntitiesValue(newval);
         } else {
           matcher.push(resolvedKey);
           const isStopNode = this.checkStopNode(matcher);
           matcher.pop();
           if (isStopNode) {
-            const textValue = "" + jObj[key];
+            const textValue = valToStr(jObj[key]);
             if (textValue === "") {
               val += this.indentate(level) + "<" + resolvedKey +
                 this.closeTag(resolvedKey) + this.tagEndChar;
@@ -202366,13 +202816,14 @@ Builder.prototype.j2x = function (jObj, level, matcher, qNameValidator) {
           if (this.options.oneListGroup) {
             let textValue = this.options.tagValueProcessor(resolvedKey, item);
             textValue = this.replaceEntitiesValue(textValue);
+            textValue = valToStr(textValue);
             listTagVal += textValue;
           } else {
             matcher.push(resolvedKey);
             const isStopNode = this.checkStopNode(matcher);
             matcher.pop();
             if (isStopNode) {
-              const textValue = "" + item;
+              const textValue = valToStr(item);
               if (textValue === "") {
                 listTagVal += this.indentate(level) + "<" + resolvedKey +
                   this.closeTag(resolvedKey) + this.tagEndChar;
@@ -202418,7 +202869,7 @@ Builder.prototype.j2x = function (jObj, level, matcher, qNameValidator) {
           );
           attrStr += this.buildAttrPairStr(
             resolvedAttr,
-            "" + jObj[key][Ks[j]],
+            valToStr(jObj[key][Ks[j]]),
             isCurrentStopNode,
           );
         }
@@ -202440,7 +202891,7 @@ Builder.prototype.j2x = function (jObj, level, matcher, qNameValidator) {
 };
 Builder.prototype.buildAttrPairStr = function (attrName, val, isStopNode) {
   if (!isStopNode) {
-    val = this.options.attributeValueProcessor(attrName, "" + val);
+    val = this.options.attributeValueProcessor(attrName, valToStr(val));
     val = this.replaceEntitiesValue(val);
   }
   if (this.options.suppressBooleanAttributes && val === "true") {
@@ -202666,6 +203117,7 @@ Builder.prototype.buildTextValNode = function (
   } else {
     let textValue = this.options.tagValueProcessor(key, val);
     textValue = this.replaceEntitiesValue(textValue);
+    textValue = valToStr(textValue);
     if (textValue === "") {
       return this.indentate(level) + "<" + key + attrStr + this.closeTag(key) +
         this.tagEndChar;
@@ -202698,10 +203150,10 @@ function isAttribute(name) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
 var json2xml_default = Builder;
 
-// node_modules/.deno/fast-xml-parser@5.10.1/node_modules/fast-xml-parser/src/fxp.js
+// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/fxp.js
 var XMLValidator = {
   validate,
 };
@@ -202781,10 +203233,10 @@ async function parseXML(str, opts = {}) {
 // node_modules/.deno/@azure+storage-blob@12.33.0/node_modules/@azure/storage-blob/dist/esm/log.js
 var logger4 = createClientLogger2("storage-blob");
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/BufferScheduler.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/BufferScheduler.js
 import { EventEmitter as EventEmitter2 } from "node:events";
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/BuffersStream.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/BuffersStream.js
 import { Readable as Readable3 } from "node:stream";
 var BuffersStream = class extends Readable3 {
   buffers;
@@ -202887,7 +203339,7 @@ var BuffersStream = class extends Readable3 {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/PooledBuffer.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/PooledBuffer.js
 import buffer from "node:buffer";
 var maxBufferLength = buffer.constants.MAX_LENGTH;
 var PooledBuffer = class {
@@ -202967,7 +203419,7 @@ var PooledBuffer = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/BufferScheduler.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/BufferScheduler.js
 var BufferScheduler = class {
   /**
    * Size of buffers in incoming and outgoing queues. This class will try to align
@@ -203238,31 +203690,14 @@ var BufferScheduler = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncodingStream.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncodingStream.js
 import Stream, { Readable as Readable4 } from "node:stream";
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/crc64.js
-import { createRequire } from "node:module";
-import { dirname as dirname5 } from "node:path";
-import { fileURLToPath } from "node:url";
-var __isNode__ = typeof process === "object" &&
-  typeof process.versions === "object" &&
-  typeof process.versions.node === "string";
-var require2;
-var __filename2;
-var __dirname;
-if (__isNode__) {
-  require2 = createRequire(import.meta.url);
-  __filename2 = fileURLToPath(import.meta.url);
-  __dirname = dirname5(__filename2);
-}
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/crc64.js
 var NativeCRC64 = (() => {
   var _scriptDir = typeof document !== "undefined" && document.currentScript
     ? document.currentScript.src
     : void 0;
-  if (typeof __filename2 !== "undefined") {
-    _scriptDir = _scriptDir || __filename2;
-  }
   return function (NativeCRC642) {
     NativeCRC642 = NativeCRC642 || {};
     var Module = typeof NativeCRC642 != "undefined" ? NativeCRC642 : {};
@@ -203343,36 +203778,6 @@ var NativeCRC64 = (() => {
           "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)",
         );
       }
-      var fs9 = require2("fs");
-      var nodePath = require2("path");
-      if (ENVIRONMENT_IS_WORKER) {
-        scriptDirectory = nodePath.dirname(scriptDirectory) + "/";
-      } else {
-        scriptDirectory = __dirname + "/";
-      }
-      read_ = (filename, binary) => {
-        filename = isFileURI(filename)
-          ? new URL(filename)
-          : nodePath.normalize(filename);
-        return fs9.readFileSync(filename, binary ? void 0 : "utf8");
-      };
-      readBinary = (filename) => {
-        var ret = read_(filename, true);
-        if (!ret.buffer) {
-          ret = new Uint8Array(ret);
-        }
-        assert5(ret.buffer);
-        return ret;
-      };
-      readAsync = (filename, onload, onerror) => {
-        filename = isFileURI(filename)
-          ? new URL(filename)
-          : nodePath.normalize(filename);
-        fs9.readFile(filename, function (err2, data) {
-          if (err2) onerror(err2);
-          else onload(data.buffer);
-        });
-      };
       if (process["argv"].length > 1) {
         thisProgram = process["argv"][1].replace(/\\/g, "/");
       }
@@ -203398,30 +203803,13 @@ var NativeCRC64 = (() => {
       };
     } else if (ENVIRONMENT_IS_SHELL) {
       if (
-        typeof process == "object" && typeof require2 === "function" ||
+        typeof process == "object" && typeof __require === "function" ||
         typeof window == "object" || typeof importScripts == "function"
       ) {
         throw new Error(
           "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)",
         );
       }
-      if (typeof read != "undefined") {
-        read_ = function shell_read(f) {
-          return read(f);
-        };
-      }
-      readBinary = function readBinary2(f) {
-        let data;
-        if (typeof readbuffer == "function") {
-          return new Uint8Array(readbuffer(f));
-        }
-        data = read(f, "binary");
-        assert5(typeof data == "object");
-        return data;
-      };
-      readAsync = function readAsync2(f, onload, onerror) {
-        setTimeout(() => onload(readBinary(f)), 0);
-      };
       if (typeof scriptArgs != "undefined") {
         arguments_ = scriptArgs;
       } else if (typeof arguments != "undefined") {
@@ -203445,62 +203833,11 @@ var NativeCRC64 = (() => {
             typeof printErr != "undefined" ? printErr : print;
       }
     } else if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
-      if (ENVIRONMENT_IS_WORKER) {
-        scriptDirectory = self.location.href;
-      } else if (typeof document != "undefined" && document.currentScript) {
-        scriptDirectory = document.currentScript.src;
-      }
-      if (_scriptDir) {
-        scriptDirectory = _scriptDir;
-      }
-      if (scriptDirectory.indexOf("blob:") !== 0) {
-        scriptDirectory = scriptDirectory.substr(
-          0,
-          scriptDirectory.replace(/[?#].*/, "").lastIndexOf("/") + 1,
-        );
-      } else {
-        scriptDirectory = "";
-      }
       if (!(typeof window == "object" || typeof importScripts == "function")) {
         throw new Error(
           "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)",
         );
       }
-      {
-        read_ = (url2) => {
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url2, false);
-          xhr.send(null);
-          return xhr.responseText;
-        };
-        if (ENVIRONMENT_IS_WORKER) {
-          readBinary = (url2) => {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url2, false);
-            xhr.responseType = "arraybuffer";
-            xhr.send(null);
-            return new Uint8Array(
-              /** @type{!ArrayBuffer} */
-              xhr.response,
-            );
-          };
-        }
-        readAsync = (url2, onload, onerror) => {
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url2, true);
-          xhr.responseType = "arraybuffer";
-          xhr.onload = () => {
-            if (xhr.status == 200 || xhr.status == 0 && xhr.response) {
-              onload(xhr.response);
-              return;
-            }
-            onerror();
-          };
-          xhr.onerror = onerror;
-          xhr.send(null);
-        };
-      }
-      setWindowTitle = (title) => document.title = title;
     } else {
       throw new Error("environment detection error");
     }
@@ -205803,7 +206140,7 @@ var NativeCRC64 = (() => {
 })();
 var crc64_default = NativeCRC64;
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StorageCRC64Calculator.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StorageCRC64Calculator.js
 var StorageCRC64Calculator = class _StorageCRC64Calculator {
   nativeCrc64Hash;
   static nativeInstance;
@@ -205859,12 +206196,12 @@ var StorageCRC64Calculator = class _StorageCRC64Calculator {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/streamHelpers.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/streamHelpers.js
 function signalStreamEnd(pushData) {
   pushData(null);
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncoding.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncoding.js
 var MESSAGE_VERSION = 1;
 var MESSAGE_HEADER_LENGTH = 13;
 var SEGMENT_HEADER_LENGTH = 10;
@@ -206010,7 +206347,7 @@ var StructuredMessageEncoding = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncodingStream.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageEncodingStream.js
 function isNodeReadableStream2(source) {
   return source !== null && source instanceof Stream &&
     typeof source._read === "function" &&
@@ -206198,10 +206535,10 @@ var StructuredMessageEncodingStream = class extends Readable4 {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecodingStream.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecodingStream.js
 import { Readable as Readable5 } from "node:stream";
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecoding.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecoding.js
 var MESSAGE_VERSION2 = 1;
 var MESSAGE_HEADER_LENGTH2 = 13;
 var SEGMENT_HEADER_LENGTH2 = 10;
@@ -206442,7 +206779,7 @@ var StructuredMessageDecoding = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecodingStream.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StructuredMessageDecodingStream.js
 async function structuredMessageDecodingBrowser(source) {
   source;
   throw new Error("structuredMessageDecodingBrowser is only for Browser");
@@ -206505,7 +206842,7 @@ var StructuredMessageDecodingStream = class extends Readable5 {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/cache.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/cache.js
 var _defaultHttpClient;
 function getCachedDefaultHttpClient2() {
   if (!_defaultHttpClient) {
@@ -206514,7 +206851,7 @@ function getCachedDefaultHttpClient2() {
   return _defaultHttpClient;
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/RequestPolicy.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/RequestPolicy.js
 var BaseRequestPolicy = class {
   _nextPolicy;
   _options;
@@ -206544,7 +206881,7 @@ var BaseRequestPolicy = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageBrowserPolicy.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageBrowserPolicy.js
 var StorageBrowserPolicy = class extends BaseRequestPolicy {
   /**
    * Creates an instance of StorageBrowserPolicy.
@@ -206566,7 +206903,7 @@ var StorageBrowserPolicy = class extends BaseRequestPolicy {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StorageBrowserPolicyFactory.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StorageBrowserPolicyFactory.js
 var StorageBrowserPolicyFactory = class {
   /**
    * Creates a StorageBrowserPolicyFactory object.
@@ -206579,7 +206916,7 @@ var StorageBrowserPolicyFactory = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/CredentialPolicy.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/CredentialPolicy.js
 var CredentialPolicy = class extends BaseRequestPolicy {
   /**
    * Sends out request.
@@ -206600,7 +206937,7 @@ var CredentialPolicy = class extends BaseRequestPolicy {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/AnonymousCredentialPolicy.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/AnonymousCredentialPolicy.js
 var AnonymousCredentialPolicy = class extends CredentialPolicy {
   /**
    * Creates an instance of AnonymousCredentialPolicy.
@@ -206614,7 +206951,7 @@ var AnonymousCredentialPolicy = class extends CredentialPolicy {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/Credential.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/credentials/Credential.js
 var Credential = class {
   /**
    * Creates a RequestPolicy object.
@@ -206627,7 +206964,7 @@ var Credential = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/AnonymousCredential.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/credentials/AnonymousCredential.js
 var AnonymousCredential = class extends Credential {
   /**
    * Creates an {@link AnonymousCredentialPolicy} object.
@@ -206640,10 +206977,10 @@ var AnonymousCredential = class extends Credential {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/StorageSharedKeyCredential.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/credentials/StorageSharedKeyCredential.js
 import { createHmac as createHmac2 } from "node:crypto";
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/utils/constants.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/utils/constants.js
 var URLConstants = {
   Parameters: {
     FORCE_BROWSER_NO_CACHE: "_",
@@ -206680,7 +207017,7 @@ var HeaderConstants = {
   X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/utils/utils.common.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/utils/utils.common.js
 function setURLParameter(url2, name, value) {
   const urlParsed = new URL(url2);
   const encodedName = encodeURIComponent(name);
@@ -206761,7 +207098,7 @@ async function delay4(timeInMs, aborter, abortError) {
   });
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/utils/SharedKeyComparator.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/utils/SharedKeyComparator.js
 var table_lv0 = new Uint32Array([
   0,
   0,
@@ -207193,7 +207530,7 @@ function isLessThan(lhs, rhs) {
   return false;
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageSharedKeyCredentialPolicy.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageSharedKeyCredentialPolicy.js
 var StorageSharedKeyCredentialPolicy = class extends CredentialPolicy {
   /**
    * Reference to StorageSharedKeyCredential which generates StorageSharedKeyCredentialPolicy
@@ -207337,7 +207674,7 @@ ${key}:${decodeURIComponent(lowercaseQueries[key])}`;
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/StorageSharedKeyCredential.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/credentials/StorageSharedKeyCredential.js
 var StorageSharedKeyCredential = class extends Credential {
   /**
    * Azure Storage account name; readonly.
@@ -207377,10 +207714,10 @@ var StorageSharedKeyCredential = class extends Credential {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/log.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/log.js
 var logger5 = createClientLogger2("storage-common");
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicyType.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicyType.js
 var StorageRetryPolicyType;
 (function (StorageRetryPolicyType2) {
   StorageRetryPolicyType2[StorageRetryPolicyType2["EXPONENTIAL"] = 0] =
@@ -207388,7 +207725,7 @@ var StorageRetryPolicyType;
   StorageRetryPolicyType2[StorageRetryPolicyType2["FIXED"] = 1] = "FIXED";
 })(StorageRetryPolicyType || (StorageRetryPolicyType = {}));
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicy.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicy.js
 var DEFAULT_RETRY_OPTIONS = {
   maxRetryDelayInMs: 120 * 1e3,
   maxTries: 4,
@@ -207609,7 +207946,7 @@ var StorageRetryPolicy = class extends BaseRequestPolicy {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/StorageRetryPolicyFactory.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/StorageRetryPolicyFactory.js
 var StorageRetryPolicyFactory = class {
   retryOptions;
   /**
@@ -207630,7 +207967,7 @@ var StorageRetryPolicyFactory = class {
   }
 };
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageBrowserPolicyV2.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageBrowserPolicyV2.js
 var storageBrowserPolicyName = "storageBrowserPolicy";
 function storageBrowserPolicy() {
   return {
@@ -207641,7 +207978,7 @@ function storageBrowserPolicy() {
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageCorrectContentLengthPolicy.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageCorrectContentLengthPolicy.js
 var storageCorrectContentLengthPolicyName = "StorageCorrectContentLengthPolicy";
 function storageCorrectContentLengthPolicy() {
   function correctContentLength(request) {
@@ -207665,7 +208002,7 @@ function storageCorrectContentLengthPolicy() {
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicyV2.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageRetryPolicyV2.js
 var storageRetryPolicyName = "storageRetryPolicy";
 var DEFAULT_RETRY_OPTIONS2 = {
   maxRetryDelayInMs: 120 * 1e3,
@@ -207850,7 +208187,7 @@ function storageRetryPolicy(options = {}) {
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageSharedKeyCredentialPolicyV2.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageSharedKeyCredentialPolicyV2.js
 import { createHmac as createHmac3 } from "node:crypto";
 var storageSharedKeyCredentialPolicyName = "storageSharedKeyCredentialPolicy";
 function storageSharedKeyCredentialPolicy(options) {
@@ -207965,7 +208302,7 @@ ${key}:${decodeURIComponent(lowercaseQueries[key])}`;
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/policies/StorageRequestFailureDetailsParserPolicy.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/policies/StorageRequestFailureDetailsParserPolicy.js
 var storageRequestFailureDetailsParserPolicyName =
   "storageRequestFailureDetailsParserPolicy";
 function storageRequestFailureDetailsParserPolicy() {
@@ -207974,6 +208311,18 @@ function storageRequestFailureDetailsParserPolicy() {
     async sendRequest(request, next) {
       try {
         const response = await next(request);
+        if (
+          response.status === 400 &&
+          response.bodyAsText?.includes(
+            "<Error><Code>InvalidHeaderValue</Code>",
+          ) &&
+          response.bodyAsText.includes("<HeaderName>x-ms-version</HeaderName>")
+        ) {
+          response.bodyAsText = response.bodyAsText.replace(
+            /<Message>.*<\/Message>/s,
+            "<Message>The provided service version is not enabled on this storage account. Please see https://learn.microsoft.com/rest/api/storageservices/versioning-for-the-azure-storage-services for additional information.</Message>",
+          );
+        }
         return response;
       } catch (err) {
         if (
@@ -207994,7 +208343,7 @@ function storageRequestFailureDetailsParserPolicy() {
   };
 }
 
-// node_modules/.deno/@azure+storage-common@12.4.1/node_modules/@azure/storage-common/dist/esm/credentials/UserDelegationKeyCredential.js
+// node_modules/.deno/@azure+storage-common@12.5.0/node_modules/@azure/storage-common/dist/esm/credentials/UserDelegationKeyCredential.js
 import { createHmac as createHmac4 } from "node:crypto";
 var UserDelegationKeyCredential = class {
   /**
