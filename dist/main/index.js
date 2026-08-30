@@ -31727,9 +31727,9 @@ var require_util9 = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/address-error.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/address-error.js
 var require_address_error = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/address-error.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/address-error.js"(
     exports2,
   ) {
     "use strict";
@@ -31748,9 +31748,9 @@ var require_address_error = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/common.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/common.js
 var require_common2 = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/common.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/common.js"(
     exports2,
   ) {
     "use strict";
@@ -31759,6 +31759,8 @@ var require_common2 = __commonJS({
     });
     exports2.isInSubnet = isInSubnet;
     exports2.isHostInSubnet = isHostInSubnet;
+    exports2.isGloballyReachable = isGloballyReachable;
+    exports2.offsetBigInt = offsetBigInt;
     exports2.isCorrect = isCorrect;
     exports2.prefixLengthFromMask = prefixLengthFromMask;
     exports2.assertByteArray = assertByteArray;
@@ -31774,6 +31776,40 @@ var require_common2 = __commonJS({
     }
     function isHostInSubnet(address) {
       return this.mask(address.subnetMask) === address.mask();
+    }
+    function isGloballyReachable(entries) {
+      let best = null;
+      for (let i = 0; i < entries.length; i++) {
+        const entry = entries[i];
+        if (
+          entry.reachable !== null && isHostInSubnet.call(this, entry.subnet) &&
+          (best === null || entry.subnet.subnetMask > best.subnet.subnetMask)
+        ) {
+          best = entry;
+        }
+      }
+      return best === null ? true : best.reachable;
+    }
+    function offsetBigInt(value, n, bits, family) {
+      if (typeof n === "number" && !Number.isSafeInteger(n)) {
+        throw new address_error_1.AddressError(
+          `${family} offset must be an integer`,
+        );
+      }
+      if (typeof n !== "number" && typeof n !== "bigint") {
+        throw new address_error_1.AddressError(
+          `${family} offset must be an integer`,
+        );
+      }
+      const result = value + BigInt(n);
+      if (
+        result < BigInt(0) || result > (BigInt(1) << BigInt(bits)) - BigInt(1)
+      ) {
+        throw new address_error_1.AddressError(
+          `${family} offset leaves the address space`,
+        );
+      }
+      return result;
     }
     function isCorrect(defaultBits) {
       return function isCorrectForm() {
@@ -31834,16 +31870,17 @@ var require_common2 = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v4/constants.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/v4/constants.js
 var require_constants8 = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v4/constants.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/v4/constants.js"(
     exports2,
   ) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true,
     });
-    exports2.RE_SUBNET_STRING =
+    exports2.SPECIAL_PURPOSE =
+      exports2.RE_SUBNET_STRING =
       exports2.RE_ADDRESS =
       exports2.GROUPS =
       exports2.BITS =
@@ -31853,12 +31890,144 @@ var require_constants8 = __commonJS({
     exports2.RE_ADDRESS =
       /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/g;
     exports2.RE_SUBNET_STRING = /\/\d{1,2}$/;
+    exports2.SPECIAL_PURPOSE = [
+      [
+        "0.0.0.0/8",
+        "This network",
+        false,
+      ],
+      [
+        "0.0.0.0/32",
+        "This host on this network",
+        false,
+      ],
+      [
+        "10.0.0.0/8",
+        "Private-Use",
+        false,
+      ],
+      [
+        "100.64.0.0/10",
+        "Shared Address Space",
+        false,
+      ],
+      [
+        "127.0.0.0/8",
+        "Loopback",
+        false,
+      ],
+      [
+        "169.254.0.0/16",
+        "Link Local",
+        false,
+      ],
+      [
+        "172.16.0.0/12",
+        "Private-Use",
+        false,
+      ],
+      [
+        "192.0.0.0/24",
+        "IETF Protocol Assignments",
+        false,
+      ],
+      [
+        "192.0.0.0/29",
+        "IPv4 Service Continuity Prefix",
+        false,
+      ],
+      [
+        "192.0.0.8/32",
+        "IPv4 dummy address",
+        false,
+      ],
+      [
+        "192.0.0.9/32",
+        "Port Control Protocol Anycast",
+        true,
+      ],
+      [
+        "192.0.0.10/32",
+        "Traversal Using Relays around NAT Anycast",
+        true,
+      ],
+      [
+        "192.0.0.170/32",
+        "NAT64/DNS64 Discovery",
+        false,
+      ],
+      [
+        "192.0.0.171/32",
+        "NAT64/DNS64 Discovery",
+        false,
+      ],
+      [
+        "192.0.2.0/24",
+        "Documentation (TEST-NET-1)",
+        false,
+      ],
+      [
+        "192.31.196.0/24",
+        "AS112-v4",
+        true,
+      ],
+      [
+        "192.52.193.0/24",
+        "AMT",
+        true,
+      ],
+      [
+        "192.88.99.0/24",
+        "Deprecated (6to4 Relay Anycast)",
+        null,
+      ],
+      [
+        "192.88.99.2/32",
+        "6a44-relay anycast address",
+        false,
+      ],
+      [
+        "192.168.0.0/16",
+        "Private-Use",
+        false,
+      ],
+      [
+        "192.175.48.0/24",
+        "Direct Delegation AS112 Service",
+        true,
+      ],
+      [
+        "198.18.0.0/15",
+        "Benchmarking",
+        false,
+      ],
+      [
+        "198.51.100.0/24",
+        "Documentation (TEST-NET-2)",
+        false,
+      ],
+      [
+        "203.0.113.0/24",
+        "Documentation (TEST-NET-3)",
+        false,
+      ],
+      [
+        "240.0.0.0/4",
+        "Reserved",
+        false,
+      ],
+      [
+        "255.255.255.255/32",
+        "Limited Broadcast",
+        false,
+      ],
+    ];
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ipv4.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/ipv4.js
 var require_ipv4 = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ipv4.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/ipv4.js"(
     exports2,
   ) {
     "use strict";
@@ -32173,6 +32342,37 @@ var require_ipv4 = __commonJS({
         return _Address4.fromBigInt(this._startAddress() + adjust);
       }
       /**
+       * Returns the address `n` addresses after this one (or before, when `n` is
+       * negative), keeping this address's subnet mask. Throws `AddressError` when
+       * the result would fall outside the IPv4 address space or `n` is not an
+       * integer.
+       * @param {number | bigint} n
+       * @returns {Address4}
+       * @example
+       * new Address4('10.0.0.0/24').offset(1).correctForm(); // '10.0.0.1'
+       */
+      offset(n) {
+        return _Address4.fromBigInt(
+          common.offsetBigInt(this.bigInt(), n, constants4.BITS, "IPv4"),
+        ).withSubnetMask(this.subnetMask);
+      }
+      /**
+       * Returns the network that follows this address's network: the address after
+       * {@link endAddress}, with the same subnet mask. Throws `AddressError` when
+       * this network is the last one in the address space.
+       * @returns {Address4}
+       * @example
+       * new Address4('10.0.0.0/24').nextNetwork().networkForm(); // '10.0.1.0/24'
+       */
+      nextNetwork() {
+        return _Address4.fromBigInt(
+          common.offsetBigInt(this._endAddress(), 1, constants4.BITS, "IPv4"),
+        ).withSubnetMask(this.subnetMask);
+      }
+      withSubnetMask(subnetMask) {
+        return new _Address4(`${this.correctForm()}/${subnetMask}`);
+      }
+      /**
        * Helper function getting end address.
        * @returns {bigint}
        */
@@ -32368,6 +32568,44 @@ var require_ipv4 = __commonJS({
         return this.isHostInSubnet(CGNAT_V4);
       }
       /**
+       * Returns true if the address is in one of the documentation ranges
+       * `192.0.2.0/24`, `198.51.100.0/24`, or `203.0.113.0/24` ([RFC 5737](https://datatracker.ietf.org/doc/html/rfc5737)).
+       * @returns {boolean}
+       */
+      isDocumentation() {
+        return DOCUMENTATION_V4.some((subnet) => this.isHostInSubnet(subnet));
+      }
+      /**
+       * Returns true if the address is in the benchmarking range `198.18.0.0/15` ([RFC 2544](https://datatracker.ietf.org/doc/html/rfc2544)).
+       * @returns {boolean}
+       */
+      isBenchmarking() {
+        return this.isHostInSubnet(BENCHMARKING_V4);
+      }
+      /**
+       * Returns true if the address is in the reserved range `240.0.0.0/4` ([RFC 1112](https://datatracker.ietf.org/doc/html/rfc1112)),
+       * which includes the limited broadcast address.
+       * @returns {boolean}
+       */
+      isReserved() {
+        return this.isHostInSubnet(RESERVED_V4);
+      }
+      /**
+       * Returns true if the address is globally reachable: not multicast, and not
+       * in any block the [IANA IPv4 Special-Purpose Address Registry](https://www.iana.org/assignments/iana-ipv4-special-registry/)
+       * marks as not globally reachable. That covers everything the individual
+       * classifiers name (private, loopback, link-local, CGNAT, unspecified,
+       * broadcast, documentation, benchmarking, reserved) and the blocks they do
+       * not, such as `0.0.0.0/8` and the IETF protocol assignments in
+       * `192.0.0.0/24`. This is the single predicate to use where a request must
+       * not reach an internal or special-purpose destination; see SECURITY.md.
+       * @returns {boolean}
+       */
+      isGlobal() {
+        return !this.isMulticast() &&
+          common.isGloballyReachable.call(this, SPECIAL_PURPOSE_V4);
+      }
+      /**
        * Returns a zero-padded base-2 string representation of the address
        * @returns {string}
        */
@@ -32413,19 +32651,33 @@ var require_ipv4 = __commonJS({
     var UNSPECIFIED_V4 = new Address4("0.0.0.0/32");
     var BROADCAST_V4 = new Address4("255.255.255.255/32");
     var CGNAT_V4 = new Address4("100.64.0.0/10");
+    var DOCUMENTATION_V4 = [
+      new Address4("192.0.2.0/24"),
+      new Address4("198.51.100.0/24"),
+      new Address4("203.0.113.0/24"),
+    ];
+    var BENCHMARKING_V4 = new Address4("198.18.0.0/15");
+    var RESERVED_V4 = new Address4("240.0.0.0/4");
+    var SPECIAL_PURPOSE_V4 = constants4.SPECIAL_PURPOSE.map((
+      [cidr, , reachable],
+    ) => ({
+      subnet: new Address4(cidr),
+      reachable,
+    }));
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/constants.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/v6/constants.js
 var require_constants9 = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/constants.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/v6/constants.js"(
     exports2,
   ) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", {
       value: true,
     });
-    exports2.RE_URL_WITH_PORT =
+    exports2.SPECIAL_PURPOSE =
+      exports2.RE_URL_WITH_PORT =
       exports2.RE_URL =
       exports2.RE_ZONE_STRING =
       exports2.RE_SUBNET_STRING =
@@ -32475,8 +32727,14 @@ var require_constants9 = __commonJS({
       "ff00::/8": "Multicast",
       "fe80::/10": "Link-local unicast",
       "fc00::/7": "Unique local",
+      "2001::/32": "Teredo",
+      "2001:2::/48": "Benchmarking",
       "2002::/16": "6to4",
       "2001:db8::/32": "Documentation",
+      "3fff::/20": "Documentation",
+      "100::/64": "Discard-only",
+      "fec0::/10": "Site-local unicast (deprecated)",
+      "::/96": "IPv4-compatible (deprecated)",
       "64:ff9b::/96": "NAT64 (well-known)",
       "64:ff9b:1::/48": "NAT64 (local-use)",
     };
@@ -32486,12 +32744,139 @@ var require_constants9 = __commonJS({
     exports2.RE_ZONE_STRING = /%.*$/;
     exports2.RE_URL = /^(?:\[([0-9a-f:.]+)\]|([0-9a-f:.]+))(?:[/?#].*)?$/i;
     exports2.RE_URL_WITH_PORT = /^\[([0-9a-f:.]+)\]:([0-9]{1,5})(?:[/?#].*)?$/i;
+    exports2.SPECIAL_PURPOSE = [
+      [
+        "::1/128",
+        "Loopback Address",
+        false,
+      ],
+      [
+        "::/128",
+        "Unspecified Address",
+        false,
+      ],
+      [
+        "::ffff:0:0/96",
+        "IPv4-mapped Address",
+        false,
+      ],
+      [
+        "64:ff9b::/96",
+        "IPv4-IPv6 Translat.",
+        true,
+      ],
+      [
+        "64:ff9b:1::/48",
+        "IPv4-IPv6 Translat.",
+        false,
+      ],
+      [
+        "100::/64",
+        "Discard-Only Address Block",
+        false,
+      ],
+      [
+        "100:0:0:1::/64",
+        "Dummy IPv6 Prefix",
+        false,
+      ],
+      [
+        "2001::/23",
+        "IETF Protocol Assignments",
+        false,
+      ],
+      [
+        "2001::/32",
+        "TEREDO",
+        false,
+      ],
+      [
+        "2001:1::1/128",
+        "Port Control Protocol Anycast",
+        true,
+      ],
+      [
+        "2001:1::2/128",
+        "Traversal Using Relays around NAT Anycast",
+        true,
+      ],
+      [
+        "2001:1::3/128",
+        "DNS-SD Service Registration Protocol Anycast",
+        true,
+      ],
+      [
+        "2001:2::/48",
+        "Benchmarking",
+        false,
+      ],
+      [
+        "2001:3::/32",
+        "AMT",
+        true,
+      ],
+      [
+        "2001:4:112::/48",
+        "AS112-v6",
+        true,
+      ],
+      [
+        "2001:10::/28",
+        "Deprecated (previously ORCHID)",
+        null,
+      ],
+      [
+        "2001:20::/28",
+        "ORCHIDv2",
+        true,
+      ],
+      [
+        "2001:30::/28",
+        "Drone Remote ID Protocol Entity Tags (DETs) Prefix",
+        true,
+      ],
+      [
+        "2001:db8::/32",
+        "Documentation",
+        false,
+      ],
+      [
+        "2002::/16",
+        "6to4",
+        false,
+      ],
+      [
+        "2620:4f:8000::/48",
+        "Direct Delegation AS112 Service",
+        true,
+      ],
+      [
+        "3fff::/20",
+        "Documentation",
+        false,
+      ],
+      [
+        "5f00::/16",
+        "Segment Routing (SRv6) SIDs",
+        false,
+      ],
+      [
+        "fc00::/7",
+        "Unique-Local",
+        false,
+      ],
+      [
+        "fe80::/10",
+        "Link-Local Unicast",
+        false,
+      ],
+    ];
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/helpers.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/v6/helpers.js
 var require_helpers = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/helpers.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/v6/helpers.js"(
     exports2,
   ) {
     "use strict";
@@ -32544,9 +32929,9 @@ var require_helpers = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/regular-expressions.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/v6/regular-expressions.js
 var require_regular_expressions = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/v6/regular-expressions.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/v6/regular-expressions.js"(
     exports2,
   ) {
     "use strict";
@@ -32668,9 +33053,9 @@ var require_regular_expressions = __commonJS({
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ipv6.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/ipv6.js
 var require_ipv6 = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ipv6.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/ipv6.js"(
     exports2,
   ) {
     "use strict";
@@ -33035,26 +33420,30 @@ var require_ipv6 = __commonJS({
         return new _Address6(`::ffff:${address4.correctForm()}/${mask6}`);
       }
       /**
-       * Return an address from ip6.arpa form
+       * Return an address from ip6.arpa form. A full 32-nibble name gives a /128
+       * address; a shorter name, as used for a delegated reverse zone, gives the
+       * network it covers, with a subnet mask of four bits per nibble, so
+       * `fromArpa(x.reverseForm())` round-trips {@link reverseForm} for any prefix.
        * @param {string} arpaFormAddress - an 'ip6.arpa' form address
        * @returns {Adress6}
        * @example
        * var address = Address6.fromArpa(e.f.f.f.3.c.2.6.f.f.f.e.6.6.8.e.1.0.6.7.9.4.e.c.0.0.0.0.1.0.0.2.ip6.arpa.)
        * address.correctForm(); // '2001:0:ce49:7601:e866:efff:62c3:fffe'
+       * Address6.fromArpa('8.b.d.0.1.0.0.2.ip6.arpa.').networkForm(); // '2001:db8::/32'
        */
       static fromArpa(arpaFormAddress) {
-        let address = arpaFormAddress.replace(/(\.ip6\.arpa)?\.$/, "");
-        const semicolonAmount = 7;
-        if (address.length !== 63) {
+        const nibbles = arpaFormAddress.replace(/(\.ip6\.arpa)?\.?$/, "");
+        if (!/^[0-9a-f](\.[0-9a-f]){0,31}$/i.test(nibbles)) {
           throw new address_error_1.AddressError("Invalid 'ip6.arpa' form.");
         }
-        const parts = address.split(".").reverse();
-        for (let i = semicolonAmount; i > 0; i--) {
-          const insertIndex = i * 4;
-          parts.splice(insertIndex, 0, ":");
+        const reversed = nibbles.split(".").reverse();
+        const subnetMask = reversed.length * 4;
+        const hex = reversed.join("").padEnd(32, "0");
+        const groups = [];
+        for (let i = 0; i < constants6.GROUPS; i++) {
+          groups.push(hex.slice(i * 4, (i + 1) * 4));
         }
-        address = parts.join("");
-        return new _Address6(address);
+        return new _Address6(`${groups.join(":")}/${subnetMask}`);
       }
       /**
        * Return the Microsoft UNC transcription of the address
@@ -33122,21 +33511,56 @@ var require_ipv6 = __commonJS({
         );
       }
       /**
-       * The last address in the range given by this address' subnet
-       * Often referred to as the Broadcast
+       * The last address in the range given by this address's subnet. IPv6 has
+       * no broadcast address, so this is an ordinary assignable address (in a
+       * 64-bit-interface-identifier subnet it falls inside the reserved
+       * subnet-anycast block of [RFC 2526](https://datatracker.ietf.org/doc/html/rfc2526)).
        * @returns {Address6}
        */
       endAddress() {
         return _Address6.fromBigInt(this._endAddress());
       }
       /**
-       * The last host address in the range given by this address's subnet ie
-       * the last address prior to the Broadcast Address
+       * The address one before {@link endAddress}. This is the IPv6 counterpart
+       * of the IPv4 method that skips the broadcast address; IPv6 has no broadcast,
+       * so it drops exactly one address and does not model the 128 reserved
+       * subnet-anycast identifiers of [RFC 2526](https://datatracker.ietf.org/doc/html/rfc2526).
        * @returns {Address6}
        */
       endAddressExclusive() {
         const adjust = BigInt("1");
         return _Address6.fromBigInt(this._endAddress() - adjust);
+      }
+      /**
+       * Returns the address `n` addresses after this one (or before, when `n` is
+       * negative), keeping this address's subnet mask. Throws `AddressError` when
+       * the result would fall outside the IPv6 address space or `n` is not an
+       * integer.
+       * @param {number | bigint} n
+       * @returns {Address6}
+       * @example
+       * new Address6('2001:db8::/64').offset(1).correctForm(); // '2001:db8::1'
+       */
+      offset(n) {
+        return _Address6.fromBigInt(
+          common.offsetBigInt(this.bigInt(), n, constants6.BITS, "IPv6"),
+        ).withSubnetMask(this.subnetMask);
+      }
+      /**
+       * Returns the network that follows this address's network: the address after
+       * {@link endAddress}, with the same subnet mask. Throws `AddressError` when
+       * this network is the last one in the address space.
+       * @returns {Address6}
+       * @example
+       * new Address6('2001:db8::/64').nextNetwork().networkForm(); // '2001:db8:0:1::/64'
+       */
+      nextNetwork() {
+        return _Address6.fromBigInt(
+          common.offsetBigInt(this._endAddress(), 1, constants6.BITS, "IPv6"),
+        ).withSubnetMask(this.subnetMask);
+      }
+      withSubnetMask(subnetMask) {
+        return new _Address6(`${this.correctForm()}/${subnetMask}`);
       }
       /**
        * The hex form of the subnet mask, e.g. `ffff:ffff:ffff:ffff::` for a
@@ -33740,7 +34164,10 @@ var require_ipv6 = __commonJS({
         return this.addressMinusSuffix === this.canonicalForm();
       }
       /**
-       * Returns true if the address is a link local address, false otherwise
+       * Returns true if the address is a link-local unicast address in `fe80::/10`
+       * ([RFC 4291 §2.4](https://datatracker.ietf.org/doc/html/rfc4291#section-2.4))
+       * or an IPv4-mapped / NAT64 address whose embedded IPv4 address is link-local
+       * (`169.254.0.0/16`, e.g. `::ffff:169.254.169.254`), false otherwise.
        * @returns {boolean}
        */
       isLinkLocal() {
@@ -33748,13 +34175,7 @@ var require_ipv6 = __commonJS({
         if (embedded) {
           return embedded.isLinkLocal();
         }
-        if (
-          this.getBitsBase2(0, 64) ===
-            "1111111010000000000000000000000000000000000000000000000000000000"
-        ) {
-          return true;
-        }
-        return false;
+        return this.isHostInSubnet(LINK_LOCAL_SUBNET);
       }
       /**
        * Returns true if the address is a multicast address, false otherwise
@@ -33846,12 +34267,20 @@ var require_ipv6 = __commonJS({
       }
       /**
        * Returns true if the address is private, i.e. a Unique Local Address in
-       * `fc00::/7` ([RFC 4193](https://datatracker.ietf.org/doc/html/rfc4193)) or an
-       * IPv4-mapped / NAT64 address whose embedded IPv4 address is in one of the
-       * [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private ranges
-       * (e.g. `::ffff:10.0.0.1`). This is the IPv6 counterpart to
+       * `fc00::/7` ([RFC 4193](https://datatracker.ietf.org/doc/html/rfc4193)), an
+       * address in the NAT64 local-use range `64:ff9b:1::/48`
+       * ([RFC 8215](https://datatracker.ietf.org/doc/html/rfc8215)), or an
+       * IPv4-mapped / NAT64 well-known address whose embedded IPv4 address is in
+       * one of the [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918)
+       * private ranges (e.g. `::ffff:10.0.0.1`). This is the IPv6 counterpart to
        * {@link Address4.isPrivate}; use it instead of {@link isULA} when you need to
        * catch mapped RFC 1918 addresses as well as native ULAs.
+       *
+       * The local-use NAT64 range is reported private as a whole rather than by
+       * its embedded IPv4 address: an operator may carve a prefix of any RFC 6052
+       * length out of `64:ff9b:1::/48`, so the same bits decode to different IPv4
+       * addresses under different deployments and no single decoding is correct.
+       * Use {@link toAddress4Nat64} with the deployment's prefix to decode one.
        * @returns {boolean}
        */
       isPrivate() {
@@ -33859,7 +34288,7 @@ var require_ipv6 = __commonJS({
         if (embedded) {
           return embedded.isPrivate();
         }
-        return this.isULA();
+        return this.isULA() || this.isHostInSubnet(NAT64_LOCAL_USE_SUBNET);
       }
       /**
        * Returns true if the address is an IPv4-mapped / NAT64 address whose embedded
@@ -33907,7 +34336,51 @@ var require_ipv6 = __commonJS({
        * @returns {boolean}
        */
       isDocumentation() {
-        return this.isHostInSubnet(DOCUMENTATION_SUBNET);
+        return DOCUMENTATION_SUBNETS.some((subnet) =>
+          this.isHostInSubnet(subnet)
+        );
+      }
+      /**
+       * Returns true if the address is in the benchmarking range `2001:2::/48`
+       * ([RFC 5180](https://datatracker.ietf.org/doc/html/rfc5180)) or is an
+       * IPv4-mapped / NAT64 address whose embedded IPv4 address is in
+       * `198.18.0.0/15`, false otherwise.
+       * @returns {boolean}
+       */
+      isBenchmarking() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isBenchmarking();
+        }
+        return this.isHostInSubnet(BENCHMARKING_SUBNET);
+      }
+      /**
+       * Returns true if the address is globally reachable: inside the global
+       * unicast allocation `2000::/3` (the only range the [IANA IPv6 Address Space
+       * Registry](https://www.iana.org/assignments/ipv6-address-space/) assigns
+       * for global unicast; everything else is reserved, ULA, link-local, or
+       * multicast) and not in any block the [IANA IPv6 Special-Purpose Address Registry](https://www.iana.org/assignments/iana-ipv6-special-registry/)
+       * marks as not globally reachable. An IPv4-mapped or NAT64 well-known
+       * address answers for its embedded IPv4 address, so `::ffff:10.0.0.1` and
+       * `64:ff9b::7f00:1` are not global. Teredo (`2001::/32`) and 6to4
+       * (`2002::/16`) are not global either: the registry lists them as N/A and a
+       * packet to one needs a relay.
+       *
+       * This covers everything the individual classifiers name and the blocks they
+       * do not: the discard-only prefix `100::/64`, the IETF protocol assignments
+       * in `2001::/23`, the deprecated site-local `fec0::/10` and IPv4-compatible
+       * `::/96` ranges, and unallocated space such as `4000::/3`. It is the single
+       * predicate to use where a request must not reach an internal or
+       * special-purpose destination; see SECURITY.md.
+       * @returns {boolean}
+       */
+      isGlobal() {
+        const embedded = this.embeddedIPv4();
+        if (embedded) {
+          return embedded.isGlobal();
+        }
+        return this.isHostInSubnet(GLOBAL_UNICAST_SUBNET) &&
+          common.isGloballyReachable.call(this, SPECIAL_PURPOSE_V6);
       }
       // #endregion
       // #region HTML
@@ -34083,15 +34556,28 @@ var require_ipv6 = __commonJS({
     var TEREDO_SUBNET = new Address6("2001::/32");
     var SIX_TO_FOUR_SUBNET = new Address6("2002::/16");
     var ULA_SUBNET = new Address6("fc00::/7");
-    var DOCUMENTATION_SUBNET = new Address6("2001:db8::/32");
+    var LINK_LOCAL_SUBNET = new Address6("fe80::/10");
+    var DOCUMENTATION_SUBNETS = [
+      new Address6("2001:db8::/32"),
+      new Address6("3fff::/20"),
+    ];
+    var BENCHMARKING_SUBNET = new Address6("2001:2::/48");
+    var GLOBAL_UNICAST_SUBNET = new Address6("2000::/3");
+    var SPECIAL_PURPOSE_V6 = constants6.SPECIAL_PURPOSE.map((
+      [cidr, , reachable],
+    ) => ({
+      subnet: new Address6(cidr),
+      reachable,
+    }));
     var IPV4_MAPPED_SUBNET = new Address6("::ffff:0:0/96");
     var NAT64_WELL_KNOWN_SUBNET = new Address6("64:ff9b::/96");
+    var NAT64_LOCAL_USE_SUBNET = new Address6("64:ff9b:1::/48");
   },
 });
 
-// node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ip-address.js
+// node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/ip-address.js
 var require_ip_address = __commonJS({
-  "node_modules/.deno/ip-address@10.5.0/node_modules/ip-address/dist/ip-address.js"(
+  "node_modules/.deno/ip-address@10.7.0/node_modules/ip-address/dist/ip-address.js"(
     exports2,
   ) {
     "use strict";
@@ -196483,7 +196969,7 @@ function convertHttpClient(requestPolicyClient) {
   };
 }
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/util.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/util.js
 var nameStartChar =
   ":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
 var nameChar = nameStartChar + "\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
@@ -196529,7 +197015,7 @@ var criticalProperties = [
   "prototype",
 ];
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/validator.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/validator.js
 var defaultOptions = {
   allowBooleanAttributes: false,
   unpairedTags: [],
@@ -196847,12 +197333,57 @@ function readAttributeStr(xmlData, i) {
     tagClosed,
   };
 }
-var validAttrStrRegxp = new RegExp(
-  `(\\s*)([^\\s=]+)(\\s*=)?(\\s*(['"])(([\\s\\S])*?)\\5)?`,
-  "g",
-);
+function scanAttributeTokens(attrStr) {
+  const tokens = [];
+  const len = attrStr.length;
+  let i = 0;
+  while (i < len) {
+    const tokenStart = i;
+    while (i < len && isWhiteSpace(attrStr[i])) i++;
+    if (i >= len) break;
+    if (attrStr[i] === "=") {
+      i = tokenStart + 1;
+      continue;
+    }
+    const leadingWs = attrStr.slice(tokenStart, i);
+    const nameStart = i;
+    while (i < len && !isWhiteSpace(attrStr[i]) && attrStr[i] !== "=") i++;
+    const name = attrStr.slice(nameStart, i);
+    let equalsGroup;
+    let j = i;
+    while (j < len && isWhiteSpace(attrStr[j])) j++;
+    if (j < len && attrStr[j] === "=") {
+      equalsGroup = attrStr.slice(i, j + 1);
+      i = j + 1;
+    }
+    let quoteChar;
+    let value;
+    let k = i;
+    while (k < len && isWhiteSpace(attrStr[k])) k++;
+    if (k < len && (attrStr[k] === '"' || attrStr[k] === "'")) {
+      const valueStart = k + 1;
+      const closeIdx = attrStr.indexOf(attrStr[k], valueStart);
+      if (closeIdx !== -1) {
+        quoteChar = attrStr[k];
+        value = attrStr.slice(valueStart, closeIdx);
+        i = closeIdx + 1;
+      }
+    }
+    const token = {
+      startIndex: tokenStart,
+    };
+    token[1] = leadingWs;
+    token[2] = name;
+    token[3] = equalsGroup;
+    token[4] = quoteChar !== void 0 ? true : void 0;
+    token[5] = quoteChar;
+    token[6] = value;
+    tokens.push(token);
+  }
+  return tokens;
+}
 function validateAttributeString(attrStr, options) {
-  const matches = getAllMatches(attrStr, validAttrStrRegxp);
+  const matches = scanAttributeTokens(attrStr);
   const attrNames = {};
   for (let i = 0; i < matches.length; i++) {
     if (matches[i][1].length === 0) {
@@ -197525,7 +198056,7 @@ var EntityDecoder = class {
   }
 };
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
 var defaultOnDangerousProperty = (name) => {
   if (DANGEROUS_PROPERTY_NAMES.includes(name)) {
     return "__" + name;
@@ -197680,7 +198211,7 @@ var buildOptions = function (options) {
   return built;
 };
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
 var METADATA_SYMBOL;
 if (typeof Symbol !== "function") {
   METADATA_SYMBOL = "@@xmlMetadata";
@@ -197799,7 +198330,7 @@ var createValidator = (
   return validator;
 };
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
 var DocTypeReader = class {
   constructor(options, xmlVersion) {
     this.suppressValidationErr = !options;
@@ -198498,7 +199029,7 @@ function handleInfinity(str, num, options) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/ignoreAttributes.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/ignoreAttributes.js
 function getIgnoreAttributesFn(ignoreAttributes) {
   if (typeof ignoreAttributes === "function") {
     return ignoreAttributes;
@@ -200256,7 +200787,7 @@ function isUnsafe(value, context3) {
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
 function extractRawAttributes(prefixedAttrs, options) {
   if (!prefixedAttrs) return {};
   const attrs = options.attributesGroupName
@@ -201072,7 +201603,7 @@ function sanitizeName(name, options) {
   return name;
 }
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/node2json.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/xmlparser/node2json.js
 var METADATA_SYMBOL2 = XmlNode.getMetaDataSymbol();
 function stripAttributePrefix(attrs, prefix2) {
   if (!attrs || typeof attrs !== "object") return {};
@@ -201209,7 +201740,7 @@ function isLeafTag(obj, options) {
   return false;
 }
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
 var XMLParser = class {
   constructor(options) {
     this.externalEntities = {};
@@ -202214,10 +202745,10 @@ function isAttribute(name) {
   }
 }
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
 var json2xml_default = Builder;
 
-// node_modules/.deno/fast-xml-parser@5.11.0/node_modules/fast-xml-parser/src/fxp.js
+// node_modules/.deno/fast-xml-parser@5.11.1/node_modules/fast-xml-parser/src/fxp.js
 var XMLValidator = {
   validate,
 };
