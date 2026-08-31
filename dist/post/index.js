@@ -154772,9 +154772,9 @@ var require_side_channel = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/formats.js
+// node_modules/.deno/qs@6.16.0/node_modules/qs/lib/formats.js
 var require_formats = __commonJS({
-  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/formats.js"(
+  "node_modules/.deno/qs@6.16.0/node_modules/qs/lib/formats.js"(
     exports2,
     module,
   ) {
@@ -154801,9 +154801,9 @@ var require_formats = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/utils.js
+// node_modules/.deno/qs@6.16.0/node_modules/qs/lib/utils.js
 var require_utils5 = __commonJS({
-  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/utils.js"(
+  "node_modules/.deno/qs@6.16.0/node_modules/qs/lib/utils.js"(
     exports2,
     module,
   ) {
@@ -155133,7 +155133,8 @@ var require_utils5 = __commonJS({
       if (!obj || typeof obj !== "object") {
         return false;
       }
-      return !!(obj.constructor && obj.constructor.isBuffer &&
+      return !!(obj.constructor &&
+        typeof obj.constructor.isBuffer === "function" &&
         obj.constructor.isBuffer(obj));
     };
     var combine = function combine2(
@@ -155150,8 +155151,14 @@ var require_utils5 = __commonJS({
               (arrayLimit === 1 ? "" : "s") + " allowed in an array.",
           );
         }
-        var newIndex = getMaxIndex(a) + 1;
-        a[newIndex] = b;
+        var bValues = isArray(b) ? b : [
+          b,
+        ];
+        var newIndex = getMaxIndex(a);
+        for (var i = 0; i < bValues.length; ++i) {
+          newIndex += 1;
+          a[newIndex] = bValues[i];
+        }
         setMaxIndex(a, newIndex);
         return a;
       }
@@ -155199,9 +155206,9 @@ var require_utils5 = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/stringify.js
+// node_modules/.deno/qs@6.16.0/node_modules/qs/lib/stringify.js
 var require_stringify = __commonJS({
-  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/stringify.js"(
+  "node_modules/.deno/qs@6.16.0/node_modules/qs/lib/stringify.js"(
     exports2,
     module,
   ) {
@@ -155243,6 +155250,7 @@ var require_stringify = __commonJS({
       charsetSentinel: false,
       commaRoundTrip: false,
       delimiter: "&",
+      depth: Infinity,
       encode: true,
       encodeDotInKeys: false,
       encoder: utils.encode,
@@ -155283,8 +155291,13 @@ var require_stringify = __commonJS({
       encodeValuesOnly,
       charset,
       sideChannel,
+      depth,
+      currentDepth,
     ) {
       var obj = object;
+      if (currentDepth > depth) {
+        throw new RangeError("Input depth exceeded depth option of " + depth);
+      }
       var tmpSc = sideChannel;
       var step = 0;
       var findFlag = false;
@@ -155302,9 +155315,8 @@ var require_stringify = __commonJS({
           step = 0;
         }
       }
-      if (typeof filter === "function") {
-        obj = filter(prefix2, obj);
-      } else if (obj instanceof Date) {
+      obj = typeof filter === "function" ? filter(prefix2, obj) : obj;
+      if (obj instanceof Date) {
         obj = serializeDate(obj);
       } else if (generateArrayPrefix === "comma" && isArray(obj)) {
         obj = utils.maybeMap(obj, function (value2) {
@@ -155368,7 +155380,10 @@ var require_stringify = __commonJS({
       var adjustedPrefix = commaRoundTrip && isArray(obj) && obj.length === 1
         ? encodedPrefix + "[]"
         : encodedPrefix;
-      if (allowEmptyArrays && isArray(obj) && obj.length === 0) {
+      if (
+        allowEmptyArrays && isArray(obj) && obj.length === 0 &&
+        Object.keys(obj).length === 0
+      ) {
         return adjustedPrefix + "[]";
       }
       for (var j = 0; j < objKeys.length; ++j) {
@@ -155415,6 +155430,8 @@ var require_stringify = __commonJS({
             encodeValuesOnly,
             charset,
             valueSideChannel,
+            depth,
+            currentDepth + 1,
           ),
         );
       }
@@ -155500,6 +155517,7 @@ var require_stringify = __commonJS({
         delimiter: typeof opts.delimiter === "undefined"
           ? defaults.delimiter
           : opts.delimiter,
+        depth: typeof opts.depth === "number" ? opts.depth : defaults.depth,
         encode: typeof opts.encode === "boolean"
           ? opts.encode
           : defaults.encode,
@@ -155562,11 +155580,14 @@ var require_stringify = __commonJS({
         if (options.skipNulls && value === null) {
           continue;
         }
+        var encodedKey = options.encodeDotInKeys
+          ? String(key).replace(/\./g, "%2E")
+          : String(key);
         pushToArray(
           keys,
           stringify(
             value,
-            key,
+            encodedKey,
             generateArrayPrefix,
             commaRoundTrip,
             options.allowEmptyArrays,
@@ -155583,6 +155604,8 @@ var require_stringify = __commonJS({
             options.encodeValuesOnly,
             options.charset,
             sideChannel,
+            options.depth,
+            0,
           ),
         );
       }
@@ -155600,9 +155623,9 @@ var require_stringify = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/parse.js
+// node_modules/.deno/qs@6.16.0/node_modules/qs/lib/parse.js
 var require_parse2 = __commonJS({
-  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/parse.js"(
+  "node_modules/.deno/qs@6.16.0/node_modules/qs/lib/parse.js"(
     exports2,
     module,
   ) {
@@ -155639,16 +155662,11 @@ var require_parse2 = __commonJS({
         return String.fromCharCode(parseInt(numberStr, 10));
       });
     };
-    var parseArrayValue = function (
-      val,
-      options,
-      currentArrayLength,
-      isFlatArrayValue,
-    ) {
+    var parseArrayValue = function (val, options, currentArrayLength) {
       if (
         val && typeof val === "string" && options.comma && val.indexOf(",") > -1
       ) {
-        if (isFlatArrayValue && options.throwOnLimitExceeded) {
+        if (options.throwOnLimitExceeded) {
           var commaCount = 0;
           var commaIndex = val.indexOf(",");
           while (commaIndex > -1) {
@@ -155744,7 +155762,6 @@ var require_parse2 = __commonJS({
                 part.slice(pos + 1),
                 options,
                 isArray(obj[key]) ? obj[key].length : 0,
-                part.indexOf("[]=") === -1,
               ),
               function (encodedVal) {
                 return options.decoder(
@@ -156106,9 +156123,9 @@ var require_parse2 = __commonJS({
   },
 });
 
-// node_modules/.deno/qs@6.15.3/node_modules/qs/lib/index.js
+// node_modules/.deno/qs@6.16.0/node_modules/qs/lib/index.js
 var require_lib4 = __commonJS({
-  "node_modules/.deno/qs@6.15.3/node_modules/qs/lib/index.js"(
+  "node_modules/.deno/qs@6.16.0/node_modules/qs/lib/index.js"(
     exports2,
     module,
   ) {
